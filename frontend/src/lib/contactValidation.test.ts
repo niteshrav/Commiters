@@ -4,6 +4,7 @@ import {
   sanitizeNameInput,
   sanitizeTimelineInput,
   validateBudgetOptional,
+  validateEmail,
   validateName,
   validateTimelineOptional,
 } from "./contactValidation";
@@ -18,6 +19,21 @@ describe("contactValidation", () => {
     it("strips digits and symbols", () => {
       expect(sanitizeNameInput("John123")).toBe("John");
       expect(sanitizeNameInput("A@B#C")).toBe("ABC");
+    });
+  });
+
+  describe("validateEmail", () => {
+    it("rejects empty email", () => {
+      expect(validateEmail("")).toMatch(/email/i);
+    });
+
+    it("accepts common valid emails", () => {
+      expect(validateEmail("hello@commiters.com")).toBeNull();
+      expect(validateEmail("  a@b.co  ")).toBeNull();
+    });
+
+    it("rejects invalid patterns", () => {
+      expect(validateEmail("not-an-email")).toMatch(/valid/i);
     });
   });
 

@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import SiteQuickActions from "./SiteQuickActions";
 
 export default function Layout({ children }: PropsWithChildren) {
   const location = useLocation();
@@ -54,6 +55,7 @@ export default function Layout({ children }: PropsWithChildren) {
         </div>
       </main>
       <Footer />
+      <SiteQuickActions />
     </div>
   );
 }

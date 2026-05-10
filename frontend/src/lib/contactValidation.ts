@@ -26,6 +26,13 @@ export function validateName(value: string): string | null {
   return null;
 }
 
+export function validateEmail(value: string): string | null {
+  const t = value.trim();
+  if (!t) return "Please enter your email.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t)) return "Please enter a valid email.";
+  return null;
+}
+
 export function validateBudgetOptional(value: string): string | null {
   const t = value.trim();
   if (!t) return null;

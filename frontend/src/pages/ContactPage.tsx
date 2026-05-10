@@ -11,30 +11,18 @@ import {
   sanitizeNameInput,
   sanitizeTimelineInput,
   validateBudgetOptional,
+  validateEmail,
   validateName,
   validateTimelineOptional,
 } from "../lib/contactValidation";
+import { LEAD_SERVICE_LABELS } from "../lib/leadServices";
 import {
   buildOfficeMapDirectionsUrl,
   buildOfficeMapEmbedUrl,
   buildOfficeMapOpenUrl,
 } from "../lib/officeMap";
 
-const services = [
-  "Website Development",
-  "Web Application Development",
-  "Mobile App Development",
-  "MVP Development",
-] as const;
-
 const officeAddress = "82, Sobhagya Nagar, Nakoda Nagar, Udaipur, Rajasthan, India 313001";
-
-function validateEmail(email: string): string | null {
-  const t = email.trim();
-  if (!t) return "Please enter your email.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t)) return "Please enter a valid email.";
-  return null;
-}
 
 export default function ContactPage() {
   useDocumentTitle(pageTitle("Contact"));
@@ -142,7 +130,7 @@ export default function ContactPage() {
                   value={form.serviceNeeded}
                   onChange={(e) => setForm((s) => ({ ...s, serviceNeeded: e.target.value as LeadInput["serviceNeeded"] }))}
                 >
-                  {services.map((s) => (
+                  {LEAD_SERVICE_LABELS.map((s) => (
                     <option key={s} value={s}>
                       {s}
                     </option>
