@@ -11,6 +11,8 @@ Copy `./.env.example` to `./.env`.
 - `DATABASE_URL` - Supabase Postgres connection string for Prisma
 - `SMTP_ENABLED` - optional; enable email notifications
 
+When SMTP notifications are wired up, send staff alerts to **both** team inboxes (`hello@commiters.com` and `commitersudaipur@gmail.com`). Shared helpers live in `src/lib/teamInboxes.ts` (`teamInboxRecipients`, `teamInboxRecipientsJoined`).
+
 ## Available endpoints (MVP)
 
 - `GET /api/health` - health check

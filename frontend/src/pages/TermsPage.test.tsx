@@ -13,5 +13,10 @@ describe("TermsPage", () => {
     expect(screen.getByTestId("page-hero-premium")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /^Terms of Service$/i })).toBeInTheDocument();
     expect(container.querySelectorAll(".legal-heading").length).toBeGreaterThan(0);
+
+    const termsMail = screen.getByRole("link", {
+      name: /hello@commiters\.com,\s*commitersudaipur@gmail\.com/i,
+    });
+    expect(termsMail).toHaveAttribute("href", "mailto:hello@commiters.com,commitersudaipur@gmail.com");
   });
 });

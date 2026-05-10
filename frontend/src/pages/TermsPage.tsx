@@ -2,7 +2,7 @@ import React from "react";
 import PageHeroImmersive from "../components/PageHeroImmersive";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { pageTitle } from "../lib/siteMeta";
-import { COMMITERS_EMAIL_PRIMARY, COMMITERS_EMAIL_SECONDARY } from "../lib/siteContact";
+import { COMMITERS_EMAIL_STRIP_DISPLAY, buildMailtoTeamInboxHref } from "../lib/siteContact";
 
 export default function TermsPage() {
   useDocumentTitle(pageTitle("Terms of Service"));
@@ -66,8 +66,7 @@ export default function TermsPage() {
           <h2 className="legal-heading">Contact</h2>
           <p className="muted">
             For questions related to these terms, email{" "}
-            <a href={`mailto:${COMMITERS_EMAIL_PRIMARY}`}>{COMMITERS_EMAIL_PRIMARY}</a> or{" "}
-            <a href={`mailto:${COMMITERS_EMAIL_SECONDARY}`}>{COMMITERS_EMAIL_SECONDARY}</a>.
+            <a href={buildMailtoTeamInboxHref()}>{COMMITERS_EMAIL_STRIP_DISPLAY}</a>.
           </p>
         </div>
       </section>

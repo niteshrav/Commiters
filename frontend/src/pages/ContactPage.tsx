@@ -21,7 +21,7 @@ import {
   buildOfficeMapEmbedUrl,
   buildOfficeMapOpenUrl,
 } from "../lib/officeMap";
-import { COMMITERS_EMAIL_PRIMARY, COMMITERS_EMAIL_SECONDARY } from "../lib/siteContact";
+import { COMMITERS_EMAIL_STRIP_DISPLAY, buildMailtoTeamInboxHref } from "../lib/siteContact";
 
 const officeAddress = "82, Sobhagya Nagar, Nakoda Nagar, Udaipur, Rajasthan, India 313001";
 
@@ -214,17 +214,11 @@ export default function ContactPage() {
                   </span>
                   <span className="contact-row-value">+91 7891646568</span>
                 </a>
-                <a href={`mailto:${COMMITERS_EMAIL_PRIMARY}`} className="contact-icon-row">
+                <a href={buildMailtoTeamInboxHref()} className="contact-icon-row">
                   <span className="contact-strip-icon" aria-hidden>
                     <IconEnvelope width={22} height={22} />
                   </span>
-                  <span className="contact-row-value">{COMMITERS_EMAIL_PRIMARY}</span>
-                </a>
-                <a href={`mailto:${COMMITERS_EMAIL_SECONDARY}`} className="contact-icon-row">
-                  <span className="contact-strip-icon" aria-hidden>
-                    <IconEnvelope width={22} height={22} />
-                  </span>
-                  <span className="contact-row-value">{COMMITERS_EMAIL_SECONDARY}</span>
+                  <span className="contact-row-value">{COMMITERS_EMAIL_STRIP_DISPLAY}</span>
                 </a>
                 <div className="contact-address-with-icon">
                   <span className="contact-strip-icon" aria-hidden>

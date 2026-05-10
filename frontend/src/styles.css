@@ -1155,6 +1155,9 @@ select:focus-visible {
 .contact-row-value {
   font-size: 0.98rem;
   letter-spacing: 0.01em;
+  min-width: 0;
+  line-height: 1.4;
+  word-break: break-word;
 }
 
 .contact-address-with-icon {

@@ -3,6 +3,14 @@ export const COMMITERS_EMAIL_PRIMARY = "hello@commiters.com";
 /** Secondary inbox (Udaipur / Gmail) */
 export const COMMITERS_EMAIL_SECONDARY = "commitersudaipur@gmail.com";
 
+/** Single-line display for contact strip (comma + space). */
+export const COMMITERS_EMAIL_STRIP_DISPLAY = `${COMMITERS_EMAIL_PRIMARY}, ${COMMITERS_EMAIL_SECONDARY}`;
+
+/** Default mail client opens with both inboxes — matches backend `teamInboxRecipientsJoined`. */
+export function buildMailtoTeamInboxHref(): string {
+  return `mailto:${COMMITERS_EMAIL_PRIMARY},${COMMITERS_EMAIL_SECONDARY}`;
+}
+
 /** E.164 digits only (India mobile). */
 export const COMMITERS_PHONE_E164_DIGITS = "917891646568";
 
