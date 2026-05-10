@@ -2,6 +2,7 @@ import React from "react";
 import PageHeroImmersive from "../components/PageHeroImmersive";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { pageTitle } from "../lib/siteMeta";
+import { COMMITERS_EMAIL_PRIMARY, COMMITERS_EMAIL_SECONDARY } from "../lib/siteContact";
 
 export default function PrivacyPolicyPage() {
   useDocumentTitle(pageTitle("Privacy Policy"));
@@ -52,7 +53,8 @@ export default function PrivacyPolicyPage() {
           <h2 className="legal-heading">Your Rights</h2>
           <p className="muted">
             You may request access, correction, or deletion of your personal data by emailing{" "}
-            <a href="mailto:hello@commiters.com">hello@commiters.com</a>.
+            <a href={`mailto:${COMMITERS_EMAIL_PRIMARY}`}>{COMMITERS_EMAIL_PRIMARY}</a> or{" "}
+            <a href={`mailto:${COMMITERS_EMAIL_SECONDARY}`}>{COMMITERS_EMAIL_SECONDARY}</a>.
           </p>
 
           <h2 className="legal-heading">Security</h2>
@@ -68,7 +70,8 @@ export default function PrivacyPolicyPage() {
           <h2 className="legal-heading">Contact</h2>
           <p className="muted">
             For privacy-related questions, contact{" "}
-            <a href="mailto:hello@commiters.com">hello@commiters.com</a>.
+            <a href={`mailto:${COMMITERS_EMAIL_PRIMARY}`}>{COMMITERS_EMAIL_PRIMARY}</a> or{" "}
+            <a href={`mailto:${COMMITERS_EMAIL_SECONDARY}`}>{COMMITERS_EMAIL_SECONDARY}</a>.
           </p>
         </div>
       </section>

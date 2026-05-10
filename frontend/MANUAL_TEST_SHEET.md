@@ -61,7 +61,7 @@
 | ABT-01 | About | About opened | Scroll through sections | Content readable and consistently spaced |
 | SRV-01 | Services | Services opened | Inspect service rows/cards | Cards render cleanly, no clipped text |
 | CNT-01 | Contact UI | Contact opened | Check all form fields/labels | Name, Email, Service, Budget, Timeline, Reference, Message present |
-| CNT-02 | Contact UI | Contact opened | Verify phone, email, address, map embed | Contact links and map are visible and usable |
+| CNT-02 | Contact UI | Contact opened | Verify phone, both emails (`hello@commiters.com`, `commitersudaipur@gmail.com`), address, map embed | Contact links and map are visible and usable |
 | CNT-03 | Validation | Contact opened | Click `Send Message` with empty required fields | Validation error shown; form not submitted |
 | CNT-04 | Validation | Contact opened | Enter invalid email (e.g. `abc@`), submit | Email validation error shown |
 | CNT-05 | Sanitization | Contact opened | Type `Jane123@` in Name | Disallowed chars removed; only allowed chars remain |

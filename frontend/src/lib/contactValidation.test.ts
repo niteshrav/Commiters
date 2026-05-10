@@ -29,6 +29,7 @@ describe("contactValidation", () => {
 
     it("accepts common valid emails", () => {
       expect(validateEmail("hello@commiters.com")).toBeNull();
+      expect(validateEmail("commitersudaipur@gmail.com")).toBeNull();
       expect(validateEmail("  a@b.co  ")).toBeNull();
     });
 

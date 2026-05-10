@@ -1,3 +1,8 @@
+/** Primary brand inbox */
+export const COMMITERS_EMAIL_PRIMARY = "hello@commiters.com";
+/** Secondary inbox (Udaipur / Gmail) */
+export const COMMITERS_EMAIL_SECONDARY = "commitersudaipur@gmail.com";
+
 /** E.164 digits only (India mobile). */
 export const COMMITERS_PHONE_E164_DIGITS = "917891646568";
 

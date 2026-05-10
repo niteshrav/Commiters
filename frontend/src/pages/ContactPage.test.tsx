@@ -101,6 +101,10 @@ describe("ContactPage", () => {
     expect(within(strip).queryByText(/^Studio$/i)).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: /\+91 7891646568/i })).toHaveAttribute("href", "tel:+917891646568");
     expect(screen.getByRole("link", { name: /hello@commiters.com/i })).toHaveAttribute("href", "mailto:hello@commiters.com");
+    expect(screen.getByRole("link", { name: /commitersudaipur@gmail.com/i })).toHaveAttribute(
+      "href",
+      "mailto:commitersudaipur@gmail.com",
+    );
     expect(screen.getByTitle(/office location map/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Open in Google Maps/i })).toBeInTheDocument();
     expect(screen.getByText(/82, Sobhagya Nagar, Nakoda Nagar, Udaipur, Rajasthan, India 313001/i)).toBeInTheDocument();

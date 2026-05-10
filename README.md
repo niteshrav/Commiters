@@ -14,7 +14,7 @@ This repo is split into 3 folders:
 ## Domain
 
 - Public website URL: `https://www.commiters.com`
-- Email: `hello@commiters.com`
+- Email: `hello@commiters.com`, `commitersudaipur@gmail.com`
 
 ## Run locally (after dependencies are installed)
 
