@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import JoinUsApplicationSection from "./JoinUsApplicationSection";
@@ -104,14 +104,15 @@ describe("JoinUsApplicationSection", () => {
       "https://github.com/jane",
     );
     const resume = new File(["%PDF-1.4"], "jane-resume.pdf", { type: "application/pdf" });
-    await user.upload(screen.getByTestId("join-us-resume-input"), resume);
+    fireEvent.change(screen.getByTestId("join-us-resume-input"), { target: { files: [resume] } });
     await user.type(
       screen.getByLabelText(JOIN_US_PAGE_COPY.fields.coverLetterLabel),
       "I build reliable systems and want to join Commiters.",
     );
     await user.click(screen.getByRole("button", { name: /Submit Application/i }));
 
-    expect(createJobApplication).toHaveBeenCalledWith(
+    await waitFor(() => {
+      expect(createJobApplication).toHaveBeenCalledWith(
       expect.objectContaining({
         name: "Jane Doe",
         email: "jane@example.com",
@@ -123,7 +124,8 @@ describe("JoinUsApplicationSection", () => {
         resumeFileName: "jane-resume.pdf",
         resumePdfBase64: expect.any(String),
       }),
-    );
+      );
+    });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "candidate" } });
   });
 });

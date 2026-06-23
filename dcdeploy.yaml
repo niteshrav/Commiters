@@ -1,0 +1,39 @@
+services:
+  frontend:
+    type: service
+    machineType: DCD-1
+    regions: India
+    build:
+      context: ./frontend
+      dockerfilePath: ./Dockerfile
+      repo: niteshrav/Committers
+      ref: main
+      refType: branch
+      autoBuild: true
+      private: false
+    ports:
+      - 80
+    minScale: 1
+    maxScale: 1
+    protocol: https
+
+  api:
+    type: service
+    machineType: DCD-2
+    regions: India
+    build:
+      context: ./backend
+      dockerfilePath: ./Dockerfile
+      repo: niteshrav/Committers
+      ref: main
+      refType: branch
+      autoBuild: true
+      private: false
+    ports:
+      - 4000
+    minScale: 1
+    maxScale: 1
+    protocol: https
+    environment:
+      NODE_ENV: production
+      PORT: "4000"
