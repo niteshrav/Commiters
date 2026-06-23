@@ -1,14 +1,18 @@
 /**
  * Simple Icons SVGs via jsDelivr (npm/simple-icons). Brand marks belong to their owners.
- * Expo represents the React Native ecosystem — Simple Icons does not ship a reactnative slug on CDN.
- * Antigravity uses the Chrome icon as a visual stand-in (no dedicated Simple Icons slug for Antigravity).
+ * Cursor and Visual Studio use bundled SVGs (no reliable Simple Icons slug for VS on CDN).
  */
 export type TechLogoDef = {
-  /** simple-icons slug */
   slug: string;
-  /** Accessible name */
   alt: string;
+  /** Bundled or absolute icon URL when CDN slug is missing or incorrect */
+  iconSrc?: string;
 };
+
+export const TECH_LOCAL_ICONS = {
+  cursor: "/assets/tech/cursor.svg",
+  visualStudio: "/assets/tech/visual-studio.svg",
+} as const;
 
 export const HOME_TECH_STACK_ROWS: TechLogoDef[][] = [
   [
@@ -29,14 +33,18 @@ export const HOME_TECH_STACK_ROWS: TechLogoDef[][] = [
     { slug: "google", alt: "Google ADK" },
   ],
   [
-    { slug: "cursor", alt: "Cursor" },
+    { slug: "cursor", alt: "Cursor", iconSrc: TECH_LOCAL_ICONS.cursor },
     { slug: "anthropic", alt: "Claude" },
     { slug: "googlechrome", alt: "Antigravity" },
-    { slug: "visualstudio", alt: "Visual Studio" },
+    { slug: "visualstudio", alt: "Visual Studio", iconSrc: TECH_LOCAL_ICONS.visualStudio },
   ],
 ];
 
-/** Single left-to-right sequence for ticker / one-row layouts */
 export const HOME_TECH_STACK_ITEMS: TechLogoDef[] = HOME_TECH_STACK_ROWS.flat();
 
-export const SIMPLE_ICONS_SVG_BASE = "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons";
+export const SIMPLE_ICONS_SVG_BASE = "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons";
+
+export function resolveTechIconUrl(tech: TechLogoDef): string {
+  if (tech.iconSrc) return tech.iconSrc;
+  return `${SIMPLE_ICONS_SVG_BASE}/${tech.slug}.svg`;
+}

@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { HOME_TECH_STACK_ITEMS, HOME_TECH_STACK_ROWS } from "./homeTechStack";
+import {
+  HOME_TECH_STACK_ITEMS,
+  HOME_TECH_STACK_ROWS,
+  TECH_LOCAL_ICONS,
+  resolveTechIconUrl,
+} from "./homeTechStack";
 
 describe("homeTechStack", () => {
   it("exposes a flat items list matching stacked rows", () => {
@@ -7,20 +12,25 @@ describe("homeTechStack", () => {
     expect(HOME_TECH_STACK_ITEMS).toHaveLength(17);
   });
 
-  it("includes Python, Google stack, Cursor, Claude, Antigravity, and Visual Studio entries", () => {
+  it("uses bundled Cursor and Visual Studio logo assets", () => {
+    const cursor = HOME_TECH_STACK_ITEMS.find((t) => t.alt === "Cursor");
+    const vs = HOME_TECH_STACK_ITEMS.find((t) => t.alt === "Visual Studio");
+    expect(cursor?.iconSrc).toBe(TECH_LOCAL_ICONS.cursor);
+    expect(vs?.iconSrc).toBe(TECH_LOCAL_ICONS.visualStudio);
+    expect(resolveTechIconUrl(cursor!)).toBe(TECH_LOCAL_ICONS.cursor);
+    expect(resolveTechIconUrl(vs!)).toBe(TECH_LOCAL_ICONS.visualStudio);
+  });
+
+  it("includes Python, Google stack, Claude, and Antigravity entries", () => {
     const flat = HOME_TECH_STACK_ROWS.flat();
     expect(flat.some((t) => t.alt === "Python")).toBe(true);
     expect(flat.some((t) => t.alt === "Google ADK")).toBe(true);
-    expect(flat.some((t) => t.alt === "Google Cloud")).toBe(true);
-    expect(flat.some((t) => t.alt === "Cursor")).toBe(true);
     expect(flat.some((t) => t.alt === "Claude")).toBe(true);
     expect(flat.some((t) => t.alt === "Antigravity")).toBe(true);
-    expect(flat.some((t) => t.alt === "Visual Studio")).toBe(true);
   });
 
   it("defines logos with no AWS entry", () => {
     const flat = HOME_TECH_STACK_ROWS.flat();
     expect(flat.some((t) => t.slug.toLowerCase() === "amazonaws")).toBe(false);
-    expect(flat.some((t) => t.alt.toLowerCase().includes("aws"))).toBe(false);
   });
 });

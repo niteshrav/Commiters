@@ -21,15 +21,8 @@ describe("premiumHeroBackground (styles contract)", () => {
     expect(backdrop).not.toContain(REMOVED_PREMIUM_HERO_WARM_MESH_RGB);
   });
 
-  it("uses blue-forward layered gradients on the hero backdrop", () => {
-    const backdrop = cssBlockAfter(".premium-hero-backdrop {", ".premium-hero-shell {");
-    expect(backdrop).toMatch(/30,\s*58,\s*95/);
-    expect(backdrop).toMatch(/linear-gradient/);
-  });
-
-  it("keeps the premium hero shell base on a cool blue fade", () => {
-    const hero = cssBlockAfter(".premium-hero {", ".premium-hero--immersive {");
-    expect(hero).toMatch(/linear-gradient/);
-    expect(hero).not.toContain(REMOVED_PREMIUM_HERO_WARM_MESH_RGB);
+  it("uses dark navy dot-grid hero for review v2 pages", () => {
+    const navyBackdrop = cssBlockAfter(".premium-hero--navy .premium-hero-backdrop {", ".premium-hero--navy .premium-hero-glass {");
+    expect(navyBackdrop).toMatch(/var\(--dark-navy\)/);
   });
 });

@@ -1,83 +1,19 @@
-import React from "react";
-import PageHeroImmersive from "../components/PageHeroImmersive";
-import SectionFigure from "../components/SectionFigure";
+import PrivacyPolicyIntro from "../components/PrivacyPolicyIntro";
+import PrivacyPolicySections from "../components/PrivacyPolicySections";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { PRIVACY_CONTENT_COLUMN_CLASS, PRIVACY_PAGE_CLASS } from "../lib/privacyPageLayout";
+import { PRIVACY_PAGE_COPY, PRIVACY_POLICY_SECTIONS } from "../lib/privacyPageContent";
 import { pageTitle } from "../lib/siteMeta";
-import { COMMITERS_EMAIL_LEGAL_DISPLAY, buildMailtoTeamInboxHref } from "../lib/siteContact";
 
 export default function PrivacyPolicyPage() {
-  useDocumentTitle(pageTitle("Privacy Policy"));
+  useDocumentTitle(pageTitle(PRIVACY_PAGE_COPY.title));
 
   return (
-    <>
-      <PageHeroImmersive centered>
-        <h1 className="hero-title typography-display">Privacy Policy</h1>
-        <p className="muted hero-subtext--premium">
-          <strong>Effective Date:</strong> April 15, 2026
-        </p>
-      </PageHeroImmersive>
-
-      <section className="section">
-        <div className="section-figure-host section-figure-host--legal">
-          <SectionFigure pattern="wave" />
-        </div>
-        <div className="card">
-          <p className="muted">
-            Commiters Softwares ("Commiters", "we", "our", "us") values your privacy. This
-            policy explains how we collect, use, and protect your information when you visit{" "}
-            <strong>www.commiters.com</strong> or contact us.
-          </p>
-
-          <h2 className="legal-heading">Information We Collect</h2>
-          <ul className="list">
-            <li>Name, email, phone number, and project details you submit.</li>
-            <li>Basic usage data such as browser/device details and page interactions.</li>
-          </ul>
-
-          <h2 className="legal-heading">How We Use Information</h2>
-          <ul className="list">
-            <li>Respond to inquiries and provide consultation.</li>
-            <li>Evaluate project requirements and prepare estimates.</li>
-            <li>Improve website performance and user experience.</li>
-            <li>Send relevant communication for your inquiry.</li>
-          </ul>
-
-          <h2 className="legal-heading">Data Sharing</h2>
-          <p className="muted">
-            We do not sell personal data. We may use trusted third-party tools for hosting, forms,
-            and analytics only for operating the website and services.
-          </p>
-
-          <h2 className="legal-heading">Data Retention</h2>
-          <p className="muted">
-            We retain inquiry data as needed for service delivery, legal compliance, and business
-            record management.
-          </p>
-
-          <h2 className="legal-heading">Your Rights</h2>
-          <p className="muted">
-            You may request access, correction, or deletion of your personal data by emailing{" "}
-            <a href={buildMailtoTeamInboxHref()}>{COMMITERS_EMAIL_LEGAL_DISPLAY}</a>.
-          </p>
-
-          <h2 className="legal-heading">Security</h2>
-          <p className="muted">
-            We apply reasonable technical and operational measures to protect submitted information.
-          </p>
-
-          <h2 className="legal-heading">Policy Updates</h2>
-          <p className="muted">
-            We may update this policy periodically. Any update is published on this page.
-          </p>
-
-          <h2 className="legal-heading">Contact</h2>
-          <p className="muted">
-            For privacy-related questions, contact{" "}
-            <a href={buildMailtoTeamInboxHref()}>{COMMITERS_EMAIL_LEGAL_DISPLAY}</a>.
-          </p>
-        </div>
-      </section>
-    </>
+    <div className={PRIVACY_PAGE_CLASS} data-testid="privacy-page">
+      <div className={PRIVACY_CONTENT_COLUMN_CLASS} data-testid="privacy-policy-content">
+        <PrivacyPolicyIntro />
+        <PrivacyPolicySections sections={PRIVACY_POLICY_SECTIONS} />
+      </div>
+    </div>
   );
 }
-

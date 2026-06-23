@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import CircuitBackdrop from "./CircuitBackdrop";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -60,10 +61,16 @@ export default function Layout({ children }: PropsWithChildren) {
   }, [location.pathname]);
 
   return (
-    <div className="site-shell" data-theme="monochrome-navy">
+    <div className="site-shell" data-theme="commiters-brand">
+      <CircuitBackdrop />
       <Navbar />
       <main className="container">
-        <div key={location.pathname} className="route-shell route-transition" data-testid="route-shell">
+        <div
+          key={location.pathname}
+          className="route-shell route-transition"
+          data-testid="route-shell"
+          data-route={location.pathname}
+        >
           {children}
         </div>
       </main>

@@ -56,6 +56,59 @@ export function IconGlobe(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconBrowserWindow(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <rect x="4" y="5" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M4 9h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="7" cy="7" r="0.75" fill="currentColor" />
+      <circle cx="9.5" cy="7" r="0.75" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function IconRobot(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <rect x="7" y="8" width="10" height="9" rx="2" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M12 5v3M9 5h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="10" cy="12" r="1" fill="currentColor" />
+      <circle cx="14" cy="12" r="1" fill="currentColor" />
+      <path d="M7 20h10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconRocket(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M12 4c3 2.5 4.5 6 4.5 10.5 0 1.2-.2 2.3-.55 3.35L12 20l-3.95-2.15A8.2 8.2 0 0 1 7.5 14.5C7.5 10 9 6.5 12 4Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="12" r="1.75" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M9.5 17.5 8 21M14.5 17.5 16 21" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconAutomationSpark(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <circle cx="12" cy="13" r="4.25" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M12 8.75V6.5M12 19.5v-2.25M16.25 13h2.25M5.5 13H7.75M14.8 10.2l1.6-1.6M7.6 16.4l1.6-1.6M14.8 15.8l1.6 1.6M7.6 9.6l1.6 1.6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path d="M17.5 4.5 18.5 6l1.5.5-1.5.5-1 1.5-1-1.5-1.5-.5 1.5-.5 1-1.5Z" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function IconCodeBracket(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
@@ -79,6 +132,147 @@ export function IconDevicePhone(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconArrowRight(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M5 12h14M13 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconExternalLink(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M14 5h5v5M10 14 19 5M18 10v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h8"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconHandshake(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M8.25 12.75 5.25 9.75a2.25 2.25 0 0 1 3.182-3.182l1.318 1.318M15.75 12.75l3-3a2.25 2.25 0 0 0-3.182-3.182l-1.318 1.318M8.25 12.75l2.25 2.25M15.75 12.75l-2.25 2.25M12 15v3.75"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconClock(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <circle cx="12" cy="12" r="8.25" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M12 7.5V12l3 2.25"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconGauge(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M12 4.5a7.5 7.5 0 1 1-5.3 12.8"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 12 15.5 8.5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="12" r="1.1" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function IconCloudUpload(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M7.5 17.25h9a3.75 3.75 0 0 0 .35-7.49A5.25 5.25 0 0 0 6.2 8.7 4.5 4.5 0 0 0 7.5 17.25Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 10.5V15m0 0-2-2m2 2 2-2"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconChartLine(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M4 18.5V6.5M9.5 18.5V10.5M15 18.5V8.5M20.5 18.5V4.5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconTarget(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <circle cx="12" cy="12" r="7.5" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="3.25" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="0.85" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function IconShieldCheck(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M12 3.5 5.5 6.75v5.5c0 4.2 2.76 7.94 6.5 9.25 3.74-1.31 6.5-5.05 6.5-9.25v-5.5L12 3.5Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.25 12.25 11 14l3.75-4"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function IconSearch(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
@@ -98,6 +292,64 @@ export function IconLayers(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconList(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path d="M10 6h11M10 12h11M10 18h11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path
+        d="M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconMicroscope(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path
+        d="M6.75 18.75h10.5M9.75 15.75V9a2.25 2.25 0 0 1 4.5 0v6.75M8.25 6.75h7.5M5.25 18.75 3 21M18.75 18.75 21 21"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconMedal(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <circle cx="12" cy="8.5" r="4.25" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M8.25 12.5 6 20.5l6-2.25L18 20.5l-2.25-8"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.75 8.5 12 10l2.5-3"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconCheckCircle(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M8.25 12.25 10.75 14.75 16 9.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function IconBolt(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
@@ -106,6 +358,36 @@ export function IconBolt(props: SVGProps<SVGSVGElement>) {
         stroke="currentColor"
         strokeWidth="1.6"
         strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconDatabase(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <ellipse cx="12" cy="6.5" rx="7.5" ry="3" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M4.5 6.5v5c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-5M4.5 11.5v5c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconWorkflow(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <circle cx="6" cy="6" r="2.25" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="18" cy="6" r="2.25" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="18" r="2.25" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M8.1 7.2 10.8 16.2M15.9 7.2 13.2 16.2M8.25 6h7.5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
       />
     </svg>
   );

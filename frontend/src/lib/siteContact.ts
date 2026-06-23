@@ -44,3 +44,18 @@ export function buildWhatsAppUrl(message: string = WHATSAPP_DEFAULT_MESSAGE): st
   const encoded = encodeURIComponent(message);
   return `https://wa.me/${COMMITERS_PHONE_E164_DIGITS}?text=${encoded}`;
 }
+
+const DISCOVERY_CALL_EVENT_TITLE = "Discovery Call with Commiters";
+const DISCOVERY_CALL_EVENT_DETAILS =
+  "Share your project goals and a few times that work for you. We will confirm your discovery call shortly.";
+
+/** Opens Google Calendar with a prefilled discovery-call invite to the Udaipur calendar inbox. */
+export function buildDiscoveryCallCalendarUrl(): string {
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: DISCOVERY_CALL_EVENT_TITLE,
+    add: COMMITERS_EMAIL_SECONDARY,
+    details: DISCOVERY_CALL_EVENT_DETAILS,
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}

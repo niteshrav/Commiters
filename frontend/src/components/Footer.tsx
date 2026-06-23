@@ -1,74 +1,78 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { IconEnvelope, IconGitHub, IconLinkedIn, IconPhone, IconWhatsApp } from "./icons";
-import { ROUTES } from "../lib/routes";
-import { buildTelHref, buildWhatsAppUrl, COMMITERS_EMAIL_PRIMARY, COMMITERS_PHONE_DISPLAY } from "../lib/siteContact";
-import { SITE_GITHUB_URL, SITE_LINKEDIN_URL } from "../lib/siteLinks";
+import { NavLink, useLocation } from "react-router-dom";
+import BrandLogo from "./BrandLogo";
+import {
+  FOOTER_COLUMN_CLASS,
+  FOOTER_COPYRIGHT_CELL_CLASS,
+  FOOTER_LOGO_CELL_CLASS,
+  FOOTER_MOCKUP_COMPACT_CLASS,
+  FOOTER_MOCKUP_GRID_CLASS,
+  FOOTER_NAV_COLUMNS_CLASS,
+  FOOTER_NAV_GROUP_CLASS,
+} from "../lib/footerLayout";
+import {
+  SITE_FOOTER_COPY,
+  resolveSiteFooterNavColumns,
+  usesContactStyleFooter,
+  type FooterLinkCell,
+} from "../lib/siteFooterCopy";
+
+function FooterLink({ link }: { link: FooterLinkCell }) {
+  if (link.kind === "external") {
+    return (
+      <a href={link.href} target="_blank" rel="noopener noreferrer">
+        {link.label}
+      </a>
+    );
+  }
+
+  return (
+    <NavLink to={link.to} className={({ isActive }) => (isActive ? "active" : undefined)}>
+      {link.label}
+    </NavLink>
+  );
+}
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-  return (
-    <footer className="footer footer-rich">
-      <div className="container footer-brand-block">
-        <h3 className="footer-brand">Commiters</h3>
-        <p className="muted footer-tagline">Founder-led software studio based in Udaipur, India.</p>
-        <p className="muted footer-tagline footer-tagline--sub">Building for clients across India, the US, and the UK.</p>
-        <div
-          className="footer-contact-icons-row"
-          data-testid="footer-contact-icon-row"
-          aria-label="Contact and profiles"
-        >
-          <a href={buildTelHref()} className="footer-contact-icon-link" aria-label={`Call ${COMMITERS_PHONE_DISPLAY}`}>
-            <IconPhone width={22} height={22} aria-hidden />
-          </a>
-          <a
-            href={`mailto:${COMMITERS_EMAIL_PRIMARY}`}
-            className="footer-contact-icon-link"
-            aria-label={`Email ${COMMITERS_EMAIL_PRIMARY}`}
-          >
-            <IconEnvelope width={22} height={22} aria-hidden />
-          </a>
-          <a
-            href={buildWhatsAppUrl()}
-            className="footer-contact-icon-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-          >
-            <IconWhatsApp width={22} height={22} aria-hidden />
-          </a>
-          <a
-            href={SITE_LINKEDIN_URL}
-            className="footer-contact-icon-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-          >
-            <IconLinkedIn width={22} height={22} aria-hidden />
-          </a>
-          <a
-            href={SITE_GITHUB_URL}
-            className="footer-contact-icon-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-          >
-            <IconGitHub width={22} height={22} aria-hidden />
-          </a>
-        </div>
-      </div>
+  const location = useLocation();
+  const navColumns = resolveSiteFooterNavColumns(location.pathname);
+  const isContactFooter = usesContactStyleFooter(location.pathname);
 
-      <div className="container footer-bottom-split">
-        <div className="footer-copyright muted">
-          © {year} Commiters Softwares. All rights reserved.
+  return (
+    <footer
+      className={`footer footer-rich footer--stitch footer--home-mockup${isContactFooter ? " footer--contact-mockup" : ""}`}
+    >
+      <div className={`footer-columns footer-columns--mockup ${FOOTER_MOCKUP_GRID_CLASS} ${FOOTER_MOCKUP_COMPACT_CLASS}`}>
+        <div className={FOOTER_LOGO_CELL_CLASS} data-testid="footer-logo-cell">
+          <BrandLogo variant="footer" />
         </div>
-        <nav className="footer-inline-nav" aria-label="Footer">
-          <Link to={ROUTES.about}>About</Link>
-          <Link to={ROUTES.services}>Services</Link>
-          <Link to={ROUTES.contact}>Contact</Link>
-          <Link to={ROUTES.privacyPolicy}>Privacy</Link>
-          <Link to={ROUTES.terms}>Terms</Link>
-        </nav>
+
+        <div className={FOOTER_COPYRIGHT_CELL_CLASS} data-testid="footer-copyright-cell">
+          <p className="footer-mockup-copyright-line1">{SITE_FOOTER_COPY.copyrightLine1}</p>
+          <p className="footer-mockup-copyright-line2">{SITE_FOOTER_COPY.copyrightLine2}</p>
+        </div>
+
+        <div
+          className={`footer-nav-group ${FOOTER_NAV_GROUP_CLASS} ${FOOTER_NAV_COLUMNS_CLASS}`}
+          data-testid="footer-nav-group"
+        >
+          {navColumns.map((column) => (
+            <nav
+              key={column.heading}
+              className={`footer-column ${FOOTER_COLUMN_CLASS}`}
+              data-testid={`footer-nav-column-${column.heading.toLowerCase()}`}
+              aria-label={column.heading}
+            >
+              <p className="footer-column-heading">{column.heading}</p>
+              <ul className="footer-link-list">
+                {column.links.map((link) => (
+                  <li key={link.label}>
+                    <FooterLink link={link} />
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
       </div>
     </footer>
   );

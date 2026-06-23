@@ -1,5 +1,5 @@
 import React from "react";
-import { HOME_TECH_STACK_ITEMS, SIMPLE_ICONS_SVG_BASE } from "../lib/homeTechStack";
+import { HOME_TECH_STACK_ITEMS, resolveTechIconUrl } from "../lib/homeTechStack";
 
 export default function TechStackTicker() {
   const items = HOME_TECH_STACK_ITEMS;
@@ -15,26 +15,26 @@ export default function TechStackTicker() {
           {items.map((tech, i) => (
             <span key={`a-${tech.slug}-${i}`} className="home-tech-ticker-item" title={tech.alt}>
               <img
-                src={`${SIMPLE_ICONS_SVG_BASE}/${tech.slug}.svg`}
+                src={resolveTechIconUrl(tech)}
                 alt={tech.alt}
                 className="home-tech-logo-img"
                 loading="lazy"
                 decoding="async"
-                width={40}
-                height={40}
+                width={44}
+                height={44}
               />
             </span>
           ))}
           {items.map((tech, i) => (
             <span key={`b-${tech.slug}-${i}`} className="home-tech-ticker-item" title={tech.alt} aria-hidden="true">
               <img
-                src={`${SIMPLE_ICONS_SVG_BASE}/${tech.slug}.svg`}
+                src={resolveTechIconUrl(tech)}
                 alt=""
                 className="home-tech-logo-img"
                 loading="lazy"
                 decoding="async"
-                width={40}
-                height={40}
+                width={44}
+                height={44}
               />
             </span>
           ))}

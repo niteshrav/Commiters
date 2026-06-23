@@ -1,172 +1,95 @@
 import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import HomePage from "./HomePage";
+import { HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "../lib/homePageContent";
+import { ROUTES } from "../lib/routes";
+import { HOME_CORE_PILLARS_SURFACE_CLASS } from "../lib/homeCorePillarsSurface";
+import { HOME_SECTION_SEPARATOR_CLASS, HOME_SECTION_SEPARATOR_IDS } from "../lib/homeSectionLayout";
 
 describe("HomePage", () => {
-  it("shows cinematic premium hero direction via the shared immersive wrapper", () => {
+  it("renders home sections with separators and built-for-scale before the dark CTA", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { name: /Code Your Success/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Code Your Success/i })).toHaveClass(
-      "hero-title",
-      "typography-display",
-      "typography-display--hero",
+    const page = screen.getByTestId("home-page");
+    const childTestIds = Array.from(page.children).map((node) => node.getAttribute("data-testid"));
+
+    expect(childTestIds).toEqual([
+      "stitch-home-hero",
+      HOME_SECTION_SEPARATOR_IDS.afterHero,
+      "home-core-pillars",
+      HOME_SECTION_SEPARATOR_IDS.afterPillars,
+      "home-built-for-scale",
+      HOME_SECTION_SEPARATOR_IDS.afterBuiltForScale,
+      "home-ready-cta",
+    ]);
+
+    expect(screen.queryByTestId("home-sprint-card")).not.toBeInTheDocument();
+    expect(screen.getByTestId(HOME_SECTION_SEPARATOR_IDS.afterHero)).toHaveClass(
+      "home-section-separator",
+      HOME_SECTION_SEPARATOR_CLASS,
     );
-    expect(screen.getByTestId("page-hero-premium")).toHaveClass("premium-hero", "premium-hero--immersive");
-    expect(screen.getByTestId("page-hero-premium").querySelector(".premium-hero-glass--page")).toBeTruthy();
-    expect(screen.getByText(/Founder-Led · No Middlemen · Direct Communication/i)).toHaveClass("section-kicker", "hero-kicker");
-    expect(screen.getByText("Success")).toHaveClass("highlight-pill", "highlight-pill--glass", "highlight-pill--hero");
-    expect(screen.getByTestId("hero-actions")).toHaveClass("hero-actions", "mobile-safe-actions");
-    expect(screen.getByRole("link", { name: /Start a Free Conversation/i })).toHaveClass("btn-magnetic", "btn-hero-primary");
-    expect(screen.getByRole("link", { name: /See What We Build/i })).toHaveClass("btn-magnetic-soft", "btn-hero-secondary");
+    expect(screen.getByTestId("home-core-pillars")).toHaveClass(HOME_CORE_PILLARS_SURFACE_CLASS);
   });
 
-  it("uses icon glyphs instead of numbered badges in the offer grid", () => {
+  it("matches hero copy and links without the sprint overlay card", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    const grid = screen.getByTestId("home-offer-grid");
-    expect(grid.querySelectorAll(".icon-badge-symbol svg")).toHaveLength(6);
-    expect(grid.textContent).not.toContain("01");
-    expect(grid.textContent).not.toContain("02");
-    expect(grid.textContent).not.toContain("03");
+    expect(screen.getByTestId("engineering-precision-badge")).toHaveTextContent(/ENGINEERING PRECISION/i);
+    expect(screen.getByRole("heading", { name: HOME_PAGE_COPY.hero.title })).toBeInTheDocument();
+    expect(screen.getByTestId("home-hero-visual")).toHaveAttribute("src", HOME_PAGE_ASSETS.heroMonitor);
   });
 
-  it("adds premium abstract art above the services grid", () => {
+  it("matches built-for-scale mockup with surface, image, body, and three features", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    const section = screen.getByTestId("home-services-section");
-    expect(within(section).getByTestId("section-figure-layers")).toBeInTheDocument();
+    const hero = screen.getByTestId("stitch-home-hero");
+    const scale = screen.getByTestId("home-built-for-scale");
+    expect(hero).toHaveClass("home-primary-surface");
+    expect(scale).toHaveClass("home-primary-surface");
+    expect(within(scale).getByRole("heading", { name: HOME_PAGE_COPY.builtForScale.title })).toBeInTheDocument();
+    expect(within(scale).getByText(HOME_PAGE_COPY.builtForScale.body)).toBeInTheDocument();
+    expect(within(scale).getByText("Cloud-Native Architecture")).toBeInTheDocument();
+    expect(within(scale).getAllByTestId("home-scale-feature")).toHaveLength(3);
+    expect(within(scale).getByTestId("home-built-for-scale-image")).toHaveAttribute("src", HOME_PAGE_ASSETS.serverRacks);
   });
 
-  it("includes automation, AI integration, and MVP alongside core build offerings", () => {
+  it("links the hero to Our Work without a tech stack link", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    const offerGrid = screen.getByTestId("home-offer-grid");
-    expect(within(offerGrid).getByRole("heading", { name: /Automation Tools/i })).toBeInTheDocument();
-    expect(within(offerGrid).getByRole("heading", { name: /AI Integration/i })).toBeInTheDocument();
-    expect(within(offerGrid).getByRole("heading", { name: /^MVP Development$/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /tech stack|our stack/i })).not.toBeInTheDocument();
+
+    const heroActions = screen.getByTestId("hero-actions");
+    expect(within(heroActions).getByRole("link", { name: /Our Work/i })).toHaveAttribute(
+      "href",
+      ROUTES.caseStudies,
+    );
   });
 
-  it("keeps home service blurbs to a single short line each", () => {
+  it("matches dark CTA copy without engineering in the subtext", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    const grid = screen.getByTestId("home-offer-grid");
-    const blurbs = Array.from(grid.querySelectorAll(".card-service p.muted")) as HTMLParagraphElement[];
-    expect(blurbs).toHaveLength(6);
-    for (const p of blurbs) {
-      expect(p.textContent?.trim().split(/\s+/).length ?? 0).toBeLessThanOrEqual(18);
-      expect((p.textContent ?? "").length).toBeLessThanOrEqual(120);
-    }
-  });
-
-  it("shows premium credibility metrics under hero", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    const metrics = screen.getByTestId("premium-metrics");
-    expect(metrics).toHaveClass("premium-metrics", "premium-metrics--immersive");
-    expect(screen.getByText(/Founder-Led Delivery/i)).toBeInTheDocument();
-    expect(screen.getByText(/Fast Launch Cycles/i)).toBeInTheDocument();
-    expect(screen.getByText(/Quality-First Engineering/i)).toBeInTheDocument();
-    expect(screen.getByText(/You work directly with Nitesh/i)).toBeInTheDocument();
-    expect(screen.getByText(/not patched later/i)).toBeInTheDocument();
-  });
-
-  it("marks primary homepage sections for scroll reveal motion", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    expect(screen.getByTestId("page-hero-premium")).toHaveClass("reveal-on-scroll");
-    expect(screen.getByTestId("home-services-section")).toHaveClass("reveal-on-scroll");
-    expect(screen.getByTestId("home-cta-section")).toHaveClass("reveal-on-scroll");
-  });
-
-  it("uses updated homepage positioning and conversion copy", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    expect(
-      screen.getByText(
-        /Commiters builds premium websites, web apps, and AI-powered tools for startups and growing businesses worldwide/i,
-      ),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/talk directly to the founder/i)).toBeInTheDocument();
-    expect(screen.getByText(/OUR SERVICES/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Everything You Need to Ship/i })).toBeInTheDocument();
-    expect(screen.getByText(/production-ready AI-powered application/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Have a project in mind\?/i })).toBeInTheDocument();
-    expect(screen.getByText(/early-stage studio that takes on a small number of projects/i)).toBeInTheDocument();
-    expect(screen.getByText(/If your project is a good fit/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Tell Us What You're Building/i })).toBeInTheDocument();
-  });
-
-  it("does not show an unverified metrics stats bar (PDF: remove until backed by real numbers)", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    expect(screen.queryByTestId("home-stats-section")).not.toBeInTheDocument();
-    expect(screen.queryByText(/Projects delivered/i)).not.toBeInTheDocument();
-  });
-
-  it("renders technology logos as a horizontal ticker without AWS in the stack", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    const tech = screen.getByTestId("home-tech-ticker");
-    expect(tech.querySelector(".home-tech-ticker-track")).toBeTruthy();
-    expect(tech.querySelectorAll("img")).toHaveLength(34);
-    expect(within(tech).getAllByAltText("React")).toHaveLength(1);
-    expect(tech.textContent?.toUpperCase() ?? "").not.toContain("AWS");
-  });
-
-  it("shows portfolio projects including AI Summariser and Customer Service Portal", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    const portfolio = screen.getByTestId("home-portfolio-section");
-    expect(within(portfolio).getByRole("heading", { name: /AI Summariser/i })).toBeInTheDocument();
-    expect(within(portfolio).getByRole("heading", { name: /Customer Service Portal/i })).toBeInTheDocument();
-    expect(within(portfolio).getByText(/^Python, Google ADK, LLM$/)).toBeInTheDocument();
-    expect(within(portfolio).getByText(/^LLM, RAG with React, Node\.js$/)).toBeInTheDocument();
-    expect(within(portfolio).queryByText(/Product Dashboard Demo/i)).not.toBeInTheDocument();
-    expect(within(portfolio).queryByText(/AI Integration Demo/i)).not.toBeInTheDocument();
+    const cta = screen.getByTestId("home-ready-cta");
+    expect(within(cta).getByText(HOME_PAGE_COPY.bottomCta.subtext)).toBeInTheDocument();
+    expect(within(cta).getByText(HOME_PAGE_COPY.bottomCta.subtext)).not.toHaveTextContent(/engineering/i);
   });
 });

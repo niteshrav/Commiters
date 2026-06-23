@@ -2,7 +2,9 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import pinoHttp from "pino-http";
+import { jobApplicationsRouter } from "./routes/jobApplications";
 import { leadsRouter } from "./routes/leads";
+import { notificationMediaRouter } from "./routes/notificationMedia";
 
 function normalizeOrigin(origin: string): string {
   return origin.replace(/\/+$/, "");
@@ -61,6 +63,8 @@ export function createApp() {
   });
 
   app.use(leadsRouter);
+  app.use(jobApplicationsRouter);
+  app.use(notificationMediaRouter);
 
   app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     const message = err instanceof Error ? err.message : "Internal server error";

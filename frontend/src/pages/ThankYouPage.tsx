@@ -1,33 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PageHeroImmersive from "../components/PageHeroImmersive";
-import SectionFigure from "../components/SectionFigure";
+import ThankYouContentSection from "../components/ThankYouContentSection";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { ROUTES } from "../lib/routes";
+import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
 import { pageTitle } from "../lib/siteMeta";
+import { THANK_YOU_PAGE_COPY } from "../lib/thankYouPageContent";
+import {
+  THANK_YOU_INFRASTRUCTURE_CLASS,
+  THANK_YOU_INFRASTRUCTURE_LABEL_CLASS,
+  THANK_YOU_INFRASTRUCTURE_LOGO_CLASS,
+  THANK_YOU_PAGE_CLASS,
+} from "../lib/thankYouPageLayout";
 
 export default function ThankYouPage() {
   useDocumentTitle(pageTitle("Thank you"));
 
   return (
-    <>
-      <PageHeroImmersive centered>
-        <h1 className="hero-title typography-display">Thank you for reaching out.</h1>
-        <p className="muted hero-subtext--premium">
-          Your project details were submitted successfully. We will review them and get back to you within 24 hours.
-        </p>
-        <div className="hero-actions">
-          <Link className="btn btn-primary btn-hero-primary" to={ROUTES.home}>
-            Back to Home
-          </Link>
-          <Link className="btn btn-secondary btn-hero-secondary" to={ROUTES.contact}>
-            Contact
-          </Link>
-        </div>
-      </PageHeroImmersive>
-      <div className="section-figure-host section-figure-host--tight">
-        <SectionFigure pattern="wave" />
-      </div>
-    </>
+    <div className={THANK_YOU_PAGE_CLASS} data-testid="thank-you-page">
+      <ThankYouContentSection />
+      <section className={THANK_YOU_INFRASTRUCTURE_CLASS} data-testid="thank-you-infrastructure" aria-label="Commiters infrastructure branding">
+        <p className={THANK_YOU_INFRASTRUCTURE_LABEL_CLASS}>{THANK_YOU_PAGE_COPY.infrastructureLabel}</p>
+        <img
+          className={THANK_YOU_INFRASTRUCTURE_LOGO_CLASS}
+          src={COMMITERS_HEADER_LOGO_SRC}
+          alt={COMMITERS_HEADER_LOGO_ALT}
+          width={420}
+          height={116}
+          decoding="async"
+          loading="lazy"
+        />
+      </section>
+    </div>
   );
 }

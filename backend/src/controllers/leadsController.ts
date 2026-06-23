@@ -1,8 +1,8 @@
-import type { LeadServiceNeeded } from "@prisma/client";
 import { Request, Response } from "express";
 import { z } from "zod";
+import { dispatchInquiryNotifications } from "../lib/inquiryNotifications";
+import { createSubmissionRef } from "../lib/inquirySubmissionRef";
 import { LEAD_BUDGET_RANGE_VALUES } from "../lib/budgetRanges";
-import { prisma } from "../prismaClient";
 
 const leadSchema = z.object({
   name: z
@@ -40,41 +40,27 @@ export async function createLead(req: Request, res: Response) {
   }
 
   const data = parsed.data;
-
-  const serviceNeededMap = {
-    "Website Development": "WEBSITE_DEVELOPMENT",
-    "Web Application Development": "WEB_APPLICATION_DEVELOPMENT",
-    "Mobile App Development": "MOBILE_APP_DEVELOPMENT",
-    "MVP Development": "MVP_DEVELOPMENT",
-    "Automation Tools": "AUTOMATION_TOOLS",
-    "AI Integration": "AI_INTEGRATION",
-  } as const;
+  const submission = createSubmissionRef();
 
   try {
-    const created = await prisma.lead.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        serviceNeeded: serviceNeededMap[data.serviceNeeded] as LeadServiceNeeded,
-        budgetRange: data.budgetRange && data.budgetRange.length > 0 ? data.budgetRange : null,
-        timeline: data.timeline,
-        referenceLinks: data.referenceLinks
-          ? data.referenceLinks === ""
-            ? null
-            : data.referenceLinks
-          : null,
-        message: data.message,
-        status: "NEW",
-        source: "WEB",
-      },
-      select: { id: true },
+    await dispatchInquiryNotifications({
+      id: submission.id,
+      kind: "project_inquiry",
+      name: data.name,
+      email: data.email,
+      serviceOrPosition: data.serviceNeeded,
+      budgetRange: data.budgetRange && data.budgetRange.length > 0 ? data.budgetRange : null,
+      timeline: data.timeline,
+      referenceLinks: data.referenceLinks ? data.referenceLinks || null : null,
+      message: data.message,
+      submittedAt: submission.submittedAt,
     });
 
-    return res.status(201).json({ ok: true, id: created.id });
-  } catch {
+    return res.status(201).json({ ok: true, id: submission.id });
+  } catch (notificationError) {
+    req.log?.error({ err: notificationError, submissionId: submission.id }, "Lead notification dispatch failed");
     return res.status(503).json({
       error: "Lead service is temporarily unavailable. Please try again shortly.",
     });
   }
 }
-

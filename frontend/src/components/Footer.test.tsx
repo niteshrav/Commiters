@@ -1,62 +1,158 @@
 import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Footer from "./Footer";
+import { BRAND_LOGO_FOOTER_HEIGHT_PX } from "../lib/brandDisplay";
+import {
+  FOOTER_COPYRIGHT_CELL_CLASS,
+  FOOTER_LOGO_CELL_CLASS,
+  FOOTER_MOCKUP_COMPACT_CLASS,
+  FOOTER_MOCKUP_GRID_CLASS,
+  FOOTER_NAV_COLUMNS_CLASS,
+  FOOTER_NAV_GROUP_CLASS,
+} from "../lib/footerLayout";
+import { COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
 import { ROUTES } from "../lib/routes";
-import { buildTelHref, buildWhatsAppUrl, COMMITERS_EMAIL_PRIMARY, COMMITERS_PHONE_DISPLAY } from "../lib/siteContact";
-import { SITE_GITHUB_URL, SITE_LINKEDIN_URL } from "../lib/siteLinks";
+import {
+  SITE_FOOTER_COPY,
+  SITE_FOOTER_CONNECT_LINK_LABELS,
+  SITE_FOOTER_CONTACT_NAV_COLUMNS,
+  SITE_FOOTER_LEGAL_LINK_LABELS,
+  SITE_FOOTER_NAVIGATION_LINK_LABELS,
+  SITE_FOOTER_SITEMAP_LINK_LABELS,
+  SITE_FOOTER_SOCIAL_LINK_LABELS,
+  SITE_FOOTER_TAGLINE,
+  resolveSiteFooterNavColumns,
+} from "../lib/siteFooterCopy";
+import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "../lib/siteLinks";
+import { buildWhatsAppUrl } from "../lib/siteContact";
 
 describe("Footer", () => {
-  it("shows Commiters, positioning tagline, primary contact line, social links, and streamlined copyright", () => {
+  it("matches Stitch preview footer with logo, home copyright, and services-page link columns", () => {
     render(
       <MemoryRouter>
         <Footer />
       </MemoryRouter>,
     );
 
-    expect(screen.queryByText(/Your vision, our code/i)).not.toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: /Legal/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: /Company/i })).not.toBeInTheDocument();
-    expect(screen.getByText(/© \d{4} Commiters Softwares\. All rights reserved\./)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /^Commiters$/ })).toBeInTheDocument();
-    expect(screen.getByText(/Founder-led software studio based in Udaipur, India/i)).toBeInTheDocument();
-    expect(screen.getByText(/Building for clients across India, the US, and the UK/i)).toBeInTheDocument();
-    const nav = screen.getByRole("navigation", { name: /Footer/i });
-    expect(nav).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /^About$/i })).toHaveAttribute("href", ROUTES.about);
-    expect(screen.getByRole("link", { name: /^Services$/i })).toHaveAttribute("href", ROUTES.services);
-    expect(screen.getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
-    expect(screen.getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
-    expect(screen.getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
+    const footer = screen.getByRole("contentinfo");
+    expect(footer).toHaveClass("footer--stitch", "footer--home-mockup");
+
+    const columns = footer.querySelector(".footer-columns--mockup");
+    expect(columns).toHaveClass(FOOTER_MOCKUP_GRID_CLASS, FOOTER_MOCKUP_COMPACT_CLASS);
+
+    const logoCell = screen.getByTestId("footer-logo-cell");
+    const copyrightCell = screen.getByTestId("footer-copyright-cell");
+    const navGroup = screen.getByTestId("footer-nav-group");
+
+    expect(logoCell).toHaveClass(FOOTER_LOGO_CELL_CLASS);
+    expect(copyrightCell).toHaveClass(FOOTER_COPYRIGHT_CELL_CLASS);
+    expect(navGroup).toHaveClass(FOOTER_NAV_GROUP_CLASS, FOOTER_NAV_COLUMNS_CLASS);
+
+    const navigationNav = screen.getByTestId("footer-nav-column-navigation");
+    const socialNav = screen.getByTestId("footer-nav-column-social");
+    const legalNav = screen.getByTestId("footer-nav-column-legal");
+
+    expect(within(navigationNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_NAVIGATION_LINK_LABELS,
+    ]);
+    expect(within(socialNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_SOCIAL_LINK_LABELS,
+    ]);
+    expect(within(legalNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_LEGAL_LINK_LABELS,
+    ]);
+
+    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveTextContent(
+      "© 2026 Commiters Softwares.",
+    );
+    expect(within(copyrightCell).getByText(SITE_FOOTER_TAGLINE)).toHaveTextContent(
+      "Engineering Precision for world-class digital products.",
+    );
+    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveClass(
+      "footer-mockup-copyright-line1",
+    );
+    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine2)).toHaveClass(
+      "footer-mockup-copyright-line2",
+    );
+
+    const logo = within(logoCell).getByRole("img", { name: /Commiters/i });
+    expect(logo).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
+    expect(logo).toHaveAttribute("height", String(BRAND_LOGO_FOOTER_HEIGHT_PX));
+
+    expect(within(navigationNav).getByRole("link", { name: /^Home$/i })).toHaveAttribute("href", ROUTES.home);
+    expect(within(navigationNav).getByRole("link", { name: /^About$/i })).toHaveAttribute("href", ROUTES.about);
+    expect(within(navigationNav).getByRole("link", { name: /^Our Work$/i })).toHaveAttribute(
+      "href",
+      ROUTES.caseStudies,
+    );
+    expect(within(navigationNav).getByRole("link", { name: /^Technical Ledger$/i })).toHaveAttribute(
+      "href",
+      ROUTES.technicalLedger,
+    );
+    expect(within(navigationNav).getByRole("link", { name: /^Services$/i })).toHaveAttribute("href", ROUTES.services);
+    expect(within(navigationNav).getByRole("link", { name: /^Join Us$/i })).toHaveAttribute("href", ROUTES.joinUs);
+    expect(within(navigationNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
+    expect(within(socialNav).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
+    expect(within(socialNav).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
+    expect(within(socialNav).getByRole("link", { name: /^Instagram$/i })).toHaveAttribute("href", SITE_INSTAGRAM_URL);
+    expect(within(socialNav).getByRole("link", { name: /^Medium$/i })).toHaveAttribute("href", SITE_MEDIUM_URL);
+    expect(within(socialNav).queryByRole("link", { name: /^X$/i })).not.toBeInTheDocument();
+    expect(within(socialNav).queryByRole("link", { name: /^GitHub$/i })).not.toBeInTheDocument();
+    expect(within(legalNav).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
+    expect(within(legalNav).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
+  });
+
+  it("matches the contact page footer with home copyright and Sitemap, Connect, Legal columns", () => {
+    render(
+      <MemoryRouter initialEntries={[ROUTES.contact]}>
+        <Footer />
+      </MemoryRouter>,
+    );
 
     const footer = screen.getByRole("contentinfo");
-    expect(within(footer).queryByText(COMMITERS_EMAIL_PRIMARY)).not.toBeInTheDocument();
-    expect(within(footer).queryByText(COMMITERS_PHONE_DISPLAY)).not.toBeInTheDocument();
+    expect(footer).toHaveClass("footer--contact-mockup");
 
-    const iconRow = within(footer).getByTestId("footer-contact-icon-row");
-    const iconLinks = within(iconRow).getAllByRole("link");
-    expect(iconLinks).toHaveLength(5);
+    const copyrightCell = screen.getByTestId("footer-copyright-cell");
+    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveTextContent(
+      "© 2026 Commiters Softwares.",
+    );
+    expect(within(copyrightCell).getByText(SITE_FOOTER_TAGLINE)).toHaveTextContent(
+      "Engineering Precision for world-class digital products.",
+    );
 
-    expect(iconLinks[0]).toHaveAttribute("href", buildTelHref());
-    expect(iconLinks[1]).toHaveAttribute("href", `mailto:${COMMITERS_EMAIL_PRIMARY}`);
-    expect(iconLinks[2]).toHaveAttribute("href", buildWhatsAppUrl());
-    expect(iconLinks[3]).toHaveAttribute("href", SITE_LINKEDIN_URL);
-    expect(iconLinks[4]).toHaveAttribute("href", SITE_GITHUB_URL);
+    const sitemapNav = screen.getByTestId("footer-nav-column-sitemap");
+    const connectNav = screen.getByTestId("footer-nav-column-connect");
+    const legalNav = screen.getByTestId("footer-nav-column-legal");
 
-    expect(iconLinks[0].querySelector("svg")).toBeTruthy();
-    expect(iconLinks[1].querySelector("svg")).toBeTruthy();
-    expect(iconLinks[2].querySelector("svg")).toBeTruthy();
+    expect(within(sitemapNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_SITEMAP_LINK_LABELS,
+    ]);
+    expect(within(connectNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_CONNECT_LINK_LABELS,
+    ]);
+    expect(within(legalNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_LEGAL_LINK_LABELS,
+    ]);
 
-    const waIcon = within(footer).getByRole("link", { name: /^WhatsApp$/i });
-    expect(waIcon).toHaveAttribute("href", buildWhatsAppUrl());
-    expect(waIcon).toHaveAttribute("target", "_blank");
-    expect(waIcon).toHaveAttribute("rel", "noopener noreferrer");
+    expect(within(connectNav).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
+    expect(within(connectNav).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
+    expect(within(connectNav).getByRole("link", { name: /^Instagram$/i })).toHaveAttribute("href", SITE_INSTAGRAM_URL);
+    expect(within(connectNav).getByRole("link", { name: /^Medium$/i })).toHaveAttribute("href", SITE_MEDIUM_URL);
+    expect(within(connectNav).queryByRole("link", { name: /^X$/i })).not.toBeInTheDocument();
+    expect(within(connectNav).queryByRole("link", { name: /^GitHub$/i })).not.toBeInTheDocument();
+    expect(within(sitemapNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
+    expect(sitemapNav.querySelector("a.active")).toHaveTextContent("Contact");
+    expect(screen.queryByTestId("footer-nav-column-navigation")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("footer-nav-column-social")).not.toBeInTheDocument();
+  });
 
-    expect(within(footer).getByRole("link", { name: /linkedin/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
-    expect(within(footer).getByRole("link", { name: /github/i })).toHaveAttribute("href", SITE_GITHUB_URL);
+  it("highlights the active route in the navigation column", () => {
+    render(
+      <MemoryRouter initialEntries={[ROUTES.services]}>
+        <Footer />
+      </MemoryRouter>,
+    );
 
-    expect(within(footer).queryAllByText(/^Udaipur, India$/)).toHaveLength(0);
-
-    expect(within(nav).queryByRole("link", { name: /Chat on WhatsApp/i })).not.toBeInTheDocument();
-    expect(screen.queryByText(/^Chat on WhatsApp$/)).not.toBeInTheDocument();
+    expect(screen.getByTestId("footer-nav-column-navigation").querySelector("a.active")).toHaveTextContent("Services");
   });
 });

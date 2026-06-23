@@ -11,7 +11,9 @@ Copy `./.env.example` to `./.env`.
 - `DATABASE_URL` - Supabase Postgres connection string for Prisma
 - `SMTP_ENABLED` - optional; enable email notifications
 
-When SMTP notifications are wired up, send staff alerts to **both** team inboxes (`hello@commiters.com` and `commitersudaipur@gmail.com`). Shared helpers live in `src/lib/teamInboxes.ts` (`teamInboxRecipients`, `teamInboxRecipientsJoined`).
+When SMTP notifications are wired up, send staff alerts to **both** team inboxes (`hello@commiters.com` and `commitersudaipur@gmail.com`) with a PDF attachment. Shared helpers live in `src/lib/teamInboxes.ts` (`teamInboxRecipients`, `teamInboxRecipientsJoined`).
+
+When `WHATSAPP_ENABLED=true`, Twilio sends the same PDF to `WHATSAPP_NOTIFY_TO` using a short-lived media URL from `NOTIFICATION_PUBLIC_BASE_URL`.
 
 ## Available endpoints (MVP)
 

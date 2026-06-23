@@ -1,4 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { COMMITERS_CASE_STUDY_COPY } from "./commitersCaseStudyContent";
+import { NEARDROP_CASE_STUDY_COPY } from "./neardropCaseStudyContent";
+import { SERVICES_BOTTOM_CTA } from "./servicesPageBottomContent";
+import { STITCH_CONTACT_SIDEBAR } from "./stitchPageContent";
 import {
   COMMITERS_EMAIL_LEGAL_DISPLAY,
   COMMITERS_EMAIL_PRIMARY,
@@ -6,6 +10,7 @@ import {
   COMMITERS_EMAIL_STRIP_DISPLAY,
   COMMITERS_PHONE_DISPLAY,
   COMMITERS_PHONE_E164_DIGITS,
+  buildDiscoveryCallCalendarUrl,
   buildMailtoPrimaryHref,
   buildMailtoTeamInboxHref,
   buildTelHref,
@@ -13,6 +18,8 @@ import {
 } from "./siteContact";
 
 describe("siteContact", () => {
+  const discoveryCallUrl = buildDiscoveryCallCalendarUrl();
+
   it("exposes primary and secondary contact emails", () => {
     expect(COMMITERS_EMAIL_PRIMARY).toBe("hello@commiters.com");
     expect(COMMITERS_EMAIL_SECONDARY).toBe("commitersudaipur@gmail.com");
@@ -49,5 +56,30 @@ describe("siteContact", () => {
     const url = buildWhatsAppUrl("Hello & test");
     expect(url).toContain(`https://wa.me/${COMMITERS_PHONE_E164_DIGITS}?text=`);
     expect(url).toContain(encodeURIComponent("Hello & test"));
+  });
+
+  it("builds a Google Calendar discovery call URL for the Udaipur calendar inbox", () => {
+    const url = buildDiscoveryCallCalendarUrl();
+    const parsed = new URL(url);
+
+    expect(parsed.origin + parsed.pathname).toBe("https://calendar.google.com/calendar/render");
+    expect(parsed.searchParams.get("action")).toBe("TEMPLATE");
+    expect(parsed.searchParams.get("text")).toBe("Discovery Call with Commiters");
+    expect(parsed.searchParams.get("add")).toBe(COMMITERS_EMAIL_SECONDARY);
+    expect(parsed.searchParams.get("details")).toContain("discovery call");
+  });
+
+  it("wires every discovery-call CTA to the Udaipur calendar inbox instead of Calendly", () => {
+    const discoveryHrefs = [
+      STITCH_CONTACT_SIDEBAR[1].href,
+      SERVICES_BOTTOM_CTA.primaryHref,
+      COMMITERS_CASE_STUDY_COPY.bottomCta.primaryHref,
+      NEARDROP_CASE_STUDY_COPY.bottomCta.primaryHref,
+    ];
+
+    for (const href of discoveryHrefs) {
+      expect(href).toBe(discoveryCallUrl);
+      expect(href).not.toContain("calendly.com");
+    }
   });
 });

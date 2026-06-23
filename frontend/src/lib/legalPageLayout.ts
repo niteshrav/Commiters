@@ -1,0 +1,21 @@
+/** Layout tokens for Stitch-aligned legal pages (terms, privacy). */
+export const LEGAL_PAGE_CLASS = "legal-page" as const;
+export const LEGAL_INTRO_SECTION_CLASS = "legal-intro-section" as const;
+export const LEGAL_INTRO_INNER_CLASS = "legal-intro-inner" as const;
+export const LEGAL_INTRO_KICKER_CLASS = "legal-intro-kicker" as const;
+export const LEGAL_INTRO_TITLE_CLASS = "legal-intro-title" as const;
+export const LEGAL_INTRO_META_CLASS = "legal-intro-meta" as const;
+export const LEGAL_LIST_CLASS = "legal-list" as const;
+export const LEGAL_DOCUMENT_SECTION_CLASS = "legal-document-section" as const;
+export const LEGAL_DOCUMENT_INNER_CLASS = "legal-document-inner" as const;
+export const LEGAL_DOCUMENT_SURFACE_CLASS = "legal-document-surface" as const;
+export const LEGAL_HEADING_CLASS = "legal-heading" as const;
+export const LEGAL_BODY_CLASS = "legal-body" as const;
+export const LEGAL_PROSE_MAX_WIDTH = "48rem" as const;
+export const LEGAL_INTRO_TITLE_SIZE = "clamp(2rem, 4vw, 3rem)" as const;
+export const LEGAL_INTRO_TITLE_LINE_HEIGHT = "1.12" as const;
+export const LEGAL_INTRO_TITLE_LETTER_SPACING = "-0.03em" as const;
+export const LEGAL_INTRO_TITLE_MARGIN_BOTTOM = "12px" as const;
+export const LEGAL_INTRO_META_COLOR = "#4b5563" as const;
+export const LEGAL_BODY_COLOR = "#4b5563" as const;
+export const LEGAL_BODY_LINE_HEIGHT = "1.65" as const;

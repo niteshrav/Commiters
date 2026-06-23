@@ -1,38 +1,38 @@
 import { readFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { BRAND_LOGO_FOOTER_HEIGHT_PX, BRAND_LOGO_HEADER_HEIGHT_PX } from "./lib/brandDisplay";
+import { SITE_CONTENT_MAX_WIDTH_PX } from "./lib/layoutTokens";
+import { LOGO_CSS_VARIABLES, LOGO_THEME } from "./lib/themeColors";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe("theme CSS tokens", () => {
   const css = readFileSync(join(__dirname, "styles.css"), "utf8");
 
-  it("preserves monochrome foundation (white surfaces, black text and primary)", () => {
-    expect(css).toMatch(/--bg:\s*#ffffff/);
-    expect(css).toMatch(/--text:\s*#111111/);
-    expect(css).toMatch(/--primary:\s*#111111/);
+  it("uses white canvas and site button tokens in :root", () => {
+    expect(css).toContain(`--page-background: ${LOGO_THEME.pageBackground}`);
+    expect(css).toContain(`--stitch-blue: ${LOGO_THEME.stitchBlue}`);
+    expect(css).toContain(`--max-width: ${SITE_CONTENT_MAX_WIDTH_PX}px`);
+    expect(LOGO_THEME.pageBackground).toBe("#ffffff");
   });
 
-  it("does not force uppercase on header or footer brand wordmark", () => {
-    const brandBlock = css.match(/\.brand\s*\{[^}]+\}/)?.[0] ?? "";
-    const footerBrandBlock = css.match(/\.footer-brand\s*\{[^}]+\}/)?.[0] ?? "";
-    expect(brandBlock).not.toMatch(/text-transform:\s*uppercase/);
-    expect(footerBrandBlock).not.toMatch(/text-transform:\s*uppercase/);
-    expect(brandBlock).toMatch(/font-weight:\s*700/);
-    expect(footerBrandBlock).toMatch(/font-weight:\s*700/);
+  it("applies Stitch blue on primary buttons and links", () => {
+    expect(css).toMatch(/\.btn-primary\s*\{[\s\S]*?var\(--site-btn-primary-bg/);
+    expect(css).toMatch(/\.btn-secondary\s*\{[\s\S]*?var\(--site-btn-secondary-bg/);
+    expect(css).toMatch(/\.quote-link\s*\{[\s\S]*?var\(--stitch-blue/);
+    expect(css).toContain(".stitch-home-hero");
   });
 
-  it("defines a global cool-blue page canvas fade while keeping card surfaces white", () => {
-    expect(css).toMatch(/--page-fade-start:\s*#/);
-    expect(css).toMatch(/--page-fade-mid:\s*#/);
-    expect(css).toMatch(/--page-fade-end:\s*#/);
-    expect(css).toMatch(/html,\s*body\s*\{[\s\S]*?linear-gradient\(180deg,\s*var\(--page-fade-start\)/);
-    expect(css).toMatch(/\.site-shell\s*\{[\s\S]*?background:\s*transparent/);
+  it("styles bold full-opacity header and footer logos", () => {
+    expect(css).toContain(`--brand-logo-header-height: ${BRAND_LOGO_HEADER_HEIGHT_PX}px`);
+    expect(css).toContain(`--brand-logo-footer-height: ${BRAND_LOGO_FOOTER_HEIGHT_PX}px`);
+    expect(css).toMatch(/\.brand-logo--display\s*\{[\s\S]*?opacity:\s*1/);
   });
 
-  it("defines navy accent variables for light surfaces and hierarchy only", () => {
-    expect(css).toContain("--navy-900:");
-    expect(css).toContain("--navy-mist:");
-    expect(css).toContain("--focus-ring:");
+  it("keeps themeColors and styles.css :root in sync", () => {
+    for (const [name, value] of Object.entries(LOGO_CSS_VARIABLES)) {
+      expect(css).toContain(`${name}: ${value};`);
+    }
   });
 });
