@@ -1,4 +1,9 @@
-import { COMMITERS_EMAIL_PRIMARY, COMMITERS_PHONE_DISPLAY, buildMailtoPrimaryHref, buildTelHref } from "./siteContact";
+import {
+  COMMITERS_EMAIL_LEGAL_DISPLAY,
+  COMMITERS_PHONE_DISPLAY,
+  buildMailtoTeamInboxHref,
+  buildTelHref,
+} from "./siteContact";
 
 /** Contact page studio panel copy from the Stitch screenshot. */
 export const CONTACT_STUDIO = {
@@ -8,8 +13,8 @@ export const CONTACT_STUDIO = {
     "Nakoda Nagar,",
     "Udaipur, Rajasthan, India",
   ],
-  email: COMMITERS_EMAIL_PRIMARY,
-  emailHref: buildMailtoPrimaryHref(),
+  email: COMMITERS_EMAIL_LEGAL_DISPLAY,
+  emailHref: buildMailtoTeamInboxHref(),
   phone: COMMITERS_PHONE_DISPLAY,
   phoneHref: buildTelHref(),
 } as const;

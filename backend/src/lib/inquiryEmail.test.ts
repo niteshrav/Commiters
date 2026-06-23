@@ -15,7 +15,7 @@ vi.mock("nodemailer", () => ({
 }));
 
 import { sendInquiryEmail } from "./inquiryEmail";
-import { teamInboxRecipientsJoined } from "./teamInboxes";
+import { teamInboxRecipients } from "./teamInboxes";
 
 const inquiry: InquiryNotificationInput = {
   id: "lead_email_1",
@@ -63,7 +63,7 @@ describe("sendInquiryEmail", () => {
     );
     expect(emailMocks.sendMail).toHaveBeenCalledWith(
       expect.objectContaining({
-        to: teamInboxRecipientsJoined(),
+        to: [...teamInboxRecipients()],
         subject: expect.stringMatching(/New Project Inquiry/i),
         attachments: [
           expect.objectContaining({
@@ -74,6 +74,13 @@ describe("sendInquiryEmail", () => {
         ],
       }),
     );
+  });
+
+  it("routes inquiry alerts to hello@commiters.com and commitersudaipur@gmail.com", async () => {
+    await sendInquiryEmail(inquiry, Buffer.from("%PDF-test"));
+
+    const sendArgs = emailMocks.sendMail.mock.calls[0]?.[0] as { to: string[] };
+    expect(sendArgs.to).toEqual(["hello@commiters.com", "commitersudaipur@gmail.com"]);
   });
 
   it("attaches the applicant resume PDF for job applications", async () => {

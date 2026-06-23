@@ -21,4 +21,11 @@ describe("teamInboxes", () => {
       "hello@commiters.com,commitersudaipur@gmail.com",
     );
   });
+
+  it("exposes both inboxes for nodemailer delivery arrays", () => {
+    expect([...teamInboxRecipients()]).toEqual([
+      "hello@commiters.com",
+      "commitersudaipur@gmail.com",
+    ]);
+  });
 });

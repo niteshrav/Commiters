@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import type { InquiryNotificationInput } from "./inquiryNotificationTypes";
 import { inquiryPdfFilename } from "./inquiryPdf";
-import { teamInboxRecipientsJoined } from "./teamInboxes";
+import { teamInboxRecipients } from "./teamInboxes";
 
 function isSmtpEnabled(): boolean {
   return process.env.SMTP_ENABLED === "true";
@@ -50,7 +50,7 @@ export async function sendInquiryEmail(input: InquiryNotificationInput, pdf: Buf
 
   await transport.sendMail({
     from,
-    to: teamInboxRecipientsJoined(),
+    to: [...teamInboxRecipients()],
     subject: buildSubject(input),
     text: buildTextBody(input),
     attachments: [

@@ -26,8 +26,8 @@ describe("contactPageContent", () => {
       "Nakoda Nagar,",
       "Udaipur, Rajasthan, India",
     ]);
-    expect(CONTACT_STUDIO.email).toBe("hello@commiters.com");
-    expect(CONTACT_STUDIO.emailHref).toBe("mailto:hello@commiters.com");
+    expect(CONTACT_STUDIO.email).toBe("hello@commiters.com, commitersudaipur@gmail.com");
+    expect(CONTACT_STUDIO.emailHref).toBe("mailto:hello@commiters.com,commitersudaipur@gmail.com");
     expect(CONTACT_STUDIO.phone).toBe("+91 9024882899");
     expect(CONTACT_STUDIO.phoneHref).toBe("tel:+919024882899");
   });
