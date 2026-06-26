@@ -47,6 +47,7 @@ describe("deployment configuration", () => {
     expect(dockerfile).toMatch(/AS build/);
     expect(dockerfile).toContain("npm run build");
     expect(dockerfile).toContain('CMD ["node", "dist/index.js"]');
+    expect(dockerfile).toContain('! grep -q \'from "./app"\' dist/index.js');
     expect(dockerfile).toContain("EXPOSE 4000");
     expect(packageJson).toContain("esbuild src/index.ts");
     expect(packageJson).toContain("--packages=external");
