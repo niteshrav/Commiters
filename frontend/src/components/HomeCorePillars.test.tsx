@@ -22,4 +22,18 @@ describe("HomeCorePillars", () => {
     expect(within(card).getByRole("heading", { name: HOME_PAGE_COPY.corePillars.quality.title })).toBeInTheDocument();
     expect(within(card).getByText(HOME_PAGE_COPY.corePillars.founderLed.body)).toBeInTheDocument();
   });
+
+  it("renders client deliverable metrics from home page copy", () => {
+    render(
+      <MemoryRouter>
+        <HomeCorePillars />
+      </MemoryRouter>,
+    );
+
+    const card = screen.getByTestId("home-pillars-card");
+    for (const metric of HOME_PAGE_COPY.corePillars.quality.metrics) {
+      expect(within(card).getByText(metric.value)).toBeInTheDocument();
+      expect(within(card).getByText(metric.label)).toBeInTheDocument();
+    }
+  });
 });

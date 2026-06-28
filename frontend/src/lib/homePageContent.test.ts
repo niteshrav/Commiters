@@ -35,15 +35,14 @@ describe("homePageContent", () => {
     );
   });
 
-  it("nests quality-first engineering inside core pillars with four labeled metrics", () => {
+  it("nests quality-first engineering inside core pillars with four client deliverable metrics", () => {
     const { quality } = HOME_PAGE_COPY.corePillars;
     expect(quality.title).toBe("Quality-First Engineering");
-    expect(quality.metrics.map((m) => m.value)).toEqual(["99.9%", "<200ms", "100%", "24/7"]);
-    expect(quality.metrics.map((m) => m.label)).toEqual([
-      "SYSTEM UPTIME",
-      "API LATENCY",
-      "TEST COVERAGE",
-      "MONITORING",
+    expect(quality.metrics).toEqual([
+      { value: "99.9%", label: "TARGET UPTIME SLA" },
+      { value: "<200ms", label: "CORE API RESPONSE (P95)" },
+      { value: "Every release", label: "AUTOMATED TESTING" },
+      { value: "24/7", label: "MONITORING & ALERTS" },
     ]);
   });
 });

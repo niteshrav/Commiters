@@ -45,10 +45,10 @@ export const HOME_PAGE_COPY = {
       body:
         "Our 'Commit Early, Test Often' philosophy ensures your codebase remains a strategic asset, not a technical debt burden. Automated testing and rigorous code reviews are non-negotiable.",
       metrics: [
-        { value: "99.9%", label: "SYSTEM UPTIME" },
-        { value: "<200ms", label: "API LATENCY" },
-        { value: "100%", label: "TEST COVERAGE" },
-        { value: "24/7", label: "MONITORING" },
+        { value: "99.9%", label: "TARGET UPTIME SLA" },
+        { value: "<200ms", label: "CORE API RESPONSE (P95)" },
+        { value: "Every release", label: "AUTOMATED TESTING" },
+        { value: "24/7", label: "MONITORING & ALERTS" },
       ],
     },
   },
