@@ -2758,9 +2758,6 @@ textarea {
     width: 100%;
   }
 
-  .stitch-home-hero-photo {
-    min-height: 240px;
-  }
 }
 
 /* —— Stitch preview (light UI) —— */
@@ -5292,12 +5289,42 @@ textarea {
   }
 
   .multi-role-crm-case-study-feature-item {
+    align-items: flex-start;
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
   }
 
   .multi-role-crm-case-study-feature-item:last-child {
     border-bottom: none;
+  }
+
+  .multi-role-crm-case-study-architecture-indicators {
+    align-self: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .multi-role-crm-case-study-tech-stack-item {
+    align-items: center;
+  }
+
+  .multi-role-crm-case-study-tech-stack-item--wide {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .multi-role-crm-case-study-tech-stack-item--wide .multi-role-crm-case-study-tech-stack-copy {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 4px;
+  }
+
+  .multi-role-crm-case-study-tech-stack-icon img {
+    display: block;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
   }
 }
 
@@ -5753,10 +5780,104 @@ textarea {
   .nextsaas-case-study-scope-pipelines-grid,
   .nextsaas-case-study-infrastructure-layout {
     grid-template-columns: 1fr;
+    max-height: none;
   }
 
   .nextsaas-case-study-capabilities-grid {
     grid-template-columns: 1fr;
+  }
+
+  .nextsaas-case-study-pipelines-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+
+  .nextsaas-case-study-pipelines-copy {
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .nextsaas-case-study-pipelines-media {
+    height: auto;
+    overflow: visible;
+  }
+
+  .nextsaas-case-study-intro-hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* Mobile layout fixes — viewport <= 768px; desktop unchanged above this breakpoint */
+@media (max-width: 768px) {
+  .stitch-home-hero-photo {
+    width: 100%;
+    height: auto;
+    min-height: unset;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .case-study-card--showcase.case-study-card--horizontal {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .case-study-card--showcase .case-study-card-copy--showcase {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    padding-inline-end: clamp(24px, 3vw, 32px);
+  }
+
+  .case-study-card--showcase .case-study-card-media--showcase {
+    grid-column: 1;
+    grid-row: 2;
+    padding-inline-start: clamp(24px, 3vw, 32px);
+  }
+
+  .case-study-card--showcase .case-study-card-cta-row {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: start;
+    margin-top: 0;
+    padding-block-start: 8px;
+    padding-inline-end: clamp(24px, 3vw, 32px);
+  }
+
+  .case-study-card--horizontal .case-study-card-media {
+    min-height: unset;
+  }
+
+  .case-study-card--horizontal .case-study-card-image,
+  .case-study-card--stacked .case-study-card-image,
+  .case-study-card[data-case-study-id="commiters"] .case-study-card-image,
+  .case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image,
+  .case-study-card[data-case-study-id="neardrop-mvp"] .case-study-card-image {
+    width: 100%;
+    height: auto;
+    min-height: unset;
+    max-height: none;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  .home-built-for-scale-image,
+  .about-founder-photo,
+  .ai-summarizer-case-study-hero-image,
+  .ai-summarizer-case-study-footer-image,
+  .multi-role-crm-case-study-hero-image,
+  .nextsaas-case-study-visual-break-image,
+  .technical-ledger-article-image,
+  .stitch-founder-photo {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
   }
 }
 

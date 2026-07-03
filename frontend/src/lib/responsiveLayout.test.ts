@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   BREAKPOINT_COMPACT_PX,
+  BREAKPOINT_MOBILE_PX,
   BREAKPOINT_STACK_PX,
   BREAKPOINT_TABLET_PX,
   RESPONSIVE_STACK_GRID_SELECTORS,
@@ -41,7 +42,8 @@ function mediaBlocks(maxWidthPx: number): string {
 }
 
 describe("responsiveLayout", () => {
-  it("pins shared stack, tablet, and compact breakpoints", () => {
+  it("pins shared mobile, stack, tablet, and compact breakpoints", () => {
+    expect(BREAKPOINT_MOBILE_PX).toBe(768);
     expect(BREAKPOINT_STACK_PX).toBe(960);
     expect(BREAKPOINT_TABLET_PX).toBe(1090);
     expect(BREAKPOINT_COMPACT_PX).toBe(620);
@@ -83,7 +85,16 @@ describe("responsiveLayout", () => {
   it("relaxes fixed-width controls on compact phones", () => {
     const compact = mediaBlocks(BREAKPOINT_COMPACT_PX);
     expect(compact).toMatch(/\.stitch-contact-submit\s*\{[\s\S]*width:\s*100%/);
-    expect(compact).toMatch(/\.stitch-home-hero-photo\s*\{[\s\S]*min-height:\s*240px/);
+  });
+
+  it("shows the full hero image and stacks case study showcase content on mobile", () => {
+    const mobile = mediaBlocks(BREAKPOINT_MOBILE_PX);
+    expect(mobile).toMatch(/\.stitch-home-hero-photo\s*\{[\s\S]*object-fit:\s*contain/);
+    expect(mobile).toMatch(/\.stitch-home-hero-photo\s*\{[\s\S]*height:\s*auto/);
+    expect(mobile).toMatch(/\.case-study-card--showcase\.case-study-card--horizontal\s*\{[\s\S]*grid-template-rows:\s*auto auto auto/);
+    expect(mobile).toMatch(/\.case-study-card--showcase \.case-study-card-cta-row\s*\{[\s\S]*grid-row:\s*3/);
+    expect(mobile).toMatch(/\.nextsaas-case-study-pipelines-layout\s*\{[\s\S]*grid-template-columns:\s*1fr/);
+    expect(mobile).toMatch(/\.multi-role-crm-case-study-tech-stack-item--wide\s*\{[\s\S]*flex-direction:\s*column/);
   });
 
   it("does not keep a legacy 840px navigation breakpoint", () => {
