@@ -83,7 +83,6 @@ export const COOKIE_MANAGE_CTA = {
   title: STITCH_COPY.cookie.manageCta.title,
   description: STITCH_COPY.cookie.manageCta.description,
   buttonLabel: STITCH_COPY.cookie.manageCta.buttonLabel,
-  buttonHref: "#managing-preferences",
   privacyLinkLabel: STITCH_COPY.cookie.manageCta.privacyLinkLabel,
   privacyHref: ROUTES.privacyPolicy,
 } as const;

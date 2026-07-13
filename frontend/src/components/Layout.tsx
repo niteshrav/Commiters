@@ -1,8 +1,15 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import CircuitBackdrop from "./CircuitBackdrop";
+import CookieConsentBanner from "./CookieConsentBanner";
+import CookiePreferencesPanel from "./CookiePreferencesPanel";
+import { CookieConsentProvider } from "./CookieConsentProvider";
+import AccessibilityWidget from "./AccessibilityWidget";
+import { AccessibilityProvider } from "./AccessibilityProvider";
+import SkipToMainLink from "./SkipToMainLink";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { ACCESSIBILITY_MAIN_CONTENT_ID } from "../lib/accessibilityContent";
 
 export default function Layout({ children }: PropsWithChildren) {
   const location = useLocation();
@@ -61,21 +68,29 @@ export default function Layout({ children }: PropsWithChildren) {
   }, [location.pathname]);
 
   return (
-    <div className="site-shell" data-theme="commiters-brand">
-      <CircuitBackdrop />
-      <Navbar />
-      <main className="container">
-        <div
-          key={location.pathname}
-          className="route-shell route-transition"
-          data-testid="route-shell"
-          data-route={location.pathname}
-        >
-          {children}
+    <CookieConsentProvider>
+      <AccessibilityProvider>
+        <div className="site-shell" data-theme="commiters-brand">
+          <SkipToMainLink />
+          <CircuitBackdrop />
+          <Navbar />
+          <main id={ACCESSIBILITY_MAIN_CONTENT_ID} className="container" tabIndex={-1}>
+            <div
+              key={location.pathname}
+              className="route-shell route-transition"
+              data-testid="route-shell"
+              data-route={location.pathname}
+            >
+              {children}
+            </div>
+          </main>
+          <Footer />
+          <AccessibilityWidget />
+          <CookieConsentBanner />
+          <CookiePreferencesPanel />
         </div>
-      </main>
-      <Footer />
-    </div>
+      </AccessibilityProvider>
+    </CookieConsentProvider>
   );
 }
 

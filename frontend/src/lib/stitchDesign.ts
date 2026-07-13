@@ -155,6 +155,44 @@ export const STITCH_COPY = {
     },
     disclaimer:
       "By continuing to use this website, you consent to our use of cookies as described in this policy. For questions, contact our data compliance team.",
+    consentBanner: {
+      title: "We value your privacy",
+      description:
+        "We use cookies to keep Commiters.com secure, remember your preferences, and understand how the site is used. You can accept all cookies or choose which optional categories to allow.",
+      acceptAllLabel: "Accept All",
+      essentialOnlyLabel: "Essential Only",
+      manageLabel: "Manage Preferences",
+      policyLinkLabel: "Cookie Policy",
+    },
+    preferencesPanel: {
+      title: "Cookie Preferences",
+      description:
+        "Choose which optional cookies we may store. Strictly necessary cookies are always active because they keep the site secure and usable.",
+      saveLabel: "Save Preferences",
+      cancelLabel: "Cancel",
+      necessaryStatusLabel: "Always active",
+    },
+  },
+  accessibility: {
+    skipLinkLabel: "Skip to main content",
+    widgetLabel: "Accessibility options",
+    panelTitle: "Accessibility Settings",
+    panelDescription:
+      "Adjust display and motion preferences to make Commiters.com easier to read and navigate. Your choices are saved on this device.",
+    textSizeLabel: "Text size",
+    textSizeOptions: {
+      default: "Default",
+      large: "Large",
+      xlarge: "Extra large",
+    },
+    highContrastLabel: "High contrast",
+    highContrastDescription: "Increase contrast between text, buttons, and backgrounds.",
+    underlineLinksLabel: "Underline links",
+    underlineLinksDescription: "Make text links easier to spot across the site.",
+    reduceMotionLabel: "Reduce motion",
+    reduceMotionDescription: "Minimize animations and smooth scrolling effects.",
+    resetLabel: "Reset accessibility settings",
+    closeLabel: "Close",
   },
   privacy: {
     title: "Privacy Policy",

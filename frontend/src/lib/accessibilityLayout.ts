@@ -1,0 +1,20 @@
+/** Layout tokens for skip link and accessibility widget. */
+export const ACCESSIBILITY_SKIP_LINK_CLASS = "accessibility-skip-link" as const;
+export const ACCESSIBILITY_WIDGET_CLASS = "accessibility-widget" as const;
+export const ACCESSIBILITY_WIDGET_TOGGLE_CLASS = "accessibility-widget-toggle" as const;
+export const ACCESSIBILITY_WIDGET_PANEL_CLASS = "accessibility-widget-panel" as const;
+export const ACCESSIBILITY_WIDGET_BACKDROP_CLASS = "accessibility-widget-backdrop" as const;
+export const ACCESSIBILITY_WIDGET_DIALOG_CLASS = "accessibility-widget-dialog" as const;
+export const ACCESSIBILITY_WIDGET_TITLE_CLASS = "accessibility-widget-title" as const;
+export const ACCESSIBILITY_WIDGET_DESCRIPTION_CLASS = "accessibility-widget-description" as const;
+export const ACCESSIBILITY_WIDGET_SECTION_CLASS = "accessibility-widget-section" as const;
+export const ACCESSIBILITY_WIDGET_SECTION_LABEL_CLASS = "accessibility-widget-section-label" as const;
+export const ACCESSIBILITY_WIDGET_OPTION_GROUP_CLASS = "accessibility-widget-option-group" as const;
+export const ACCESSIBILITY_WIDGET_OPTION_CLASS = "accessibility-widget-option" as const;
+export const ACCESSIBILITY_WIDGET_OPTION_ACTIVE_CLASS = "accessibility-widget-option--active" as const;
+export const ACCESSIBILITY_WIDGET_TOGGLE_ROW_CLASS = "accessibility-widget-toggle-row" as const;
+export const ACCESSIBILITY_WIDGET_TOGGLE_COPY_CLASS = "accessibility-widget-toggle-copy" as const;
+export const ACCESSIBILITY_WIDGET_TOGGLE_CONTROL_CLASS = "accessibility-widget-toggle-control" as const;
+export const ACCESSIBILITY_WIDGET_ACTIONS_CLASS = "accessibility-widget-actions" as const;
+export const ACCESSIBILITY_WIDGET_RESET_CLASS = "accessibility-widget-reset-btn" as const;
+export const ACCESSIBILITY_WIDGET_CLOSE_CLASS = "accessibility-widget-close-btn" as const;

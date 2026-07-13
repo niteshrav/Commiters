@@ -421,3 +421,18 @@ export function IconWhatsApp(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function IconAccessibility(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <circle cx="12" cy="4.5" r="2" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M7 8.5h10M12 6.5v12M9.5 20.5 12 15l2.5 5.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

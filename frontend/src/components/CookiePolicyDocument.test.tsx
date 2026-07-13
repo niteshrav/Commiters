@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import CookiePolicyDocument from "./CookiePolicyDocument";
+import { CookieConsentProvider } from "./CookieConsentProvider";
 import { COOKIE_MANAGE_CTA, COOKIE_POLICY_NAV } from "../lib/cookiePageContent";
 import {
   COOKIE_CATEGORY_CARD_CLASS,
@@ -12,12 +13,18 @@ import {
 } from "../lib/cookiePageLayout";
 
 describe("CookiePolicyDocument", () => {
-  it("renders sidebar navigation and category cards with layout classes", () => {
-    render(
-      <MemoryRouter>
-        <CookiePolicyDocument />
-      </MemoryRouter>,
+  function renderDocument() {
+    return render(
+      <CookieConsentProvider>
+        <MemoryRouter>
+          <CookiePolicyDocument />
+        </MemoryRouter>
+      </CookieConsentProvider>,
     );
+  }
+
+  it("renders sidebar navigation and category cards with layout classes", () => {
+    renderDocument();
 
     expect(screen.getByTestId("cookie-policy-document")).toBeInTheDocument();
     expect(screen.getByTestId("cookie-policy-layout")).toHaveClass(COOKIE_LAYOUT_CLASS);
@@ -31,15 +38,11 @@ describe("CookiePolicyDocument", () => {
     }
 
     expect(screen.getByTestId("cookie-policy-manage-cta")).toHaveClass(COOKIE_MANAGE_CTA_CLASS);
-    expect(screen.getByRole("link", { name: COOKIE_MANAGE_CTA.buttonLabel })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: COOKIE_MANAGE_CTA.buttonLabel })).toBeInTheDocument();
   });
 
   it("highlights the first nav item when no hash is present", () => {
-    render(
-      <MemoryRouter>
-        <CookiePolicyDocument />
-      </MemoryRouter>,
-    );
+    renderDocument();
 
     const first = screen.getByRole("link", { name: COOKIE_POLICY_NAV[0].label });
     expect(first).toHaveClass("cookie-policy-nav-link--active");

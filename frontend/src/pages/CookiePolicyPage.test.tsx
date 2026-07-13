@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 import CookiePolicyPage from "./CookiePolicyPage";
+import { CookieConsentProvider } from "../components/CookieConsentProvider";
 import { COMMITERS_HEADER_LOGO_ALT } from "../lib/siteBrand";
 import {
   COOKIE_CATEGORY_CARDS,
@@ -22,9 +23,11 @@ import {
 describe("CookiePolicyPage", () => {
   it("renders the Stitch cookie policy layout from the screenshot", () => {
     render(
-      <MemoryRouter>
-        <CookiePolicyPage />
-      </MemoryRouter>,
+      <CookieConsentProvider>
+        <MemoryRouter>
+          <CookiePolicyPage />
+        </MemoryRouter>
+      </CookieConsentProvider>,
     );
 
     expect(screen.getByTestId("cookie-policy-page")).toBeInTheDocument();
@@ -55,10 +58,7 @@ describe("CookiePolicyPage", () => {
     }
 
     expect(screen.getByRole("heading", { name: COOKIE_MANAGE_CTA.title })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: COOKIE_MANAGE_CTA.buttonLabel })).toHaveAttribute(
-      "href",
-      COOKIE_MANAGE_CTA.buttonHref,
-    );
+    expect(screen.getByRole("button", { name: COOKIE_MANAGE_CTA.buttonLabel })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: new RegExp(COOKIE_MANAGE_CTA.privacyLinkLabel) })).toHaveAttribute(
       "href",
       ROUTES.privacyPolicy,

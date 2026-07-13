@@ -37,6 +37,7 @@ import {
   COOKIE_SECTION_CLASS,
   COOKIE_SECTION_TITLE_CLASS,
 } from "../lib/cookiePageLayout";
+import { useCookieConsent } from "./CookieConsentProvider";
 
 function renderCategoryIcon(variant: CookieCategoryVariant) {
   switch (variant) {
@@ -53,6 +54,7 @@ function renderCategoryIcon(variant: CookieCategoryVariant) {
 
 export default function CookiePolicyDocument() {
   const location = useLocation();
+  const { openPreferences } = useCookieConsent();
   const activeId = location.hash.replace(/^#/, "") || COOKIE_POLICY_NAV[0].id;
 
   return (
@@ -118,9 +120,9 @@ export default function CookiePolicyDocument() {
               </h2>
               <p className={COOKIE_MANAGE_BODY_CLASS}>{COOKIE_MANAGE_CTA.description}</p>
               <div className={COOKIE_MANAGE_ACTIONS_CLASS}>
-                <a className={COOKIE_MANAGE_BUTTON_CLASS} href={COOKIE_MANAGE_CTA.buttonHref}>
+                <button type="button" className={COOKIE_MANAGE_BUTTON_CLASS} onClick={openPreferences}>
                   {COOKIE_MANAGE_CTA.buttonLabel}
-                </a>
+                </button>
                 <Link className={COOKIE_MANAGE_PRIVACY_LINK_CLASS} to={COOKIE_MANAGE_CTA.privacyHref}>
                   {COOKIE_MANAGE_CTA.privacyLinkLabel} →
                 </Link>
