@@ -53,7 +53,8 @@ describe("siteFooterCopy", () => {
     const legal = SITE_FOOTER_COPY.navColumns[2];
     expect(legal.links.map((link) => link.label)).toEqual([...SITE_FOOTER_LEGAL_LINK_LABELS]);
     expect(legal.links[0].to).toBe(ROUTES.privacyPolicy);
-    expect(legal.links[1].to).toBe(ROUTES.terms);
+    expect(legal.links[1].to).toBe(ROUTES.cookiePolicy);
+    expect(legal.links[2].to).toBe(ROUTES.terms);
   });
 
   it("orders social links LinkedIn, WhatsApp, Instagram, and Medium without X", () => {

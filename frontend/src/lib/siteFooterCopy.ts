@@ -63,10 +63,11 @@ export const SITE_FOOTER_CONNECT_LINKS = [
 
 const SITE_FOOTER_LEGAL_LINKS = [
   { kind: "internal", label: "Privacy", to: ROUTES.privacyPolicy },
+  { kind: "internal", label: "Cookies", to: ROUTES.cookiePolicy },
   { kind: "internal", label: "Terms", to: ROUTES.terms },
 ] as const satisfies readonly FooterLinkCell[];
 
-export const SITE_FOOTER_LEGAL_LINK_LABELS = ["Privacy", "Terms"] as const;
+export const SITE_FOOTER_LEGAL_LINK_LABELS = ["Privacy", "Cookies", "Terms"] as const;
 
 export const SITE_FOOTER_COPY = {
   copyrightLine1: "© 2026 Commiters Softwares.",

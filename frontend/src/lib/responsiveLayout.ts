@@ -1,8 +1,10 @@
 /** Shared viewport breakpoints — keep in sync with styles.css @media rules. */
+export const BREAKPOINT_MOBILE_PX = 768;
 export const BREAKPOINT_STACK_PX = 960;
 export const BREAKPOINT_TABLET_PX = 1090;
 export const BREAKPOINT_COMPACT_PX = 620;
 
+export const BREAKPOINT_MOBILE_MQ = `(max-width: ${BREAKPOINT_MOBILE_PX}px)` as const;
 export const BREAKPOINT_STACK_MQ = `(max-width: ${BREAKPOINT_STACK_PX}px)` as const;
 export const BREAKPOINT_TABLET_MQ = `(max-width: ${BREAKPOINT_TABLET_PX}px)` as const;
 export const BREAKPOINT_COMPACT_MQ = `(max-width: ${BREAKPOINT_COMPACT_PX}px)` as const;

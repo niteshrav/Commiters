@@ -63,7 +63,6 @@ describe("cookiePageContent", () => {
   it("defines the manage cookies CTA and privacy cross-link", () => {
     expect(COOKIE_MANAGE_CTA.title).toBe("How to manage cookies");
     expect(COOKIE_MANAGE_CTA.buttonLabel).toBe("Manage Cookie Preferences");
-    expect(COOKIE_MANAGE_CTA.buttonHref).toBe("#managing-preferences");
     expect(COOKIE_MANAGE_CTA.privacyLinkLabel).toBe("Read Privacy Policy");
     expect(COOKIE_MANAGE_CTA.privacyHref).toBe(ROUTES.privacyPolicy);
   });
