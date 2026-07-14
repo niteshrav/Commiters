@@ -24,6 +24,8 @@ describe("deployment configuration", () => {
     expect(manifest).toContain("ref: main");
     expect(manifest).toMatch(/ports:\s*\n\s*-\s*80/m);
     expect(manifest).toMatch(/api:[\s\S]*ports:\s*\n\s*-\s*4000/m);
+    expect(manifest).toContain('CORS_ORIGIN: "https://www.commiters.com,https://commiters.com"');
+    expect(manifest).toContain("NOTIFICATION_PUBLIC_BASE_URL");
   });
 
   it("builds the frontend with nginx and SPA fallback", () => {
@@ -78,7 +80,7 @@ describe("deployment configuration", () => {
     expect(envExample).toContain("SMTP_ENABLED=true");
     expect(envExample).toContain("SMTP_HOST=smtp.gmail.com");
     expect(envExample).toContain("SMTP_USER=commitersudaipur@gmail.com");
-    expect(envExample).toContain("CORS_ORIGIN=https://www.commiters.com");
+    expect(envExample).toContain("CORS_ORIGIN=https://www.commiters.com,https://commiters.com");
     expect(envExample).toContain("hello@commiters.com");
     expect(envExample).toContain("commitersudaipur@gmail.com");
   });

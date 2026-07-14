@@ -31,11 +31,36 @@ function withLoopbackAliases(origins: string[]): string[] {
   return [...expanded];
 }
 
+function withWwwApexAliases(origins: string[]): string[] {
+  const expanded = new Set(origins.map(normalizeOrigin));
+  for (const origin of [...expanded]) {
+    try {
+      const url = new URL(origin);
+      if (url.hostname.startsWith("www.")) {
+        const apex = new URL(origin);
+        apex.hostname = url.hostname.slice(4);
+        expanded.add(normalizeOrigin(apex.toString()));
+      } else if (
+        url.hostname !== "localhost" &&
+        url.hostname !== "127.0.0.1" &&
+        !/^\d+\.\d+\.\d+\.\d+$/.test(url.hostname)
+      ) {
+        const www = new URL(origin);
+        www.hostname = `www.${url.hostname}`;
+        expanded.add(normalizeOrigin(www.toString()));
+      }
+    } catch {
+      // Ignore malformed origins and keep explicit values only.
+    }
+  }
+  return [...expanded];
+}
+
 function getAllowedCorsOrigins(): string[] {
   const configured = process.env.CORS_ORIGIN?.split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
-  if (configured?.length) return withLoopbackAliases(configured);
+  if (configured?.length) return withWwwApexAliases(withLoopbackAliases(configured));
   return withLoopbackAliases(["http://localhost:5173", "http://127.0.0.1:5173"]);
 }
 
