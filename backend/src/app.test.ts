@@ -65,6 +65,30 @@ describe("API", () => {
     expect(res.headers["access-control-allow-origin"]).toBe("http://127.0.0.1:5173");
   });
 
+  it("allows apex domain when CORS_ORIGIN includes the www production site", async () => {
+    process.env.CORS_ORIGIN = "https://www.commiters.com";
+    const app = createApp();
+    const res = await request(app)
+      .options("/api/job-applications")
+      .set("Origin", "https://commiters.com")
+      .set("Access-Control-Request-Method", "POST");
+
+    expect(res.status).toBe(204);
+    expect(res.headers["access-control-allow-origin"]).toBe("https://commiters.com");
+  });
+
+  it("allows www domain when CORS_ORIGIN includes the apex production site", async () => {
+    process.env.CORS_ORIGIN = "https://commiters.com";
+    const app = createApp();
+    const res = await request(app)
+      .options("/api/job-applications")
+      .set("Origin", "https://www.commiters.com")
+      .set("Access-Control-Request-Method", "POST");
+
+    expect(res.status).toBe(204);
+    expect(res.headers["access-control-allow-origin"]).toBe("https://www.commiters.com");
+  });
+
   it("rejects non-json payload for lead submission", async () => {
     const app = createApp();
     const res = await request(app).post("/api/leads").send("name=test");
