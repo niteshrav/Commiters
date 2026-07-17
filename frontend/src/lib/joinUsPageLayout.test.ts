@@ -26,8 +26,9 @@ describe("joinUsPageLayout", () => {
     expect(css).toContain(`.${JOIN_US_FORM_FIELD_SHORT_CLASS}`);
     expect(css).toContain(".join-us-resume-dropzone");
     expect(css).toMatch(/\.stitch-join-us-form \.form-field label[\s\S]*margin-bottom:\s*8px/);
-    expect(css).toMatch(/\.stitch-join-us-grid[\s\S]*grid-template-columns:\s*1\.15fr\s+0\.85fr/);
-    expect(css).not.toContain(".join-us-form-row-short");
-    expect(css).not.toContain(".join-us-precision-card");
+    expect(css).toMatch(/\.stitch-join-us-grid[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+minmax\(0,\s*2fr\)/);
+    expect(css).toContain(".join-us-sidebar-card");
+    expect(css).toContain(".join-us-form-section-heading");
+    expect(css).toContain(".join-us-form-footer");
   });
 });

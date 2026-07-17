@@ -1,13 +1,12 @@
+import { Link } from "react-router-dom";
 import {
   SERVICES_BOTTOM_CTA_ACTIONS_CLASS,
   SERVICES_BOTTOM_CTA_INNER_CLASS,
   SERVICES_BOTTOM_CTA_PRIMARY_CLASS,
+  SERVICES_BOTTOM_CTA_SECONDARY_CLASS,
   SERVICES_BOTTOM_CTA_SECTION_CLASS,
-  SERVICES_BOTTOM_CTA_SEPARATOR_CLASS,
-  SERVICES_BOTTOM_CTA_SEPARATOR_TEST_ID,
   SERVICES_BOTTOM_CTA_SUBTEXT_CLASS,
   SERVICES_BOTTOM_CTA_TITLE_CLASS,
-  SERVICES_HOW_WE_WORK_SEPARATOR_CLASS,
 } from "../lib/servicesPageBottomLayout";
 import { SERVICES_BOTTOM_CTA } from "../lib/servicesPageBottomContent";
 
@@ -33,12 +32,11 @@ export default function ServicesBottomCta() {
             >
               {SERVICES_BOTTOM_CTA.primaryLabel}
             </a>
+            <Link className={`btn ${SERVICES_BOTTOM_CTA_SECONDARY_CLASS}`} to={SERVICES_BOTTOM_CTA.secondaryHref}>
+              {SERVICES_BOTTOM_CTA.secondaryLabel}
+            </Link>
           </div>
         </div>
-        <hr
-          className={`${SERVICES_HOW_WE_WORK_SEPARATOR_CLASS} ${SERVICES_BOTTOM_CTA_SEPARATOR_CLASS}`}
-          data-testid={SERVICES_BOTTOM_CTA_SEPARATOR_TEST_ID}
-        />
       </div>
     </section>
   );

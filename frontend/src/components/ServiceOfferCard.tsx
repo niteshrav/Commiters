@@ -6,12 +6,14 @@ import {
   IconLayers,
   IconRobot,
   IconRocket,
+  IconShoppingBag,
 } from "./icons";
 import type { StitchServiceCard } from "../lib/stitchPageContent";
 import {
   SERVICE_CARD_BUTTON_CLASS,
   SERVICE_CARD_CLASS,
   SERVICE_CARD_COPY_CLASS,
+  SERVICE_CARD_HOVER_ALWAYS_CLASS,
   SERVICE_CARD_HOVER_CLASS,
   SERVICE_CARD_ICON_CLASS,
   SERVICE_CARD_LAYOUT_CLASS,
@@ -28,18 +30,35 @@ const ICONS = {
   mobile: IconDevicePhone,
   automation: IconAutomationSpark,
   mvp: IconRocket,
+  ecommerce: IconShoppingBag,
 } as const;
 
 type Props = { service: StitchServiceCard };
 
 function ServiceHoverAction({ service }: Props) {
   const { hoverAction } = service;
+  const isExternal = hoverAction.href.startsWith("http");
 
   if (hoverAction.kind === "button") {
+    if (isExternal) {
+      return (
+        <a className={`btn ${SERVICE_CARD_BUTTON_CLASS}`} href={hoverAction.href} target="_blank" rel="noopener noreferrer">
+          {hoverAction.label}
+        </a>
+      );
+    }
     return (
       <Link className={`btn ${SERVICE_CARD_BUTTON_CLASS}`} to={hoverAction.href}>
         {hoverAction.label}
       </Link>
+    );
+  }
+
+  if (isExternal) {
+    return (
+      <a className={SERVICE_CARD_LINK_CLASS} href={hoverAction.href} target="_blank" rel="noopener noreferrer">
+        {hoverAction.label} →
+      </a>
     );
   }
 
@@ -52,6 +71,10 @@ function ServiceHoverAction({ service }: Props) {
 
 export default function ServiceOfferCard({ service }: Props) {
   const Icon = ICONS[service.icon];
+  const showActionAlways = service.actionVisibility === "always";
+  const hoverClassName = [SERVICE_CARD_HOVER_CLASS, showActionAlways ? SERVICE_CARD_HOVER_ALWAYS_CLASS : ""]
+    .filter(Boolean)
+    .join(" ");
   const cardClassName = [
     "card",
     SERVICE_CARD_CLASS,
@@ -76,14 +99,14 @@ export default function ServiceOfferCard({ service }: Props) {
       {service.layout === "split" ? (
         <>
           <div className={SERVICE_CARD_MAIN_CLASS}>{body}</div>
-          <div className={SERVICE_CARD_HOVER_CLASS}>
+          <div className={hoverClassName}>
             <ServiceHoverAction service={service} />
           </div>
         </>
       ) : (
         <>
           {body}
-          <div className={SERVICE_CARD_HOVER_CLASS}>
+          <div className={hoverClassName}>
             <ServiceHoverAction service={service} />
           </div>
         </>

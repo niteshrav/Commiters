@@ -7,9 +7,11 @@ import { CookieConsentProvider } from "./CookieConsentProvider";
 import AccessibilityWidget from "./AccessibilityWidget";
 import { AccessibilityProvider } from "./AccessibilityProvider";
 import SkipToMainLink from "./SkipToMainLink";
+import CmsSiteMeta from "./CmsSiteMeta";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { ACCESSIBILITY_MAIN_CONTENT_ID } from "../lib/accessibilityContent";
+import { CmsProvider } from "../lib/cms/CmsProvider";
 
 export default function Layout({ children }: PropsWithChildren) {
   const location = useLocation();
@@ -70,7 +72,9 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <CookieConsentProvider>
       <AccessibilityProvider>
-        <div className="site-shell" data-theme="commiters-brand">
+        <CmsProvider>
+          <CmsSiteMeta />
+          <div className="site-shell" data-theme="commiters-brand">
           <SkipToMainLink />
           <CircuitBackdrop />
           <Navbar />
@@ -88,7 +92,8 @@ export default function Layout({ children }: PropsWithChildren) {
           <AccessibilityWidget />
           <CookieConsentBanner />
           <CookiePreferencesPanel />
-        </div>
+          </div>
+        </CmsProvider>
       </AccessibilityProvider>
     </CookieConsentProvider>
   );

@@ -1,4 +1,5 @@
 import { buildDiscoveryCallCalendarUrl } from "./siteContact";
+import { ROUTES } from "./routes";
 
 export type ServicesProcessStep = {
   index: string;
@@ -35,10 +36,13 @@ export const SERVICES_HOW_WE_WORK = {
 
 export const SERVICES_BOTTOM_CTA = {
   title: "Ready to start building?",
-  subtext: "Connect with us to discuss your project requirements and receive a technical proposal.",
+  subtext:
+    "Connect with our engineering team to discuss your project requirements and receive a technical proposal.",
   primaryLabel: "Book a Technical Call",
   primaryHref: buildDiscoveryCallCalendarUrl(),
+  secondaryLabel: "View Our Stack",
+  secondaryHref: ROUTES.about,
 } as const;
 
 export const SERVICES_REJECTED_BOTTOM_CTA_SUBTEXT =
-  "Connect with our engineering team to discuss your project requirements and receive a technical proposal." as const;
+  "Connect with us to discuss your project requirements and receive a technical proposal." as const;

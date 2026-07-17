@@ -12,6 +12,7 @@ import {
 } from "../lib/footerLayout";
 import { COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
 import { ROUTES } from "../lib/routes";
+import { ADMIN_PANEL_URL } from "../lib/siteAdmin";
 import {
   SITE_FOOTER_COPY,
   SITE_FOOTER_CONNECT_LINK_LABELS,
@@ -60,6 +61,7 @@ describe("Footer", () => {
     ]);
     expect(within(legalNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_LEGAL_LINK_LABELS,
+      "Admin",
     ]);
 
     expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveTextContent(
@@ -91,6 +93,7 @@ describe("Footer", () => {
     );
     expect(within(navigationNav).getByRole("link", { name: /^Services$/i })).toHaveAttribute("href", ROUTES.services);
     expect(within(navigationNav).getByRole("link", { name: /^Join Us$/i })).toHaveAttribute("href", ROUTES.joinUs);
+    expect(within(navigationNav).getByRole("link", { name: /^FAQ$/i })).toHaveAttribute("href", ROUTES.faq);
     expect(within(navigationNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
     expect(within(socialNav).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
     expect(within(socialNav).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
@@ -100,6 +103,7 @@ describe("Footer", () => {
     expect(within(socialNav).queryByRole("link", { name: /^GitHub$/i })).not.toBeInTheDocument();
     expect(within(legalNav).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
     expect(within(legalNav).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
+    expect(within(legalNav).getByRole("link", { name: /^Admin$/i })).toHaveAttribute("href", ADMIN_PANEL_URL);
   });
 
   it("matches the contact page footer with home copyright and Sitemap, Connect, Legal columns", () => {
@@ -132,6 +136,7 @@ describe("Footer", () => {
     ]);
     expect(within(legalNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_LEGAL_LINK_LABELS,
+      "Admin",
     ]);
 
     expect(within(connectNav).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);

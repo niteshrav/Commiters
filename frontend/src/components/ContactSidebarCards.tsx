@@ -1,5 +1,6 @@
 import { IconWhatsApp } from "./icons";
 import ContactStudioPanel from "./ContactStudioPanel";
+import { useContactStudioContent } from "../lib/cms/hooks";
 import { STITCH_CONTACT_SIDEBAR } from "../lib/stitchPageContent";
 
 function SidebarIcon({ variant }: { variant: "whatsapp" | "calendar" }) {
@@ -22,9 +23,20 @@ function SidebarIcon({ variant }: { variant: "whatsapp" | "calendar" }) {
 }
 
 export default function ContactSidebarCards() {
+  const studio = useContactStudioContent();
+  const sidebarItems = STITCH_CONTACT_SIDEBAR.map((item) => {
+    if (item.id === "whatsapp" && studio.whatsappUrl) {
+      return { ...item, href: studio.whatsappUrl };
+    }
+    if (item.id === "scheduling" && studio.calendarUrl) {
+      return { ...item, href: studio.calendarUrl };
+    }
+    return item;
+  });
+
   return (
     <div className="contact-sidebar-cards" data-testid="contact-sidebar-cards">
-      {STITCH_CONTACT_SIDEBAR.map((item) => (
+      {sidebarItems.map((item) => (
         <a
           key={item.id}
           href={item.href}

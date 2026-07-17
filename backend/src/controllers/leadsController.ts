@@ -11,14 +11,7 @@ const leadSchema = z.object({
     .max(120)
     .regex(/^[a-zA-Z\s'-]+$/, "Name must contain letters only."),
   email: z.string().email(),
-  serviceNeeded: z.enum([
-    "Website Development",
-    "Web Application Development",
-    "Mobile App Development",
-    "MVP Development",
-    "Automation Tools",
-    "AI Integration",
-  ]),
+  serviceNeeded: z.string().min(1).max(120),
   budgetRange: z.union([
     z.undefined(),
     z.literal(""),
@@ -55,6 +48,22 @@ export async function createLead(req: Request, res: Response) {
       message: data.message,
       submittedAt: submission.submittedAt,
     });
+
+    try {
+      const { saveContactQuery } = await import("../cms/controllers/contactQueryController");
+      await saveContactQuery({
+        name: data.name,
+        email: data.email,
+        serviceNeeded: data.serviceNeeded,
+        budgetRange: data.budgetRange,
+        timeline: data.timeline,
+        referenceLinks: data.referenceLinks,
+        message: data.message,
+        source: "lead",
+      });
+    } catch (storageError) {
+      req.log?.warn({ err: storageError }, "Lead CMS storage skipped");
+    }
 
     return res.status(201).json({ ok: true, id: submission.id });
   } catch (notificationError) {

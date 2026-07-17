@@ -11,7 +11,7 @@ export default function TechnicalLedgerPage() {
   return (
     <div className={TECHNICAL_LEDGER_PAGE_CLASS} data-testid="technical-ledger-page">
       <TechnicalLedgerIntroSection />
-      <TechnicalLedgerArticlesSection />
+      <TechnicalLedgerArticlesSection refreshKey={0} />
     </div>
   );
 }

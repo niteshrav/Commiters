@@ -35,6 +35,7 @@ export const SITE_FOOTER_PRIMARY_NAV_LINK_LABELS = [
   "Technical Ledger",
   "Services",
   "Join Us",
+  "FAQ",
   "Contact",
 ] as const;
 
@@ -51,6 +52,7 @@ const SITE_FOOTER_PRIMARY_NAV_LINKS = [
   { kind: "internal", label: "Technical Ledger", to: ROUTES.technicalLedger },
   { kind: "internal", label: "Services", to: ROUTES.services },
   { kind: "internal", label: "Join Us", to: ROUTES.joinUs },
+  { kind: "internal", label: "FAQ", to: ROUTES.faq },
   { kind: "internal", label: "Contact", to: ROUTES.contact },
 ] as const satisfies readonly FooterLinkCell[];
 
@@ -68,6 +70,29 @@ const SITE_FOOTER_LEGAL_LINKS = [
 ] as const satisfies readonly FooterLinkCell[];
 
 export const SITE_FOOTER_LEGAL_LINK_LABELS = ["Privacy", "Cookies", "Terms"] as const;
+
+export type FooterNavLinkRecord = {
+  label: string;
+  url: string;
+  order: number;
+};
+
+export const SITE_FOOTER_DEFAULT_NAVIGATION_LINKS: readonly FooterNavLinkRecord[] = [
+  { label: "Home", url: ROUTES.home, order: 1 },
+  { label: "About", url: ROUTES.about, order: 2 },
+  { label: "Our Work", url: ROUTES.caseStudies, order: 3 },
+  { label: "Technical Ledger", url: ROUTES.technicalLedger, order: 4 },
+  { label: "Services", url: ROUTES.services, order: 5 },
+  { label: "Join Us", url: ROUTES.joinUs, order: 6 },
+  { label: "FAQ", url: ROUTES.faq, order: 7 },
+  { label: "Contact", url: ROUTES.contact, order: 8 },
+] as const;
+
+export const SITE_FOOTER_DEFAULT_LEGAL_LINKS: readonly FooterNavLinkRecord[] = [
+  { label: "Privacy", url: ROUTES.privacyPolicy, order: 1 },
+  { label: "Cookies", url: ROUTES.cookiePolicy, order: 2 },
+  { label: "Terms", url: ROUTES.terms, order: 3 },
+] as const;
 
 export const SITE_FOOTER_COPY = {
   copyrightLine1: "© 2026 Commiters Softwares.",

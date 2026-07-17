@@ -13,6 +13,7 @@ import {
   ABOUT_CRAFTSMANSHIP_SECTION_CLASS,
   ABOUT_CRAFTSMANSHIP_STAT_CLASS,
   ABOUT_CRAFTSMANSHIP_STAT_LABEL_CLASS,
+  ABOUT_CRAFTSMANSHIP_STAT_VALUE_CLASS,
   ABOUT_CRAFTSMANSHIP_STATS,
   ABOUT_CRAFTSMANSHIP_VISUAL_CLASS,
   ABOUT_FOUNDER_PHOTO_ALT,
@@ -26,10 +27,11 @@ import {
   ABOUT_FOUNDER_QUOTE_CLASS,
   ABOUT_FOUNDER_QUOTE_TEXT_CLASS,
 } from "../lib/aboutCraftsmanshipContent";
-import { STITCH_COPY } from "../lib/stitchDesign";
+import { useAboutContent } from "../lib/cms/hooks";
 
-function FounderPhotoPlaceholder() {
+function FounderPhotoPlaceholder({ photoSrc }: { photoSrc?: string }) {
   const [useFallback, setUseFallback] = useState(false);
+  const src = photoSrc || ABOUT_FOUNDER_PHOTO_SRC;
 
   if (useFallback) {
     return (
@@ -44,7 +46,7 @@ function FounderPhotoPlaceholder() {
   return (
     <img
       className="about-founder-photo"
-      src={ABOUT_FOUNDER_PHOTO_SRC}
+      src={src}
       alt={ABOUT_FOUNDER_PHOTO_ALT}
       width={ABOUT_FOUNDER_PHOTO_WIDTH_PX}
       height={ABOUT_FOUNDER_PHOTO_HEIGHT_PX}
@@ -57,7 +59,15 @@ function FounderPhotoPlaceholder() {
 }
 
 export default function AboutCraftsmanshipSection() {
-  const { visionTitle, visionBody } = STITCH_COPY.about;
+  const about = useAboutContent();
+  const stats =
+    about.statistics?.length
+      ? about.statistics.map((stat) => ({
+          value: stat?.value ?? "",
+          label: stat?.label ?? "",
+          valueClassName: ABOUT_CRAFTSMANSHIP_STAT_VALUE_CLASS,
+        }))
+      : ABOUT_CRAFTSMANSHIP_STATS;
 
   return (
     <section
@@ -74,11 +84,11 @@ export default function AboutCraftsmanshipSection() {
               data-testid={ABOUT_CRAFTSMANSHIP_COPY_START_TEST_ID}
             >
               <h2 id="about-craftsmanship-title" className={ABOUT_CRAFTSMANSHIP_HEADING_CLASS}>
-                {visionTitle}
+                {about.visionTitle}
               </h2>
-              <p className={ABOUT_CRAFTSMANSHIP_BODY_CLASS}>{visionBody}</p>
+              <p className={ABOUT_CRAFTSMANSHIP_BODY_CLASS}>{about.visionBody}</p>
               <div className="about-craftsmanship-stats" data-testid="about-craftsmanship-stats">
-                {ABOUT_CRAFTSMANSHIP_STATS.map((stat) => (
+                {stats.map((stat) => (
                   <div key={stat.label} className={ABOUT_CRAFTSMANSHIP_STAT_CLASS} data-testid="about-craftsmanship-stat">
                     <p className={stat.valueClassName}>{stat.value}</p>
                     <p className={ABOUT_CRAFTSMANSHIP_STAT_LABEL_CLASS}>{stat.label}</p>
@@ -90,7 +100,7 @@ export default function AboutCraftsmanshipSection() {
 
           <div className={ABOUT_CRAFTSMANSHIP_VISUAL_CLASS}>
             <div className={ABOUT_FOUNDER_PHOTO_WRAP_CLASS} data-testid="about-founder-photo-wrap">
-              <FounderPhotoPlaceholder />
+              <FounderPhotoPlaceholder photoSrc={about.founderImage} />
             </div>
             <aside className={ABOUT_FOUNDER_QUOTE_CLASS} data-testid="about-founder-quote" aria-label="Founder quote">
               <p className={ABOUT_FOUNDER_QUOTE_TEXT_CLASS}>{ABOUT_FOUNDER_QUOTE.text}</p>

@@ -1,12 +1,15 @@
 import { IconEnvelope, IconMapPin, IconPhone } from "./icons";
-import { CONTACT_STUDIO } from "../lib/contactPageContent";
+import { useContactStudioContent } from "../lib/cms/hooks";
 import { buildOfficeMapEmbedUrl, buildOfficeMapOpenUrl } from "../lib/officeMap";
 
 export default function ContactStudioPanel() {
+  const studio = useContactStudioContent();
+  const mapEmbedUrl = studio.mapEmbedUrl || buildOfficeMapEmbedUrl();
+
   return (
     <section className="card contact-studio-panel" data-testid="contact-studio-panel" aria-labelledby="contact-studio-title">
       <h2 id="contact-studio-title" className="contact-studio-title">
-        {CONTACT_STUDIO.title}
+        {studio.title}
       </h2>
 
       <div className="contact-studio-detail">
@@ -19,7 +22,7 @@ export default function ContactStudioPanel() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {CONTACT_STUDIO.addressLines.map((line) => (
+          {studio.addressLines.map((line) => (
             <span key={line} className="contact-studio-address-line">
               {line}
             </span>
@@ -31,8 +34,8 @@ export default function ContactStudioPanel() {
         <span className="contact-studio-detail-icon contact-studio-detail-icon--email" aria-hidden>
           <IconEnvelope width={18} height={18} />
         </span>
-        <a className="contact-studio-email" href={CONTACT_STUDIO.emailHref}>
-          {CONTACT_STUDIO.email}
+        <a className="contact-studio-email" href={studio.emailHref}>
+          {studio.email}
         </a>
       </div>
 
@@ -40,8 +43,8 @@ export default function ContactStudioPanel() {
         <span className="contact-studio-detail-icon contact-studio-detail-icon--phone" aria-hidden>
           <IconPhone width={18} height={18} />
         </span>
-        <a className="contact-studio-phone" href={CONTACT_STUDIO.phoneHref}>
-          {CONTACT_STUDIO.phone}
+        <a className="contact-studio-phone" href={studio.phoneHref}>
+          {studio.phone}
         </a>
       </div>
 
@@ -49,7 +52,7 @@ export default function ContactStudioPanel() {
         <iframe
           title="Udaipur Engineering Studio location"
           className="contact-studio-map"
-          src={buildOfficeMapEmbedUrl()}
+          src={mapEmbedUrl}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen

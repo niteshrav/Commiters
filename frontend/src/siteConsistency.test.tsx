@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App";
 import { APP_ROUTE_PATHS, ROUTES } from "./lib/routes";
+import { buildServiceDetailPath } from "./lib/services";
+import { serviceDetailTitleForTests } from "./pages/ServiceDetailPage";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "./lib/siteBrand";
 import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./lib/siteMeta";
 
@@ -29,9 +31,11 @@ function expectedTitle(path: string): string {
     case ROUTES.services:
       return pageTitle("Services");
     case ROUTES.joinUs:
-      return pageTitle("Join Us");
+      return pageTitle("Apply");
     case ROUTES.contact:
       return pageTitle("Contact");
+    case ROUTES.faq:
+      return pageTitle("Frequently Asked Questions");
     case ROUTES.privacyPolicy:
       return pageTitle("Privacy Policy");
     case ROUTES.cookiePolicy:
@@ -140,5 +144,18 @@ describe("Site-wide consistency", () => {
     expect(screen.getByRole("heading", { name: /Page not found/i })).toBeInTheDocument();
     expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "commiters-brand");
     expect(document.title).toBe(pageTitle("Page not found"));
+  });
+
+  it("renders service detail pages inside the site shell with SEO title", () => {
+    const path = buildServiceDetailPath("website-development");
+    render(
+      <MemoryRouter initialEntries={[path]}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("service-detail-page")).toBeInTheDocument();
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "commiters-brand");
+    expect(document.title).toBe(serviceDetailTitleForTests("website-development"));
   });
 });

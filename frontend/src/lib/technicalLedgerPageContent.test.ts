@@ -12,6 +12,7 @@ describe("technicalLedgerPageContent", () => {
     expect(TECHNICAL_LEDGER_PAGE_COPY.title).toBe(STITCH_COPY.technicalLedger.title);
     expect(TECHNICAL_LEDGER_PAGE_COPY.subtext).toBe(STITCH_COPY.technicalLedger.subtext);
     expect(TECHNICAL_LEDGER_PAGE_COPY.readOnMediumLabel).toBe("Read on Medium");
+    expect(TECHNICAL_LEDGER_PAGE_COPY.loadingArticlesLabel).toMatch(/Medium/i);
   });
 
   it("features the Context Trap Medium article by Nitesh Rav", () => {

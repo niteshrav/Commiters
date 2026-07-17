@@ -30,14 +30,14 @@ describe("siteTrustContent", () => {
   });
 
   it("tags each home service card with a best-for audience", () => {
-    expect(HOME_SERVICE_CARDS).toHaveLength(6);
+    expect(HOME_SERVICE_CARDS).toHaveLength(7);
     for (const card of HOME_SERVICE_CARDS) {
       expect(card.bestFor.length).toBeGreaterThan(5);
     }
   });
 
   it("maps every service section to pill chips instead of long bullet lists", () => {
-    expect(Object.keys(SERVICE_FEATURE_PILLS)).toHaveLength(6);
+    expect(Object.keys(SERVICE_FEATURE_PILLS)).toHaveLength(7);
     for (const pills of Object.values(SERVICE_FEATURE_PILLS)) {
       expect(pills.length).toBeGreaterThanOrEqual(4);
     }

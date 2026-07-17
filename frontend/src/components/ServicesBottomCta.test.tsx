@@ -3,7 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 import ServicesBottomCta from "./ServicesBottomCta";
 import {
   SERVICES_BOTTOM_CTA_SECTION_CLASS,
-  SERVICES_BOTTOM_CTA_SEPARATOR_TEST_ID,
   SERVICES_BOTTOM_CTA_SUBTEXT_CLASS,
   SERVICES_BOTTOM_CTA_TITLE_CLASS,
 } from "../lib/servicesPageBottomLayout";
@@ -30,7 +29,9 @@ describe("ServicesBottomCta", () => {
       "href",
       SERVICES_BOTTOM_CTA.primaryHref,
     );
-    expect(screen.queryByRole("link", { name: /tech stack|our stack/i })).not.toBeInTheDocument();
-    expect(screen.getByTestId(SERVICES_BOTTOM_CTA_SEPARATOR_TEST_ID)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: SERVICES_BOTTOM_CTA.secondaryLabel })).toHaveAttribute(
+      "href",
+      SERVICES_BOTTOM_CTA.secondaryHref,
+    );
   });
 });

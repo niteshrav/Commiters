@@ -16,7 +16,9 @@ export const ROUTES = {
   cookiePolicy: "/cookie-policy",
   terms: "/terms",
   thankYou: "/thank-you",
+  faq: "/faq",
   notFound: "/404",
+  serviceDetail: "/services/:slug",
 } as const;
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
@@ -38,6 +40,7 @@ export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.privacyPolicy,
   ROUTES.cookiePolicy,
   ROUTES.terms,
+  ROUTES.faq,
   ROUTES.thankYou,
   ROUTES.notFound,
 ];

@@ -6,6 +6,7 @@ export const SERVICE_CARD_ICON_CLASS = "stitch-service-card-icon" as const;
 export const SERVICE_CARD_TITLE_CLASS = "stitch-service-card-title" as const;
 export const SERVICE_CARD_COPY_CLASS = "stitch-service-card-copy" as const;
 export const SERVICE_CARD_HOVER_CLASS = "stitch-service-card-hover" as const;
+export const SERVICE_CARD_HOVER_ALWAYS_CLASS = "stitch-service-card-hover--always" as const;
 export const SERVICE_CARD_MAIN_CLASS = "stitch-service-card-main" as const;
 export const SERVICE_CARD_LINK_CLASS = "stitch-service-card-link" as const;
 export const SERVICE_CARD_BUTTON_CLASS = "stitch-service-card-button" as const;

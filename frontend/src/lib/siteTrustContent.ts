@@ -135,6 +135,13 @@ export const HOME_SERVICE_CARDS: HomeServiceCard[] = [
     accent: "teal",
   },
   {
+    id: "ecommerce",
+    title: "E-commerce",
+    blurb: "Storefronts and checkout flows built to convert.",
+    bestFor: "Retail brands and D2C founders",
+    accent: "teal",
+  },
+  {
     id: "automation",
     title: "Automation Tools",
     blurb: "Workflows and integrations that reduce manual work.",
@@ -202,6 +209,14 @@ export const SERVICE_FEATURE_PILLS: Record<string, string[]> = {
     "Push notifications",
     "App store ready",
     "Analytics",
+  ],
+  "e-commerce": [
+    "Custom storefronts",
+    "Payment gateways",
+    "Inventory sync",
+    "Checkout UX",
+    "Order tracking",
+    "Conversion tuned",
   ],
   "automation-tools": [
     "Workflow design",

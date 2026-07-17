@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { PRIMARY_NAV_ITEMS } from "../lib/navSections";
-import { ROUTES } from "../lib/routes";
-import { STITCH_COPY } from "../lib/stitchDesign";
+import { useNavbarContent } from "../lib/cms/hooks";
+import type { NavItem } from "../lib/cms/mappers";
 import BrandLogo from "./BrandLogo";
 
 type NavMenusProps = {
   variant: "desktop" | "mobile";
+  navItems: NavItem[];
   hoverPath: string | null;
   setHoverPath: (path: string | null) => void;
   handlePrimaryNavClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   closeMenus: () => void;
 };
 
-function NavMenus({ variant, hoverPath, setHoverPath, handlePrimaryNavClick, closeMenus }: NavMenusProps) {
+function NavMenus({ variant, navItems, hoverPath, setHoverPath, handlePrimaryNavClick, closeMenus }: NavMenusProps) {
   const menusWrapClass = variant === "desktop" ? "nav-menus-desktop" : "mobile-nav-menus";
 
   return (
     <div className={menusWrapClass} data-testid={variant === "mobile" ? "mobile-nav-inner" : undefined}>
-      {PRIMARY_NAV_ITEMS.map((item) => (
+      {navItems.map((item) => (
         <NavLink
           key={item.id}
           to={item.to}
@@ -46,6 +46,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const [hoverPath, setHoverPath] = useState<string | null>(null);
+  const { logo, logoAlt, navItems, ctaLabel, ctaUrl } = useNavbarContent();
 
   useEffect(() => {
     setHoverPath(null);
@@ -74,11 +75,12 @@ export default function Navbar() {
   return (
     <header className="header header-light">
       <div className="container header-inner">
-        <BrandLogo onNavigate={handlePrimaryNavClick} />
+        <BrandLogo onNavigate={handlePrimaryNavClick} logoSrc={logo} logoAlt={logoAlt} />
 
         <nav className="nav" aria-label="Primary navigation">
           <NavMenus
             variant="desktop"
+            navItems={navItems}
             hoverPath={hoverPath}
             setHoverPath={setHoverPath}
             handlePrimaryNavClick={handlePrimaryNavClick}
@@ -88,11 +90,11 @@ export default function Navbar() {
 
         <Link
           className="btn btn-primary btn-nav-cta nav-cta-desktop"
-          to={ROUTES.contact}
+          to={ctaUrl}
           onClick={handlePrimaryNavClick}
           data-testid="nav-start-project-cta"
         >
-          {STITCH_COPY.navCta}
+          {ctaLabel}
         </Link>
 
         <button
@@ -109,6 +111,7 @@ export default function Navbar() {
       <div className={`container mobile-nav ${open ? "open" : ""}`} id="mobile-nav">
         <NavMenus
           variant="mobile"
+          navItems={navItems}
           hoverPath={hoverPath}
           setHoverPath={setHoverPath}
           handlePrimaryNavClick={handlePrimaryNavClick}
@@ -116,11 +119,11 @@ export default function Navbar() {
         />
         <Link
           className="btn btn-primary btn-nav-cta nav-cta-mobile"
-          to={ROUTES.contact}
+          to={ctaUrl}
           onClick={handlePrimaryNavClick}
           data-testid="nav-start-project-cta-mobile"
         >
-          {STITCH_COPY.navCta}
+          {ctaLabel}
         </Link>
       </div>
     </header>
