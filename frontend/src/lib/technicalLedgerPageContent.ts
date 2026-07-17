@@ -18,6 +18,9 @@ export const TECHNICAL_LEDGER_PAGE_COPY = {
   subtext:
     "Engineering insights, architectural deep-dives, and the future of founder-led software.",
   readOnMediumLabel: "Read on Medium",
+  loadingArticlesLabel: "Loading articles from Medium…",
+  articlesErrorLabel: "Showing saved articles while Medium sync reloads.",
+  emptyArticlesLabel: "No Technical Ledger articles yet.",
 } as const;
 
 export const TECHNICAL_LEDGER_CONTEXT_TRAP_MEDIUM_URL =

@@ -1,10 +1,33 @@
 import { STITCH_COPY } from "./stitchDesign";
+import { COMMITERS_EMAIL_SECONDARY } from "./siteContact";
+
+export const JOIN_US_PAGE_ASSETS = {
+  officePhoto: {
+    src: "/assets/join-us/udaipur-office.jpg",
+    alt: "Minimalist Commiters workspace in Udaipur with bright natural light, clean desks, and engineers focused on production software.",
+  },
+} as const;
 
 export const JOIN_US_PAGE_COPY = {
   intro: {
     kicker: STITCH_COPY.joinUs.kicker,
     title: STITCH_COPY.joinUs.title,
     subtext: STITCH_COPY.joinUs.subtext,
+  },
+  sidebar: {
+    title: "Precision First",
+    body: "Our application process is designed to find those who value technical excellence and obsessive detail.",
+    highlights: [
+      {
+        title: "Direct Review",
+        body: "Human eyes review every submission. No automated filters.",
+      },
+      {
+        title: "Fast Turnaround",
+        body: "Expect a response within 48 business hours.",
+      },
+    ],
+    applicationsEmailNote: `Applications are sent directly to ${COMMITERS_EMAIL_SECONDARY}`,
   },
   sections: STITCH_COPY.joinUs.sections,
   fields: {

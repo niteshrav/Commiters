@@ -14,10 +14,11 @@ import {
   validateEmail,
   validateName,
 } from "../lib/contactValidation";
-import { LEAD_SERVICE_LABELS } from "../lib/leadServices";
+import { useLeadServiceOptions } from "../lib/cms/hooks";
 
 export default function ContactPage() {
   useDocumentTitle(pageTitle("Contact"));
+  const leadServiceOptions = useLeadServiceOptions();
 
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
@@ -40,11 +41,10 @@ export default function ContactPage() {
     const first = nameErr ?? emailErr ?? msgErr ?? null;
     if (first) return setError(first);
 
-    const serviceNeeded: LeadInput["serviceNeeded"] =
+    const serviceNeeded =
       form.projectType === STITCH_PROJECT_TYPE_DEFAULT
         ? "Website Development"
-        : ((LEAD_SERVICE_LABELS.find((s) => s === form.projectType) as LeadInput["serviceNeeded"] | undefined) ??
-          "Website Development");
+        : form.projectType.trim() || "Website Development";
 
     setSubmitting(true);
     try {
@@ -110,7 +110,7 @@ export default function ContactPage() {
                 onChange={(e) => setForm((s) => ({ ...s, projectType: e.target.value }))}
               >
                 <option value={STITCH_PROJECT_TYPE_DEFAULT}>{STITCH_PROJECT_TYPE_DEFAULT}</option>
-                {LEAD_SERVICE_LABELS.map((s) => (
+                {leadServiceOptions.map((s) => (
                   <option key={s} value={s}>
                     {s}
                   </option>

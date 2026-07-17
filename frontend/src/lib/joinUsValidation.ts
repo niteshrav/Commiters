@@ -1,12 +1,12 @@
 import { JOIN_US_POSITION_DEFAULT, JOIN_US_POSITION_OPTIONS, type JoinUsPosition } from "./joinUsPositions";
 import { validateEmail, validateName } from "./contactValidation";
 
-export function validatePositionAppliedFor(value: string): string | null {
+export function validatePositionAppliedFor(value: string, allowed?: readonly string[]): string | null {
   if (!value || value === JOIN_US_POSITION_DEFAULT) {
     return "Please select the position you are applying for.";
   }
 
-  if (!(JOIN_US_POSITION_OPTIONS as readonly string[]).includes(value)) {
+  if (allowed?.length && !(allowed as readonly string[]).includes(value)) {
     return "Please select a valid position.";
   }
 

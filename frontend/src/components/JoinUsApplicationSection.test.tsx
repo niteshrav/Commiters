@@ -40,12 +40,26 @@ describe("JoinUsApplicationSection", () => {
     expect(screen.getByTestId("join-us-form-section-digital")).toBeInTheDocument();
     expect(screen.getByTestId("join-us-form-section-credentials")).toBeInTheDocument();
     expect(screen.getByTestId("join-us-form-section-core")).toBeInTheDocument();
-    expect(screen.getByText(JOIN_US_PAGE_COPY.sections.personal.number)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: JOIN_US_PAGE_COPY.sections.personal.title })).toBeInTheDocument();
-    expect(screen.getByText(JOIN_US_PAGE_COPY.sections.digital.number)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: JOIN_US_PAGE_COPY.sections.digital.title })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: JOIN_US_PAGE_COPY.sections.credentials.title })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: JOIN_US_PAGE_COPY.sections.core.title })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: `${JOIN_US_PAGE_COPY.sections.personal.number} ${JOIN_US_PAGE_COPY.sections.personal.title}`,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: `${JOIN_US_PAGE_COPY.sections.digital.number} ${JOIN_US_PAGE_COPY.sections.digital.title}`,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: `${JOIN_US_PAGE_COPY.sections.credentials.number} ${JOIN_US_PAGE_COPY.sections.credentials.title}`,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: `${JOIN_US_PAGE_COPY.sections.core.number} ${JOIN_US_PAGE_COPY.sections.core.title}`,
+      }),
+    ).toBeInTheDocument();
     expect(screen.getByLabelText(JOIN_US_PAGE_COPY.fields.nameLabel)).toHaveAttribute("placeholder", JOIN_US_PAGE_COPY.fields.namePlaceholder);
     expect(screen.getByLabelText(JOIN_US_PAGE_COPY.fields.phoneLabel)).toHaveAttribute("placeholder", JOIN_US_PAGE_COPY.fields.phonePlaceholder);
     for (const position of JOIN_US_POSITION_OPTIONS) {
@@ -61,7 +75,7 @@ describe("JoinUsApplicationSection", () => {
     expect(
       linkedinInput.compareDocumentPosition(portfolioInput) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
-    expect(screen.getByTestId("join-us-form-section-digital")).not.toContainElement(
+    expect(screen.getByTestId("join-us-form-section-digital")).toContainElement(
       screen.getByTestId("join-us-form-section-digital").querySelector(".join-us-form-row"),
     );
     const phoneInput = screen.getByLabelText(JOIN_US_PAGE_COPY.fields.phoneLabel);

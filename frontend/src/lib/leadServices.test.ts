@@ -8,6 +8,7 @@ describe("leadServices", () => {
       "Web Application Development",
       "Mobile App Development",
       "MVP Development",
+      "E-commerce Development",
       "Automation Tools",
       "AI Integration",
     ]);

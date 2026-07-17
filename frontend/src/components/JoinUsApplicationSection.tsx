@@ -2,19 +2,20 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconArrowRight, IconCloudUpload } from "./icons";
 import { createJobApplication } from "../lib/api";
+import { useJoinUsPositions } from "../lib/cms/hooks";
 import { JOIN_US_PAGE_COPY } from "../lib/joinUsPageContent";
 import {
   JOIN_US_FORM_FIELDS_CLASS,
   JOIN_US_FORM_FIELD_SHORT_CLASS,
   JOIN_US_FORM_ROW_CLASS,
   JOIN_US_FORM_SECTION_CLASS,
-  JOIN_US_FORM_SECTION_HEADER_CLASS,
+  JOIN_US_FORM_SECTION_HEADING_CLASS,
+  JOIN_US_FORM_FOOTER_CLASS,
   JOIN_US_RESUME_DROPZONE_CLASS,
   STITCH_JOIN_US_FORM_CLASS,
 } from "../lib/joinUsPageLayout";
 import {
   JOIN_US_POSITION_DEFAULT,
-  JOIN_US_POSITION_OPTIONS,
 } from "../lib/joinUsPositions";
 import {
   JOIN_US_RESUME_ACCEPT,
@@ -29,11 +30,11 @@ import {
   validateOptionalUrl,
   validatePhone,
   validatePositionAppliedFor,
-  isJoinUsPosition,
 } from "../lib/joinUsValidation";
 
 export default function JoinUsApplicationSection() {
   const navigate = useNavigate();
+  const positionOptions = useJoinUsPositions();
   const resumeInputRef = useRef<HTMLInputElement>(null);
   const { sections, fields, privacyDisclaimer, submitButton } = JOIN_US_PAGE_COPY;
   const [error, setError] = useState<string | null>(null);
@@ -67,7 +68,7 @@ export default function JoinUsApplicationSection() {
     const nameErr = validateName(form.name);
     const emailErr = validateEmail(form.email);
     const phoneErr = validatePhone(form.phone);
-    const positionErr = validatePositionAppliedFor(form.positionAppliedFor);
+    const positionErr = validatePositionAppliedFor(form.positionAppliedFor, positionOptions);
     const linkedinErr = validateOptionalUrl(form.linkedinProfile, "LinkedIn");
     const portfolioErr = validateOptionalUrl(form.portfolioGitHub, "GitHub");
     const coverLetterErr = validateCoverLetter(form.coverLetter);
@@ -76,7 +77,7 @@ export default function JoinUsApplicationSection() {
       nameErr ?? emailErr ?? phoneErr ?? positionErr ?? linkedinErr ?? portfolioErr ?? resumeErr ?? coverLetterErr ?? null;
     if (first) return setError(first);
 
-    if (!isJoinUsPosition(form.positionAppliedFor) || !resumeFile) {
+    if (!resumeFile) {
       return setError("Please complete all required fields.");
     }
 
@@ -115,12 +116,9 @@ export default function JoinUsApplicationSection() {
         data-testid="join-us-form-section-personal"
         aria-labelledby="join-us-form-personal-title"
       >
-        <div className={JOIN_US_FORM_SECTION_HEADER_CLASS}>
-          <span className="join-us-form-section-number">{sections.personal.number}</span>
-          <h2 id="join-us-form-personal-title" className="join-us-form-section-title">
-            {sections.personal.title}
-          </h2>
-        </div>
+        <h2 id="join-us-form-personal-title" className={JOIN_US_FORM_SECTION_HEADING_CLASS}>
+          {sections.personal.number} {sections.personal.title}
+        </h2>
         <div className={JOIN_US_FORM_FIELDS_CLASS}>
           <div className={JOIN_US_FORM_ROW_CLASS}>
             <div className="form-field">
@@ -168,7 +166,7 @@ export default function JoinUsApplicationSection() {
               required
             >
               <option value={JOIN_US_POSITION_DEFAULT}>{JOIN_US_POSITION_DEFAULT}</option>
-              {JOIN_US_POSITION_OPTIONS.map((position) => (
+              {positionOptions.map((position) => (
                 <option key={position} value={position}>
                   {position}
                 </option>
@@ -183,32 +181,31 @@ export default function JoinUsApplicationSection() {
         data-testid="join-us-form-section-digital"
         aria-labelledby="join-us-form-digital-title"
       >
-        <div className={JOIN_US_FORM_SECTION_HEADER_CLASS}>
-          <span className="join-us-form-section-number">{sections.digital.number}</span>
-          <h2 id="join-us-form-digital-title" className="join-us-form-section-title">
-            {sections.digital.title}
-          </h2>
-        </div>
+        <h2 id="join-us-form-digital-title" className={JOIN_US_FORM_SECTION_HEADING_CLASS}>
+          {sections.digital.number} {sections.digital.title}
+        </h2>
         <div className={JOIN_US_FORM_FIELDS_CLASS}>
-          <div className="form-field">
-            <label htmlFor="join-us-linkedin">{fields.linkedinLabel}</label>
-            <input
-              id="join-us-linkedin"
-              value={form.linkedinProfile}
-              onChange={(e) => setForm((state) => ({ ...state, linkedinProfile: e.target.value }))}
-              placeholder={fields.linkedinPlaceholder}
-              type="url"
-            />
-          </div>
-          <div className="form-field">
-            <label htmlFor="join-us-portfolio">{fields.portfolioLabel}</label>
-            <input
-              id="join-us-portfolio"
-              value={form.portfolioGitHub}
-              onChange={(e) => setForm((state) => ({ ...state, portfolioGitHub: e.target.value }))}
-              placeholder={fields.portfolioPlaceholder}
-              type="url"
-            />
+          <div className={JOIN_US_FORM_ROW_CLASS}>
+            <div className="form-field">
+              <label htmlFor="join-us-linkedin">{fields.linkedinLabel}</label>
+              <input
+                id="join-us-linkedin"
+                value={form.linkedinProfile}
+                onChange={(e) => setForm((state) => ({ ...state, linkedinProfile: e.target.value }))}
+                placeholder={fields.linkedinPlaceholder}
+                type="url"
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="join-us-portfolio">{fields.portfolioLabel}</label>
+              <input
+                id="join-us-portfolio"
+                value={form.portfolioGitHub}
+                onChange={(e) => setForm((state) => ({ ...state, portfolioGitHub: e.target.value }))}
+                placeholder={fields.portfolioPlaceholder}
+                type="url"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -218,12 +215,9 @@ export default function JoinUsApplicationSection() {
         data-testid="join-us-form-section-credentials"
         aria-labelledby="join-us-form-credentials-title"
       >
-        <div className={JOIN_US_FORM_SECTION_HEADER_CLASS}>
-          <span className="join-us-form-section-number">{sections.credentials.number}</span>
-          <h2 id="join-us-form-credentials-title" className="join-us-form-section-title">
-            {sections.credentials.title}
-          </h2>
-        </div>
+        <h2 id="join-us-form-credentials-title" className={JOIN_US_FORM_SECTION_HEADING_CLASS}>
+          {sections.credentials.number} {sections.credentials.title}
+        </h2>
         <div className={JOIN_US_FORM_FIELDS_CLASS}>
           <div className="form-field">
             <span className="join-us-field-label" id="join-us-resume-label">
@@ -267,12 +261,9 @@ export default function JoinUsApplicationSection() {
         data-testid="join-us-form-section-core"
         aria-labelledby="join-us-form-core-title"
       >
-        <div className={JOIN_US_FORM_SECTION_HEADER_CLASS}>
-          <span className="join-us-form-section-number">{sections.core.number}</span>
-          <h2 id="join-us-form-core-title" className="join-us-form-section-title">
-            {sections.core.title}
-          </h2>
-        </div>
+        <h2 id="join-us-form-core-title" className={JOIN_US_FORM_SECTION_HEADING_CLASS}>
+          {sections.core.number} {sections.core.title}
+        </h2>
         <div className={JOIN_US_FORM_FIELDS_CLASS}>
           <div className="form-field form-field--full">
             <label htmlFor="join-us-cover-letter">{fields.coverLetterLabel}</label>
@@ -287,13 +278,14 @@ export default function JoinUsApplicationSection() {
         </div>
       </section>
 
-      <p className="join-us-privacy-disclaimer">{privacyDisclaimer}</p>
-
-      <div className="form-actions form-actions--start">
-        <button className="btn btn-primary stitch-join-us-submit" type="submit" disabled={submitting}>
-          <span>{submitting ? "Sending…" : submitButton}</span>
-          {!submitting ? <IconArrowRight width={18} height={18} aria-hidden /> : null}
-        </button>
+      <div className={JOIN_US_FORM_FOOTER_CLASS}>
+        <p className="join-us-privacy-disclaimer">{privacyDisclaimer}</p>
+        <div className="form-actions form-actions--start">
+          <button className="btn btn-primary stitch-join-us-submit" type="submit" disabled={submitting}>
+            <span>{submitting ? "Sending…" : submitButton}</span>
+            {!submitting ? <IconArrowRight width={18} height={18} aria-hidden /> : null}
+          </button>
+        </div>
       </div>
       {error ? (
         <div className="error" role="alert">

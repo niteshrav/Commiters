@@ -21,7 +21,7 @@ describe("ServicesPage", () => {
     expect(screen.getByTestId(SERVICES_EXPERTISE_SEPARATOR_TEST_ID)).toBeInTheDocument();
   });
 
-  it("shows a mosaic grid of six expertise cards with Stitch hover actions", () => {
+  it("shows a mosaic grid of six expertise cards with Stitch actions", () => {
     render(
       <MemoryRouter>
         <ServicesPage />
@@ -35,9 +35,9 @@ describe("ServicesPage", () => {
     expect(cards[1]).toHaveClass("stitch-service-card--span-1");
     expect(cards[5]).toHaveClass("stitch-service-card--span-3", "stitch-service-card--split");
     expect(screen.getByRole("heading", { name: /Website Development/i })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: /E-commerce/i })).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /AI Integration/i })).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /case stud/i })).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Inquire about Automation/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /Learn more/i }).length).toBeGreaterThanOrEqual(6);
   });
 
   it("renders the How We Work band and bottom CTA from the Stitch screenshot", () => {
@@ -52,11 +52,11 @@ describe("ServicesPage", () => {
     expect(screen.getByTestId("services-bottom-cta")).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Connect with us to discuss your project requirements and receive a technical proposal.",
+        "Connect with our engineering team to discuss your project requirements and receive a technical proposal.",
       ),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Book a Technical Call/i })).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /tech stack|our stack/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /View Our Stack/i })).toBeInTheDocument();
   });
 
   it("anchors each service section for deep navigation from the navbar", () => {

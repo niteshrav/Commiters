@@ -1,5 +1,15 @@
 import { ROUTES } from "./routes";
+import { buildServiceDetailPath, getServiceByGridId } from "./services";
 import { buildDiscoveryCallCalendarUrl, buildWhatsAppUrl } from "./siteContact";
+
+function serviceDetailHref(gridId: string): string {
+  const service = getServiceByGridId(gridId);
+  return buildServiceDetailPath(service?.slug ?? gridId);
+}
+
+function serviceLearnMore(gridId: string): ServiceHoverAction {
+  return { kind: "link", label: "Learn more", href: serviceDetailHref(gridId) };
+}
 
 export type ServiceHoverAction = {
   kind: "link" | "button";
@@ -11,10 +21,11 @@ export type StitchServiceCard = {
   id: string;
   title: string;
   description: string;
-  icon: "website" | "ai" | "webapp" | "mobile" | "automation" | "mvp";
+  icon: "website" | "ai" | "webapp" | "mobile" | "automation" | "mvp" | "ecommerce";
   gridSpan: 1 | 2 | 3;
   layout: "standard" | "split";
   hoverAction: ServiceHoverAction;
+  actionVisibility?: "always" | "hover";
 };
 
 export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
@@ -26,7 +37,8 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "website",
     gridSpan: 2,
     layout: "standard",
-    hoverAction: { kind: "link", label: "Learn more", href: ROUTES.contact },
+    actionVisibility: "always",
+    hoverAction: serviceLearnMore("website-development"),
   },
   {
     id: "ai-integration",
@@ -36,7 +48,7 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "ai",
     gridSpan: 1,
     layout: "standard",
-    hoverAction: { kind: "link", label: "Learn more", href: ROUTES.contact },
+    hoverAction: serviceLearnMore("ai-integration"),
   },
   {
     id: "web-applications",
@@ -46,7 +58,7 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "webapp",
     gridSpan: 1,
     layout: "standard",
-    hoverAction: { kind: "link", label: "Learn more", href: ROUTES.contact },
+    hoverAction: serviceLearnMore("web-applications"),
   },
   {
     id: "mobile-applications",
@@ -56,7 +68,7 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "mobile",
     gridSpan: 1,
     layout: "standard",
-    hoverAction: { kind: "link", label: "Learn more", href: ROUTES.contact },
+    hoverAction: serviceLearnMore("mobile-applications"),
   },
   {
     id: "mvp-development",
@@ -66,7 +78,7 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "mvp",
     gridSpan: 1,
     layout: "standard",
-    hoverAction: { kind: "link", label: "Learn more", href: ROUTES.contact },
+    hoverAction: serviceLearnMore("mvp-development"),
   },
   {
     id: "automation-tools",
@@ -76,7 +88,8 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "automation",
     gridSpan: 3,
     layout: "split",
-    hoverAction: { kind: "button", label: "Inquire about Automation", href: ROUTES.contact },
+    actionVisibility: "always",
+    hoverAction: { kind: "button", label: "Learn more", href: serviceDetailHref("automation-tools") },
   },
 ];
 

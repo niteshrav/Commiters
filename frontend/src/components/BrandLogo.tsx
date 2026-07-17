@@ -12,12 +12,24 @@ import { ROUTES } from "../lib/routes";
 type Props = {
   variant?: "header" | "footer";
   onNavigate?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  logoSrc?: string;
+  logoAlt?: string;
 };
 
-export default function BrandLogo({ variant = "header", onNavigate }: Props) {
+export default function BrandLogo({
+  variant = "header",
+  onNavigate,
+  logoSrc = COMMITERS_HEADER_LOGO_SRC,
+  logoAlt = COMMITERS_HEADER_LOGO_ALT,
+}: Props) {
   const isFooter = variant === "footer";
   const height = isFooter ? BRAND_LOGO_FOOTER_HEIGHT_PX : BRAND_LOGO_HEADER_HEIGHT_PX;
   const width = brandLogoWidthPx(height);
+  const [resolvedSrc, setResolvedSrc] = React.useState(logoSrc);
+
+  React.useEffect(() => {
+    setResolvedSrc(logoSrc);
+  }, [logoSrc]);
 
   const img = (
     <span className={BRAND_LOGO_WRAP_CLASS}>
@@ -27,11 +39,16 @@ export default function BrandLogo({ variant = "header", onNavigate }: Props) {
           BRAND_LOGO_DISPLAY_CLASS,
           isFooter ? "brand-logo--footer" : "brand-logo--header",
         ].join(" ")}
-        src={COMMITERS_HEADER_LOGO_SRC}
-        alt={COMMITERS_HEADER_LOGO_ALT}
+        src={resolvedSrc}
+        alt={logoAlt}
         width={width}
         height={height}
         decoding="async"
+        onError={() => {
+          if (resolvedSrc !== COMMITERS_HEADER_LOGO_SRC) {
+            setResolvedSrc(COMMITERS_HEADER_LOGO_SRC);
+          }
+        }}
       />
     </span>
   );
@@ -45,7 +62,7 @@ export default function BrandLogo({ variant = "header", onNavigate }: Props) {
       to={ROUTES.home}
       className="brand brand-logo-link typography-brand"
       onClick={onNavigate}
-      aria-label={COMMITERS_HEADER_LOGO_ALT}
+      aria-label={logoAlt}
     >
       {img}
     </Link>

@@ -2,8 +2,6 @@ import {
   SERVICES_HOW_WE_WORK_GRID_CLASS,
   SERVICES_HOW_WE_WORK_INNER_CLASS,
   SERVICES_HOW_WE_WORK_SECTION_CLASS,
-  SERVICES_HOW_WE_WORK_SEPARATOR_CLASS,
-  SERVICES_HOW_WE_WORK_SEPARATOR_TEST_ID,
   SERVICES_HOW_WE_WORK_STEP_BODY_CLASS,
   SERVICES_HOW_WE_WORK_STEP_CLASS,
   SERVICES_HOW_WE_WORK_STEP_INDEX_CLASS,
@@ -40,10 +38,6 @@ export default function ServicesHowWeWorkSection() {
             ))}
           </div>
         </div>
-        <hr
-          className={SERVICES_HOW_WE_WORK_SEPARATOR_CLASS}
-          data-testid={SERVICES_HOW_WE_WORK_SEPARATOR_TEST_ID}
-        />
       </div>
     </section>
   );

@@ -12,12 +12,14 @@ import MultiRoleCrmCaseStudyPage from "./pages/MultiRoleCrmCaseStudyPage";
 import NextSaasCaseStudyPage from "./pages/NextSaasCaseStudyPage";
 import TechnicalLedgerPage from "./pages/TechnicalLedgerPage";
 import AboutPage from "./pages/AboutPage";
+import FaqPage from "./pages/FaqPage";
 import JoinUsPage from "./pages/JoinUsPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import TermsPage from "./pages/TermsPage";
 import ThankYouPage from "./pages/ThankYouPage";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
@@ -26,6 +28,7 @@ export default function App() {
       <Routes>
         <Route path={ROUTES.home} element={<HomePage />} />
         <Route path={ROUTES.services} element={<ServicesPage />} />
+        <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
         <Route path={ROUTES.caseStudies} element={<CaseStudiesPage />} />
         <Route path={ROUTES.technicalLedger} element={<TechnicalLedgerPage />} />
         <Route path={ROUTES.commitersCaseStudy} element={<CommitersCaseStudyPage />} />
@@ -34,6 +37,7 @@ export default function App() {
         <Route path={ROUTES.multiRoleCrmCaseStudy} element={<MultiRoleCrmCaseStudyPage />} />
         <Route path={ROUTES.nextsaasCaseStudy} element={<NextSaasCaseStudyPage />} />
         <Route path={ROUTES.about} element={<AboutPage />} />
+        <Route path={ROUTES.faq} element={<FaqPage />} />
         <Route path={ROUTES.joinUs} element={<JoinUsPage />} />
         <Route path={ROUTES.contact} element={<ContactPage />} />
         <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />

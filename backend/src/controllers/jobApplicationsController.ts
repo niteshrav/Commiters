@@ -25,7 +25,7 @@ const jobApplicationSchema = z.object({
     .min(7)
     .max(20)
     .regex(/^\+?[0-9\s()-]+$/, "Phone contains invalid characters."),
-  positionAppliedFor: z.enum(POSITION_OPTIONS),
+  positionAppliedFor: z.string().min(1).max(120),
   linkedinProfile: z.union([z.literal(""), z.string().url()]).optional(),
   portfolioGitHub: z.union([z.literal(""), z.string().url()]).optional(),
   coverLetter: z.string().trim().min(1).max(10000),

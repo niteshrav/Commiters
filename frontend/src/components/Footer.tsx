@@ -9,12 +9,9 @@ import {
   FOOTER_NAV_COLUMNS_CLASS,
   FOOTER_NAV_GROUP_CLASS,
 } from "../lib/footerLayout";
-import {
-  SITE_FOOTER_COPY,
-  resolveSiteFooterNavColumns,
-  usesContactStyleFooter,
-  type FooterLinkCell,
-} from "../lib/siteFooterCopy";
+import { useFooterContent } from "../lib/cms/hooks";
+import { footerBrandLogoSrc } from "../lib/cms/media";
+import { usesContactStyleFooter, type FooterLinkCell } from "../lib/siteFooterCopy";
 
 function FooterLink({ link }: { link: FooterLinkCell }) {
   if (link.kind === "external") {
@@ -34,8 +31,15 @@ function FooterLink({ link }: { link: FooterLinkCell }) {
 
 export default function Footer() {
   const location = useLocation();
-  const navColumns = resolveSiteFooterNavColumns(location.pathname);
+  const { copyrightLine1, copyrightLine2, navColumns: cmsColumns } = useFooterContent();
   const isContactFooter = usesContactStyleFooter(location.pathname);
+  const navColumns = isContactFooter
+    ? cmsColumns.map((column) => ({
+        ...column,
+        heading:
+          column.heading === "NAVIGATION" ? "SITEMAP" : column.heading === "SOCIAL" ? "CONNECT" : column.heading,
+      }))
+    : cmsColumns;
 
   return (
     <footer
@@ -43,12 +47,12 @@ export default function Footer() {
     >
       <div className={`footer-columns footer-columns--mockup ${FOOTER_MOCKUP_GRID_CLASS} ${FOOTER_MOCKUP_COMPACT_CLASS}`}>
         <div className={FOOTER_LOGO_CELL_CLASS} data-testid="footer-logo-cell">
-          <BrandLogo variant="footer" />
+          <BrandLogo variant="footer" logoSrc={footerBrandLogoSrc()} />
         </div>
 
         <div className={FOOTER_COPYRIGHT_CELL_CLASS} data-testid="footer-copyright-cell">
-          <p className="footer-mockup-copyright-line1">{SITE_FOOTER_COPY.copyrightLine1}</p>
-          <p className="footer-mockup-copyright-line2">{SITE_FOOTER_COPY.copyrightLine2}</p>
+          <p className="footer-mockup-copyright-line1">{copyrightLine1}</p>
+          <p className="footer-mockup-copyright-line2">{copyrightLine2}</p>
         </div>
 
         <div

@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { ROUTES } from "./routes";
 import { STITCH_CASE_STUDIES, STITCH_SERVICES_GRID } from "./stitchPageContent";
 
 describe("stitchPageContent", () => {
@@ -24,7 +23,8 @@ describe("stitchPageContent", () => {
       title: "Website Development",
       description:
         "High-conversion marketing sites and enterprise portals built with speed, SEO, and accessibility as core priorities.",
-      hoverAction: { kind: "link", label: "Learn more", href: ROUTES.contact },
+      actionVisibility: "always",
+      hoverAction: { kind: "link", label: "Learn more", href: "/services/website-development" },
     });
     expect(STITCH_SERVICES_GRID[1].description).toBe(
       "Embedding LLMs and custom machine learning models into your existing workflows to drive automation.",
@@ -42,7 +42,8 @@ describe("stitchPageContent", () => {
       title: "Automation Tools",
       description:
         "Bespoke internal tools and scripts that eliminate repetitive tasks, connecting your disparate data sources into a unified ecosystem.",
-      hoverAction: { kind: "button", label: "Inquire about Automation", href: ROUTES.contact },
+      actionVisibility: "always",
+      hoverAction: { kind: "button", label: "Learn more", href: "/services/automation-tools" },
     });
   });
 

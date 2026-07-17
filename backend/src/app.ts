@@ -5,6 +5,9 @@ import pinoHttp from "pino-http";
 import { jobApplicationsRouter } from "./routes/jobApplications";
 import { leadsRouter } from "./routes/leads";
 import { notificationMediaRouter } from "./routes/notificationMedia";
+import { cmsPublicRouter } from "./cms/routes/cmsPublic";
+import { adminRouter } from "./cms/routes/admin";
+import { getUploadDir } from "./cms/middleware/upload";
 
 function normalizeOrigin(origin: string): string {
   return origin.replace(/\/+$/, "");
@@ -61,7 +64,12 @@ function getAllowedCorsOrigins(): string[] {
     .map((origin) => origin.trim())
     .filter(Boolean);
   if (configured?.length) return withWwwApexAliases(withLoopbackAliases(configured));
-  return withLoopbackAliases(["http://localhost:5173", "http://127.0.0.1:5173"]);
+  return withLoopbackAliases([
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+  ]);
 }
 
 export function createApp() {
@@ -77,15 +85,20 @@ export function createApp() {
         if (allowedOrigins.includes(normalizedOrigin)) return callback(null, normalizedOrigin);
         return callback(null, false);
       },
-      methods: ["GET", "POST", "OPTIONS"],
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     }),
   );
   app.use(express.json({ limit: "256kb" }));
   app.use(pinoHttp());
 
+  app.use("/uploads", express.static(getUploadDir()));
+
   app.get("/api/health", (_req, res) => {
     res.json({ ok: true });
   });
+
+  app.use("/api/cms", cmsPublicRouter);
+  app.use("/api/admin", adminRouter);
 
   app.use(leadsRouter);
   app.use(jobApplicationsRouter);

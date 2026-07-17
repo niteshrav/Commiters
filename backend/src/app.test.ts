@@ -259,13 +259,13 @@ describe("API", () => {
     expect(mocks.notifyMock).not.toHaveBeenCalled();
   });
 
-  it("rejects job application when position is invalid", async () => {
+  it("rejects job application when position is empty", async () => {
     const app = createApp();
     const payload = {
       name: "Jane Doe",
       email: "jane@company.com",
       phone: "+91 98765 43210",
-      positionAppliedFor: "Intern",
+      positionAppliedFor: "",
     };
 
     const res = await request(app).post("/api/job-applications").set("Content-Type", "application/json").send(payload);

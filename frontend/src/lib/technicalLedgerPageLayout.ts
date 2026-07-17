@@ -15,4 +15,7 @@ export const TECHNICAL_LEDGER_ARTICLE_CATEGORY_CLASS = "technical-ledger-article
 export const TECHNICAL_LEDGER_ARTICLE_TITLE_CLASS = "technical-ledger-article-title" as const;
 export const TECHNICAL_LEDGER_ARTICLE_SUMMARY_CLASS = "technical-ledger-article-summary" as const;
 export const TECHNICAL_LEDGER_ARTICLE_LINK_CLASS = "technical-ledger-article-link" as const;
+export const TECHNICAL_LEDGER_COMPOSE_SECTION_CLASS = "technical-ledger-compose-section" as const;
+export const TECHNICAL_LEDGER_COMPOSE_FORM_CLASS = "technical-ledger-compose-form" as const;
+export const TECHNICAL_LEDGER_ARTICLES_STATUS_CLASS = "technical-ledger-articles-status" as const;
 export const TECHNICAL_LEDGER_ARTICLE_GRID_COLUMNS = "minmax(0, 0.42fr) minmax(0, 0.58fr)" as const;
