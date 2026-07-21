@@ -66,8 +66,9 @@ async function seed() {
         { label: "Services", url: "/services", order: 3 },
         { label: "Our Work", url: "/case-studies", order: 4 },
         { label: "Technical Ledger", url: "/technical-ledger", order: 5 },
-        { label: "Join Us", url: "/join-us", order: 6 },
-        { label: "Contact", url: "/contact", order: 7 },
+        { label: "Open Positions", url: "/open-positions", order: 6 },
+        { label: "Join Us", url: "/join-us", order: 7 },
+        { label: "Contact", url: "/contact", order: 8 },
       ],
       ctaLabel: "Start Project",
       ctaUrl: "/contact",
@@ -87,6 +88,35 @@ async function seed() {
         navbarDoc.logo = "/assets/commiters-header-logo.png";
         navbarDoc.logoAlt = "Commiters — Commit. Code. Connect.";
         await navbarDoc.save();
+      }
+
+      const legacyJobPaths = new Set(["/open-position", "/job-positions", "/job-position"]);
+      const desiredNavOrder: Record<string, number> = {
+        "/": 1,
+        "/about": 2,
+        "/services": 3,
+        "/case-studies": 4,
+        "/technical-ledger": 5,
+        "/open-positions": 6,
+        "/join-us": 7,
+        "/contact": 8,
+      };
+      let navbarChanged = false;
+      for (const link of navbarDoc.navLinks ?? []) {
+        if (legacyJobPaths.has(link.url)) {
+          link.url = "/open-positions";
+          navbarChanged = true;
+        }
+        const nextOrder = desiredNavOrder[link.url];
+        if (nextOrder !== undefined && link.order !== nextOrder) {
+          link.order = nextOrder;
+          navbarChanged = true;
+        }
+      }
+      if (navbarChanged) {
+        navbarDoc.navLinks = [...(navbarDoc.navLinks ?? [])].sort((a, b) => a.order - b.order);
+        await navbarDoc.save();
+        console.log("Updated navbar link order.");
       }
     }
   }
@@ -181,9 +211,131 @@ async function seed() {
   }
 
   if ((await JobPosition.countDocuments()) === 0) {
+    const futureDate = new Date();
+    futureDate.setMonth(futureDate.getMonth() + 3);
+
     await JobPosition.insertMany([
-      { title: "Full Stack Engineer", description: "Build production web applications.", requirements: ["React", "Node.js"], location: "Udaipur / Remote", status: "open", order: 1 },
-      { title: "AI Engineer", description: "Integrate LLM features into products.", requirements: ["Python", "OpenAI"], location: "Udaipur / Remote", status: "open", order: 2 },
+      {
+        title: "Full Stack Engineer",
+        slug: "full-stack-engineer",
+        department: "Engineering",
+        employmentType: "Full-time",
+        experience: "2–5 years",
+        location: "Udaipur / Remote",
+        workMode: "Hybrid",
+        duration: "Permanent",
+        stipendSalary: "₹8–14 LPA",
+        numberOfOpenings: 2,
+        aboutCompany:
+          "Commiters is a founder-led engineering studio helping startups ship production-ready web, mobile, and AI products.",
+        roleOverview:
+          "Build scalable full-stack features across React, Node.js, and MongoDB while collaborating directly with founders and product teams.",
+        description:
+          "Build scalable full-stack features across React, Node.js, and MongoDB while collaborating directly with founders and product teams.",
+        responsibilities: [
+          "Ship production features across frontend and backend",
+          "Design REST APIs and data models",
+          "Write clean, tested TypeScript code",
+          "Collaborate on architecture and delivery planning",
+        ],
+        requiredSkills: ["React", "TypeScript", "Node.js", "MongoDB"],
+        preferredSkills: ["Next.js", "Tailwind CSS", "AWS"],
+        eligibility: "Bachelor's in CS or equivalent experience. Strong communication and ownership mindset.",
+        benefits: ["Flexible work hours", "Learning budget", "Direct founder mentorship", "Remote-friendly culture"],
+        learningOpportunities: "Work across MVPs, SaaS platforms, and AI integrations with senior engineers.",
+        selectionProcess: "Application review → Technical screen → Practical assignment → Founder interview",
+        lastDateToApply: futureDate,
+        status: "open",
+        featured: true,
+        displayOrder: 1,
+        requirements: ["React", "TypeScript", "Node.js", "MongoDB"],
+        seo: {
+          title: "Full Stack Engineer | Commiters Careers",
+          description: "Join Commiters as a Full Stack Engineer building production web applications.",
+        },
+        createdBy: "seed",
+        updatedBy: "seed",
+      },
+      {
+        title: "AI Engineer Intern",
+        slug: "ai-engineer-intern",
+        department: "AI & Automation",
+        employmentType: "Internship",
+        internshipType: "Paid Internship",
+        experience: "0–1 year",
+        location: "Remote",
+        workMode: "Remote",
+        duration: "6 months",
+        stipendSalary: "₹15,000 / month",
+        numberOfOpenings: 3,
+        aboutCompany:
+          "Commiters integrates LLM and automation features into real products for founders and enterprise teams.",
+        roleOverview:
+          "Support AI feature development, prompt engineering, and integration of LLM APIs into production workflows.",
+        description:
+          "Support AI feature development, prompt engineering, and integration of LLM APIs into production workflows.",
+        responsibilities: [
+          "Prototype AI features with OpenAI and similar APIs",
+          "Help evaluate prompts and model outputs",
+          "Document integration patterns",
+          "Pair with senior engineers on production tasks",
+        ],
+        requiredSkills: ["Python", "JavaScript", "APIs"],
+        preferredSkills: ["LangChain", "RAG", "Vector databases"],
+        eligibility: "Students or recent graduates passionate about applied AI.",
+        benefits: ["Certificate of completion", "Mentorship", "Full-time conversion path"],
+        learningOpportunities: "Hands-on experience shipping AI features in live client projects.",
+        selectionProcess: "Resume review → Take-home task → Technical interview",
+        lastDateToApply: futureDate,
+        status: "open",
+        featured: true,
+        displayOrder: 2,
+        requirements: ["Python", "JavaScript", "APIs"],
+        seo: {
+          title: "AI Engineer Intern | Commiters Careers",
+          description: "Paid AI engineering internship at Commiters with real product exposure.",
+        },
+        createdBy: "seed",
+        updatedBy: "seed",
+      },
+      {
+        title: "Mobile App Developer",
+        slug: "mobile-app-developer",
+        department: "Mobile",
+        employmentType: "Full-time",
+        experience: "1–4 years",
+        location: "Udaipur / Hybrid",
+        workMode: "Hybrid",
+        duration: "Permanent",
+        stipendSalary: "₹6–12 LPA",
+        numberOfOpenings: 1,
+        aboutCompany: "Commiters delivers native and cross-platform mobile apps for startups and growing teams.",
+        roleOverview: "Develop polished mobile experiences using React Native or Flutter with strong UX focus.",
+        description: "Develop polished mobile experiences using React Native or Flutter with strong UX focus.",
+        responsibilities: [
+          "Build and maintain mobile app features",
+          "Integrate REST APIs and auth flows",
+          "Optimize performance and release builds",
+          "Collaborate with designers on UI polish",
+        ],
+        requiredSkills: ["React Native", "TypeScript", "Mobile UI"],
+        preferredSkills: ["Flutter", "Firebase", "App Store deployment"],
+        eligibility: "Portfolio or shipped apps required.",
+        benefits: ["Hybrid work", "Device allowance", "Skill development support"],
+        learningOpportunities: "Exposure to MVP launches and production mobile releases.",
+        selectionProcess: "Portfolio review → Live coding → Team fit interview",
+        lastDateToApply: futureDate,
+        status: "open",
+        featured: false,
+        displayOrder: 3,
+        requirements: ["React Native", "TypeScript", "Mobile UI"],
+        seo: {
+          title: "Mobile App Developer | Commiters Careers",
+          description: "Build mobile apps at Commiters with React Native and modern tooling.",
+        },
+        createdBy: "seed",
+        updatedBy: "seed",
+      },
     ]);
   }
 

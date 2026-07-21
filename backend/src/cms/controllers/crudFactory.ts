@@ -69,6 +69,15 @@ export function createCrudController<T extends { _id: unknown }>(options: CrudOp
   return { list, getById, create, update, remove };
 }
 
+function stripDocumentMetadata(body: Record<string, unknown>): Record<string, unknown> {
+  const payload = { ...body };
+  delete payload._id;
+  delete payload.__v;
+  delete payload.createdAt;
+  delete payload.updatedAt;
+  return payload;
+}
+
 export function createSingletonController<T extends { _id: unknown }>(
   model: Model<T>,
   publicFilter: Record<string, unknown> = {},
@@ -80,13 +89,19 @@ export function createSingletonController<T extends { _id: unknown }>(
   });
 
   const upsert = asyncHandler(async (req: Request, res: Response) => {
-    const existing = await model.findOne().sort({ updatedAt: -1 });
+    const payload = stripDocumentMetadata(req.body as Record<string, unknown>);
+    const existing = await model.findOne(publicFilter).sort({ updatedAt: -1 });
+
     if (existing) {
-      Object.assign(existing, req.body);
-      await existing.save();
-      return res.json(existing);
+      const updated = await model.findByIdAndUpdate(existing._id, payload, {
+        new: true,
+        runValidators: true,
+      });
+      if (!updated) return res.status(404).json({ error: "Not found." });
+      return res.json(updated);
     }
-    const created = await model.create(req.body);
+
+    const created = await model.create(payload as Parameters<Model<T>["create"]>[0]);
     return res.status(201).json(created);
   });
 

@@ -8,6 +8,7 @@ import { notificationMediaRouter } from "./routes/notificationMedia";
 import { cmsPublicRouter } from "./cms/routes/cmsPublic";
 import { adminRouter } from "./cms/routes/admin";
 import { getUploadDir } from "./cms/middleware/upload";
+import { jobsRouter } from "./routes/jobs";
 
 function normalizeOrigin(origin: string): string {
   return origin.replace(/\/+$/, "");
@@ -98,6 +99,7 @@ export function createApp() {
   });
 
   app.use("/api/cms", cmsPublicRouter);
+  app.use("/api/jobs", jobsRouter);
   app.use("/api/admin", adminRouter);
 
   app.use(leadsRouter);

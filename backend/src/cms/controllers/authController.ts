@@ -36,7 +36,7 @@ const updatePasswordSchema = z
 
 function serializeUser(user: UserDocument) {
   return {
-    id: user.id,
+    id: String(user._id),
     email: user.email,
     name: user.name,
     phone: user.phone ?? "",

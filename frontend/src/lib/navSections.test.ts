@@ -17,6 +17,7 @@ describe("navSections", () => {
       "Services",
       "Our Work",
       "Technical Ledger",
+      "Open Positions",
       "Join Us",
       "Contact",
     ]);
@@ -26,17 +27,20 @@ describe("navSections", () => {
       ROUTES.services,
       ROUTES.caseStudies,
       ROUTES.technicalLedger,
+      ROUTES.openPositions,
       ROUTES.joinUs,
       ROUTES.contact,
     ]);
     const servicesIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "services");
     const ourWorkIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "our-work");
     const technicalLedgerIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "technical-ledger");
+    const openPositionsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "open-positions");
     const joinUsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "join-us");
     expect(servicesIndex).toBeGreaterThan(-1);
     expect(ourWorkIndex).toBeGreaterThan(servicesIndex);
     expect(technicalLedgerIndex).toBeGreaterThan(ourWorkIndex);
-    expect(joinUsIndex).toBeGreaterThan(technicalLedgerIndex);
+    expect(openPositionsIndex).toBeGreaterThan(technicalLedgerIndex);
+    expect(joinUsIndex).toBeGreaterThan(openPositionsIndex);
   });
 
   it("builds stable service section URLs for Services page anchors", () => {

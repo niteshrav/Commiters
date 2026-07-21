@@ -30,6 +30,14 @@ function slugify(value: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+function normalizeInternalPath(path: string): string {
+  const normalized = path.replace(/\/+$/, "") || "/";
+  if (normalized === "/open-position" || normalized === "/job-positions" || normalized === "/job-position") {
+    return ROUTES.openPositions;
+  }
+  return path;
+}
+
 function asString(value: unknown, fallback = ""): string {
   return typeof value === "string" ? value : fallback;
 }
@@ -89,19 +97,23 @@ export function resolveNavbar(cmsNavbar: Record<string, unknown> | null | undefi
   const links = Array.isArray(cmsNavbar.navLinks) ? cmsNavbar.navLinks : [];
   const navItems: NavItem[] =
     links.length > 0
-      ? links
+      ? (links
           .map((link, index) => {
             const row = asRecord(link);
             if (!row) return null;
-            const to = asString(row.url, "/");
+            const to = normalizeInternalPath(asString(row.url, "/"));
+            const order = Number(row.order);
             return {
               id: slugify(asString(row.label, `nav-${index}`)) || `nav-${index}`,
               label: asString(row.label, "Link"),
               to,
               end: to === ROUTES.home,
+              order: Number.isFinite(order) ? order : index + 1,
             };
           })
-          .filter(Boolean) as NavItem[]
+          .filter(Boolean) as Array<NavItem & { order: number }>)
+          .sort((a, b) => a.order - b.order)
+          .map(({ order: _order, ...item }) => item)
       : fallbackNav;
 
   return {
@@ -120,7 +132,7 @@ function mapFooterLink(link: Record<string, unknown>): FooterLinkCell | null {
   if (url.startsWith("http://") || url.startsWith("https://")) {
     return { kind: "external", label, href: url, external: true };
   }
-  return { kind: "internal", label, to: url };
+  return { kind: "internal", label, to: normalizeInternalPath(url) };
 }
 
 const SOCIAL_LINK_ORDER = ["LinkedIn", "WhatsApp", "Instagram", "Medium"] as const;
@@ -306,6 +318,10 @@ export function resolveContactStudio(cmsContact: Record<string, unknown> | null 
 export function resolveJoinUsPositions(cmsJobs: Record<string, unknown>[] | null | undefined): readonly string[] {
   if (!hasCmsItems(cmsJobs)) return JOIN_US_POSITION_OPTIONS;
   const titles = cmsJobs
+    .filter((job) => {
+      const status = asString(job.status);
+      return !status || status === "open";
+    })
     .map((job) => asString(job.title))
     .filter(Boolean);
   return titles.length ? [...titles, "Other"] : JOIN_US_POSITION_OPTIONS;

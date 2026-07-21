@@ -11,6 +11,7 @@ import FooterEditorPage from "./pages/FooterEditorPage";
 import ContactQueriesPage from "./pages/ContactQueriesPage";
 import AdminProfilePage from "./pages/AdminProfilePage";
 import TechnicalLedgerPublishPage from "./pages/TechnicalLedgerPublishPage";
+import JobsManagementPage from "./pages/JobsManagementPage";
 import MediaPage from "./pages/MediaPage";
 
 function Protected({ children }: { children: React.ReactNode }) {
@@ -44,7 +45,7 @@ export default function App() {
         <Route path="team" element={<CrudModulePage key="team" config={ENTITY_CONFIGS.team} />} />
         <Route path="testimonials" element={<CrudModulePage key="testimonials" config={ENTITY_CONFIGS.testimonials} />} />
         <Route path="faqs" element={<CrudModulePage key="faqs" config={ENTITY_CONFIGS.faqs} />} />
-        <Route path="jobs" element={<CrudModulePage key="jobs" config={ENTITY_CONFIGS.jobs} />} />
+        <Route path="jobs" element={<JobsManagementPage />} />
         <Route path="contact-queries" element={<ContactQueriesPage />} />
         <Route path="profile" element={<AdminProfilePage />} />
         <Route path="media" element={<MediaPage />} />

@@ -32,6 +32,8 @@ function expectedTitle(path: string): string {
       return pageTitle("Services");
     case ROUTES.joinUs:
       return pageTitle("Apply");
+    case ROUTES.openPositions:
+      return pageTitle("Open Positions");
     case ROUTES.contact:
       return pageTitle("Contact");
     case ROUTES.faq:
