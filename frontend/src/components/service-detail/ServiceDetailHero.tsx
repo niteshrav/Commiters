@@ -6,6 +6,7 @@ import {
   IconLayers,
   IconRobot,
   IconRocket,
+  IconShoppingBag,
 } from "../icons";
 import Reveal from "../motion/Reveal";
 import type { ServiceDetail } from "../../lib/services/types";
@@ -20,6 +21,7 @@ const HERO_ICONS = {
   mobile: IconDevicePhone,
   automation: IconAutomationSpark,
   mvp: IconRocket,
+  ecommerce: IconShoppingBag,
 } as const;
 
 type Props = { service: ServiceDetail };

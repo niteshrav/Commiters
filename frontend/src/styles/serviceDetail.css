@@ -129,6 +129,10 @@
   background: linear-gradient(145deg, rgba(180, 83, 9, 0.08), rgba(255, 255, 255, 0.92));
 }
 
+.svc-detail-hero-visual--ecommerce {
+  background: linear-gradient(145deg, rgba(219, 39, 119, 0.08), rgba(255, 255, 255, 0.92));
+}
+
 .svc-detail-about-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

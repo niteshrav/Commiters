@@ -53,7 +53,7 @@ export type ServiceDetail = {
   title: string;
   tagline: string;
   description: string;
-  heroVisual: "website" | "ai" | "webapp" | "mobile" | "automation" | "mvp";
+  heroVisual: "website" | "ai" | "webapp" | "mobile" | "automation" | "mvp" | "ecommerce";
   seo: ServiceSeo;
   about: {
     what: string;

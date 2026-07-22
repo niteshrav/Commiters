@@ -1,6 +1,6 @@
 import { PRIMARY_NAV_ITEMS } from "../navSections";
 import { ROUTES } from "../routes";
-import { buildServiceDetailPath, getServiceByGridId } from "../services";
+import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
 import { SITE_FOOTER_COPY, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
@@ -63,7 +63,7 @@ export function mapCmsServiceToCard(service: Record<string, unknown>, index: num
     hoverAction: fallback?.hoverAction ?? {
       kind: "link",
       label: "Learn more",
-      href: buildServiceDetailPath(getServiceByGridId(id)?.slug ?? (slugify(title) || id)),
+      href: resolveServiceDetailHref({ id, title, icon: rawIcon }),
     },
     actionVisibility: fallback?.actionVisibility,
   };
@@ -185,7 +185,6 @@ function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
 
 export function resolveFooter(
   cmsFooter: Record<string, unknown> | null | undefined,
-  adminUrl: string,
 ): { copyrightLine1: string; copyrightLine2: string; navColumns: readonly FooterNavColumn[] } {
   const fallback = SITE_FOOTER_COPY;
 
@@ -193,7 +192,7 @@ export function resolveFooter(
     return {
       copyrightLine1: fallback.copyrightLine1,
       copyrightLine2: fallback.copyrightLine2,
-      navColumns: appendAdminLink(fallback.navColumns, adminUrl),
+      navColumns: stripAdminLink(fallback.navColumns),
     };
   }
 
@@ -252,21 +251,16 @@ export function resolveFooter(
   return {
     copyrightLine1: asString(cmsFooter.copyright, fallback.copyrightLine1),
     copyrightLine2: asString(cmsFooter.description, fallback.copyrightLine2),
-    navColumns: appendAdminLink(navColumns, adminUrl),
+    navColumns: stripAdminLink(navColumns),
   };
 }
 
-function appendAdminLink(columns: readonly FooterNavColumn[], adminUrl: string): readonly FooterNavColumn[] {
+function stripAdminLink(columns: readonly FooterNavColumn[]): readonly FooterNavColumn[] {
   return columns.map((column) => {
     if (column.heading !== "LEGAL") return column;
-    const hasAdmin = column.links.some((link) => link.label.toLowerCase() === "admin");
-    if (hasAdmin) return column;
     return {
       ...column,
-      links: [
-        ...column.links,
-        { kind: "external", label: "Admin", href: adminUrl, external: true },
-      ],
+      links: column.links.filter((link) => link.label.toLowerCase() !== "admin"),
     };
   });
 }

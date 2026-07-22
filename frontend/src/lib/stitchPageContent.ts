@@ -1,10 +1,9 @@
 import { ROUTES } from "./routes";
-import { buildServiceDetailPath, getServiceByGridId } from "./services";
+import { resolveServiceDetailHref } from "./services";
 import { buildDiscoveryCallCalendarUrl, buildWhatsAppUrl } from "./siteContact";
 
 function serviceDetailHref(gridId: string): string {
-  const service = getServiceByGridId(gridId);
-  return buildServiceDetailPath(service?.slug ?? gridId);
+  return resolveServiceDetailHref({ id: gridId });
 }
 
 function serviceLearnMore(gridId: string): ServiceHoverAction {
@@ -69,6 +68,17 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     gridSpan: 1,
     layout: "standard",
     hoverAction: serviceLearnMore("mobile-applications"),
+  },
+  {
+    id: "e-commerce-development",
+    title: "E-commerce Development",
+    description:
+      "Conversion-focused storefronts with fast checkout, payment integrations, and catalog systems built to scale with your sales.",
+    icon: "ecommerce",
+    gridSpan: 2,
+    layout: "standard",
+    actionVisibility: "always",
+    hoverAction: serviceLearnMore("e-commerce-development"),
   },
   {
     id: "mvp-development",

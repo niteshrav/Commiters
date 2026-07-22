@@ -4,6 +4,7 @@ import {
   buildServiceDetailPath,
   getServiceByGridId,
   getServiceBySlug,
+  resolveServiceDetailHref,
 } from "./index";
 
 describe("services catalog", () => {
@@ -12,13 +13,17 @@ describe("services catalog", () => {
       "website-development",
       "web-application-development",
       "mobile-app-development",
+      "e-commerce-development",
       "ai-integration",
       "mvp-development",
       "automation-tools",
     ]);
   });
 
-  it("resolves services by slug and grid id", () => {
+  it("resolves detail hrefs from cms ids, icons, and titles", () => {
+    expect(resolveServiceDetailHref({ icon: "ecommerce" })).toBe("/services/e-commerce-development");
+    expect(resolveServiceDetailHref({ title: "E-commerce Development" })).toBe("/services/e-commerce-development");
+    expect(resolveServiceDetailHref({ id: "web-applications" })).toBe("/services/web-application-development");
     expect(getServiceBySlug("website-development")?.title).toBe("Website Development");
     expect(getServiceByGridId("web-applications")?.slug).toBe("web-application-development");
     expect(buildServiceDetailPath("mvp-development")).toBe("/services/mvp-development");

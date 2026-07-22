@@ -32,6 +32,19 @@ describe("ServiceDetailPage", () => {
     expect(screen.getByRole("link", { name: /Request Quote/i })).toHaveAttribute("href", ROUTES.contact);
   });
 
+  it("renders e-commerce service detail page", () => {
+    render(
+      <MemoryRouter initialEntries={[buildServiceDetailPath("e-commerce-development")]}>
+        <Routes>
+          <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("service-detail-page")).toHaveAttribute("data-service-slug", "e-commerce-development");
+    expect(screen.getByRole("heading", { name: /E-commerce Development/i })).toBeInTheDocument();
+  });
+
   it("redirects unknown slugs to the 404 route", () => {
     render(
       <MemoryRouter initialEntries={[buildServiceDetailPath("unknown-service")]}>

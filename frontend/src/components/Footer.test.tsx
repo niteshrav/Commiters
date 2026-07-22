@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Footer from "./Footer";
 import { BRAND_LOGO_FOOTER_HEIGHT_PX } from "../lib/brandDisplay";
+import { FOOTER_STAFF_LOGIN_ARIA_LABEL } from "../lib/footerCopyright";
 import {
   FOOTER_COPYRIGHT_CELL_CLASS,
   FOOTER_LOGO_CELL_CLASS,
@@ -61,21 +62,18 @@ describe("Footer", () => {
     ]);
     expect(within(legalNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_LEGAL_LINK_LABELS,
-      "Admin",
     ]);
 
-    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveTextContent(
-      "© 2026 Commiters Softwares.",
-    );
-    expect(within(copyrightCell).getByText(SITE_FOOTER_TAGLINE)).toHaveTextContent(
+    expect(copyrightCell).toHaveTextContent("© 2026 Commiters Softwares.");
+    expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveTextContent(
       "Engineering Precision for world-class digital products.",
     );
-    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveClass(
-      "footer-mockup-copyright-line1",
-    );
-    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine2)).toHaveClass(
-      "footer-mockup-copyright-line2",
-    );
+    expect(copyrightCell).toHaveClass("footer-mockup-copyright-line1");
+    expect(screen.getByText(SITE_FOOTER_COPY.copyrightLine2)).toHaveClass("footer-brand-tagline");
+
+    const staffLoginLink = within(copyrightCell).getByRole("link", { name: FOOTER_STAFF_LOGIN_ARIA_LABEL });
+    expect(staffLoginLink).toHaveTextContent("©");
+    expect(staffLoginLink).toHaveAttribute("href", ADMIN_PANEL_URL);
 
     const logo = within(logoCell).getByRole("img", { name: /Commiters/i });
     expect(logo).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
@@ -103,7 +101,7 @@ describe("Footer", () => {
     expect(within(socialNav).queryByRole("link", { name: /^GitHub$/i })).not.toBeInTheDocument();
     expect(within(legalNav).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
     expect(within(legalNav).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
-    expect(within(legalNav).getByRole("link", { name: /^Admin$/i })).toHaveAttribute("href", ADMIN_PANEL_URL);
+    expect(within(legalNav).queryByRole("link", { name: /^Admin$/i })).not.toBeInTheDocument();
   });
 
   it("matches the contact page footer with home copyright and Sitemap, Connect, Legal columns", () => {
@@ -117,11 +115,13 @@ describe("Footer", () => {
     expect(footer).toHaveClass("footer--contact-mockup");
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
-    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveTextContent(
-      "© 2026 Commiters Softwares.",
-    );
-    expect(within(copyrightCell).getByText(SITE_FOOTER_TAGLINE)).toHaveTextContent(
+    expect(copyrightCell).toHaveTextContent("© 2026 Commiters Softwares.");
+    expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveTextContent(
       "Engineering Precision for world-class digital products.",
+    );
+    expect(within(copyrightCell).getByRole("link", { name: FOOTER_STAFF_LOGIN_ARIA_LABEL })).toHaveAttribute(
+      "href",
+      ADMIN_PANEL_URL,
     );
 
     const sitemapNav = screen.getByTestId("footer-nav-column-sitemap");
@@ -136,7 +136,6 @@ describe("Footer", () => {
     ]);
     expect(within(legalNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_LEGAL_LINK_LABELS,
-      "Admin",
     ]);
 
     expect(within(connectNav).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
@@ -149,6 +148,7 @@ describe("Footer", () => {
     expect(sitemapNav.querySelector("a.active")).toHaveTextContent("Contact");
     expect(screen.queryByTestId("footer-nav-column-navigation")).not.toBeInTheDocument();
     expect(screen.queryByTestId("footer-nav-column-social")).not.toBeInTheDocument();
+    expect(within(legalNav).queryByRole("link", { name: /^Admin$/i })).not.toBeInTheDocument();
   });
 
   it("highlights the active route in the navigation column", () => {
