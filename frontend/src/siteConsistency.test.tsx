@@ -6,6 +6,7 @@ import { APP_ROUTE_PATHS, ROUTES } from "./lib/routes";
 import { buildServiceDetailPath } from "./lib/services";
 import { serviceDetailTitleForTests } from "./pages/ServiceDetailPage";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "./lib/siteBrand";
+import { WHATSAPP_FLOATING_ACTION_LABEL } from "./lib/whatsappFloatingAction";
 import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./lib/siteMeta";
 
 function expectedTitle(path: string): string {
@@ -80,6 +81,16 @@ describe("Site-wide consistency", () => {
 
     expect(screen.queryByTestId("site-quick-actions")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog", { name: /quick inquiry/i })).not.toBeInTheDocument();
+  });
+
+  it.each(APP_ROUTE_PATHS)("route %s shows the floating WhatsApp action", (path) => {
+    render(
+      <MemoryRouter initialEntries={[path]}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("link", { name: WHATSAPP_FLOATING_ACTION_LABEL })).toBeInTheDocument();
   });
 
   it.each(APP_ROUTE_PATHS)("route %s exposes exactly one site footer landmark", (path) => {

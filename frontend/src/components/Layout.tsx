@@ -10,6 +10,7 @@ import SkipToMainLink from "./SkipToMainLink";
 import CmsSiteMeta from "./CmsSiteMeta";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import WhatsAppFloatingButton from "./WhatsAppFloatingButton";
 import { ACCESSIBILITY_MAIN_CONTENT_ID } from "../lib/accessibilityContent";
 import { CmsProvider } from "../lib/cms/CmsProvider";
 
@@ -90,6 +91,7 @@ export default function Layout({ children }: PropsWithChildren) {
           </main>
           <Footer />
           <AccessibilityWidget />
+          <WhatsAppFloatingButton />
           <CookieConsentBanner />
           <CookiePreferencesPanel />
           </div>
