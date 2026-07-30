@@ -1,13 +1,9 @@
 import { ROUTES } from "../routes";
-import { HOME_TESTIMONIALS } from "../siteTrustContent";
 import type { ServiceDetail } from "./types";
 import {
-  SERVICE_DEFAULT_INDUSTRIES,
   SERVICE_DEFAULT_PRICING,
   SERVICE_DEFAULT_TIMELINE,
-  SERVICE_DEFAULT_WHY_CHOOSE,
   SERVICE_PROCESS_STEPS,
-  buildDefaultFaqs,
 } from "./sharedContent";
 
 const WEB_TECH = [
@@ -87,17 +83,6 @@ const MVP_TECH = [
   { slug: "vercel", alt: "Vercel" },
 ];
 
-function testimonialsFromHome(indices: number[]) {
-  return indices.map((index) => {
-    const item = HOME_TESTIMONIALS[index];
-    return {
-      quote: item.quote,
-      name: item.name,
-      company: item.company,
-    };
-  });
-}
-
 export const SERVICES_CATALOG: ServiceDetail[] = [
   {
     slug: "website-development",
@@ -130,8 +115,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
     processSteps: [...SERVICE_PROCESS_STEPS],
     timeline: SERVICE_DEFAULT_TIMELINE,
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "Commiters.com",
@@ -147,8 +130,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.nextsaasCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([0, 2]),
-    faqs: buildDefaultFaqs("Website Development"),
   },
   {
     slug: "web-application-development",
@@ -186,8 +167,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Multi-Tenant SaaS", duration: "4–8 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "Multi-Role CRM",
@@ -202,8 +181,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.contact,
       },
     ],
-    testimonials: testimonialsFromHome([0, 1]),
-    faqs: buildDefaultFaqs("Web Application Development"),
   },
   {
     slug: "mobile-app-development",
@@ -240,8 +217,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Enterprise Mobile Suite", duration: "3–6 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "NearDrop MVP",
@@ -250,8 +225,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.neardropCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([1, 2]),
-    faqs: buildDefaultFaqs("Mobile App Development"),
   },
   {
     slug: "e-commerce-development",
@@ -288,8 +261,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Headless Commerce Platform", duration: "2–4 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: ["E-commerce", "Retail", "Fashion", "Food & Beverage", "Healthcare", "Startups"],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "NextSaas Marketing Site",
@@ -305,8 +276,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         external: true,
       },
     ],
-    testimonials: testimonialsFromHome([0, 2]),
-    faqs: buildDefaultFaqs("E-commerce Development"),
   },
   {
     slug: "ai-integration",
@@ -343,8 +312,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Enterprise AI Platform", duration: "3–5 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "AI Summariser",
@@ -359,8 +326,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.multiRoleCrmCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([1, 2]),
-    faqs: buildDefaultFaqs("AI Integration"),
   },
   {
     slug: "mvp-development",
@@ -397,8 +362,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Pilot with Paying Users", duration: "2–3 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: ["Startups", "Finance", "Healthcare", "Education", "E-commerce", "Travel"],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "NearDrop MVP",
@@ -407,8 +370,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.neardropCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([0, 1]),
-    faqs: buildDefaultFaqs("MVP Development"),
   },
   {
     slug: "automation-tools",
@@ -445,8 +406,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Ops Platform", duration: "2–4 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "Internal Ops Dashboard",
@@ -455,8 +414,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.contact,
       },
     ],
-    testimonials: testimonialsFromHome([2, 0]),
-    faqs: buildDefaultFaqs("Automation Tools"),
   },
 ];
 

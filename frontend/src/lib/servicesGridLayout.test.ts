@@ -3,18 +3,15 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  SERVICE_CARD_ACTION_CLASS,
   SERVICE_CARD_BORDER,
   SERVICE_CARD_BORDER_HOVER,
   SERVICE_CARD_BORDER_RADIUS,
-  SERVICE_CARD_BUTTON_CLASS,
   SERVICE_CARD_CLASS,
   SERVICE_CARD_COPY_CLASS,
-  SERVICE_CARD_HOVER_CLASS,
   SERVICE_CARD_ICON_CLASS,
-  SERVICE_CARD_LAYOUT_CLASS,
-  SERVICE_CARD_LINK_CLASS,
+  SERVICE_CARD_LINK_WRAP_CLASS,
   SERVICE_CARD_PADDING,
-  SERVICE_CARD_SPAN_CLASS,
   SERVICE_CARD_TITLE_CLASS,
   SERVICES_GRID_CLASS,
   SERVICES_GRID_COLUMNS,
@@ -33,45 +30,28 @@ function ruleBlock(selector: string, nextSelector: string): string {
 }
 
 describe("servicesGridLayout", () => {
-  it("uses a three-column mosaic grid with span modifiers", () => {
+  it("uses a responsive equal-card grid", () => {
     const grid = ruleBlock(`.${SERVICES_GRID_CLASS} {`, ".stitch-case-card,");
     expect(grid).toContain(`grid-template-columns: ${SERVICES_GRID_COLUMNS}`);
     expect(grid).toContain(`gap: ${SERVICES_GRID_GAP}`);
-
-    expect(ruleBlock(`.${SERVICE_CARD_SPAN_CLASS[2]} {`, `.${SERVICE_CARD_SPAN_CLASS[3]} {`)).toContain(
-      "grid-column: span 2",
-    );
-    expect(ruleBlock(`.${SERVICE_CARD_SPAN_CLASS[3]} {`, `.stitch-service-card:hover,`)).toContain(
-      "grid-column: span 3",
-    );
   });
 
-  it("styles cards with contained borders and hover-revealed actions", () => {
+  it("styles cards with contained borders and always-visible actions", () => {
     const section = ruleBlock(`.${SERVICES_GRID_SECTION_CLASS} {`, ".services-expertise-section {");
     expect(section).toContain(`padding: ${SERVICES_GRID_SECTION_PADDING}`);
     expect(section).toContain("background: var(--surface)");
 
-    const card = ruleBlock(`.${SERVICE_CARD_CLASS} {`, `.${SERVICE_CARD_ICON_CLASS} {`);
-    expect(card).toContain(`padding: ${SERVICE_CARD_PADDING}`);
+    const wrap = ruleBlock(`.${SERVICE_CARD_LINK_WRAP_CLASS} {`, ".stitch-service-card--span-2 {");
+    expect(wrap).toContain(`padding: ${SERVICE_CARD_PADDING}`);
+
+    const card = ruleBlock(`.${SERVICE_CARD_CLASS} {`, `.${SERVICE_CARD_LINK_WRAP_CLASS} {`);
     expect(card).toContain(`border: 1px solid ${SERVICE_CARD_BORDER}`);
     expect(card).toContain(`border-radius: ${SERVICE_CARD_BORDER_RADIUS}`);
-    expect(card).not.toContain("box-shadow:");
 
-    const hover = ruleBlock(`.${SERVICE_CARD_CLASS}:hover,`, `.${SERVICE_CARD_HOVER_CLASS} {`);
+    const hover = ruleBlock(`.${SERVICE_CARD_CLASS}:hover,`, `.${SERVICE_CARD_LINK_WRAP_CLASS} {`);
     expect(hover).toContain(`border-color: ${SERVICE_CARD_BORDER_HOVER}`);
 
-    const hoverAction = ruleBlock(`.${SERVICE_CARD_HOVER_CLASS} {`, `.${SERVICE_CARD_LAYOUT_CLASS.split} {`);
-    expect(hoverAction).toContain("opacity: 0");
-
-    const hoverReveal = ruleBlock(
-      `.${SERVICE_CARD_CLASS}:hover .${SERVICE_CARD_HOVER_CLASS},`,
-      `.${SERVICE_CARD_LAYOUT_CLASS.split} {`,
-    );
-    expect(hoverReveal).toContain("opacity: 1");
-
-    expect(css).toContain(`.${SERVICE_CARD_LINK_CLASS}`);
-    expect(css).toContain(`.${SERVICE_CARD_BUTTON_CLASS}`);
-    expect(css).toContain(`.${SERVICE_CARD_LAYOUT_CLASS.split}`);
+    expect(css).toContain(`.${SERVICE_CARD_ACTION_CLASS}`);
   });
 
   it("keeps card typography stacked with the icon above the title", () => {

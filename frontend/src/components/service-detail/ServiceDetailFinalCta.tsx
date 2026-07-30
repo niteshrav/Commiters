@@ -22,6 +22,10 @@ export default function ServiceDetailFinalCta() {
             Contact Us
           </Link>
         </div>
+        <p className="svc-detail-final-cta-faq">
+          Questions about pricing or process?{" "}
+          <Link to={ROUTES.faq}>Browse our FAQ</Link>
+        </p>
       </Reveal>
     </section>
   );

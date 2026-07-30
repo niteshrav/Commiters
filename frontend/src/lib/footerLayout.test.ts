@@ -29,7 +29,7 @@ describe("footerLayout", () => {
     );
     expect(css).toMatch(
       new RegExp(
-        `\\.${FOOTER_MOCKUP_COMPACT_CLASS.replace(/-/g, "\\-")}[\\s\\S]*\\.footer-column-heading[\\s\\S]*margin:\\s*${FOOTER_MOCKUP_HEADING_MARGIN.replace(/ /g, "\\s*")}`,
+        `\\.footer--v2[\\s\\S]*\\.footer-column-heading[\\s\\S]*margin:\\s*${FOOTER_MOCKUP_HEADING_MARGIN.replace(/ /g, "\\s*")}`,
       ),
     );
     expect(css).toMatch(
@@ -37,7 +37,7 @@ describe("footerLayout", () => {
         `\\.${FOOTER_MOCKUP_COMPACT_CLASS.replace(/-/g, "\\-")}[\\s\\S]*\\.footer-link-list[\\s\\S]*gap:\\s*${FOOTER_MOCKUP_LINK_GAP}`,
       ),
     );
-    expect(css).toMatch(/\.footer-link-list--split[\s\S]*grid-template-columns:\s*repeat\(2,/);
+    expect(css).toMatch(/\.footer-link-list--social[\s\S]*flex-direction:\s*column/);
     expect(css).toMatch(
       new RegExp(
         `\\.footer-rich\\.footer--home-mockup[\\s\\S]*padding:\\s*${FOOTER_HOME_MOCKUP_RICH_PADDING}`,

@@ -369,12 +369,10 @@ async function seed() {
       navigationLinks: [
         { label: "Home", url: "/", order: 1 },
         { label: "About", url: "/about", order: 2 },
-        { label: "Our Work", url: "/case-studies", order: 3 },
-        { label: "Technical Ledger", url: "/technical-ledger", order: 4 },
-        { label: "Services", url: "/services", order: 5 },
-        { label: "Join Us", url: "/join-us", order: 6 },
-        { label: "FAQ", url: "/faq", order: 7 },
-        { label: "Contact", url: "/contact", order: 8 },
+        { label: "Services", url: "/services", order: 3 },
+        { label: "Our Work", url: "/case-studies", order: 4 },
+        { label: "FAQ", url: "/faq", order: 5 },
+        { label: "Contact", url: "/contact", order: 6 },
       ],
       legalLinks: [
         { label: "Privacy", url: "/privacy-policy", order: 1 },
@@ -406,12 +404,10 @@ async function seed() {
       const requiredNavigation = [
         { label: "Home", url: "/", order: 1 },
         { label: "About", url: "/about", order: 2 },
-        { label: "Our Work", url: "/case-studies", order: 3 },
-        { label: "Technical Ledger", url: "/technical-ledger", order: 4 },
-        { label: "Services", url: "/services", order: 5 },
-        { label: "Join Us", url: "/join-us", order: 6 },
-        { label: "FAQ", url: "/faq", order: 7 },
-        { label: "Contact", url: "/contact", order: 8 },
+        { label: "Services", url: "/services", order: 3 },
+        { label: "Our Work", url: "/case-studies", order: 4 },
+        { label: "FAQ", url: "/faq", order: 5 },
+        { label: "Contact", url: "/contact", order: 6 },
       ];
       const currentNavigation = footerDoc.navigationLinks ?? [];
       const mergedNavigation = [...currentNavigation];

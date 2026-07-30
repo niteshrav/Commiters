@@ -1,16 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 import BrandLogo from "./BrandLogo";
 import {
-  IconInstagram,
-  IconLinkedIn,
-  IconMedium,
-  IconWhatsApp,
-} from "./icons";
-import {
   FOOTER_COLUMN_CLASS,
   FOOTER_COPYRIGHT_CELL_CLASS,
   FOOTER_LINK_LIST_SOCIAL_CLASS,
-  FOOTER_LINK_LIST_SPLIT_CLASS,
   FOOTER_LOGO_CELL_CLASS,
   FOOTER_MOCKUP_COMPACT_CLASS,
   FOOTER_MOCKUP_GRID_CLASS,
@@ -27,46 +20,22 @@ import {
 import { ADMIN_PANEL_URL } from "../lib/siteAdmin";
 import { usesContactStyleFooter, type FooterLinkCell } from "../lib/siteFooterCopy";
 
-const SOCIAL_ICONS: Record<string, typeof IconLinkedIn> = {
-  LinkedIn: IconLinkedIn,
-  WhatsApp: IconWhatsApp,
-  Instagram: IconInstagram,
-  Medium: IconMedium,
-};
-
 function isSocialColumn(heading: string): boolean {
   return heading === "SOCIAL" || heading === "CONNECT";
 }
 
-function isNavColumn(heading: string): boolean {
-  return heading === "NAVIGATION" || heading === "SITEMAP";
-}
-
-function FooterLink({ link, showSocialIcon = false }: { link: FooterLinkCell; showSocialIcon?: boolean }) {
-  const SocialIcon = showSocialIcon ? SOCIAL_ICONS[link.label] : undefined;
-
-  const content = (
-    <>
-      {SocialIcon ? (
-        <span className="footer-social-icon" aria-hidden>
-          <SocialIcon width={16} height={16} />
-        </span>
-      ) : null}
-      <span>{link.label}</span>
-    </>
-  );
-
+function FooterLink({ link }: { link: FooterLinkCell }) {
   if (link.kind === "external") {
     return (
       <a className="footer-link-item" href={link.href} target="_blank" rel="noopener noreferrer">
-        {content}
+        {link.label}
       </a>
     );
   }
 
   return (
     <NavLink to={link.to} className={({ isActive }) => ["footer-link-item", isActive ? "active" : ""].filter(Boolean).join(" ") || undefined}>
-      {content}
+      {link.label}
     </NavLink>
   );
 }
@@ -113,19 +82,20 @@ export default function Footer() {
 
   return (
     <footer
-      className={`footer footer-rich footer--stitch footer--home-mockup footer--professional${isContactFooter ? " footer--contact-mockup" : ""}`}
+      className={`footer footer-rich footer--stitch footer--home-mockup footer--professional footer--v2${isContactFooter ? " footer--contact-mockup" : ""}`}
     >
-      <div className={`footer-columns footer-columns--mockup ${FOOTER_MOCKUP_GRID_CLASS} ${FOOTER_MOCKUP_COMPACT_CLASS}`}>
-        <div className="footer-mockup-brand-stack">
+      <div className="footer-v2-accent" aria-hidden />
+
+      <div className={`footer-columns footer-columns--mockup ${FOOTER_MOCKUP_GRID_CLASS} ${FOOTER_MOCKUP_COMPACT_CLASS} footer-v2-main`}>
+        <div className="footer-mockup-brand-stack footer-v2-brand">
           <div className={FOOTER_LOGO_CELL_CLASS} data-testid="footer-logo-cell">
             <BrandLogo variant="footer" logoSrc={footerBrandLogoSrc()} />
           </div>
           <p className="footer-brand-tagline">{copyrightLine2}</p>
-          <FooterCopyrightLine copyrightLine1={copyrightLine1} />
         </div>
 
         <div
-          className={`footer-nav-group ${FOOTER_NAV_GROUP_CLASS} ${FOOTER_NAV_COLUMNS_CLASS}`}
+          className={`footer-nav-group ${FOOTER_NAV_GROUP_CLASS} ${FOOTER_NAV_COLUMNS_CLASS} footer-v2-nav`}
           data-testid="footer-nav-group"
         >
           {navColumns.map((column) => (
@@ -139,7 +109,6 @@ export default function Footer() {
               <ul
                 className={[
                   "footer-link-list",
-                  isNavColumn(column.heading) ? FOOTER_LINK_LIST_SPLIT_CLASS : "",
                   isSocialColumn(column.heading) ? FOOTER_LINK_LIST_SOCIAL_CLASS : "",
                 ]
                   .filter(Boolean)
@@ -147,12 +116,18 @@ export default function Footer() {
               >
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <FooterLink link={link} showSocialIcon={isSocialColumn(column.heading)} />
+                    <FooterLink link={link} />
                   </li>
                 ))}
               </ul>
             </nav>
           ))}
+        </div>
+      </div>
+
+      <div className="footer-v2-bar">
+        <div className="footer-v2-bar-inner">
+          <FooterCopyrightLine copyrightLine1={copyrightLine1} />
         </div>
       </div>
     </footer>

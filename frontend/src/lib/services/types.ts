@@ -17,28 +17,12 @@ export type ServicePricingModel = {
   bestFor: string;
 };
 
-export type ServiceWhyChoose = {
-  title: string;
-  description: string;
-};
-
-export type ServiceFaq = {
-  question: string;
-  answer: string;
-};
-
 export type ServicePortfolioItem = {
   title: string;
   tag: string;
   description: string;
   href: string;
   external?: boolean;
-};
-
-export type ServiceTestimonial = {
-  quote: string;
-  name: string;
-  company: string;
 };
 
 export type ServiceSeo = {
@@ -65,9 +49,5 @@ export type ServiceDetail = {
   processSteps: string[];
   timeline: ServiceTimelineEntry[];
   pricing: ServicePricingModel[];
-  industries: string[];
-  whyChoose: ServiceWhyChoose[];
   portfolio: ServicePortfolioItem[];
-  testimonials: ServiceTestimonial[];
-  faqs: ServiceFaq[];
 };

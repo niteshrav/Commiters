@@ -1,19 +1,12 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import ServiceDetailFinalCta from "../components/service-detail/ServiceDetailFinalCta";
 import ServiceDetailHero, { serviceDocumentTitle } from "../components/service-detail/ServiceDetailHero";
-import ServiceDetailTestimonials, {
-  ServiceDetailFaqs,
-} from "../components/service-detail/ServiceDetailEngagement";
+import { ServiceDetailPlan } from "../components/service-detail/ServiceDetailEngagement";
 import ServiceDetailPortfolio from "../components/service-detail/ServiceDetailPortfolio";
 import {
   ServiceDetailAbout,
   ServiceDetailFeatures,
-  ServiceDetailIndustries,
-  ServiceDetailPricing,
-  ServiceDetailProcess,
   ServiceDetailTechnologies,
-  ServiceDetailTimeline,
-  ServiceDetailWhyChoose,
 } from "../components/service-detail/ServiceDetailSections";
 import { usePageSeo, SITE_ORIGIN } from "../hooks/usePageSeo";
 import { buildServiceDetailPath, getServiceBySlug } from "../lib/services";
@@ -65,14 +58,8 @@ export default function ServiceDetailPage() {
       <ServiceDetailAbout service={service} />
       <ServiceDetailFeatures service={service} />
       <ServiceDetailTechnologies service={service} />
-      <ServiceDetailProcess service={service} />
-      <ServiceDetailTimeline service={service} />
-      <ServiceDetailPricing service={service} />
-      <ServiceDetailIndustries service={service} />
-      <ServiceDetailWhyChoose service={service} />
+      <ServiceDetailPlan service={service} />
       <ServiceDetailPortfolio service={service} />
-      <ServiceDetailTestimonials service={service} />
-      <ServiceDetailFaqs service={service} />
       <ServiceDetailFinalCta />
     </div>
   );

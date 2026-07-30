@@ -85,14 +85,11 @@ describe("Footer", () => {
       "href",
       ROUTES.caseStudies,
     );
-    expect(within(navigationNav).getByRole("link", { name: /^Technical Ledger$/i })).toHaveAttribute(
-      "href",
-      ROUTES.technicalLedger,
-    );
     expect(within(navigationNav).getByRole("link", { name: /^Services$/i })).toHaveAttribute("href", ROUTES.services);
-    expect(within(navigationNav).getByRole("link", { name: /^Join Us$/i })).toHaveAttribute("href", ROUTES.joinUs);
     expect(within(navigationNav).getByRole("link", { name: /^FAQ$/i })).toHaveAttribute("href", ROUTES.faq);
     expect(within(navigationNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
+    expect(within(navigationNav).queryByRole("link", { name: /^Technical Ledger$/i })).not.toBeInTheDocument();
+    expect(within(navigationNav).queryByRole("link", { name: /^Join Us$/i })).not.toBeInTheDocument();
     expect(within(socialNav).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
     expect(within(socialNav).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
     expect(within(socialNav).getByRole("link", { name: /^Instagram$/i })).toHaveAttribute("href", SITE_INSTAGRAM_URL);

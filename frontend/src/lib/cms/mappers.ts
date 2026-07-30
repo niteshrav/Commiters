@@ -3,7 +3,7 @@ import { ROUTES } from "../routes";
 import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
-import { SITE_FOOTER_COPY, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
+import { SITE_FOOTER_COPY, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
 import { CONTACT_STUDIO } from "../contactPageContent";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
 import { LEAD_SERVICE_LABELS } from "../leadServices";
@@ -11,18 +11,8 @@ import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../siteBra
 import { hasCmsDoc, hasCmsItems } from "./api";
 import { resolveBrandLogoSrc } from "./media";
 
+
 const SERVICE_ICONS = new Set(["website", "ai", "webapp", "mobile", "automation", "mvp", "ecommerce"]);
-
-const SERVICE_GRID_SPAN: Record<string, 1 | 2 | 3> = {
-  website: 2,
-  ai: 1,
-  webapp: 1,
-  mobile: 1,
-  mvp: 1,
-  ecommerce: 2,
-  automation: 3,
-};
-
 function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -58,14 +48,14 @@ export function mapCmsServiceToCard(service: Record<string, unknown>, index: num
     title,
     description: asString(service.description, fallback?.description ?? ""),
     icon,
-    gridSpan: fallback?.gridSpan ?? SERVICE_GRID_SPAN[icon] ?? 1,
-    layout: fallback?.layout ?? (icon === "automation" ? "split" : "standard"),
+    gridSpan: 1,
+    layout: "standard",
     hoverAction: fallback?.hoverAction ?? {
       kind: "link",
-      label: "Learn more",
+      label: "View service",
       href: resolveServiceDetailHref({ id, title, icon: rawIcon }),
     },
-    actionVisibility: fallback?.actionVisibility,
+    actionVisibility: "always" as const,
   };
 }
 
@@ -157,9 +147,16 @@ function mergeLinkGroups(cmsLinks: FooterLinkCell[] | null, fallbackLinks: reado
   return merged;
 }
 
+function orderFooterNavigationLinks(links: FooterLinkCell[]): FooterLinkCell[] {
+  const byLabel = new Map(links.map((link) => [link.label.toLowerCase(), link]));
+  return SITE_FOOTER_PRIMARY_NAV_LINK_LABELS.map((label) => byLabel.get(label.toLowerCase())).filter(
+    (link): link is FooterLinkCell => Boolean(link),
+  );
+}
+
 function mergeNavigationLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
   const fallbackLinks = SITE_FOOTER_COPY.navColumns.find((column) => column.heading === "NAVIGATION")?.links ?? [];
-  return mergeLinkGroups(cmsLinks, fallbackLinks);
+  return orderFooterNavigationLinks(mergeLinkGroups(cmsLinks, fallbackLinks));
 }
 
 function mergeLegalLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {

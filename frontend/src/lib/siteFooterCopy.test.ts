@@ -38,10 +38,9 @@ describe("siteFooterCopy", () => {
     expect(navigation.links.map((link) => ("to" in link ? link.to : null))).toEqual([
       ROUTES.home,
       ROUTES.about,
-      ROUTES.caseStudies,
-      ROUTES.technicalLedger,
       ROUTES.services,
-      ROUTES.joinUs,
+      ROUTES.caseStudies,
+      ROUTES.faq,
       ROUTES.contact,
     ]);
 
@@ -80,7 +79,7 @@ describe("siteFooterCopy", () => {
 
     const sitemap = SITE_FOOTER_CONTACT_NAV_COLUMNS[0];
     expect(sitemap.links.map((link) => link.label)).toEqual([...SITE_FOOTER_SITEMAP_LINK_LABELS]);
-    expect(sitemap.links[6].to).toBe(ROUTES.contact);
+    expect(sitemap.links[5].to).toBe(ROUTES.contact);
 
     const connect = SITE_FOOTER_CONTACT_NAV_COLUMNS[1];
     expect(connect.links.map((link) => link.label)).toEqual([...SITE_FOOTER_CONNECT_LINK_LABELS]);

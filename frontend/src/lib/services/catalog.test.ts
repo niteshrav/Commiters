@@ -29,10 +29,11 @@ describe("services catalog", () => {
     expect(buildServiceDetailPath("mvp-development")).toBe("/services/mvp-development");
   });
 
-  it("includes at least ten FAQs per service", () => {
+  it("includes timeline and pricing for engagement planning", () => {
     for (const slug of SERVICE_SLUGS) {
       const service = getServiceBySlug(slug);
-      expect(service?.faqs.length).toBeGreaterThanOrEqual(10);
+      expect(service?.timeline.length).toBeGreaterThan(0);
+      expect(service?.pricing.length).toBeGreaterThanOrEqual(3);
     }
   });
 });
