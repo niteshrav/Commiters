@@ -2,13 +2,12 @@ import AiSummarizerCaseStudyArchitectureSection from "../components/AiSummarizer
 import AiSummarizerCaseStudyExecutionSection from "../components/AiSummarizerCaseStudyExecutionSection";
 import AiSummarizerCaseStudyIntroSection from "../components/AiSummarizerCaseStudyIntroSection";
 import AiSummarizerCaseStudyTechStackSection from "../components/AiSummarizerCaseStudyTechStackSection";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { AI_SUMMARIZER_CASE_STUDY_COPY } from "../lib/aiSummarizerCaseStudyContent";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { AI_SUMMARIZER_CASE_STUDY_PAGE_CLASS } from "../lib/aiSummarizerCaseStudyLayout";
-import { pageTitle } from "../lib/siteMeta";
+import { aiSummarizerCaseStudyPageSeo } from "../lib/sitePageSeo";
 
 export default function AiSummarizerCaseStudyPage() {
-  useDocumentTitle(pageTitle(AI_SUMMARIZER_CASE_STUDY_COPY.documentTitle));
+  usePageSeo(aiSummarizerCaseStudyPageSeo());
 
   return (
     <div className={AI_SUMMARIZER_CASE_STUDY_PAGE_CLASS} data-testid="ai-summarizer-case-study-page">

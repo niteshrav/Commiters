@@ -2,12 +2,12 @@ import ServiceOfferCard from "../components/ServiceOfferCard";
 import ServicesBottomCta from "../components/ServicesBottomCta";
 import ServicesExpertiseSection from "../components/ServicesExpertiseSection";
 import ServicesHowWeWorkSection from "../components/ServicesHowWeWorkSection";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { useServicesGrid } from "../lib/cms/hooks";
-import { pageTitle } from "../lib/siteMeta";
+import { servicesPageSeo } from "../lib/sitePageSeo";
 
 export default function ServicesPage() {
-  useDocumentTitle(pageTitle("Services"));
+  usePageSeo(servicesPageSeo());
   const services = useServicesGrid();
 
   return (

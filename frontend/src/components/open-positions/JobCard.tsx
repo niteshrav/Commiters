@@ -76,7 +76,7 @@ export function JoinUsOpenPositionsSection({
           <h2>Build with a founder-led engineering studio.</h2>
           <p>Explore current roles across web, mobile, and AI — or submit a general application below.</p>
         </div>
-        <Link className="btn open-positions-btn-outline" to={ROUTES.openPositions}>
+        <Link className="btn btn-secondary" to={ROUTES.openPositions}>
           View Open Positions
         </Link>
       </div>

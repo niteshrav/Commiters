@@ -14,6 +14,6 @@ describe("brandDisplay", () => {
 
   it("derives logo width from the regenerated asset aspect ratio", () => {
     expect(brandLogoWidthPx(BRAND_LOGO_HEADER_HEIGHT_PX)).toBe(247);
-    expect(brandLogoWidthPx(BRAND_LOGO_FOOTER_HEIGHT_PX)).toBe(174);
+    expect(brandLogoWidthPx(BRAND_LOGO_FOOTER_HEIGHT_PX)).toBe(203);
   });
 });

@@ -59,7 +59,7 @@ import {
   CASE_STUDY_STACKED_IMAGE_MAX_HEIGHT,
 } from "./caseStudiesPageLayout";
 
-const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "styles.css"), "utf8");
+const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "styles.css"), "utf8").replace(/\r\n/g, "\n");
 
 function ruleBlock(selector: string, nextSelector: string): string {
   const start = css.indexOf(selector);

@@ -22,6 +22,7 @@ import CookiePolicyPage from "./pages/CookiePolicyPage";
 import TermsPage from "./pages/TermsPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
+import TrustTapPage from "./pages/TrustTapPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
         <Route path={ROUTES.neardropCaseStudy} element={<NearDropCaseStudyPage />} />
         <Route path={ROUTES.multiRoleCrmCaseStudy} element={<MultiRoleCrmCaseStudyPage />} />
         <Route path={ROUTES.nextsaasCaseStudy} element={<NextSaasCaseStudyPage />} />
+        <Route path={ROUTES.trustTap} element={<TrustTapPage />} />
         <Route path={ROUTES.about} element={<AboutPage />} />
         <Route path={ROUTES.faq} element={<FaqPage />} />
         <Route path={ROUTES.joinUs} element={<JoinUsPage />} />

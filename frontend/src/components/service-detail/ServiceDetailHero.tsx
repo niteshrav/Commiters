@@ -48,7 +48,7 @@ export default function ServiceDetailHero({ service }: Props) {
             >
               Get Free Consultation
             </a>
-            <Link className="btn svc-detail-btn svc-detail-btn--outline" to={ROUTES.contact}>
+            <Link className="btn btn-secondary svc-detail-btn" to={ROUTES.contact}>
               Request Quote
             </Link>
           </div>

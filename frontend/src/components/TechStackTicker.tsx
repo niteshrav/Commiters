@@ -29,7 +29,7 @@ export default function TechStackTicker() {
             <span key={`b-${tech.slug}-${i}`} className="home-tech-ticker-item" title={tech.alt} aria-hidden="true">
               <img
                 src={resolveTechIconUrl(tech)}
-                alt=""
+                alt={tech.alt}
                 className="home-tech-logo-img"
                 loading="lazy"
                 decoding="async"

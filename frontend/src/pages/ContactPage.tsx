@@ -4,11 +4,11 @@ import ContactIntroSection from "../components/ContactIntroSection";
 import ContactSectionSeparator from "../components/ContactSectionSeparator";
 import ContactSidebarCards from "../components/ContactSidebarCards";
 import { createLead, LeadInput } from "../lib/api";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { ROUTES } from "../lib/routes";
 import { STITCH_COPY } from "../lib/stitchDesign";
 import { STITCH_PROJECT_TYPE_DEFAULT } from "../lib/stitchPageContent";
-import { pageTitle } from "../lib/siteMeta";
+import { contactPageSeo } from "../lib/sitePageSeo";
 import {
   sanitizeNameInput,
   validateEmail,
@@ -17,7 +17,7 @@ import {
 import { useLeadServiceOptions } from "../lib/cms/hooks";
 
 export default function ContactPage() {
-  useDocumentTitle(pageTitle("Contact"));
+  usePageSeo(contactPageSeo());
   const leadServiceOptions = useLeadServiceOptions();
 
   const navigate = useNavigate();

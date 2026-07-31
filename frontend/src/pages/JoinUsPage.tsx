@@ -3,17 +3,17 @@ import JoinUsApplicationSection from "../components/JoinUsApplicationSection";
 import JoinUsIntroSection from "../components/JoinUsIntroSection";
 import JoinUsVisualPanel from "../components/JoinUsVisualPanel";
 import { JoinUsOpenPositionsSection } from "../components/open-positions/JobCard";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { fetchFeaturedJobs, type PublicJob } from "../lib/jobs";
 import {
   JOIN_US_PAGE_CLASS,
   STITCH_JOIN_US_GRID_CLASS,
   STITCH_JOIN_US_SECTION_CLASS,
 } from "../lib/joinUsPageLayout";
-import { pageTitle } from "../lib/siteMeta";
+import { joinUsPageSeo } from "../lib/sitePageSeo";
 
 export default function JoinUsPage() {
-  useDocumentTitle(pageTitle("Apply"));
+  usePageSeo(joinUsPageSeo());
   const [featuredJobs, setFeaturedJobs] = useState<PublicJob[]>([]);
 
   useEffect(() => {

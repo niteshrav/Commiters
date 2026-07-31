@@ -4,13 +4,34 @@
     <loc>https://www.commiters.com/</loc>
   </url>
   <url>
+    <loc>https://www.commiters.com/about</loc>
+  </url>
+  <url>
     <loc>https://www.commiters.com/services</loc>
   </url>
   <url>
-    <loc>https://www.commiters.com/case-studies</loc>
+    <loc>https://www.commiters.com/services/website-development</loc>
   </url>
   <url>
-    <loc>https://www.commiters.com/technical-ledger</loc>
+    <loc>https://www.commiters.com/services/web-application-development</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/services/mobile-app-development</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/services/e-commerce-development</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/services/ai-integration</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/services/mvp-development</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/services/automation-tools</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/case-studies</loc>
   </url>
   <url>
     <loc>https://www.commiters.com/case-studies/commiters</loc>
@@ -28,22 +49,30 @@
     <loc>https://www.commiters.com/case-studies/nextsaas</loc>
   </url>
   <url>
-    <loc>https://www.commiters.com/about</loc>
+    <loc>https://www.commiters.com/products/trusttap</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/technical-ledger</loc>
   </url>
   <url>
     <loc>https://www.commiters.com/contact</loc>
   </url>
   <url>
+    <loc>https://www.commiters.com/faq</loc>
+  </url>
+  <url>
     <loc>https://www.commiters.com/join-us</loc>
+  </url>
+  <url>
+    <loc>https://www.commiters.com/open-positions</loc>
   </url>
   <url>
     <loc>https://www.commiters.com/privacy-policy</loc>
   </url>
   <url>
-    <loc>https://www.commiters.com/terms</loc>
+    <loc>https://www.commiters.com/cookie-policy</loc>
   </url>
   <url>
-    <loc>https://www.commiters.com/thank-you</loc>
+    <loc>https://www.commiters.com/terms</loc>
   </url>
 </urlset>
-

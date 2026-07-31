@@ -11,6 +11,7 @@ describe("routes", () => {
     expect(ROUTES.aiSummarizerCaseStudy).toBe("/case-studies/ai-summarizer");
     expect(ROUTES.neardropCaseStudy).toBe("/case-studies/neardrop-mvp");
     expect(ROUTES.nextsaasCaseStudy).toBe("/case-studies/nextsaas");
+    expect(ROUTES.trustTap).toBe("/products/trusttap");
     expect(ROUTES.services).toBe("/services");
     expect(ROUTES.joinUs).toBe("/join-us");
     expect(ROUTES.contact).toBe("/contact");

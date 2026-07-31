@@ -11,6 +11,7 @@ import {
 import { usePageSeo, SITE_ORIGIN } from "../hooks/usePageSeo";
 import { buildServiceDetailPath, getServiceBySlug } from "../lib/services";
 import { ROUTES } from "../lib/routes";
+import { SITE_SEO_KEYWORDS } from "../lib/siteSeo";
 import { pageTitle } from "../lib/siteMeta";
 
 export default function ServiceDetailPage() {
@@ -22,7 +23,7 @@ export default function ServiceDetailPage() {
       ? {
           title: serviceDocumentTitle(service),
           description: service.seo.description,
-          keywords: service.seo.keywords,
+          keywords: service.seo.keywords ?? SITE_SEO_KEYWORDS,
           path: buildServiceDetailPath(service.slug),
           ogType: "website",
           structuredData: {

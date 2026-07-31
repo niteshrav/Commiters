@@ -2,13 +2,12 @@ import MultiRoleCrmCaseStudyArchitectureSection from "../components/MultiRoleCrm
 import MultiRoleCrmCaseStudyBottomCta from "../components/MultiRoleCrmCaseStudyBottomCta";
 import MultiRoleCrmCaseStudyIntroSection from "../components/MultiRoleCrmCaseStudyIntroSection";
 import MultiRoleCrmCaseStudyVisionSection from "../components/MultiRoleCrmCaseStudyVisionSection";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { MULTI_ROLE_CRM_CASE_STUDY_COPY } from "../lib/multiRoleCrmCaseStudyContent";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { MULTI_ROLE_CRM_CASE_STUDY_PAGE_CLASS } from "../lib/multiRoleCrmCaseStudyLayout";
-import { pageTitle } from "../lib/siteMeta";
+import { multiRoleCrmCaseStudyPageSeo } from "../lib/sitePageSeo";
 
 export default function MultiRoleCrmCaseStudyPage() {
-  useDocumentTitle(pageTitle(MULTI_ROLE_CRM_CASE_STUDY_COPY.documentTitle));
+  usePageSeo(multiRoleCrmCaseStudyPageSeo());
 
   return (
     <div className={MULTI_ROLE_CRM_CASE_STUDY_PAGE_CLASS} data-testid="multi-role-crm-case-study-page">

@@ -8,6 +8,7 @@ import AccessibilityWidget from "./AccessibilityWidget";
 import { AccessibilityProvider } from "./AccessibilityProvider";
 import SkipToMainLink from "./SkipToMainLink";
 import CmsSiteMeta from "./CmsSiteMeta";
+import SiteOrganizationSchema from "./SiteOrganizationSchema";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WhatsAppFloatingButton from "./WhatsAppFloatingButton";
@@ -75,6 +76,7 @@ export default function Layout({ children }: PropsWithChildren) {
       <AccessibilityProvider>
         <CmsProvider>
           <CmsSiteMeta />
+          <SiteOrganizationSchema />
           <div className="site-shell" data-theme="commiters-brand">
           <SkipToMainLink />
           <CircuitBackdrop />

@@ -31,7 +31,7 @@ export default function HomeBuiltForScale() {
               src={HOME_PAGE_ASSETS.serverRacks}
               srcSet={`${HOME_PAGE_ASSETS.serverRacks} 1x, ${HOME_PAGE_ASSETS.serverRacks2x} 2x`}
               sizes={BUILT_FOR_SCALE_IMAGE_SIZES}
-              alt=""
+              alt="Commiters software development team collaboration"
               width={BUILT_FOR_SCALE_IMAGE_WIDTH}
               height={BUILT_FOR_SCALE_IMAGE_HEIGHT}
               loading="lazy"

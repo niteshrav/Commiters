@@ -3,22 +3,16 @@ import JobCard from "../components/open-positions/JobCard";
 import JobFiltersBar, { JobListSkeleton } from "../components/open-positions/JobFiltersBar";
 import Reveal from "../components/motion/Reveal";
 import { usePageSeo } from "../hooks/usePageSeo";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import {
   fetchJobFilters,
   fetchPublicJobs,
   type JobQuery,
   type PublicJob,
 } from "../lib/jobs";
-import { pageTitle } from "../lib/siteMeta";
+import { openPositionsPageSeo } from "../lib/sitePageSeo";
 
 export default function OpenPositionsPage() {
-  useDocumentTitle(pageTitle("Open Positions"));
-  usePageSeo({
-    title: pageTitle("Open Positions"),
-    description: "Explore open roles at Commiters across web, mobile, and AI engineering.",
-    path: "/open-positions",
-  });
+  usePageSeo(openPositionsPageSeo());
 
   const [query, setQuery] = useState<JobQuery>({ page: 1, limit: 12, search: "" });
   const [jobs, setJobs] = useState<PublicJob[]>([]);

@@ -76,7 +76,14 @@ export default function MultiRoleCrmCaseStudyVisionSection() {
                   {item.highlight ? (
                     <StackIcon item={item} />
                   ) : (
-                    <img src={resolveTechIconUrl(item)} alt="" width={28} height={28} loading="lazy" decoding="async" />
+                    <img
+                      src={resolveTechIconUrl(item)}
+                      alt={`${item.alt} technology logo`}
+                      width={28}
+                      height={28}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   )}
                 </span>
                 <div className={MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_COPY_CLASS}>

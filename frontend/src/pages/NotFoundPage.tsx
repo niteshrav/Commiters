@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PageHeroImmersive from "../components/PageHeroImmersive";
 import SectionFigure from "../components/SectionFigure";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { ROUTES } from "../lib/routes";
-import { pageTitle } from "../lib/siteMeta";
+import { notFoundPageSeo } from "../lib/sitePageSeo";
 
 export default function NotFoundPage() {
-  useDocumentTitle(pageTitle("Page not found"));
+  usePageSeo(notFoundPageSeo());
 
   return (
     <>

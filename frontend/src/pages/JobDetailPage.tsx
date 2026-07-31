@@ -12,8 +12,9 @@ import {
   type PublicJob,
 } from "../lib/jobs";
 import { ROUTES } from "../lib/routes";
-import { buildDiscoveryCallCalendarUrl } from "../lib/siteContact";
 import { pageTitle } from "../lib/siteMeta";
+import { SITE_SEO_KEYWORDS } from "../lib/siteSeo";
+import { buildDiscoveryCallCalendarUrl } from "../lib/siteContact";
 
 function JobDetailHero({ job }: { job: JobDetail }) {
   return (
@@ -38,7 +39,7 @@ function JobDetailHero({ job }: { job: JobDetail }) {
             <Link className="btn btn-primary" to={`${ROUTES.joinUs}?position=${encodeURIComponent(job.title)}`}>
               Apply Now
             </Link>
-            <a className="btn open-positions-btn-outline" href={buildDiscoveryCallCalendarUrl()} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn-secondary svc-detail-btn" href={buildDiscoveryCallCalendarUrl()} target="_blank" rel="noopener noreferrer">
               Get Free Consultation
             </a>
           </div>
@@ -87,6 +88,7 @@ export default function JobDetailPage() {
       ? {
           title: seoTitle,
           description: seoDescription,
+          keywords: SITE_SEO_KEYWORDS,
           path: buildOpenPositionPath(job.slug),
           structuredData: {
             "@context": "https://schema.org",
@@ -155,8 +157,8 @@ export default function JobDetailPage() {
         <Reveal className="open-positions-detail-toolbar-inner">
           <p>Posted {formatPostedDate(job.createdAt)}{job.lastDateToApply ? ` · Apply by ${formatPostedDate(job.lastDateToApply)}` : ""}</p>
           <div className="open-positions-detail-share">
-            <button type="button" className="btn open-positions-btn-outline" onClick={() => void copyLink()}>Copy Job Link</button>
-            <button type="button" className="btn open-positions-btn-outline" onClick={() => void shareJob()}>Share Job</button>
+            <button type="button" className="btn btn-secondary" onClick={() => void copyLink()}>Copy Job Link</button>
+            <button type="button" className="btn btn-secondary" onClick={() => void shareJob()}>Share Job</button>
           </div>
           {shareMessage ? <p className="open-positions-share-message">{shareMessage}</p> : null}
         </Reveal>
@@ -212,7 +214,7 @@ export default function JobDetailPage() {
           <p>Send your resume and tell us why this role is the right fit.</p>
           <div className="open-positions-detail-actions">
             <Link className="btn btn-primary" to={`${ROUTES.joinUs}?position=${encodeURIComponent(job.title)}`}>Apply for this role</Link>
-            <Link className="btn open-positions-btn-outline" to={ROUTES.contact}>Contact Us</Link>
+            <Link className="btn btn-secondary" to={ROUTES.contact}>Contact Us</Link>
           </div>
         </Reveal>
       </section>

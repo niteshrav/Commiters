@@ -85,8 +85,7 @@ export default function FaqContentSection() {
 
   return (
     <section className={FAQ_CONTENT_SECTION_CLASS} data-testid="faq-content-section">
-      <div className="container">
-        <div className={FAQ_CONTENT_GRID_CLASS}>
+      <div className={FAQ_CONTENT_GRID_CLASS}>
           <aside className={FAQ_SIDEBAR_CLASS} aria-label="FAQ categories">
             <h2 className={FAQ_SIDEBAR_LABEL_CLASS}>{FAQ_PAGE_COPY.categoriesLabel}</h2>
             <nav className="faq-sidebar-nav">
@@ -163,7 +162,6 @@ export default function FaqContentSection() {
             })}
           </div>
         </div>
-      </div>
     </section>
   );
 }

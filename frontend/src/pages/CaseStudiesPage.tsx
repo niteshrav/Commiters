@@ -1,12 +1,12 @@
 import CaseStudiesBottomCta from "../components/CaseStudiesBottomCta";
 import CaseStudiesGridSection from "../components/CaseStudiesGridSection";
 import CaseStudiesIntroSection from "../components/CaseStudiesIntroSection";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { CASE_STUDIES_PAGE_CLASS } from "../lib/caseStudiesPageLayout";
-import { pageTitle } from "../lib/siteMeta";
+import { caseStudiesPageSeo } from "../lib/sitePageSeo";
 
 export default function CaseStudiesPage() {
-  useDocumentTitle(pageTitle("Case Studies"));
+  usePageSeo(caseStudiesPageSeo());
 
   return (
     <div className={CASE_STUDIES_PAGE_CLASS} data-testid="case-studies-page">
