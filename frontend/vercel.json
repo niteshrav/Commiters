@@ -1,9 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/(?!api/|_next/|assets/|.*\\..*$)(.*)",
-      "destination": "/"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
-

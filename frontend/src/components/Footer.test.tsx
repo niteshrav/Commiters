@@ -83,7 +83,7 @@ describe("Footer", () => {
 
     expect(within(navigationNav).getByRole("link", { name: /^Home$/i })).toHaveAttribute("href", ROUTES.home);
     expect(within(navigationNav).getByRole("link", { name: /^About$/i })).toHaveAttribute("href", ROUTES.about);
-    expect(within(navigationNav).getByRole("link", { name: /^Our Work$/i })).toHaveAttribute(
+    expect(within(navigationNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute(
       "href",
       ROUTES.caseStudies,
     );

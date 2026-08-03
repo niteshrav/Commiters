@@ -10,14 +10,14 @@ import {
 } from "./navSections";
 
 describe("navSections", () => {
-  it("lists primary nav items with Services before Our Work and Technical Ledger after Our Work", () => {
+  it("lists primary nav items with Work, Blog, and Jobs (Join Us) without a separate Join Us link", () => {
     expect(PRIMARY_NAV_ITEMS.map((item) => item.label)).toEqual([
       "Home",
       "About",
       "Services",
-      "Our Work",
-      "Technical Ledger",
-      "Join Us",
+      "Work",
+      "Blog",
+      "Jobs",
       "Contact",
     ]);
     expect(PRIMARY_NAV_ITEMS.map((item) => item.to)).toEqual([
@@ -30,13 +30,14 @@ describe("navSections", () => {
       ROUTES.contact,
     ]);
     const servicesIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "services");
-    const ourWorkIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "our-work");
-    const technicalLedgerIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "technical-ledger");
-    const joinUsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "join-us");
+    const workIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "work");
+    const blogIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "blog");
+    const jobsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "jobs");
     expect(servicesIndex).toBeGreaterThan(-1);
-    expect(ourWorkIndex).toBeGreaterThan(servicesIndex);
-    expect(technicalLedgerIndex).toBeGreaterThan(ourWorkIndex);
-    expect(joinUsIndex).toBeGreaterThan(technicalLedgerIndex);
+    expect(workIndex).toBeGreaterThan(servicesIndex);
+    expect(blogIndex).toBeGreaterThan(workIndex);
+    expect(jobsIndex).toBeGreaterThan(blogIndex);
+    expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
   });
 
   it("builds stable service section URLs for Services page anchors", () => {

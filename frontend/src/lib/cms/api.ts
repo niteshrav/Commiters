@@ -1,9 +1,10 @@
+import { getApiBaseUrl } from "../siteRuntime";
 import type { CmsBundle } from "./types";
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL as string | undefined;
-const apiBase = baseUrl ?? "http://localhost:4000";
-
 export async function fetchCmsBundle(): Promise<CmsBundle | null> {
+  const apiBase = getApiBaseUrl();
+  if (!apiBase) return null;
+
   try {
     const res = await fetch(`${apiBase}/api/cms/bundle`);
     if (!res.ok) return null;

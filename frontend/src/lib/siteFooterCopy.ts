@@ -28,13 +28,12 @@ export type FooterNavColumn = {
 
 export const SITE_FOOTER_TAGLINE = "Engineering Precision for world-class digital products." as const;
 
+/** Core footer sitemap — niche/header-only pages stay in the main nav. */
 export const SITE_FOOTER_PRIMARY_NAV_LINK_LABELS = [
   "Home",
   "About",
-  "Our Work",
-  "Technical Ledger",
   "Services",
-  "Join Us",
+  "Work",
   "FAQ",
   "Contact",
 ] as const;
@@ -48,10 +47,8 @@ export const SITE_FOOTER_CONNECT_LINK_LABELS = SITE_FOOTER_SOCIAL_LINK_LABELS;
 const SITE_FOOTER_PRIMARY_NAV_LINKS = [
   { kind: "internal", label: "Home", to: ROUTES.home },
   { kind: "internal", label: "About", to: ROUTES.about },
-  { kind: "internal", label: "Our Work", to: ROUTES.caseStudies },
-  { kind: "internal", label: "Technical Ledger", to: ROUTES.technicalLedger },
   { kind: "internal", label: "Services", to: ROUTES.services },
-  { kind: "internal", label: "Join Us", to: ROUTES.joinUs },
+  { kind: "internal", label: "Work", to: ROUTES.caseStudies },
   { kind: "internal", label: "FAQ", to: ROUTES.faq },
   { kind: "internal", label: "Contact", to: ROUTES.contact },
 ] as const satisfies readonly FooterLinkCell[];
@@ -80,12 +77,10 @@ export type FooterNavLinkRecord = {
 export const SITE_FOOTER_DEFAULT_NAVIGATION_LINKS: readonly FooterNavLinkRecord[] = [
   { label: "Home", url: ROUTES.home, order: 1 },
   { label: "About", url: ROUTES.about, order: 2 },
-  { label: "Our Work", url: ROUTES.caseStudies, order: 3 },
-  { label: "Technical Ledger", url: ROUTES.technicalLedger, order: 4 },
-  { label: "Services", url: ROUTES.services, order: 5 },
-  { label: "Join Us", url: ROUTES.joinUs, order: 6 },
-  { label: "FAQ", url: ROUTES.faq, order: 7 },
-  { label: "Contact", url: ROUTES.contact, order: 8 },
+  { label: "Services", url: ROUTES.services, order: 3 },
+  { label: "Work", url: ROUTES.caseStudies, order: 4 },
+  { label: "FAQ", url: ROUTES.faq, order: 5 },
+  { label: "Contact", url: ROUTES.contact, order: 6 },
 ] as const;
 
 export const SITE_FOOTER_DEFAULT_LEGAL_LINKS: readonly FooterNavLinkRecord[] = [

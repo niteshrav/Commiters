@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { isBackendEnabled } from "../siteRuntime";
 import { fetchCmsBundle } from "./api";
 import type { CmsContextValue } from "./types";
 
@@ -15,6 +16,13 @@ export function CmsProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
+    if (!isBackendEnabled()) {
+      setBundle(null);
+      setError(null);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(null);
     try {

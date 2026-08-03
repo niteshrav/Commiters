@@ -9,14 +9,14 @@ export type PrimaryNavItem = {
   end?: boolean;
 };
 
-/** Primary header navigation — Services appears before Our Work. */
+/** Primary header navigation — Services appears before Work. */
 export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   { id: "home", to: ROUTES.home, label: "Home", end: true },
   { id: "about", to: ROUTES.about, label: "About" },
   { id: "services", to: ROUTES.services, label: "Services" },
-  { id: "our-work", to: ROUTES.caseStudies, label: "Our Work" },
-  { id: "technical-ledger", to: ROUTES.technicalLedger, label: "Technical Ledger" },
-  { id: "join-us", to: ROUTES.joinUs, label: "Join Us" },
+  { id: "work", to: ROUTES.caseStudies, label: "Work" },
+  { id: "blog", to: ROUTES.technicalLedger, label: "Blog" },
+  { id: "jobs", to: ROUTES.joinUs, label: "Jobs" },
   { id: "contact", to: ROUTES.contact, label: "Contact" },
 ];
 

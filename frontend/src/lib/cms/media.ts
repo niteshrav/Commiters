@@ -1,6 +1,5 @@
 import { COMMITERS_HEADER_LOGO_SRC } from "../siteBrand";
-
-const apiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? "http://localhost:4000";
+import { getApiBaseUrl } from "../siteRuntime";
 
 const PLACEHOLDER_LOGO_PATHS = new Set([
   "",
@@ -17,7 +16,9 @@ export function resolveCmsMediaUrl(url: string): string {
   if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
   const path = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
   if (path.startsWith("/uploads/")) {
-    return `${apiBase.replace(/\/$/, "")}${path}`;
+    const apiBase = getApiBaseUrl();
+    if (!apiBase) return COMMITERS_HEADER_LOGO_SRC;
+    return `${apiBase}${path}`;
   }
   return path;
 }

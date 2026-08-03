@@ -41,11 +41,9 @@ describe("Navbar", () => {
     expect(within(primaryNav).queryByRole("menu")).not.toBeInTheDocument();
     expect(within(primaryNav).queryByRole("menuitem")).not.toBeInTheDocument();
 
-    expect(within(primaryNav).getByRole("link", { name: /^Our Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
-    expect(within(primaryNav).getByRole("link", { name: /^Technical Ledger$/i })).toHaveAttribute(
-      "href",
-      ROUTES.technicalLedger,
-    );
+    expect(within(primaryNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(within(primaryNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
+    expect(within(primaryNav).getByRole("link", { name: /^Jobs$/i })).toHaveAttribute("href", ROUTES.joinUs);
     expect(within(primaryNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
     expect(within(primaryNav).queryByRole("button", { name: /^Inquiry$/i })).not.toBeInTheDocument();
     expect(screen.getByTestId("nav-start-project-cta")).toHaveAttribute("href", ROUTES.contact);
@@ -55,7 +53,7 @@ describe("Navbar", () => {
     expect(screen.getByRole("banner")).toHaveClass("header", "header-light");
   });
 
-  it("places Services before Our Work in the primary nav order", () => {
+  it("places Services before Work in the primary nav order", () => {
     render(
       <MemoryRouter>
         <Navbar />
@@ -64,7 +62,7 @@ describe("Navbar", () => {
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     const labels = primaryNavLinks(primaryNav).map((link) => link.textContent);
-    expect(labels.indexOf("Services")).toBeLessThan(labels.indexOf("Our Work"));
+    expect(labels.indexOf("Services")).toBeLessThan(labels.indexOf("Work"));
   });
 
   it("navigates to the Services page when the Services nav label is clicked", async () => {
@@ -148,7 +146,7 @@ describe("Navbar", () => {
     expect(within(mobileNav).queryByTestId("nav-services-menu")).not.toBeInTheDocument();
   });
 
-  it("navigates to the Our Work page from the primary nav link", async () => {
+  it("navigates to the Work page from the primary nav link", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={["/"]}>
@@ -163,13 +161,13 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    await user.click(within(primaryNav).getByRole("link", { name: /^Our Work$/i }));
+    await user.click(within(primaryNav).getByRole("link", { name: /^Work$/i }));
 
     expect(await screen.findByTestId("our-work-outlet")).toBeInTheDocument();
     expect(screen.queryByTestId("home-outlet")).not.toBeInTheDocument();
   });
 
-  it("highlights Our Work when the case studies route is active", () => {
+  it("highlights Work when the case studies route is active", () => {
     render(
       <MemoryRouter initialEntries={[ROUTES.caseStudies]}>
         <Navbar />
@@ -177,10 +175,10 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    expect(within(primaryNav).getByRole("link", { name: /^Our Work$/i })).toHaveClass("nav-primary-link", "active");
+    expect(within(primaryNav).getByRole("link", { name: /^Work$/i })).toHaveClass("nav-primary-link", "active");
   });
 
-  it("navigates to the Technical Ledger page from the primary nav link", async () => {
+  it("navigates to the Blog page from the primary nav link", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={["/"]}>
@@ -198,13 +196,13 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    await user.click(within(primaryNav).getByRole("link", { name: /^Technical Ledger$/i }));
+    await user.click(within(primaryNav).getByRole("link", { name: /^Blog$/i }));
 
     expect(await screen.findByTestId("technical-ledger-outlet")).toBeInTheDocument();
     expect(screen.queryByTestId("home-outlet")).not.toBeInTheDocument();
   });
 
-  it("highlights Technical Ledger when the technical ledger route is active", () => {
+  it("highlights Blog when the technical ledger route is active", () => {
     render(
       <MemoryRouter initialEntries={[ROUTES.technicalLedger]}>
         <Navbar />
@@ -212,10 +210,7 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    expect(within(primaryNav).getByRole("link", { name: /^Technical Ledger$/i })).toHaveClass(
-      "nav-primary-link",
-      "active",
-    );
+    expect(within(primaryNav).getByRole("link", { name: /^Blog$/i })).toHaveClass("nav-primary-link", "active");
   });
 
   it("opens the mobile navigation menu from the Menu button", async () => {

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { fetchTechnicalLedgerArticles } from "./api";
 import { mapTechnicalLedgerArticle } from "./technicalLedgerArticles";
 import { TECHNICAL_LEDGER_ARTICLES, type TechnicalLedgerArticle } from "./technicalLedgerPageContent";
+import { isBackendEnabled } from "./siteRuntime";
 
 type State = {
   articles: TechnicalLedgerArticle[];
@@ -17,6 +18,15 @@ export function useTechnicalLedgerArticles(refreshKey = 0) {
   });
 
   const load = useCallback(async () => {
+    if (!isBackendEnabled()) {
+      setState({
+        articles: TECHNICAL_LEDGER_ARTICLES,
+        loading: false,
+        error: null,
+      });
+      return;
+    }
+
     setState((current) => ({ ...current, loading: true, error: null }));
     try {
       const records = await fetchTechnicalLedgerArticles();

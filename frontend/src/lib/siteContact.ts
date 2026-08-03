@@ -1,5 +1,7 @@
 /** Primary brand inbox */
 export const COMMITERS_EMAIL_PRIMARY = "hello@commiters.com";
+/** Contact + Join Us forms deliver here when the API is not used. */
+export const SITE_FORM_INBOX = COMMITERS_EMAIL_PRIMARY;
 /** Secondary inbox (Udaipur / Gmail) */
 export const COMMITERS_EMAIL_SECONDARY = "commitersudaipur@gmail.com";
 
