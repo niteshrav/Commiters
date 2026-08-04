@@ -7,6 +7,7 @@ import "./styles/serviceDetail.css";
 import "./styles/openPositions.css";
 import "./styles/trustTap.css";
 import "./styles/seoLanding.css";
+import "./styles/siteTypeScale.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

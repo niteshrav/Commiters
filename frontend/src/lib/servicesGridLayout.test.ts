@@ -12,7 +12,9 @@ import {
   SERVICE_CARD_ICON_CLASS,
   SERVICE_CARD_LINK_WRAP_CLASS,
   SERVICE_CARD_PADDING,
+  SERVICE_CARD_BODY_PADDING,
   SERVICE_CARD_TITLE_CLASS,
+  SERVICE_CARD_MEDIA_CLASS,
   SERVICES_GRID_CLASS,
   SERVICES_GRID_COLUMNS,
   SERVICES_GRID_GAP,
@@ -41,8 +43,11 @@ describe("servicesGridLayout", () => {
     expect(section).toContain(`padding: ${SERVICES_GRID_SECTION_PADDING}`);
     expect(section).toContain("background: var(--surface)");
 
-    const wrap = ruleBlock(`.${SERVICE_CARD_LINK_WRAP_CLASS} {`, ".stitch-service-card--span-2 {");
+    const wrap = ruleBlock(`.${SERVICE_CARD_LINK_WRAP_CLASS} {`, ".stitch-service-card-media {");
     expect(wrap).toContain(`padding: ${SERVICE_CARD_PADDING}`);
+
+    const body = ruleBlock(`.stitch-service-card-body {`, ".stitch-service-card--span-2 {");
+    expect(body).toContain(`padding: ${SERVICE_CARD_BODY_PADDING}`);
 
     const card = ruleBlock(`.${SERVICE_CARD_CLASS} {`, `.${SERVICE_CARD_LINK_WRAP_CLASS} {`);
     expect(card).toContain(`border: 1px solid ${SERVICE_CARD_BORDER}`);
@@ -54,8 +59,8 @@ describe("servicesGridLayout", () => {
     expect(css).toContain(`.${SERVICE_CARD_ACTION_CLASS}`);
   });
 
-  it("keeps card typography stacked with the icon above the title", () => {
-    expect(css).toContain(`.${SERVICE_CARD_ICON_CLASS}`);
+  it("keeps card typography stacked with media above the title", () => {
+    expect(css).toContain(`.${SERVICE_CARD_MEDIA_CLASS}`);
     expect(css).toContain(`.${SERVICE_CARD_TITLE_CLASS}`);
     expect(css).toContain(`.${SERVICE_CARD_COPY_CLASS}`);
     expect(css).not.toContain(".stitch-service-card-top {");

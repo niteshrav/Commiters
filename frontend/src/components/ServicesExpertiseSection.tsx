@@ -19,11 +19,11 @@ export default function ServicesExpertiseSection() {
       aria-labelledby="services-expertise-title"
     >
       <div className={SERVICES_EXPERTISE_INNER_CLASS} data-testid="services-expertise-inner">
-        <p className={SERVICES_EXPERTISE_KICKER_CLASS}>{kicker}</p>
-        <h1 id="services-expertise-title" className={SERVICES_EXPERTISE_TITLE_CLASS}>
+        <p className={`${SERVICES_EXPERTISE_KICKER_CLASS} typography-kicker`}>{kicker}</p>
+        <h1 id="services-expertise-title" className={`${SERVICES_EXPERTISE_TITLE_CLASS} typography-display`}>
           {title}
         </h1>
-        <p className={SERVICES_EXPERTISE_BODY_CLASS}>{subtext}</p>
+        <p className={`${SERVICES_EXPERTISE_BODY_CLASS} typography-body`}>{subtext}</p>
       </div>
       <hr
         className={SERVICES_EXPERTISE_SEPARATOR_CLASS}

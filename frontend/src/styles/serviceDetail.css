@@ -103,29 +103,39 @@
 
 .svc-detail-hero-visual {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   min-height: 280px;
+  padding: 0;
+  overflow: hidden;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
-  color: var(--stitch-blue, var(--primary));
-  background: linear-gradient(145deg, rgba(0, 80, 203, 0.08), rgba(255, 255, 255, 0.9));
+  background: #f8f9fa;
+}
+
+.svc-detail-hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .svc-detail-hero-visual--ai {
-  background: linear-gradient(145deg, rgba(91, 33, 182, 0.08), rgba(255, 255, 255, 0.92));
+  background: #f8f9fa;
 }
 
 .svc-detail-hero-visual--mobile {
-  background: linear-gradient(145deg, rgba(15, 118, 110, 0.08), rgba(255, 255, 255, 0.92));
+  background: #f8f9fa;
 }
 
 .svc-detail-hero-visual--automation {
-  background: linear-gradient(145deg, rgba(180, 83, 9, 0.08), rgba(255, 255, 255, 0.92));
+  background: #f8f9fa;
 }
 
 .svc-detail-hero-visual--ecommerce {
-  background: linear-gradient(145deg, rgba(219, 39, 119, 0.08), rgba(255, 255, 255, 0.92));
+  background: #f8f9fa;
 }
 
 .svc-detail-about-prose {

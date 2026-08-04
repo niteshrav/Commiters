@@ -84,6 +84,21 @@
   --max-width: 1360px;
   /* Sticky navbar (~74px) + comfortable gap so hash targets aren’t clipped under the header */
   --sticky-header-offset: 90px;
+  /* Home-aligned marketing typography (Plus Jakarta scale) */
+  --type-display-size: clamp(2.4rem, 5vw, 3.6rem);
+  --type-display-line: 1.08;
+  --type-display-tracking: -0.03em;
+  --type-section-size: clamp(1.75rem, 3vw, 2.25rem);
+  --type-section-line: 1.15;
+  --type-section-tracking: -0.02em;
+  --type-card-title-size: 1.25rem;
+  --type-body-size: 1rem;
+  --type-body-line: 1.6;
+  --type-kicker-size: 0.72rem;
+  --type-kicker-tracking: 0.12em;
+  --type-heading-color: var(--text);
+  --type-body-color: var(--body-text);
+  --type-kicker-color: var(--primary);
 }
 
 html {
@@ -777,16 +792,18 @@ select:focus-visible {
 .typography-section-title {
   font-family: var(--font-body);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  font-size: var(--type-section-size);
+  line-height: var(--type-section-line);
+  letter-spacing: var(--type-section-tracking);
+  color: var(--type-heading-color);
 }
 
 .typography-body {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: var(--type-body-size);
   font-weight: 400;
-  line-height: 1.6;
-  color: var(--body-text);
+  line-height: var(--type-body-line);
+  color: var(--type-body-color);
 }
 
 .typography-display {
@@ -798,11 +815,11 @@ select:focus-visible {
 
 .typography-kicker {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: var(--type-kicker-size);
   font-weight: 700;
-  letter-spacing: var(--label-tracking);
+  letter-spacing: var(--type-kicker-tracking);
   text-transform: uppercase;
-  color: var(--primary);
+  color: var(--type-kicker-color);
 }
 
 .stack-lg {
@@ -819,9 +836,10 @@ select:focus-visible {
 
 .typography-display--hero {
   font-weight: var(--display-weight);
-  letter-spacing: var(--tracking-tighter);
-  line-height: 1.12;
-  color: var(--text);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line);
+  letter-spacing: var(--type-display-tracking);
+  color: var(--type-heading-color);
 }
 
 .hero-subtext {
@@ -2820,10 +2838,10 @@ textarea {
 
 .stitch-home-title {
   margin: 0 0 16px;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--text);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line);
+  letter-spacing: var(--type-display-tracking);
+  color: var(--type-heading-color);
 }
 
 .stitch-home-subtext {
@@ -3010,9 +3028,15 @@ textarea {
 
 .stitch-services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .stitch-services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .stitch-case-card,
@@ -3048,9 +3072,34 @@ textarea {
   flex-direction: column;
   flex: 1;
   height: 100%;
-  padding: clamp(24px, 3vw, 32px);
+  padding: 0;
   text-decoration: none;
   color: inherit;
+}
+
+.stitch-service-card-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background: #f3f4f6;
+}
+
+.stitch-service-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  background: #eef2f7;
+}
+
+.stitch-service-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(20px, 2.5vw, 28px) clamp(20px, 2.5vw, 28px) clamp(22px, 3vw, 30px);
 }
 
 .stitch-service-card--span-2 {
@@ -8691,8 +8740,8 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .home-section-title {
   margin: 0 0 12px;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  line-height: 1.15;
+  font-size: var(--type-section-size);
+  line-height: var(--type-section-line);
 }
 
 .home-section-subtext {

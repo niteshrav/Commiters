@@ -1,44 +1,26 @@
 import { Link } from "react-router-dom";
-import {
-  IconAutomationSpark,
-  IconBrowserWindow,
-  IconDevicePhone,
-  IconLayers,
-  IconRobot,
-  IconRocket,
-  IconShoppingBag,
-} from "../icons";
 import Reveal from "../motion/Reveal";
 import type { ServiceDetail } from "../../lib/services/types";
 import { ROUTES } from "../../lib/routes";
+import { serviceCardImageForDetail } from "../../lib/serviceCardImages";
 import { buildDiscoveryCallCalendarUrl } from "../../lib/siteContact";
 import { pageTitle } from "../../lib/siteMeta";
-
-const HERO_ICONS = {
-  website: IconBrowserWindow,
-  ai: IconRobot,
-  webapp: IconLayers,
-  mobile: IconDevicePhone,
-  automation: IconAutomationSpark,
-  mvp: IconRocket,
-  ecommerce: IconShoppingBag,
-} as const;
 
 type Props = { service: ServiceDetail };
 
 export default function ServiceDetailHero({ service }: Props) {
-  const HeroIcon = HERO_ICONS[service.heroVisual];
+  const image = serviceCardImageForDetail(service.slug);
 
   return (
     <section className="svc-detail-hero" data-testid="service-detail-hero" aria-labelledby="service-detail-hero-title">
       <Reveal className="svc-detail-hero-grid">
         <div className="svc-detail-hero-copy">
-          <p className="svc-detail-kicker">Service</p>
-          <h1 id="service-detail-hero-title" className="svc-detail-hero-title">
+          <p className="svc-detail-kicker typography-kicker">Service</p>
+          <h1 id="service-detail-hero-title" className="svc-detail-hero-title typography-display">
             {service.title}
           </h1>
-          <p className="svc-detail-hero-tagline">{service.tagline}</p>
-          <p className="svc-detail-hero-description">{service.description}</p>
+          <p className="svc-detail-hero-tagline typography-body">{service.tagline}</p>
+          <p className="svc-detail-hero-description typography-body">{service.description}</p>
           <div className="svc-detail-hero-actions">
             <a
               className="btn btn-primary svc-detail-btn"
@@ -53,8 +35,14 @@ export default function ServiceDetailHero({ service }: Props) {
             </Link>
           </div>
         </div>
-        <div className={`svc-detail-hero-visual svc-detail-hero-visual--${service.heroVisual}`} aria-hidden>
-          <HeroIcon width={72} height={72} />
+        <div className={`svc-detail-hero-visual svc-detail-hero-visual--${service.heroVisual}`}>
+          <img
+            className="svc-detail-hero-image"
+            src={image.src}
+            alt={image.alt}
+            decoding="async"
+            fetchPriority="high"
+          />
         </div>
       </Reveal>
     </section>

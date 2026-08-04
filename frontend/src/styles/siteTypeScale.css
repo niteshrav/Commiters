@@ -1,0 +1,144 @@
+/**
+ * Align marketing pages with home typography (display, section, body, kicker).
+ * Loaded after page-specific CSS so these tokens win on font-size and color.
+ */
+
+.route-shell {
+  font-family: var(--font-body);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--type-body-color);
+}
+
+.typography-display {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line);
+  letter-spacing: var(--type-display-tracking);
+  color: var(--type-heading-color);
+}
+
+/* Page-level H1s (same scale as home hero) */
+.stitch-page-title,
+.services-expertise-title,
+.about-intro-title,
+.faq-intro-title,
+.contact-intro-title,
+.join-us-intro-title,
+.case-studies-intro-title,
+.legal-intro-title,
+.technical-ledger-title,
+.trusttap-hero-title,
+.open-positions-hero h1,
+.seo-landing-hero h1,
+.svc-detail-hero-title {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line);
+  letter-spacing: var(--type-display-tracking);
+  color: var(--type-heading-color);
+}
+
+/* Section H2s (same as home core pillars / built for scale) */
+.home-built-for-scale-title,
+.home-ready-cta-title,
+.services-how-we-work-title,
+.about-principles-title,
+.about-bottom-cta-title,
+.about-craftsmanship-heading,
+.faq-bottom-cta-title,
+.faq-category-title,
+.svc-detail-section-title,
+.services-how-we-work-step-title,
+.stitch-service-card-title,
+.open-positions-section h2,
+.seo-landing-section h2,
+.seo-landing-faq h2,
+.seo-landing-cta h2,
+.trusttap-section-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--type-section-size);
+  line-height: var(--type-section-line);
+  letter-spacing: var(--type-section-tracking);
+  color: var(--type-heading-color);
+}
+
+.home-ready-cta-title {
+  color: #ffffff;
+}
+
+.home-pillar-title {
+  font-size: var(--type-card-title-size);
+  font-weight: 700;
+  font-family: var(--font-body);
+  color: var(--type-heading-color);
+}
+
+/* Kickers / labels */
+.stitch-page-kicker,
+.services-expertise-kicker,
+.svc-detail-kicker,
+.seo-landing-kicker,
+.engineering-precision-badge,
+.open-positions-kicker,
+.legal-intro-kicker,
+.trusttap-kicker {
+  font-family: var(--font-body);
+  font-size: var(--type-kicker-size);
+  font-weight: 700;
+  letter-spacing: var(--type-kicker-tracking);
+  text-transform: uppercase;
+  color: var(--type-kicker-color);
+}
+
+.about-intro-kicker {
+  font-size: var(--type-kicker-size);
+  letter-spacing: var(--type-kicker-tracking);
+}
+
+/* Body copy blocks */
+.stitch-page-subtext,
+.services-expertise-body,
+.services-how-we-work-subtext,
+.about-intro-body,
+.faq-intro-body,
+.technical-ledger-subtext,
+.legal-intro-paragraph,
+.contact-intro-body,
+.join-us-intro-body,
+.case-studies-intro-body,
+.svc-detail-hero-tagline,
+.svc-detail-hero-description,
+.svc-detail-about-prose p,
+.home-built-for-scale-lead,
+.seo-landing-subtext,
+.seo-landing-section p,
+.open-positions-hero p,
+.stitch-service-card-copy {
+  font-family: var(--font-body);
+  font-size: var(--type-body-size);
+  font-weight: 400;
+  line-height: var(--type-body-line);
+  color: var(--type-body-color);
+}
+
+.route-shell .muted,
+.stitch-service-card-copy.muted {
+  color: var(--type-body-color);
+}
+
+.svc-detail-hero-tagline {
+  font-weight: 600;
+  color: var(--type-heading-color);
+}
+
+.trusttap-section-subtext {
+  font-family: var(--font-body);
+  font-size: var(--type-body-size);
+  font-weight: 400;
+  line-height: var(--type-body-line);
+  color: var(--type-body-color);
+}

@@ -5,12 +5,13 @@ import {
   SERVICE_CARD_ACTION_CLASS,
   SERVICE_CARD_CLASS,
   SERVICE_CARD_COPY_CLASS,
-  SERVICE_CARD_ICON_CLASS,
   SERVICE_CARD_LAYOUT_CLASS,
   SERVICE_CARD_LINK_WRAP_CLASS,
+  SERVICE_CARD_MEDIA_CLASS,
   SERVICE_CARD_SPAN_CLASS,
   SERVICE_CARD_TITLE_CLASS,
 } from "../lib/servicesGridLayout";
+import { SERVICE_CARD_IMAGE_BY_GRID_ID } from "../lib/serviceCardImages";
 import { STITCH_SERVICES_GRID } from "../lib/stitchPageContent";
 
 describe("ServiceOfferCard", () => {
@@ -29,7 +30,10 @@ describe("ServiceOfferCard", () => {
       SERVICE_CARD_SPAN_CLASS[1],
       SERVICE_CARD_LAYOUT_CLASS.standard,
     );
-    expect(card.querySelector(`.${SERVICE_CARD_ICON_CLASS}`)).toBeTruthy();
+    expect(card.querySelector(`.${SERVICE_CARD_MEDIA_CLASS} img`)).toHaveAttribute(
+      "src",
+      SERVICE_CARD_IMAGE_BY_GRID_ID["website-development"],
+    );
     expect(screen.getByRole("heading", { name: service.title })).toHaveClass(SERVICE_CARD_TITLE_CLASS);
     expect(screen.getByText(service.description)).toHaveClass(SERVICE_CARD_COPY_CLASS);
 
