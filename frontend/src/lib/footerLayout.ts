@@ -16,5 +16,8 @@ export const FOOTER_MOCKUP_ROW_GAP = "8px";
 export const FOOTER_MOCKUP_HEADING_MARGIN = "0 0 6px";
 export const FOOTER_MOCKUP_LINK_GAP = "6px";
 export const FOOTER_MOCKUP_COPYRIGHT_LINE2_MARGIN = "2px";
+export const FOOTER_LINK_LIST_SPLIT_CLASS = "footer-link-list--split" as const;
+export const FOOTER_LINK_LIST_SOCIAL_CLASS = "footer-link-list--social" as const;
+export const FOOTER_LINK_LIST_NAV_GRID_CLASS = "footer-link-list--nav-grid" as const;
 /** Home mockup uses grid padding only; avoid stacking `.footer-rich` vertical padding. */
 export const FOOTER_HOME_MOCKUP_RICH_PADDING = "0";
