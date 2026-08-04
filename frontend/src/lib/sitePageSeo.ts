@@ -13,6 +13,7 @@ import { SITE_SEO_KEYWORDS, buildWebSiteSchema } from "./siteSeo";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { TRUSTTAP_SEO } from "./trustTapPageContent";
 import { TECHNICAL_LEDGER_PAGE_COPY } from "./technicalLedgerPageContent";
+import { TESTIMONIALS_PAGE_COPY } from "./testimonialsPageContent";
 
 function page(input: PageSeoInput): PageSeoInput {
   return {
@@ -83,6 +84,15 @@ export function faqPageSeo(): PageSeoInput {
     description:
       "Frequently asked questions about working with Committers Softwares on web development, mobile app development, and SaaS development engagements.",
     path: ROUTES.faq,
+  });
+}
+
+export function testimonialsPageSeo(): PageSeoInput {
+  return page({
+    title: pageTitle(TESTIMONIALS_PAGE_COPY.title),
+    description:
+      "Read client testimonials for Committers Softwares—including BrowseMyVacation travel platform founder Rahul on web application delivery, communication, and quality.",
+    path: ROUTES.testimonials,
   });
 }
 

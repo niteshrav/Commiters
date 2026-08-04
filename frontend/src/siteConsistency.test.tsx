@@ -16,6 +16,7 @@ import {
   contactPageSeo,
   joinUsPageSeo,
   servicesPageSeo,
+  testimonialsPageSeo,
 } from "./lib/sitePageSeo";
 
 function expectedTitle(path: string): string {
@@ -50,6 +51,8 @@ function expectedTitle(path: string): string {
       return contactPageSeo().title;
     case ROUTES.faq:
       return pageTitle("Frequently Asked Questions");
+    case ROUTES.testimonials:
+      return testimonialsPageSeo().title;
     case ROUTES.websiteDevelopmentUdaipur:
       return WEBSITE_DEVELOPMENT_UDAPUR.seo.title;
     case ROUTES.whatsappAutomationUdaipur:

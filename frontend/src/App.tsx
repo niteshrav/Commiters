@@ -25,6 +25,7 @@ import ServiceDetailPage from "./pages/ServiceDetailPage";
 import TrustTapPage from "./pages/TrustTapPage";
 import WebsiteDevelopmentUdaipurPage from "./pages/WebsiteDevelopmentUdaipurPage";
 import WhatsAppAutomationUdaipurPage from "./pages/WhatsAppAutomationUdaipurPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
         <Route path={ROUTES.whatsappAutomationUdaipur} element={<WhatsAppAutomationUdaipurPage />} />
         <Route path={ROUTES.about} element={<AboutPage />} />
         <Route path={ROUTES.faq} element={<FaqPage />} />
+        <Route path={ROUTES.testimonials} element={<TestimonialsPage />} />
         <Route path={ROUTES.joinUs} element={<JoinUsPage />} />
         <Route path={ROUTES.openPositions} element={<OpenPositionsPage />} />
         <Route path={ROUTES.openPositionDetail} element={<JobDetailPage />} />

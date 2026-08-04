@@ -29,6 +29,7 @@ const paths = [
   "/technical-ledger",
   "/contact",
   "/faq",
+  "/testimonials",
   "/join-us",
   "/open-positions",
   "/website-development-udaipur",

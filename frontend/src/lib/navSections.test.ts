@@ -16,6 +16,7 @@ describe("navSections", () => {
       "About",
       "Services",
       "Work",
+      "Testimonials",
       "Blog",
       "Jobs",
       "Contact",
@@ -25,17 +26,20 @@ describe("navSections", () => {
       ROUTES.about,
       ROUTES.services,
       ROUTES.caseStudies,
+      ROUTES.testimonials,
       ROUTES.technicalLedger,
       ROUTES.joinUs,
       ROUTES.contact,
     ]);
     const servicesIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "services");
     const workIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "work");
+    const testimonialsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "testimonials");
     const blogIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "blog");
     const jobsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "jobs");
     expect(servicesIndex).toBeGreaterThan(-1);
     expect(workIndex).toBeGreaterThan(servicesIndex);
-    expect(blogIndex).toBeGreaterThan(workIndex);
+    expect(testimonialsIndex).toBeGreaterThan(workIndex);
+    expect(blogIndex).toBeGreaterThan(testimonialsIndex);
     expect(jobsIndex).toBeGreaterThan(blogIndex);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
   });

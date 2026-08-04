@@ -15,6 +15,7 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   { id: "about", to: ROUTES.about, label: "About" },
   { id: "services", to: ROUTES.services, label: "Services" },
   { id: "work", to: ROUTES.caseStudies, label: "Work" },
+  { id: "testimonials", to: ROUTES.testimonials, label: "Testimonials" },
   { id: "blog", to: ROUTES.technicalLedger, label: "Blog" },
   { id: "jobs", to: ROUTES.joinUs, label: "Jobs" },
   { id: "contact", to: ROUTES.contact, label: "Contact" },

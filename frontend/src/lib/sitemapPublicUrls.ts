@@ -19,6 +19,7 @@ export function buildSitemapPublicPaths(): string[] {
     ROUTES.technicalLedger,
     ROUTES.contact,
     ROUTES.faq,
+    ROUTES.testimonials,
     ROUTES.joinUs,
     ROUTES.openPositions,
     ROUTES.websiteDevelopmentUdaipur,

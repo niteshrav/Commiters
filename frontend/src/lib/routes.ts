@@ -27,6 +27,7 @@ export const ROUTES = {
   serviceDetail: "/services/:slug",
   websiteDevelopmentUdaipur: "/website-development-udaipur",
   whatsappAutomationUdaipur: "/whatsapp-automation-udaipur",
+  testimonials: "/testimonials",
 } as const;
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
@@ -55,4 +56,5 @@ export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.notFound,
   ROUTES.websiteDevelopmentUdaipur,
   ROUTES.whatsappAutomationUdaipur,
+  ROUTES.testimonials,
 ];
