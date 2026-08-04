@@ -64,7 +64,7 @@ export function useNavbarContent() {
 
 export function useFooterContent() {
   const { bundle } = useCms();
-  return resolveFooter(bundle?.footer ?? null, ADMIN_PANEL_URL);
+  return resolveFooter(bundle?.footer ?? null);
 }
 
 export function useServicesGrid() {

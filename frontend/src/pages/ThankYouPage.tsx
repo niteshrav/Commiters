@@ -1,7 +1,7 @@
 import ThankYouContentSection from "../components/ThankYouContentSection";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
-import { pageTitle } from "../lib/siteMeta";
+import { thankYouPageSeo } from "../lib/sitePageSeo";
 import { THANK_YOU_PAGE_COPY } from "../lib/thankYouPageContent";
 import {
   THANK_YOU_INFRASTRUCTURE_CLASS,
@@ -11,7 +11,7 @@ import {
 } from "../lib/thankYouPageLayout";
 
 export default function ThankYouPage() {
-  useDocumentTitle(pageTitle("Thank you"));
+  usePageSeo(thankYouPageSeo());
 
   return (
     <div className={THANK_YOU_PAGE_CLASS} data-testid="thank-you-page">

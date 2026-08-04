@@ -1,0 +1,102 @@
+.seo-landing-page {
+  padding-bottom: 4rem;
+}
+
+.seo-landing-hero {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.seo-landing-kicker {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stitch-blue);
+  margin-bottom: 0.75rem;
+}
+
+.seo-landing-hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.seo-landing-subtext {
+  color: var(--body-text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.seo-landing-section {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.seo-landing-section h2 {
+  font-size: 1.375rem;
+  margin-bottom: 1rem;
+}
+
+.seo-landing-section p {
+  color: var(--body-text);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.seo-landing-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--body-text);
+  line-height: 1.65;
+}
+
+.seo-landing-list li {
+  margin-bottom: 0.5rem;
+}
+
+.seo-landing-faq {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.seo-landing-faq-list {
+  margin: 1rem 0 0;
+}
+
+.seo-landing-faq-item {
+  margin-bottom: 1.25rem;
+}
+
+.seo-landing-faq-item dt {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.seo-landing-faq-item dd {
+  margin: 0;
+  color: var(--body-text);
+  line-height: 1.6;
+}
+
+.seo-landing-cta {
+  max-width: 40rem;
+  margin: 2rem auto 0;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: var(--surface-soft);
+  border-radius: 1rem;
+}
+
+.seo-landing-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}

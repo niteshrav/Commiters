@@ -102,4 +102,18 @@ export const CASE_STUDY_PROJECTS: CaseStudyProject[] = [
     detailsLabel: "View Project Details",
     detailsHref: ROUTES.nextsaasCaseStudy,
   },
+  {
+    id: "trusttap",
+    title: "TrustTap",
+    tags: ["SaaS • Reputation"],
+    tagVariant: "accent",
+    tagsPlacement: "header",
+    problem: "Local brands struggled to turn happy visits into public Google reviews that drive discovery.",
+    solution:
+      "Shipped TrustTap—a QR-led review platform with reputation dashboards and multi-location controls.",
+    gridSpan: "narrow",
+    layout: "stacked",
+    detailsLabel: "View Product",
+    detailsHref: ROUTES.trustTap,
+  },
 ];

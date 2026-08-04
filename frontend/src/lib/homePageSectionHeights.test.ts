@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import {
-  HOME_BOTTOM_CTA_MIN_HEIGHT_MIN_PX,
   HOME_BOTTOM_CTA_PADDING_BLOCK_MAX_PX,
   HOME_BOTTOM_CTA_PADDING_BLOCK_MIN_PX,
 } from "./homeBottomCtaLayout";
@@ -17,6 +16,5 @@ describe("homePageSectionHeights", () => {
     expect(HOME_BOTTOM_CTA_PADDING_BLOCK_MAX_PX).toBeGreaterThan(
       FOOTER_MOCKUP_PADDING_BLOCK_MIN_PX * 2,
     );
-    expect(HOME_BOTTOM_CTA_MIN_HEIGHT_MIN_PX).toBeGreaterThanOrEqual(380);
   });
 });

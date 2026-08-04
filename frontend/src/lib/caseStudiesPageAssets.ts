@@ -11,6 +11,7 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
   "multi-role-crm",
   "neardrop-mvp",
   "nextsaas",
+  "trusttap",
 ] as const;
 
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
@@ -43,6 +44,12 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
     src: "/assets/case-studies/nextsaas.png",
     srcSet: "/assets/case-studies/nextsaas@2x.png 2x",
     alt: "Colorful laptop displaying NextSaas automated pipeline analytics dashboards",
+  },
+  {
+    id: "trusttap",
+    src: "/assets/case-studies/trusttap.png",
+    srcSet: "/assets/case-studies/trusttap@2x.png 2x",
+    alt: "TrustTap reputation dashboard with review growth charts and QR review prompts",
   },
 ] as const;
 

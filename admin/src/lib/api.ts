@@ -22,7 +22,7 @@ export async function api<T>(path: string, options: RequestInit = {}): Promise<T
 
   const payload = await res.json().catch(() => null);
   if (!res.ok) {
-    throw new Error(payload?.error ?? `Request failed (${res.status})`);
+    throwApiError(res.status, payload);
   }
   return payload as T;
 }
@@ -33,6 +33,22 @@ export function setToken(token: string) {
 
 export function clearToken() {
   localStorage.removeItem("commiters-admin-token");
+}
+
+function redirectToLoginIfNeeded() {
+  clearToken();
+  const path = window.location.pathname;
+  if (path !== "/login" && !path.endsWith("/login")) {
+    window.location.assign("/login");
+  }
+}
+
+function throwApiError(status: number, payload: { error?: string } | null): never {
+  if (status === 401) {
+    redirectToLoginIfNeeded();
+    throw new Error(payload?.error ?? "Session expired. Please sign in again.");
+  }
+  throw new Error(payload?.error ?? `Request failed (${status})`);
 }
 
 export function isLoggedIn() {
@@ -77,7 +93,7 @@ export async function uploadMediaFile(file: File): Promise<string> {
 
   const payload = (await res.json().catch(() => null)) as MediaUploadResult | { error?: string } | null;
   if (!res.ok) {
-    throw new Error(payload && "error" in payload && payload.error ? payload.error : "Upload failed.");
+    throwApiError(res.status, payload);
   }
   if (!payload || !("url" in payload) || !payload.url) {
     throw new Error("Upload failed — no URL returned.");

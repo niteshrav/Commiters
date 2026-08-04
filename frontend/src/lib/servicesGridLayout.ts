@@ -9,7 +9,8 @@ export const SERVICE_CARD_HOVER_CLASS = "stitch-service-card-hover" as const;
 export const SERVICE_CARD_HOVER_ALWAYS_CLASS = "stitch-service-card-hover--always" as const;
 export const SERVICE_CARD_MAIN_CLASS = "stitch-service-card-main" as const;
 export const SERVICE_CARD_LINK_CLASS = "stitch-service-card-link" as const;
-export const SERVICE_CARD_BUTTON_CLASS = "stitch-service-card-button" as const;
+export const SERVICE_CARD_ACTION_CLASS = "stitch-service-card-action" as const;
+export const SERVICE_CARD_LINK_WRAP_CLASS = "stitch-service-card-link-wrap" as const;
 
 export const SERVICE_CARD_SPAN_CLASS = {
   1: "stitch-service-card--span-1",
@@ -22,10 +23,10 @@ export const SERVICE_CARD_LAYOUT_CLASS = {
   split: "stitch-service-card--split",
 } as const;
 
-export const SERVICES_GRID_COLUMNS = "repeat(3, minmax(0, 1fr))";
-export const SERVICES_GRID_GAP = "24px";
-export const SERVICES_GRID_SECTION_PADDING = "clamp(32px, 4vw, 48px) 0 clamp(48px, 6vw, 80px)";
+export const SERVICES_GRID_COLUMNS = "repeat(auto-fill, minmax(min(100%, 300px), 1fr))";
+export const SERVICES_GRID_GAP = "20px";
+export const SERVICES_GRID_SECTION_PADDING = "clamp(24px, 4vw, 40px) 0 clamp(48px, 6vw, 72px)";
 export const SERVICE_CARD_BORDER = "#e5e7eb";
-export const SERVICE_CARD_BORDER_HOVER = "#94a3b8";
-export const SERVICE_CARD_PADDING = "clamp(32px, 4vw, 48px)";
-export const SERVICE_CARD_BORDER_RADIUS = "14px";
+export const SERVICE_CARD_BORDER_HOVER = "rgba(var(--primary-rgb), 0.35)";
+export const SERVICE_CARD_PADDING = "clamp(24px, 3vw, 32px)";
+export const SERVICE_CARD_BORDER_RADIUS = "16px";

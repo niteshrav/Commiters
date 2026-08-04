@@ -10,8 +10,14 @@ export const ROUTES = {
   neardropCaseStudy: "/case-studies/neardrop-mvp",
   multiRoleCrmCaseStudy: "/case-studies/multi-role-crm",
   nextsaasCaseStudy: "/case-studies/nextsaas",
+  trustTap: "/products/trusttap",
   contact: "/contact",
   joinUs: "/join-us",
+  openPositions: "/open-positions",
+  openPositionDetail: "/open-positions/:slug",
+  /** Legacy CMS/admin URLs — redirect to openPositions */
+  openPositionsLegacy: "/open-position",
+  jobPositionsLegacy: "/job-positions",
   privacyPolicy: "/privacy-policy",
   cookiePolicy: "/cookie-policy",
   terms: "/terms",
@@ -19,6 +25,8 @@ export const ROUTES = {
   faq: "/faq",
   notFound: "/404",
   serviceDetail: "/services/:slug",
+  websiteDevelopmentUdaipur: "/website-development-udaipur",
+  whatsappAutomationUdaipur: "/whatsapp-automation-udaipur",
 } as const;
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
@@ -35,12 +43,16 @@ export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.neardropCaseStudy,
   ROUTES.multiRoleCrmCaseStudy,
   ROUTES.nextsaasCaseStudy,
+  ROUTES.trustTap,
   ROUTES.contact,
   ROUTES.joinUs,
+  ROUTES.openPositions,
   ROUTES.privacyPolicy,
   ROUTES.cookiePolicy,
   ROUTES.terms,
   ROUTES.faq,
   ROUTES.thankYou,
   ROUTES.notFound,
+  ROUTES.websiteDevelopmentUdaipur,
+  ROUTES.whatsappAutomationUdaipur,
 ];

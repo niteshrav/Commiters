@@ -1,4 +1,4 @@
-export { User } from "./User";
+export { User, type UserDocument } from "./User";
 export { HeroSection } from "./HeroSection";
 export { Navbar } from "./Navbar";
 export { AboutSection } from "./AboutSection";

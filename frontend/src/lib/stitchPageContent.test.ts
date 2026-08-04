@@ -2,20 +2,24 @@ import { describe, expect, it } from "vitest";
 import { STITCH_CASE_STUDIES, STITCH_SERVICES_GRID } from "./stitchPageContent";
 
 describe("stitchPageContent", () => {
-  it("lists six expertise cards in the Stitch mosaic order", () => {
-    expect(STITCH_SERVICES_GRID).toHaveLength(6);
+  it("lists seven expertise cards in a consistent grid order", () => {
+    expect(STITCH_SERVICES_GRID).toHaveLength(7);
     expect(STITCH_SERVICES_GRID.map((service) => service.id)).toEqual([
       "website-development",
-      "ai-integration",
       "web-applications",
       "mobile-applications",
-      "mvp-development",
+      "e-commerce-development",
+      "ai-integration",
       "automation-tools",
+      "mvp-development",
     ]);
-    expect(STITCH_SERVICES_GRID[0].gridSpan).toBe(2);
-    expect(STITCH_SERVICES_GRID[1].gridSpan).toBe(1);
-    expect(STITCH_SERVICES_GRID[5].gridSpan).toBe(3);
-    expect(STITCH_SERVICES_GRID[5].layout).toBe("split");
+    for (const service of STITCH_SERVICES_GRID) {
+      expect(service.gridSpan).toBe(1);
+      expect(service.layout).toBe("standard");
+      expect(service.actionVisibility).toBe("always");
+      expect(service.hoverAction.kind).toBe("link");
+      expect(service.hoverAction.label).toBe("View service");
+    }
   });
 
   it("uses Stitch screenshot copy for each service card", () => {
@@ -23,27 +27,14 @@ describe("stitchPageContent", () => {
       title: "Website Development",
       description:
         "High-conversion marketing sites and enterprise portals built with speed, SEO, and accessibility as core priorities.",
-      actionVisibility: "always",
-      hoverAction: { kind: "link", label: "Learn more", href: "/services/website-development" },
+      hoverAction: { kind: "link", label: "View service", href: "/services/website-development" },
     });
-    expect(STITCH_SERVICES_GRID[1].description).toBe(
-      "Embedding LLMs and custom machine learning models into your existing workflows to drive automation.",
-    );
-    expect(STITCH_SERVICES_GRID[2].description).toBe(
-      "Complex, data-driven platforms designed for scalability and performance. We handle the heavy lifting of state management and API architecture.",
-    );
-    expect(STITCH_SERVICES_GRID[3].description).toBe(
-      "Native and cross-platform mobile experiences that feel fluid and integrated. Performance-first iOS and Android development.",
-    );
     expect(STITCH_SERVICES_GRID[4].description).toBe(
-      "Go from concept to market in weeks. We focus on the core value proposition to validate your product quickly.",
+      "Embedding LLMs and custom machine learning models into your existing workflows to drive automation.",
     );
     expect(STITCH_SERVICES_GRID[5]).toMatchObject({
       title: "Automation Tools",
-      description:
-        "Bespoke internal tools and scripts that eliminate repetitive tasks, connecting your disparate data sources into a unified ecosystem.",
-      actionVisibility: "always",
-      hoverAction: { kind: "button", label: "Learn more", href: "/services/automation-tools" },
+      hoverAction: { kind: "link", label: "View service", href: "/services/automation-tools" },
     });
   });
 

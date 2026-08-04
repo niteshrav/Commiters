@@ -1,13 +1,9 @@
 import { ROUTES } from "../routes";
-import { HOME_TESTIMONIALS } from "../siteTrustContent";
 import type { ServiceDetail } from "./types";
 import {
-  SERVICE_DEFAULT_INDUSTRIES,
   SERVICE_DEFAULT_PRICING,
   SERVICE_DEFAULT_TIMELINE,
-  SERVICE_DEFAULT_WHY_CHOOSE,
   SERVICE_PROCESS_STEPS,
-  buildDefaultFaqs,
 } from "./sharedContent";
 
 const WEB_TECH = [
@@ -58,6 +54,26 @@ const AUTOMATION_TECH = [
   { slug: "postgresql", alt: "PostgreSQL" },
 ];
 
+const ECOMMERCE_TECH = [
+  { slug: "shopify", alt: "Shopify" },
+  { slug: "react", alt: "React" },
+  { slug: "nextdotjs", alt: "Next.js" },
+  { slug: "stripe", alt: "Stripe" },
+  { slug: "nodedotjs", alt: "Node.js" },
+  { slug: "postgresql", alt: "PostgreSQL" },
+  { slug: "amazonaws", alt: "AWS" },
+];
+
+export const SERVICE_ICON_SLUGS: Record<string, string> = {
+  website: "website-development",
+  webapp: "web-application-development",
+  mobile: "mobile-app-development",
+  ecommerce: "e-commerce-development",
+  automation: "automation-tools",
+  ai: "ai-integration",
+  mvp: "mvp-development",
+};
+
 const MVP_TECH = [
   { slug: "react", alt: "React" },
   { slug: "nextdotjs", alt: "Next.js" },
@@ -66,17 +82,6 @@ const MVP_TECH = [
   { slug: "postgresql", alt: "PostgreSQL" },
   { slug: "vercel", alt: "Vercel" },
 ];
-
-function testimonialsFromHome(indices: number[]) {
-  return indices.map((index) => {
-    const item = HOME_TESTIMONIALS[index];
-    return {
-      quote: item.quote,
-      name: item.name,
-      company: item.company,
-    };
-  });
-}
 
 export const SERVICES_CATALOG: ServiceDetail[] = [
   {
@@ -110,8 +115,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
     processSteps: [...SERVICE_PROCESS_STEPS],
     timeline: SERVICE_DEFAULT_TIMELINE,
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "Commiters.com",
@@ -127,8 +130,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.nextsaasCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([0, 2]),
-    faqs: buildDefaultFaqs("Website Development"),
   },
   {
     slug: "web-application-development",
@@ -166,8 +167,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Multi-Tenant SaaS", duration: "4–8 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "Multi-Role CRM",
@@ -182,8 +181,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.contact,
       },
     ],
-    testimonials: testimonialsFromHome([0, 1]),
-    faqs: buildDefaultFaqs("Web Application Development"),
   },
   {
     slug: "mobile-app-development",
@@ -220,8 +217,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Enterprise Mobile Suite", duration: "3–6 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "NearDrop MVP",
@@ -230,8 +225,57 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.neardropCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([1, 2]),
-    faqs: buildDefaultFaqs("Mobile App Development"),
+  },
+  {
+    slug: "e-commerce-development",
+    gridId: "e-commerce-development",
+    title: "E-commerce Development",
+    tagline: "Conversion-focused storefronts built to sell, scale, and integrate.",
+    description:
+      "We design and build Shopify, WooCommerce, and custom commerce platforms with fast checkout, inventory sync, and analytics that drive revenue.",
+    heroVisual: "ecommerce",
+    seo: {
+      title: "E-commerce Development Services",
+      description:
+        "E-commerce development for Shopify, custom storefronts, and headless commerce. Fast checkout, payment integration, and scalable product catalogs.",
+      keywords: "e-commerce development, Shopify development, online store, headless commerce",
+    },
+    about: {
+      what: "E-commerce development covers storefront UX, product catalogs, payments, fulfillment integrations, and admin tooling for online retail.",
+      why: "Generic templates limit conversion and operations. Custom commerce experiences improve trust, checkout completion, and integration with your back office.",
+      who: "D2C brands, retailers, and B2B sellers launching or replatforming their online store.",
+    },
+    features: [
+      { title: "Responsive Design", description: "Mobile-first shopping experiences optimized for thumb-friendly checkout.", icon: "responsive" },
+      { title: "High Performance", description: "Fast product pages, image optimization, and edge-friendly delivery.", icon: "performance" },
+      { title: "Secure Architecture", description: "PCI-aware payment flows, fraud-safe checkout, and hardened admin access.", icon: "secure" },
+      { title: "Scalable Solution", description: "Catalog, cart, and order systems ready for seasonal traffic spikes.", icon: "scale" },
+      { title: "Easy Maintenance", description: "CMS-friendly product updates and modular theme components.", icon: "maintain" },
+      { title: "SEO Friendly", description: "Structured product data, clean URLs, and category pages built to rank.", icon: "seo" },
+    ],
+    technologies: ECOMMERCE_TECH,
+    processSteps: [...SERVICE_PROCESS_STEPS],
+    timeline: [
+      { label: "Starter Store", duration: "2–4 Weeks" },
+      { label: "Custom Storefront", duration: "4–8 Weeks" },
+      { label: "Headless Commerce Platform", duration: "2–4 Months" },
+    ],
+    pricing: SERVICE_DEFAULT_PRICING,
+    portfolio: [
+      {
+        title: "NextSaas Marketing Site",
+        tag: "E-commerce Ready",
+        description: "Conversion-focused product storytelling with modular landing sections.",
+        href: ROUTES.nextsaasCaseStudy,
+      },
+      {
+        title: "Commiters.com",
+        tag: "Website",
+        description: "Lead-generation site with CMS-driven content and performance-first delivery.",
+        href: "https://www.commiters.com/",
+        external: true,
+      },
+    ],
   },
   {
     slug: "ai-integration",
@@ -268,8 +312,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Enterprise AI Platform", duration: "3–5 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "AI Summariser",
@@ -284,8 +326,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.multiRoleCrmCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([1, 2]),
-    faqs: buildDefaultFaqs("AI Integration"),
   },
   {
     slug: "mvp-development",
@@ -322,8 +362,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Pilot with Paying Users", duration: "2–3 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: ["Startups", "Finance", "Healthcare", "Education", "E-commerce", "Travel"],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "NearDrop MVP",
@@ -332,8 +370,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.neardropCaseStudy,
       },
     ],
-    testimonials: testimonialsFromHome([0, 1]),
-    faqs: buildDefaultFaqs("MVP Development"),
   },
   {
     slug: "automation-tools",
@@ -370,8 +406,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Ops Platform", duration: "2–4 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    industries: [...SERVICE_DEFAULT_INDUSTRIES],
-    whyChoose: SERVICE_DEFAULT_WHY_CHOOSE,
     portfolio: [
       {
         title: "Internal Ops Dashboard",
@@ -380,8 +414,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.contact,
       },
     ],
-    testimonials: testimonialsFromHome([2, 0]),
-    faqs: buildDefaultFaqs("Automation Tools"),
   },
 ];
 
@@ -397,4 +429,32 @@ export function getServiceByGridId(gridId: string): ServiceDetail | undefined {
 
 export function buildServiceDetailPath(slug: string): string {
   return `/services/${slug}`;
+}
+
+export function resolveServiceDetailHref(options: {
+  id?: string;
+  title?: string;
+  icon?: string;
+}): string {
+  const { id, title, icon } = options;
+
+  if (id) {
+    const byGrid = getServiceByGridId(id);
+    if (byGrid) return buildServiceDetailPath(byGrid.slug);
+    const bySlug = getServiceBySlug(id);
+    if (bySlug) return buildServiceDetailPath(bySlug.slug);
+  }
+
+  if (icon && SERVICE_ICON_SLUGS[icon]) {
+    const byIcon = getServiceBySlug(SERVICE_ICON_SLUGS[icon]);
+    if (byIcon) return buildServiceDetailPath(byIcon.slug);
+  }
+
+  if (title) {
+    const normalized = title.trim().toLowerCase();
+    const byTitle = SERVICES_CATALOG.find((service) => service.title.toLowerCase() === normalized);
+    if (byTitle) return buildServiceDetailPath(byTitle.slug);
+  }
+
+  return buildServiceDetailPath(SERVICE_ICON_SLUGS.website);
 }

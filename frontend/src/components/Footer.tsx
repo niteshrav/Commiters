@@ -12,16 +12,14 @@ import {
 } from "../lib/footerLayout";
 import { useFooterContent } from "../lib/cms/hooks";
 import { footerBrandLogoSrc } from "../lib/cms/media";
-import {
-  FOOTER_COPYRIGHT_STAFF_LINK_CLASS,
-  FOOTER_STAFF_LOGIN_ARIA_LABEL,
-  splitCopyrightLine,
-} from "../lib/footerCopyright";
-import { resolveAdminPanelUrl } from "../lib/siteAdmin";
 import { usesContactStyleFooter, type FooterLinkCell } from "../lib/siteFooterCopy";
 
 function isSocialColumn(heading: string): boolean {
   return heading === "SOCIAL" || heading === "CONNECT";
+}
+
+function isAdminFooterLink(link: FooterLinkCell): boolean {
+  return link.label.trim().toLowerCase() === "admin";
 }
 
 function FooterLink({ link }: { link: FooterLinkCell }) {
@@ -37,43 +35,6 @@ function FooterLink({ link }: { link: FooterLinkCell }) {
     <NavLink to={link.to} className={({ isActive }) => ["footer-link-item", isActive ? "active" : ""].filter(Boolean).join(" ") || undefined}>
       {link.label}
     </NavLink>
-  );
-}
-
-function FooterCopyrightLine({ copyrightLine1 }: { copyrightLine1: string }) {
-  const { symbol, remainder } = splitCopyrightLine(copyrightLine1);
-
-  const adminUrl = resolveAdminPanelUrl();
-
-  return (
-    <p
-      className={`footer-mockup-copyright-line1 ${FOOTER_COPYRIGHT_CELL_CLASS}`}
-      data-testid="footer-copyright-cell"
-    >
-      {symbol ? (
-        adminUrl ? (
-          <>
-            <a
-              className={FOOTER_COPYRIGHT_STAFF_LINK_CLASS}
-              href={adminUrl}
-              aria-label={FOOTER_STAFF_LOGIN_ARIA_LABEL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {symbol}
-            </a>
-            {remainder ? ` ${remainder}` : null}
-          </>
-        ) : (
-          <>
-            {symbol}
-            {remainder ? ` ${remainder}` : null}
-          </>
-        )
-      ) : (
-        copyrightLine1
-      )}
-    </p>
   );
 }
 
@@ -101,42 +62,45 @@ export default function Footer() {
             <BrandLogo variant="footer" logoSrc={footerBrandLogoSrc()} />
           </div>
           <p className="footer-brand-tagline">{copyrightLine2}</p>
+          <p
+            className={`footer-brand-copyright footer-mockup-copyright-line1 ${FOOTER_COPYRIGHT_CELL_CLASS}`}
+            data-testid="footer-copyright-cell"
+          >
+            {copyrightLine1}
+          </p>
         </div>
 
         <div
           className={`footer-nav-group ${FOOTER_NAV_GROUP_CLASS} ${FOOTER_NAV_COLUMNS_CLASS} footer-v2-nav`}
           data-testid="footer-nav-group"
         >
-          {navColumns.map((column) => (
-            <nav
-              key={column.heading}
-              className={`footer-column ${FOOTER_COLUMN_CLASS}`}
-              data-testid={`footer-nav-column-${column.heading.toLowerCase()}`}
-              aria-label={column.heading}
-            >
-              <p className="footer-column-heading">{column.heading}</p>
-              <ul
-                className={[
-                  "footer-link-list",
-                  isSocialColumn(column.heading) ? FOOTER_LINK_LIST_SOCIAL_CLASS : "",
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
+          {navColumns.map((column) => {
+            const visibleLinks = column.links.filter((link) => !isAdminFooterLink(link));
+            return (
+              <nav
+                key={column.heading}
+                className={`footer-column ${FOOTER_COLUMN_CLASS}`}
+                data-testid={`footer-nav-column-${column.heading.toLowerCase()}`}
+                aria-label={column.heading}
               >
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    <FooterLink link={link} />
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
-        </div>
-      </div>
-
-      <div className="footer-v2-bar">
-        <div className="footer-v2-bar-inner">
-          <FooterCopyrightLine copyrightLine1={copyrightLine1} />
+                <p className="footer-column-heading">{column.heading}</p>
+                <ul
+                  className={[
+                    "footer-link-list",
+                    isSocialColumn(column.heading) ? FOOTER_LINK_LIST_SOCIAL_CLASS : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  {visibleLinks.map((link) => (
+                    <li key={link.label}>
+                      <FooterLink link={link} />
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            );
+          })}
         </div>
       </div>
     </footer>

@@ -11,7 +11,7 @@ export default function ServiceDetailPortfolio({ service }: Props) {
   return (
     <section className="svc-detail-section" data-testid="service-detail-portfolio">
       <Reveal>
-        <h2 className="svc-detail-section-title">Portfolio</h2>
+        <h2 className="svc-detail-section-title">Related work</h2>
         <div className="svc-detail-portfolio-grid">
           {service.portfolio.map((project) => {
             const content = (

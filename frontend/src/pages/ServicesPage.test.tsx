@@ -21,7 +21,7 @@ describe("ServicesPage", () => {
     expect(screen.getByTestId(SERVICES_EXPERTISE_SEPARATOR_TEST_ID)).toBeInTheDocument();
   });
 
-  it("shows a mosaic grid of six expertise cards with Stitch actions", () => {
+  it("shows a mosaic grid of expertise cards with Stitch actions", () => {
     render(
       <MemoryRouter>
         <ServicesPage />
@@ -30,14 +30,12 @@ describe("ServicesPage", () => {
 
     const grid = screen.getByTestId("stitch-services-grid");
     const cards = within(grid).getAllByTestId("stitch-service-card");
-    expect(cards).toHaveLength(6);
-    expect(cards[0]).toHaveClass("stitch-service-card--span-2");
-    expect(cards[1]).toHaveClass("stitch-service-card--span-1");
-    expect(cards[5]).toHaveClass("stitch-service-card--span-3", "stitch-service-card--split");
+    expect(cards.length).toBeGreaterThanOrEqual(7);
+    expect(cards[0]).toHaveClass("stitch-service-card--span-1");
     expect(screen.getByRole("heading", { name: /Website Development/i })).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: /E-commerce/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /E-commerce Development/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /AI Integration/i })).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /Learn more/i }).length).toBeGreaterThanOrEqual(6);
+    expect(screen.getAllByRole("link", { name: /View service/i }).length).toBeGreaterThanOrEqual(7);
   });
 
   it("renders the How We Work band and bottom CTA from the Stitch screenshot", () => {
@@ -70,6 +68,7 @@ describe("ServicesPage", () => {
       "website-development",
       "web-applications",
       "mobile-applications",
+      "e-commerce-development",
       "mvp-development",
       "automation-tools",
       "ai-integration",

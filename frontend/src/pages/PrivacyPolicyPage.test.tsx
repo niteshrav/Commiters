@@ -77,12 +77,8 @@ describe("PrivacyPolicyPage", () => {
     expect(screen.getByTestId("privacy-page")).toBeInTheDocument();
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
-    expect(within(copyrightCell).getByText(SITE_FOOTER_COPY.copyrightLine1)).toHaveTextContent(
-      "© 2026 Commiters Softwares.",
-    );
-    expect(within(copyrightCell).getByText(SITE_FOOTER_TAGLINE)).toHaveTextContent(
-      "Engineering Precision for world-class digital products.",
-    );
+    expect(copyrightCell).toHaveTextContent("© 2026 Commiters Softwares.");
+    expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass("footer-brand-tagline");
     expect(screen.getByTestId("footer-logo-cell").querySelector(".brand-logo--footer")).toBeTruthy();
   });
 });

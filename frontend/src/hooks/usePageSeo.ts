@@ -8,6 +8,8 @@ export type PageSeoInput = {
   keywords?: string;
   path: string;
   ogType?: string;
+  ogImage?: string;
+  robots?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 };
 
@@ -31,6 +33,10 @@ function upsertLink(rel: string, href: string) {
   el.href = href;
 }
 
+function removePageStructuredData() {
+  document.querySelectorAll('script[data-seo-page="true"]').forEach((node) => node.remove());
+}
+
 /** Sets document title, meta description, Open Graph tags, and optional JSON-LD. */
 export function usePageSeo(input: PageSeoInput | null): void {
   useEffect(() => {
@@ -38,9 +44,15 @@ export function usePageSeo(input: PageSeoInput | null): void {
 
     const previousTitle = document.title;
     const canonicalUrl = `${SITE_ORIGIN}${input.path}`;
+    const ogImage = input.ogImage
+      ? input.ogImage.startsWith("http")
+        ? input.ogImage
+        : `${SITE_ORIGIN}${input.ogImage}`
+      : `${SITE_ORIGIN}/assets/commiters-header-logo.png`;
 
     document.title = input.title;
     upsertMeta("name", "description", input.description);
+    upsertMeta("name", "robots", input.robots ?? "index, follow");
     if (input.keywords) {
       upsertMeta("name", "keywords", input.keywords);
     }
@@ -49,26 +61,31 @@ export function usePageSeo(input: PageSeoInput | null): void {
     upsertMeta("property", "og:description", input.description);
     upsertMeta("property", "og:type", input.ogType ?? "website");
     upsertMeta("property", "og:url", canonicalUrl);
-    upsertMeta("property", "og:site_name", "Commiters");
+    upsertMeta("property", "og:site_name", "Commiters Softwares");
+    upsertMeta("property", "og:image", ogImage);
     upsertMeta("name", "twitter:card", "summary_large_image");
     upsertMeta("name", "twitter:title", input.title);
     upsertMeta("name", "twitter:description", input.description);
+    upsertMeta("name", "twitter:image", ogImage);
     upsertLink("canonical", canonicalUrl);
 
-    let script: HTMLScriptElement | null = null;
+    removePageStructuredData();
+    const scripts: HTMLScriptElement[] = [];
     if (input.structuredData) {
-      script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.text = JSON.stringify(input.structuredData);
-      script.dataset.seoInjected = "true";
-      document.head.appendChild(script);
+      const payloads = Array.isArray(input.structuredData) ? input.structuredData : [input.structuredData];
+      for (const payload of payloads) {
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.text = JSON.stringify(payload);
+        script.dataset.seoPage = "true";
+        document.head.appendChild(script);
+        scripts.push(script);
+      }
     }
 
     return () => {
       document.title = previousTitle;
-      if (script) {
-        script.remove();
-      }
+      scripts.forEach((script) => script.remove());
     };
   }, [input]);
 }

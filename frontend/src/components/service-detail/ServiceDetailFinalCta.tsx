@@ -18,10 +18,14 @@ export default function ServiceDetailFinalCta() {
           >
             Book Free Consultation
           </a>
-          <Link className="btn svc-detail-btn svc-detail-btn--outline" to={ROUTES.contact}>
+          <Link className="btn btn-secondary svc-detail-btn" to={ROUTES.contact}>
             Contact Us
           </Link>
         </div>
+        <p className="svc-detail-final-cta-faq">
+          Questions about pricing or process?{" "}
+          <Link to={ROUTES.faq}>Browse our FAQ</Link>
+        </p>
       </Reveal>
     </section>
   );

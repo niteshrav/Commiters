@@ -1,12 +1,11 @@
 import CookiePolicyDocument from "../components/CookiePolicyDocument";
 import CookiePolicyIntro from "../components/CookiePolicyIntro";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { COOKIE_PAGE_COPY } from "../lib/cookiePageContent";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { COOKIE_CONTENT_COLUMN_CLASS, COOKIE_PAGE_CLASS } from "../lib/cookiePageLayout";
-import { pageTitle } from "../lib/siteMeta";
+import { cookiePolicyPageSeo } from "../lib/sitePageSeo";
 
 export default function CookiePolicyPage() {
-  useDocumentTitle(pageTitle(COOKIE_PAGE_COPY.title));
+  usePageSeo(cookiePolicyPageSeo());
 
   return (
     <div className={COOKIE_PAGE_CLASS} data-testid="cookie-policy-page">

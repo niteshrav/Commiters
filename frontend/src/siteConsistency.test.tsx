@@ -6,16 +6,26 @@ import { APP_ROUTE_PATHS, ROUTES } from "./lib/routes";
 import { buildServiceDetailPath } from "./lib/services";
 import { serviceDetailTitleForTests } from "./pages/ServiceDetailPage";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "./lib/siteBrand";
+import { WHATSAPP_FLOATING_ACTION_LABEL } from "./lib/whatsappFloatingAction";
+import { TRUSTTAP_DOCUMENT_TITLE } from "./lib/trustTapPageContent";
 import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./lib/siteMeta";
+import { WEBSITE_DEVELOPMENT_UDAPUR, WHATSAPP_AUTOMATION_UDAPUR } from "./lib/seoLandingUdaipurContent";
+import {
+  aboutPageSeo,
+  caseStudiesPageSeo,
+  contactPageSeo,
+  joinUsPageSeo,
+  servicesPageSeo,
+} from "./lib/sitePageSeo";
 
 function expectedTitle(path: string): string {
   switch (path) {
     case ROUTES.home:
       return DEFAULT_DOCUMENT_TITLE;
     case ROUTES.about:
-      return pageTitle("About");
+      return aboutPageSeo().title;
     case ROUTES.caseStudies:
-      return pageTitle("Case Studies");
+      return caseStudiesPageSeo().title;
     case ROUTES.technicalLedger:
       return pageTitle("Technical Ledger");
     case ROUTES.commitersCaseStudy:
@@ -28,14 +38,22 @@ function expectedTitle(path: string): string {
       return pageTitle("Multi-Role CRM Case Study");
     case ROUTES.nextsaasCaseStudy:
       return pageTitle("NextSaas Case Study");
+    case ROUTES.trustTap:
+      return TRUSTTAP_DOCUMENT_TITLE;
     case ROUTES.services:
-      return pageTitle("Services");
+      return servicesPageSeo().title;
     case ROUTES.joinUs:
-      return pageTitle("Apply");
+      return joinUsPageSeo().title;
+    case ROUTES.openPositions:
+      return pageTitle("Open Positions");
     case ROUTES.contact:
-      return pageTitle("Contact");
+      return contactPageSeo().title;
     case ROUTES.faq:
       return pageTitle("Frequently Asked Questions");
+    case ROUTES.websiteDevelopmentUdaipur:
+      return WEBSITE_DEVELOPMENT_UDAPUR.seo.title;
+    case ROUTES.whatsappAutomationUdaipur:
+      return WHATSAPP_AUTOMATION_UDAPUR.seo.title;
     case ROUTES.privacyPolicy:
       return pageTitle("Privacy Policy");
     case ROUTES.cookiePolicy:
@@ -78,6 +96,16 @@ describe("Site-wide consistency", () => {
 
     expect(screen.queryByTestId("site-quick-actions")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog", { name: /quick inquiry/i })).not.toBeInTheDocument();
+  });
+
+  it.each(APP_ROUTE_PATHS)("route %s shows the floating WhatsApp action", (path) => {
+    render(
+      <MemoryRouter initialEntries={[path]}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("link", { name: WHATSAPP_FLOATING_ACTION_LABEL })).toBeInTheDocument();
   });
 
   it.each(APP_ROUTE_PATHS)("route %s exposes exactly one site footer landmark", (path) => {

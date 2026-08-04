@@ -1,21 +1,20 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { ROUTES } from "../lib/routes";
 import { useWebsiteSettings } from "../lib/cms/hooks";
 
-/** Applies CMS website settings (favicon, meta description) when available. */
+/** Applies CMS website settings (favicon) when available. Home meta description comes from page SEO. */
 export default function CmsSiteMeta() {
   const settings = useWebsiteSettings();
+  const location = useLocation();
 
   useEffect(() => {
-    if (settings.metaDescription) {
-      let meta = document.querySelector('meta[name="description"]');
-      if (!meta) {
-        meta = document.createElement("meta");
-        meta.setAttribute("name", "description");
-        document.head.appendChild(meta);
-      }
-      meta.setAttribute("content", settings.metaDescription);
-    }
-  }, [settings.metaDescription]);
+    if (location.pathname !== ROUTES.home) return;
+    if (!settings.metaDescription) return;
+    const meta = document.querySelector('meta[name="description"]');
+    if (!meta) return;
+    meta.setAttribute("content", settings.metaDescription);
+  }, [location.pathname, settings.metaDescription]);
 
   useEffect(() => {
     if (!settings.favicon) return;

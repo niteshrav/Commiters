@@ -1,9 +1,9 @@
 import { PRIMARY_NAV_ITEMS } from "../navSections";
 import { ROUTES } from "../routes";
-import { buildServiceDetailPath, getServiceByGridId } from "../services";
+import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
-import { SITE_FOOTER_COPY, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
+import { SITE_FOOTER_COPY, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
 import { CONTACT_STUDIO } from "../contactPageContent";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
 import { LEAD_SERVICE_LABELS } from "../leadServices";
@@ -11,23 +11,21 @@ import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../siteBra
 import { hasCmsDoc, hasCmsItems } from "./api";
 import { resolveBrandLogoSrc } from "./media";
 
+
 const SERVICE_ICONS = new Set(["website", "ai", "webapp", "mobile", "automation", "mvp", "ecommerce"]);
-
-const SERVICE_GRID_SPAN: Record<string, 1 | 2 | 3> = {
-  website: 2,
-  ai: 1,
-  webapp: 1,
-  mobile: 1,
-  mvp: 1,
-  ecommerce: 2,
-  automation: 3,
-};
-
 function slugify(value: string): string {
   return value
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function normalizeInternalPath(path: string): string {
+  const normalized = path.replace(/\/+$/, "") || "/";
+  if (normalized === "/open-position" || normalized === "/job-positions" || normalized === "/job-position") {
+    return ROUTES.openPositions;
+  }
+  return path;
 }
 
 function asString(value: unknown, fallback = ""): string {
@@ -50,14 +48,14 @@ export function mapCmsServiceToCard(service: Record<string, unknown>, index: num
     title,
     description: asString(service.description, fallback?.description ?? ""),
     icon,
-    gridSpan: fallback?.gridSpan ?? SERVICE_GRID_SPAN[icon] ?? 1,
-    layout: fallback?.layout ?? (icon === "automation" ? "split" : "standard"),
+    gridSpan: 1,
+    layout: "standard",
     hoverAction: fallback?.hoverAction ?? {
       kind: "link",
-      label: "Learn more",
-      href: buildServiceDetailPath(getServiceByGridId(id)?.slug ?? (slugify(title) || id)),
+      label: "View service",
+      href: resolveServiceDetailHref({ id, title, icon: rawIcon }),
     },
-    actionVisibility: fallback?.actionVisibility,
+    actionVisibility: "always" as const,
   };
 }
 
@@ -89,19 +87,23 @@ export function resolveNavbar(cmsNavbar: Record<string, unknown> | null | undefi
   const links = Array.isArray(cmsNavbar.navLinks) ? cmsNavbar.navLinks : [];
   const navItems: NavItem[] =
     links.length > 0
-      ? links
+      ? (links
           .map((link, index) => {
             const row = asRecord(link);
             if (!row) return null;
-            const to = asString(row.url, "/");
+            const to = normalizeInternalPath(asString(row.url, "/"));
+            const order = Number(row.order);
             return {
               id: slugify(asString(row.label, `nav-${index}`)) || `nav-${index}`,
               label: asString(row.label, "Link"),
               to,
               end: to === ROUTES.home,
+              order: Number.isFinite(order) ? order : index + 1,
             };
           })
-          .filter(Boolean) as NavItem[]
+          .filter(Boolean) as Array<NavItem & { order: number }>)
+          .sort((a, b) => a.order - b.order)
+          .map(({ order: _order, ...item }) => item)
       : fallbackNav;
 
   return {
@@ -120,7 +122,7 @@ function mapFooterLink(link: Record<string, unknown>): FooterLinkCell | null {
   if (url.startsWith("http://") || url.startsWith("https://")) {
     return { kind: "external", label, href: url, external: true };
   }
-  return { kind: "internal", label, to: url };
+  return { kind: "internal", label, to: normalizeInternalPath(url) };
 }
 
 const SOCIAL_LINK_ORDER = ["LinkedIn", "WhatsApp", "Instagram", "Medium"] as const;
@@ -145,9 +147,16 @@ function mergeLinkGroups(cmsLinks: FooterLinkCell[] | null, fallbackLinks: reado
   return merged;
 }
 
+function orderFooterNavigationLinks(links: FooterLinkCell[]): FooterLinkCell[] {
+  const byLabel = new Map(links.map((link) => [link.label.toLowerCase(), link]));
+  return SITE_FOOTER_PRIMARY_NAV_LINK_LABELS.map((label) => byLabel.get(label.toLowerCase())).filter(
+    (link): link is FooterLinkCell => Boolean(link),
+  );
+}
+
 function mergeNavigationLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
   const fallbackLinks = SITE_FOOTER_COPY.navColumns.find((column) => column.heading === "NAVIGATION")?.links ?? [];
-  return mergeLinkGroups(cmsLinks, fallbackLinks);
+  return orderFooterNavigationLinks(mergeLinkGroups(cmsLinks, fallbackLinks));
 }
 
 function mergeLegalLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
@@ -173,7 +182,6 @@ function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
 
 export function resolveFooter(
   cmsFooter: Record<string, unknown> | null | undefined,
-  adminUrl: string,
 ): { copyrightLine1: string; copyrightLine2: string; navColumns: readonly FooterNavColumn[] } {
   const fallback = SITE_FOOTER_COPY;
 
@@ -181,7 +189,7 @@ export function resolveFooter(
     return {
       copyrightLine1: fallback.copyrightLine1,
       copyrightLine2: fallback.copyrightLine2,
-      navColumns: appendAdminLink(fallback.navColumns, adminUrl),
+      navColumns: stripAdminLink(fallback.navColumns),
     };
   }
 
@@ -240,21 +248,16 @@ export function resolveFooter(
   return {
     copyrightLine1: asString(cmsFooter.copyright, fallback.copyrightLine1),
     copyrightLine2: asString(cmsFooter.description, fallback.copyrightLine2),
-    navColumns: appendAdminLink(navColumns, adminUrl),
+    navColumns: stripAdminLink(navColumns),
   };
 }
 
-function appendAdminLink(columns: readonly FooterNavColumn[], adminUrl: string): readonly FooterNavColumn[] {
+function stripAdminLink(columns: readonly FooterNavColumn[]): readonly FooterNavColumn[] {
   return columns.map((column) => {
     if (column.heading !== "LEGAL") return column;
-    const hasAdmin = column.links.some((link) => link.label.toLowerCase() === "admin");
-    if (hasAdmin) return column;
     return {
       ...column,
-      links: [
-        ...column.links,
-        { kind: "external", label: "Admin", href: adminUrl, external: true },
-      ],
+      links: column.links.filter((link) => link.label.toLowerCase() !== "admin"),
     };
   });
 }
@@ -306,6 +309,10 @@ export function resolveContactStudio(cmsContact: Record<string, unknown> | null 
 export function resolveJoinUsPositions(cmsJobs: Record<string, unknown>[] | null | undefined): readonly string[] {
   if (!hasCmsItems(cmsJobs)) return JOIN_US_POSITION_OPTIONS;
   const titles = cmsJobs
+    .filter((job) => {
+      const status = asString(job.status);
+      return !status || status === "open";
+    })
     .map((job) => asString(job.title))
     .filter(Boolean);
   return titles.length ? [...titles, "Other"] : JOIN_US_POSITION_OPTIONS;

@@ -16,6 +16,16 @@ import {
 } from "../models";
 import { login, me, registerInitialAdmin, updatePassword, updateProfile } from "../controllers/authController";
 import { postTechnicalLedgerArticle } from "../../controllers/technicalLedgerController";
+import {
+  createJob,
+  deleteJob,
+  duplicateJob,
+  getAdminJobById,
+  listAdminJobs,
+  publishJob,
+  unpublishJob,
+  updateJob,
+} from "../controllers/jobController";
 import { createCrudController, createSingletonController } from "../controllers/crudFactory";
 import { getDashboardStats } from "../controllers/dashboardController";
 import {
@@ -95,10 +105,15 @@ mountCrud(
   "/faqs",
   createCrudController({ model: Faq, searchFields: ["question", "answer"], defaultSort: "order" }),
 );
-mountCrud(
-  "/jobs",
-  createCrudController({ model: JobPosition, searchFields: ["title", "description"], defaultSort: "order" }),
-);
+
+adminRouter.get("/jobs", listAdminJobs);
+adminRouter.get("/jobs/:id", getAdminJobById);
+adminRouter.post("/jobs", createJob);
+adminRouter.put("/jobs/:id", updateJob);
+adminRouter.delete("/jobs/:id", deleteJob);
+adminRouter.post("/jobs/:id/duplicate", duplicateJob);
+adminRouter.patch("/jobs/:id/publish", publishJob);
+adminRouter.patch("/jobs/:id/unpublish", unpublishJob);
 
 adminRouter.get("/contact-queries", listContactQueries);
 adminRouter.get("/contact-queries/:id", getContactQuery);

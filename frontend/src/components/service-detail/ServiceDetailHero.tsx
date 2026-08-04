@@ -6,6 +6,7 @@ import {
   IconLayers,
   IconRobot,
   IconRocket,
+  IconShoppingBag,
 } from "../icons";
 import Reveal from "../motion/Reveal";
 import type { ServiceDetail } from "../../lib/services/types";
@@ -20,6 +21,7 @@ const HERO_ICONS = {
   mobile: IconDevicePhone,
   automation: IconAutomationSpark,
   mvp: IconRocket,
+  ecommerce: IconShoppingBag,
 } as const;
 
 type Props = { service: ServiceDetail };
@@ -46,7 +48,7 @@ export default function ServiceDetailHero({ service }: Props) {
             >
               Get Free Consultation
             </a>
-            <Link className="btn svc-detail-btn svc-detail-btn--outline" to={ROUTES.contact}>
+            <Link className="btn btn-secondary svc-detail-btn" to={ROUTES.contact}>
               Request Quote
             </Link>
           </div>

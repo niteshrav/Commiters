@@ -9,14 +9,15 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDIES_PAGE_COPY.intro.subtext).toMatch(/visionary founders/i);
   });
 
-  it("lists five portfolio projects with problem-solution framing", () => {
-    expect(CASE_STUDY_PROJECTS).toHaveLength(5);
+  it("lists six portfolio projects with problem-solution framing", () => {
+    expect(CASE_STUDY_PROJECTS).toHaveLength(6);
     expect(CASE_STUDY_PROJECTS.map((project) => project.id)).toEqual([
       "commiters",
       "ai-summarizer",
       "multi-role-crm",
       "neardrop-mvp",
       "nextsaas",
+      "trusttap",
     ]);
     expect(CASE_STUDY_PROJECTS[0]).toMatchObject({
       title: "Commiters.com",
@@ -33,6 +34,8 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDY_PROJECTS[3].tags).toEqual(["AFFILIATES", "VENDORS", "CUSTOMERS"]);
     expect(CASE_STUDY_PROJECTS[4].title).toBe("NextSaas");
     expect(CASE_STUDY_PROJECTS[4].solution).toMatch(/end-to-end testing/i);
+    expect(CASE_STUDY_PROJECTS[5].title).toBe("TrustTap");
+    expect(CASE_STUDY_PROJECTS[5].detailsHref).toBe(ROUTES.trustTap);
   });
 
   it("links the Commiters showcase card to the technical case study detail page", () => {
@@ -60,8 +63,15 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDY_PROJECTS[4].external).toBeUndefined();
   });
 
-  it("uses View Project Details CTAs and a bottom band linking to contact and services", () => {
-    expect(CASE_STUDY_PROJECTS.every((project) => project.detailsLabel === "View Project Details")).toBe(true);
+  it("links the TrustTap card to the product page", () => {
+    expect(CASE_STUDY_PROJECTS[5].detailsHref).toBe(ROUTES.trustTap);
+    expect(CASE_STUDY_PROJECTS[5].detailsLabel).toBe("View Product");
+  });
+
+  it("uses portfolio CTAs and a bottom band linking to contact and services", () => {
+    const projectDetailLabels = CASE_STUDY_PROJECTS.map((project) => project.detailsLabel);
+    expect(projectDetailLabels.filter((label) => label === "View Project Details")).toHaveLength(5);
+    expect(projectDetailLabels).toContain("View Product");
     expect(CASE_STUDIES_PAGE_COPY.bottomCta.title).toBe("Ready for the next level?");
     expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryTo).toBe(ROUTES.contact);
     expect(CASE_STUDIES_PAGE_COPY.bottomCta.secondaryTo).toBe(ROUTES.services);

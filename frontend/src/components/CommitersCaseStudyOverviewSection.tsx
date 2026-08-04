@@ -44,7 +44,14 @@ export default function CommitersCaseStudyOverviewSection() {
             {coreStack.items.map((item) => (
               <li key={item.slug} className={COMMITERS_CASE_STUDY_CORE_STACK_ITEM_CLASS}>
                 <span className={COMMITERS_CASE_STUDY_CORE_STACK_ICON_CLASS} aria-hidden>
-                  <img src={resolveTechIconUrl(item)} alt="" width={28} height={28} loading="lazy" decoding="async" />
+                  <img
+                    src={resolveTechIconUrl(item)}
+                    alt={`${item.title} technology logo`}
+                    width={28}
+                    height={28}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </span>
                 <span>
                   <strong>{item.title}</strong>

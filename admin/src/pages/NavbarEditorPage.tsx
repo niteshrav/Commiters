@@ -39,10 +39,13 @@ export default function NavbarEditorPage() {
     setMessage("");
     setSaving(true);
     try {
-      await api("/api/admin/navbar", {
+      const { _id, __v, createdAt, updatedAt, ...rest } = values;
+      const saved = await api<Record<string, unknown>>("/api/admin/navbar", {
         method: "PUT",
-        body: JSON.stringify({ ...values, navLinks, isActive: true }),
+        body: JSON.stringify({ ...rest, navLinks, isActive: true }),
       });
+      setValues(saved);
+      setNavLinks(Array.isArray(saved.navLinks) ? (saved.navLinks as NavLink[]) : navLinks);
       setMessage("Navbar saved.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Save failed.");

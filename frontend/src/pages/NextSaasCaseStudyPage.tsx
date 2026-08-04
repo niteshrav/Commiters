@@ -1,13 +1,12 @@
 import NextSaasCaseStudyBottomCta from "../components/NextSaasCaseStudyBottomCta";
 import NextSaasCaseStudyFeaturesSection from "../components/NextSaasCaseStudyFeaturesSection";
 import NextSaasCaseStudyIntroSection from "../components/NextSaasCaseStudyIntroSection";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { NEXTSAAS_CASE_STUDY_COPY } from "../lib/nextsaasCaseStudyContent";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { NEXTSAAS_CASE_STUDY_PAGE_CLASS } from "../lib/nextsaasCaseStudyLayout";
-import { pageTitle } from "../lib/siteMeta";
+import { nextsaasCaseStudyPageSeo } from "../lib/sitePageSeo";
 
 export default function NextSaasCaseStudyPage() {
-  useDocumentTitle(pageTitle(NEXTSAAS_CASE_STUDY_COPY.documentTitle));
+  usePageSeo(nextsaasCaseStudyPageSeo());
 
   return (
     <div className={NEXTSAAS_CASE_STUDY_PAGE_CLASS} data-testid="nextsaas-case-study-page">

@@ -8,8 +8,10 @@ import AccessibilityWidget from "./AccessibilityWidget";
 import { AccessibilityProvider } from "./AccessibilityProvider";
 import SkipToMainLink from "./SkipToMainLink";
 import CmsSiteMeta from "./CmsSiteMeta";
+import SiteOrganizationSchema from "./SiteOrganizationSchema";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import WhatsAppFloatingButton from "./WhatsAppFloatingButton";
 import { ACCESSIBILITY_MAIN_CONTENT_ID } from "../lib/accessibilityContent";
 import { CmsProvider } from "../lib/cms/CmsProvider";
 
@@ -74,6 +76,7 @@ export default function Layout({ children }: PropsWithChildren) {
       <AccessibilityProvider>
         <CmsProvider>
           <CmsSiteMeta />
+          <SiteOrganizationSchema />
           <div className="site-shell" data-theme="commiters-brand">
           <SkipToMainLink />
           <CircuitBackdrop />
@@ -90,6 +93,7 @@ export default function Layout({ children }: PropsWithChildren) {
           </main>
           <Footer />
           <AccessibilityWidget />
+          <WhatsAppFloatingButton />
           <CookieConsentBanner />
           <CookiePreferencesPanel />
           </div>

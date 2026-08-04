@@ -15,8 +15,10 @@ import {
   WebsiteSettings,
 } from "../models";
 import { createCrudController, createSingletonController } from "../controllers/crudFactory";
+import { getPublicJobBySlug } from "../controllers/jobController";
 import { asyncHandler } from "../utils/asyncHandler";
 import { isMongoConnected } from "../config/database";
+import { publicJobFilter } from "../models/JobPosition";
 import type { Request, Response, NextFunction } from "express";
 
 export const cmsPublicRouter = Router();
@@ -79,7 +81,7 @@ const blogs = createCrudController({ model: Blog, searchFields: ["title", "conte
 const team = createCrudController({ model: TeamMember, searchFields: ["name", "designation"], publicFilter: { isActive: true } });
 const testimonials = createCrudController({ model: Testimonial, searchFields: ["clientName", "company", "review"], publicFilter: { isActive: true } });
 const faqs = createCrudController({ model: Faq, searchFields: ["question", "answer"], publicFilter: { isActive: true } });
-const jobs = createCrudController({ model: JobPosition, searchFields: ["title", "description"], publicFilter: { status: "open" } });
+const jobs = createCrudController({ model: JobPosition, searchFields: ["title", "description"], publicFilter: publicJobFilter() });
 
 cmsPublicRouter.get("/services", services.list);
 cmsPublicRouter.get("/services/:id", services.getById);
@@ -99,6 +101,7 @@ cmsPublicRouter.get("/testimonials/:id", testimonials.getById);
 cmsPublicRouter.get("/faqs", faqs.list);
 cmsPublicRouter.get("/faqs/:id", faqs.getById);
 cmsPublicRouter.get("/jobs", jobs.list);
+cmsPublicRouter.get("/jobs/slug/:slug", getPublicJobBySlug);
 cmsPublicRouter.get("/jobs/:id", jobs.getById);
 
 cmsPublicRouter.get("/bundle", asyncHandler(async (_req: Request, res: Response) => {
@@ -129,7 +132,7 @@ cmsPublicRouter.get("/bundle", asyncHandler(async (_req: Request, res: Response)
     TeamMember.find({ isActive: true }).sort({ order: 1 }),
     Testimonial.find({ isActive: true }).sort({ order: 1 }),
     Faq.find({ isActive: true }).sort({ order: 1 }),
-    JobPosition.find({ status: "open" }).sort({ order: 1 }),
+    JobPosition.find(publicJobFilter()).sort({ featured: -1, displayOrder: 1, createdAt: -1 }),
   ]);
 
   return res.json({

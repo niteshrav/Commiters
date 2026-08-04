@@ -1,14 +1,13 @@
 import { ROUTES } from "./routes";
-import { buildServiceDetailPath, getServiceByGridId } from "./services";
+import { resolveServiceDetailHref } from "./services";
 import { buildDiscoveryCallCalendarUrl, buildWhatsAppUrl } from "./siteContact";
 
 function serviceDetailHref(gridId: string): string {
-  const service = getServiceByGridId(gridId);
-  return buildServiceDetailPath(service?.slug ?? gridId);
+  return resolveServiceDetailHref({ id: gridId });
 }
 
 function serviceLearnMore(gridId: string): ServiceHoverAction {
-  return { kind: "link", label: "Learn more", href: serviceDetailHref(gridId) };
+  return { kind: "link", label: "View service", href: serviceDetailHref(gridId) };
 }
 
 export type ServiceHoverAction = {
@@ -35,20 +34,10 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     description:
       "High-conversion marketing sites and enterprise portals built with speed, SEO, and accessibility as core priorities.",
     icon: "website",
-    gridSpan: 2,
+    gridSpan: 1,
     layout: "standard",
     actionVisibility: "always",
     hoverAction: serviceLearnMore("website-development"),
-  },
-  {
-    id: "ai-integration",
-    title: "AI Integration",
-    description:
-      "Embedding LLMs and custom machine learning models into your existing workflows to drive automation.",
-    icon: "ai",
-    gridSpan: 1,
-    layout: "standard",
-    hoverAction: serviceLearnMore("ai-integration"),
   },
   {
     id: "web-applications",
@@ -58,6 +47,7 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "webapp",
     gridSpan: 1,
     layout: "standard",
+    actionVisibility: "always",
     hoverAction: serviceLearnMore("web-applications"),
   },
   {
@@ -68,7 +58,41 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "mobile",
     gridSpan: 1,
     layout: "standard",
+    actionVisibility: "always",
     hoverAction: serviceLearnMore("mobile-applications"),
+  },
+  {
+    id: "e-commerce-development",
+    title: "E-commerce Development",
+    description:
+      "Conversion-focused storefronts with fast checkout, payment integrations, and catalog systems built to scale with your sales.",
+    icon: "ecommerce",
+    gridSpan: 1,
+    layout: "standard",
+    actionVisibility: "always",
+    hoverAction: serviceLearnMore("e-commerce-development"),
+  },
+  {
+    id: "ai-integration",
+    title: "AI Integration",
+    description:
+      "Embedding LLMs and custom machine learning models into your existing workflows to drive automation.",
+    icon: "ai",
+    gridSpan: 1,
+    layout: "standard",
+    actionVisibility: "always",
+    hoverAction: serviceLearnMore("ai-integration"),
+  },
+  {
+    id: "automation-tools",
+    title: "Automation Tools",
+    description:
+      "Bespoke internal tools and scripts that eliminate repetitive tasks, connecting your disparate data sources into a unified ecosystem.",
+    icon: "automation",
+    gridSpan: 1,
+    layout: "standard",
+    actionVisibility: "always",
+    hoverAction: serviceLearnMore("automation-tools"),
   },
   {
     id: "mvp-development",
@@ -78,18 +102,8 @@ export const STITCH_SERVICES_GRID: StitchServiceCard[] = [
     icon: "mvp",
     gridSpan: 1,
     layout: "standard",
-    hoverAction: serviceLearnMore("mvp-development"),
-  },
-  {
-    id: "automation-tools",
-    title: "Automation Tools",
-    description:
-      "Bespoke internal tools and scripts that eliminate repetitive tasks, connecting your disparate data sources into a unified ecosystem.",
-    icon: "automation",
-    gridSpan: 3,
-    layout: "split",
     actionVisibility: "always",
-    hoverAction: { kind: "button", label: "Learn more", href: serviceDetailHref("automation-tools") },
+    hoverAction: serviceLearnMore("mvp-development"),
   },
 ];
 

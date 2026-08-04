@@ -18,7 +18,7 @@ function fileHash(relativePath: string): string {
 }
 
 describe("caseStudiesPageAssets", () => {
-  it("ships all five grid card images including row-one Commiters and AI Summarizer crops", () => {
+  it("ships all grid card images including TrustTap product crop", () => {
     for (const asset of CASE_STUDY_IMAGE_ASSETS) {
       expect(existsSync(join(publicRoot, asset.src))).toBe(true);
       expect(asset.src).toMatch(/^\/assets\/case-studies\/.+\.png$/);

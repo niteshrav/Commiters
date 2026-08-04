@@ -3,12 +3,12 @@ import HomeBuiltForScale from "../components/HomeBuiltForScale";
 import HomeCorePillars from "../components/HomeCorePillars";
 import HomeHeroStitch from "../components/HomeHeroStitch";
 import HomeSectionSeparator from "../components/HomeSectionSeparator";
-import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { usePageSeo } from "../hooks/usePageSeo";
 import { HOME_SECTION_SEPARATOR_IDS } from "../lib/homeSectionLayout";
-import { DEFAULT_DOCUMENT_TITLE } from "../lib/siteMeta";
+import { homePageSeo } from "../lib/sitePageSeo";
 
 export default function HomePage() {
-  useDocumentTitle(DEFAULT_DOCUMENT_TITLE);
+  usePageSeo(homePageSeo());
 
   return (
     <div className="home-page" data-testid="home-page">

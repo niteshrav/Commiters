@@ -36,7 +36,7 @@ export default function HomeHeroStitch() {
             src={hero.heroImage}
             srcSet={`${hero.heroImage} 1x, ${hero.heroImage2x} 2x`}
             sizes="(min-width: 960px) 520px, 92vw"
-            alt=""
+            alt="Commiters software development — web and mobile engineering workspace"
             width={480}
             height={520}
             decoding="async"
