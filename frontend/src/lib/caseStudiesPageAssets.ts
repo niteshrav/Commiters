@@ -10,7 +10,7 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
   "ai-summarizer",
   "multi-role-crm",
   "neardrop-mvp",
-  "nextsaas",
+  "browse-my-vacation",
   "trusttap",
 ] as const;
 
@@ -40,10 +40,10 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
     alt: "NearDrop MVP delivery map with teal location pins on a tablet",
   },
   {
-    id: "nextsaas",
-    src: "/assets/case-studies/nextsaas.png",
-    srcSet: "/assets/case-studies/nextsaas@2x.png 2x",
-    alt: "Colorful laptop displaying NextSaas automated pipeline analytics dashboards",
+    id: "browse-my-vacation",
+    src: "/assets/case-studies/browse-my-vacation.png",
+    srcSet: "/assets/case-studies/browse-my-vacation@2x.png 2x",
+    alt: "BrowseMyVacation travel platform web application showcase",
   },
   {
     id: "trusttap",

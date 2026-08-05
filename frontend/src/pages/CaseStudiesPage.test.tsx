@@ -62,10 +62,10 @@ describe("CaseStudiesPage", () => {
       ROUTES.neardropCaseStudy,
     );
 
-    const nextsaasCard = cards[4];
-    expect(within(nextsaasCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
+    const bmvCard = cards[4];
+    expect(within(bmvCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
       "href",
-      ROUTES.nextsaasCaseStudy,
+      ROUTES.browseMyVacationCaseStudy,
     );
 
     const trustTapCard = cards[5];

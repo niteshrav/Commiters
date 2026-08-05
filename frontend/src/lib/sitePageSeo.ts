@@ -194,7 +194,7 @@ export function nextsaasCaseStudyPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(NEXTSAAS_CASE_STUDY_COPY.documentTitle),
     description: NEXTSAAS_CASE_STUDY_COPY.description,
-    path: ROUTES.nextsaasCaseStudy,
+    path: ROUTES.browseMyVacationCaseStudy,
   });
 }
 

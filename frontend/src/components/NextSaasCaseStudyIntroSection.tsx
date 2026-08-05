@@ -23,7 +23,7 @@ import {
   NEXTSAAS_CASE_STUDY_SCOPE_PIPELINES_GRID_CLASS,
   NEXTSAAS_CASE_STUDY_TITLE_CLASS,
 } from "../lib/nextsaasCaseStudyLayout";
-import { IconCodeBracket } from "./icons";
+import { IconGlobe } from "./icons";
 
 export default function NextSaasCaseStudyIntroSection() {
   const { kicker, title, description, introHeroImage, scope, pipelines } = NEXTSAAS_CASE_STUDY_COPY;
@@ -47,7 +47,7 @@ export default function NextSaasCaseStudyIntroSection() {
         <div className={NEXTSAAS_CASE_STUDY_SCOPE_PIPELINES_GRID_CLASS}>
           <article className={NEXTSAAS_CASE_STUDY_SCOPE_CARD_CLASS}>
             <span className={NEXTSAAS_CASE_STUDY_SCOPE_ICON_CLASS} aria-hidden>
-              <IconCodeBracket width={24} height={24} />
+              <IconGlobe width={24} height={24} />
             </span>
             <h2 id="nextsaas-case-study-scope-title" className={NEXTSAAS_CASE_STUDY_SCOPE_HEADING_CLASS}>
               {scope.heading}

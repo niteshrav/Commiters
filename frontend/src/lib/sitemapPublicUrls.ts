@@ -14,7 +14,7 @@ export function buildSitemapPublicPaths(): string[] {
     ROUTES.aiSummarizerCaseStudy,
     ROUTES.neardropCaseStudy,
     ROUTES.multiRoleCrmCaseStudy,
-    ROUTES.nextsaasCaseStudy,
+    ROUTES.browseMyVacationCaseStudy,
     ROUTES.trustTap,
     ROUTES.technicalLedger,
     ROUTES.contact,

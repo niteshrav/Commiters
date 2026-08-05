@@ -8,29 +8,33 @@ import { ROUTES } from "./routes";
 
 const publicRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "public");
 
-describe("nextsaasCaseStudyContent (BrowseMyVacation)", () => {
-  it("re-exports BrowseMyVacation copy for legacy imports", () => {
+describe("browseMyVacationCaseStudyContent", () => {
+  it("re-exports through the legacy NextSaas content module", () => {
     expect(NEXTSAAS_CASE_STUDY_COPY).toBe(BROWSE_MY_VACATION_CASE_STUDY_COPY);
   });
 
   it("matches the BrowseMyVacation travel platform case study copy", () => {
-    expect(NEXTSAAS_CASE_STUDY_COPY.title).toBe("BrowseMyVacation Web Platform.");
-    expect(NEXTSAAS_CASE_STUDY_COPY.scope.items).toEqual([
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.title).toBe("BrowseMyVacation Web Platform.");
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.kicker).toMatch(/TRAVEL PLATFORM/i);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.description).toMatch(/travel platform/i);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.scope.items).toEqual([
       "Travel discovery UX",
       "Booking & checkout",
       "Performance at scale",
     ]);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.visualBreak.badgeLabel).toBe("FOUNDER");
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.bottomCta.secondaryLabel).toBe("Start a project");
   });
 
   it("wires CTAs to the portfolio index and contact page", () => {
-    expect(NEXTSAAS_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.caseStudies);
-    expect(NEXTSAAS_CASE_STUDY_COPY.bottomCta.secondaryTo).toBe(ROUTES.contact);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.caseStudies);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.bottomCta.secondaryTo).toBe(ROUTES.contact);
   });
 
   it("references on-disk imagery for the intro hero and visual break", () => {
     for (const relativePath of [
-      NEXTSAAS_CASE_STUDY_COPY.introHeroImage.src.replace(/^\//, ""),
-      NEXTSAAS_CASE_STUDY_COPY.visualBreak.image.src.replace(/^\//, ""),
+      BROWSE_MY_VACATION_CASE_STUDY_COPY.introHeroImage.src.replace(/^\//, ""),
+      BROWSE_MY_VACATION_CASE_STUDY_COPY.visualBreak.image.src.replace(/^\//, ""),
     ]) {
       expect(existsSync(join(publicRoot, relativePath))).toBe(true);
     }

@@ -1,5 +1,7 @@
 /** Layout tokens for the NextSaas QA case study detail page. */
 export const NEXTSAAS_CASE_STUDY_PAGE_CLASS = "nextsaas-case-study-page" as const;
+/** Page modifier when the shared layout presents BrowseMyVacation copy. */
+export const BROWSE_MY_VACATION_CASE_STUDY_PAGE_CLASS = "browse-my-vacation-case-study-page" as const;
 export const NEXTSAAS_CASE_STUDY_INTRO_SECTION_CLASS = "nextsaas-case-study-intro" as const;
 export const NEXTSAAS_CASE_STUDY_INTRO_SHELL_CLASS = "nextsaas-case-study-intro-shell" as const;
 export const NEXTSAAS_CASE_STUDY_INTRO_COPY_CLASS = "nextsaas-case-study-intro-copy" as const;

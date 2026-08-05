@@ -5872,6 +5872,52 @@ textarea {
   color: var(--site-btn-secondary-text);
 }
 
+.browse-my-vacation-case-study-page .nextsaas-case-study-intro-scope-pipelines {
+  margin-top: clamp(20px, 3vw, 32px);
+}
+
+.browse-my-vacation-case-study-page .nextsaas-case-study-scope-pipelines-grid {
+  max-height: none;
+  align-items: start;
+}
+
+.browse-my-vacation-case-study-page .nextsaas-case-study-scope-card,
+.browse-my-vacation-case-study-page .nextsaas-case-study-pipelines-card {
+  max-height: none;
+}
+
+.browse-my-vacation-case-study-page .nextsaas-case-study-pipelines-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.browse-my-vacation-case-study-page .nextsaas-case-study-pipelines-layout {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  height: auto;
+}
+
+.browse-my-vacation-case-study-page .nextsaas-case-study-pipelines-copy {
+  height: auto;
+  justify-content: flex-start;
+  border-right: none;
+  border-bottom: 1px solid #e5e7eb;
+  padding: clamp(18px, 2.5vw, 24px);
+}
+
+.browse-my-vacation-case-study-page .nextsaas-case-study-pipelines-media {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-height: min(480px, 56vw);
+  background: #f3f4f6;
+}
+
+.browse-my-vacation-case-study-page .nextsaas-case-study-intro-hero-image {
+  object-fit: cover;
+  object-position: center top;
+  background: #eef4f3;
+}
+
 @media (max-width: 768px) {
   .nextsaas-case-study-scope-pipelines-grid,
   .nextsaas-case-study-infrastructure-layout {

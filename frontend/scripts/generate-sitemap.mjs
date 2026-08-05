@@ -24,7 +24,7 @@ const paths = [
   "/case-studies/ai-summarizer",
   "/case-studies/neardrop-mvp",
   "/case-studies/multi-role-crm",
-  "/case-studies/nextsaas",
+  "/case-studies/browse-my-vacation",
   "/products/trusttap",
   "/technical-ledger",
   "/contact",

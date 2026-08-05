@@ -16,7 +16,7 @@ describe("caseStudiesPageContent", () => {
       "ai-summarizer",
       "multi-role-crm",
       "neardrop-mvp",
-      "nextsaas",
+      "browse-my-vacation",
       "trusttap",
     ]);
     expect(CASE_STUDY_PROJECTS[0]).toMatchObject({
@@ -32,8 +32,8 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDY_PROJECTS[2].title).toBe("Multi-Role CRM & AI Chatbot");
     expect(CASE_STUDY_PROJECTS[2].problem).toMatch(/manual query resolution/i);
     expect(CASE_STUDY_PROJECTS[3].tags).toEqual(["AFFILIATES", "VENDORS", "CUSTOMERS"]);
-    expect(CASE_STUDY_PROJECTS[4].title).toBe("NextSaas");
-    expect(CASE_STUDY_PROJECTS[4].solution).toMatch(/end-to-end testing/i);
+    expect(CASE_STUDY_PROJECTS[4].title).toBe("BrowseMyVacation");
+    expect(CASE_STUDY_PROJECTS[4].solution).toMatch(/production-ready web application/i);
     expect(CASE_STUDY_PROJECTS[5].title).toBe("TrustTap");
     expect(CASE_STUDY_PROJECTS[5].detailsHref).toBe(ROUTES.trustTap);
   });
@@ -58,8 +58,8 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDY_PROJECTS[3].external).toBeUndefined();
   });
 
-  it("links the NextSaas card to the technical case study detail page", () => {
-    expect(CASE_STUDY_PROJECTS[4].detailsHref).toBe(ROUTES.nextsaasCaseStudy);
+  it("links the BrowseMyVacation card to the case study detail page", () => {
+    expect(CASE_STUDY_PROJECTS[4].detailsHref).toBe(ROUTES.browseMyVacationCaseStudy);
     expect(CASE_STUDY_PROJECTS[4].external).toBeUndefined();
   });
 

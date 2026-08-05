@@ -90,17 +90,18 @@ export const CASE_STUDY_PROJECTS: CaseStudyProject[] = [
     detailsHref: ROUTES.neardropCaseStudy,
   },
   {
-    id: "nextsaas",
-    title: "NextSaas",
-    tags: [],
+    id: "browse-my-vacation",
+    title: "BrowseMyVacation",
+    tags: ["Travel • Web App"],
+    tagVariant: "outline",
     problem:
-      "Ensuring performance and reliability across fragmented SaaS platforms required extensive manual verification.",
+      "The founder needed a fast, user-friendly travel platform that could grow with real customer traffic and feedback.",
     solution:
-      "Executed end-to-end testing for web and mobile applications to ensure cross-platform stability and reliability.",
+      "Delivered BrowseMyVacation—a production-ready web application with polished booking flows and reliable performance.",
     gridSpan: "narrow",
     layout: "stacked",
     detailsLabel: "View Project Details",
-    detailsHref: ROUTES.nextsaasCaseStudy,
+    detailsHref: ROUTES.browseMyVacationCaseStudy,
   },
   {
     id: "trusttap",

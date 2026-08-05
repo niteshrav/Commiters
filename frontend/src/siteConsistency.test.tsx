@@ -37,8 +37,8 @@ function expectedTitle(path: string): string {
       return pageTitle("NearDrop MVP Case Study");
     case ROUTES.multiRoleCrmCaseStudy:
       return pageTitle("Multi-Role CRM Case Study");
-    case ROUTES.nextsaasCaseStudy:
-      return pageTitle("NextSaas Case Study");
+    case ROUTES.browseMyVacationCaseStudy:
+      return pageTitle("BrowseMyVacation Case Study");
     case ROUTES.trustTap:
       return TRUSTTAP_DOCUMENT_TITLE;
     case ROUTES.services:

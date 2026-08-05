@@ -10,6 +10,7 @@ describe("routes", () => {
     expect(ROUTES.commitersCaseStudy).toBe("/case-studies/commiters");
     expect(ROUTES.aiSummarizerCaseStudy).toBe("/case-studies/ai-summarizer");
     expect(ROUTES.neardropCaseStudy).toBe("/case-studies/neardrop-mvp");
+    expect(ROUTES.browseMyVacationCaseStudy).toBe("/case-studies/browse-my-vacation");
     expect(ROUTES.nextsaasCaseStudy).toBe("/case-studies/nextsaas");
     expect(ROUTES.trustTap).toBe("/products/trusttap");
     expect(ROUTES.services).toBe("/services");

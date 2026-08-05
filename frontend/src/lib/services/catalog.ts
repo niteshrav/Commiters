@@ -124,10 +124,10 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         external: true,
       },
       {
-        title: "NextSaas Marketing Site",
-        tag: "Website",
-        description: "Conversion-focused SaaS landing experience with modular content sections.",
-        href: ROUTES.nextsaasCaseStudy,
+        title: "BrowseMyVacation",
+        tag: "Travel Platform",
+        description: "Production travel web app with fast discovery, booking flows, and reliable performance.",
+        href: ROUTES.browseMyVacationCaseStudy,
       },
     ],
   },
@@ -263,10 +263,10 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
     pricing: SERVICE_DEFAULT_PRICING,
     portfolio: [
       {
-        title: "NextSaas Marketing Site",
-        tag: "E-commerce Ready",
-        description: "Conversion-focused product storytelling with modular landing sections.",
-        href: ROUTES.nextsaasCaseStudy,
+        title: "BrowseMyVacation",
+        tag: "Travel Platform",
+        description: "Customer-ready travel platform engineered for speed, UX, and founder-led iteration.",
+        href: ROUTES.browseMyVacationCaseStudy,
       },
       {
         title: "Commiters.com",

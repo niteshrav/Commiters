@@ -9,6 +9,8 @@ export const ROUTES = {
   aiSummarizerCaseStudy: "/case-studies/ai-summarizer",
   neardropCaseStudy: "/case-studies/neardrop-mvp",
   multiRoleCrmCaseStudy: "/case-studies/multi-role-crm",
+  browseMyVacationCaseStudy: "/case-studies/browse-my-vacation",
+  /** Legacy URL — redirect to BrowseMyVacation case study */
   nextsaasCaseStudy: "/case-studies/nextsaas",
   trustTap: "/products/trusttap",
   contact: "/contact",
@@ -43,7 +45,7 @@ export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.aiSummarizerCaseStudy,
   ROUTES.neardropCaseStudy,
   ROUTES.multiRoleCrmCaseStudy,
-  ROUTES.nextsaasCaseStudy,
+  ROUTES.browseMyVacationCaseStudy,
   ROUTES.trustTap,
   ROUTES.contact,
   ROUTES.joinUs,

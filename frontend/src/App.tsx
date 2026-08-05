@@ -41,7 +41,8 @@ export default function App() {
         <Route path={ROUTES.aiSummarizerCaseStudy} element={<AiSummarizerCaseStudyPage />} />
         <Route path={ROUTES.neardropCaseStudy} element={<NearDropCaseStudyPage />} />
         <Route path={ROUTES.multiRoleCrmCaseStudy} element={<MultiRoleCrmCaseStudyPage />} />
-        <Route path={ROUTES.nextsaasCaseStudy} element={<NextSaasCaseStudyPage />} />
+        <Route path={ROUTES.browseMyVacationCaseStudy} element={<NextSaasCaseStudyPage />} />
+        <Route path={ROUTES.nextsaasCaseStudy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.trustTap} element={<TrustTapPage />} />
         <Route path={ROUTES.websiteDevelopmentUdaipur} element={<WebsiteDevelopmentUdaipurPage />} />
         <Route path={ROUTES.whatsappAutomationUdaipur} element={<WhatsAppAutomationUdaipurPage />} />
