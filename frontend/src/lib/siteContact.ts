@@ -8,6 +8,17 @@ export const COMMITERS_EMAIL_SECONDARY = "commitersudaipur@gmail.com";
 /** Single-line display for contact strip — primary professional inbox only (PDF / international trust). */
 export const COMMITERS_EMAIL_STRIP_DISPLAY = COMMITERS_EMAIL_PRIMARY;
 
+/** Visible on contact page and applicant-facing copy; secondary inbox stays internal (forms, calendar). */
+export function publicContactEmailDisplay(raw?: string): string {
+  const value = (raw ?? COMMITERS_EMAIL_PRIMARY).trim();
+  const first = value.split(",")[0]?.trim();
+  return first || COMMITERS_EMAIL_PRIMARY;
+}
+
+export function buildMailtoPublicContactHref(raw?: string): string {
+  return `mailto:${publicContactEmailDisplay(raw)}`;
+}
+
 /** Legal pages list both inboxes next to a dual-recipient mailto. */
 export const COMMITERS_EMAIL_LEGAL_DISPLAY = `${COMMITERS_EMAIL_PRIMARY}, ${COMMITERS_EMAIL_SECONDARY}`;
 

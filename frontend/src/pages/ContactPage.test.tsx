@@ -5,10 +5,9 @@ import { MemoryRouter } from "react-router-dom";
 import ContactPage from "./ContactPage";
 import { STITCH_COPY } from "../lib/stitchDesign";
 import { CONTACT_STUDIO } from "../lib/contactPageContent";
-import { CONTACT_SECTION_SEPARATOR_TEST_ID } from "../lib/contactSectionLayout";
+import { buildDiscoveryCallCalendarUrl } from "../lib/siteContact";
 import { STITCH_PROJECT_TYPE_DEFAULT } from "../lib/stitchPageContent";
 import { buildOfficeMapEmbedUrl } from "../lib/officeMap";
-import { buildDiscoveryCallCalendarUrl } from "../lib/siteContact";
 import { ROUTES } from "../lib/routes";
 
 const createLead = vi.fn();
@@ -75,7 +74,6 @@ describe("ContactPage", () => {
       "src",
       buildOfficeMapEmbedUrl(),
     );
-    expect(screen.getByTestId(CONTACT_SECTION_SEPARATOR_TEST_ID)).toBeInTheDocument();
   });
 
   it("keeps the intro and inquiry sections as separate bands with spacing tokens", () => {

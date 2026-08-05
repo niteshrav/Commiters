@@ -7,6 +7,7 @@ describe("HomeSectionSeparator", () => {
     render(<HomeSectionSeparator testId="home-separator-test" />);
     const rule = screen.getByTestId("home-separator-test");
     expect(rule.tagName.toLowerCase()).toBe("hr");
-    expect(rule).toHaveClass("home-section-separator", HOME_SECTION_SEPARATOR_CLASS, "band-breakout");
+    expect(rule).toHaveClass("home-section-separator", HOME_SECTION_SEPARATOR_CLASS);
+    expect(rule).not.toHaveClass("band-breakout");
   });
 });

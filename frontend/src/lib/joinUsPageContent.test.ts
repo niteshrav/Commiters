@@ -3,7 +3,7 @@ import {
   JOIN_US_PAGE_ASSETS,
   JOIN_US_PAGE_COPY,
 } from "./joinUsPageContent";
-import { COMMITERS_EMAIL_SECONDARY } from "./siteContact";
+import { COMMITERS_EMAIL_PRIMARY } from "./siteContact";
 import { STITCH_COPY } from "./stitchDesign";
 
 describe("joinUsPageContent", () => {
@@ -39,7 +39,7 @@ describe("joinUsPageContent", () => {
   it("includes Apply sidebar copy and office image asset", () => {
     expect(JOIN_US_PAGE_COPY.sidebar.title).toBe("Precision First");
     expect(JOIN_US_PAGE_COPY.sidebar.highlights).toHaveLength(2);
-    expect(JOIN_US_PAGE_COPY.sidebar.applicationsEmailNote).toContain(COMMITERS_EMAIL_SECONDARY);
+    expect(JOIN_US_PAGE_COPY.sidebar.applicationsEmailNote).toContain(COMMITERS_EMAIL_PRIMARY);
     expect(JOIN_US_PAGE_ASSETS.officePhoto.src).toMatch(/\/assets\//);
     expect(JOIN_US_PAGE_ASSETS.officePhoto.alt.length).toBeGreaterThan(20);
   });

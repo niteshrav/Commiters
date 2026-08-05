@@ -1,7 +1,7 @@
 import {
-  COMMITERS_EMAIL_LEGAL_DISPLAY,
+  COMMITERS_EMAIL_STRIP_DISPLAY,
   COMMITERS_PHONE_DISPLAY,
-  buildMailtoTeamInboxHref,
+  buildMailtoPublicContactHref,
   buildTelHref,
 } from "./siteContact";
 
@@ -13,8 +13,8 @@ export const CONTACT_STUDIO = {
     "Nakoda Nagar,",
     "Udaipur, Rajasthan, India",
   ],
-  email: COMMITERS_EMAIL_LEGAL_DISPLAY,
-  emailHref: buildMailtoTeamInboxHref(),
+  email: COMMITERS_EMAIL_STRIP_DISPLAY,
+  emailHref: buildMailtoPublicContactHref(),
   phone: COMMITERS_PHONE_DISPLAY,
   phoneHref: buildTelHref(),
 } as const;

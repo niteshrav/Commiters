@@ -7,7 +7,7 @@ type Props = {
 export default function HomeSectionSeparator({ testId }: Props) {
   return (
     <hr
-      className={`home-section-separator band-breakout ${HOME_SECTION_SEPARATOR_CLASS}`}
+      className={`home-section-separator ${HOME_SECTION_SEPARATOR_CLASS}`}
       data-testid={testId}
     />
   );

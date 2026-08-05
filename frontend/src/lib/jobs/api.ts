@@ -1,11 +1,10 @@
 import { getApiBaseUrl } from "../siteRuntime";
 import type { JobDetail, JobFiltersResponse, JobQuery, PaginatedJobs, PublicJob } from "./types";
-
-function emptyPaginated<T>(query: JobQuery): PaginatedJobs<T> {
-  const limit = query.limit ?? 12;
-  const page = query.page ?? 1;
-  return { items: [], total: 0, page, limit, totalPages: 1 };
-}
+import {
+  getStaticJobBySlug,
+  listStaticPublicJobs,
+  STATIC_JOB_FILTER_OPTIONS,
+} from "./staticPublicJobs";
 
 function buildQuery(params: JobQuery): string {
   const search = new URLSearchParams();
@@ -36,7 +35,7 @@ export function buildOpenPositionPath(slug: string): string {
 }
 
 export async function fetchPublicJobs(query: JobQuery = {}): Promise<PaginatedJobs<PublicJob>> {
-  if (!getApiBaseUrl()) return emptyPaginated(query);
+  if (!getApiBaseUrl()) return listStaticPublicJobs(query);
   const qs = buildQuery({ limit: 12, ...query });
   return fetchJson(`/api/jobs?${qs}`);
 }
@@ -48,14 +47,16 @@ export async function fetchFeaturedJobs(limit = 3): Promise<PublicJob[]> {
 
 export async function fetchJobFilters(): Promise<JobFiltersResponse> {
   if (!getApiBaseUrl()) {
-    return { departments: [], workModes: [], employmentTypes: [] };
+    return STATIC_JOB_FILTER_OPTIONS;
   }
   return fetchJson("/api/jobs/filters");
 }
 
 export async function fetchJobBySlug(slug: string): Promise<{ job: JobDetail; relatedJobs: PublicJob[] }> {
   if (!getApiBaseUrl()) {
-    throw new Error("Jobs API is not configured.");
+    const result = getStaticJobBySlug(slug);
+    if (!result) throw new Error("Job not found.");
+    return result;
   }
   return fetchJson(`/api/jobs/${encodeURIComponent(slug)}`);
 }

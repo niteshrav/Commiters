@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactIntroSection from "../components/ContactIntroSection";
-import ContactSectionSeparator from "../components/ContactSectionSeparator";
 import ContactSidebarCards from "../components/ContactSidebarCards";
 import { createLead, LeadInput } from "../lib/api";
 import { usePageSeo } from "../hooks/usePageSeo";
@@ -142,8 +141,6 @@ export default function ContactPage() {
           <ContactSidebarCards />
         </div>
       </section>
-
-      <ContactSectionSeparator />
     </div>
   );
 }

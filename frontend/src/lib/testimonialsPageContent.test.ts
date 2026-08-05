@@ -7,7 +7,7 @@ import {
 
 describe("testimonialsPageContent", () => {
   it("includes the BrowseMyVacation testimonial from Rahul", () => {
-    expect(BROWSE_MY_VACATION_TESTIMONIAL.name).toBe("Rahul");
+    expect(BROWSE_MY_VACATION_TESTIMONIAL.name).toBe("Rahul Kumawat");
     expect(BROWSE_MY_VACATION_TESTIMONIAL.company).toContain("BrowseMyVacation");
     expect(BROWSE_MY_VACATION_TESTIMONIAL.quote).toContain("BrowseMyVacation");
     expect(BROWSE_MY_VACATION_TESTIMONIAL.quote).toContain("top-tier web applications");

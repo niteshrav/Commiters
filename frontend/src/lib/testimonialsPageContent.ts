@@ -9,11 +9,11 @@ export const TESTIMONIALS_PAGE_COPY = {
 export const BROWSE_MY_VACATION_TESTIMONIAL: Testimonial = {
   quote:
     "The team did an incredible job bringing BrowseMyVacation to life. They transformed our ideas into a fast, reliable, and user-friendly travel platform that our customers love using. Their technical expertise, fast turnarounds, and proactive communication made the entire development process smooth and stress-free. If you're looking for a dedicated tech partner to build top-tier web applications, I can't recommend them enough!",
-  name: "Rahul",
+  name: "Rahul Kumawat",
   company: "Founder / Product Lead, BrowseMyVacation",
   country: "India",
   countryCode: "IN",
-  initials: "R",
+  initials: "RK",
   accent: "teal",
 };
 

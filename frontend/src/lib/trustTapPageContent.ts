@@ -24,7 +24,7 @@ export const TRUSTTAP_SEO = {
 export const TRUSTTAP_ADMIN_DASHBOARD_URL = "https://trusttap.commiters.com/admin" as const;
 
 export const TRUSTTAP_HERO = {
-  kicker: "COMMITTERS TRUSTTAP",
+  kicker: "COMMITERS TRUSTTAP",
   titleLead: "Collect better feedback.",
   titleAccent: "Grow Google reviews.",
   tagline:
@@ -34,17 +34,36 @@ export const TRUSTTAP_HERO = {
   primaryHref: TRUSTTAP_ADMIN_DASHBOARD_URL,
   secondaryLabel: "See how it works",
   secondaryHref: "#trusttap-how-it-works",
-  heroImage: {
-    src: "/assets/trusttap/trusttap-hero.png",
-    alt: "TrustTap live preview showing QR scan flow, Google review button, and private feedback options",
+} as const;
+
+/** Hero right column — live product mockup + location insights accent. */
+export const TRUSTTAP_HERO_SHOWCASE = {
+  ariaLabel: "TrustTap customer feedback live preview and multi-location review insights",
+  livePreview: {
+    src: "/assets/case-studies/trusttap.png",
+    srcSet: "/assets/case-studies/trusttap.png 1x, /assets/case-studies/trusttap@2x.png 2x",
+    alt: "TrustTap live preview with Google review, private feedback, and scan-to-open QR for a local business",
+    width: 1200,
+    height: 900,
   },
+  accent: {
+    src: "/assets/trusttap/trusttap-locations-preview.svg",
+    alt: "",
+    width: 640,
+    height: 400,
+  },
+  browserChromeUrl: "trusttap.commiters.com/r/cafe-edelweiss",
 } as const;
 
 export const TRUSTTAP_ABOUT = {
   kicker: "ABOUT",
   title: "Reputation growth, simplified",
   body:
-    "TrustTap is a review and reputation platform for multi-location brands. It guides customers to leave Google reviews in seconds, gives managers clear visibility into sentiment and response times, and keeps every location aligned on service quality.",
+    "TrustTap is Commiters’ product for local and multi-location brands that want a compliant, measurable review funnel—without juggling spreadsheets or generic survey tools.",
+  illustration: {
+    src: "/assets/trusttap/trusttap-dashboard-preview.svg",
+    alt: "TrustTap analytics dashboard showing review trends and location scores",
+  },
 } as const;
 
 export type TrustTapFeatureIcon =
@@ -155,14 +174,8 @@ export type TrustTapPreviewAsset = {
 export const TRUSTTAP_PREVIEW = {
   kicker: "PRODUCT PREVIEW",
   title: "Built for clarity on every screen",
-  subtext: "A calm dashboard, scan-ready QR flows, and location insights your team can trust.",
+  subtext: "Scan-ready QR flows and location insights your team can act on.",
   shots: [
-    {
-      id: "dashboard",
-      src: "/assets/trusttap/trusttap-dashboard-preview.svg",
-      alt: "TrustTap analytics dashboard showing review trends and location scores",
-      caption: "Analytics dashboard",
-    },
     {
       id: "qr",
       src: "/assets/trusttap/trusttap-qr-preview.svg",

@@ -1,5 +1,5 @@
 import { STITCH_COPY } from "./stitchDesign";
-import { COMMITERS_EMAIL_SECONDARY } from "./siteContact";
+import { COMMITERS_EMAIL_PRIMARY } from "./siteContact";
 
 export const JOIN_US_PAGE_ASSETS = {
   officePhoto: {
@@ -27,7 +27,7 @@ export const JOIN_US_PAGE_COPY = {
         body: "Expect a response within 48 business hours.",
       },
     ],
-    applicationsEmailNote: `Applications are sent directly to ${COMMITERS_EMAIL_SECONDARY}`,
+    applicationsEmailNote: `Applications are sent directly to ${COMMITERS_EMAIL_PRIMARY}`,
   },
   sections: STITCH_COPY.joinUs.sections,
   fields: {

@@ -57,7 +57,7 @@
 
 .trusttap-hero {
   padding: clamp(48px, 6vw, 72px) clamp(14px, 2.5vw, 32px);
-  background: linear-gradient(135deg, #f4f7f5 0%, #eef5f1 45%, #f8faf9 100%);
+  background: #ffffff;
   border-bottom: 1px solid var(--border);
   --trusttap-brand: #1e4d3a;
   --trusttap-brand-hover: #163828;
@@ -120,23 +120,93 @@
   border-color: var(--trusttap-brand-hover);
 }
 
-.trusttap-hero-media {
+.trusttap-hero-showcase {
   margin: 0;
   min-width: 0;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(17, 24, 39, 0.12);
-  background: #fff;
-  aspect-ratio: 4 / 3;
 }
 
-.trusttap-hero-image {
+.trusttap-hero-showcase-stage {
+  position: relative;
+  padding: 0 clamp(8px, 2vw, 16px) clamp(12px, 3vw, 28px) 0;
+}
+
+.trusttap-hero-showcase-browser {
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  background: #fff;
+  box-shadow:
+    0 4px 6px rgba(17, 24, 39, 0.04),
+    0 24px 48px rgba(17, 24, 39, 0.1);
+}
+
+.trusttap-hero-showcase-chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.trusttap-hero-showcase-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.trusttap-hero-showcase-dot--close {
+  background: #f87171;
+}
+
+.trusttap-hero-showcase-dot--min {
+  background: #fbbf24;
+}
+
+.trusttap-hero-showcase-dot--max {
+  background: #34d399;
+}
+
+.trusttap-hero-showcase-url {
+  margin-left: 8px;
+  padding: 6px 14px;
+  flex: 1;
+  min-width: 0;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trusttap-hero-showcase-main {
   display: block;
-  width: 168%;
-  max-width: none;
-  height: 100%;
-  object-fit: cover;
-  object-position: 78% center;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.trusttap-hero-showcase-accent {
+  position: absolute;
+  left: -4%;
+  bottom: 8%;
+  width: min(44%, 240px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: 0 14px 36px rgba(17, 24, 39, 0.14);
+  background: #fff;
+}
+
+.trusttap-hero-showcase-accent-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .trusttap-hero-actions {
@@ -151,6 +221,26 @@
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--body-text, var(--muted));
+}
+
+.trusttap-about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 48px);
+}
+
+.trusttap-about-media {
+  margin: 0;
+}
+
+.trusttap-about-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
 }
 
 .trusttap-features-grid {
@@ -293,7 +383,7 @@
 }
 
 .trusttap-bottom-cta {
-  padding: clamp(56px, 7vw, 80px) clamp(14px, 2.5vw, 32px);
+  padding: clamp(56px, 7vw, 80px) clamp(20px, 5vw, 40px);
   background: var(--dark-navy);
   color: #fff;
 }
@@ -341,19 +431,19 @@
     display: inline;
   }
 
-  .trusttap-hero-image {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center;
+  .trusttap-hero-showcase-stage {
+    padding-right: 0;
+    padding-bottom: clamp(48px, 12vw, 72px);
   }
 
-  .trusttap-hero-media {
-    aspect-ratio: auto;
+  .trusttap-hero-showcase-accent {
+    width: min(48%, 220px);
+    left: 0;
   }
 
   .trusttap-features-grid,
-  .trusttap-preview-grid {
+  .trusttap-preview-grid,
+  .trusttap-about-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -365,7 +455,8 @@
 @media (max-width: 640px) {
   .trusttap-features-grid,
   .trusttap-preview-grid,
-  .trusttap-benefits-list {
+  .trusttap-benefits-list,
+  .trusttap-about-grid {
     grid-template-columns: 1fr;
   }
 

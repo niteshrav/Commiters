@@ -13,7 +13,7 @@ export default function TrustTapBottomCtaSection() {
 
   return (
     <section
-      className={`${TRUSTTAP_BOTTOM_CTA_CLASS} reveal-on-scroll`}
+      className={`${TRUSTTAP_BOTTOM_CTA_CLASS} band-breakout reveal-on-scroll`}
       data-testid="trusttap-bottom-cta"
       aria-labelledby="trusttap-bottom-cta-title"
     >

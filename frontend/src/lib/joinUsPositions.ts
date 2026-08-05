@@ -4,6 +4,7 @@ export const JOIN_US_POSITION_OPTIONS = [
   "AI Engineer",
   "QA Engineer",
   "Marketing Executive",
+  "Sales Executive",
   "Other",
 ] as const;
 

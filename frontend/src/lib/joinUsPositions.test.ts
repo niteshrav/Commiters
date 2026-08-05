@@ -11,6 +11,7 @@ describe("joinUsPositions", () => {
       "AI Engineer",
       "QA Engineer",
       "Marketing Executive",
+      "Sales Executive",
       "Other",
     ]);
   });

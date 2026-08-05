@@ -54,8 +54,6 @@ export default function Footer() {
     <footer
       className={`footer footer-rich footer--stitch footer--home-mockup footer--professional footer--v2${isContactFooter ? " footer--contact-mockup" : ""}`}
     >
-      <div className="footer-v2-accent" aria-hidden />
-
       <div className={`footer-columns footer-columns--mockup ${FOOTER_MOCKUP_GRID_CLASS} ${FOOTER_MOCKUP_COMPACT_CLASS} footer-v2-main`}>
         <div className="footer-mockup-brand-stack footer-v2-brand">
           <div className={FOOTER_LOGO_CELL_CLASS} data-testid="footer-logo-cell">

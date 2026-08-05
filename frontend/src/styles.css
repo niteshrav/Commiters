@@ -153,7 +153,7 @@ select:focus-visible {
 }
 
 .site-shell > main.container {
-  padding-bottom: clamp(24px, 4vw, 40px);
+  padding-bottom: 0;
 }
 
 .route-shell img,
@@ -2933,17 +2933,8 @@ textarea {
 .home-section-separator {
   margin: 0;
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
   width: 100%;
-}
-
-.home-section-separator--full {
-  box-shadow: 0 0 0 100vmax transparent;
-  clip-path: inset(0 -100vmax);
-  width: 100%;
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .home-page .home-section-separator {
@@ -3735,7 +3726,8 @@ textarea {
 }
 
 .case-studies-bottom-cta {
-  padding: clamp(48px, 5vw, 72px) 0 clamp(64px, 6vw, 96px);
+  background: #ffffff;
+  padding: clamp(48px, 5vw, 72px) clamp(20px, 5vw, 40px) clamp(64px, 6vw, 96px);
 }
 
 .case-studies-bottom-cta-inner {
@@ -8597,24 +8589,6 @@ html[data-a11y-reduce-motion="true"] *::after {
   min-width: 180px;
 }
 
-.contact-section-separator {
-  margin: 0;
-  border: none;
-  border-top: 1px solid #e5e7eb;
-  width: 100%;
-}
-
-.contact-section-separator--full {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-}
-
-.site-shell:has([data-testid="contact-page"]) .footer--stitch {
-  border-top: none;
-}
-
 .footer--stitch.footer--v2 {
   background: #ffffff;
   border-top: 1px solid var(--border);
@@ -9061,11 +9035,6 @@ html[data-a11y-reduce-motion="true"] *::after {
   background: #ffffff;
   border-top: 1px solid var(--border);
   color: var(--text);
-}
-
-.footer--v2 .footer-v2-accent {
-  height: 3px;
-  background: linear-gradient(90deg, var(--brand-gold, #9a7b4f) 0%, var(--stitch-blue, var(--primary)) 55%, rgba(var(--primary-rgb), 0.35) 100%);
 }
 
 .footer--professional.footer--home-mockup,

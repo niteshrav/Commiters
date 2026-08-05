@@ -13,7 +13,7 @@ export default function CaseStudiesBottomCta() {
 
   return (
     <section
-      className={`${CASE_STUDIES_BOTTOM_CTA_SECTION_CLASS} reveal-on-scroll`}
+      className={`${CASE_STUDIES_BOTTOM_CTA_SECTION_CLASS} band-breakout reveal-on-scroll`}
       data-testid="case-studies-bottom-cta"
       aria-labelledby="case-studies-bottom-cta-title"
     >

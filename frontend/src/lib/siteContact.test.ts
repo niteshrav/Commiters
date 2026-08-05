@@ -12,7 +12,9 @@ import {
   COMMITERS_PHONE_E164_DIGITS,
   buildDiscoveryCallCalendarUrl,
   buildMailtoPrimaryHref,
+  buildMailtoPublicContactHref,
   buildMailtoTeamInboxHref,
+  publicContactEmailDisplay,
   buildTelHref,
   buildWhatsAppUrl,
 } from "./siteContact";
@@ -35,6 +37,10 @@ describe("siteContact", () => {
 
   it("builds mailto for the primary inbox", () => {
     expect(buildMailtoPrimaryHref()).toBe("mailto:hello@commiters.com");
+    expect(buildMailtoPublicContactHref()).toBe("mailto:hello@commiters.com");
+    expect(publicContactEmailDisplay("hello@commiters.com, commitersudaipur@gmail.com")).toBe(
+      "hello@commiters.com",
+    );
   });
 
   it("builds mailto with both team inboxes for legal and internal use", () => {

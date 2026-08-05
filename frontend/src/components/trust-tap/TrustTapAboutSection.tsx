@@ -12,8 +12,23 @@ export default function TrustTapAboutSection() {
       aria-labelledby="trusttap-about-title"
     >
       <div className={TRUSTTAP_SECTION_INNER_CLASS}>
-        <TrustTapSectionHeader kicker={copy.kicker} title={copy.title} titleId="trusttap-about-title" />
-        <p className="trusttap-about-body">{copy.body}</p>
+        <div className="trusttap-about-grid">
+          <div className="trusttap-about-copy">
+            <TrustTapSectionHeader kicker={copy.kicker} title={copy.title} titleId="trusttap-about-title" />
+            <p className="trusttap-about-body">{copy.body}</p>
+          </div>
+          <figure className="trusttap-about-media">
+            <img
+              className="trusttap-about-image"
+              src={copy.illustration.src}
+              alt={copy.illustration.alt}
+              width={960}
+              height={540}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
       </div>
     </section>
   );

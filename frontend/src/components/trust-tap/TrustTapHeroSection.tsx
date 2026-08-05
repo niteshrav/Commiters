@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import TrustTapHeroShowcase from "./TrustTapHeroShowcase";
 import { TRUSTTAP_HERO } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_HERO_ACTIONS_CLASS,
@@ -7,7 +8,6 @@ import {
   TRUSTTAP_HERO_FOOTNOTE_CLASS,
   TRUSTTAP_HERO_GRID_CLASS,
   TRUSTTAP_HERO_INNER_CLASS,
-  TRUSTTAP_HERO_MEDIA_CLASS,
   TRUSTTAP_HERO_TAGLINE_CLASS,
   TRUSTTAP_HERO_TITLE_ACCENT_CLASS,
   TRUSTTAP_HERO_TITLE_CLASS,
@@ -50,17 +50,7 @@ export default function TrustTapHeroSection() {
             </div>
             <p className={TRUSTTAP_HERO_FOOTNOTE_CLASS}>{copy.footnote}</p>
           </div>
-          <figure className={TRUSTTAP_HERO_MEDIA_CLASS}>
-            <img
-              className="trusttap-hero-image"
-              src={copy.heroImage.src}
-              alt={copy.heroImage.alt}
-              width={1200}
-              height={675}
-              decoding="async"
-              fetchPriority="high"
-            />
-          </figure>
+          <TrustTapHeroShowcase />
         </div>
       </div>
     </section>

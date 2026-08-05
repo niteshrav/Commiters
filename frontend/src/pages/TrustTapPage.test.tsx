@@ -6,6 +6,7 @@ import {
   TRUSTTAP_BENEFITS,
   TRUSTTAP_FEATURES,
   TRUSTTAP_HERO,
+  TRUSTTAP_HERO_SHOWCASE,
   TRUSTTAP_SEO,
 } from "../lib/trustTapPageContent";
 
@@ -27,9 +28,10 @@ describe("TrustTapPage", () => {
       }),
     ).toBeInTheDocument();
     expect(screen.getByText(TRUSTTAP_HERO.tagline)).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: TRUSTTAP_HERO.heroImage.alt })).toHaveAttribute(
+    expect(screen.getByTestId("trusttap-hero-showcase")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: TRUSTTAP_HERO_SHOWCASE.livePreview.alt })).toHaveAttribute(
       "src",
-      TRUSTTAP_HERO.heroImage.src,
+      TRUSTTAP_HERO_SHOWCASE.livePreview.src,
     );
     expect(screen.getByText(TRUSTTAP_ABOUT.body)).toBeInTheDocument();
 

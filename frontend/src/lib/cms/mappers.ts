@@ -5,6 +5,7 @@ import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
 import { SITE_FOOTER_COPY, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
 import { CONTACT_STUDIO } from "../contactPageContent";
+import { buildMailtoPublicContactHref, publicContactEmailDisplay } from "../siteContact";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
 import { LEAD_SERVICE_LABELS } from "../leadServices";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../siteBrand";
@@ -293,11 +294,13 @@ export function resolveContactStudio(cmsContact: Record<string, unknown> | null 
   const address = asString(cmsContact.address, CONTACT_STUDIO.addressLines.join("\n"));
   const addressLines = address.split("\n").map((line) => line.trim()).filter(Boolean);
 
+  const rawEmail = asString(cmsContact.email, CONTACT_STUDIO.email);
+
   return {
     title: asString(cmsContact.companyName, CONTACT_STUDIO.title),
     addressLines: addressLines.length ? addressLines : [...CONTACT_STUDIO.addressLines],
-    email: asString(cmsContact.email, CONTACT_STUDIO.email),
-    emailHref: `mailto:${asString(cmsContact.email, CONTACT_STUDIO.email).replace(/\s/g, "")}`,
+    email: publicContactEmailDisplay(rawEmail),
+    emailHref: buildMailtoPublicContactHref(rawEmail),
     phone: asString(cmsContact.phone, CONTACT_STUDIO.phone),
     phoneHref: `tel:${asString(cmsContact.phone, CONTACT_STUDIO.phone).replace(/[^\d+]/g, "")}`,
     mapEmbedUrl: asString(cmsContact.googleMapEmbedUrl),
