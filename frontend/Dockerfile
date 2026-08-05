@@ -11,6 +11,7 @@ RUN npm ci
 
 COPY index.html vite.config.ts tsconfig.json ./
 COPY public ./public
+COPY scripts ./scripts
 COPY src ./src
 
 RUN npm run build
