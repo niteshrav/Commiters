@@ -28,7 +28,6 @@ export default function JobCard({ job, delay = 0 }: Props) {
               {job.department} · {job.location} · {job.workMode}
             </p>
           </div>
-          <p className="open-positions-card-stipend">{job.stipendSalary || "Competitive"}</p>
         </div>
 
         <div className="open-positions-card-tags">

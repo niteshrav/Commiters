@@ -70,14 +70,6 @@
   gap: 24px;
 }
 
-.open-positions-detail-stipend,
-.open-positions-card-stipend {
-  margin: 12px 0 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
 .open-positions-detail-actions {
   display: flex;
   flex-wrap: wrap;

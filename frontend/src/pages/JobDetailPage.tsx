@@ -33,7 +33,6 @@ function JobDetailHero({ job }: { job: JobDetail }) {
             <p className="open-positions-detail-meta">
               {job.department} · {job.location} · {job.workMode} · {job.employmentType}
             </p>
-            <p className="open-positions-detail-stipend">{job.stipendSalary}</p>
           </div>
           <div className="open-positions-detail-actions">
             <Link className="btn btn-primary" to={`${ROUTES.joinUs}?position=${encodeURIComponent(job.title)}`}>
