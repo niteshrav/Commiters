@@ -18,16 +18,17 @@ function buildQuery(params: JobQuery): string {
   return search.toString();
 }
 
-async function fetchJson<T>(path: string): Promise<T> {
+async function fetchJsonFromApi<T>(path: string): Promise<T | null> {
   const apiBase = getApiBaseUrl();
-  if (!apiBase) {
-    throw new Error("Jobs API is not configured.");
+  if (!apiBase) return null;
+
+  try {
+    const response = await fetch(`${apiBase}${path}`);
+    if (!response.ok) return null;
+    return (await response.json()) as T;
+  } catch {
+    return null;
   }
-  const response = await fetch(`${apiBase}${path}`);
-  if (!response.ok) {
-    throw new Error(`Request failed (${response.status})`);
-  }
-  return response.json() as Promise<T>;
 }
 
 export function buildOpenPositionPath(slug: string): string {
@@ -35,9 +36,13 @@ export function buildOpenPositionPath(slug: string): string {
 }
 
 export async function fetchPublicJobs(query: JobQuery = {}): Promise<PaginatedJobs<PublicJob>> {
-  if (!getApiBaseUrl()) return listStaticPublicJobs(query);
   const qs = buildQuery({ limit: 12, ...query });
-  return fetchJson(`/api/jobs?${qs}`);
+  const fromApi = await fetchJsonFromApi<PaginatedJobs<PublicJob>>(`/api/jobs?${qs}`);
+  if (fromApi?.items?.length) return fromApi;
+
+  const staticJobs = listStaticPublicJobs(query);
+  if (!fromApi || staticJobs.items.length > 0) return staticJobs;
+  return fromApi;
 }
 
 export async function fetchFeaturedJobs(limit = 3): Promise<PublicJob[]> {
@@ -46,19 +51,25 @@ export async function fetchFeaturedJobs(limit = 3): Promise<PublicJob[]> {
 }
 
 export async function fetchJobFilters(): Promise<JobFiltersResponse> {
-  if (!getApiBaseUrl()) {
-    return STATIC_JOB_FILTER_OPTIONS;
+  const fromApi = await fetchJsonFromApi<JobFiltersResponse>("/api/jobs/filters");
+  if (
+    fromApi &&
+    (fromApi.departments.length > 0 || fromApi.workModes.length > 0 || fromApi.employmentTypes.length > 0)
+  ) {
+    return fromApi;
   }
-  return fetchJson("/api/jobs/filters");
+  return STATIC_JOB_FILTER_OPTIONS;
 }
 
 export async function fetchJobBySlug(slug: string): Promise<{ job: JobDetail; relatedJobs: PublicJob[] }> {
-  if (!getApiBaseUrl()) {
-    const result = getStaticJobBySlug(slug);
-    if (!result) throw new Error("Job not found.");
-    return result;
-  }
-  return fetchJson(`/api/jobs/${encodeURIComponent(slug)}`);
+  const fromApi = await fetchJsonFromApi<{ job: JobDetail; relatedJobs: PublicJob[] }>(
+    `/api/jobs/${encodeURIComponent(slug)}`,
+  );
+  if (fromApi?.job) return fromApi;
+
+  const result = getStaticJobBySlug(slug);
+  if (!result) throw new Error("Job not found.");
+  return result;
 }
 
 export function isRecentlyPosted(createdAt: string, days = 7): boolean {

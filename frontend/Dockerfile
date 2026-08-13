@@ -3,7 +3,9 @@ FROM node:22-alpine AS build
 
 WORKDIR /app
 
-ARG VITE_API_BASE_URL=https://api.commiters.com
+# Set at deploy time when the API is live, e.g.:
+# docker build --build-arg VITE_API_BASE_URL=https://api.commiters.com .
+ARG VITE_API_BASE_URL=
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 
 COPY package.json package-lock.json ./
