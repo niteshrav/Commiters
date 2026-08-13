@@ -1,6 +1,6 @@
 /** Canonical CTA button tokens — compact Stitch geometry with role-based colors. */
 export const SITE_BUTTON_DESIGN = {
-  radius: "8px",
+  radius: "0",
   minHeight: "40px",
   paddingInline: "18px",
   paddingBlock: "10px",

@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function TechnicalLedgerArticlesSection({ refreshKey = 0 }: Props) {
-  const { articles, loading, error } = useTechnicalLedgerArticles(refreshKey);
+  const { articles, loading } = useTechnicalLedgerArticles(refreshKey);
 
   return (
     <section
@@ -22,11 +22,6 @@ export default function TechnicalLedgerArticlesSection({ refreshKey = 0 }: Props
     >
       {loading ? (
         <p className={TECHNICAL_LEDGER_ARTICLES_STATUS_CLASS}>{TECHNICAL_LEDGER_PAGE_COPY.loadingArticlesLabel}</p>
-      ) : null}
-      {error ? (
-        <p className={`${TECHNICAL_LEDGER_ARTICLES_STATUS_CLASS} technical-ledger-articles-status-warning`}>
-          {TECHNICAL_LEDGER_PAGE_COPY.articlesErrorLabel}
-        </p>
       ) : null}
 
       <div className={TECHNICAL_LEDGER_ARTICLE_LIST_CLASS}>

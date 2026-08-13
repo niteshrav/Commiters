@@ -21,7 +21,7 @@ export default function TrustTapHeroShowcase() {
           <img
             className="trusttap-hero-showcase-main"
             src={preview.src}
-            srcSet={preview.srcSet}
+            srcSet={"srcSet" in preview ? preview.srcSet : undefined}
             alt={preview.alt}
             width={preview.width}
             height={preview.height}

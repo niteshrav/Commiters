@@ -55,7 +55,7 @@ describe("commitersCaseStudyLayout", () => {
       `.${COMMITERS_CASE_STUDY_CORE_STACK_CLASS} {`,
     );
     expect(highlightCard).toContain("border: 1px solid #e5e7eb");
-    expect(highlightCard).toContain("border-radius: 8px");
+    expect(highlightCard).toContain("border-radius: 0");
     expect(highlightCard).toContain("padding: 24px");
 
     const stack = ruleBlock(`.${COMMITERS_CASE_STUDY_CORE_STACK_CLASS} {`, `.${COMMITERS_CASE_STUDY_CORE_STACK_HEADING_CLASS} {`);

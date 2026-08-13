@@ -18,7 +18,7 @@ const DEFAULT_NAVIGATION_LINKS: FooterLink[] = [
   { label: "Home", url: "/", order: 1 },
   { label: "About", url: "/about", order: 2 },
   { label: "Services", url: "/services", order: 3 },
-  { label: "Our Work", url: "/case-studies", order: 4 },
+  { label: "Our Work", url: "/work", order: 4 },
   { label: "FAQ", url: "/faq", order: 5 },
   { label: "Contact", url: "/contact", order: 6 },
 ];

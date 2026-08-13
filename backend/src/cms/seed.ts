@@ -47,7 +47,7 @@ async function seed() {
         "We transform complex architectural challenges into scalable, production-ready systems. Founder-led engineering for high-stakes digital products.",
       heroImage: "/assets/home/home-hero-monitor.png",
       primaryButtonLabel: "Our Work",
-      primaryButtonUrl: "/case-studies",
+      primaryButtonUrl: "/work",
       secondaryButtonLabel: "Meet Our Team",
       secondaryButtonUrl: "/about",
       sprintLabel: "CURRENT SPRINT",
@@ -64,8 +64,8 @@ async function seed() {
         { label: "Home", url: "/", order: 1 },
         { label: "About", url: "/about", order: 2 },
         { label: "Services", url: "/services", order: 3 },
-        { label: "Our Work", url: "/case-studies", order: 4 },
-        { label: "Technical Ledger", url: "/technical-ledger", order: 5 },
+        { label: "Our Work", url: "/work", order: 4 },
+        { label: "Technical Ledger", url: "/blog", order: 5 },
         { label: "Open Positions", url: "/open-positions", order: 6 },
         { label: "Join Us", url: "/join-us", order: 7 },
         { label: "Contact", url: "/contact", order: 8 },
@@ -91,12 +91,14 @@ async function seed() {
       }
 
       const legacyJobPaths = new Set(["/open-position", "/job-positions", "/job-position"]);
+      const legacyWorkPaths = new Set(["/case-studies"]);
+      const legacyBlogPaths = new Set(["/technical-ledger"]);
       const desiredNavOrder: Record<string, number> = {
         "/": 1,
         "/about": 2,
         "/services": 3,
-        "/case-studies": 4,
-        "/technical-ledger": 5,
+        "/work": 4,
+        "/blog": 5,
         "/open-positions": 6,
         "/join-us": 7,
         "/contact": 8,
@@ -105,6 +107,14 @@ async function seed() {
       for (const link of navbarDoc.navLinks ?? []) {
         if (legacyJobPaths.has(link.url)) {
           link.url = "/open-positions";
+          navbarChanged = true;
+        }
+        if (legacyWorkPaths.has(link.url)) {
+          link.url = "/work";
+          navbarChanged = true;
+        }
+        if (legacyBlogPaths.has(link.url)) {
+          link.url = "/blog";
           navbarChanged = true;
         }
         const nextOrder = desiredNavOrder[link.url];
@@ -370,7 +380,7 @@ async function seed() {
         { label: "Home", url: "/", order: 1 },
         { label: "About", url: "/about", order: 2 },
         { label: "Services", url: "/services", order: 3 },
-        { label: "Our Work", url: "/case-studies", order: 4 },
+        { label: "Our Work", url: "/work", order: 4 },
         { label: "FAQ", url: "/faq", order: 5 },
         { label: "Contact", url: "/contact", order: 6 },
       ],
@@ -405,7 +415,7 @@ async function seed() {
         { label: "Home", url: "/", order: 1 },
         { label: "About", url: "/about", order: 2 },
         { label: "Services", url: "/services", order: 3 },
-        { label: "Our Work", url: "/case-studies", order: 4 },
+        { label: "Our Work", url: "/work", order: 4 },
         { label: "FAQ", url: "/faq", order: 5 },
         { label: "Contact", url: "/contact", order: 6 },
       ];

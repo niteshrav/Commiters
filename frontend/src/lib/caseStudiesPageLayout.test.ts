@@ -72,7 +72,7 @@ describe("caseStudiesPageLayout", () => {
   it("keeps the case studies route canvas on the void-first surface tone", () => {
     const page = ruleBlock(`.${CASE_STUDIES_PAGE_CLASS} {`, ".case-studies-intro-section {");
     expect(page).toContain("background: var(--surface-container-low)");
-    const routeShell = ruleBlock('.route-shell[data-route="/case-studies"] {', ".route-transition {");
+    const routeShell = ruleBlock('.route-shell[data-route="/work"] {', ".route-transition {");
     expect(routeShell).toContain("background: var(--surface-container-low)");
     expect(routeShell).toContain("box-shadow: 0 0 0 100vmax var(--surface-container-low)");
     expect(routeShell).toContain("clip-path: inset(0 -100vmax)");
@@ -132,7 +132,7 @@ describe("caseStudiesPageLayout", () => {
       '.case-study-card[data-case-study-id="commiters"] .case-study-card-image {',
       '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {',
     );
-    expect(commitersImage).toContain("aspect-ratio: 1 / 1");
+    expect(commitersImage).toContain("aspect-ratio: auto");
     expect(commitersImage).toContain("border: none");
 
     const aiImage = ruleBlock(
@@ -248,7 +248,8 @@ describe("caseStudiesPageLayout", () => {
       '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {',
     );
     expect(commitersImage).toContain("height: auto");
-    expect(commitersImage).toContain("aspect-ratio: 1 / 1");
+    expect(commitersImage).toContain("aspect-ratio: auto");
+    expect(commitersImage).toContain("object-fit: contain");
     expect(commitersImage).toContain(`border-radius: ${CASE_STUDY_COMMITERS_IMAGE_BORDER_RADIUS}`);
     expect(commitersImage).not.toContain("height: 100%");
     expect(commitersImage).not.toContain("min-height: 220px");

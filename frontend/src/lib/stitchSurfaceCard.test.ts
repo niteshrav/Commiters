@@ -11,6 +11,6 @@ describe("stitchSurfaceCard", () => {
     expect(STITCH_SURFACE_CARD_CLASS).toBe("stitch-surface-card");
     expect(css).toContain(".stitch-surface-card {");
     expect(css).toContain("box-shadow:");
-    expect(css).toContain("border-radius: 14px");
+    expect(css).toContain("border-radius: 0");
   });
 });

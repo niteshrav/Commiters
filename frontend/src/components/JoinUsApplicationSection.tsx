@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IconArrowRight, IconCloudUpload } from "./icons";
 import { createJobApplication } from "../lib/api";
 import { useJoinUsPositions } from "../lib/cms/hooks";
-import { isBackendEnabled } from "../lib/siteRuntime";
 import { JOIN_US_PAGE_COPY } from "../lib/joinUsPageContent";
-import { SITE_FORM_INBOX } from "../lib/siteContact";
 import {
   JOIN_US_FORM_FIELDS_CLASS,
   JOIN_US_FORM_FIELD_SHORT_CLASS,
@@ -106,8 +104,6 @@ export default function JoinUsApplicationSection() {
     }
   }
 
-  const backendEnabled = isBackendEnabled();
-
   return (
     <form
       onSubmit={onSubmit}
@@ -116,12 +112,6 @@ export default function JoinUsApplicationSection() {
       data-testid="join-us-application-form"
       id="join-us-application-form"
     >
-      {!backendEnabled ? (
-        <p className="join-us-static-notice" role="status">
-          Submissions are emailed to {SITE_FORM_INBOX}. If delivery fails, your mail app opens as a backup — send
-          the message to {SITE_FORM_INBOX} and attach your resume.
-        </p>
-      ) : null}
       <section
         className={JOIN_US_FORM_SECTION_CLASS}
         data-testid="join-us-form-section-personal"

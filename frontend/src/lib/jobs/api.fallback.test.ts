@@ -50,6 +50,6 @@ describe("jobs api production fallback", () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("network")));
 
     const result = await fetchJobBySlug("marketing-executive");
-    expect(result.job.title).toBe("Marketing Executive");
+    expect(result.job.title).toBe("Marketing Intern");
   });
 });

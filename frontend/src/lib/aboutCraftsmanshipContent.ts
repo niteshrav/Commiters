@@ -26,7 +26,7 @@ export const ABOUT_CRAFTSMANSHIP_BODY_SIZE = "1rem";
 export const ABOUT_CRAFTSMANSHIP_BODY_LINE_HEIGHT = "1.65";
 export const ABOUT_CRAFTSMANSHIP_STAT_VALUE_SIZE = "1.5rem";
 export const ABOUT_CRAFTSMANSHIP_STAT_GAP = "16px";
-export const ABOUT_CRAFTSMANSHIP_STAT_RADIUS = "8px";
+export const ABOUT_CRAFTSMANSHIP_STAT_RADIUS = "0";
 
 /** Stitch mockup: balanced copy + compact portrait with quote overlay. */
 export const ABOUT_CRAFTSMANSHIP_GRID_COLUMNS = "1fr 1fr";

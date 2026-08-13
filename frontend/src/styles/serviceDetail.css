@@ -2,21 +2,6 @@
   padding-bottom: clamp(48px, 6vw, 80px);
 }
 
-.svc-detail-breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 24px;
-  font-size: 0.88rem;
-  color: var(--muted);
-}
-
-.svc-detail-breadcrumb a {
-  color: var(--stitch-blue, var(--primary));
-  font-weight: 600;
-}
-
 .svc-detail-kicker {
   margin: 0 0 12px;
   font-size: 0.72rem;
@@ -109,7 +94,7 @@
   padding: 0;
   overflow: hidden;
   border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  border-radius: 0;
   background: #f8f9fa;
 }
 
@@ -164,7 +149,7 @@
 .svc-detail-about-card {
   padding: 24px;
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
+  border-radius: 0;
   background: #fff;
 }
 
@@ -198,7 +183,7 @@
 .svc-detail-portfolio-card {
   padding: 24px;
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
+  border-radius: 0;
   background: #fff;
   transition: border-color 180ms ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -248,7 +233,7 @@
   gap: 10px;
   padding: 18px 12px;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: 0;
   background: #fff;
   text-align: center;
 }
@@ -283,7 +268,7 @@
   border-left: 1px solid #e5e7eb;
   border-right: 1px solid #e5e7eb;
   border-bottom: 1px solid #e5e7eb;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0;
   background: #fff;
 }
 
@@ -303,7 +288,7 @@
 .svc-detail-timeline-card {
   padding: 22px;
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
+  border-radius: 0;
   background: #fff;
 }
 
@@ -381,7 +366,7 @@
   margin: 0 auto;
   padding: 32px;
   border: 1px solid #e5e7eb;
-  border-radius: 16px;
+  border-radius: 0;
   background: #fff;
 }
 
@@ -411,7 +396,7 @@
   width: 40px;
   height: 40px;
   border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border-radius: 0;
   background: #fff;
   cursor: pointer;
 }
@@ -424,7 +409,7 @@
 
 .svc-detail-faq-item {
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: 0;
   background: #fff;
   overflow: hidden;
 }
@@ -505,7 +490,7 @@
   gap: 8px 16px;
   padding: 12px 14px;
   border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border-radius: 0;
   background: #fff;
 }
 
@@ -525,7 +510,7 @@
   gap: 6px;
   padding: 14px 16px;
   border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border-radius: 0;
   background: #fff;
 }
 

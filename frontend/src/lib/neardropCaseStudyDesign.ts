@@ -39,7 +39,7 @@ export const NEARDROP_CASE_STUDY_DESIGN = {
     featureColumns: "repeat(2, minmax(0, 1fr))",
     introInnerMaxWidth: "960px",
     executionSplit: "minmax(0, 0.85fr) minmax(0, 1.15fr)",
-    bottomCtaRadius: "20px",
+    bottomCtaRadius: "0",
     bottomCtaGradient: "linear-gradient(135deg, #0052cc 0%, #0066ff 52%, #1a7dff 100%)",
     stackGap: "clamp(24px, 4vw, 48px)",
   },

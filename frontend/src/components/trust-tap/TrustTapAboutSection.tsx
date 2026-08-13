@@ -21,9 +21,10 @@ export default function TrustTapAboutSection() {
             <img
               className="trusttap-about-image"
               src={copy.illustration.src}
+              srcSet={copy.illustration.srcSet}
               alt={copy.illustration.alt}
-              width={960}
-              height={540}
+              width={copy.illustration.width}
+              height={copy.illustration.height}
               loading="lazy"
               decoding="async"
             />

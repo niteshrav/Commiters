@@ -17,8 +17,8 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
   {
     id: "commiters",
-    src: "/assets/case-studies/commiters.png",
-    srcSet: "/assets/case-studies/commiters@2x.png 2x",
+    src: "/assets/case-studies/commiters@2x.png",
+    srcSet: "/assets/case-studies/commiters.png 1x, /assets/case-studies/commiters@2x.png 2x",
     alt: "Commiters digital architecture showcase with code and data visualizations",
   },
   {
@@ -47,9 +47,8 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
   },
   {
     id: "trusttap",
-    src: "/assets/case-studies/trusttap.png",
-    srcSet: "/assets/case-studies/trusttap@2x.png 2x",
-    alt: "TrustTap reputation dashboard with review growth charts and QR review prompts",
+    src: "/assets/trusttap/trusttap-hero.png",
+    alt: "TrustTap QR-powered review collection and Google review growth for local businesses",
   },
 ] as const;
 
@@ -73,4 +72,15 @@ export function caseStudyImageAlt(projectId: string): string {
   const asset = CASE_STUDY_IMAGE_ASSETS.find((entry) => entry.id === projectId);
   if (!asset) throw new Error(`Missing case study image for ${projectId}`);
   return asset.alt;
+}
+
+/** Hint responsive loading so retina Work cards pick the @2x asset. */
+export function caseStudyImageSizes(projectId: string, layout: "horizontal" | "stacked"): string {
+  if (projectId === "commiters") {
+    return "(min-width: 1024px) 540px, (min-width: 768px) 46vw, 92vw";
+  }
+  if (projectId === "trusttap") {
+    return "(min-width: 1024px) 400px, (min-width: 768px) 46vw, 92vw";
+  }
+  return layout === "horizontal" ? "(min-width: 768px) 420px, 92vw" : "(min-width: 768px) 360px, 92vw";
 }

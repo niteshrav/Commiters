@@ -34,6 +34,10 @@ describe("TrustTapPage", () => {
       TRUSTTAP_HERO_SHOWCASE.livePreview.src,
     );
     expect(screen.getByText(TRUSTTAP_ABOUT.body)).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: TRUSTTAP_ABOUT.illustration.alt })).toHaveAttribute(
+      "src",
+      TRUSTTAP_ABOUT.illustration.src,
+    );
 
     for (const feature of TRUSTTAP_FEATURES.items) {
       expect(screen.getByRole("heading", { name: feature.title })).toBeInTheDocument();

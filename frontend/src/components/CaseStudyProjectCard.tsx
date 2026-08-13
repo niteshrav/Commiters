@@ -3,6 +3,7 @@ import type { CaseStudyProject, CaseStudyTagVariant } from "../lib/caseStudiesPa
 import {
   caseStudyHasImage,
   caseStudyImageAlt,
+  caseStudyImageSizes,
   caseStudyImageSrc,
   caseStudyImageSrcSet,
 } from "../lib/caseStudiesPageAssets";
@@ -132,7 +133,7 @@ function CaseStudyMedia({ project }: Props) {
         className={CASE_STUDY_CARD_IMAGE_CLASS}
         src={caseStudyImageSrc(project.id)}
         srcSet={srcSet}
-        sizes={project.layout === "horizontal" ? "280px" : "360px"}
+        sizes={caseStudyImageSizes(project.id, project.layout)}
         alt={caseStudyImageAlt(project.id)}
         loading="lazy"
         decoding="async"

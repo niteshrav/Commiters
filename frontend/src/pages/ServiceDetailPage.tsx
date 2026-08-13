@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import ServiceDetailFinalCta from "../components/service-detail/ServiceDetailFinalCta";
 import ServiceDetailHero, { serviceDocumentTitle } from "../components/service-detail/ServiceDetailHero";
 import { ServiceDetailPlan } from "../components/service-detail/ServiceDetailEngagement";
@@ -49,12 +49,6 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="service-detail-page" data-testid="service-detail-page" data-service-slug={service.slug}>
-      <nav className="svc-detail-breadcrumb" aria-label="Breadcrumb">
-        <Link to={ROUTES.services}>Services</Link>
-        <span aria-hidden>/</span>
-        <span>{service.title}</span>
-      </nav>
-
       <ServiceDetailHero service={service} />
       <ServiceDetailAbout service={service} />
       <ServiceDetailFeatures service={service} />

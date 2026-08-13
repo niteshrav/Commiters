@@ -32,4 +32,4 @@ export const SERVICE_CARD_BORDER = "#e5e7eb";
 export const SERVICE_CARD_BORDER_HOVER = "rgba(var(--primary-rgb), 0.35)";
 export const SERVICE_CARD_PADDING = "0";
 export const SERVICE_CARD_BODY_PADDING = "clamp(20px, 2.5vw, 28px) clamp(20px, 2.5vw, 28px) clamp(22px, 3vw, 30px)";
-export const SERVICE_CARD_BORDER_RADIUS = "16px";
+export const SERVICE_CARD_BORDER_RADIUS = "0";

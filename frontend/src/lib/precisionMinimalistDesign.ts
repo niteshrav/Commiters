@@ -32,8 +32,8 @@ export const PRECISION_MINIMALIST_DESIGN = {
     cardPadding: "clamp(24px, 3vw, 32px)",
   },
   radius: {
-    card: "16px",
-    button: "8px",
+    card: "0",
+    button: "0",
   },
 } as const;
 

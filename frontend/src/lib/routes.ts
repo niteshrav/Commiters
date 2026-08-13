@@ -3,8 +3,12 @@ export const ROUTES = {
   home: "/",
   about: "/about",
   services: "/services",
-  caseStudies: "/case-studies",
-  technicalLedger: "/technical-ledger",
+  caseStudies: "/work",
+  /** Legacy URL — redirect to Work portfolio */
+  caseStudiesLegacy: "/case-studies",
+  technicalLedger: "/blog",
+  /** Legacy URL — redirect to Blog */
+  technicalLedgerLegacy: "/technical-ledger",
   commitersCaseStudy: "/case-studies/commiters",
   aiSummarizerCaseStudy: "/case-studies/ai-summarizer",
   neardropCaseStudy: "/case-studies/neardrop-mvp",

@@ -5,8 +5,10 @@ describe("routes", () => {
   it("defines paths aligned with App.tsx routing", () => {
     expect(ROUTES.home).toBe("/");
     expect(ROUTES.about).toBe("/about");
-    expect(ROUTES.caseStudies).toBe("/case-studies");
-    expect(ROUTES.technicalLedger).toBe("/technical-ledger");
+    expect(ROUTES.caseStudies).toBe("/work");
+    expect(ROUTES.caseStudiesLegacy).toBe("/case-studies");
+    expect(ROUTES.technicalLedger).toBe("/blog");
+    expect(ROUTES.technicalLedgerLegacy).toBe("/technical-ledger");
     expect(ROUTES.commitersCaseStudy).toBe("/case-studies/commiters");
     expect(ROUTES.aiSummarizerCaseStudy).toBe("/case-studies/ai-summarizer");
     expect(ROUTES.neardropCaseStudy).toBe("/case-studies/neardrop-mvp");

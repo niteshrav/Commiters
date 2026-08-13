@@ -49,7 +49,7 @@ describe("siteButtonLayout", () => {
     expect(btn).toContain(`min-height: var(--site-btn-min-height)`);
     expect(btn).toContain(`padding: var(--site-btn-padding-y) var(--site-btn-padding-x)`);
     expect(btn).toContain(`font-size: var(--site-btn-font-size)`);
-    expect(SITE_BUTTON_DESIGN.radius).toBe("8px");
+    expect(SITE_BUTTON_DESIGN.radius).toBe("0");
     expect(SITE_BUTTON_DESIGN.minHeight).toBe("40px");
     expect(SITE_BUTTON_DESIGN.paddingInline).toBe("18px");
     expect(SITE_BUTTON_DESIGN.paddingBlock).toBe("10px");

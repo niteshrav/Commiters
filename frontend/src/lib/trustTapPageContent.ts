@@ -36,15 +36,14 @@ export const TRUSTTAP_HERO = {
   secondaryHref: "#trusttap-how-it-works",
 } as const;
 
-/** Hero right column — live product mockup + location insights accent. */
+/** Hero right column — live QR flow mockup + multi-location accent card. */
 export const TRUSTTAP_HERO_SHOWCASE = {
   ariaLabel: "TrustTap customer feedback live preview and multi-location review insights",
   livePreview: {
-    src: "/assets/case-studies/trusttap.png",
-    srcSet: "/assets/case-studies/trusttap.png 1x, /assets/case-studies/trusttap@2x.png 2x",
-    alt: "TrustTap live preview with Google review, private feedback, and scan-to-open QR for a local business",
-    width: 1200,
-    height: 900,
+    src: "/assets/trusttap/trusttap-qr-preview.svg",
+    alt: "TrustTap mobile review flow with Google review, private feedback, and scan-to-open QR",
+    width: 640,
+    height: 400,
   },
   accent: {
     src: "/assets/trusttap/trusttap-locations-preview.svg",
@@ -61,8 +60,11 @@ export const TRUSTTAP_ABOUT = {
   body:
     "TrustTap is Commiters’ product for local and multi-location brands that want a compliant, measurable review funnel—without juggling spreadsheets or generic survey tools.",
   illustration: {
-    src: "/assets/trusttap/trusttap-dashboard-preview.svg",
-    alt: "TrustTap analytics dashboard showing review trends and location scores",
+    src: "/assets/case-studies/trusttap@2x.png",
+    srcSet: "/assets/case-studies/trusttap.png 1x, /assets/case-studies/trusttap@2x.png 2x",
+    alt: "TrustTap reputation dashboard showing review growth charts, location scores, and QR review collection",
+    width: 1024,
+    height: 1018,
   },
 } as const;
 
@@ -174,19 +176,13 @@ export type TrustTapPreviewAsset = {
 export const TRUSTTAP_PREVIEW = {
   kicker: "PRODUCT PREVIEW",
   title: "Built for clarity on every screen",
-  subtext: "Scan-ready QR flows and location insights your team can act on.",
+  subtext: "From the in-venue QR moment to the full TrustTap product story.",
   shots: [
     {
-      id: "qr",
-      src: "/assets/trusttap/trusttap-qr-preview.svg",
-      alt: "TrustTap QR review collection flow on a mobile device",
-      caption: "QR review collection",
-    },
-    {
-      id: "locations",
-      src: "/assets/trusttap/trusttap-locations-preview.svg",
-      alt: "TrustTap multi-location overview with performance benchmarks",
-      caption: "Multi-location overview",
+      id: "experience",
+      src: "/assets/trusttap/trusttap-hero.png",
+      alt: "TrustTap product experience with QR review collection and Google review prompts",
+      caption: "Complete review experience",
     },
   ] satisfies TrustTapPreviewAsset[],
 } as const;

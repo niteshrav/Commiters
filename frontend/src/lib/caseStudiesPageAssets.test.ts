@@ -21,7 +21,7 @@ describe("caseStudiesPageAssets", () => {
   it("ships all grid card images including TrustTap product crop", () => {
     for (const asset of CASE_STUDY_IMAGE_ASSETS) {
       expect(existsSync(join(publicRoot, asset.src))).toBe(true);
-      expect(asset.src).toMatch(/^\/assets\/case-studies\/.+\.png$/);
+      expect(asset.src).toMatch(/^\/assets\/(case-studies|trusttap)\/.+\.png$/);
       if (asset.srcSet) {
         const hiResPath = asset.srcSet.split(/\s+/)[0];
         expect(existsSync(join(publicRoot, hiResPath))).toBe(true);
@@ -37,7 +37,10 @@ describe("caseStudiesPageAssets", () => {
 
   it("uses distinct photography per project (not shared server-rack art)", () => {
     const hashes = new Set(
-      CASE_STUDY_IMAGE_ASSETS.map((asset) => fileHash(asset.src.replace(/^\//, ""))),
+      CASE_STUDY_IMAGE_ASSETS.map((asset) => {
+        const oneX = asset.srcSet?.match(/(\/assets\/[^\s]+)\s+1x/)?.[1];
+        return fileHash((oneX ?? asset.src).replace(/^\//, ""));
+      }),
     );
     expect(hashes.size).toBe(CASE_STUDY_IMAGE_ASSETS.length);
 

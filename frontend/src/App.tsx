@@ -36,7 +36,9 @@ export default function App() {
         <Route path={ROUTES.services} element={<ServicesPage />} />
         <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
         <Route path={ROUTES.caseStudies} element={<CaseStudiesPage />} />
+        <Route path={ROUTES.caseStudiesLegacy} element={<Navigate to={ROUTES.caseStudies} replace />} />
         <Route path={ROUTES.technicalLedger} element={<TechnicalLedgerPage />} />
+        <Route path={ROUTES.technicalLedgerLegacy} element={<Navigate to={ROUTES.technicalLedger} replace />} />
         <Route path={ROUTES.commitersCaseStudy} element={<CommitersCaseStudyPage />} />
         <Route path={ROUTES.aiSummarizerCaseStudy} element={<AiSummarizerCaseStudyPage />} />
         <Route path={ROUTES.neardropCaseStudy} element={<NearDropCaseStudyPage />} />
