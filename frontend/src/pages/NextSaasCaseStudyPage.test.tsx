@@ -29,6 +29,9 @@ describe("NextSaasCaseStudyPage", () => {
     expect(within(intro).queryByRole("img", { name: COMMITERS_HEADER_LOGO_ALT })).not.toBeInTheDocument();
     expect(intro.querySelector(".nextsaas-case-study-kicker")).toHaveTextContent(NEXTSAAS_CASE_STUDY_COPY.kicker);
     expect(intro.querySelector(".nextsaas-case-study-title")).toHaveTextContent(/BrowseMyVacation/i);
+    expect(within(intro).getByTestId("nextsaas-case-study-metadata")).toBeInTheDocument();
+    expect(within(intro).getByText("8 Weeks to Production")).toBeInTheDocument();
+    expect(within(intro).getByText(/React, Next.js, Node.js, PostgreSQL/i)).toBeInTheDocument();
 
     const introScopePipelines = within(intro).getByTestId("nextsaas-case-study-intro-scope-pipelines");
     expect(introScopePipelines.querySelector(".nextsaas-case-study-scope-pipelines-grid")).toBeTruthy();
@@ -73,13 +76,26 @@ describe("NextSaasCaseStudyPage", () => {
     expect(within(capabilities).getByText(/discovery and checkout/i)).toBeInTheDocument();
     expect(capabilities.querySelectorAll(".nextsaas-case-study-capability-icon")).toHaveLength(3);
 
+    const techStack = within(features).getByTestId("nextsaas-case-study-tech-stack");
+    expect(capabilities.compareDocumentPosition(techStack) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(techStack).getByRole("heading", { name: "The Tech Stack" })).toBeInTheDocument();
+    expect(within(techStack).getByRole("heading", { name: "React & Next.js" })).toBeInTheDocument();
+    expect(within(techStack).getByRole("heading", { name: "Node.js APIs" })).toBeInTheDocument();
+    expect(within(techStack).getByText("React 18")).toBeInTheDocument();
+
+    const outcomes = within(features).getByTestId("nextsaas-case-study-outcomes");
+    expect(techStack.compareDocumentPosition(outcomes) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(outcomes).getByRole("heading", { name: "What we delivered" })).toBeInTheDocument();
+    expect(within(outcomes).getByText("Production-ready")).toBeInTheDocument();
+
     const infrastructure = within(features).getByTestId("nextsaas-case-study-infrastructure");
-    expect(capabilities.compareDocumentPosition(infrastructure) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(outcomes.compareDocumentPosition(infrastructure) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(infrastructure).toHaveClass("band-breakout");
     expect(infrastructure.querySelector(".nextsaas-case-study-infrastructure-layout")).toBeTruthy();
     expect(within(infrastructure).getByRole("heading", { name: "How we shipped it." })).toBeInTheDocument();
     expect(within(infrastructure).getByRole("heading", { name: "Product foundation" })).toBeInTheDocument();
     expect(within(infrastructure).getByRole("heading", { name: "Launch & iterate" })).toBeInTheDocument();
+    expect(within(infrastructure).getByRole("heading", { name: "Production engineering" })).toBeInTheDocument();
     expect(within(infrastructure).getByText(/Shipped core booking paths/i)).toBeInTheDocument();
     expect(within(infrastructure).getByRole("img", { name: NEXTSAAS_CASE_STUDY_COPY.visualBreak.image.alt })).toHaveAttribute(
       "src",

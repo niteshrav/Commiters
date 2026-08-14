@@ -23,7 +23,7 @@ export default function NextSaasCaseStudyCapabilitiesSection() {
     <section className={NEXTSAAS_CASE_STUDY_CAPABILITIES_SECTION_CLASS} data-testid="nextsaas-case-study-capabilities">
       <div className={NEXTSAAS_CASE_STUDY_CAPABILITIES_GRID_CLASS}>
         {capabilities.items.map((capability) => (
-          <article key={capability.id} className={NEXTSAAS_CASE_STUDY_CAPABILITY_CARD_CLASS}>
+          <article key={capability.id} className={`${NEXTSAAS_CASE_STUDY_CAPABILITY_CARD_CLASS} reveal-on-scroll`}>
             <span className={NEXTSAAS_CASE_STUDY_CAPABILITY_ICON_CLASS} aria-hidden>
               <CapabilityIcon icon={capability.icon} />
             </span>

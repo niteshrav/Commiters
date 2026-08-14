@@ -187,13 +187,13 @@ select:focus-visible {
   clip-path: inset(0 -100vmax);
 }
 
-.route-shell[data-route="/case-studies/commiters"] {
+.route-shell[data-route="/work/commiters"] {
   background: var(--surface-container-low);
   box-shadow: 0 0 0 100vmax var(--surface-container-low);
   clip-path: inset(0 -100vmax);
 }
 
-.route-shell[data-route="/case-studies/ai-summarizer"] {
+.route-shell[data-route="/work/ai-summarizer"] {
   background: #ffffff;
   box-shadow: 0 0 0 100vmax #ffffff;
   clip-path: inset(0 -100vmax);
@@ -5447,7 +5447,60 @@ textarea {
 }
 
 .nextsaas-case-study-intro-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+  max-width: none;
+}
+
+.nextsaas-case-study-metadata-panel {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid #e5e7eb;
+  background: #f8f9fa;
+}
+
+.nextsaas-case-study-metadata-list {
+  margin: 0;
+}
+
+.nextsaas-case-study-metadata-item {
+  margin: 0;
+}
+
+.nextsaas-case-study-metadata-item:not(:last-child) {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nextsaas-case-study-metadata-label {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0066ff;
+}
+
+.nextsaas-case-study-metadata-value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #121317;
+}
+
+.nextsaas-case-study-description {
+  margin: 0;
   max-width: 44rem;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #4b5563;
 }
 
 .nextsaas-case-study-intro-copy {
@@ -5472,16 +5525,6 @@ textarea {
   line-height: 1.08;
   letter-spacing: -0.03em;
   color: #121317;
-}
-
-.nextsaas-case-study-description {
-  margin: 0;
-  max-width: 44rem;
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  font-weight: 400;
-  line-height: 1.7;
-  color: #4b5563;
 }
 
 .nextsaas-case-study-intro-scope-pipelines {
@@ -5652,6 +5695,13 @@ textarea {
   border: 1px solid #e5e7eb;
   border-radius: 0;
   background: #ffffff;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.nextsaas-case-study-capability-card:hover {
+  transform: translateY(-4px);
+  border-color: #0066ff;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
 }
 
 .nextsaas-case-study-capability-icon {
@@ -5677,6 +5727,223 @@ textarea {
 .nextsaas-case-study-capability-body {
   margin: 0;
   font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #4b5563;
+}
+
+.nextsaas-case-study-tech-stack-section {
+  padding: clamp(32px, 4vw, 48px) 0;
+}
+
+.nextsaas-case-study-tech-stack-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.55fr);
+  gap: clamp(28px, 4vw, 48px);
+  align-items: start;
+}
+
+.nextsaas-case-study-tech-stack-copy {
+  min-width: 0;
+}
+
+.nextsaas-case-study-tech-stack-heading {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #121317;
+}
+
+.nextsaas-case-study-tech-stack-description {
+  margin: 0 0 24px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.nextsaas-case-study-tech-stack-logos {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nextsaas-case-study-tech-stack-logo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.nextsaas-case-study-tech-stack-logo-item:hover {
+  border-color: #0066ff;
+  transform: translateX(4px);
+}
+
+.nextsaas-case-study-tech-stack-logo-item strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #121317;
+}
+
+.nextsaas-case-study-tech-stack-logo-item span span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #6b7280;
+}
+
+.nextsaas-case-study-tech-stack-logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid #e5e7eb;
+  background: #f8f9fa;
+}
+
+.nextsaas-case-study-tech-stack-logo-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.nextsaas-case-study-tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+}
+
+.nextsaas-case-study-tech-stack-cell {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 32px);
+  border-right: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.nextsaas-case-study-tech-stack-cell:hover {
+  background: #f8fbff;
+  box-shadow: inset 0 0 0 1px rgba(0, 102, 255, 0.12);
+}
+
+.nextsaas-case-study-tech-stack-cell-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
+  border: 1px solid #e5e7eb;
+  background: #f8f9fa;
+}
+
+.nextsaas-case-study-tech-stack-cell-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.nextsaas-case-study-tech-stack-cell-label {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0066ff;
+}
+
+.nextsaas-case-study-tech-stack-cell-title {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #121317;
+}
+
+.nextsaas-case-study-tech-stack-cell-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #4b5563;
+}
+
+.nextsaas-case-study-outcomes-section {
+  padding: clamp(32px, 4vw, 48px) 0;
+}
+
+.nextsaas-case-study-outcomes-layout {
+  display: grid;
+  gap: clamp(24px, 3vw, 32px);
+}
+
+.nextsaas-case-study-outcomes-heading {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #121317;
+}
+
+.nextsaas-case-study-outcomes-description {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.nextsaas-case-study-outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.5vw, 24px);
+}
+
+.nextsaas-case-study-outcome-card {
+  margin: 0;
+  padding: clamp(22px, 3vw, 28px);
+  border: 1px solid #e5e7eb;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.nextsaas-case-study-outcome-card:hover {
+  transform: translateY(-4px);
+  border-color: #0066ff;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+}
+
+.nextsaas-case-study-outcome-label {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #0066ff;
+}
+
+.nextsaas-case-study-outcome-value {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: #121317;
+}
+
+.nextsaas-case-study-outcome-body {
+  margin: 0;
+  font-size: 0.92rem;
   line-height: 1.65;
   color: #4b5563;
 }
@@ -5931,13 +6198,20 @@ textarea {
 }
 
 @media (max-width: 768px) {
+  .nextsaas-case-study-intro-shell,
+  .nextsaas-case-study-tech-stack-layout {
+    grid-template-columns: 1fr;
+  }
+
   .nextsaas-case-study-scope-pipelines-grid,
   .nextsaas-case-study-infrastructure-layout {
     grid-template-columns: 1fr;
     max-height: none;
   }
 
-  .nextsaas-case-study-capabilities-grid {
+  .nextsaas-case-study-capabilities-grid,
+  .nextsaas-case-study-outcomes-grid,
+  .nextsaas-case-study-tech-stack-grid {
     grid-template-columns: 1fr;
   }
 

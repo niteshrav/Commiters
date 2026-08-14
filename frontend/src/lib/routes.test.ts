@@ -9,11 +9,12 @@ describe("routes", () => {
     expect(ROUTES.caseStudiesLegacy).toBe("/case-studies");
     expect(ROUTES.technicalLedger).toBe("/blog");
     expect(ROUTES.technicalLedgerLegacy).toBe("/technical-ledger");
-    expect(ROUTES.commitersCaseStudy).toBe("/case-studies/commiters");
-    expect(ROUTES.aiSummarizerCaseStudy).toBe("/case-studies/ai-summarizer");
-    expect(ROUTES.neardropCaseStudy).toBe("/case-studies/neardrop-mvp");
-    expect(ROUTES.browseMyVacationCaseStudy).toBe("/case-studies/browse-my-vacation");
+    expect(ROUTES.commitersCaseStudy).toBe("/work/commiters");
+    expect(ROUTES.aiSummarizerCaseStudy).toBe("/work/ai-summarizer");
+    expect(ROUTES.neardropCaseStudy).toBe("/work/neardrop-mvp");
+    expect(ROUTES.browseMyVacationCaseStudy).toBe("/work/browse-my-vacation");
     expect(ROUTES.nextsaasCaseStudy).toBe("/case-studies/nextsaas");
+    expect(ROUTES.browseMyVacationCaseStudyLegacy).toBe("/case-studies/browse-my-vacation");
     expect(ROUTES.trustTap).toBe("/products/trusttap");
     expect(ROUTES.services).toBe("/services");
     expect(ROUTES.joinUs).toBe("/join-us");

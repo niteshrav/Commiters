@@ -24,6 +24,7 @@ import {
   NEXTSAAS_CASE_STUDY_TITLE_CLASS,
 } from "../lib/nextsaasCaseStudyLayout";
 import { IconGlobe } from "./icons";
+import { NextSaasCaseStudyMetadataPanel } from "./NextSaasCaseStudyOutcomesSection";
 
 export default function NextSaasCaseStudyIntroSection() {
   const { kicker, title, description, introHeroImage, scope, pipelines } = NEXTSAAS_CASE_STUDY_COPY;
@@ -42,6 +43,7 @@ export default function NextSaasCaseStudyIntroSection() {
           </h1>
           <p className={NEXTSAAS_CASE_STUDY_DESCRIPTION_CLASS}>{description}</p>
         </div>
+        <NextSaasCaseStudyMetadataPanel />
       </div>
       <div className={NEXTSAAS_CASE_STUDY_INTRO_SCOPE_PIPELINES_CLASS} data-testid="nextsaas-case-study-intro-scope-pipelines">
         <div className={NEXTSAAS_CASE_STUDY_SCOPE_PIPELINES_GRID_CLASS}>

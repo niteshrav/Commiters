@@ -44,6 +44,11 @@ export default function App() {
         <Route path={ROUTES.neardropCaseStudy} element={<NearDropCaseStudyPage />} />
         <Route path={ROUTES.multiRoleCrmCaseStudy} element={<MultiRoleCrmCaseStudyPage />} />
         <Route path={ROUTES.browseMyVacationCaseStudy} element={<NextSaasCaseStudyPage />} />
+        <Route path={ROUTES.commitersCaseStudyLegacy} element={<Navigate to={ROUTES.commitersCaseStudy} replace />} />
+        <Route path={ROUTES.aiSummarizerCaseStudyLegacy} element={<Navigate to={ROUTES.aiSummarizerCaseStudy} replace />} />
+        <Route path={ROUTES.neardropCaseStudyLegacy} element={<Navigate to={ROUTES.neardropCaseStudy} replace />} />
+        <Route path={ROUTES.multiRoleCrmCaseStudyLegacy} element={<Navigate to={ROUTES.multiRoleCrmCaseStudy} replace />} />
+        <Route path={ROUTES.browseMyVacationCaseStudyLegacy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.nextsaasCaseStudy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.trustTap} element={<TrustTapPage />} />
         <Route path={ROUTES.websiteDevelopmentUdaipur} element={<WebsiteDevelopmentUdaipurPage />} />

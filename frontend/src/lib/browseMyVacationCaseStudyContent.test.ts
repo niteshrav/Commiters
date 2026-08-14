@@ -22,7 +22,10 @@ describe("browseMyVacationCaseStudyContent", () => {
       "Booking & checkout",
       "Performance at scale",
     ]);
-    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.visualBreak.badgeLabel).toBe("FOUNDER");
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.metadata.coreStack.value).toMatch(/React/i);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.techStack.items).toHaveLength(4);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.outcomes.items).toHaveLength(3);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.infrastructure.items).toHaveLength(3);
     expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.bottomCta.secondaryLabel).toBe("Start a project");
   });
 
