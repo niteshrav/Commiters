@@ -11,7 +11,6 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
   "multi-role-crm",
   "neardrop-mvp",
   "browse-my-vacation",
-  "trusttap",
 ] as const;
 
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
@@ -43,12 +42,7 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
     id: "browse-my-vacation",
     src: "/assets/case-studies/browse-my-vacation.png",
     srcSet: "/assets/case-studies/browse-my-vacation@2x.png 2x",
-    alt: "BrowseMyVacation travel platform web application showcase",
-  },
-  {
-    id: "trusttap",
-    src: "/assets/trusttap/trusttap-hero.png",
-    alt: "TrustTap QR-powered review collection and Google review growth for local businesses",
+    alt: "BrowseMyVacation curated Rajasthan travel packages on browsemyvacations.com",
   },
 ] as const;
 
@@ -78,9 +72,6 @@ export function caseStudyImageAlt(projectId: string): string {
 export function caseStudyImageSizes(projectId: string, layout: "horizontal" | "stacked"): string {
   if (projectId === "commiters") {
     return "(min-width: 1024px) 540px, (min-width: 768px) 46vw, 92vw";
-  }
-  if (projectId === "trusttap") {
-    return "(min-width: 1024px) 400px, (min-width: 768px) 46vw, 92vw";
   }
   return layout === "horizontal" ? "(min-width: 768px) 420px, 92vw" : "(min-width: 768px) 360px, 92vw";
 }

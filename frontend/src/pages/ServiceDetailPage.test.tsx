@@ -41,6 +41,7 @@ describe("ServiceDetailPage", () => {
 
     expect(screen.getByTestId("service-detail-page")).toHaveAttribute("data-service-slug", "e-commerce-development");
     expect(screen.getByRole("heading", { name: /E-commerce Development/i })).toBeInTheDocument();
+    expect(screen.queryByTestId("service-detail-portfolio")).not.toBeInTheDocument();
   });
 
   it("redirects unknown slugs to the 404 route", () => {

@@ -37,7 +37,7 @@ describe("termsPageContent", () => {
     const acceptance = TERMS_PAGE_SECTIONS[0].blocks[0];
     expect(acceptance.kind).toBe("paragraph");
     if (acceptance.kind !== "paragraph") return;
-    expect(acceptance.text).toContain('Commiters Softwares ("we," "us," or "our")');
+    expect(acceptance.text).toContain('Commiters ("we," "us," or "our")');
 
     const services = TERMS_PAGE_SECTIONS[1].blocks[1];
     expect(services.kind).toBe("checklist");

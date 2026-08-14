@@ -34,12 +34,31 @@ export default function NextSaasCaseStudyBottomCta() {
             {bottomCta.primaryLabel}
             <IconArrowRight width={18} height={18} />
           </Link>
-          <Link
-            className={`${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}
-            to={bottomCta.secondaryTo}
-          >
-            {bottomCta.secondaryLabel}
-          </Link>
+          {"secondaryHref" in bottomCta && bottomCta.secondaryHref ? (
+            <a
+              className={`${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}
+              href={bottomCta.secondaryHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {bottomCta.secondaryLabel}
+            </a>
+          ) : (
+            <Link
+              className={`${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}
+              to={bottomCta.secondaryTo}
+            >
+              {bottomCta.secondaryLabel}
+            </Link>
+          )}
+          {"tertiaryTo" in bottomCta && bottomCta.tertiaryTo ? (
+            <Link
+              className={`${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}
+              to={bottomCta.tertiaryTo}
+            >
+              {bottomCta.tertiaryLabel}
+            </Link>
+          ) : null}
         </div>
       </div>
     </section>

@@ -123,12 +123,6 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: "https://www.commiters.com/",
         external: true,
       },
-      {
-        title: "BrowseMyVacation",
-        tag: "Travel Platform",
-        description: "Production travel web app with fast discovery, booking flows, and reliable performance.",
-        href: ROUTES.browseMyVacationCaseStudy,
-      },
     ],
   },
   {
@@ -169,16 +163,22 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
     pricing: SERVICE_DEFAULT_PRICING,
     portfolio: [
       {
-        title: "Multi-Role CRM",
+        title: "Multi-Role CRM & AI Chatbot",
         tag: "Web App",
         description: "Role-based CRM with generative AI workflows and operator dashboards.",
         href: ROUTES.multiRoleCrmCaseStudy,
       },
       {
-        title: "Customer Service Portal",
-        tag: "Web App",
-        description: "Ticketing, routing, and SLA dashboards for distributed support teams.",
-        href: ROUTES.contact,
+        title: "BrowseMyVacation",
+        tag: "Travel Platform",
+        description: "Production travel web app with city search, curated packages, and quote flows.",
+        href: ROUTES.browseMyVacationCaseStudy,
+      },
+      {
+        title: "TrustTap",
+        tag: "SaaS Product",
+        description: "QR-powered review collection with admin tooling and ungated Google review paths.",
+        href: ROUTES.trustTap,
       },
     ],
   },
@@ -261,21 +261,7 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Headless Commerce Platform", duration: "2–4 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    portfolio: [
-      {
-        title: "BrowseMyVacation",
-        tag: "Travel Platform",
-        description: "Customer-ready travel platform engineered for speed, UX, and founder-led iteration.",
-        href: ROUTES.browseMyVacationCaseStudy,
-      },
-      {
-        title: "Commiters.com",
-        tag: "Website",
-        description: "Lead-generation site with CMS-driven content and performance-first delivery.",
-        href: "https://www.commiters.com/",
-        external: true,
-      },
-    ],
+    portfolio: [],
   },
   {
     slug: "ai-integration",
@@ -314,15 +300,15 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
     pricing: SERVICE_DEFAULT_PRICING,
     portfolio: [
       {
-        title: "AI Summariser",
+        title: "AI Summarizer",
         tag: "AI Tool",
         description: "Multi-modal summarization with evaluation hooks and production guardrails.",
         href: ROUTES.aiSummarizerCaseStudy,
       },
       {
-        title: "Multi-Role CRM AI",
+        title: "Multi-Role CRM & AI Chatbot",
         tag: "AI Integration",
-        description: "Generative workflows embedded in operator and sales tooling.",
+        description: "Generative workflows and RAG-enhanced chatbots embedded in operator tooling.",
         href: ROUTES.multiRoleCrmCaseStudy,
       },
     ],
@@ -369,6 +355,12 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         description: "Concept-to-market MVP with focused scope and rapid iteration cycles.",
         href: ROUTES.neardropCaseStudy,
       },
+      {
+        title: "BrowseMyVacation",
+        tag: "Founder MVP",
+        description: "Travel platform shipped from discovery to production in eight weeks with founder-led iteration.",
+        href: ROUTES.browseMyVacationCaseStudy,
+      },
     ],
   },
   {
@@ -406,14 +398,7 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       { label: "Ops Platform", duration: "2–4 Months" },
     ],
     pricing: SERVICE_DEFAULT_PRICING,
-    portfolio: [
-      {
-        title: "Internal Ops Dashboard",
-        tag: "Automation",
-        description: "Role-based admin tooling with audit trails and exportable reports.",
-        href: ROUTES.contact,
-      },
-    ],
+    portfolio: [],
   },
 ];
 

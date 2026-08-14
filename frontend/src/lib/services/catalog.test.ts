@@ -36,4 +36,24 @@ describe("services catalog", () => {
       expect(service?.pricing.length).toBeGreaterThanOrEqual(3);
     }
   });
+
+  it("shows related work only when a service has relevant portfolio projects", () => {
+    expect(getServiceBySlug("e-commerce-development")?.portfolio).toEqual([]);
+    expect(getServiceBySlug("automation-tools")?.portfolio).toEqual([]);
+    expect(getServiceBySlug("website-development")?.portfolio.map((item) => item.title)).toEqual(["Commiters.com"]);
+    expect(getServiceBySlug("web-application-development")?.portfolio.map((item) => item.title)).toEqual([
+      "Multi-Role CRM & AI Chatbot",
+      "BrowseMyVacation",
+      "TrustTap",
+    ]);
+    expect(getServiceBySlug("mobile-app-development")?.portfolio.map((item) => item.title)).toEqual(["NearDrop MVP"]);
+    expect(getServiceBySlug("ai-integration")?.portfolio.map((item) => item.title)).toEqual([
+      "AI Summarizer",
+      "Multi-Role CRM & AI Chatbot",
+    ]);
+    expect(getServiceBySlug("mvp-development")?.portfolio.map((item) => item.title)).toEqual([
+      "NearDrop MVP",
+      "BrowseMyVacation",
+    ]);
+  });
 });

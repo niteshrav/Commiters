@@ -6,7 +6,7 @@ import { CASE_STUDY_IMAGE_ASSETS } from "../lib/caseStudiesPageAssets";
 import { ROUTES } from "../lib/routes";
 
 describe("CaseStudiesPage", () => {
-  it("renders the OUR WORK intro, six problem-solution project cards, and bottom CTAs", () => {
+  it("renders the OUR WORK intro, five problem-solution project cards, and bottom CTAs", () => {
     render(
       <MemoryRouter>
         <CaseStudiesPage />
@@ -20,7 +20,7 @@ describe("CaseStudiesPage", () => {
 
     const grid = screen.getByTestId("case-studies-grid");
     const cards = within(grid).getAllByTestId("case-study-card");
-    expect(cards).toHaveLength(6);
+    expect(cards).toHaveLength(5);
     expect(cards[0]).toHaveClass("case-study-card--grid-wide", "case-study-card--horizontal", "case-study-card--showcase");
     expect(cards[1]).toHaveClass("case-study-card--grid-narrow", "case-study-card--stacked");
     expect(cards[3]).toHaveClass("case-study-card--grid-wide", "case-study-card--horizontal");
@@ -35,7 +35,7 @@ describe("CaseStudiesPage", () => {
       }
     }
 
-    expect(screen.getAllByRole("img")).toHaveLength(6);
+    expect(screen.getAllByRole("img")).toHaveLength(5);
 
     for (const project of CASE_STUDY_PROJECTS) {
       expect(screen.getByRole("heading", { name: project.title })).toBeInTheDocument();
@@ -70,8 +70,7 @@ describe("CaseStudiesPage", () => {
       ROUTES.browseMyVacationCaseStudy,
     );
 
-    const trustTapCard = cards[5];
-    expect(within(trustTapCard).getByRole("link", { name: /View Product/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(screen.queryByRole("link", { name: /View Product/i })).not.toBeInTheDocument();
 
     expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_COPY.bottomCta.primaryLabel })).toHaveAttribute(
       "href",

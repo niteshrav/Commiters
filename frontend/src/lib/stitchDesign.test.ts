@@ -69,7 +69,7 @@ describe("stitchDesign", () => {
     expect(STITCH_COPY.privacy.title).toBe("Privacy Policy");
     expect(STITCH_COPY.privacy.lastUpdatedLabel).toBe("LAST UPDATED:");
     expect(STITCH_COPY.privacy.lastUpdatedDate).toBe("April 15, 2026");
-    expect(STITCH_COPY.privacy.introBold).toBe("Commiters Softwares");
+    expect(STITCH_COPY.privacy.introBold).toBe("Commiters");
     expect(STITCH_COPY.privacy.dpoCta.buttonLabel).toBe("Contact DPO");
   });
 

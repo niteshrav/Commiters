@@ -19,7 +19,12 @@ export default function TrustTapFaqSection() {
       aria-labelledby="trusttap-faq-title"
     >
       <div className={TRUSTTAP_SECTION_INNER_CLASS}>
-        <TrustTapSectionHeader kicker={copy.kicker} title={copy.title} titleId="trusttap-faq-title" />
+        <TrustTapSectionHeader
+          kicker={copy.kicker}
+          title={copy.title}
+          titleId="trusttap-faq-title"
+          subtext={copy.subtext}
+        />
         <ul className={`faq-accordion-list ${TRUSTTAP_FAQ_LIST_CLASS}`}>
           {copy.items.map((item) => {
             const isOpen = openId === item.id;

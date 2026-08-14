@@ -25,7 +25,7 @@ describe("TermsPageSections", () => {
     expect(screen.getByText("01")).toHaveClass(TERMS_SECTION_INDEX_CLASS, "terms-section-index--blue");
     expect(screen.getByRole("heading", { name: "Acceptance of Terms" })).toHaveClass(TERMS_SECTION_TITLE_CLASS);
     expect(document.querySelector(`.${TERMS_SECTION_CONTENT_CLASS}`)).toBeTruthy();
-    expect(screen.getByText(/By accessing or using the services provided by Commiters Softwares/i)).toBeInTheDocument();
+    expect(screen.getByText(/By accessing or using the services provided by Commiters/i)).toBeInTheDocument();
     expect(screen.getByText("Custom Web & Mobile Engineering")).toBeInTheDocument();
     expect(document.querySelector(`.${TERMS_CHECKLIST_CLASS}`)).toBeTruthy();
     expect(document.querySelectorAll(`.${TERMS_CHECKLIST_ICON_CLASS}`)).toHaveLength(3);

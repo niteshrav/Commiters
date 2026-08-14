@@ -42,11 +42,11 @@ export const WEBSITE_DEVELOPMENT_UDAPUR: SeoLandingPageContent = {
   path: ROUTES.websiteDevelopmentUdaipur,
   testId: "seo-landing-website-development-udaipur",
   seo: {
-    title: "Website Development Company in Udaipur | Commiters Softwares",
+    title: "Website Development Company in Udaipur | Commiters",
     description:
-      "Custom website development in Udaipur, Rajasthan—fast, SEO-ready marketing sites and web apps built by Commiters Softwares for startups and growing brands.",
+      "Custom website development in Udaipur, Rajasthan—fast, SEO-ready marketing sites and web apps built by Commiters for startups and growing brands.",
     keywords:
-      "website development Udaipur, web development company Udaipur, website design Udaipur, custom website Rajasthan, Commiters Softwares",
+      "website development Udaipur, web development company Udaipur, website design Udaipur, custom website Rajasthan, Commiters",
     schemaServiceType: "Website Development",
   },
   hero: {
@@ -112,11 +112,11 @@ export const WHATSAPP_AUTOMATION_UDAPUR: SeoLandingPageContent = {
   path: ROUTES.whatsappAutomationUdaipur,
   testId: "seo-landing-whatsapp-automation-udaipur",
   seo: {
-    title: "WhatsApp Automation in Udaipur | Commiters Softwares",
+    title: "WhatsApp Automation in Udaipur | Commiters",
     description:
-      "WhatsApp Business automation in Udaipur—lead capture, notifications, CRM sync, and custom bots built by Commiters Softwares for Rajasthan businesses.",
+      "WhatsApp Business automation in Udaipur—lead capture, notifications, CRM sync, and custom bots built by Commiters for Rajasthan businesses.",
     keywords:
-      "WhatsApp automation Udaipur, WhatsApp Business API Udaipur, chatbot Udaipur, workflow automation Rajasthan, Commiters Softwares",
+      "WhatsApp automation Udaipur, WhatsApp Business API Udaipur, chatbot Udaipur, workflow automation Rajasthan, Commiters",
     schemaServiceType: "WhatsApp Automation",
   },
   hero: {
@@ -186,7 +186,7 @@ export function seoLandingServiceSchema(content: SeoLandingPageContent, origin: 
     description: content.seo.description,
     provider: {
       "@type": "Organization",
-      name: "Commiters Softwares",
+      name: "Commiters",
       url: origin,
     },
     areaServed: {

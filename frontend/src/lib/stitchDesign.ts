@@ -199,7 +199,7 @@ export const STITCH_COPY = {
     lastUpdatedLabel: "LAST UPDATED:",
     lastUpdatedDate: "April 15, 2026",
     introBeforeBold: "At ",
-    introBold: "Commiters Softwares",
+    introBold: "Commiters",
     introAfterBold:
       ", data protection and transparency are the pillars of our engineering philosophy. This policy outlines how we handle your digital footprint with surgical precision and absolute integrity.",
     dpoCta: {

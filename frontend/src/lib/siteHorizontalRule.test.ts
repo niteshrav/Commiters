@@ -33,11 +33,8 @@ describe("siteHorizontalRule", () => {
     expect(rule).not.toContain("calc(50% - 50vw)");
   });
 
-  it("matches the header bottom border to the footer top border", () => {
-    const header = ruleBlock(".header-light {", ".header-inner {");
-    expect(header).toContain(`border-bottom: ${SITE_SHELL_HEADER_BORDER_CSS}`);
-
-    const footer = ruleBlock(".footer--stitch {", ".footer-columns--mockup {");
-    expect(footer).toContain(`border-top: ${SITE_SHELL_FOOTER_BORDER_CSS}`);
+  it("matches the reference footer shell with a light top border rule", () => {
+    const footer = ruleBlock(".footer--reference.footer--home-mockup {", ".footer--reference .footer-reference-shell {");
+    expect(footer).toContain("border-top: 1px solid var(--border)");
   });
 });

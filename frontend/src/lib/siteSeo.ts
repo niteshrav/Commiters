@@ -21,7 +21,7 @@ export function buildOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Commiters Softwares",
+    name: "Commiters",
     alternateName: ["Committers", "Committers Softwares"],
     url: SITE_ORIGIN,
     logo: absoluteUrl(DEFAULT_OG_IMAGE_PATH),

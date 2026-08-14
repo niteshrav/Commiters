@@ -92,29 +92,15 @@ export const CASE_STUDY_PROJECTS: CaseStudyProject[] = [
   {
     id: "browse-my-vacation",
     title: "BrowseMyVacation",
-    tags: ["Travel • Web App"],
+    tags: ["Travel • Rajasthan"],
     tagVariant: "outline",
     problem:
-      "The founder needed a fast, user-friendly travel platform that could grow with real customer traffic and feedback.",
+      "Rahul needed a curated Rajasthan travel platform where customers could discover packages by city—without forced dates—and request custom quotes with transparent pricing.",
     solution:
-      "Delivered BrowseMyVacation—a production-ready web application with polished booking flows and reliable performance.",
+      "Shipped browsemyvacations.com on Next.js: city search, curated package grids, Customise & Quote, Vacation Meter, MICE pages, and 24/7 travel support messaging.",
     gridSpan: "narrow",
     layout: "stacked",
     detailsLabel: "View Project Details",
     detailsHref: ROUTES.browseMyVacationCaseStudy,
-  },
-  {
-    id: "trusttap",
-    title: "TrustTap",
-    tags: ["SaaS • Reputation"],
-    tagVariant: "accent",
-    tagsPlacement: "header",
-    problem: "Local brands struggled to turn happy visits into public Google reviews that drive discovery.",
-    solution:
-      "Shipped TrustTap—a QR-led review platform with reputation dashboards and multi-location controls.",
-    gridSpan: "narrow",
-    layout: "stacked",
-    detailsLabel: "View Product",
-    detailsHref: ROUTES.trustTap,
   },
 ];

@@ -29,7 +29,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: 'By accessing or using the services provided by Commiters Softwares ("we," "us," or "our"), you agree to be bound by these Terms of Service. These terms constitute a legally binding agreement between you and Commiters Softwares. If you do not agree to these terms, you must immediately cease all use of our services.',
+        text: 'By accessing or using the services provided by Commiters ("we," "us," or "our"), you agree to be bound by these Terms of Service. These terms constitute a legally binding agreement between you and Commiters. If you do not agree to these terms, you must immediately cease all use of our services.',
       },
     ],
   },
@@ -40,7 +40,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "Commiters Softwares provides premium custom software development, technical consulting, and digital architecture services. Our engagement models include fixed-price projects, time-and-materials consulting, and dedicated engineering teams.",
+        text: "Commiters provides premium custom software development, technical consulting, and digital architecture services. Our engagement models include fixed-price projects, time-and-materials consulting, and dedicated engineering teams.",
       },
       {
         kind: "checklist",
@@ -59,7 +59,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "Upon full and final payment, the specific deliverables created solely for the client shall become the property of the client. However, Commiters Softwares retains ownership of all pre-existing tools, libraries, code snippets, and general technical knowledge used or developed during the project. We reserve the right to use our general knowledge and expertise for other clients.",
+        text: "Upon full and final payment, the specific deliverables created solely for the client shall become the property of the client. However, Commiters retains ownership of all pre-existing tools, libraries, code snippets, and general technical knowledge used or developed during the project. We reserve the right to use our general knowledge and expertise for other clients.",
       },
     ],
   },
@@ -70,7 +70,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
     blocks: [
       {
         kind: "highlight",
-        text: "To the maximum extent permitted by law, Commiters Softwares shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, use, or goodwill, arising out of your use of our services. Our total liability for any claim shall not exceed the amount paid by you for the specific service giving rise to the claim.",
+        text: "To the maximum extent permitted by law, Commiters shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, use, or goodwill, arising out of your use of our services. Our total liability for any claim shall not exceed the amount paid by you for the specific service giving rise to the claim.",
       },
     ],
   },
@@ -81,7 +81,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "These terms and any disputes related to them shall be governed by and construed in accordance with the laws of the jurisdiction in which Commiters Softwares is registered, without regard to its conflict of law principles.",
+        text: "These terms and any disputes related to them shall be governed by and construed in accordance with the laws of the jurisdiction in which Commiters is registered, without regard to its conflict of law principles.",
       },
     ],
   },

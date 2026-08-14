@@ -3,7 +3,7 @@ import type { Testimonial } from "./siteTrustContent";
 export const TESTIMONIALS_PAGE_COPY = {
   title: "Client Testimonials",
   subtext:
-    "Founders and product leaders share what it is like to ship web applications, travel platforms, and SaaS products with Commiters Softwares.",
+    "Founders and product leaders share what it is like to ship web applications, travel platforms, and SaaS products with Commiters.",
 } as const;
 
 export const BROWSE_MY_VACATION_TESTIMONIAL: Testimonial = {

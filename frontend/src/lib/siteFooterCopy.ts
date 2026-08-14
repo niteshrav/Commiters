@@ -90,16 +90,13 @@ export const SITE_FOOTER_DEFAULT_LEGAL_LINKS: readonly FooterNavLinkRecord[] = [
 ] as const;
 
 export const SITE_FOOTER_COPY = {
-  copyrightLine1: "© 2026 Commiters Softwares.",
+  copyrightLine1: "Copyright © 2026. Commiters, All Rights Reserved.",
   copyrightLine2: SITE_FOOTER_TAGLINE,
+  socialLinks: SITE_FOOTER_CONNECT_LINKS,
   navColumns: [
     {
       heading: "NAVIGATION",
       links: SITE_FOOTER_PRIMARY_NAV_LINKS,
-    },
-    {
-      heading: "SOCIAL",
-      links: SITE_FOOTER_CONNECT_LINKS,
     },
     {
       heading: "LEGAL",
@@ -113,10 +110,6 @@ export const SITE_FOOTER_CONTACT_NAV_COLUMNS = [
   {
     heading: "SITEMAP",
     links: SITE_FOOTER_PRIMARY_NAV_LINKS,
-  },
-  {
-    heading: "CONNECT",
-    links: SITE_FOOTER_CONNECT_LINKS,
   },
   {
     heading: "LEGAL",
@@ -137,4 +130,16 @@ export function resolveSiteFooterNavColumns(pathname: string): readonly FooterNa
   }
 
   return SITE_FOOTER_COPY.navColumns;
+}
+
+export function formatFooterColumnHeading(heading: string): string {
+  if (heading === "NAVIGATION" || heading === "SITEMAP") {
+    return "Site Map";
+  }
+
+  if (heading === "LEGAL") {
+    return "Legal";
+  }
+
+  return heading;
 }

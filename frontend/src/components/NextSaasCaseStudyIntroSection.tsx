@@ -77,6 +77,7 @@ export default function NextSaasCaseStudyIntroSection() {
                   className={NEXTSAAS_CASE_STUDY_INTRO_HERO_IMAGE_CLASS}
                   src={introHeroImage.src}
                   srcSet={introHeroImage.srcSet}
+                  sizes={introHeroImage.sizes}
                   alt={introHeroImage.alt}
                   loading="eager"
                   decoding="async"

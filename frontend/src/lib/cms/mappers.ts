@@ -166,7 +166,7 @@ function mergeLegalLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
 }
 
 function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
-  const fallbackLinks = SITE_FOOTER_COPY.navColumns.find((column) => column.heading === "SOCIAL")?.links ?? [];
+  const fallbackLinks = [...SITE_FOOTER_COPY.socialLinks];
   const merged = cmsLinks?.length ? [...cmsLinks] : [...fallbackLinks];
 
   for (const defaultLink of fallbackLinks) {
@@ -183,13 +183,19 @@ function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
 
 export function resolveFooter(
   cmsFooter: Record<string, unknown> | null | undefined,
-): { copyrightLine1: string; copyrightLine2: string; navColumns: readonly FooterNavColumn[] } {
+): {
+  copyrightLine1: string;
+  copyrightLine2: string;
+  socialLinks: readonly FooterLinkCell[];
+  navColumns: readonly FooterNavColumn[];
+} {
   const fallback = SITE_FOOTER_COPY;
 
   if (!hasCmsDoc(cmsFooter)) {
     return {
       copyrightLine1: fallback.copyrightLine1,
       copyrightLine2: fallback.copyrightLine2,
+      socialLinks: fallback.socialLinks,
       navColumns: stripAdminLink(fallback.navColumns),
     };
   }
@@ -237,10 +243,6 @@ export function resolveFooter(
       links: mergeNavigationLinks(navigationLinks),
     },
     {
-      heading: "SOCIAL",
-      links: mergeSocialLinks(socialLinks),
-    },
-    {
       heading: "LEGAL",
       links: mergeLegalLinks(legalLinks),
     },
@@ -249,6 +251,7 @@ export function resolveFooter(
   return {
     copyrightLine1: asString(cmsFooter.copyright, fallback.copyrightLine1),
     copyrightLine2: asString(cmsFooter.description, fallback.copyrightLine2),
+    socialLinks: mergeSocialLinks(socialLinks),
     navColumns: stripAdminLink(navColumns),
   };
 }

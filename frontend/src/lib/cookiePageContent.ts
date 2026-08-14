@@ -41,7 +41,7 @@ export const COOKIE_POLICY_SECTIONS: readonly CookiePolicySection[] = [
     number: 1,
     id: "what-are-cookies",
     title: "What are cookies?",
-    body: "Cookies are small text files stored on your device when you visit a website. They help websites work efficiently and provide reporting information. Commiters Softwares uses cookies to improve your experience on our site.",
+    body: "Cookies are small text files stored on your device when you visit a website. They help websites work efficiently and provide reporting information. Commiters uses cookies to improve your experience on our site.",
   },
   {
     number: 2,

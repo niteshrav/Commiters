@@ -48,7 +48,7 @@ export default function NextSaasCaseStudyOutcomesSection() {
 
 export function NextSaasCaseStudyMetadataPanel() {
   const { metadata } = NEXTSAAS_CASE_STUDY_COPY;
-  const metadataItems = [metadata.timeline, metadata.coreStack, metadata.client];
+  const metadataItems = [metadata.timeline, metadata.coreStack, metadata.client, metadata.liveSite];
 
   return (
     <aside className={NEXTSAAS_CASE_STUDY_METADATA_PANEL_CLASS} data-testid="nextsaas-case-study-metadata">
@@ -56,7 +56,15 @@ export function NextSaasCaseStudyMetadataPanel() {
         {metadataItems.map((item) => (
           <div key={item.label} className={NEXTSAAS_CASE_STUDY_METADATA_ITEM_CLASS}>
             <dt className={NEXTSAAS_CASE_STUDY_METADATA_LABEL_CLASS}>{item.label}</dt>
-            <dd className={NEXTSAAS_CASE_STUDY_METADATA_VALUE_CLASS}>{item.value}</dd>
+            <dd className={NEXTSAAS_CASE_STUDY_METADATA_VALUE_CLASS}>
+              {"href" in item && item.href ? (
+                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                  {item.value}
+                </a>
+              ) : (
+                item.value
+              )}
+            </dd>
           </div>
         ))}
       </dl>

@@ -32,19 +32,23 @@ describe("NextSaasCaseStudyPage", () => {
     expect(within(intro).getByTestId("nextsaas-case-study-metadata")).toBeInTheDocument();
     expect(within(intro).getByText("8 Weeks to Production")).toBeInTheDocument();
     expect(within(intro).getByText(/React, Next.js, Node.js, PostgreSQL/i)).toBeInTheDocument();
+    expect(within(intro).getByRole("link", { name: "browsemyvacations.com" })).toHaveAttribute(
+      "href",
+      "https://browsemyvacations.com/",
+    );
 
     const introScopePipelines = within(intro).getByTestId("nextsaas-case-study-intro-scope-pipelines");
     expect(introScopePipelines.querySelector(".nextsaas-case-study-scope-pipelines-grid")).toBeTruthy();
     expect(within(introScopePipelines).getByRole("heading", { name: "Product scope" })).toBeInTheDocument();
     expect(within(introScopePipelines).getByText(NEXTSAAS_CASE_STUDY_COPY.scope.description)).toBeInTheDocument();
-    expect(within(introScopePipelines).getByText("Travel discovery UX")).toBeInTheDocument();
-    expect(within(introScopePipelines).getByText("Booking & checkout")).toBeInTheDocument();
-    expect(within(introScopePipelines).getByText("Performance at scale")).toBeInTheDocument();
+    expect(within(introScopePipelines).getByText("City-based package discovery")).toBeInTheDocument();
+    expect(within(introScopePipelines).getByText("Customise & Quote journeys")).toBeInTheDocument();
+    expect(within(introScopePipelines).getByText("Vacation Meter, MICE & admin")).toBeInTheDocument();
     expect(introScopePipelines.querySelector(".nextsaas-case-study-scope-card")).toBeTruthy();
     expect(introScopePipelines.querySelector(".nextsaas-case-study-scope-icon")).toBeTruthy();
     expect(introScopePipelines.querySelectorAll(".nextsaas-case-study-scope-indicator")).toHaveLength(3);
-    expect(within(introScopePipelines).getByRole("heading", { name: "Built for travelers" })).toBeInTheDocument();
-    expect(within(introScopePipelines).getByText(/Responsive UI, resilient APIs/i)).toBeInTheDocument();
+    expect(within(introScopePipelines).getByRole("heading", { name: "Built for Rajasthan travelers" })).toBeInTheDocument();
+    expect(within(introScopePipelines).getByText(/Curated experiences, no dates needed/i)).toBeInTheDocument();
     expect(within(introScopePipelines).getByRole("img", { name: NEXTSAAS_CASE_STUDY_COPY.introHeroImage.alt })).toHaveAttribute(
       "src",
       NEXTSAAS_CASE_STUDY_COPY.introHeroImage.src,
@@ -68,12 +72,12 @@ describe("NextSaasCaseStudyPage", () => {
 
     const capabilities = within(features).getByTestId("nextsaas-case-study-capabilities");
     expect(features.compareDocumentPosition(capabilities) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(within(capabilities).getByText("USER EXPERIENCE")).toBeInTheDocument();
-    expect(within(capabilities).getByText("RELIABILITY")).toBeInTheDocument();
+    expect(within(capabilities).getByText("CURATED PACKAGES")).toBeInTheDocument();
+    expect(within(capabilities).getByText("TRUST & SUPPORT")).toBeInTheDocument();
     expect(within(capabilities).getByText("PERFORMANCE")).toBeInTheDocument();
-    expect(within(capabilities).getByText(/leisure travelers/i)).toBeInTheDocument();
-    expect(within(capabilities).getByText(/proactive communication/i)).toBeInTheDocument();
-    expect(within(capabilities).getByText(/discovery and checkout/i)).toBeInTheDocument();
+    expect(within(capabilities).getByText(/Customise & Quote actions/i)).toBeInTheDocument();
+    expect(within(capabilities).getByText(/Best Price Guarantee/i)).toBeInTheDocument();
+    expect(within(capabilities).getByText(/city search and package browsing/i)).toBeInTheDocument();
     expect(capabilities.querySelectorAll(".nextsaas-case-study-capability-icon")).toHaveLength(3);
 
     const techStack = within(features).getByTestId("nextsaas-case-study-tech-stack");
@@ -96,13 +100,13 @@ describe("NextSaasCaseStudyPage", () => {
     expect(within(infrastructure).getByRole("heading", { name: "Product foundation" })).toBeInTheDocument();
     expect(within(infrastructure).getByRole("heading", { name: "Launch & iterate" })).toBeInTheDocument();
     expect(within(infrastructure).getByRole("heading", { name: "Production engineering" })).toBeInTheDocument();
-    expect(within(infrastructure).getByText(/Shipped core booking paths/i)).toBeInTheDocument();
+    expect(within(infrastructure).getByText(/Vacation Meter, MICE/i)).toBeInTheDocument();
     expect(within(infrastructure).getByRole("img", { name: NEXTSAAS_CASE_STUDY_COPY.visualBreak.image.alt })).toHaveAttribute(
       "src",
       NEXTSAAS_CASE_STUDY_COPY.visualBreak.image.src,
     );
     expect(within(infrastructure).getByText("FOUNDER")).toBeInTheDocument();
-    expect(within(infrastructure).getByText("Rahul K.")).toBeInTheDocument();
+    expect(within(infrastructure).getByText("Rahul Kumawat")).toBeInTheDocument();
     expect(infrastructure.querySelector(".nextsaas-case-study-visual-break-badge")).toBeTruthy();
     expect(screen.queryByTestId("nextsaas-case-study-visual-break")).not.toBeInTheDocument();
 
@@ -111,6 +115,7 @@ describe("NextSaasCaseStudyPage", () => {
     expect(within(cta).getByRole("heading", { name: /Building a travel or marketplace product/i })).toBeInTheDocument();
     expect(within(cta).getByText(/BrowseMyVacation shows how Commiters partners/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "View our work" })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(screen.getByRole("link", { name: "Visit live site" })).toHaveAttribute("href", "https://browsemyvacations.com/");
     expect(screen.getByRole("link", { name: "Start a project" })).toHaveAttribute("href", ROUTES.contact);
   });
 });

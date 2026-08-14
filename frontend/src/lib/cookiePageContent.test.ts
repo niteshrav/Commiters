@@ -38,7 +38,7 @@ describe("cookiePageContent", () => {
       "What are cookies?",
       "How we use cookies",
     ]);
-    expect(COOKIE_POLICY_SECTIONS[0].body).toContain("Commiters Softwares");
+    expect(COOKIE_POLICY_SECTIONS[0].body).toContain("Commiters");
     expect(COOKIE_POLICY_SECTIONS[0].body).toContain("improve your experience");
     expect(COOKIE_POLICY_SECTIONS[1].intro).toContain("secure, reliable experience");
   });

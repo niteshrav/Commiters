@@ -23,7 +23,8 @@ export const TRUSTTAP_HERO_ACTIONS_CLASS = "trusttap-hero-actions" as const;
 export const TRUSTTAP_FEATURES_GRID_CLASS = "trusttap-features-grid" as const;
 export const TRUSTTAP_FEATURE_CARD_CLASS = "trusttap-feature-card" as const;
 
-export const TRUSTTAP_BENEFITS_LIST_CLASS = "trusttap-benefits-list" as const;
+export const TRUSTTAP_BENEFITS_GRID_CLASS = "trusttap-benefits-grid" as const;
+export const TRUSTTAP_BENEFIT_CARD_CLASS = "trusttap-benefit-card" as const;
 
 export const TRUSTTAP_STEPS_GRID_CLASS = "trusttap-steps-grid" as const;
 export const TRUSTTAP_STEP_CLASS = "trusttap-step" as const;

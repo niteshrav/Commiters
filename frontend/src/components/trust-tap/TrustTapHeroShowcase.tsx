@@ -2,7 +2,7 @@ import { TRUSTTAP_HERO_SHOWCASE } from "../../lib/trustTapPageContent";
 
 export default function TrustTapHeroShowcase() {
   const copy = TRUSTTAP_HERO_SHOWCASE;
-  const preview = copy.livePreview;
+  const preview = copy.image;
 
   return (
     <figure
@@ -10,37 +10,17 @@ export default function TrustTapHeroShowcase() {
       data-testid="trusttap-hero-showcase"
       aria-label={copy.ariaLabel}
     >
-      <div className="trusttap-hero-showcase-stage">
-        <div className="trusttap-hero-showcase-browser">
-          <div className="trusttap-hero-showcase-chrome" aria-hidden>
-            <span className="trusttap-hero-showcase-dot trusttap-hero-showcase-dot--close" />
-            <span className="trusttap-hero-showcase-dot trusttap-hero-showcase-dot--min" />
-            <span className="trusttap-hero-showcase-dot trusttap-hero-showcase-dot--max" />
-            <span className="trusttap-hero-showcase-url">{copy.browserChromeUrl}</span>
-          </div>
-          <img
-            className="trusttap-hero-showcase-main"
-            src={preview.src}
-            srcSet={"srcSet" in preview ? preview.srcSet : undefined}
-            alt={preview.alt}
-            width={preview.width}
-            height={preview.height}
-            decoding="async"
-            fetchPriority="high"
-          />
-        </div>
-        <div className="trusttap-hero-showcase-accent" aria-hidden>
-          <img
-            className="trusttap-hero-showcase-accent-image"
-            src={copy.accent.src}
-            alt={copy.accent.alt}
-            width={copy.accent.width}
-            height={copy.accent.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      </div>
+      <img
+        className="trusttap-hero-showcase-image"
+        src={preview.src}
+        srcSet={preview.srcSet}
+        sizes="(min-width: 960px) 560px, 92vw"
+        alt={preview.alt}
+        width={preview.width}
+        height={preview.height}
+        decoding="async"
+        fetchPriority="high"
+      />
     </figure>
   );
 }

@@ -14,17 +14,18 @@ describe("nextsaasCaseStudyContent (BrowseMyVacation)", () => {
   });
 
   it("matches the BrowseMyVacation travel platform case study copy", () => {
-    expect(NEXTSAAS_CASE_STUDY_COPY.title).toBe("BrowseMyVacation Web Platform.");
+    expect(NEXTSAAS_CASE_STUDY_COPY.title).toBe("BrowseMyVacation — Curated Rajasthan Vacations.");
     expect(NEXTSAAS_CASE_STUDY_COPY.scope.items).toEqual([
-      "Travel discovery UX",
-      "Booking & checkout",
-      "Performance at scale",
+      "City-based package discovery",
+      "Customise & Quote journeys",
+      "Vacation Meter, MICE & admin",
     ]);
   });
 
-  it("wires CTAs to the portfolio index and contact page", () => {
+  it("wires CTAs to the portfolio index, live site, and contact page", () => {
     expect(NEXTSAAS_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.caseStudies);
-    expect(NEXTSAAS_CASE_STUDY_COPY.bottomCta.secondaryTo).toBe(ROUTES.contact);
+    expect(NEXTSAAS_CASE_STUDY_COPY.bottomCta.secondaryHref).toBe("https://browsemyvacations.com/");
+    expect(NEXTSAAS_CASE_STUDY_COPY.bottomCta.tertiaryTo).toBe(ROUTES.contact);
   });
 
   it("references on-disk imagery for the intro hero and visual break", () => {

@@ -25,7 +25,7 @@ export async function buildInquiryPdf(input: InquiryNotificationInput): Promise<
     doc.on("error", reject);
   });
 
-  doc.fontSize(20).font("Helvetica-Bold").text("Commiters Softwares");
+  doc.fontSize(20).font("Helvetica-Bold").text("Commiters");
   doc.moveDown(0.5);
   doc.fontSize(14).text(`New ${formatLabel(input.kind)}`);
   doc.moveDown();

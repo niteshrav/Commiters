@@ -14,7 +14,7 @@ describe("siteSeo", () => {
   it("builds Organization schema with legal name and contact", () => {
     const org = buildOrganizationSchema();
     expect(org["@type"]).toBe("Organization");
-    expect(org.name).toBe("Commiters Softwares");
+    expect(org.name).toBe("Commiters");
     expect(org.url).toBe("https://www.commiters.com");
     expect(org.email).toBe("hello@commiters.com");
   });

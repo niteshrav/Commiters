@@ -61,7 +61,7 @@ export function usePageSeo(input: PageSeoInput | null): void {
     upsertMeta("property", "og:description", input.description);
     upsertMeta("property", "og:type", input.ogType ?? "website");
     upsertMeta("property", "og:url", canonicalUrl);
-    upsertMeta("property", "og:site_name", "Commiters Softwares");
+    upsertMeta("property", "og:site_name", "Commiters");
     upsertMeta("property", "og:image", ogImage);
     upsertMeta("name", "twitter:card", "summary_large_image");
     upsertMeta("name", "twitter:title", input.title);

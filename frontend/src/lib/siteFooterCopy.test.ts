@@ -18,19 +18,16 @@ import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "./siteLi
 
 describe("siteFooterCopy", () => {
   it("matches Stitch preview footer copyright with the services-page tagline", () => {
-    expect(SITE_FOOTER_COPY.copyrightLine1).toBe("© 2026 Commiters Softwares.");
+    expect(SITE_FOOTER_COPY.copyrightLine1).toBe("Copyright © 2026. Commiters, All Rights Reserved.");
     expect(SITE_FOOTER_COPY.copyrightLine2).toBe(SITE_FOOTER_TAGLINE);
     expect(SITE_FOOTER_COPY.copyrightLine2).toBe(
       "Engineering Precision for world-class digital products.",
     );
   });
 
-  it("lists Navigation, Social, and Legal columns from the Stitch screenshot", () => {
-    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual([
-      "NAVIGATION",
-      "SOCIAL",
-      "LEGAL",
-    ]);
+  it("lists Navigation and Legal columns with social icons under the brand tagline", () => {
+    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual(["NAVIGATION", "LEGAL"]);
+    expect(SITE_FOOTER_COPY.socialLinks.map((link) => link.label)).toEqual([...SITE_FOOTER_SOCIAL_LINK_LABELS]);
 
     const navigation = SITE_FOOTER_COPY.navColumns[0];
     expect(navigation.links.map((link) => link.label)).toEqual([...SITE_FOOTER_NAVIGATION_LINK_LABELS]);
@@ -44,12 +41,10 @@ describe("siteFooterCopy", () => {
       ROUTES.contact,
     ]);
 
-    const social = SITE_FOOTER_COPY.navColumns[1];
-    expect(social.links.map((link) => link.label)).toEqual([...SITE_FOOTER_SOCIAL_LINK_LABELS]);
     expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("GitHub");
     expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("X");
 
-    const legal = SITE_FOOTER_COPY.navColumns[2];
+    const legal = SITE_FOOTER_COPY.navColumns[1];
     expect(legal.links.map((link) => link.label)).toEqual([...SITE_FOOTER_LEGAL_LINK_LABELS]);
     expect(legal.links[0].to).toBe(ROUTES.privacyPolicy);
     expect(legal.links[1].to).toBe(ROUTES.cookiePolicy);
@@ -70,22 +65,14 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_CONNECT_LINKS[3].href).toBe(SITE_MEDIUM_URL);
   });
 
-  it("lists Sitemap, Connect, and Legal columns on the contact page footer", () => {
-    expect(SITE_FOOTER_CONTACT_NAV_COLUMNS.map((column) => column.heading)).toEqual([
-      "SITEMAP",
-      "CONNECT",
-      "LEGAL",
-    ]);
+  it("lists Sitemap and Legal columns on the contact page footer", () => {
+    expect(SITE_FOOTER_CONTACT_NAV_COLUMNS.map((column) => column.heading)).toEqual(["SITEMAP", "LEGAL"]);
 
     const sitemap = SITE_FOOTER_CONTACT_NAV_COLUMNS[0];
     expect(sitemap.links.map((link) => link.label)).toEqual([...SITE_FOOTER_SITEMAP_LINK_LABELS]);
     expect(sitemap.links[5].to).toBe(ROUTES.contact);
 
-    const connect = SITE_FOOTER_CONTACT_NAV_COLUMNS[1];
-    expect(connect.links.map((link) => link.label)).toEqual([...SITE_FOOTER_CONNECT_LINK_LABELS]);
-    expect(SITE_FOOTER_CONNECT_LINK_LABELS).not.toContain("GitHub");
-
-    const legal = SITE_FOOTER_CONTACT_NAV_COLUMNS[2];
+    const legal = SITE_FOOTER_CONTACT_NAV_COLUMNS[1];
     expect(legal.links.map((link) => link.label)).toEqual([...SITE_FOOTER_LEGAL_LINK_LABELS]);
   });
 

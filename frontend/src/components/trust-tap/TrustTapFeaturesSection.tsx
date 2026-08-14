@@ -17,12 +17,20 @@ export default function TrustTapFeaturesSection() {
       aria-labelledby="trusttap-features-title"
     >
       <div className={TRUSTTAP_SECTION_INNER_CLASS}>
-        <TrustTapSectionHeader kicker={copy.kicker} title={copy.title} titleId="trusttap-features-title" />
+        <TrustTapSectionHeader
+          kicker={copy.kicker}
+          title={copy.title}
+          titleId="trusttap-features-title"
+          subtext={copy.subtext}
+        />
         <div className={TRUSTTAP_FEATURES_GRID_CLASS}>
           {copy.items.map((feature) => {
             const Icon = trustTapFeatureIcon(feature.id);
             return (
               <article key={feature.id} className={TRUSTTAP_FEATURE_CARD_CLASS}>
+                <p className="trusttap-feature-index" aria-hidden>
+                  {feature.index}
+                </p>
                 <span className="trusttap-feature-icon" aria-hidden>
                   <Icon width={24} height={24} />
                 </span>

@@ -217,7 +217,7 @@ export function trustTapPageSeo(): PageSeoInput {
       },
       provider: {
         "@type": "Organization",
-        name: "Commiters Softwares",
+        name: "Commiters",
         url: SITE_ORIGIN,
       },
       url: `${SITE_ORIGIN}${TRUSTTAP_SEO.path}`,

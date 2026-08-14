@@ -54,7 +54,7 @@ export function resolveServiceCardImage(options: {
 
   return {
     src,
-    alt: `${serviceTitle} — Commiters Softwares`,
+    alt: `${serviceTitle} — Commiters`,
   };
 }
 

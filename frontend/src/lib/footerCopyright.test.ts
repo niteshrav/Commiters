@@ -3,9 +3,9 @@ import { splitCopyrightLine } from "./footerCopyright";
 
 describe("splitCopyrightLine", () => {
   it("splits a leading copyright symbol from the rest of the line", () => {
-    expect(splitCopyrightLine("© 2026 Commiters Softwares.")).toEqual({
+    expect(splitCopyrightLine("© 2026 Commiters.")).toEqual({
       symbol: "©",
-      remainder: "2026 Commiters Softwares.",
+      remainder: "2026 Commiters.",
     });
   });
 

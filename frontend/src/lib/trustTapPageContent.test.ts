@@ -1,10 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
-  TRUSTTAP_ABOUT,
   TRUSTTAP_BENEFITS,
   TRUSTTAP_FEATURES,
   TRUSTTAP_HERO_SHOWCASE,
-  TRUSTTAP_PREVIEW,
+  TRUSTTAP_LIVE_URL,
   TRUSTTAP_SEO,
 } from "./trustTapPageContent";
 import { ROUTES } from "./routes";
@@ -12,36 +11,30 @@ import { ROUTES } from "./routes";
 describe("trustTapPageContent", () => {
   it("defines SEO metadata and product route", () => {
     expect(TRUSTTAP_SEO.path).toBe(ROUTES.trustTap);
-    expect(TRUSTTAP_SEO.description.length).toBeGreaterThan(40);
-    expect(TRUSTTAP_SEO.title).toMatch(/TrustTap/i);
+    expect(TRUSTTAP_SEO.description).toMatch(/QR-powered customer feedback/i);
+    expect(TRUSTTAP_SEO.title).toBe("TrustTap");
+    expect(TRUSTTAP_LIVE_URL).toBe("https://trusttap.commiters.com/");
   });
 
-  it("uses a distinct image for each TrustTap marketing section", () => {
-    const imagePaths = [
-      TRUSTTAP_HERO_SHOWCASE.livePreview.src,
-      TRUSTTAP_HERO_SHOWCASE.accent.src,
-      TRUSTTAP_ABOUT.illustration.src,
-      ...TRUSTTAP_PREVIEW.shots.map((shot) => shot.src),
-    ];
-    expect(new Set(imagePaths).size).toBe(imagePaths.length);
+  it("references the live-site hero showcase image", () => {
+    expect(TRUSTTAP_HERO_SHOWCASE.image.src).toMatch(/trusttap-hero-showcase\.png$/);
+    expect(TRUSTTAP_HERO_SHOWCASE.image.srcSet).toMatch(/trusttap-hero-showcase@2x\.png/);
   });
 
-  it("lists six features and five benefits requested for the product page", () => {
-    expect(TRUSTTAP_FEATURES.items).toHaveLength(6);
+  it("lists four live-site features and three benefit cards", () => {
+    expect(TRUSTTAP_FEATURES.items).toHaveLength(4);
+    expect(TRUSTTAP_FEATURES.title).toBe("Built for real counters");
     expect(TRUSTTAP_FEATURES.items.map((item) => item.title)).toEqual([
-      "Customer Reviews",
-      "Reputation Management",
-      "QR Review Collection",
-      "Analytics Dashboard",
-      "Multi-location Support",
-      "Notifications",
+      "QR-powered collection",
+      "Private feedback first",
+      "Google reviews, ungated",
+      "Owner alerts",
     ]);
-    expect(TRUSTTAP_BENEFITS.items).toEqual([
-      "Increase Google Reviews",
-      "Build Customer Trust",
-      "Improve Local SEO",
-      "Easy Setup",
-      "Better Customer Engagement",
+    expect(TRUSTTAP_BENEFITS.items).toHaveLength(3);
+    expect(TRUSTTAP_BENEFITS.items.map((item) => item.title)).toEqual([
+      "Protect reputation",
+      "Look professional",
+      "Operate simply",
     ]);
   });
 });

@@ -42,6 +42,7 @@ describe("Navbar", () => {
     expect(within(primaryNav).queryByRole("menuitem")).not.toBeInTheDocument();
 
     expect(within(primaryNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(within(primaryNav).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
     expect(within(primaryNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
     expect(within(primaryNav).getByRole("link", { name: /^Jobs$/i })).toHaveAttribute("href", ROUTES.joinUs);
     expect(within(primaryNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);

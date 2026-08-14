@@ -83,7 +83,7 @@ describe("CookiePolicyPage", () => {
     ]);
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
-    expect(copyrightCell).toHaveTextContent("© 2026 Commiters Softwares.");
+    expect(copyrightCell).toHaveTextContent("Copyright © 2026. Commiters, All Rights Reserved.");
     expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass("footer-brand-tagline");
   });
 });

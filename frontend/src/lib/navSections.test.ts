@@ -10,12 +10,13 @@ import {
 } from "./navSections";
 
 describe("navSections", () => {
-  it("lists primary nav items with Work, Blog, and Jobs (Join Us) without a separate Join Us link", () => {
+  it("lists primary nav items with TrustTap, Work, Blog, and Jobs without a separate Join Us link", () => {
     expect(PRIMARY_NAV_ITEMS.map((item) => item.label)).toEqual([
       "Home",
       "About",
       "Services",
       "Work",
+      "TrustTap",
       "Testimonials",
       "Blog",
       "Jobs",
@@ -26,6 +27,7 @@ describe("navSections", () => {
       ROUTES.about,
       ROUTES.services,
       ROUTES.caseStudies,
+      ROUTES.trustTap,
       ROUTES.testimonials,
       ROUTES.technicalLedger,
       ROUTES.joinUs,
@@ -33,12 +35,14 @@ describe("navSections", () => {
     ]);
     const servicesIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "services");
     const workIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "work");
+    const trustTapIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "trusttap");
     const testimonialsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "testimonials");
     const blogIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "blog");
     const jobsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "jobs");
     expect(servicesIndex).toBeGreaterThan(-1);
     expect(workIndex).toBeGreaterThan(servicesIndex);
-    expect(testimonialsIndex).toBeGreaterThan(workIndex);
+    expect(trustTapIndex).toBeGreaterThan(workIndex);
+    expect(testimonialsIndex).toBeGreaterThan(trustTapIndex);
     expect(blogIndex).toBeGreaterThan(testimonialsIndex);
     expect(jobsIndex).toBeGreaterThan(blogIndex);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);

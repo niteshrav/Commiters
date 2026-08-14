@@ -7,6 +7,8 @@
   margin: 0 calc(-1 * clamp(14px, 2.5vw, 32px));
   width: calc(100% + 2 * clamp(14px, 2.5vw, 32px));
   max-width: 100vw;
+  --trusttap-brand: #1e4d3a;
+  --trusttap-brand-hover: #163828;
 }
 
 .trusttap-kicker {
@@ -123,6 +125,16 @@
 .trusttap-hero-showcase {
   margin: 0;
   min-width: 0;
+}
+
+.trusttap-hero-showcase-image {
+  display: block;
+  width: min(100%, 560px);
+  height: auto;
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .trusttap-hero-showcase-stage {
@@ -247,8 +259,22 @@
 
 .trusttap-features-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(16px, 2.5vw, 24px);
+}
+
+@media (min-width: 960px) {
+  .trusttap-features-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.trusttap-feature-index {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--trusttap-brand, #1e4d3a);
 }
 
 .trusttap-feature-card {
@@ -282,6 +308,38 @@
 }
 
 .trusttap-feature-body {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.trusttap-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.5vw, 24px);
+}
+
+.trusttap-benefit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.04);
+}
+
+.trusttap-benefit-title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.trusttap-benefit-body {
   margin: 0;
   font-size: 0.9375rem;
   line-height: 1.55;
@@ -444,6 +502,7 @@
   }
 
   .trusttap-features-grid,
+  .trusttap-benefits-grid,
   .trusttap-preview-grid,
   .trusttap-about-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -456,6 +515,7 @@
 
 @media (max-width: 640px) {
   .trusttap-features-grid,
+  .trusttap-benefits-grid,
   .trusttap-preview-grid,
   .trusttap-benefits-list,
   .trusttap-about-grid {

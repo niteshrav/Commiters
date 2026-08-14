@@ -12,7 +12,7 @@ describe("privacyPageContent", () => {
     expect(STITCH_COPY.privacy.title).toBe("Privacy Policy");
     expect(STITCH_COPY.privacy.lastUpdatedLabel).toBe("LAST UPDATED:");
     expect(STITCH_COPY.privacy.lastUpdatedDate).toBe("April 15, 2026");
-    expect(PRIVACY_PAGE_COPY.introBold).toBe("Commiters Softwares");
+    expect(PRIVACY_PAGE_COPY.introBold).toBe("Commiters");
     expect(PRIVACY_PAGE_COPY.intro).toContain("data protection and transparency");
     expect(PRIVACY_PAGE_COPY.intro).toContain("surgical precision and absolute integrity");
   });

@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import TrustTapPage from "./TrustTapPage";
 import {
-  TRUSTTAP_ABOUT,
   TRUSTTAP_BENEFITS,
   TRUSTTAP_FEATURES,
+  TRUSTTAP_FAQ,
   TRUSTTAP_HERO,
   TRUSTTAP_HERO_SHOWCASE,
   TRUSTTAP_SEO,
@@ -29,14 +29,9 @@ describe("TrustTapPage", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(TRUSTTAP_HERO.tagline)).toBeInTheDocument();
     expect(screen.getByTestId("trusttap-hero-showcase")).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: TRUSTTAP_HERO_SHOWCASE.livePreview.alt })).toHaveAttribute(
+    expect(screen.getByRole("img", { name: TRUSTTAP_HERO_SHOWCASE.image.alt })).toHaveAttribute(
       "src",
-      TRUSTTAP_HERO_SHOWCASE.livePreview.src,
-    );
-    expect(screen.getByText(TRUSTTAP_ABOUT.body)).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: TRUSTTAP_ABOUT.illustration.alt })).toHaveAttribute(
-      "src",
-      TRUSTTAP_ABOUT.illustration.src,
+      TRUSTTAP_HERO_SHOWCASE.image.src,
     );
 
     for (const feature of TRUSTTAP_FEATURES.items) {
@@ -44,7 +39,8 @@ describe("TrustTapPage", () => {
     }
 
     for (const benefit of TRUSTTAP_BENEFITS.items) {
-      expect(screen.getByText(benefit)).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: benefit.title })).toBeInTheDocument();
+      expect(screen.getByText(benefit.body)).toBeInTheDocument();
     }
 
     expect(screen.getByRole("link", { name: TRUSTTAP_HERO.primaryLabel })).toHaveAttribute("href", TRUSTTAP_HERO.primaryHref);
@@ -54,6 +50,10 @@ describe("TrustTapPage", () => {
     );
 
     expect(screen.getByTestId("trusttap-faq")).toBeInTheDocument();
-    expect(screen.getByTestId("trusttap-preview")).toBeInTheDocument();
+    expect(screen.getByText(TRUSTTAP_FAQ.subtext)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Launch admin" })).toHaveAttribute(
+      "href",
+      "https://trusttap.commiters.com/admin",
+    );
   });
 });
