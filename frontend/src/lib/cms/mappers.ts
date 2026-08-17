@@ -3,7 +3,7 @@ import { ROUTES } from "../routes";
 import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
-import { SITE_FOOTER_COPY, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
+import { SITE_FOOTER_COPY, SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, SITE_FOOTER_RESOURCES_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
 import { CONTACT_STUDIO } from "../contactPageContent";
 import { buildMailtoPublicContactHref, publicContactEmailDisplay } from "../siteContact";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
@@ -148,21 +148,43 @@ function mergeLinkGroups(cmsLinks: FooterLinkCell[] | null, fallbackLinks: reado
   return merged;
 }
 
-function orderFooterNavigationLinks(links: FooterLinkCell[]): FooterLinkCell[] {
+function orderLinksByLabels(links: FooterLinkCell[], labels: readonly string[]): FooterLinkCell[] {
   const byLabel = new Map(links.map((link) => [link.label.toLowerCase(), link]));
-  return SITE_FOOTER_PRIMARY_NAV_LINK_LABELS.map((label) => byLabel.get(label.toLowerCase())).filter(
-    (link): link is FooterLinkCell => Boolean(link),
+  return labels
+    .map((label) => byLabel.get(label.toLowerCase()))
+    .filter((link): link is FooterLinkCell => Boolean(link));
+}
+
+function mergePrimaryLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+  return orderLinksByLabels(
+    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[0].links]),
+    SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
   );
 }
 
-function mergeNavigationLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
-  const fallbackLinks = SITE_FOOTER_COPY.navColumns.find((column) => column.heading === "NAVIGATION")?.links ?? [];
-  return orderFooterNavigationLinks(mergeLinkGroups(cmsLinks, fallbackLinks));
+function mergeResourcesLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+  return orderLinksByLabels(
+    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[1].links]),
+    SITE_FOOTER_RESOURCES_LINK_LABELS,
+  );
 }
 
 function mergeLegalLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
-  const fallbackLinks = SITE_FOOTER_COPY.navColumns.find((column) => column.heading === "LEGAL")?.links ?? [];
-  return mergeLinkGroups(cmsLinks, fallbackLinks);
+  return orderLinksByLabels(
+    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.bottomLegalLinks]),
+    SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
+  );
+}
+
+function stripAdminLinks(links: readonly FooterLinkCell[]): FooterLinkCell[] {
+  return links.filter((link) => link.label.trim().toLowerCase() !== "admin");
+}
+
+function stripAdminColumns(columns: readonly FooterNavColumn[]): FooterNavColumn[] {
+  return columns.map((column) => ({
+    ...column,
+    links: stripAdminLinks(column.links),
+  }));
 }
 
 function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
@@ -184,24 +206,38 @@ function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
 export function resolveFooter(
   cmsFooter: Record<string, unknown> | null | undefined,
 ): {
+  brandTagline: string;
   copyrightLine1: string;
-  copyrightLine2: string;
   socialLinks: readonly FooterLinkCell[];
+  bottomLegalLinks: readonly FooterLinkCell[];
   navColumns: readonly FooterNavColumn[];
 } {
   const fallback = SITE_FOOTER_COPY;
 
   if (!hasCmsDoc(cmsFooter)) {
     return {
+      brandTagline: fallback.brandTagline,
       copyrightLine1: fallback.copyrightLine1,
-      copyrightLine2: fallback.copyrightLine2,
       socialLinks: fallback.socialLinks,
-      navColumns: stripAdminLink(fallback.navColumns),
+      bottomLegalLinks: stripAdminLinks(fallback.bottomLegalLinks),
+      navColumns: stripAdminColumns(fallback.navColumns),
     };
   }
 
   const navigationLinks = Array.isArray(cmsFooter.navigationLinks)
     ? cmsFooter.navigationLinks
+        .map(asRecord)
+        .filter(Boolean)
+        .sort((a, b) => {
+          const aOrder = typeof a.order === "number" ? a.order : 0;
+          const bOrder = typeof b.order === "number" ? b.order : 0;
+          return aOrder - bOrder;
+        })
+        .map(mapFooterLink)
+        .filter(Boolean)
+    : null;
+  const legalLinks = Array.isArray(cmsFooter.legalLinks)
+    ? cmsFooter.legalLinks
         .map(asRecord)
         .filter(Boolean)
         .sort((a, b) => {
@@ -224,46 +260,25 @@ export function resolveFooter(
         })
         .filter(Boolean) as FooterLinkCell[]
     : null;
-  const legalLinks = Array.isArray(cmsFooter.legalLinks)
-    ? cmsFooter.legalLinks
-        .map(asRecord)
-        .filter(Boolean)
-        .sort((a, b) => {
-          const aOrder = typeof a.order === "number" ? a.order : 0;
-          const bOrder = typeof b.order === "number" ? b.order : 0;
-          return aOrder - bOrder;
-        })
-        .map(mapFooterLink)
-        .filter(Boolean)
-    : null;
 
   const navColumns: FooterNavColumn[] = [
     {
-      heading: "NAVIGATION",
-      links: mergeNavigationLinks(navigationLinks),
+      heading: "PRIMARY",
+      links: mergePrimaryLinks(navigationLinks),
     },
     {
-      heading: "LEGAL",
-      links: mergeLegalLinks(legalLinks),
+      heading: "RESOURCES",
+      links: mergeResourcesLinks(null),
     },
   ];
 
   return {
+    brandTagline: asString(cmsFooter.description, fallback.brandTagline),
     copyrightLine1: asString(cmsFooter.copyright, fallback.copyrightLine1),
-    copyrightLine2: asString(cmsFooter.description, fallback.copyrightLine2),
     socialLinks: mergeSocialLinks(socialLinks),
-    navColumns: stripAdminLink(navColumns),
+    bottomLegalLinks: stripAdminLinks(mergeLegalLinks(legalLinks)),
+    navColumns: stripAdminColumns(navColumns),
   };
-}
-
-function stripAdminLink(columns: readonly FooterNavColumn[]): readonly FooterNavColumn[] {
-  return columns.map((column) => {
-    if (column.heading !== "LEGAL") return column;
-    return {
-      ...column,
-      links: column.links.filter((link) => link.label.toLowerCase() !== "admin"),
-    };
-  });
 }
 
 export function resolveAbout(cmsAbout: Record<string, unknown> | null | undefined) {

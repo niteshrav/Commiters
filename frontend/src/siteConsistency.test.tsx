@@ -15,6 +15,7 @@ import {
   caseStudiesPageSeo,
   contactPageSeo,
   joinUsPageSeo,
+  openPositionsPageSeo,
   servicesPageSeo,
   testimonialsPageSeo,
 } from "./lib/sitePageSeo";
@@ -46,7 +47,7 @@ function expectedTitle(path: string): string {
     case ROUTES.joinUs:
       return joinUsPageSeo().title;
     case ROUTES.openPositions:
-      return pageTitle("Open Positions");
+      return openPositionsPageSeo().title;
     case ROUTES.contact:
       return contactPageSeo().title;
     case ROUTES.faq:

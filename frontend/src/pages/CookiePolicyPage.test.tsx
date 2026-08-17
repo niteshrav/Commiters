@@ -16,7 +16,8 @@ import { COOKIE_CONTENT_COLUMN_CLASS } from "../lib/cookiePageLayout";
 import { ROUTES } from "../lib/routes";
 import {
   SITE_FOOTER_COPY,
-  SITE_FOOTER_SITEMAP_LINK_LABELS,
+  SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
+  SITE_FOOTER_RESOURCES_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
 } from "../lib/siteFooterCopy";
 
@@ -75,15 +76,19 @@ describe("CookiePolicyPage", () => {
 
     const banner = screen.getByRole("banner");
     expect(within(banner).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT })).toBeInTheDocument();
-    expect(screen.getByRole("contentinfo")).toHaveClass("footer--contact-mockup");
+    expect(screen.getByRole("contentinfo")).toHaveClass("footer--nock");
 
-    const sitemapNav = screen.getByTestId("footer-nav-column-sitemap");
-    expect(within(sitemapNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_SITEMAP_LINK_LABELS,
+    const primaryNav = screen.getByTestId("footer-nav-column-primary");
+    const resourcesNav = screen.getByTestId("footer-nav-column-resources");
+    expect(within(primaryNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
+    ]);
+    expect(within(resourcesNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_RESOURCES_LINK_LABELS,
     ]);
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
-    expect(copyrightCell).toHaveTextContent("Copyright © 2026. Commiters, All Rights Reserved.");
+    expect(copyrightCell).toHaveTextContent("Copyright 2026 (C) Commiters. All Rights Reserved.");
     expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass("footer-brand-tagline");
   });
 });

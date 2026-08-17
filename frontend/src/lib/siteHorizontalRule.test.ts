@@ -33,8 +33,8 @@ describe("siteHorizontalRule", () => {
     expect(rule).not.toContain("calc(50% - 50vw)");
   });
 
-  it("matches the reference footer shell with a light top border rule", () => {
-    const footer = ruleBlock(".footer--reference.footer--home-mockup {", ".footer--reference .footer-reference-shell {");
-    expect(footer).toContain("border-top: 1px solid var(--border)");
+  it("matches the nock footer shell with a light top border rule", () => {
+    const footer = ruleBlock(".footer--nock.footer--home-mockup {", ".footer--nock .footer-nock-shell {");
+    expect(footer).toContain("border-top: 1px solid rgba(17, 24, 39, 0.08)");
   });
 });

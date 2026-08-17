@@ -1,14 +1,18 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import JoinUsIntroSection from "../components/JoinUsIntroSection";
 import JobCard from "../components/open-positions/JobCard";
 import JobFiltersBar, { JobListSkeleton } from "../components/open-positions/JobFiltersBar";
 import Reveal from "../components/motion/Reveal";
 import { usePageSeo } from "../hooks/usePageSeo";
+import { JOIN_US_PAGE_CLASS } from "../lib/joinUsPageLayout";
 import {
   fetchJobFilters,
   fetchPublicJobs,
   type JobQuery,
   type PublicJob,
 } from "../lib/jobs";
+import { ROUTES } from "../lib/routes";
 import { openPositionsPageSeo } from "../lib/sitePageSeo";
 
 export default function OpenPositionsPage() {
@@ -16,7 +20,6 @@ export default function OpenPositionsPage() {
 
   const [query, setQuery] = useState<JobQuery>({ page: 1, limit: 12, search: "" });
   const [jobs, setJobs] = useState<PublicJob[]>([]);
-  const [featuredJobs, setFeaturedJobs] = useState<PublicJob[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -51,37 +54,17 @@ export default function OpenPositionsPage() {
     };
   }, [query]);
 
-  useEffect(() => {
-    void fetchPublicJobs({ featured: true, limit: 3, page: 1 })
-      .then((result) => setFeaturedJobs(result.items))
-      .catch(() => setFeaturedJobs([]));
-  }, []);
-
-  const latestJobs = useMemo(() => jobs.filter((job) => !job.featured), [jobs]);
-
   return (
-    <div className="open-positions-page" data-testid="open-positions-page">
-      <section className="open-positions-hero">
-        <Reveal>
-          <p className="open-positions-kicker">Careers</p>
-          <h1>Open Positions</h1>
-          <p>Join Commiters and help founders ship production-ready web, mobile, and AI products.</p>
+    <div className={`${JOIN_US_PAGE_CLASS} open-positions-page`} data-testid="open-positions-page">
+      <JoinUsIntroSection />
+
+      <section className="open-positions-section open-positions-list-section" aria-labelledby="open-positions-list-title">
+        <Reveal className="open-positions-list-head">
+          <p className="open-positions-kicker">Open Positions</p>
+          <h2 id="open-positions-list-title">Build with a founder-led engineering studio.</h2>
+          <p>Explore current roles across web, mobile, and AI — or submit a general application below.</p>
         </Reveal>
-      </section>
 
-      {featuredJobs.length > 0 ? (
-        <section className="open-positions-section">
-          <Reveal><h2>Featured Jobs</h2></Reveal>
-          <div className="open-positions-grid">
-            {featuredJobs.map((job, index) => (
-              <JobCard key={job._id} job={job} delay={index * 0.05} />
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      <section className="open-positions-section">
-        <Reveal><h2>Latest Jobs</h2></Reveal>
         <JobFiltersBar
           search={query.search ?? ""}
           department={query.department ?? ""}
@@ -90,18 +73,22 @@ export default function OpenPositionsPage() {
           departments={filters.departments}
           workModes={filters.workModes}
           employmentTypes={filters.employmentTypes}
-          onChange={(next) => setQuery((current) => ({ ...current, ...next }))}
+          onChange={(next) => setQuery((current) => ({ ...current, ...next, page: 1 }))}
         />
 
         {loading ? <JobListSkeleton /> : null}
         {!loading && error ? <p className="open-positions-empty">{error}</p> : null}
         {!loading && !error && jobs.length === 0 ? (
-          <p className="open-positions-empty">No open positions match your filters right now. Check back soon or apply generally on Join Us.</p>
+          <p className="open-positions-empty">
+            No open positions match your filters right now.{" "}
+            <Link to={ROUTES.joinUs}>Apply with a general application</Link>
+            {" "}and we will review your profile.
+          </p>
         ) : null}
 
-        {!loading && !error && latestJobs.length > 0 ? (
+        {!loading && !error && jobs.length > 0 ? (
           <div className="open-positions-grid">
-            {latestJobs.map((job, index) => (
+            {jobs.map((job, index) => (
               <JobCard key={job._id} job={job} delay={index * 0.04} />
             ))}
           </div>
@@ -122,6 +109,16 @@ export default function OpenPositionsPage() {
             </button>
           </div>
         ) : null}
+      </section>
+
+      <section className="open-positions-section open-positions-final-cta" aria-labelledby="open-positions-apply-title">
+        <Reveal>
+          <h2 id="open-positions-apply-title">Don&apos;t see the right role?</h2>
+          <p>Send us your resume and tell us how you would like to contribute at Commiters.</p>
+          <Link className="btn btn-primary" to={ROUTES.joinUs}>
+            Apply for a role
+          </Link>
+        </Reveal>
       </section>
     </div>
   );

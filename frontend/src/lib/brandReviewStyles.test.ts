@@ -17,7 +17,7 @@ describe("brandReviewStyles", () => {
   it("implements Stitch light UI patterns in CSS", () => {
     expect(css).toContain(".stitch-home-hero");
     expect(css).toContain(".stitch-contact-grid");
-    expect(css).toContain(".footer--reference");
+    expect(css).toContain(".footer--nock");
     expect(css).toContain(STITCH_LIGHT_PALETTE.stitchBlue);
     expect(STITCH_LIGHT_PALETTE.stitchBlue).toBe(PRECISION_MINIMALIST_DESIGN.colors.primary);
   });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { APP_ROUTE_PATHS, ROUTES } from "./routes";
+import { APP_ROUTE_PATHS, ROUTES, buildJoinUsApplyHref } from "./routes";
 
 describe("routes", () => {
   it("defines paths aligned with App.tsx routing", () => {
@@ -28,5 +28,10 @@ describe("routes", () => {
 
   it("lists each route exactly once", () => {
     expect(APP_ROUTE_PATHS.length).toBe(new Set(APP_ROUTE_PATHS).size);
+  });
+
+  it("builds the apply form URL with an optional position query", () => {
+    expect(buildJoinUsApplyHref()).toBe("/join-us");
+    expect(buildJoinUsApplyHref("Marketing Intern")).toBe("/join-us?position=Marketing%20Intern");
   });
 });

@@ -107,7 +107,7 @@ export function joinUsPageSeo(): PageSeoInput {
 
 export function openPositionsPageSeo(): PageSeoInput {
   return page({
-    title: pageTitle("Open Positions"),
+    title: pageTitle("Careers"),
     description:
       "Open roles at Committers Softwares across web development, mobile app development, AI, and SaaS engineering teams.",
     path: ROUTES.openPositions,

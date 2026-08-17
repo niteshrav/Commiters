@@ -2,14 +2,11 @@ import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import { buildWhatsAppUrl } from "./siteContact";
 import {
+  SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
   SITE_FOOTER_CONNECT_LINKS,
   SITE_FOOTER_COPY,
-  SITE_FOOTER_CONNECT_LINK_LABELS,
-  SITE_FOOTER_CONTACT_NAV_COLUMNS,
-  SITE_FOOTER_LEGAL_LINK_LABELS,
-  SITE_FOOTER_NAVIGATION_LINK_LABELS,
   SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
-  SITE_FOOTER_SITEMAP_LINK_LABELS,
+  SITE_FOOTER_RESOURCES_LINK_LABELS,
   SITE_FOOTER_SOCIAL_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
   resolveSiteFooterNavColumns,
@@ -17,41 +14,27 @@ import {
 import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "./siteLinks";
 
 describe("siteFooterCopy", () => {
-  it("matches Stitch preview footer copyright with the services-page tagline", () => {
-    expect(SITE_FOOTER_COPY.copyrightLine1).toBe("Copyright © 2026. Commiters, All Rights Reserved.");
-    expect(SITE_FOOTER_COPY.copyrightLine2).toBe(SITE_FOOTER_TAGLINE);
-    expect(SITE_FOOTER_COPY.copyrightLine2).toBe(
-      "Engineering Precision for world-class digital products.",
-    );
+  it("matches the merged footer brand tagline and copyright copy", () => {
+    expect(SITE_FOOTER_COPY.brandTagline).toBe(SITE_FOOTER_TAGLINE);
+    expect(SITE_FOOTER_COPY.copyrightLine1).toBe("Copyright 2026 (C) Commiters. All Rights Reserved.");
   });
 
-  it("lists Navigation and Legal columns with social icons under the brand tagline", () => {
-    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual(["NAVIGATION", "LEGAL"]);
-    expect(SITE_FOOTER_COPY.socialLinks.map((link) => link.label)).toEqual([...SITE_FOOTER_SOCIAL_LINK_LABELS]);
-
-    const navigation = SITE_FOOTER_COPY.navColumns[0];
-    expect(navigation.links.map((link) => link.label)).toEqual([...SITE_FOOTER_NAVIGATION_LINK_LABELS]);
-    expect(SITE_FOOTER_NAVIGATION_LINK_LABELS).toEqual([...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS]);
-    expect(navigation.links.map((link) => ("to" in link ? link.to : null))).toEqual([
-      ROUTES.home,
-      ROUTES.about,
-      ROUTES.services,
-      ROUTES.caseStudies,
-      ROUTES.faq,
-      ROUTES.contact,
+  it("lists primary and resources navigation columns without a social column", () => {
+    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual(["PRIMARY", "RESOURCES"]);
+    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toEqual([
+      ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
     ]);
-
-    expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("GitHub");
-    expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("X");
-
-    const legal = SITE_FOOTER_COPY.navColumns[1];
-    expect(legal.links.map((link) => link.label)).toEqual([...SITE_FOOTER_LEGAL_LINK_LABELS]);
-    expect(legal.links[0].to).toBe(ROUTES.privacyPolicy);
-    expect(legal.links[1].to).toBe(ROUTES.cookiePolicy);
-    expect(legal.links[2].to).toBe(ROUTES.terms);
+    expect(SITE_FOOTER_COPY.navColumns[1].links.map((link) => link.label)).toEqual([
+      ...SITE_FOOTER_RESOURCES_LINK_LABELS,
+    ]);
+    expect(SITE_FOOTER_COPY.navColumns[0].links[0].to).toBe(`${ROUTES.about}#principles`);
+    expect(SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Product")?.to).toBe(ROUTES.trustTap);
+    expect(SITE_FOOTER_COPY.bottomLegalLinks.map((link) => link.label)).toEqual([
+      ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
+    ]);
   });
 
-  it("orders social links LinkedIn, WhatsApp, Instagram, and Medium without X", () => {
+  it("orders social links LinkedIn, WhatsApp, Instagram, and Medium", () => {
     expect(SITE_FOOTER_CONNECT_LINKS.map((link) => link.label)).toEqual([
       "LinkedIn",
       "WhatsApp",
@@ -65,20 +48,8 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_CONNECT_LINKS[3].href).toBe(SITE_MEDIUM_URL);
   });
 
-  it("lists Sitemap and Legal columns on the contact page footer", () => {
-    expect(SITE_FOOTER_CONTACT_NAV_COLUMNS.map((column) => column.heading)).toEqual(["SITEMAP", "LEGAL"]);
-
-    const sitemap = SITE_FOOTER_CONTACT_NAV_COLUMNS[0];
-    expect(sitemap.links.map((link) => link.label)).toEqual([...SITE_FOOTER_SITEMAP_LINK_LABELS]);
-    expect(sitemap.links[5].to).toBe(ROUTES.contact);
-
-    const legal = SITE_FOOTER_CONTACT_NAV_COLUMNS[1];
-    expect(legal.links.map((link) => link.label)).toEqual([...SITE_FOOTER_LEGAL_LINK_LABELS]);
-  });
-
-  it("resolves contact footer columns on contact and cookie policy routes", () => {
+  it("uses the same footer links on every route", () => {
     expect(resolveSiteFooterNavColumns(ROUTES.home)).toBe(SITE_FOOTER_COPY.navColumns);
-    expect(resolveSiteFooterNavColumns(ROUTES.contact)).toBe(SITE_FOOTER_CONTACT_NAV_COLUMNS);
-    expect(resolveSiteFooterNavColumns(ROUTES.cookiePolicy)).toBe(SITE_FOOTER_CONTACT_NAV_COLUMNS);
+    expect(resolveSiteFooterNavColumns(ROUTES.contact)).toBe(SITE_FOOTER_COPY.navColumns);
   });
 });

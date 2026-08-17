@@ -6,7 +6,7 @@ import {
   isRecentlyPosted,
   type PublicJob,
 } from "../../lib/jobs";
-import { ROUTES } from "../../lib/routes";
+import { ROUTES, buildJoinUsApplyHref } from "../../lib/routes";
 
 type Props = {
   job: PublicJob;
@@ -37,7 +37,7 @@ export default function JobCard({ job, delay = 0 }: Props) {
         </div>
 
         <div className="open-positions-card-actions">
-          <Link className="btn btn-primary open-positions-card-apply" to={buildOpenPositionPath(job.slug)}>
+          <Link className="btn btn-primary open-positions-card-apply" to={buildJoinUsApplyHref(job.title)}>
             Apply
           </Link>
           <Link className="open-positions-card-link" to={buildOpenPositionPath(job.slug)}>
@@ -57,7 +57,7 @@ export function JoinUsFeaturedJobCard({ job }: { job: PublicJob }) {
         <h3>{job.title}</h3>
         <p className="join-us-job-card-meta">{job.location} · {job.workMode}</p>
       </div>
-      <Link className="btn btn-primary" to={buildOpenPositionPath(job.slug)}>Apply</Link>
+      <Link className="btn btn-primary" to={buildJoinUsApplyHref(job.title)}>Apply</Link>
     </article>
   );
 }

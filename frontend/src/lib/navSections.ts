@@ -18,9 +18,35 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   { id: "trusttap", to: ROUTES.trustTap, label: "TrustTap" },
   { id: "testimonials", to: ROUTES.testimonials, label: "Testimonials" },
   { id: "blog", to: ROUTES.technicalLedger, label: "Blog" },
-  { id: "jobs", to: ROUTES.joinUs, label: "Jobs" },
+  { id: "careers", to: ROUTES.openPositions, label: "Careers" },
   { id: "contact", to: ROUTES.contact, label: "Contact" },
 ];
+
+/** Desktop bar links shown in the header. */
+export const DESKTOP_HEADER_BAR_IDS = ["home", "about", "services", "work", "trusttap", "careers", "contact"] as const;
+
+/** Secondary links grouped under a More menu on desktop. */
+export const DESKTOP_HEADER_MORE_IDS = ["testimonials", "blog"] as const;
+
+export type HeaderNavGroups = {
+  bar: PrimaryNavItem[];
+  more: PrimaryNavItem[];
+  mobile: PrimaryNavItem[];
+};
+
+export function partitionHeaderNavItems(items: readonly PrimaryNavItem[]): HeaderNavGroups {
+  const byId = new Map(items.map((item) => [item.id, item]));
+  const bar = DESKTOP_HEADER_BAR_IDS.map((id) => byId.get(id)).filter((item): item is PrimaryNavItem => Boolean(item));
+  const more = DESKTOP_HEADER_MORE_IDS.map((id) => byId.get(id)).filter((item): item is PrimaryNavItem => Boolean(item));
+  const slotted = new Set<string>([...DESKTOP_HEADER_BAR_IDS, ...DESKTOP_HEADER_MORE_IDS]);
+
+  for (const item of items) {
+    if (slotted.has(item.id)) continue;
+    bar.push(item);
+  }
+
+  return { bar, more, mobile: [...items] };
+}
 
 /** Section ids on `ServicesPage` (order matches page). */
 export const SERVICE_NAV_ENTRIES: ServiceNavEntry[] = [

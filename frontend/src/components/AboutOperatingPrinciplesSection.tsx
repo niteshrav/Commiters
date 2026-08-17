@@ -33,6 +33,7 @@ export default function AboutOperatingPrinciplesSection() {
 
   return (
     <section
+      id="principles"
       className="about-principles-section reveal-on-scroll"
       data-testid="about-principles-section"
       aria-labelledby="about-principles-title"

@@ -11,7 +11,7 @@ import {
   type JobDetail,
   type PublicJob,
 } from "../lib/jobs";
-import { ROUTES } from "../lib/routes";
+import { ROUTES, buildJoinUsApplyHref } from "../lib/routes";
 import { pageTitle } from "../lib/siteMeta";
 import { SITE_SEO_KEYWORDS } from "../lib/siteSeo";
 import { buildDiscoveryCallCalendarUrl } from "../lib/siteContact";
@@ -21,7 +21,7 @@ function JobDetailHero({ job }: { job: JobDetail }) {
     <section className="open-positions-detail-hero" data-testid="job-detail-hero">
       <Reveal>
         <nav className="open-positions-breadcrumb" aria-label="Breadcrumb">
-          <Link to={ROUTES.openPositions}>Open Positions</Link>
+          <Link to={ROUTES.openPositions}>Careers</Link>
           <span aria-hidden>/</span>
           <span>{job.title}</span>
         </nav>
@@ -35,7 +35,7 @@ function JobDetailHero({ job }: { job: JobDetail }) {
             </p>
           </div>
           <div className="open-positions-detail-actions">
-            <Link className="btn btn-primary" to={`${ROUTES.joinUs}?position=${encodeURIComponent(job.title)}`}>
+            <Link className="btn btn-primary" to={buildJoinUsApplyHref(job.title)}>
               Apply Now
             </Link>
             <a className="btn btn-secondary svc-detail-btn" href={buildDiscoveryCallCalendarUrl()} target="_blank" rel="noopener noreferrer">
@@ -212,7 +212,7 @@ export default function JobDetailPage() {
           <h2>Ready to apply?</h2>
           <p>Send your resume and tell us why this role is the right fit.</p>
           <div className="open-positions-detail-actions">
-            <Link className="btn btn-primary" to={`${ROUTES.joinUs}?position=${encodeURIComponent(job.title)}`}>Apply for this role</Link>
+            <Link className="btn btn-primary" to={buildJoinUsApplyHref(job.title)}>Apply for this role</Link>
             <Link className="btn btn-secondary" to={ROUTES.contact}>Contact Us</Link>
           </div>
         </Reveal>

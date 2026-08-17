@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { IconArrowRight, IconCloudUpload } from "./icons";
 import { createJobApplication } from "../lib/api";
 import { useJoinUsPositions } from "../lib/cms/hooks";
@@ -34,6 +34,7 @@ import {
 
 export default function JoinUsApplicationSection() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const positionOptions = useJoinUsPositions();
   const resumeInputRef = useRef<HTMLInputElement>(null);
   const { sections, fields, privacyDisclaimer, submitButton } = JOIN_US_PAGE_COPY;
@@ -49,6 +50,28 @@ export default function JoinUsApplicationSection() {
     portfolioGitHub: "",
     coverLetter: "",
   });
+
+  useEffect(() => {
+    const requestedPosition = searchParams.get("position")?.trim();
+    if (!requestedPosition) return;
+
+    setForm((current) => {
+      if (current.positionAppliedFor !== JOIN_US_POSITION_DEFAULT) return current;
+
+      const exactMatch = positionOptions.find(
+        (option) => option.toLowerCase() === requestedPosition.toLowerCase(),
+      );
+      if (exactMatch) {
+        return { ...current, positionAppliedFor: exactMatch };
+      }
+
+      if (positionOptions.includes("Other")) {
+        return { ...current, positionAppliedFor: "Other" };
+      }
+
+      return current;
+    });
+  }, [positionOptions, searchParams]);
 
   function onResumeSelected(file: File | null) {
     const resumeErr = validateResumeFile(file);

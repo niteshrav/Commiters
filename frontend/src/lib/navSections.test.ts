@@ -6,11 +6,12 @@ import {
   SERVICE_NAV_ENTRIES,
   buildServiceSectionHref,
   buildServiceSectionLocation,
+  partitionHeaderNavItems,
   resolveActiveServiceSectionId,
 } from "./navSections";
 
 describe("navSections", () => {
-  it("lists primary nav items with TrustTap, Work, Blog, and Jobs without a separate Join Us link", () => {
+  it("lists primary nav items with TrustTap, Work, Blog, and Careers without a separate Join Us link", () => {
     expect(PRIMARY_NAV_ITEMS.map((item) => item.label)).toEqual([
       "Home",
       "About",
@@ -19,7 +20,7 @@ describe("navSections", () => {
       "TrustTap",
       "Testimonials",
       "Blog",
-      "Jobs",
+      "Careers",
       "Contact",
     ]);
     expect(PRIMARY_NAV_ITEMS.map((item) => item.to)).toEqual([
@@ -30,7 +31,7 @@ describe("navSections", () => {
       ROUTES.trustTap,
       ROUTES.testimonials,
       ROUTES.technicalLedger,
-      ROUTES.joinUs,
+      ROUTES.openPositions,
       ROUTES.contact,
     ]);
     const servicesIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "services");
@@ -38,13 +39,13 @@ describe("navSections", () => {
     const trustTapIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "trusttap");
     const testimonialsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "testimonials");
     const blogIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "blog");
-    const jobsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "jobs");
+    const careersIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "careers");
     expect(servicesIndex).toBeGreaterThan(-1);
     expect(workIndex).toBeGreaterThan(servicesIndex);
     expect(trustTapIndex).toBeGreaterThan(workIndex);
     expect(testimonialsIndex).toBeGreaterThan(trustTapIndex);
     expect(blogIndex).toBeGreaterThan(testimonialsIndex);
-    expect(jobsIndex).toBeGreaterThan(blogIndex);
+    expect(careersIndex).toBeGreaterThan(blogIndex);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
   });
 
@@ -73,5 +74,21 @@ describe("navSections", () => {
 
   it("exports the active dropdown link class for hover-matched highlighting", () => {
     expect(NAV_DROPDOWN_LINK_ACTIVE_CLASS).toBe("nav-dropdown-link--active");
+  });
+
+  it("partitions desktop header links into a compact bar, More menu, and full mobile list", () => {
+    const groups = partitionHeaderNavItems(PRIMARY_NAV_ITEMS);
+
+    expect(groups.bar.map((item) => item.label)).toEqual([
+      "Home",
+      "About",
+      "Services",
+      "Work",
+      "TrustTap",
+      "Careers",
+      "Contact",
+    ]);
+    expect(groups.more.map((item) => item.label)).toEqual(["Testimonials", "Blog"]);
+    expect(groups.mobile.map((item) => item.label)).toEqual(PRIMARY_NAV_ITEMS.map((item) => item.label));
   });
 });

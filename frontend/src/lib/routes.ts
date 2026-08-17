@@ -43,6 +43,13 @@ export const ROUTES = {
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
 
+/** Application form URL — optionally pre-select a role from Open Positions. */
+export function buildJoinUsApplyHref(position?: string): string {
+  const trimmed = position?.trim();
+  if (!trimmed) return ROUTES.joinUs;
+  return `${ROUTES.joinUs}?position=${encodeURIComponent(trimmed)}`;
+}
+
 /** Every top-level path rendered by the app (for consistency tests). */
 export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.home,
