@@ -35,14 +35,14 @@ export const TRUSTTAP_HERO = {
 
 /** Hero right column — TrustTap product marketing visual. */
 export const TRUSTTAP_HERO_SHOWCASE = {
-  ariaLabel: "TrustTap marketing visual with QR stand, mobile review flow, and analytics dashboard",
+  ariaLabel: "TrustTap marketing visual with QR stand, mobile feedback flow, analytics dashboard, and updated brand logo",
   image: {
-    src: "/assets/trusttap/trusttap-hero-showcase.png",
+    src: "/assets/trusttap/trusttap-hero-marketing.png",
     srcSet:
-      "/assets/trusttap/trusttap-hero-showcase.png 1x, /assets/trusttap/trusttap-hero-showcase@2x.png 2x",
-    alt: "TrustTap product showcase with QR feedback, mobile review form, and live dashboard — Real Reviews, Real Growth",
-    width: 560,
-    height: 373,
+      "/assets/trusttap/trusttap-hero-marketing.png 1x, /assets/trusttap/trusttap-hero-marketing@2x.png 2x",
+    alt: "TrustTap — Tap. Trust. Thrive. QR feedback, Google review path, live dashboard, and private customer notes for local businesses",
+    width: 1024,
+    height: 682,
   },
 } as const;
 

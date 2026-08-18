@@ -17,8 +17,8 @@ describe("trustTapPageContent", () => {
   });
 
   it("references the live-site hero showcase image", () => {
-    expect(TRUSTTAP_HERO_SHOWCASE.image.src).toMatch(/trusttap-hero-showcase\.png$/);
-    expect(TRUSTTAP_HERO_SHOWCASE.image.srcSet).toMatch(/trusttap-hero-showcase@2x\.png/);
+    expect(TRUSTTAP_HERO_SHOWCASE.image.src).toMatch(/trusttap-hero-marketing\.png$/);
+    expect(TRUSTTAP_HERO_SHOWCASE.image.srcSet).toMatch(/trusttap-hero-marketing@2x\.png/);
   });
 
   it("lists four live-site features and three benefit cards", () => {

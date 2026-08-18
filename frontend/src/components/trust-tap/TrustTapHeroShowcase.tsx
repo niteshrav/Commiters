@@ -14,7 +14,7 @@ export default function TrustTapHeroShowcase() {
         className="trusttap-hero-showcase-image"
         src={preview.src}
         srcSet={preview.srcSet}
-        sizes="(min-width: 960px) 560px, 92vw"
+        sizes="(min-width: 960px) 640px, 92vw"
         alt={preview.alt}
         width={preview.width}
         height={preview.height}
