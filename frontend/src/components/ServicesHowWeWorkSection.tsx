@@ -14,6 +14,7 @@ import { SERVICES_HOW_WE_WORK } from "../lib/servicesPageBottomContent";
 export default function ServicesHowWeWorkSection() {
   return (
     <section
+      id="how-we-work"
       className={`${SERVICES_HOW_WE_WORK_SECTION_CLASS} reveal-on-scroll`}
       data-testid="services-how-we-work-section"
       aria-labelledby="services-how-we-work-title"

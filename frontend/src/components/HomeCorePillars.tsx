@@ -11,6 +11,7 @@ export default function HomeCorePillars() {
 
   return (
     <section
+      id="core-pillars"
       className={`home-core-pillars ${HOME_CORE_PILLARS_SURFACE_CLASS} band-breakout reveal-on-scroll`}
       data-testid="home-core-pillars"
     >

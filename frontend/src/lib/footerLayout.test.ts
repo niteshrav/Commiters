@@ -48,7 +48,7 @@ describe("footerLayout", () => {
 
     expect(css).toContain(`gap: ${FOOTER_NOCK_LINK_GAP}`);
 
-    expect(css).toMatch(/\.footer--nock\.footer--home-mockup[\s\S]*background:\s*#f5f2ed/);
+    expect(css).toMatch(/\.footer--nock\.footer--home-mockup[\s\S]*background:\s*var\(--surface\)/);
 
     expect(css).toMatch(
 

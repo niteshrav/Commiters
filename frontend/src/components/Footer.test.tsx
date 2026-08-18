@@ -18,6 +18,7 @@ import { ROUTES } from "../lib/routes";
 import {
   SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
   SITE_FOOTER_COPY,
+  SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
   SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
   SITE_FOOTER_RESOURCES_LINK_LABELS,
   SITE_FOOTER_SOCIAL_LINK_LABELS,
@@ -42,6 +43,7 @@ describe("Footer", () => {
 
     const logoCell = screen.getByTestId("footer-logo-cell");
     const primaryNav = screen.getByTestId("footer-nav-column-primary");
+    const companyNav = screen.getByTestId("footer-nav-column-company");
     const resourcesNav = screen.getByTestId("footer-nav-column-resources");
     const socialIcons = screen.getByTestId("footer-social-icons");
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
@@ -51,6 +53,9 @@ describe("Footer", () => {
     expect(copyrightCell).toHaveClass(FOOTER_COPYRIGHT_CELL_CLASS);
     expect(within(primaryNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
+    ]);
+    expect(within(companyNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
     ]);
     expect(within(resourcesNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_RESOURCES_LINK_LABELS,
@@ -76,10 +81,18 @@ describe("Footer", () => {
       "href",
       `${ROUTES.about}#principles`,
     );
+    expect(within(primaryNav).getByRole("link", { name: /^Core Pillars$/i })).toHaveAttribute(
+      "href",
+      `${ROUTES.home}#core-pillars`,
+    );
+    expect(within(primaryNav).getByRole("link", { name: /^How We Work$/i })).toHaveAttribute(
+      "href",
+      `${ROUTES.services}#how-we-work`,
+    );
     expect(within(primaryNav).getByRole("link", { name: /^Product$/i })).toHaveAttribute("href", ROUTES.trustTap);
-    expect(within(primaryNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(within(companyNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
     expect(within(resourcesNav).getByRole("link", { name: /^Careers$/i })).toHaveAttribute("href", ROUTES.openPositions);
-    expect(within(resourcesNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
+    expect(within(companyNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
     expect(within(socialIcons).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
     expect(within(socialIcons).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
     expect(within(socialIcons).getByRole("link", { name: /^Instagram$/i })).toHaveAttribute("href", SITE_INSTAGRAM_URL);

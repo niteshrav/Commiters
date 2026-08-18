@@ -3,7 +3,7 @@ import { ROUTES } from "../routes";
 import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
-import { SITE_FOOTER_COPY, SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, SITE_FOOTER_RESOURCES_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
+import { SITE_FOOTER_COPY, SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS, SITE_FOOTER_COMPANY_NAV_LINK_LABELS, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, SITE_FOOTER_RESOURCES_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
 import { CONTACT_STUDIO } from "../contactPageContent";
 import { buildMailtoPublicContactHref, publicContactEmailDisplay } from "../siteContact";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
@@ -162,9 +162,16 @@ function mergePrimaryLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] 
   );
 }
 
-function mergeResourcesLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+function mergeCompanyLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
   return orderLinksByLabels(
     mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[1].links]),
+    SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
+  );
+}
+
+function mergeResourcesLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+  return orderLinksByLabels(
+    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[2].links]),
     SITE_FOOTER_RESOURCES_LINK_LABELS,
   );
 }
@@ -265,6 +272,10 @@ export function resolveFooter(
     {
       heading: "PRIMARY",
       links: mergePrimaryLinks(navigationLinks),
+    },
+    {
+      heading: "COMPANY",
+      links: mergeCompanyLinks(navigationLinks),
     },
     {
       heading: "RESOURCES",

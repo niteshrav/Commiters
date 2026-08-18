@@ -105,6 +105,12 @@ html {
   scroll-padding-top: var(--sticky-header-offset);
 }
 
+#core-pillars,
+#how-we-work,
+#principles {
+  scroll-margin-top: var(--sticky-header-offset);
+}
+
 *,
 *::before,
 *::after {
@@ -9387,9 +9393,9 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .footer--blackbook.footer--home-mockup,
 .footer--nock.footer--home-mockup {
-  background: #f5f2ed;
-  border-top: 1px solid rgba(17, 24, 39, 0.08);
-  color: #111827;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--text);
 }
 
 .footer--nock .footer-nock-shell {
@@ -9432,10 +9438,10 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .footer--nock .footer-nock-nav {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, max-content));
+  grid-template-columns: repeat(3, minmax(0, max-content));
   justify-content: end;
   justify-self: end;
-  gap: clamp(32px, 5vw, 72px);
+  gap: clamp(24px, 4vw, 56px);
 }
 
 .footer--nock .footer-nock-nav-column .footer-link-list {
@@ -9742,6 +9748,7 @@ html[data-a11y-reduce-motion="true"] *::after {
   }
 
   .footer--nock .footer-nock-nav {
+    grid-template-columns: repeat(2, minmax(0, max-content));
     justify-self: start;
     justify-content: start;
     gap: 28px;

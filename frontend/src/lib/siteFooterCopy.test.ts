@@ -3,8 +3,10 @@ import { ROUTES } from "./routes";
 import { buildWhatsAppUrl } from "./siteContact";
 import {
   SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
+  SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
   SITE_FOOTER_CONNECT_LINKS,
   SITE_FOOTER_COPY,
+  SITE_FOOTER_MAX_LINKS_PER_COLUMN,
   SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
   SITE_FOOTER_RESOURCES_LINK_LABELS,
   SITE_FOOTER_SOCIAL_LINK_LABELS,
@@ -19,16 +21,33 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_COPY.copyrightLine1).toBe("Copyright 2026 (C) Commiters. All Rights Reserved.");
   });
 
-  it("lists primary and resources navigation columns without a social column", () => {
-    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual(["PRIMARY", "RESOURCES"]);
+  it("lists three footer navigation columns with at most five links each", () => {
+    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual([
+      "PRIMARY",
+      "COMPANY",
+      "RESOURCES",
+    ]);
     expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toEqual([
       ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
     ]);
     expect(SITE_FOOTER_COPY.navColumns[1].links.map((link) => link.label)).toEqual([
+      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
+    ]);
+    expect(SITE_FOOTER_COPY.navColumns[2].links.map((link) => link.label)).toEqual([
       ...SITE_FOOTER_RESOURCES_LINK_LABELS,
     ]);
+    for (const column of SITE_FOOTER_COPY.navColumns) {
+      expect(column.links.length).toBeLessThanOrEqual(SITE_FOOTER_MAX_LINKS_PER_COLUMN);
+    }
     expect(SITE_FOOTER_COPY.navColumns[0].links[0].to).toBe(`${ROUTES.about}#principles`);
+    expect(SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Core Pillars")?.to).toBe(
+      `${ROUTES.home}#core-pillars`,
+    );
+    expect(SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "How We Work")?.to).toBe(
+      `${ROUTES.services}#how-we-work`,
+    );
     expect(SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Product")?.to).toBe(ROUTES.trustTap);
+    expect(SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Work")?.to).toBe(ROUTES.caseStudies);
     expect(SITE_FOOTER_COPY.bottomLegalLinks.map((link) => link.label)).toEqual([
       ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
     ]);
