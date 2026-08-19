@@ -16,6 +16,7 @@ describe("deployment configuration", () => {
 
     expect(manifest).toMatch(/^\s*frontend:/m);
     expect(manifest).toMatch(/^\s*api:/m);
+    expect(manifest).not.toMatch(/^\s*admin:/m);
     expect(manifest).toContain("machineType: DCD-1");
     expect(manifest).toContain("machineType: DCD-2");
     expect(manifest).toContain("context: ./frontend");

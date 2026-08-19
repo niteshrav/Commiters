@@ -12,6 +12,7 @@ export default function TrustTapBenefitsSection() {
 
   return (
     <section
+      id="trusttap-benefits"
       className={`${TRUSTTAP_SECTION_CLASS} reveal-on-scroll`}
       data-testid="trusttap-benefits"
       aria-labelledby="trusttap-benefits-title"

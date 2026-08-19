@@ -184,22 +184,35 @@ npm install
 npm run dev           # http://localhost:5173
 ```
 
-### 3. Admin Panel
+### 3. Admin Panel (local only — not on DC Deploy)
+
+The admin app is **not** in `dcdeploy.yaml`. Run it locally when you need to edit CMS content.
+
+**Default — local admin → production API** (no local backend required):
 
 ```bash
 cd admin
 cp .env.example .env
 npm install
-npm run dev           # http://localhost:5174
+npm run dev           # http://localhost:5174 → proxies to https://api.commiters.com
 ```
 
-Login with the credentials from `ADMIN_EMAIL` / `ADMIN_PASSWORD` in backend `.env`.
+**Optional — local admin → local backend** (full stack dev):
+
+```bash
+cd admin
+cp .env.local-api.example .env.local-api
+npm run dev:local-api
+```
+
+See `admin/README.md` for env vars and scripts.
+
+Login with production admin credentials (or local `ADMIN_EMAIL` / `ADMIN_PASSWORD` when using `dev:local-api`).
 
 ### Production notes
 - Set strong `JWT_SECRET` and `ADMIN_PASSWORD`
-- Add admin origin to `CORS_ORIGIN` (e.g. `https://admin.commiters.com`)
 - Persist `uploads/` volume or use S3-compatible storage (future enhancement)
-- Deploy admin as separate service on port 5174 or static build behind auth proxy
+- Admin stays local-only; no separate admin service on DC Deploy unless you add one later
 
 ---
 

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 5174",
+    "dev:local-api": "vite --port 5174 --mode local-api",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

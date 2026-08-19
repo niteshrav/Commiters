@@ -2,12 +2,13 @@
 export const BREAKPOINT_MOBILE_PX = 768;
 export const BREAKPOINT_STACK_PX = 960;
 export const BREAKPOINT_TABLET_PX = 1090;
+export const BREAKPOINT_NAV_PX = 1180;
 export const BREAKPOINT_COMPACT_PX = 620;
 
 export const BREAKPOINT_MOBILE_MQ = `(max-width: ${BREAKPOINT_MOBILE_PX}px)` as const;
 export const BREAKPOINT_STACK_MQ = `(max-width: ${BREAKPOINT_STACK_PX}px)` as const;
 export const BREAKPOINT_TABLET_MQ = `(max-width: ${BREAKPOINT_TABLET_PX}px)` as const;
-export const BREAKPOINT_COMPACT_MQ = `(max-width: ${BREAKPOINT_COMPACT_PX}px)` as const;
+export const BREAKPOINT_NAV_MQ = `(max-width: ${BREAKPOINT_NAV_PX}px)` as const;
 
 /** Selectors that stack to a single column at the stack breakpoint. */
 export const RESPONSIVE_STACK_GRID_SELECTORS = [

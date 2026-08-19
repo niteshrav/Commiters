@@ -3,16 +3,21 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
 import { BRAND_LOGO_HEADER_HEIGHT_PX } from "../lib/brandDisplay";
-import { PRIMARY_NAV_ITEMS } from "../lib/navSections";
+import {
+  NAV_DROPDOWN_CONFIGS,
+  PRIMARY_NAV_ITEMS,
+  buildServiceDetailMenuHref,
+  resolveNavDropdownConfigs,
+} from "../lib/navSections";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
 import { ROUTES } from "../lib/routes";
 
-function primaryNavLinks(container: HTMLElement) {
-  return within(container).getAllByRole("link").filter((link) => link.classList.contains("nav-primary-link"));
+function desktopNavTriggers(container: HTMLElement) {
+  return within(container).getAllByRole("link").filter((link) => link.classList.contains("nav-dropdown-trigger"));
 }
 
 describe("Navbar", () => {
-  it("shows the Commiters header logo and a compact desktop nav with a More menu", () => {
+  it("shows the Commiters header logo and hover mega-menu nav items", () => {
     render(
       <MemoryRouter>
         <Navbar />
@@ -30,45 +35,19 @@ describe("Navbar", () => {
     expect(screen.queryByText(/^Commiters$/)).not.toBeInTheDocument();
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    const links = primaryNavLinks(primaryNav);
-    expect(links.map((link) => link.textContent)).toEqual([
-      "Home",
-      "About",
-      "Services",
-      "Work",
-      "TrustTap",
-      "Careers",
-      "Contact",
-    ]);
-    expect(links.map((link) => link.getAttribute("href"))).toEqual([
-      ROUTES.home,
-      ROUTES.about,
-      ROUTES.services,
-      ROUTES.caseStudies,
-      ROUTES.trustTap,
-      ROUTES.openPositions,
-      ROUTES.contact,
-    ]);
+    const triggers = desktopNavTriggers(primaryNav);
+    expect(triggers.map((link) => link.textContent?.replace(/\s+/g, " ").trim())).toEqual(
+      resolveNavDropdownConfigs().map((item) => item.label),
+    );
+    expect(triggers.map((link) => link.getAttribute("href"))).toEqual(
+      resolveNavDropdownConfigs().map((item) => item.overviewTo),
+    );
 
-    const servicesNav = within(primaryNav).getByRole("link", { name: /^Services$/i });
-    expect(servicesNav).toHaveClass("nav-primary-link");
-    expect(servicesNav).not.toHaveClass("nav-dropdown-trigger");
-    expect(within(primaryNav).queryByTestId("nav-services-menu")).not.toBeInTheDocument();
-
-    const moreMenu = within(primaryNav).getByTestId("nav-more-menu");
-    expect(within(moreMenu).getByRole("button", { name: /^More$/i })).toHaveClass("nav-dropdown-trigger");
-    expect(within(moreMenu).queryByRole("menu")).not.toBeInTheDocument();
-
-    expect(within(primaryNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
-    expect(within(primaryNav).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
-    expect(within(primaryNav).getByRole("link", { name: /^Careers$/i })).toHaveAttribute("href", ROUTES.openPositions);
-    expect(within(primaryNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
-    expect(within(primaryNav).queryByRole("link", { name: /^Blog$/i })).not.toBeInTheDocument();
-    expect(within(primaryNav).queryByRole("button", { name: /^Inquiry$/i })).not.toBeInTheDocument();
+    expect(within(primaryNav).queryByTestId("nav-more-menu")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("header-menu-btn")).not.toBeInTheDocument();
     expect(screen.getByTestId("nav-start-project-cta")).toHaveAttribute("href", ROUTES.contact);
     expect(screen.getByTestId("nav-start-project-cta")).toHaveTextContent("Start Project");
     expect(screen.queryByRole("link", { name: /Get Started/i })).not.toBeInTheDocument();
-    expect(screen.queryByText(/Softwares/i)).not.toBeInTheDocument();
     expect(screen.getByRole("banner")).toHaveClass("header", "header-light");
   });
 
@@ -80,8 +59,30 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    const labels = primaryNavLinks(primaryNav).map((link) => link.textContent);
+    const labels = desktopNavTriggers(primaryNav).map((link) => link.textContent?.replace(/\s+/g, " ").trim());
     expect(labels.indexOf("Services")).toBeLessThan(labels.indexOf("Work"));
+  });
+
+  it("opens a services mega-menu panel on hover with service detail links", async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter>
+        <Navbar />
+      </MemoryRouter>,
+    );
+
+    const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
+    const servicesTrigger = within(primaryNav).getByRole("link", { name: /^Services$/i });
+    expect(screen.queryByTestId("nav-mega-panel-services")).not.toBeInTheDocument();
+
+    await user.hover(servicesTrigger);
+    const panel = screen.getByTestId("nav-mega-panel-services");
+    expect(panel).toBeInTheDocument();
+    expect(within(panel).getByRole("menuitem", { name: /^Website Development$/i })).toHaveAttribute(
+      "href",
+      buildServiceDetailMenuHref("website-development"),
+    );
+    expect(within(panel).queryByRole("link", { name: /^See overview$/i })).not.toBeInTheDocument();
   });
 
   it("navigates to the Services page when the Services nav label is clicked", async () => {
@@ -115,7 +116,7 @@ describe("Navbar", () => {
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     const servicesLink = within(primaryNav).getByRole("link", { name: /^Services$/i });
     const contactLink = within(primaryNav).getByRole("link", { name: /^Contact$/i });
-    expect(servicesLink).toHaveClass("nav-primary-link", "active");
+    expect(servicesLink).not.toHaveClass("nav-primary-link--hover");
 
     const servicesStyle = window.getComputedStyle(servicesLink);
     const contactStyle = window.getComputedStyle(contactLink);
@@ -123,7 +124,24 @@ describe("Navbar", () => {
     expect(servicesStyle.backgroundColor).toBe(contactStyle.backgroundColor);
   });
 
-  it("applies visual hover only while the pointer is over the link", async () => {
+  it("opens Work dropdown without navbar pill highlight on hover", async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter initialEntries={[ROUTES.caseStudies]}>
+        <Navbar />
+      </MemoryRouter>,
+    );
+
+    const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
+    const workLink = within(primaryNav).getByRole("link", { name: /^Work$/i });
+
+    await user.hover(workLink);
+    expect(workLink).toHaveClass("nav-dropdown-trigger--open");
+    expect(workLink).not.toHaveClass("nav-primary-link--hover");
+    expect(screen.getByTestId("nav-mega-panel-work")).toBeInTheDocument();
+  });
+
+  it("exposes mobile accordion groups with section links", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter>
@@ -131,41 +149,14 @@ describe("Navbar", () => {
       </MemoryRouter>,
     );
 
-    const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    const about = within(primaryNav).getByRole("link", { name: /^About$/i });
-    expect(about).not.toHaveClass("nav-primary-link--hover");
+    const accordion = screen.getByTestId("nav-mobile-accordion");
+    expect(within(accordion).getByTestId("nav-mobile-group-services")).toBeInTheDocument();
 
-    await user.hover(about);
-    expect(about).toHaveClass("nav-primary-link--hover");
-
-    await user.unhover(about);
-    expect(about).not.toHaveClass("nav-primary-link--hover");
-  });
-
-  it("navigates directly to the Services page from mobile nav without opening a submenu", async () => {
-    const user = userEvent.setup();
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<div data-testid="home-outlet">Home</div>} />
-            <Route path="/services" element={<div data-testid="services-outlet">Services page</div>} />
-          </Routes>
-        </>
-      </MemoryRouter>,
+    await user.click(within(accordion).getByRole("button", { name: /^Services$/i }));
+    expect(within(accordion).getByRole("link", { name: /^Website Development$/i })).toHaveAttribute(
+      "href",
+      buildServiceDetailMenuHref("website-development"),
     );
-
-    await user.click(screen.getByRole("button", { name: /^Menu$/i }));
-    const mobileNav = screen.getByTestId("mobile-nav-inner");
-    expect(within(mobileNav).queryByTestId("nav-services-menu")).not.toBeInTheDocument();
-    expect(within(mobileNav).getAllByRole("link").map((link) => link.textContent)).toEqual(
-      PRIMARY_NAV_ITEMS.map((item) => item.label),
-    );
-
-    await user.click(within(mobileNav).getByRole("link", { name: /^Services$/i }));
-    expect(await screen.findByTestId("services-outlet")).toBeInTheDocument();
-    expect(within(mobileNav).queryByTestId("nav-services-menu")).not.toBeInTheDocument();
   });
 
   it("navigates to the Work page from the primary nav link", async () => {
@@ -189,7 +180,7 @@ describe("Navbar", () => {
     expect(screen.queryByTestId("home-outlet")).not.toBeInTheDocument();
   });
 
-  it("highlights Work when the case studies route is active", () => {
+  it("does not highlight Work in the navbar when the case studies route is active", () => {
     render(
       <MemoryRouter initialEntries={[ROUTES.caseStudies]}>
         <Navbar />
@@ -197,10 +188,13 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    expect(within(primaryNav).getByRole("link", { name: /^Work$/i })).toHaveClass("nav-primary-link", "active");
+    const workLink = within(primaryNav).getByRole("link", { name: /^Work$/i });
+    expect(workLink).toHaveClass("nav-dropdown-trigger");
+    expect(workLink).not.toHaveClass("nav-primary-link--hover");
+    expect(workLink).not.toHaveClass("nav-dropdown-trigger--open");
   });
 
-  it("navigates to the Blog page from the More menu", async () => {
+  it("shows Blog inside the Contact dropdown panel", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={["/"]}>
@@ -208,68 +202,36 @@ describe("Navbar", () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<div data-testid="home-outlet">Home</div>} />
-            <Route
-              path={ROUTES.technicalLedger}
-              element={<div data-testid="technical-ledger-outlet">Technical Ledger</div>}
-            />
+            <Route path={ROUTES.technicalLedger} element={<div data-testid="technical-ledger-outlet">Blog</div>} />
           </Routes>
         </>
       </MemoryRouter>,
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    await user.click(within(primaryNav).getByRole("button", { name: /^More$/i }));
-    await user.click(within(primaryNav).getByRole("menuitem", { name: /^Blog$/i }));
+    await user.hover(within(primaryNav).getByRole("link", { name: /^Contact$/i }));
+    await user.click(within(screen.getByTestId("nav-mega-panel-contact")).getByRole("menuitem", { name: /^Blog$/i }));
 
     expect(await screen.findByTestId("technical-ledger-outlet")).toBeInTheDocument();
     expect(screen.queryByTestId("home-outlet")).not.toBeInTheDocument();
   });
 
-  it("highlights More when a secondary route is active", () => {
-    render(
-      <MemoryRouter initialEntries={[ROUTES.technicalLedger]}>
-        <Navbar />
-      </MemoryRouter>,
+  it("defines dropdown configs for every desktop nav item", () => {
+    expect(NAV_DROPDOWN_CONFIGS.map((config) => config.id)).toEqual([
+      "home",
+      "about",
+      "services",
+      "work",
+      "trusttap",
+      "careers",
+      "contact",
+    ]);
+    expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "trusttap")?.links).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ label: "Features" }),
+        expect.objectContaining({ label: "How It Works" }),
+      ]),
     );
-
-    const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    expect(within(primaryNav).getByRole("button", { name: /^More$/i })).toHaveClass("nav-primary-link", "active");
-  });
-
-  it("opens the More menu and exposes secondary links on desktop", async () => {
-    const user = userEvent.setup();
-    render(
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>,
-    );
-
-    const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    await user.click(within(primaryNav).getByRole("button", { name: /^More$/i }));
-
-    const menu = within(primaryNav).getByRole("menu");
-    expect(within(menu).getByRole("menuitem", { name: /^Testimonials$/i })).toHaveAttribute("href", ROUTES.testimonials);
-    expect(within(menu).getByRole("menuitem", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
-  });
-
-  it("opens the mobile navigation menu from the Menu button", async () => {
-    const user = userEvent.setup();
-    render(
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>,
-    );
-
-    const menuButton = screen.getByRole("button", { name: /^Menu$/i });
-    const mobileNav = document.getElementById("mobile-nav");
-    expect(mobileNav).not.toHaveClass("open");
-
-    await user.click(menuButton);
-    expect(mobileNav).toHaveClass("open");
-    expect(screen.getByTestId("mobile-nav-inner")).toBeInTheDocument();
-    expect(screen.getByTestId("nav-start-project-cta-mobile")).toHaveAttribute("href", ROUTES.contact);
-
-    await user.click(menuButton);
-    expect(mobileNav).not.toHaveClass("open");
+    expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
   });
 });

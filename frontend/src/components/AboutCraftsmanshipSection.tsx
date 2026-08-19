@@ -71,6 +71,7 @@ export default function AboutCraftsmanshipSection() {
 
   return (
     <section
+      id="vision"
       className={`${ABOUT_CRAFTSMANSHIP_SECTION_CLASS} reveal-on-scroll`}
       data-testid="about-craftsmanship-section"
       aria-labelledby="about-craftsmanship-title"

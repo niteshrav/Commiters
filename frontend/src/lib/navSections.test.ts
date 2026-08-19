@@ -1,13 +1,21 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import {
+  MENU_SECTION_LINKS,
+  NAV_DROPDOWN_CONFIGS,
   NAV_DROPDOWN_LINK_ACTIVE_CLASS,
   PRIMARY_NAV_ITEMS,
   SERVICE_NAV_ENTRIES,
+  buildAboutSectionHref,
+  buildHomeSectionHref,
+  buildServiceDetailMenuHref,
   buildServiceSectionHref,
   buildServiceSectionLocation,
+  buildTrustTapSectionHref,
+  isNavDropdownActive,
   partitionHeaderNavItems,
   resolveActiveServiceSectionId,
+  resolveNavDropdownConfigs,
 } from "./navSections";
 
 describe("navSections", () => {
@@ -59,10 +67,45 @@ describe("navSections", () => {
       "website-development",
       "web-applications",
       "mobile-applications",
-      "automation-tools",
+      "e-commerce-development",
       "ai-integration",
+      "automation-tools",
       "mvp-development",
     ]);
+  });
+
+  it("lists dropdown section links derived from nav mega-menu configs", () => {
+    expect(MENU_SECTION_LINKS.length).toBeGreaterThan(10);
+    expect(MENU_SECTION_LINKS.some((link) => link.label === "Core Pillars")).toBe(true);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildHomeSectionHref("core-pillars"))).toBe(true);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("vision"))).toBe(true);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildServiceSectionHref("how-we-work"))).toBe(true);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildServiceDetailMenuHref("website-development"))).toBe(true);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildTrustTapSectionHref("trusttap-features"))).toBe(true);
+  });
+
+  it("builds desktop dropdown configs from primary nav items", () => {
+    const configs = resolveNavDropdownConfigs();
+    expect(configs.map((config) => config.label)).toEqual([
+      "Home",
+      "About",
+      "Services",
+      "Work",
+      "TrustTap",
+      "Careers",
+      "Contact",
+    ]);
+    expect(configs.find((config) => config.id === "services")?.links.map((link) => link.label)).toEqual([
+      "How We Work",
+      ...SERVICE_NAV_ENTRIES.map((entry) => entry.label),
+    ]);
+  });
+
+  it("marks dropdown parents active for nested routes and section links", () => {
+    const services = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services");
+    expect(services).toBeTruthy();
+    expect(isNavDropdownActive(services!, "/services/website-development")).toBe(true);
+    expect(isNavDropdownActive(services!, "/about")).toBe(false);
   });
 
   it("resolves the active service section only on /services with a known hash", () => {

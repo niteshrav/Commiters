@@ -1,6 +1,9 @@
 // Uses Vite proxy in dev (relative URLs). Set VITE_API_BASE_URL in production.
 const baseUrl = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? "";
 
+const API_UNREACHABLE_MESSAGE =
+  "Cannot reach backend API. Check ADMIN_DEV_API_PROXY_TARGET in admin/.env or start the local backend.";
+
 function getToken() {
   return localStorage.getItem("commiters-admin-token");
 }
@@ -17,7 +20,7 @@ export async function api<T>(path: string, options: RequestInit = {}): Promise<T
   try {
     res = await fetch(`${baseUrl}${path}`, { ...options, headers });
   } catch {
-    throw new Error("Cannot reach backend API. Ensure backend is running on port 4000.");
+    throw new Error(API_UNREACHABLE_MESSAGE);
   }
 
   const payload = await res.json().catch(() => null);
@@ -88,7 +91,7 @@ export async function uploadMediaFile(file: File): Promise<string> {
   try {
     res = await fetch(`${baseUrl}/api/admin/media/upload`, { method: "POST", headers, body: form });
   } catch {
-    throw new Error("Cannot reach backend API. Ensure backend is running on port 4000.");
+    throw new Error(API_UNREACHABLE_MESSAGE);
   }
 
   const payload = (await res.json().catch(() => null)) as MediaUploadResult | { error?: string } | null;
@@ -123,7 +126,7 @@ export async function checkCmsReady(): Promise<{ ok: boolean; message?: string }
     }
     return { ok: true };
   } catch {
-    return { ok: false, message: "Backend API unreachable on port 4000." };
+    return { ok: false, message: "Backend API unreachable. Check ADMIN_DEV_API_PROXY_TARGET or start the local backend." };
   }
 }
 

@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   BREAKPOINT_COMPACT_PX,
+  BREAKPOINT_NAV_PX,
   BREAKPOINT_MOBILE_PX,
   BREAKPOINT_STACK_PX,
   BREAKPOINT_TABLET_PX,
@@ -54,12 +55,17 @@ describe("responsiveLayout", () => {
     expect(css).toMatch(/\.route-shell\s*\{[\s\S]*min-width:\s*0/);
   });
 
+  it("switches to mobile navigation at the nav breakpoint", () => {
+    const navStack = mediaBlocks(BREAKPOINT_NAV_PX);
+    expect(navStack).toMatch(/\.nav\s*\{[\s\S]*display:\s*none/);
+    expect(navStack).toMatch(/\.nav-mobile-accordion\s*\{[\s\S]*display:\s*block/);
+    expect(navStack).toMatch(/\.nav-cta-desktop\s*\{[\s\S]*display:\s*none/);
+  });
+
   it("switches to mobile navigation at the stack breakpoint", () => {
     const stack = mediaBlocks(BREAKPOINT_STACK_PX);
-    expect(stack).toMatch(/\.nav\s*\{[\s\S]*display:\s*none/);
-    expect(stack).toMatch(/\.menu-btn\s*\{[\s\S]*display:\s*inline-flex/);
+    expect(stack).toMatch(/\.nav-mobile-accordion\s*\{[\s\S]*display:\s*block/);
     expect(stack).toMatch(/\.nav-cta-desktop\s*\{[\s\S]*display:\s*none/);
-    expect(css).toMatch(/\.mobile-nav\.open\s*\{[\s\S]*display:\s*grid/);
   });
 
   it("stacks primary page grids at the stack breakpoint", () => {

@@ -254,7 +254,7 @@ select:focus-visible {
 
 .site-shell > .header {
   position: relative;
-  z-index: 200;
+  z-index: 1000;
 }
 
 .site-shell > main,
@@ -266,7 +266,7 @@ select:focus-visible {
 .header {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 1000;
   overflow: visible;
   background: rgba(var(--white-rgb), 0.94);
   backdrop-filter: blur(8px);
@@ -340,6 +340,14 @@ select:focus-visible {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+  position: relative;
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .brand {
@@ -367,11 +375,92 @@ select:focus-visible {
   position: relative;
 }
 
-.mobile-nav-menus {
+.nav-item-dropdown {
+  position: relative;
+}
+
+.nav-item-dropdown-panel {
+  min-width: 220px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
+  padding: 6px;
+}
+
+.nav-item-dropdown-panel--fixed {
+  position: fixed;
+  z-index: 1200;
+  margin: 0;
+}
+
+.nav-item-dropdown-panel--fixed::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+.nav-item-dropdown-panel--columns {
+  width: max-content;
+  min-width: 440px;
+  max-width: min(540px, calc(100vw - 32px));
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  column-gap: 16px;
+  row-gap: 4px;
+}
+
+.nav-item-dropdown-panel .nav-dropdown-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.nav-item-dropdown--align-end .nav-item-dropdown-panel--fixed {
+  left: auto;
+}
+
+.nav-mobile-accordion {
+  display: none;
+}
+
+.nav-mobile-group {
+  border-top: 1px solid var(--border);
+}
+
+.nav-mobile-group-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.nav-mobile-group-trigger--open {
+  color: var(--primary);
+}
+
+.nav-mobile-group-panel {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 100%;
+  gap: 4px;
+  padding: 0 0 14px;
+}
+
+.nav-mobile-group-panel .nav-dropdown-link {
+  padding: 10px 0 10px 8px;
 }
 
 .nav-dropdown {
@@ -392,6 +481,7 @@ select:focus-visible {
   -webkit-appearance: none;
   background-color: transparent;
   gap: 4px;
+  border-radius: 999px;
 }
 
 .nav-dropdown-chevron--open {
@@ -440,10 +530,16 @@ select:focus-visible {
   padding: 8px 12px 8px 14px;
 }
 
-.nav-dropdown-link:hover,
-.nav-dropdown-link--active {
-  background: rgba(var(--primary-rgb), 0.1);
+.nav-dropdown-link:hover {
+  background: rgba(var(--primary-rgb), 0.08);
   color: var(--primary);
+}
+
+.nav-item-dropdown-panel .nav-dropdown-link.active,
+.nav-item-dropdown-panel .nav-dropdown-link--active {
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
 }
 
 /* Shared by desktop + mobile menu — same active / hover behavior for every primary link */
@@ -492,6 +588,20 @@ select:focus-visible {
   background: var(--stitch-blue, var(--primary));
 }
 
+.nav-primary-link.nav-dropdown-trigger,
+.nav-primary-link.nav-dropdown-trigger.active,
+.nav-primary-link.nav-dropdown-trigger.nav-dropdown-trigger--open {
+  font-weight: 500;
+  color: var(--text);
+  background-color: transparent;
+}
+
+.nav-primary-link.nav-dropdown-trigger::after,
+.nav-primary-link.nav-dropdown-trigger.active::after,
+.nav-primary-link.nav-dropdown-trigger.nav-dropdown-trigger--open::after {
+  transform: scaleX(0);
+}
+
 /*
  * Mouse click keeps :focus without :focus-visible — avoid any “selected” look after navigation.
  * Keyboard users get the global :focus-visible ring only (no pill/underline).
@@ -523,37 +633,15 @@ select:focus-visible {
   color: var(--text);
   font-weight: 600;
   background-color: rgba(var(--primary-rgb), 0.1);
+  border-radius: 999px;
 }
 
 .nav-primary-link.nav-primary-link--hover::after {
   transform: scaleX(1);
 }
 
-.mobile-nav .nav-primary-link {
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  background-color: transparent;
-}
-
-.menu-btn {
+.nav-cta-mobile {
   display: none;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  border-radius: 999px;
-  padding: 10px 14px;
-  font-weight: 700;
-}
-
-.mobile-nav {
-  display: none;
-  gap: 8px;
-  padding-bottom: 14px;
-}
-
-.mobile-nav.open {
-  display: grid;
 }
 
 .btn {
@@ -10220,6 +10308,16 @@ html[data-a11y-reduce-motion="true"] *::after {
   margin-top: 6px;
 }
 
+@media (min-width: 1181px) {
+  .nav-mobile-accordion {
+    display: none;
+  }
+
+  .nav-cta-mobile {
+    display: none;
+  }
+}
+
 @media (max-width: 1180px) {
   .nav-cta-desktop {
     display: none;
@@ -10229,10 +10327,18 @@ html[data-a11y-reduce-motion="true"] *::after {
     display: none;
   }
 
-  .menu-btn {
+  .nav-menus-desktop,
+  .nav-item-dropdown-panel {
+    display: none !important;
+  }
+
+  .nav-mobile-accordion {
+    display: block;
+    padding: 0 clamp(16px, 3vw, 32px) 12px;
+  }
+
+  .nav-cta-mobile {
     display: inline-flex;
-    min-width: 44px;
-    min-height: 44px;
   }
 }
 
@@ -10261,14 +10367,13 @@ html[data-a11y-reduce-motion="true"] *::after {
     grid-template-columns: 1fr;
   }
 
-  .nav {
-    display: none;
+  .nav-menus-desktop,
+  .nav-item-dropdown-panel {
+    display: none !important;
   }
 
-  .menu-btn {
-    display: inline-flex;
-    min-width: 44px;
-    min-height: 44px;
+  .nav-mobile-accordion {
+    display: block;
   }
 
   .hero {
