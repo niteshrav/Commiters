@@ -9526,7 +9526,7 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .footer--nock .footer-nock-nav {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, max-content));
+  grid-template-columns: repeat(4, minmax(0, max-content));
   justify-content: end;
   justify-self: end;
   gap: clamp(24px, 4vw, 56px);

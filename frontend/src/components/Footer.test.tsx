@@ -21,6 +21,7 @@ import {
   SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
   SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
   SITE_FOOTER_RESOURCES_LINK_LABELS,
+  SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
   SITE_FOOTER_SOCIAL_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
 } from "../lib/siteFooterCopy";
@@ -43,6 +44,7 @@ describe("Footer", () => {
 
     const logoCell = screen.getByTestId("footer-logo-cell");
     const primaryNav = screen.getByTestId("footer-nav-column-primary");
+    const servicesNav = screen.getByTestId("footer-nav-column-services");
     const companyNav = screen.getByTestId("footer-nav-column-company");
     const resourcesNav = screen.getByTestId("footer-nav-column-resources");
     const socialIcons = screen.getByTestId("footer-social-icons");
@@ -53,6 +55,9 @@ describe("Footer", () => {
     expect(copyrightCell).toHaveClass(FOOTER_COPYRIGHT_CELL_CLASS);
     expect(within(primaryNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
+    ]);
+    expect(within(servicesNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      ...SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
     ]);
     expect(within(companyNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
@@ -90,6 +95,10 @@ describe("Footer", () => {
       `${ROUTES.services}#how-we-work`,
     );
     expect(within(primaryNav).getByRole("link", { name: /^Product$/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(within(servicesNav).getByRole("link", { name: /^Website Development$/i })).toHaveAttribute(
+      "href",
+      "/services/website-development",
+    );
     expect(within(companyNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
     expect(within(resourcesNav).getByRole("link", { name: /^Careers$/i })).toHaveAttribute("href", ROUTES.openPositions);
     expect(within(companyNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
@@ -105,12 +114,14 @@ describe("Footer", () => {
 
   it("highlights the active route in the navigation columns", () => {
     render(
-      <MemoryRouter initialEntries={[ROUTES.services]}>
+      <MemoryRouter initialEntries={["/services/website-development"]}>
         <Footer />
       </MemoryRouter>,
     );
 
-    expect(screen.getByTestId("footer-nav-column-primary").querySelector("a.active")).toHaveTextContent("Services");
+    expect(screen.getByTestId("footer-nav-column-services").querySelector("a.active")).toHaveTextContent(
+      "Website Development",
+    );
   });
 
   it("scrolls to the top when Back to Top is clicked", async () => {

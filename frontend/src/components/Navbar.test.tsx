@@ -194,7 +194,7 @@ describe("Navbar", () => {
     expect(workLink).not.toHaveClass("nav-dropdown-trigger--open");
   });
 
-  it("shows Blog inside the Contact dropdown panel", async () => {
+  it("shows Blog inside the More dropdown panel", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={["/"]}>
@@ -209,11 +209,32 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    await user.hover(within(primaryNav).getByRole("link", { name: /^Contact$/i }));
-    await user.click(within(screen.getByTestId("nav-mega-panel-contact")).getByRole("menuitem", { name: /^Blog$/i }));
+    await user.hover(within(primaryNav).getByRole("link", { name: /^More$/i }));
+    await user.click(within(screen.getByTestId("nav-mega-panel-more")).getByRole("menuitem", { name: /^Blog$/i }));
 
     expect(await screen.findByTestId("technical-ledger-outlet")).toBeInTheDocument();
     expect(screen.queryByTestId("home-outlet")).not.toBeInTheDocument();
+  });
+
+  it("renders Careers and Contact as plain links without dropdown chevrons", () => {
+    render(
+      <MemoryRouter>
+        <Navbar />
+      </MemoryRouter>,
+    );
+
+    const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
+    const careersLink = within(primaryNav).getByRole("link", { name: /^Careers$/i });
+    const contactLink = within(primaryNav).getByRole("link", { name: /^Contact$/i });
+
+    expect(careersLink).toHaveClass("nav-primary-link");
+    expect(careersLink).not.toHaveClass("nav-dropdown-trigger");
+    expect(careersLink).toHaveAttribute("href", ROUTES.openPositions);
+    expect(contactLink).toHaveClass("nav-primary-link");
+    expect(contactLink).not.toHaveClass("nav-dropdown-trigger");
+    expect(contactLink).toHaveAttribute("href", ROUTES.contact);
+    expect(screen.queryByTestId("nav-mega-panel-careers")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("nav-mega-panel-contact")).not.toBeInTheDocument();
   });
 
   it("defines dropdown configs for every desktop nav item", () => {
@@ -223,8 +244,12 @@ describe("Navbar", () => {
       "services",
       "work",
       "trusttap",
-      "careers",
-      "contact",
+      "more",
+    ]);
+    expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "more")?.links.map((link) => link.label)).toEqual([
+      "Testimonials",
+      "Blog",
+      "FAQ",
     ]);
     expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "trusttap")?.links).toEqual(
       expect.arrayContaining([

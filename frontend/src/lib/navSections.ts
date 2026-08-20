@@ -19,15 +19,29 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   { id: "trusttap", to: ROUTES.trustTap, label: "TrustTap" },
   { id: "testimonials", to: ROUTES.testimonials, label: "Testimonials" },
   { id: "blog", to: ROUTES.technicalLedger, label: "Blog" },
+  { id: "faq", to: ROUTES.faq, label: "FAQ" },
   { id: "careers", to: ROUTES.openPositions, label: "Careers" },
   { id: "contact", to: ROUTES.contact, label: "Contact" },
+  { id: "more", to: ROUTES.testimonials, label: "More" },
 ];
 
 /** Desktop bar links shown in the header. */
-export const DESKTOP_HEADER_BAR_IDS = ["home", "about", "services", "work", "trusttap", "careers", "contact"] as const;
+export const DESKTOP_HEADER_BAR_IDS = [
+  "home",
+  "about",
+  "services",
+  "work",
+  "trusttap",
+  "careers",
+  "contact",
+  "more",
+] as const;
 
-/** @deprecated Secondary links now live inside nav dropdown panels. */
-export const DESKTOP_HEADER_MORE_IDS = ["testimonials", "blog"] as const;
+/** Header items that navigate directly without a dropdown panel. */
+export const DESKTOP_HEADER_PLAIN_LINK_IDS = ["careers", "contact"] as const;
+
+/** Links grouped under the desktop More dropdown. */
+export const DESKTOP_HEADER_MORE_IDS = ["testimonials", "blog", "faq"] as const;
 
 export type HeaderNavGroups = {
   bar: PrimaryNavItem[];
@@ -149,7 +163,6 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
       { id: "multi-role-crm", label: "Multi-Role CRM", to: ROUTES.multiRoleCrmCaseStudy },
       { id: "neardrop-mvp", label: "NearDrop MVP", to: ROUTES.neardropCaseStudy },
       { id: "browse-my-vacation", label: "BrowseMyVacation", to: ROUTES.browseMyVacationCaseStudy },
-      { id: "testimonials", label: "Testimonials", to: ROUTES.testimonials },
     ],
   },
   {
@@ -164,24 +177,14 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
     ],
   },
   {
-    id: "careers",
-    label: "Careers",
-    overviewTo: ROUTES.openPositions,
-    headline: "Join the team building precision software.",
+    id: "more",
+    label: "More",
+    overviewTo: ROUTES.testimonials,
+    headline: "Stories, insights, and quick answers.",
     links: [
-      { id: "open-positions", label: "Open Positions", to: ROUTES.openPositions },
-      { id: "join-us", label: "Join Us", to: ROUTES.joinUs },
-    ],
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    overviewTo: ROUTES.contact,
-    headline: "Start a project or get answers fast.",
-    links: [
-      { id: "contact-us", label: "Contact Us", to: ROUTES.contact },
-      { id: "faq", label: "FAQ", to: ROUTES.faq },
+      { id: "testimonials", label: "Testimonials", to: ROUTES.testimonials },
       { id: "blog", label: "Blog", to: ROUTES.technicalLedger },
+      { id: "faq", label: "FAQ", to: ROUTES.faq },
     ],
   },
 ];
@@ -196,8 +199,10 @@ export function resolveNavDropdownConfigs(
 ): NavDropdownConfig[] {
   const configById = new Map(NAV_DROPDOWN_CONFIGS.map((config) => [config.id, config]));
   const navById = new Map(navItems.map((item) => [item.id, item]));
+  const plainLinkIds = new Set<string>(DESKTOP_HEADER_PLAIN_LINK_IDS);
 
   return DESKTOP_HEADER_BAR_IDS.map((id) => {
+    if (plainLinkIds.has(id)) return null;
     const config = configById.get(id);
     if (!config) return null;
     const navItem = navById.get(id);
@@ -208,6 +213,28 @@ export function resolveNavDropdownConfigs(
       end: navItem?.end ?? config.end,
     };
   }).filter((config): config is NavDropdownConfig => Boolean(config));
+}
+
+export type DesktopHeaderNavEntry =
+  | { kind: "dropdown"; config: NavDropdownConfig }
+  | { kind: "link"; item: PrimaryNavItem };
+
+export function resolveDesktopHeaderNav(
+  navItems: ReadonlyArray<{ id: string; label: string; to: string; end?: boolean }> = PRIMARY_NAV_ITEMS,
+): DesktopHeaderNavEntry[] {
+  const dropdownById = new Map(resolveNavDropdownConfigs(navItems).map((config) => [config.id, config]));
+  const navById = new Map(navItems.map((item) => [item.id, item]));
+  const plainLinkIds = new Set<string>(DESKTOP_HEADER_PLAIN_LINK_IDS);
+
+  return DESKTOP_HEADER_BAR_IDS.flatMap((id) => {
+    if (plainLinkIds.has(id)) {
+      const item = navById.get(id);
+      return item ? [{ kind: "link" as const, item }] : [];
+    }
+
+    const config = dropdownById.get(id);
+    return config ? [{ kind: "dropdown" as const, config }] : [];
+  });
 }
 
 export function isNavDropdownActive(config: NavDropdownConfig, pathname: string): boolean {

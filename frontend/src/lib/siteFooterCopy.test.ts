@@ -9,6 +9,7 @@ import {
   SITE_FOOTER_MAX_LINKS_PER_COLUMN,
   SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
   SITE_FOOTER_RESOURCES_LINK_LABELS,
+  SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
   SITE_FOOTER_SOCIAL_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
   resolveSiteFooterNavColumns,
@@ -21,9 +22,10 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_COPY.copyrightLine1).toBe("Copyright 2026 (C) Commiters. All Rights Reserved.");
   });
 
-  it("lists three footer navigation columns with at most five links each", () => {
+  it("lists four footer navigation columns with at most seven links each", () => {
     expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual([
       "PRIMARY",
+      "SERVICES",
       "COMPANY",
       "RESOURCES",
     ]);
@@ -31,9 +33,12 @@ describe("siteFooterCopy", () => {
       ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
     ]);
     expect(SITE_FOOTER_COPY.navColumns[1].links.map((link) => link.label)).toEqual([
-      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
+      ...SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
     ]);
     expect(SITE_FOOTER_COPY.navColumns[2].links.map((link) => link.label)).toEqual([
+      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
+    ]);
+    expect(SITE_FOOTER_COPY.navColumns[3].links.map((link) => link.label)).toEqual([
       ...SITE_FOOTER_RESOURCES_LINK_LABELS,
     ]);
     for (const column of SITE_FOOTER_COPY.navColumns) {
@@ -47,7 +52,10 @@ describe("siteFooterCopy", () => {
       `${ROUTES.services}#how-we-work`,
     );
     expect(SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Product")?.to).toBe(ROUTES.trustTap);
-    expect(SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Work")?.to).toBe(ROUTES.caseStudies);
+    expect(SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Website Development")?.to).toBe(
+      "/services/website-development",
+    );
+    expect(SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Work")?.to).toBe(ROUTES.caseStudies);
     expect(SITE_FOOTER_COPY.bottomLegalLinks.map((link) => link.label)).toEqual([
       ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
     ]);

@@ -16,6 +16,7 @@ import {
   partitionHeaderNavItems,
   resolveActiveServiceSectionId,
   resolveNavDropdownConfigs,
+  resolveDesktopHeaderNav,
 } from "./navSections";
 
 describe("navSections", () => {
@@ -28,8 +29,10 @@ describe("navSections", () => {
       "TrustTap",
       "Testimonials",
       "Blog",
+      "FAQ",
       "Careers",
       "Contact",
+      "More",
     ]);
     expect(PRIMARY_NAV_ITEMS.map((item) => item.to)).toEqual([
       ROUTES.home,
@@ -39,21 +42,25 @@ describe("navSections", () => {
       ROUTES.trustTap,
       ROUTES.testimonials,
       ROUTES.technicalLedger,
+      ROUTES.faq,
       ROUTES.openPositions,
       ROUTES.contact,
+      ROUTES.testimonials,
     ]);
     const servicesIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "services");
     const workIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "work");
     const trustTapIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "trusttap");
     const testimonialsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "testimonials");
     const blogIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "blog");
+    const faqIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "faq");
     const careersIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "careers");
     expect(servicesIndex).toBeGreaterThan(-1);
     expect(workIndex).toBeGreaterThan(servicesIndex);
     expect(trustTapIndex).toBeGreaterThan(workIndex);
     expect(testimonialsIndex).toBeGreaterThan(trustTapIndex);
     expect(blogIndex).toBeGreaterThan(testimonialsIndex);
-    expect(careersIndex).toBeGreaterThan(blogIndex);
+    expect(faqIndex).toBeGreaterThan(blogIndex);
+    expect(careersIndex).toBeGreaterThan(faqIndex);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
   });
 
@@ -92,13 +99,32 @@ describe("navSections", () => {
       "Services",
       "Work",
       "TrustTap",
-      "Careers",
-      "Contact",
+      "More",
     ]);
     expect(configs.find((config) => config.id === "services")?.links.map((link) => link.label)).toEqual([
       "How We Work",
       ...SERVICE_NAV_ENTRIES.map((entry) => entry.label),
     ]);
+  });
+
+  it("keeps Careers and Contact as plain header links without dropdown panels", () => {
+    const entries = resolveDesktopHeaderNav();
+    expect(entries.map((entry) => (entry.kind === "link" ? entry.item.label : entry.config.label))).toEqual([
+      "Home",
+      "About",
+      "Services",
+      "Work",
+      "TrustTap",
+      "Careers",
+      "Contact",
+      "More",
+    ]);
+    expect(entries.find((entry) => entry.kind === "link" && entry.item.id === "careers")?.item.to).toBe(
+      ROUTES.openPositions,
+    );
+    expect(entries.find((entry) => entry.kind === "link" && entry.item.id === "contact")?.item.to).toBe(
+      ROUTES.contact,
+    );
   });
 
   it("marks dropdown parents active for nested routes and section links", () => {
@@ -130,8 +156,9 @@ describe("navSections", () => {
       "TrustTap",
       "Careers",
       "Contact",
+      "More",
     ]);
-    expect(groups.more.map((item) => item.label)).toEqual(["Testimonials", "Blog"]);
+    expect(groups.more.map((item) => item.label)).toEqual(["Testimonials", "Blog", "FAQ"]);
     expect(groups.mobile.map((item) => item.label)).toEqual(PRIMARY_NAV_ITEMS.map((item) => item.label));
   });
 });

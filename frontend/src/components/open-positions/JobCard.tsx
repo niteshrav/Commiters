@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import Reveal from "../motion/Reveal";
 import {
   buildOpenPositionPath,
-  formatPostedDate,
-  isRecentlyPosted,
   type PublicJob,
 } from "../../lib/jobs";
+import { getStaticJobBySlug } from "../../lib/jobs/staticPublicJobs";
 import { ROUTES, buildJoinUsApplyHref } from "../../lib/routes";
 
 type Props = {
@@ -13,27 +12,41 @@ type Props = {
   delay?: number;
 };
 
+function formatJobMeta(job: PublicJob): string {
+  return [job.department, job.location, job.workMode].filter(
+    (part, index, parts) => Boolean(part?.trim()) && parts.indexOf(part) === index,
+  ).join(" · ");
+}
+
 export default function JobCard({ job, delay = 0 }: Props) {
-  const recentlyPosted = isRecentlyPosted(job.createdAt);
+  const staticFallback = getStaticJobBySlug(job.slug)?.job;
+  const rolePreview = staticFallback?.roleOverview ?? "";
 
   return (
     <Reveal delay={delay} className="open-positions-card">
-      <article className="open-positions-card-inner">
+      <article
+        className={[
+          "open-positions-card-inner",
+          job.featured ? "open-positions-card-inner--featured" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
         <div className="open-positions-card-head">
-          <div>
-            {job.featured ? <span className="open-positions-badge open-positions-badge--featured">Featured</span> : null}
-            {recentlyPosted ? <span className="open-positions-badge">Recently Posted</span> : null}
+          <div className="open-positions-card-copy">
+            <div className="open-positions-card-badges">
+              {job.featured ? <span className="open-positions-badge open-positions-badge--featured">Featured</span> : null}
+              <span className="open-positions-card-kicker">{job.department}</span>
+            </div>
             <h3>{job.title}</h3>
-            <p className="open-positions-card-meta">
-              {job.department} · {job.location} · {job.workMode}
-            </p>
+            <p className="open-positions-card-meta">{formatJobMeta(job)}</p>
+            {rolePreview ? <p className="open-positions-card-summary">{rolePreview}</p> : null}
           </div>
         </div>
 
         <div className="open-positions-card-tags">
-          {job.internshipType ? <span>{job.internshipType}</span> : null}
           <span>{job.employmentType}</span>
-          <span>Posted {formatPostedDate(job.createdAt)}</span>
+          {staticFallback?.duration ? <span>{staticFallback.duration}</span> : null}
         </div>
 
         <div className="open-positions-card-actions">

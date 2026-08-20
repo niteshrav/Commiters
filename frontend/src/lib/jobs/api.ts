@@ -1,6 +1,7 @@
 import { getApiBaseUrl } from "../siteRuntime";
 import type { JobDetail, JobFiltersResponse, JobQuery, PaginatedJobs, PublicJob } from "./types";
 import {
+  enrichJobDetailFromStaticFallback,
   getStaticJobBySlug,
   listStaticPublicJobs,
   STATIC_JOB_FILTER_OPTIONS,
@@ -65,7 +66,12 @@ export async function fetchJobBySlug(slug: string): Promise<{ job: JobDetail; re
   const fromApi = await fetchJsonFromApi<{ job: JobDetail; relatedJobs: PublicJob[] }>(
     `/api/jobs/${encodeURIComponent(slug)}`,
   );
-  if (fromApi?.job) return fromApi;
+  if (fromApi?.job) {
+    return {
+      job: enrichJobDetailFromStaticFallback(fromApi.job),
+      relatedJobs: fromApi.relatedJobs,
+    };
+  }
 
   const result = getStaticJobBySlug(slug);
   if (!result) throw new Error("Job not found.");

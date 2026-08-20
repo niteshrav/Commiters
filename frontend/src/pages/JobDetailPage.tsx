@@ -2,12 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Reveal from "../components/motion/Reveal";
 import JobCard from "../components/open-positions/JobCard";
+import JobRoleFacts from "../components/open-positions/JobRoleFacts";
 import { usePageSeo, SITE_ORIGIN } from "../hooks/usePageSeo";
 import {
   buildOpenPositionPath,
   fetchJobBySlug,
-  formatPostedDate,
-  isRecentlyPosted,
   type JobDetail,
   type PublicJob,
 } from "../lib/jobs";
@@ -28,7 +27,6 @@ function JobDetailHero({ job }: { job: JobDetail }) {
         <div className="open-positions-detail-head">
           <div>
             {job.featured ? <span className="open-positions-badge open-positions-badge--featured">Featured</span> : null}
-            {isRecentlyPosted(job.createdAt) ? <span className="open-positions-badge">Recently Posted</span> : null}
             <h1>{job.title}</h1>
             <p className="open-positions-detail-meta">
               {job.department} · {job.location} · {job.workMode} · {job.employmentType}
@@ -113,13 +111,23 @@ export default function JobDetailPage() {
 
   const detailSections = useMemo(() => {
     if (!job) return [];
-    return [
+    const sections = [
       { title: "About the Company", body: job.aboutCompany },
       { title: "Role Overview", body: job.roleOverview },
+    ];
+
+    const description = job.description?.trim();
+    if (description && description !== job.roleOverview.trim()) {
+      sections.push({ title: "What You'll Do", body: description });
+    }
+
+    sections.push(
       { title: "Eligibility", body: job.eligibility },
       { title: "Learning Opportunities", body: job.learningOpportunities },
       { title: "Selection Process", body: job.selectionProcess },
-    ].filter((section) => section.body?.trim());
+    );
+
+    return sections.filter((section) => section.body?.trim());
   }, [job]);
 
   if (notFound) return <Navigate to={ROUTES.notFound} replace />;
@@ -151,10 +159,10 @@ export default function JobDetailPage() {
   return (
     <div className="open-positions-detail-page" data-testid="job-detail-page">
       <JobDetailHero job={job} />
+      <JobRoleFacts job={job} />
 
       <section className="open-positions-detail-toolbar">
-        <Reveal className="open-positions-detail-toolbar-inner">
-          <p>Posted {formatPostedDate(job.createdAt)}{job.lastDateToApply ? ` · Apply by ${formatPostedDate(job.lastDateToApply)}` : ""}</p>
+        <Reveal className="open-positions-detail-toolbar-inner open-positions-detail-toolbar-inner--share-only">
           <div className="open-positions-detail-share">
             <button type="button" className="btn btn-secondary" onClick={() => void copyLink()}>Copy Job Link</button>
             <button type="button" className="btn btn-secondary" onClick={() => void shareJob()}>Share Job</button>

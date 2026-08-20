@@ -1,3 +1,4 @@
+import { buildServiceDetailMenuHref, SERVICE_NAV_ENTRIES } from "./navSections";
 import { ROUTES } from "./routes";
 import { buildWhatsAppUrl } from "./siteContact";
 import {
@@ -26,7 +27,7 @@ export type FooterNavColumn = {
   links: readonly FooterLinkCell[];
 };
 
-export const SITE_FOOTER_MAX_LINKS_PER_COLUMN = 5 as const;
+export const SITE_FOOTER_MAX_LINKS_PER_COLUMN = 7 as const;
 
 export const SITE_FOOTER_BRAND_TAGLINE =
   "Engineering Precision for world-class digital products." as const;
@@ -38,9 +39,10 @@ export const SITE_FOOTER_PRIMARY_NAV_LINK_LABELS = [
   "Principles",
   "Core Pillars",
   "Product",
-  "Services",
   "How We Work",
 ] as const;
+
+export const SITE_FOOTER_SERVICES_NAV_LINK_LABELS = SERVICE_NAV_ENTRIES.map((entry) => entry.label);
 
 export const SITE_FOOTER_COMPANY_NAV_LINK_LABELS = [
   "Work",
@@ -56,6 +58,7 @@ export const SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS = ["Privacy", "Terms"] as cons
 
 export const SITE_FOOTER_NAV_LINK_LABELS = [
   ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
+  ...SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
   ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
   ...SITE_FOOTER_RESOURCES_LINK_LABELS,
 ] as const;
@@ -64,9 +67,14 @@ const SITE_FOOTER_PRIMARY_NAV_LINKS = [
   { kind: "internal", label: "Principles", to: `${ROUTES.about}#principles` },
   { kind: "internal", label: "Core Pillars", to: `${ROUTES.home}#core-pillars` },
   { kind: "internal", label: "Product", to: ROUTES.trustTap },
-  { kind: "internal", label: "Services", to: ROUTES.services },
   { kind: "internal", label: "How We Work", to: `${ROUTES.services}#how-we-work` },
 ] as const satisfies readonly FooterLinkCell[];
+
+const SITE_FOOTER_SERVICES_NAV_LINKS = SERVICE_NAV_ENTRIES.map((entry) => ({
+  kind: "internal" as const,
+  label: entry.label,
+  to: buildServiceDetailMenuHref(entry.id),
+}));
 
 const SITE_FOOTER_COMPANY_NAV_LINKS = [
   { kind: "internal", label: "Work", to: ROUTES.caseStudies },
@@ -111,7 +119,12 @@ export type FooterNavLinkRecord = {
 
 export const SITE_FOOTER_DEFAULT_NAVIGATION_LINKS: readonly FooterNavLinkRecord[] = SITE_FOOTER_NAV_LINK_LABELS.map(
   (label, index) => {
-    const link = [...SITE_FOOTER_PRIMARY_NAV_LINKS, ...SITE_FOOTER_COMPANY_NAV_LINKS, ...SITE_FOOTER_RESOURCES_LINKS].find(
+    const link = [
+      ...SITE_FOOTER_PRIMARY_NAV_LINKS,
+      ...SITE_FOOTER_SERVICES_NAV_LINKS,
+      ...SITE_FOOTER_COMPANY_NAV_LINKS,
+      ...SITE_FOOTER_RESOURCES_LINKS,
+    ].find(
       (entry) => entry.label === label,
     );
     return {
@@ -135,11 +148,20 @@ export const SITE_FOOTER_COPY = {
   copyrightLine1: "Copyright 2026 (C) Commiters. All Rights Reserved.",
   socialLinks: SITE_FOOTER_CONNECT_LINKS,
   bottomLegalLinks: SITE_FOOTER_BOTTOM_LEGAL_LINKS,
-  navLinks: [...SITE_FOOTER_PRIMARY_NAV_LINKS, ...SITE_FOOTER_COMPANY_NAV_LINKS, ...SITE_FOOTER_RESOURCES_LINKS] as const,
+  navLinks: [
+    ...SITE_FOOTER_PRIMARY_NAV_LINKS,
+    ...SITE_FOOTER_SERVICES_NAV_LINKS,
+    ...SITE_FOOTER_COMPANY_NAV_LINKS,
+    ...SITE_FOOTER_RESOURCES_LINKS,
+  ] as const,
   navColumns: [
     {
       heading: "PRIMARY",
       links: SITE_FOOTER_PRIMARY_NAV_LINKS,
+    },
+    {
+      heading: "SERVICES",
+      links: SITE_FOOTER_SERVICES_NAV_LINKS,
     },
     {
       heading: "COMPANY",

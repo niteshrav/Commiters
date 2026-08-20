@@ -31,6 +31,7 @@
 .technical-ledger-title,
 .testimonials-intro-title,
 .trusttap-hero-title,
+.open-positions-hero-band h1,
 .open-positions-hero h1,
 .seo-landing-hero h1,
 .svc-detail-hero-title {
@@ -118,6 +119,7 @@
 .home-built-for-scale-lead,
 .seo-landing-subtext,
 .seo-landing-section p,
+.open-positions-hero-lead,
 .open-positions-hero p,
 .stitch-service-card-copy {
   font-family: var(--font-body);

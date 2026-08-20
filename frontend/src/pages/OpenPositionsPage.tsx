@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import JoinUsIntroSection from "../components/JoinUsIntroSection";
 import JobCard from "../components/open-positions/JobCard";
 import JobFiltersBar, { JobListSkeleton } from "../components/open-positions/JobFiltersBar";
 import Reveal from "../components/motion/Reveal";
@@ -56,25 +55,30 @@ export default function OpenPositionsPage() {
 
   return (
     <div className={`${JOIN_US_PAGE_CLASS} open-positions-page`} data-testid="open-positions-page">
-      <JoinUsIntroSection />
-
-      <section className="open-positions-section open-positions-list-section" aria-labelledby="open-positions-list-title">
-        <Reveal className="open-positions-list-head">
+      <section className="open-positions-hero-band" aria-labelledby="open-positions-list-title">
+        <Reveal className="open-positions-hero-inner">
           <p className="open-positions-kicker">Open Positions</p>
-          <h2 id="open-positions-list-title">Build with a founder-led engineering studio.</h2>
-          <p>Explore current roles across web, mobile, and AI — or submit a general application below.</p>
+          <h1 id="open-positions-list-title">Build with a founder-led engineering studio.</h1>
+          <p className="open-positions-hero-lead">
+            Explore current roles across web, mobile, and AI—or share a general application if you do not see the right
+            opening yet.
+          </p>
         </Reveal>
+      </section>
 
-        <JobFiltersBar
-          search={query.search ?? ""}
-          department={query.department ?? ""}
-          workMode={query.workMode ?? ""}
-          employmentType={query.employmentType ?? ""}
-          departments={filters.departments}
-          workModes={filters.workModes}
-          employmentTypes={filters.employmentTypes}
-          onChange={(next) => setQuery((current) => ({ ...current, ...next, page: 1 }))}
-        />
+      <section className="open-positions-listings" aria-label="Job listings">
+        <div className="open-positions-filters-panel">
+          <JobFiltersBar
+            search={query.search ?? ""}
+            department={query.department ?? ""}
+            workMode={query.workMode ?? ""}
+            employmentType={query.employmentType ?? ""}
+            departments={filters.departments}
+            workModes={filters.workModes}
+            employmentTypes={filters.employmentTypes}
+            onChange={(next) => setQuery((current) => ({ ...current, ...next, page: 1 }))}
+          />
+        </div>
 
         {loading ? <JobListSkeleton /> : null}
         {!loading && error ? <p className="open-positions-empty">{error}</p> : null}

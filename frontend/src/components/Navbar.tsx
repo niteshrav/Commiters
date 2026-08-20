@@ -4,8 +4,10 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useNavbarContent } from "../lib/cms/hooks";
 import {
   NAV_DROPDOWN_LINK_CLASS,
+  type DesktopHeaderNavEntry,
   type NavDropdownConfig,
-  resolveNavDropdownConfigs,
+  type PrimaryNavItem,
+  resolveDesktopHeaderNav,
 } from "../lib/navSections";
 import BrandLogo from "./BrandLogo";
 import { IconChevronDown } from "./icons";
@@ -87,10 +89,10 @@ function NavItemDropdownPanel({
   );
 }
 
-const NAV_ITEM_ALIGN_END_IDS = new Set(["trusttap", "careers", "contact"]);
+const NAV_ITEM_ALIGN_END_IDS = new Set(["trusttap", "more"]);
 
-type NavDesktopDropdownProps = {
-  configs: NavDropdownConfig[];
+type NavDesktopItemsProps = {
+  entries: DesktopHeaderNavEntry[];
   openDropdownId: string | null;
   onOpenDropdown: (id: string) => void;
   onScheduleClose: () => void;
@@ -98,27 +100,51 @@ type NavDesktopDropdownProps = {
   onNavigate: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
-function NavDesktopDropdowns({
-  configs,
+function NavDesktopPlainLink({
+  item,
+  onNavigate,
+}: {
+  item: PrimaryNavItem;
+  onNavigate: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}) {
+  return (
+    <NavLink
+      to={item.to}
+      end={item.end}
+      className={() => "nav-primary-link"}
+      data-testid={`nav-item-${item.id}`}
+      onClick={onNavigate}
+    >
+      {item.label}
+    </NavLink>
+  );
+}
+
+function NavDesktopItems({
+  entries,
   openDropdownId,
   onOpenDropdown,
   onScheduleClose,
   onCancelClose,
   onNavigate,
-}: NavDesktopDropdownProps) {
+}: NavDesktopItemsProps) {
   return (
     <div className="nav-menus-desktop" data-testid="nav-menus-desktop">
-      {configs.map((config) => (
-        <NavDesktopDropdownItem
-          key={config.id}
-          config={config}
-          isOpen={openDropdownId === config.id}
-          onOpenDropdown={onOpenDropdown}
-          onScheduleClose={onScheduleClose}
-          onCancelClose={onCancelClose}
-          onNavigate={onNavigate}
-        />
-      ))}
+      {entries.map((entry) =>
+        entry.kind === "link" ? (
+          <NavDesktopPlainLink key={entry.item.id} item={entry.item} onNavigate={onNavigate} />
+        ) : (
+          <NavDesktopDropdownItem
+            key={entry.config.id}
+            config={entry.config}
+            isOpen={openDropdownId === entry.config.id}
+            onOpenDropdown={onOpenDropdown}
+            onScheduleClose={onScheduleClose}
+            onCancelClose={onCancelClose}
+            onNavigate={onNavigate}
+          />
+        ),
+      )}
     </div>
   );
 }
@@ -192,16 +218,32 @@ function NavDesktopDropdownItem({
 }
 
 type NavMobileAccordionProps = {
-  configs: NavDropdownConfig[];
+  entries: DesktopHeaderNavEntry[];
   expandedId: string | null;
   onToggle: (id: string) => void;
   onNavigate: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
-function NavMobileAccordion({ configs, expandedId, onToggle, onNavigate }: NavMobileAccordionProps) {
+function NavMobileAccordion({ entries, expandedId, onToggle, onNavigate }: NavMobileAccordionProps) {
   return (
     <div className="nav-mobile-accordion" data-testid="nav-mobile-accordion">
-      {configs.map((config) => {
+      {entries.map((entry) => {
+        if (entry.kind === "link") {
+          return (
+            <NavLink
+              key={entry.item.id}
+              to={entry.item.to}
+              end={entry.item.end}
+              className={NAV_DROPDOWN_LINK_CLASS}
+              data-testid={`nav-mobile-link-${entry.item.id}`}
+              onClick={onNavigate}
+            >
+              {entry.item.label}
+            </NavLink>
+          );
+        }
+
+        const config = entry.config;
         const isOpen = expandedId === config.id;
         const panelId = `nav-mobile-panel-${config.id}`;
 
@@ -247,7 +289,7 @@ export default function Navbar() {
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const [expandedMobileId, setExpandedMobileId] = useState<string | null>(null);
   const { logo, logoAlt, navItems, ctaLabel, ctaUrl } = useNavbarContent();
-  const dropdownConfigs = resolveNavDropdownConfigs(navItems);
+  const headerNavEntries = resolveDesktopHeaderNav(navItems);
 
   useEffect(() => {
     setOpenDropdownId(null);
@@ -294,8 +336,8 @@ export default function Navbar() {
         <BrandLogo onNavigate={handleNavigate} logoSrc={logo} logoAlt={logoAlt} />
 
         <nav className="nav" aria-label="Primary navigation">
-          <NavDesktopDropdowns
-            configs={dropdownConfigs}
+          <NavDesktopItems
+            entries={headerNavEntries}
             openDropdownId={openDropdownId}
             onOpenDropdown={setOpenDropdownId}
             onScheduleClose={scheduleClose}
@@ -325,7 +367,7 @@ export default function Navbar() {
       </div>
 
       <NavMobileAccordion
-        configs={dropdownConfigs}
+        entries={headerNavEntries}
         expandedId={expandedMobileId}
         onToggle={(id) => setExpandedMobileId((current) => (current === id ? null : id))}
         onNavigate={handleNavigate}
