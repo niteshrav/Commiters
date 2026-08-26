@@ -4,6 +4,11 @@ import {
   CHAT_KNOWLEDGE_BASE,
   type ChatKnowledgeEntry,
 } from "./chatKnowledge";
+import {
+  isOutOfScopeUserMessage,
+  resolveOutOfScopeReply,
+  tokenizeForChat,
+} from "./chatScope";
 
 export type ChatHistoryItem = {
   role: "user" | "assistant";
@@ -16,25 +21,31 @@ export type ChatAnswer = {
 };
 
 function tokenize(text: string): string[] {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, " ")
-    .split(/\s+/)
-    .filter((token) => token.length > 2);
+  return tokenizeForChat(text);
 }
 
 function scoreEntry(messageTokens: string[], entry: ChatKnowledgeEntry): number {
-  const haystack = [...entry.keywords, ...tokenize(entry.question), ...tokenize(entry.answer)];
+  const questionTokens = tokenizeForChat(entry.question);
   let score = 0;
+
   for (const token of messageTokens) {
-    if (haystack.some((word) => word.includes(token) || token.includes(word))) {
+    if (entry.keywords.some((keyword) => keyword.includes(token) || token.includes(keyword))) {
+      score += 2;
+      continue;
+    }
+    if (questionTokens.some((word) => word === token || word.includes(token) || token.includes(word))) {
       score += 1;
     }
   }
+
   return score;
 }
 
 export function findFaqAnswer(message: string): ChatKnowledgeEntry | null {
+  if (isOutOfScopeUserMessage(message)) {
+    return null;
+  }
+
   const tokens = tokenize(message);
   if (tokens.length === 0) return null;
 
@@ -49,10 +60,14 @@ export function findFaqAnswer(message: string): ChatKnowledgeEntry | null {
     }
   }
 
-  return bestScore >= 1 ? best : null;
+  return bestScore >= 2 ? best : null;
 }
 
 export function answerFromKnowledgeBase(message: string): ChatAnswer {
+  if (isOutOfScopeUserMessage(message)) {
+    return { reply: resolveOutOfScopeReply(message), source: "static" };
+  }
+
   const match = findFaqAnswer(message);
   if (match) {
     return { reply: match.answer, source: "faq" };
@@ -72,8 +87,10 @@ function buildSystemPrompt(): string {
   const faqContext = CHAT_KNOWLEDGE_BASE.map((entry) => `Q: ${entry.question}\nA: ${entry.answer}`).join("\n\n");
   return [
     "You are the Commiters website assistant for a software studio in Udaipur, India.",
-    "Answer briefly and professionally about Commiters services, delivery process, careers, and contact options.",
-    "If you do not know something, direct visitors to the Contact page or WhatsApp rather than inventing facts.",
+    "Only answer questions about Commiters: services, delivery process, careers, pricing, contact, and starting a project.",
+    "If a question is general, unrelated, or outside Commiters (for example office visiting hours, weather, jokes, homework, or broad identity questions), politely decline.",
+    "Say you can only help with Commiters-related topics and direct visitors to the Contact page or WhatsApp.",
+    "Do not invent facts. Do not answer unrelated general knowledge questions.",
     "",
     "Reference knowledge:",
     faqContext,
@@ -126,6 +143,10 @@ export async function answerChatMessage(message: string, history: ChatHistoryIte
   const trimmed = message.trim();
   if (!trimmed) {
     return { reply: CHAT_DEFAULT_GREETING, source: "static" };
+  }
+
+  if (isOutOfScopeUserMessage(trimmed)) {
+    return { reply: resolveOutOfScopeReply(trimmed), source: "static" };
   }
 
   if (isOpenAiChatConfigured()) {
