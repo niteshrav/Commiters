@@ -38,15 +38,15 @@ describe("ServicesPage", () => {
     expect(screen.getAllByRole("link", { name: /View service/i }).length).toBeGreaterThanOrEqual(7);
   });
 
-  it("renders the How We Work band and bottom CTA from the Stitch screenshot", () => {
+  it("renders the bottom CTA from the Stitch screenshot", () => {
     render(
       <MemoryRouter>
         <ServicesPage />
       </MemoryRouter>,
     );
 
-    expect(screen.getByTestId("services-how-we-work-section")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /How We Work/i })).toBeInTheDocument();
+    expect(screen.queryByTestId("services-how-we-work-section")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: /How We Work/i })).not.toBeInTheDocument();
     expect(screen.getByTestId("services-bottom-cta")).toBeInTheDocument();
     expect(
       screen.getByText(

@@ -140,6 +140,14 @@ export function termsPageSeo(): PageSeoInput {
   });
 }
 
+export function sitemapPageSeo(): PageSeoInput {
+  return page({
+    title: pageTitle("Site Map"),
+    description: "Browse all public pages on Commiters — services, portfolio, careers, and legal information.",
+    path: ROUTES.sitemap,
+  });
+}
+
 export function thankYouPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Thank you"),

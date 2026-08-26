@@ -136,6 +136,7 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
     links: [
       { id: "vision", label: "Vision", to: buildAboutSectionHref("vision") },
       { id: "principles", label: "Operating Principles", to: buildAboutSectionHref("principles") },
+      { id: "how-we-work", label: "How We Work", to: buildAboutSectionHref("how-we-work") },
     ],
   },
   {
@@ -144,7 +145,6 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
     overviewTo: ROUTES.services,
     headline: "Full-stack development for ambitious teams.",
     links: [
-      { id: "how-we-work", label: "How We Work", to: buildServiceSectionHref("how-we-work") },
       ...SERVICE_NAV_ENTRIES.map((entry) => ({
         id: entry.id,
         label: entry.label,

@@ -76,6 +76,7 @@ describe("Footer", () => {
     expect(copyrightCell).toHaveTextContent("Copyright 2026 (C) Commiters. All Rights Reserved.");
     expect(within(legalCell).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
     expect(within(legalCell).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
+    expect(within(legalCell).getByRole("link", { name: /^Site Map$/i })).toHaveAttribute("href", ROUTES.sitemap);
     expect(screen.getByRole("button", { name: /back to top/i })).toHaveClass(FOOTER_BACK_TO_TOP_CLASS);
 
     const logo = within(logoCell).getByRole("img", { name: /Commiters/i });
@@ -92,7 +93,7 @@ describe("Footer", () => {
     );
     expect(within(primaryNav).getByRole("link", { name: /^How We Work$/i })).toHaveAttribute(
       "href",
-      `${ROUTES.services}#how-we-work`,
+      `${ROUTES.about}#how-we-work`,
     );
     expect(within(primaryNav).getByRole("link", { name: /^Product$/i })).toHaveAttribute("href", ROUTES.trustTap);
     expect(within(servicesNav).getByRole("link", { name: /^Website Development$/i })).toHaveAttribute(

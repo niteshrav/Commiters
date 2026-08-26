@@ -11,22 +11,35 @@ function readRepoFile(relativePath: string): string {
 }
 
 describe("deployment configuration", () => {
-  it("defines frontend and api services in dcdeploy.yaml", () => {
+  it("defines frontend, admin, and api services in dcdeploy.yaml", () => {
     const manifest = readRepoFile("dcdeploy.yaml");
 
     expect(manifest).toMatch(/^\s*frontend:/m);
+    expect(manifest).toMatch(/^\s*admin:/m);
     expect(manifest).toMatch(/^\s*api:/m);
-    expect(manifest).not.toMatch(/^\s*admin:/m);
     expect(manifest).toContain("machineType: DCD-1");
     expect(manifest).toContain("machineType: DCD-2");
     expect(manifest).toContain("context: ./frontend");
+    expect(manifest).toContain("context: ./admin");
     expect(manifest).toContain("context: ./backend");
     expect(manifest).toContain("repo: niteshrav/Committers");
     expect(manifest).toContain("ref: main");
     expect(manifest).toMatch(/ports:\s*\n\s*-\s*80/m);
     expect(manifest).toMatch(/api:[\s\S]*ports:\s*\n\s*-\s*4000/m);
-    expect(manifest).toContain('CORS_ORIGIN: "https://www.commiters.com,https://commiters.com"');
+    expect(manifest).toContain('CORS_ORIGIN: "https://www.commiters.com,https://commiters.com,https://admin.commiters.com"');
     expect(manifest).toContain("NOTIFICATION_PUBLIC_BASE_URL");
+  });
+
+  it("builds the admin panel with nginx and SPA fallback", () => {
+    const dockerfile = readRepoFile("admin/Dockerfile");
+    const nginx = readRepoFile("admin/nginx.conf");
+
+    expect(dockerfile).toContain("FROM node:");
+    expect(dockerfile).toContain("FROM nginx:");
+    expect(dockerfile).toContain("ARG VITE_API_BASE_URL");
+    expect(dockerfile).toContain("npm run build");
+    expect(dockerfile).toContain("EXPOSE 80");
+    expect(nginx).toContain("try_files $uri $uri/ /index.html");
   });
 
   it("builds the frontend with nginx and SPA fallback", () => {

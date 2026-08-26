@@ -17,6 +17,24 @@ services:
     maxScale: 1
     protocol: https
 
+  admin:
+    type: service
+    machineType: DCD-1
+    regions: India
+    build:
+      context: ./admin
+      dockerfilePath: ./Dockerfile
+      repo: niteshrav/Committers
+      ref: main
+      refType: branch
+      autoBuild: true
+      private: false
+    ports:
+      - 80
+    minScale: 1
+    maxScale: 1
+    protocol: https
+
   api:
     type: service
     machineType: DCD-2
@@ -37,5 +55,5 @@ services:
     environment:
       NODE_ENV: production
       PORT: "4000"
-      CORS_ORIGIN: "https://www.commiters.com,https://commiters.com"
+      CORS_ORIGIN: "https://www.commiters.com,https://commiters.com,https://admin.commiters.com"
       NOTIFICATION_PUBLIC_BASE_URL: "https://api.commiters.com"

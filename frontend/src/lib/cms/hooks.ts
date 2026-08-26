@@ -12,6 +12,7 @@ import {
   resolveNavbar,
   resolveServicesGrid,
 } from "./mappers";
+import { resolveCaseStudyProjects, resolveTestimonialsPageItems } from "./projects";
 
 export function useHeroContent() {
   const { bundle } = useCms();
@@ -92,6 +93,16 @@ export function useLeadServiceOptions() {
   return resolveLeadServices(bundle?.services ?? null);
 }
 
+export function useCaseStudyProjects() {
+  const { bundle } = useCms();
+  return resolveCaseStudyProjects(bundle?.projects ?? null);
+}
+
+export function useTestimonialsPageItems() {
+  const { bundle } = useCms();
+  return resolveTestimonialsPageItems(bundle?.testimonials ?? null);
+}
+
 export function useCmsTestimonials() {
   const { bundle } = useCms();
   return bundle?.testimonials?.length ? bundle.testimonials : null;
@@ -99,7 +110,7 @@ export function useCmsTestimonials() {
 
 export function useCmsProjects() {
   const { bundle } = useCms();
-  return bundle?.projects?.length ? bundle.projects : null;
+  return resolveCaseStudyProjects(bundle?.projects ?? null);
 }
 
 export function useCmsFaqs() {

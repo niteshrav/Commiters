@@ -64,7 +64,22 @@ export default function DashboardPage() {
   if (!data) {
     return (
       <div className="admin-page">
-        <p className="muted">Loading dashboard…</p>
+        <div className="admin-page-header">
+          <div>
+            <h2>Commiters Dashboard</h2>
+            <p>Loading studio operations…</p>
+          </div>
+        </div>
+        <div className="admin-stat-grid admin-skeleton-grid" aria-hidden>
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div className="admin-skeleton-card" key={index} />
+          ))}
+        </div>
+        <div className="admin-bento-grid admin-skeleton-bento" aria-hidden>
+          <div className="admin-skeleton-panel admin-skeleton-panel--wide" />
+          <div className="admin-skeleton-panel" />
+          <div className="admin-skeleton-panel" />
+        </div>
       </div>
     );
   }
@@ -104,7 +119,7 @@ export default function DashboardPage() {
     <div className="admin-page">
       <div className="admin-page-header">
         <div>
-          <h2>Committer&apos;s Dashboard</h2>
+          <h2>Commiters Dashboard</h2>
           <p>Overview of your software studio operations, client engagement, and recruitment pipeline.</p>
         </div>
         <Link className="admin-btn admin-btn--outline" to="/contact-queries">

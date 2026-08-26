@@ -1,7 +1,6 @@
 import ServiceOfferCard from "../components/ServiceOfferCard";
 import ServicesBottomCta from "../components/ServicesBottomCta";
 import ServicesExpertiseSection from "../components/ServicesExpertiseSection";
-import ServicesHowWeWorkSection from "../components/ServicesHowWeWorkSection";
 import { usePageSeo } from "../hooks/usePageSeo";
 import { useServicesGrid } from "../lib/cms/hooks";
 import { servicesPageSeo } from "../lib/sitePageSeo";
@@ -22,7 +21,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <ServicesHowWeWorkSection />
       <ServicesBottomCta />
     </div>
   );

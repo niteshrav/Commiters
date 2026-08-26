@@ -1,14 +1,23 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MaterialIcon from "../components/MaterialIcon";
 import { api, checkBackendHealth, checkCmsReady, setToken } from "../lib/api";
+
+function resolveStatusTone(status: string): "ready" | "warn" | "idle" {
+  if (/connected|ready/i.test(status)) return "ready";
+  if (/offline|not ready|unavailable|mongodb/i.test(status)) return "warn";
+  return "idle";
+}
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("admin@commiters.com");
-  const [password, setPassword] = useState("ChangeMe123!");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [status, setStatus] = useState("Checking backend...");
   const [loading, setLoading] = useState(false);
+
+  const statusTone = useMemo(() => resolveStatusTone(status), [status]);
 
   useEffect(() => {
     async function probe() {
@@ -22,7 +31,7 @@ export default function LoginPage() {
         setStatus(cms.message ?? "CMS not ready");
         return;
       }
-      setStatus("Backend connected. Ready to login.");
+      setStatus("Backend connected. Ready to sign in.");
     }
     void probe();
   }, []);
@@ -65,30 +74,77 @@ export default function LoginPage() {
 
   return (
     <div className="login-page">
-      <form className="card login-card form-grid" onSubmit={onSubmit}>
-        <h2>Engineering Studio</h2>
-        <p className="status-line">Admin Console — {status}</p>
-        <label>
-          Email
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required />
-        </label>
-        <label>
-          Password
-          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required />
-        </label>
-        {error ? <p className="error">{error}</p> : null}
-        <button className="btn" type="submit" disabled={loading}>
-          {loading ? "Signing in..." : "Sign In"}
-        </button>
-        <button className="btn secondary" type="button" disabled={loading} onClick={onRegister}>
-          Create First Admin (if none exists)
-        </button>
-        <p className="muted help-text">
-          Default after seed: admin@commiters.com / ChangeMe123!
-          <br />
-          Requires MongoDB running + <code>npm run cms:seed</code> in backend.
-        </p>
-      </form>
+      <div className="login-shell">
+        <aside className="login-brand-panel" aria-hidden="false">
+          <p className="login-brand-kicker">Commiters</p>
+          <h1 className="login-brand-title">Engineering Studio</h1>
+          <p className="login-brand-copy">
+            Manage website content, careers, inquiries, media, and publishing from one focused console.
+          </p>
+          <ul className="login-brand-list">
+            <li>
+              <MaterialIcon name="dashboard_customize" />
+              CMS modules for hero, services, jobs, and blog
+            </li>
+            <li>
+              <MaterialIcon name="forum" />
+              Contact queries and recruitment pipeline
+            </li>
+            <li>
+              <MaterialIcon name="public" />
+              Live preview links to your public site
+            </li>
+          </ul>
+        </aside>
+
+        <form className="card login-card form-grid" onSubmit={onSubmit}>
+          <div className="login-card-head">
+            <h2>Sign in</h2>
+            <p className={`login-status login-status--${statusTone}`}>
+              <MaterialIcon name={statusTone === "ready" ? "check_circle" : statusTone === "warn" ? "error" : "sync"} />
+              {status}
+            </p>
+          </div>
+
+          <label>
+            Email
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              autoComplete="username"
+              required
+            />
+          </label>
+          <label>
+            Password
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              autoComplete="current-password"
+              required
+            />
+          </label>
+
+          {error ? <p className="error login-error">{error}</p> : null}
+
+          <button className="btn login-submit" type="submit" disabled={loading || statusTone === "warn"}>
+            {loading ? "Signing in..." : "Sign In"}
+          </button>
+          <button className="btn secondary" type="button" disabled={loading} onClick={onRegister}>
+            Create First Admin
+          </button>
+
+          <details className="login-help">
+            <summary>First-time setup</summary>
+            <p className="muted help-text">
+              Requires MongoDB and <code>npm run cms:seed</code> in the backend folder. Use the admin credentials from{" "}
+              <code>backend/.env</code> after seeding.
+            </p>
+          </details>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,98 @@
+import { describe, expect, it } from "vitest";
+import { CASE_STUDY_PROJECTS } from "../caseStudiesPageContent";
+import { ROUTES } from "../routes";
+import { TESTIMONIALS_PAGE_ITEMS } from "../testimonialsPageContent";
+import { mapCmsProjectToCaseStudy, resolveCaseStudyProjects } from "./projects";
+import { mapCmsTestimonial, resolveTestimonialsPageItems } from "./projects";
+
+describe("cms projects", () => {
+  it("falls back to static case studies when CMS projects are empty", () => {
+    expect(resolveCaseStudyProjects(null)).toEqual(CASE_STUDY_PROJECTS);
+    expect(resolveCaseStudyProjects([])).toEqual(CASE_STUDY_PROJECTS);
+  });
+
+  it("maps CMS projects and preserves known case study layout metadata", () => {
+    const projects = resolveCaseStudyProjects([
+      {
+        name: "Commiters.com",
+        category: "Web Platform",
+        description: "Founder-led engineering studio website.",
+        projectUrl: "/work/commiters",
+        isFeatured: true,
+        isActive: true,
+        order: 1,
+      },
+      {
+        name: "Custom Client Portal",
+        category: "SaaS",
+        description: "Role-based portal with analytics dashboard.",
+        technologies: ["React", "Node.js"],
+        projectUrl: "https://example.com",
+        isActive: true,
+        order: 2,
+      },
+    ]);
+
+    expect(projects).toHaveLength(2);
+    expect(projects[0].detailsHref).toBe(ROUTES.commitersCaseStudy);
+    expect(projects[0].gridSpan).toBe("wide");
+    expect(projects[1].external).toBe(true);
+    expect(projects[1].tags).toEqual(["React", "Node.js"]);
+  });
+
+  it("builds a case study card from CMS-only projects", () => {
+    const project = mapCmsProjectToCaseStudy(
+      {
+        name: "Ops Dashboard",
+        slug: "ops-dashboard",
+        category: "Internal Tools",
+        description: "Unified operations dashboard for support teams.",
+        projectUrl: "/work/ops-dashboard",
+        isActive: true,
+      },
+      0,
+    );
+
+    expect(project.id).toBe("ops-dashboard");
+    expect(project.problem).toContain("Internal Tools");
+    expect(project.solution).toContain("operations dashboard");
+  });
+});
+
+describe("cms testimonials", () => {
+  it("falls back to static testimonials when CMS testimonials are empty", () => {
+    expect(resolveTestimonialsPageItems(null)).toEqual(TESTIMONIALS_PAGE_ITEMS);
+  });
+
+  it("maps active CMS testimonials in order", () => {
+    const items = resolveTestimonialsPageItems([
+      {
+        clientName: "Jane Doe",
+        company: "Acme SaaS",
+        review: "Excellent delivery and communication.",
+        isActive: true,
+        order: 2,
+      },
+      {
+        clientName: "John Smith",
+        company: "India",
+        review: "Shipped ahead of schedule.",
+        isActive: true,
+        order: 1,
+      },
+      {
+        clientName: "Hidden Client",
+        company: "Stealth",
+        review: "Should not render",
+        isActive: false,
+        order: 3,
+      },
+    ]);
+
+    expect(items).toHaveLength(2);
+    expect(items[0].name).toBe("John Smith");
+    expect(items[0].country).toBe("India");
+    expect(items[1].company).toBe("Acme SaaS");
+    expect(mapCmsTestimonial({ clientName: "", review: "Missing name" }, 0)).toBeNull();
+  });
+});

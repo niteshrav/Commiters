@@ -54,7 +54,7 @@ export const SITE_FOOTER_COMPANY_NAV_LINK_LABELS = [
 
 export const SITE_FOOTER_RESOURCES_LINK_LABELS = ["Careers", "Join Us"] as const;
 
-export const SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS = ["Privacy", "Terms"] as const;
+export const SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS = ["Privacy", "Terms", "Site Map"] as const;
 
 export const SITE_FOOTER_NAV_LINK_LABELS = [
   ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
@@ -67,7 +67,7 @@ const SITE_FOOTER_PRIMARY_NAV_LINKS = [
   { kind: "internal", label: "Principles", to: `${ROUTES.about}#principles` },
   { kind: "internal", label: "Core Pillars", to: `${ROUTES.home}#core-pillars` },
   { kind: "internal", label: "Product", to: ROUTES.trustTap },
-  { kind: "internal", label: "How We Work", to: `${ROUTES.services}#how-we-work` },
+  { kind: "internal", label: "How We Work", to: `${ROUTES.about}#how-we-work` },
 ] as const satisfies readonly FooterLinkCell[];
 
 const SITE_FOOTER_SERVICES_NAV_LINKS = SERVICE_NAV_ENTRIES.map((entry) => ({
@@ -92,6 +92,7 @@ const SITE_FOOTER_RESOURCES_LINKS = [
 const SITE_FOOTER_BOTTOM_LEGAL_LINKS = [
   { kind: "internal", label: "Privacy", to: ROUTES.privacyPolicy },
   { kind: "internal", label: "Terms", to: ROUTES.terms },
+  { kind: "internal", label: "Site Map", to: ROUTES.sitemap },
 ] as const satisfies readonly FooterLinkCell[];
 
 export const SITE_FOOTER_SOCIAL_LINK_LABELS = ["LinkedIn", "WhatsApp", "Instagram", "Medium"] as const;

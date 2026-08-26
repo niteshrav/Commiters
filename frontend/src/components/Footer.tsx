@@ -17,7 +17,13 @@ import {
 } from "../lib/footerLayout";
 import { useFooterContent } from "../lib/cms/hooks";
 import { footerBrandLogoSrc } from "../lib/cms/media";
+import {
+  FOOTER_COPYRIGHT_STAFF_LINK_CLASS,
+  FOOTER_STAFF_LOGIN_ARIA_LABEL,
+  splitCopyrightLine,
+} from "../lib/footerCopyright";
 import { isSocialFooterColumn, type FooterExternalLink, type FooterLinkCell, type FooterNavColumn } from "../lib/siteFooterCopy";
+import { resolveAdminPanelUrl } from "../lib/siteAdmin";
 import { IconChevronUp, IconInstagram, IconLinkedIn, IconMedium, IconWhatsApp } from "./icons";
 
 function isAdminFooterLink(link: FooterLinkCell): boolean {
@@ -86,6 +92,30 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function FooterCopyrightLine({ copyrightLine1 }: { copyrightLine1: string }) {
+  const adminUrl = resolveAdminPanelUrl();
+  const { symbol, remainder } = splitCopyrightLine(copyrightLine1);
+
+  if (!adminUrl || !symbol) {
+    return <>{copyrightLine1}</>;
+  }
+
+  return (
+    <>
+      <a
+        className={FOOTER_COPYRIGHT_STAFF_LINK_CLASS}
+        href={adminUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={FOOTER_STAFF_LOGIN_ARIA_LABEL}
+      >
+        {symbol}
+      </a>{" "}
+      {remainder}
+    </>
+  );
+}
+
 export default function Footer() {
   const { brandTagline, copyrightLine1, navColumns, socialLinks, bottomLegalLinks } = useFooterContent();
   const visibleNavColumns = navColumns.filter((column) => !isSocialFooterColumn(column.heading));
@@ -118,7 +148,7 @@ export default function Footer() {
 
         <div className={FOOTER_BLACKBOOK_BAR_CLASS}>
           <p className={`footer-blackbook-copyright footer-bar-copyright ${FOOTER_COPYRIGHT_CELL_CLASS}`} data-testid="footer-copyright-cell">
-            {copyrightLine1}
+            <FooterCopyrightLine copyrightLine1={copyrightLine1} />
           </p>
 
           <div className={FOOTER_BLACKBOOK_SOCIAL_CLASS} data-testid="footer-social-icons">

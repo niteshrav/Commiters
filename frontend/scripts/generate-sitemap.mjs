@@ -37,6 +37,7 @@ const paths = [
   "/privacy-policy",
   "/cookie-policy",
   "/terms",
+  "/sitemap",
 ];
 
 const urls = paths.map((path) => `  <url>\n    <loc>${SITE_ORIGIN}${path}</loc>\n  </url>`).join("\n");

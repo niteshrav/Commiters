@@ -49,8 +49,12 @@ describe("siteFooterCopy", () => {
       `${ROUTES.home}#core-pillars`,
     );
     expect(SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "How We Work")?.to).toBe(
-      `${ROUTES.services}#how-we-work`,
+      `${ROUTES.about}#how-we-work`,
     );
+    expect(SITE_FOOTER_COPY.bottomLegalLinks.map((link) => link.label)).toEqual([
+      ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
+    ]);
+    expect(SITE_FOOTER_COPY.bottomLegalLinks.find((link) => link.label === "Site Map")?.to).toBe(ROUTES.sitemap);
     expect(SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Product")?.to).toBe(ROUTES.trustTap);
     expect(SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Website Development")?.to).toBe(
       "/services/website-development",

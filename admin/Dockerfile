@@ -3,20 +3,18 @@ FROM node:22-alpine AS build
 
 WORKDIR /app
 
-# Set at deploy time when the API is live, e.g.:
-# docker build --build-arg VITE_API_BASE_URL=https://api.commiters.com .
-ARG VITE_API_BASE_URL=
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ARG VITE_API_BASE_URL=https://api.commiters.com
+ARG VITE_SITE_URL=https://www.commiters.com
+ARG VITE_PUBLIC_SITE_URL=https://www.commiters.com
 
-ARG VITE_ADMIN_URL=
-ENV VITE_ADMIN_URL=$VITE_ADMIN_URL
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ENV VITE_SITE_URL=$VITE_SITE_URL
+ENV VITE_PUBLIC_SITE_URL=$VITE_PUBLIC_SITE_URL
 
 COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY index.html vite.config.ts tsconfig.json ./
-COPY public ./public
-COPY scripts ./scripts
 COPY src ./src
 
 RUN npm run build

@@ -27,5 +27,6 @@ export function buildSitemapPublicPaths(): string[] {
     ROUTES.privacyPolicy,
     ROUTES.cookiePolicy,
     ROUTES.terms,
+    ROUTES.sitemap,
   ];
 }

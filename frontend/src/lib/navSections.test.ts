@@ -86,7 +86,7 @@ describe("navSections", () => {
     expect(MENU_SECTION_LINKS.some((link) => link.label === "Core Pillars")).toBe(true);
     expect(MENU_SECTION_LINKS.some((link) => link.to === buildHomeSectionHref("core-pillars"))).toBe(true);
     expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("vision"))).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.to === buildServiceSectionHref("how-we-work"))).toBe(true);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("how-we-work"))).toBe(true);
     expect(MENU_SECTION_LINKS.some((link) => link.to === buildServiceDetailMenuHref("website-development"))).toBe(true);
     expect(MENU_SECTION_LINKS.some((link) => link.to === buildTrustTapSectionHref("trusttap-features"))).toBe(true);
   });
@@ -101,10 +101,9 @@ describe("navSections", () => {
       "TrustTap",
       "More",
     ]);
-    expect(configs.find((config) => config.id === "services")?.links.map((link) => link.label)).toEqual([
-      "How We Work",
-      ...SERVICE_NAV_ENTRIES.map((entry) => entry.label),
-    ]);
+    expect(configs.find((config) => config.id === "services")?.links.map((link) => link.label)).toEqual(
+      SERVICE_NAV_ENTRIES.map((entry) => entry.label),
+    );
   });
 
   it("keeps Careers and Contact as plain header links without dropdown panels", () => {

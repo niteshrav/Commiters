@@ -20,6 +20,7 @@ import ContactPage from "./pages/ContactPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import TermsPage from "./pages/TermsPage";
+import SitemapPage from "./pages/SitemapPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import TrustTapPage from "./pages/TrustTapPage";
@@ -65,6 +66,7 @@ export default function App() {
         <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />
         <Route path={ROUTES.cookiePolicy} element={<CookiePolicyPage />} />
         <Route path={ROUTES.terms} element={<TermsPage />} />
+        <Route path={ROUTES.sitemap} element={<SitemapPage />} />
         <Route path={ROUTES.thankYou} element={<ThankYouPage />} />
         <Route path={ROUTES.notFound} element={<NotFoundPage />} />
 

@@ -42,8 +42,13 @@ function AdminLayoutShell() {
     <div className="admin-app">
       <aside className="admin-sidebar">
         <div className="admin-brand">
-          <h1>Engineering Studio</h1>
-          <p>Admin Console</p>
+          <div className="admin-brand-mark" aria-hidden>
+            CS
+          </div>
+          <div>
+            <h1>Engineering Studio</h1>
+            <p>Admin Console</p>
+          </div>
         </div>
 
         <nav className="admin-nav custom-scrollbar">

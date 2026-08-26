@@ -162,10 +162,11 @@ async function seed() {
       {
         name: "Commiters.com",
         category: "Web Platform",
-        description: "Founder-led engineering studio website.",
+        description: "Built a zero-latency React ecosystem with a custom minimalist design system.",
         images: [],
         technologies: ["React", "Node.js", "Express"],
         projectUrl: "/work/commiters",
+        slug: "commiters",
         isFeatured: true,
         isActive: true,
         order: 1,
@@ -173,13 +174,50 @@ async function seed() {
       {
         name: "AI Summarizer",
         category: "AI Product",
-        description: "Document summarization POC.",
+        description: "Engineered a generative AI tool to produce precise executive summaries.",
         images: [],
-        technologies: ["Python", "OpenAI"],
+        technologies: ["Python", "Google ADK"],
         projectUrl: "/work/ai-summarizer",
+        slug: "ai-summarizer",
         isFeatured: true,
         isActive: true,
         order: 2,
+      },
+      {
+        name: "Multi-Role CRM & AI Chatbot",
+        category: "Enterprise SaaS",
+        description: "Created an AI-powered CRM with RAG-enhanced chatbots for real-time customer interaction.",
+        images: [],
+        technologies: ["React", "Node.js", "OpenAI"],
+        projectUrl: "/work/multi-role-crm",
+        slug: "multi-role-crm",
+        isFeatured: false,
+        isActive: true,
+        order: 3,
+      },
+      {
+        name: "NearDrop MVP",
+        category: "Logistics",
+        description: "Developed a three-role system for seamless tracking and coordination.",
+        images: [],
+        technologies: ["React Native", "Node.js"],
+        projectUrl: "/work/neardrop-mvp",
+        slug: "neardrop-mvp",
+        isFeatured: true,
+        isActive: true,
+        order: 4,
+      },
+      {
+        name: "BrowseMyVacation",
+        category: "Travel",
+        description: "Shipped a curated Rajasthan travel platform with custom quote workflows.",
+        images: [],
+        technologies: ["Next.js", "Node.js"],
+        projectUrl: "/work/browse-my-vacation",
+        slug: "browse-my-vacation",
+        isFeatured: false,
+        isActive: true,
+        order: 5,
       },
     ]);
   }
@@ -388,6 +426,7 @@ async function seed() {
         { label: "Privacy", url: "/privacy-policy", order: 1 },
         { label: "Cookies", url: "/cookie-policy", order: 2 },
         { label: "Terms", url: "/terms", order: 3 },
+        { label: "Site Map", url: "/sitemap", order: 4 },
       ],
     });
   } else {
@@ -435,6 +474,7 @@ async function seed() {
         { label: "Privacy", url: "/privacy-policy", order: 1 },
         { label: "Cookies", url: "/cookie-policy", order: 2 },
         { label: "Terms", url: "/terms", order: 3 },
+        { label: "Site Map", url: "/sitemap", order: 4 },
       ];
       const currentLegal = footerDoc.legalLinks ?? [];
       const mergedLegal = [...currentLegal];

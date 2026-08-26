@@ -27,6 +27,7 @@ const DEFAULT_LEGAL_LINKS: FooterLink[] = [
   { label: "Privacy", url: "/privacy-policy", order: 1 },
   { label: "Cookies", url: "/cookie-policy", order: 2 },
   { label: "Terms", url: "/terms", order: 3 },
+  { label: "Site Map", url: "/sitemap", order: 4 },
 ];
 
 function FooterLinkEditor({

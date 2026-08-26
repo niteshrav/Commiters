@@ -26,6 +26,8 @@ describe("AboutPage", () => {
     expect(screen.getByTestId("about-craftsmanship-section")).toBeInTheDocument();
     expect(screen.getByTestId(ABOUT_CRAFTSMANSHIP_COPY_START_TEST_ID)).toBeInTheDocument();
     expect(screen.getByTestId("about-principles-section")).toBeInTheDocument();
+    expect(screen.getByTestId("services-how-we-work-section")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /How We Work/i })).toBeInTheDocument();
     expect(screen.getByTestId("about-bottom-cta")).toBeInTheDocument();
 
     expect(screen.getByText(STITCH_COPY.about.visionBody)).toBeInTheDocument();
