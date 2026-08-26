@@ -1,12 +1,14 @@
+export const CHAT_ASSISTANT_NAME = "Node" as const;
+
 export const SITE_CHAT_COPY = {
-  launcherLabel: "Open Commiters assistant",
-  panelTitle: "Commiters Assistant",
+  launcherLabel: `Open ${CHAT_ASSISTANT_NAME} assistant`,
+  panelTitle: CHAT_ASSISTANT_NAME,
   panelSubtitle: "AI-assisted answers about services, process, and careers",
   inputPlaceholder: "Ask about our services or how to start a project…",
   sendLabel: "Send",
   closeLabel: "Close assistant",
   greeting:
-    "Hi! I can help with Commiters services, delivery process, careers, and how to contact our team.",
+    `Hi! I'm ${CHAT_ASSISTANT_NAME}. I can help with Commiters services, delivery process, careers, and how to contact our team.`,
   thinkingLabel: "Thinking…",
   errorLabel: "Something went wrong. Please try again or use the Contact page.",
   contactHint: "Need a human? Visit Contact or WhatsApp us anytime.",

@@ -2,7 +2,7 @@ const OUT_OF_SCOPE =
   "I can only help with Commiters-related topics such as our services, delivery process, careers, pricing, and contact options.";
 
 const IDENTITY =
-  "I'm the Commiters website assistant. I can help with questions about our software services";
+  "I'm Node, the Commiters website assistant. I can help with questions about our software services";
 
 const STOP_WORDS = new Set([
   "a",

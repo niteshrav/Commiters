@@ -5,6 +5,8 @@ export type ChatKnowledgeEntry = {
   keywords: string[];
 };
 
+export const CHAT_ASSISTANT_NAME = "Node" as const;
+
 /** Site FAQ snippets used for assistant fallback when OpenAI is not configured. */
 export const CHAT_KNOWLEDGE_BASE: readonly ChatKnowledgeEntry[] = [
   {
@@ -59,7 +61,7 @@ export const CHAT_KNOWLEDGE_BASE: readonly ChatKnowledgeEntry[] = [
 ];
 
 export const CHAT_DEFAULT_GREETING =
-  "Hi! I am the Commiters assistant. Ask about our services, process, careers, or how to start a project.";
+  `Hi! I'm ${CHAT_ASSISTANT_NAME}. Ask about our services, process, careers, or how to start a project.`;
 
 export const CHAT_FALLBACK_REPLY =
   "I can help with services, delivery process, careers, and contact options. For a detailed answer, visit the Contact page or WhatsApp our team.";

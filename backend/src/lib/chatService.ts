@@ -1,4 +1,5 @@
 import {
+  CHAT_ASSISTANT_NAME,
   CHAT_DEFAULT_GREETING,
   CHAT_FALLBACK_REPLY,
   CHAT_KNOWLEDGE_BASE,
@@ -86,7 +87,7 @@ function getOpenAiModel(env: NodeJS.ProcessEnv = process.env): string {
 function buildSystemPrompt(): string {
   const faqContext = CHAT_KNOWLEDGE_BASE.map((entry) => `Q: ${entry.question}\nA: ${entry.answer}`).join("\n\n");
   return [
-    "You are the Commiters website assistant for a software studio in Udaipur, India.",
+    `You are ${CHAT_ASSISTANT_NAME}, the Commiters website assistant for a software studio in Udaipur, India.`,
     "Only answer questions about Commiters: services, delivery process, careers, pricing, contact, and starting a project.",
     "If a question is general, unrelated, or outside Commiters (for example office visiting hours, weather, jokes, homework, or broad identity questions), politely decline.",
     "Say you can only help with Commiters-related topics and direct visitors to the Contact page or WhatsApp.",

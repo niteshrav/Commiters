@@ -6,7 +6,7 @@ describe("chatScope", () => {
   it("treats identity and visiting-hours questions as out of scope", () => {
     expect(isOutOfScopeUserMessage("Please tell me who you are")).toBe(true);
     expect(isOutOfScopeUserMessage("What are the visiting hours")).toBe(true);
-    expect(resolveOutOfScopeReply("Please tell me who you are")).toMatch(/Commiters website assistant/i);
+    expect(resolveOutOfScopeReply("Please tell me who you are")).toMatch(/I'm Node/i);
     expect(resolveOutOfScopeReply("What are the visiting hours")).toMatch(/only help with Commiters-related topics/i);
   });
 
@@ -34,7 +34,7 @@ describe("chatService knowledge base", () => {
 
     const identity = answerFromKnowledgeBase("Please tell me who you are");
     expect(identity.source).toBe("static");
-    expect(identity.reply).toMatch(/Commiters website assistant/i);
+    expect(identity.reply).toMatch(/I'm Node/i);
     expect(identity.reply).not.toMatch(/Careers page/i);
 
     const hours = answerFromKnowledgeBase("What are the visiting hours");

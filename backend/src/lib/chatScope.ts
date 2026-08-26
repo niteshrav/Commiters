@@ -1,8 +1,9 @@
+import { CHAT_ASSISTANT_NAME } from "./chatKnowledge";
+
 export const CHAT_OUT_OF_SCOPE_REPLY =
   "I can only help with Commiters-related topics such as our services, delivery process, careers, pricing, and contact options. For anything outside that scope, please visit our Contact page or message us on WhatsApp.";
 
-export const CHAT_SCOPE_IDENTITY_REPLY =
-  "I'm the Commiters website assistant. I can help with questions about our software services, how we work, open roles, and how to reach the team—not general topics outside Commiters.";
+export const CHAT_SCOPE_IDENTITY_REPLY = `I'm ${CHAT_ASSISTANT_NAME}, the Commiters website assistant. I can help with questions about our software services, how we work, open roles, and how to reach the team—not general topics outside Commiters.`;
 
 /** Tokens ignored when matching FAQ entries or topic signals. */
 export const CHAT_STOP_WORDS = new Set([
