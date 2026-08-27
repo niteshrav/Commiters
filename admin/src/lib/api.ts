@@ -46,12 +46,18 @@ function redirectToLoginIfNeeded() {
   }
 }
 
-function throwApiError(status: number, payload: { error?: string } | null): never {
+function apiErrorMessage(payload: unknown): string | undefined {
+  if (!payload || typeof payload !== "object" || !("error" in payload)) return undefined;
+  const message = (payload as { error?: unknown }).error;
+  return typeof message === "string" ? message : undefined;
+}
+
+function throwApiError(status: number, payload: unknown): never {
   if (status === 401) {
     redirectToLoginIfNeeded();
-    throw new Error(payload?.error ?? "Session expired. Please sign in again.");
+    throw new Error(apiErrorMessage(payload) ?? "Session expired. Please sign in again.");
   }
-  throw new Error(payload?.error ?? `Request failed (${status})`);
+  throw new Error(apiErrorMessage(payload) ?? `Request failed (${status})`);
 }
 
 export function isLoggedIn() {
