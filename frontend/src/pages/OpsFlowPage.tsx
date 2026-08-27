@@ -7,7 +7,7 @@ export default function OpsFlowPage() {
   usePageSeo(opsFlowPageSeo());
 
   return (
-    <div className={OPSFLOW_PAGE_CLASS} data-testid="opsflow-page">
+    <div className={`${OPSFLOW_PAGE_CLASS} band-breakout`} data-testid="opsflow-page">
       <OpsFlowSection />
     </div>
   );

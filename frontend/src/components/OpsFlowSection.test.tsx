@@ -1,16 +1,19 @@
 import type { ReactElement } from "react";
 import { describe, expect, it, vi } from "vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import OpsFlowSection from "./OpsFlowSection";
 import { OPSFLOW_PERSONAL_EMAIL_ERROR } from "../lib/opsFlowLeadGate";
 import { ROUTES } from "../lib/routes";
 import {
+  OPSFLOW_BOTTOM_CTA,
   OPSFLOW_DOCUMENT_CATEGORIES,
   OPSFLOW_DROPZONE_LABEL,
   OPSFLOW_ENGINEER_CTA_LABEL,
   OPSFLOW_HERO,
+  OPSFLOW_HOW_IT_WORKS,
+  OPSFLOW_PREVIEW,
   OPSFLOW_PROCESSING_LABEL,
   OPSFLOW_SECURITY_FOOTER,
   OPSFLOW_SUBMIT_LABEL,
@@ -52,6 +55,14 @@ describe("OpsFlowSection", () => {
     }
     expect(screen.getByRole("button", { name: OPSFLOW_SUBMIT_LABEL })).toBeInTheDocument();
     expect(screen.getByText(OPSFLOW_SECURITY_FOOTER)).toBeInTheDocument();
+    expect(screen.getByTestId("opsflow-how-it-works")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: OPSFLOW_HOW_IT_WORKS.title, level: 2 })).toBeInTheDocument();
+    expect(screen.getByTestId("opsflow-preview")).toBeInTheDocument();
+    expect(screen.getByText(OPSFLOW_PREVIEW.title)).toBeInTheDocument();
+    expect(screen.getByTestId("opsflow-panel")).toBeInTheDocument();
+    expect(screen.getByTestId("opsflow-panel-card")).toBeInTheDocument();
+    expect(screen.getByTestId("opsflow-bottom-cta")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: OPSFLOW_BOTTOM_CTA.primaryLabel })).toHaveAttribute("href", ROUTES.contact);
   });
 
   it("warns when a personal email domain is used", async () => {
@@ -97,8 +108,9 @@ describe("OpsFlowSection", () => {
     release();
 
     await waitFor(() => {
-      expect(screen.getByRole("status")).toHaveTextContent(/Extraction Complete/i);
-      expect(screen.getByRole("link", { name: OPSFLOW_ENGINEER_CTA_LABEL })).toHaveAttribute("href", ROUTES.contact);
+      const status = screen.getByRole("status");
+      expect(status).toHaveTextContent(/Extraction Complete/i);
+      expect(within(status).getByRole("link", { name: OPSFLOW_ENGINEER_CTA_LABEL })).toHaveAttribute("href", ROUTES.contact);
     });
   });
 });

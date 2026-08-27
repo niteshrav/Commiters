@@ -21,20 +21,73 @@ export const OPSFLOW_HERO = {
 export const OPSFLOW_VALUE_CARDS = [
   {
     id: "sandbox",
+    icon: "upload",
     title: "Zero-Friction Web Sandbox",
     body: "10 free daily extractions with zero credit card or complex developer setup.",
   },
   {
     id: "excel",
+    icon: "spreadsheet",
     title: "Direct Excel & CSV Bridge",
     body: "Download clean .xlsx spreadsheets ready for Tally/QuickBooks, not raw developer JSON arrays.",
   },
   {
     id: "pipeline",
+    icon: "pipeline",
     title: "B2B Pipeline Ready",
     body: "Need auto-syncing email pipelines or Zapier/ERP integrations? We build custom workflows for your operations.",
   },
 ] as const;
+
+export const OPSFLOW_HOW_IT_WORKS = {
+  title: "How it works",
+  steps: [
+    {
+      id: "upload",
+      step: "01",
+      title: "Upload your document",
+      body: "Drop a GST invoice, shipping bill, or receipt — PDF, PNG, or JPG up to 10 MB.",
+    },
+    {
+      id: "extract",
+      step: "02",
+      title: "AI extracts structured fields",
+      body: "Gemini reads tables, GST/PAN numbers, line items, and totals tuned for Indian layouts.",
+    },
+    {
+      id: "download",
+      step: "03",
+      title: "Download clean Excel",
+      body: "Get a production-ready .xlsx file you can import into Tally, QuickBooks, or your ERP.",
+    },
+  ],
+} as const;
+
+export const OPSFLOW_PREVIEW = {
+  title: "PDF → Excel in seconds",
+  pdfLabel: "Scanned PDF",
+  excelLabel: "Structured Excel",
+  fields: [
+    { label: "Vendor", value: "Shree Logistics Pvt Ltd" },
+    { label: "GSTIN", value: "08AABCS1429B1Z5" },
+    { label: "Invoice #", value: "INV-2026-0412" },
+    { label: "Grand Total", value: "₹1,24,500.00" },
+  ],
+  lineItems: [
+    { description: "Freight charges — Udaipur to Mumbai", total: "₹98,000" },
+    { description: "Handling & documentation", total: "₹26,500" },
+  ],
+} as const;
+
+export const OPSFLOW_BOTTOM_CTA = {
+  title: "Need auto-syncing pipelines for your ERP?",
+  subtext:
+    "OpsFlow sandbox is free to try. When you need email ingestion, Zapier hooks, or custom reconciliation workflows, our engineers can build the full pipeline.",
+  primaryLabel: "Talk to an Engineer",
+  primaryTo: ROUTES.contact,
+  secondaryLabel: "View our automation services",
+  secondaryTo: ROUTES.workflowAutomation,
+} as const;
 
 export const OPSFLOW_DOCUMENT_CATEGORIES = [
   "GST Invoices",

@@ -34,10 +34,17 @@ export function resolveServiceCardImage(options: {
 }): ServiceCardImage {
   const { gridId, slug, icon, title } = options;
 
-  let resolvedGridId = gridId?.trim() || undefined;
-  if (!resolvedGridId && slug) {
-    resolvedGridId = getServiceBySlug(slug)?.gridId;
+  let resolvedGridId = gridId?.trim() || slug?.trim() || undefined;
+
+  // CMS service cards often use catalog slugs (e.g. web-application-development)
+  // while card art is keyed by services grid section ids (e.g. web-applications).
+  if (resolvedGridId && !SERVICE_CARD_IMAGE_BY_GRID_ID[resolvedGridId]) {
+    const fromCatalog = getServiceBySlug(resolvedGridId);
+    if (fromCatalog?.gridId) {
+      resolvedGridId = fromCatalog.gridId;
+    }
   }
+
   if (!resolvedGridId && icon && ICON_TO_GRID_ID[icon]) {
     resolvedGridId = ICON_TO_GRID_ID[icon];
   }
@@ -59,7 +66,7 @@ export function resolveServiceCardImage(options: {
 }
 
 export function serviceCardImageForGridId(gridId: string, title: string): ServiceCardImage {
-  return resolveServiceCardImage({ gridId, title });
+  return resolveServiceCardImage({ gridId, slug: gridId, title });
 }
 
 export function serviceCardImageForDetail(slug: string): ServiceCardImage {

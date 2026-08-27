@@ -3,17 +3,29 @@
 .opsflow-page {
   display: flex;
   flex-direction: column;
-  margin: 0 calc(-1 * clamp(14px, 2.5vw, 32px));
-  width: calc(100% + 2 * clamp(14px, 2.5vw, 32px));
+  align-items: center;
+  width: 100vw;
   max-width: 100vw;
+  box-sizing: border-box;
   --opsflow-indigo: var(--stitch-blue, #0066ff);
   --opsflow-indigo-rgb: var(--stitch-blue-rgb, 0, 102, 255);
   --opsflow-emerald: #059669;
   --opsflow-slate: var(--slate, #64748b);
 }
 
+.opsflow-section.band-breakout,
+.opsflow-bottom-cta.band-breakout {
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
 .opsflow-section {
-  padding: clamp(48px, 6vw, 80px) clamp(14px, 2.5vw, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: clamp(40px, 5vw, 72px) clamp(20px, 4vw, 40px) clamp(48px, 6vw, 80px);
   background:
     radial-gradient(ellipse 80% 60% at 0% 0%, rgba(var(--opsflow-indigo-rgb), 0.1), transparent 58%),
     radial-gradient(ellipse 70% 50% at 100% 8%, rgba(5, 150, 105, 0.1), transparent 52%),
@@ -21,14 +33,76 @@
 }
 
 .opsflow-inner {
-  max-width: var(--max-width, 1120px);
-  margin: 0 auto;
+  width: min(var(--max-width, 1360px), calc(100vw - 40px));
+  max-width: var(--max-width, 1360px);
+  margin-inline: auto;
+}
+
+.opsflow-top-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: clamp(40px, 5vw, 64px);
+  align-items: center;
+  margin-bottom: clamp(32px, 5vw, 48px);
 }
 
 .opsflow-hero {
-  max-width: 46rem;
-  margin: 0 auto clamp(32px, 5vw, 48px);
-  text-align: center;
+  max-width: none;
+  margin: 0;
+  padding: clamp(32px, 5vw, 56px) clamp(16px, 3vw, 40px) clamp(16px, 2vw, 24px)
+    clamp(24px, 4vw, 56px);
+  text-align: left;
+}
+
+.opsflow-panel {
+  position: sticky;
+  top: clamp(88px, 10vw, 112px);
+  width: 100%;
+  min-width: 0;
+}
+
+.opsflow-panel-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  padding: 0;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.06),
+    0 16px 40px rgba(15, 23, 42, 0.1);
+  overflow: hidden;
+}
+
+.opsflow-panel-card-header {
+  padding: 20px 24px 0;
+}
+
+.opsflow-panel-card-body {
+  padding: 0 24px 20px;
+}
+
+.opsflow-panel-card-body:has(.opsflow-success) {
+  padding: 24px;
+}
+
+.opsflow-panel-card .opsflow-form,
+.opsflow-panel-card .opsflow-success {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.opsflow-panel-card .opsflow-trust {
+  margin: 0;
+  padding: 14px 24px 18px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
 }
 
 .opsflow-eyebrow {
@@ -47,7 +121,7 @@
 .opsflow-headline {
   margin: 0 0 16px;
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 4.2vw, 3rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.65rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.03em;
@@ -55,8 +129,8 @@
 }
 
 .opsflow-subhead {
-  margin: 0 auto;
-  max-width: 40rem;
+  margin: 0;
+  max-width: 36rem;
   font-size: clamp(1rem, 1.8vw, 1.125rem);
   line-height: 1.65;
   color: var(--muted);
@@ -65,53 +139,285 @@
 .opsflow-cards {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  margin: 0 0 clamp(28px, 4vw, 40px);
+  gap: 14px;
+  margin: 0 0 clamp(32px, 5vw, 48px);
   padding: 0;
   list-style: none;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 768px) {
   .opsflow-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 .opsflow-card {
-  padding: clamp(20px, 3vw, 28px);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  height: 100%;
+  padding: clamp(18px, 2.5vw, 22px);
   border: 1px solid var(--border);
+  border-radius: 12px;
   background: var(--surface);
   box-shadow: 0 1px 2px rgba(17, 24, 39, 0.04);
 }
 
+.opsflow-card-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(var(--opsflow-indigo-rgb), 0.1);
+  color: var(--opsflow-indigo);
+}
+
 .opsflow-card h2 {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--text);
 }
 
 .opsflow-card p {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.875rem;
+  line-height: 1.55;
   color: var(--muted);
+}
+
+.opsflow-steps {
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.opsflow-steps-title,
+.opsflow-preview-title {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+.opsflow-steps-list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .opsflow-steps-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.opsflow-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  height: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(var(--opsflow-indigo-rgb), 0.03);
+}
+
+.opsflow-step-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--opsflow-indigo);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.opsflow-step h3 {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.opsflow-step p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.opsflow-preview {
+  margin-bottom: 0;
+}
+
+.opsflow-preview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.opsflow-preview-pane {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.opsflow-preview-pane--pdf {
+  background: #f8fafc;
+}
+
+.opsflow-preview-pane--excel {
+  border-color: rgba(var(--opsflow-indigo-rgb), 0.2);
+}
+
+.opsflow-preview-label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--opsflow-slate);
+}
+
+.opsflow-preview-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--opsflow-indigo);
+}
+
+.opsflow-preview-doc {
+  display: grid;
+  gap: 8px;
+}
+
+.opsflow-preview-doc-line {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: #cbd5e1;
+}
+
+.opsflow-preview-doc-line--wide {
+  width: 78%;
+}
+
+.opsflow-preview-doc-line--short {
+  width: 42%;
+}
+
+.opsflow-preview-doc-table {
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.opsflow-preview-doc-table span {
+  display: block;
+  height: 10px;
+  border-radius: 3px;
+  background: #e2e8f0;
+}
+
+.opsflow-preview-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 12px;
+}
+
+.opsflow-preview-field {
+  margin: 0;
+}
+
+.opsflow-preview-field dt {
+  margin: 0 0 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--opsflow-slate);
+}
+
+.opsflow-preview-field dd {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.opsflow-preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.opsflow-preview-table th,
+.opsflow-preview-table td {
+  padding: 6px 8px;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.opsflow-preview-table th {
+  background: rgba(var(--opsflow-indigo-rgb), 0.08);
+  font-weight: 700;
+  color: var(--text);
 }
 
 .opsflow-form,
 .opsflow-success {
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: clamp(20px, 3vw, 32px);
+  padding: clamp(22px, 3vw, 28px);
   border: 1px solid var(--border);
+  border-radius: 14px;
   background: var(--surface);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
+}
+
+.opsflow-form-kicker {
+  display: inline-flex;
+  margin: 0 0 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(var(--opsflow-indigo-rgb), 0.1);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--opsflow-indigo);
+}
+
+.opsflow-form-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
 }
 
 .opsflow-form {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .opsflow-dropzone {
@@ -120,13 +426,15 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 148px;
+  min-height: 160px;
   padding: 24px 16px;
-  border: 1px dashed #cbd5e1;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
   background: #f8fafc;
   color: var(--opsflow-indigo);
   cursor: pointer;
   text-align: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .opsflow-dropzone:hover,
@@ -174,6 +482,7 @@
   min-height: 44px;
   padding: 10px 12px;
   border: 1px solid var(--border);
+  border-radius: 10px;
   background: var(--surface);
   color: var(--text);
   font-size: 1rem;
@@ -215,6 +524,7 @@
 .opsflow-progress [role="progressbar"] {
   overflow: hidden;
   height: 8px;
+  border-radius: 999px;
   background: #e2e8f0;
 }
 
@@ -238,10 +548,8 @@
 .opsflow-success {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   color: #065f46;
-  font-size: 0.98rem;
-  line-height: 1.6;
 }
 
 .opsflow-success svg {
@@ -250,13 +558,72 @@
   color: var(--opsflow-emerald);
 }
 
-.opsflow-trust {
-  max-width: 40rem;
-  margin: 20px auto 0;
-  text-align: center;
-  font-size: 0.8125rem;
+.opsflow-success-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.opsflow-success-body {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
   line-height: 1.6;
+  color: #047857;
+}
+
+.opsflow-success-reset {
+  width: 100%;
+  justify-content: center;
+}
+
+.opsflow-trust {
+  margin: 0;
+  text-align: left;
+  font-size: 0.78rem;
+  line-height: 1.55;
   color: var(--opsflow-slate);
+}
+
+.opsflow-bottom-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: clamp(48px, 6vw, 72px) clamp(20px, 4vw, 40px);
+  background: #0f172a;
+  color: #fff;
+  text-align: center;
+}
+
+.opsflow-bottom-cta-title {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.opsflow-bottom-cta-subtext {
+  margin: 0 auto 24px;
+  max-width: 38rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.opsflow-bottom-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.opsflow-bottom-cta-actions .btn-secondary {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
 }
 
 [data-theme="dark"] .opsflow-section {
@@ -269,16 +636,57 @@
 [data-theme="dark"] .opsflow-dropzone,
 [data-theme="dark"] .opsflow-form,
 [data-theme="dark"] .opsflow-success,
-[data-theme="dark"] .opsflow-card {
+[data-theme="dark"] .opsflow-card,
+[data-theme="dark"] .opsflow-step,
+[data-theme="dark"] .opsflow-preview-pane,
+[data-theme="dark"] .opsflow-panel-card {
   background: var(--surface);
 }
 
-@media (max-width: 640px) {
-  .opsflow-hero {
-    text-align: left;
+@media (max-width: 960px) {
+  .opsflow-top-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
   }
 
-  .opsflow-trust {
-    text-align: left;
+  .opsflow-hero {
+    padding: clamp(16px, 3vw, 24px) 0 clamp(8px, 2vw, 16px);
+  }
+
+  .opsflow-panel {
+    position: static;
+  }
+
+  .opsflow-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .opsflow-steps-list {
+    grid-template-columns: 1fr;
+  }
+
+  .opsflow-preview-grid {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .opsflow-preview-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .opsflow-preview-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .opsflow-bottom-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .opsflow-bottom-cta-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 }

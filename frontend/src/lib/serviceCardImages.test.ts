@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SERVICE_CARD_IMAGE_BY_GRID_ID, resolveServiceCardImage, serviceCardImageForDetail } from "./serviceCardImages";
+import { SERVICE_CARD_IMAGE_BY_GRID_ID, resolveServiceCardImage, serviceCardImageForDetail, serviceCardImageForGridId } from "./serviceCardImages";
 
 describe("serviceCardImages", () => {
   it("maps every grid id to a public asset", () => {
@@ -19,6 +19,12 @@ describe("serviceCardImages", () => {
   it("resolves web applications catalog slug to the web-applications art", () => {
     expect(serviceCardImageForDetail("web-application-development").src).toBe(
       "/assets/services/web-applications.jpg",
+    );
+    expect(serviceCardImageForGridId("web-application-development", "Web Application Development").src).toBe(
+      "/assets/services/web-applications.jpg",
+    );
+    expect(serviceCardImageForGridId("mobile-app-development", "Mobile App Development").src).toBe(
+      "/assets/services/mobile-applications.jpg",
     );
   });
 });

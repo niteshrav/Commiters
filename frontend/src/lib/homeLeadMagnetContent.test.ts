@@ -47,7 +47,7 @@ describe("homeLeadMagnetContent", () => {
     expect(HOME_LEAD_MAGNET_LAYOUT.paddingBlock).toMatch(/64px/);
     expect(HOME_LEAD_MAGNET_LAYOUT.sectionClass).toContain("home-lead-magnet");
     expect(HOME_LEAD_MAGNET_LAYOUT.sectionClass).toContain("band-breakout");
-    expect(HOME_LEAD_MAGNET_LAYOUT.innerMaxWidth).toBe("80rem");
+    expect(HOME_LEAD_MAGNET_LAYOUT.innerMaxWidth).toBe("var(--max-width, 1360px)");
     expect(HOME_LEAD_MAGNET_LAYOUT.cardBackground).toBe("#FFFFFF");
     expect(HOME_LEAD_MAGNET_LAYOUT.cardBorder).toBe("#E2E8F0");
   });

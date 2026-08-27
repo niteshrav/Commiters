@@ -45,7 +45,7 @@ export const HOME_LEAD_MAGNET_LAYOUT = {
   featuresClass: "home-lead-magnet-features",
   background: "#F8FAFC",
   paddingBlock: "clamp(48px, 5vw, 64px)",
-  innerMaxWidth: "80rem",
+  innerMaxWidth: "var(--max-width, 1360px)",
   cardBackground: "#FFFFFF",
   cardBorder: "#E2E8F0",
 } as const;

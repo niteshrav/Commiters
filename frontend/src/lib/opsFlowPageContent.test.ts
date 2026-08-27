@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import {
+  OPSFLOW_BOTTOM_CTA,
   OPSFLOW_DOCUMENT_CATEGORIES,
   OPSFLOW_HERO,
+  OPSFLOW_HOW_IT_WORKS,
+  OPSFLOW_PREVIEW,
   OPSFLOW_PROCESSING_LABEL,
   OPSFLOW_SECURITY_FOOTER,
   OPSFLOW_SEO,
@@ -29,9 +32,19 @@ describe("opsFlowPageContent", () => {
       "Direct Excel & CSV Bridge",
       "B2B Pipeline Ready",
     ]);
+    expect(OPSFLOW_VALUE_CARDS.map((card) => card.icon)).toEqual(["upload", "spreadsheet", "pipeline"]);
     expect(OPSFLOW_VALUE_CARDS[0]?.body).toMatch(/10 free daily extractions/i);
     expect(OPSFLOW_VALUE_CARDS[1]?.body).toMatch(/Tally\/QuickBooks/i);
     expect(OPSFLOW_VALUE_CARDS[2]?.body).toMatch(/Zapier\/ERP/i);
+  });
+
+  it("defines how-it-works steps, preview fields, and bottom CTA", () => {
+    expect(OPSFLOW_HOW_IT_WORKS.steps).toHaveLength(3);
+    expect(OPSFLOW_HOW_IT_WORKS.steps[0]?.title).toMatch(/Upload/i);
+    expect(OPSFLOW_PREVIEW.fields.some((field) => field.label === "GSTIN")).toBe(true);
+    expect(OPSFLOW_PREVIEW.lineItems).toHaveLength(2);
+    expect(OPSFLOW_BOTTOM_CTA.primaryTo).toBe(ROUTES.contact);
+    expect(OPSFLOW_BOTTOM_CTA.secondaryTo).toBe(ROUTES.workflowAutomation);
   });
 
   it("exposes lead-gate labels, categories, and trust copy", () => {
