@@ -1,4 +1,5 @@
-﻿import { NavLink } from "react-router-dom";
+﻿import { Fragment } from "react";
+import { NavLink } from "react-router-dom";
 import BrandLogo from "./BrandLogo";
 import {
   FOOTER_BACK_TO_TOP_CLASS,
@@ -13,7 +14,6 @@ import {
   FOOTER_NOCK_NAV_CLASS,
   FOOTER_NOCK_NAV_COLUMN_CLASS,
   FOOTER_NOCK_SHELL_CLASS,
-  FOOTER_NOCK_WATERMARK_CLASS,
 } from "../lib/footerLayout";
 import { useFooterContent } from "../lib/cms/hooks";
 import { footerBrandLogoSrc } from "../lib/cms/media";
@@ -22,9 +22,15 @@ import {
   FOOTER_STAFF_LOGIN_ARIA_LABEL,
   splitCopyrightLine,
 } from "../lib/footerCopyright";
-import { isSocialFooterColumn, type FooterExternalLink, type FooterLinkCell, type FooterNavColumn } from "../lib/siteFooterCopy";
+import {
+  SITE_FOOTER_CAREERS_HIRING_BADGE,
+  isSocialFooterColumn,
+  type FooterExternalLink,
+  type FooterLinkCell,
+  type FooterNavColumn,
+} from "../lib/siteFooterCopy";
 import { resolveAdminPanelUrl } from "../lib/siteAdmin";
-import { IconChevronUp, IconInstagram, IconLinkedIn, IconMedium, IconWhatsApp } from "./icons";
+import { IconChevronUp, IconGitHub, IconLinkedIn, IconWhatsApp } from "./icons";
 
 function isAdminFooterLink(link: FooterLinkCell): boolean {
   return link.label.trim().toLowerCase() === "admin";
@@ -34,7 +40,7 @@ function FooterLink({ link }: { link: FooterLinkCell }) {
   if (link.kind === "external") {
     return (
       <a className="footer-link-item" href={link.href} target="_blank" rel="noopener noreferrer">
-        {link.label}
+        <span className="footer-link-label">{link.label}</span>
       </a>
     );
   }
@@ -45,14 +51,19 @@ function FooterLink({ link }: { link: FooterLinkCell }) {
       end={link.to === "/"}
       className={({ isActive }) => ["footer-link-item", isActive ? "active" : ""].filter(Boolean).join(" ") || undefined}
     >
-      {link.label}
+      <span className="footer-link-label">{link.label}</span>
+      {link.badge ? (
+        <span className={link.badge === SITE_FOOTER_CAREERS_HIRING_BADGE ? "footer-hiring-badge" : "footer-link-badge"}>
+          {link.badge}
+        </span>
+      ) : null}
     </NavLink>
   );
 }
 
 function FooterNavColumnBlock({ column }: { column: FooterNavColumn }) {
   const visibleLinks = column.links.filter((link) => !isAdminFooterLink(link));
-  const columnId = column.heading.trim().toLowerCase().replace(/\s+/g, "-");
+  const columnId = column.id ?? column.heading.trim().toLowerCase().replace(/&/g, "").replace(/\s+/g, "-");
 
   return (
     <nav
@@ -60,6 +71,7 @@ function FooterNavColumnBlock({ column }: { column: FooterNavColumn }) {
       data-testid={`footer-nav-column-${columnId}`}
       aria-label={`${column.heading} footer links`}
     >
+      <p className="footer-nock-nav-heading">{column.heading}</p>
       <ul className="footer-link-list">
         {visibleLinks.map((link) => (
           <li key={link.label}>
@@ -72,17 +84,15 @@ function FooterNavColumnBlock({ column }: { column: FooterNavColumn }) {
 }
 
 function FooterSocialIcon({ label }: { label: string }) {
-  const iconProps = { width: 18, height: 18, "aria-hidden": true as const };
+  const iconProps = { width: 16, height: 16, "aria-hidden": true as const };
 
   switch (label) {
     case "LinkedIn":
       return <IconLinkedIn {...iconProps} />;
     case "WhatsApp":
       return <IconWhatsApp {...iconProps} />;
-    case "Instagram":
-      return <IconInstagram {...iconProps} />;
-    case "Medium":
-      return <IconMedium {...iconProps} />;
+    case "GitHub":
+      return <IconGitHub {...iconProps} />;
     default:
       return null;
   }
@@ -133,6 +143,20 @@ export default function Footer() {
               <BrandLogo variant="footer" logoSrc={footerBrandLogoSrc()} />
             </div>
             <p className={FOOTER_BRAND_TAGLINE_CLASS}>{brandTagline}</p>
+            <div className={FOOTER_BLACKBOOK_SOCIAL_CLASS} data-testid="footer-social-icons">
+              {visibleSocialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  className="footer-blackbook-social-link"
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                >
+                  <FooterSocialIcon label={link.label} />
+                </a>
+              ))}
+            </div>
           </div>
 
           <div className={FOOTER_NOCK_NAV_CLASS} data-testid="footer-nav-group">
@@ -140,10 +164,6 @@ export default function Footer() {
               <FooterNavColumnBlock key={column.heading} column={column} />
             ))}
           </div>
-
-          <p className={FOOTER_NOCK_WATERMARK_CLASS} aria-hidden>
-            COMMITERS
-          </p>
         </div>
 
         <div className={FOOTER_BLACKBOOK_BAR_CLASS}>
@@ -151,25 +171,17 @@ export default function Footer() {
             <FooterCopyrightLine copyrightLine1={copyrightLine1} />
           </p>
 
-          <div className={FOOTER_BLACKBOOK_SOCIAL_CLASS} data-testid="footer-social-icons">
-            {visibleSocialLinks.map((link) => (
-              <a
-                key={link.label}
-                className="footer-blackbook-social-link"
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-              >
-                <FooterSocialIcon label={link.label} />
-              </a>
-            ))}
-          </div>
-
           <div className="footer-bar-right" data-testid="footer-legal-cell">
             <div className="footer-bar-legal-links">
-              {visibleLegalLinks.map((link) => (
-                <FooterLink key={link.label} link={link} />
+              {visibleLegalLinks.map((link, index) => (
+                <Fragment key={link.label}>
+                  {index > 0 ? (
+                    <span className="footer-legal-sep" aria-hidden>
+                      |
+                    </span>
+                  ) : null}
+                  <FooterLink link={link} />
+                </Fragment>
               ))}
             </div>
             <button type="button" className={FOOTER_BACK_TO_TOP_CLASS} onClick={scrollToTop} aria-label="Back to top">

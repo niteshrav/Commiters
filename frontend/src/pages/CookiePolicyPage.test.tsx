@@ -17,9 +17,8 @@ import { ROUTES } from "../lib/routes";
 import {
   SITE_FOOTER_COPY,
   SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
-  SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
+  SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS,
   SITE_FOOTER_RESOURCES_LINK_LABELS,
-  SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
 } from "../lib/siteFooterCopy";
 
@@ -80,25 +79,27 @@ describe("CookiePolicyPage", () => {
     expect(within(banner).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT })).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toHaveClass("footer--nock");
 
-    const primaryNav = screen.getByTestId("footer-nav-column-primary");
-    const servicesNav = screen.getByTestId("footer-nav-column-services");
+    const productsNav = screen.getByTestId("footer-nav-column-products");
     const companyNav = screen.getByTestId("footer-nav-column-company");
     const resourcesNav = screen.getByTestId("footer-nav-column-resources");
-    expect(within(primaryNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
-    ]);
-    expect(within(servicesNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
-    ]);
-    expect(within(companyNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
-    ]);
-    expect(within(resourcesNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_RESOURCES_LINK_LABELS,
-    ]);
+    expect(
+      within(productsNav)
+        .getAllByRole("link")
+        .map((link) => link.querySelector(".footer-link-label")?.textContent),
+    ).toEqual([...SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS]);
+    expect(
+      within(companyNav)
+        .getAllByRole("link")
+        .map((link) => link.querySelector(".footer-link-label")?.textContent),
+    ).toEqual([...SITE_FOOTER_COMPANY_NAV_LINK_LABELS]);
+    expect(
+      within(resourcesNav)
+        .getAllByRole("link")
+        .map((link) => link.querySelector(".footer-link-label")?.textContent),
+    ).toEqual([...SITE_FOOTER_RESOURCES_LINK_LABELS]);
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
-    expect(copyrightCell).toHaveTextContent("Copyright 2026 (C) Commiters. All Rights Reserved.");
+    expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);
     expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass("footer-brand-tagline");
   });
 });

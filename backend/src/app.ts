@@ -6,6 +6,8 @@ import { jobApplicationsRouter } from "./routes/jobApplications";
 import { leadsRouter } from "./routes/leads";
 import { notificationMediaRouter } from "./routes/notificationMedia";
 import { chatRouter } from "./routes/chat";
+import { opsFlowRouter } from "./routes/opsFlow";
+import { technicalLedgerRouter } from "./routes/technicalLedger";
 import { cmsPublicRouter } from "./cms/routes/cmsPublic";
 import { adminRouter } from "./cms/routes/admin";
 import { getUploadDir } from "./cms/middleware/upload";
@@ -107,6 +109,8 @@ export function createApp() {
   app.use(jobApplicationsRouter);
   app.use(notificationMediaRouter);
   app.use(chatRouter);
+  app.use(opsFlowRouter);
+  app.use(technicalLedgerRouter);
 
   app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     const message = err instanceof Error ? err.message : "Internal server error";

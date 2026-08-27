@@ -1,0 +1,174 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.home-lead-magnet {
+  width: 100%;
+  background: #f8fafc;
+  padding: clamp(48px, 5vw, 64px) 0;
+  color: #0f172a;
+}
+
+.home-lead-magnet-inner {
+  width: min(80rem, calc(100% - 48px));
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-inline: clamp(24px, 3vw, 48px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+
+.home-lead-magnet-badge {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 16px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.home-lead-magnet-title {
+  margin: 0 0 16px;
+  color: #0f172a;
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.home-lead-magnet-description {
+  margin: 0 0 24px;
+  max-width: 38rem;
+  color: #1e293b;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.home-lead-magnet-features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-lead-magnet-feature {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.home-lead-magnet-feature-icon {
+  display: inline-flex;
+  color: #2563eb;
+  margin-top: 2px;
+}
+
+.home-lead-magnet-feature-title {
+  display: block;
+  margin: 0 0 4px;
+  color: #0f172a;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.home-lead-magnet-feature-body {
+  margin: 0;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.home-lead-magnet-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  padding: 32px;
+  border-radius: 12px;
+}
+
+.home-lead-magnet-form-title {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.home-lead-magnet-form-subtitle {
+  margin: 0 0 20px;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.home-lead-magnet-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.home-lead-magnet-form-row input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font: inherit;
+  color: #0f172a;
+  background: #fff;
+}
+
+.home-lead-magnet-form-row .btn {
+  width: 100%;
+  background: #2563eb;
+}
+
+.home-lead-magnet-microcopy {
+  margin: 12px 0 0;
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.home-lead-magnet-error {
+  margin: 10px 0 0;
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
+.home-lead-magnet-success-body {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+@media (max-width: 800px) {
+  .home-lead-magnet-inner {
+    grid-template-columns: 1fr;
+    width: min(80rem, calc(100% - 32px));
+    padding-inline: 24px;
+  }
+
+  .home-lead-magnet-card {
+    padding: 24px;
+  }
+}

@@ -16,6 +16,7 @@
     "prisma:studio": "prisma studio --schema=../database/prisma/schema.prisma"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^5.19.1",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
@@ -30,6 +31,7 @@
     "pdfkit": "^0.19.1",
     "pino-http": "^10.3.0",
     "twilio": "^6.0.2",
+    "xlsx": "^0.18.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {

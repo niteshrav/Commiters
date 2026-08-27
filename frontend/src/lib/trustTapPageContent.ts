@@ -190,3 +190,36 @@ export const TRUSTTAP_BOTTOM_CTA = {
   primaryLabel: "Launch admin",
   primaryHref: TRUSTTAP_ADMIN_DASHBOARD_URL,
 } as const;
+
+export const TRUSTTAP_ABOUT = {
+  kicker: "ABOUT",
+  title: "Built for the shop floor, not a slide deck.",
+  body: "TrustTap gives local teams a QR-first feedback loop: private notes stay with the owner, while every guest still gets a clear path to Google reviews.",
+  illustration: TRUSTTAP_HERO_SHOWCASE.image,
+} as const;
+
+export const TRUSTTAP_PREVIEW = {
+  kicker: "PRODUCT PREVIEW",
+  title: "See the feedback loop in one glance.",
+  subtext: "QR stand, live dashboard, and location coverage — the same surfaces owners use after a visit.",
+  shots: [
+    {
+      id: "qr",
+      src: "/assets/trusttap/trusttap-qr-preview.svg",
+      alt: "TrustTap QR stand for in-store feedback",
+      caption: "QR stand",
+    },
+    {
+      id: "dashboard",
+      src: "/assets/trusttap/trusttap-dashboard-preview.svg",
+      alt: "TrustTap owner dashboard preview",
+      caption: "Live dashboard",
+    },
+    {
+      id: "locations",
+      src: "/assets/trusttap/trusttap-locations-preview.svg",
+      alt: "TrustTap multi-location coverage preview",
+      caption: "Locations",
+    },
+  ],
+} as const;

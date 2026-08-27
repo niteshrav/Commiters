@@ -1,8 +1,11 @@
 const OUT_OF_SCOPE =
-  "I can only help with Commiters-related topics such as our services, delivery process, careers, pricing, and contact options.";
+  "I am Node, the digital assistant for Commiters. I am specialized in helping with our software engineering services, portfolio, project inquiries, and careers. I cannot answer general external questions. How can I assist you with your software project today?";
 
 const IDENTITY =
-  "I'm Node, the Commiters website assistant. I can help with questions about our software services";
+  "I'm Node, the official website AI assistant for Commiters. I help with our software engineering services, portfolio, project inquiries, and careers.";
+
+const INJECTION =
+  "I'm Node, the official website AI assistant for Commiters. I can help with our software engineering services, portfolio, project inquiries, and careers. How can I assist you with your software project today?";
 
 const STOP_WORDS = new Set([
   "a",
@@ -19,6 +22,8 @@ const STOP_WORDS = new Set([
   "does",
   "for",
   "from",
+  "give",
+  "has",
   "have",
   "how",
   "i",
@@ -50,6 +55,7 @@ const STOP_WORDS = new Set([
   "with",
   "you",
   "your",
+  "now",
 ]);
 
 const TOPIC_SIGNALS = [
@@ -68,6 +74,7 @@ const TOPIC_SIGNALS = [
   "development",
   "build",
   "project",
+  "projects",
   "contact",
   "whatsapp",
   "email",
@@ -91,6 +98,12 @@ const TOPIC_SIGNALS = [
   "stack",
   "technology",
   "tech",
+  "portfolio",
+  "work",
+  "office",
+  "hours",
+  "location",
+  "operating",
 ];
 
 function tokenize(text: string): string[] {
@@ -101,11 +114,17 @@ function tokenize(text: string): string[] {
     .filter((token) => token.length > 2 && !STOP_WORDS.has(token));
 }
 
+function tokenMatchesSignal(token: string, signal: string): boolean {
+  if (token === signal) return true;
+  if (token.length < 5 || signal.length < 5) return false;
+  return token.includes(signal) || signal.includes(token);
+}
+
 function hasTopicSignal(message: string): boolean {
   const lower = message.toLowerCase();
   if (/\bcommiters?\b/.test(lower)) return true;
   const tokens = tokenize(message);
-  return tokens.some((token) => TOPIC_SIGNALS.some((signal) => token.includes(signal) || signal.includes(token)));
+  return tokens.some((token) => TOPIC_SIGNALS.some((signal) => tokenMatchesSignal(token, signal)));
 }
 
 function isIdentityQuestion(message: string): boolean {
@@ -114,9 +133,29 @@ function isIdentityQuestion(message: string): boolean {
   );
 }
 
+function isPromptInjection(message: string): boolean {
+  return (
+    /\bignore (?:all )?(?:previous|prior|above) instructions\b/i.test(message) ||
+    /\bpretend you are\b/i.test(message) ||
+    /\bDAN mode\b/i.test(message) ||
+    /\bshow (?:me )?(?:your )?system (?:prompt|instructions)\b/i.test(message)
+  );
+}
+
+function isGeneralCurrentTime(message: string): boolean {
+  return (
+    /\bwhat(?:'s| is) the time(?: now)?\b/i.test(message) ||
+    /\bwhat time is it\b/i.test(message) ||
+    /\bcurrent time\b/i.test(message)
+  );
+}
+
 function isOutOfScope(message: string): boolean {
-  if (isIdentityQuestion(message) && !/\bcommiters?\b/i.test(message)) return true;
-  if (/\bvisiting hours?\b/i.test(message) || /\boffice hours?\b/i.test(message)) return true;
+  if (isPromptInjection(message) || isIdentityQuestion(message)) return false;
+  if (/\boperating hours?\b/i.test(message) || /\boffice hours?\b/i.test(message) || /\bvisiting hours?\b/i.test(message)) {
+    return false;
+  }
+  if (isGeneralCurrentTime(message) || /\bweather\b/i.test(message) || /\bcapital of\b/i.test(message)) return true;
   return !hasTopicSignal(message);
 }
 
@@ -140,25 +179,41 @@ const KNOWLEDGE: readonly KnowledgeEntry[] = [
   },
   {
     id: "contact",
-    answer: "Use the Contact page to submit an inquiry, book a discovery call, or message us on WhatsApp.",
-    keywords: ["contact", "email", "whatsapp", "call", "reach"],
+    answer:
+      "You can reach our team directly on WhatsApp at +91 9024882899 (https://wa.me/919024882899) or email hello@commiters.com. Visit /contact to send a project inquiry.",
+    keywords: ["contact", "email", "whatsapp", "call", "reach", "number", "page"],
+  },
+  {
+    id: "portfolio",
+    answer:
+      "Commiters has shipped custom web platforms, e-commerce solutions, local business automation, hospitality tools, and MVPs. Explore /work.",
+    keywords: ["portfolio", "project", "projects", "work", "case"],
   },
   {
     id: "careers",
-    answer: "See Open Positions for current roles, or apply generally through Join Us.",
+    answer: "See /open-positions for current roles, or apply generally through /join-us.",
     keywords: ["career", "job", "hiring", "intern", "apply"],
   },
 ];
 
 const FALLBACK =
-  "I can help with services, process, careers, and contact options. Visit the Contact page for a detailed conversation.";
+  "I can help with services, portfolio, careers, and contact options. Email hello@commiters.com, WhatsApp +91 9024882899, or visit /contact.";
+
+function tokenHitsKeyword(token: string, keyword: string): boolean {
+  if (token === keyword) return true;
+  if (token.length < 5 || keyword.length < 5) return false;
+  return keyword.includes(token) || token.includes(keyword);
+}
 
 export function answerFromLocalKnowledge(message: string): { reply: string; source: "faq" | "static" } {
+  if (isPromptInjection(message)) {
+    return { reply: INJECTION, source: "static" };
+  }
+  if (isIdentityQuestion(message)) {
+    return { reply: IDENTITY, source: "static" };
+  }
   if (isOutOfScope(message)) {
-    return {
-      reply: isIdentityQuestion(message) ? IDENTITY : OUT_OF_SCOPE,
-      source: "static",
-    };
+    return { reply: OUT_OF_SCOPE, source: "static" };
   }
 
   const tokens = tokenize(message);
@@ -168,7 +223,7 @@ export function answerFromLocalKnowledge(message: string): { reply: string; sour
   for (const entry of KNOWLEDGE) {
     let score = 0;
     for (const token of tokens) {
-      if (entry.keywords.some((keyword) => keyword.includes(token) || token.includes(keyword))) {
+      if (entry.keywords.some((keyword) => tokenHitsKeyword(token, keyword))) {
         score += 2;
       }
     }

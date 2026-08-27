@@ -6,8 +6,14 @@ import { APP_ROUTE_PATHS, ROUTES } from "./lib/routes";
 import { buildServiceDetailPath } from "./lib/services";
 import { serviceDetailTitleForTests } from "./pages/ServiceDetailPage";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "./lib/siteBrand";
+import { SITE_GITHUB_URL } from "./lib/siteLinks";
 import { WHATSAPP_FLOATING_ACTION_LABEL } from "./lib/whatsappFloatingAction";
 import { TRUSTTAP_DOCUMENT_TITLE } from "./lib/trustTapPageContent";
+import { OPSFLOW_DOCUMENT_TITLE } from "./lib/opsFlowPageContent";
+import { AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE } from "./lib/aiOperationalAuditPageContent";
+import { AI_SOLUTIONS_DOCUMENT_TITLE } from "./lib/aiSolutionsPageContent";
+import { WEB_APPLICATIONS_DOCUMENT_TITLE } from "./lib/webApplicationsPageContent";
+import { WORKFLOW_AUTOMATION_DOCUMENT_TITLE } from "./lib/workflowAutomationPageContent";
 import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./lib/siteMeta";
 import { WEBSITE_DEVELOPMENT_UDAPUR, WHATSAPP_AUTOMATION_UDAPUR } from "./lib/seoLandingUdaipurContent";
 import {
@@ -42,6 +48,16 @@ function expectedTitle(path: string): string {
       return pageTitle("BrowseMyVacation Case Study");
     case ROUTES.trustTap:
       return TRUSTTAP_DOCUMENT_TITLE;
+    case ROUTES.opsFlow:
+      return OPSFLOW_DOCUMENT_TITLE;
+    case ROUTES.aiOperationalAudit:
+      return AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE;
+    case ROUTES.aiSolutions:
+      return AI_SOLUTIONS_DOCUMENT_TITLE;
+    case ROUTES.webApplications:
+      return WEB_APPLICATIONS_DOCUMENT_TITLE;
+    case ROUTES.workflowAutomation:
+      return WORKFLOW_AUTOMATION_DOCUMENT_TITLE;
     case ROUTES.services:
       return servicesPageSeo().title;
     case ROUTES.joinUs:
@@ -64,6 +80,8 @@ function expectedTitle(path: string): string {
       return pageTitle("Cookie Policy");
     case ROUTES.terms:
       return pageTitle("Terms of Service");
+    case ROUTES.sitemap:
+      return pageTitle("Site Map");
     case ROUTES.thankYou:
       return pageTitle("Thank you");
     case ROUTES.notFound:
@@ -124,7 +142,7 @@ describe("Site-wide consistency", () => {
     expect(footers[0]).toHaveClass("footer", "footer-rich");
   });
 
-  it.each(APP_ROUTE_PATHS)("route %s does not show a GitHub link in the footer", (path) => {
+  it.each(APP_ROUTE_PATHS)("route %s shows GitHub in the footer brand socials", (path) => {
     render(
       <MemoryRouter initialEntries={[path]}>
         <App />
@@ -132,7 +150,9 @@ describe("Site-wide consistency", () => {
     );
 
     const footer = screen.getByRole("contentinfo");
-    expect(within(footer).queryByRole("link", { name: /^GitHub$/i })).not.toBeInTheDocument();
+    const github = within(footer).getByRole("link", { name: /^GitHub$/i });
+    expect(github).toHaveAttribute("href", SITE_GITHUB_URL);
+    expect(github.closest("[data-testid='footer-social-icons']")).toBeTruthy();
   });
 
   it.each(APP_ROUTE_PATHS)("route %s uses the regenerated Commiters logo in header and footer", (path) => {

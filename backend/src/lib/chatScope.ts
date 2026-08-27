@@ -1,9 +1,11 @@
-import { CHAT_ASSISTANT_NAME } from "./chatKnowledge";
+import {
+  CHAT_ASSISTANT_NAME,
+  CHAT_IDENTITY_REPLY,
+  CHAT_INJECTION_REFUSAL,
+  CHAT_OUT_OF_SCOPE_REPLY,
+} from "./chatSystemPrompt";
 
-export const CHAT_OUT_OF_SCOPE_REPLY =
-  "I can only help with Commiters-related topics such as our services, delivery process, careers, pricing, and contact options. For anything outside that scope, please visit our Contact page or message us on WhatsApp.";
-
-export const CHAT_SCOPE_IDENTITY_REPLY = `I'm ${CHAT_ASSISTANT_NAME}, the Commiters website assistant. I can help with questions about our software services, how we work, open roles, and how to reach the team—not general topics outside Commiters.`;
+export { CHAT_ASSISTANT_NAME, CHAT_IDENTITY_REPLY, CHAT_INJECTION_REFUSAL, CHAT_OUT_OF_SCOPE_REPLY };
 
 /** Tokens ignored when matching FAQ entries or topic signals. */
 export const CHAT_STOP_WORDS = new Set([
@@ -21,6 +23,8 @@ export const CHAT_STOP_WORDS = new Set([
   "does",
   "for",
   "from",
+  "give",
+  "has",
   "have",
   "how",
   "i",
@@ -52,6 +56,7 @@ export const CHAT_STOP_WORDS = new Set([
   "with",
   "you",
   "your",
+  "now",
 ]);
 
 export const CHAT_TOPIC_SIGNALS = [
@@ -78,6 +83,7 @@ export const CHAT_TOPIC_SIGNALS = [
   "development",
   "build",
   "project",
+  "projects",
   "timeline",
   "sprint",
   "process",
@@ -124,26 +130,55 @@ export const CHAT_TOPIC_SIGNALS = [
   "proposal",
   "consult",
   "consultation",
+  "office",
+  "hours",
+  "location",
+  "address",
+  "operating",
+  "visiting",
+  "resume",
 ] as const;
 
-const OUT_OF_SCOPE_PATTERNS: RegExp[] = [
-  /\bvisiting hours?\b/i,
+const IN_SCOPE_PATTERNS: RegExp[] = [
+  /\boperating hours?\b/i,
   /\boffice hours?\b/i,
-  /\bopening hours?\b/i,
+  /\bvisiting hours?\b/i,
   /\bwhat time (?:do you|are you) open\b/i,
   /\bwhen (?:are you|is the office) open\b/i,
+  /\bwhere (?:are you|is (?:your|the) office)\b/i,
+  /\boffice location\b/i,
+  /\bhow to (?:go to|reach|open) (?:the )?contact page\b/i,
+  /\bwhatsapp number\b/i,
+  /\bhow to contact\b/i,
+];
+
+const GENERAL_CURRENT_TIME_PATTERNS: RegExp[] = [
+  /\bwhat(?:'s| is) the time(?: now)?\b/i,
+  /\bwhat time is it\b/i,
+  /\bcurrent time\b/i,
+  /\btime now\b/i,
+];
+
+const OUT_OF_SCOPE_PATTERNS: RegExp[] = [
+  ...GENERAL_CURRENT_TIME_PATTERNS,
   /\bweather\b/i,
   /\btell me a joke\b/i,
-  /\bwho (?:are|is) (?:you|this)\b/i,
-  /\bwho you are\b/i,
-  /\bwhat (?:are|is) you\b/i,
-  /\bwhat can you do\b/i,
-  /\bwho am i talking to\b/i,
   /\bcapital of\b/i,
   /\bnews\b/i,
   /\brecipe\b/i,
   /\bmath problem\b/i,
   /\bsolve this\b/i,
+  /\bstock market\b/i,
+  /\bbitcoin\b/i,
+];
+
+const PROMPT_INJECTION_PATTERNS: RegExp[] = [
+  /\bignore (?:all )?(?:previous|prior|above) instructions\b/i,
+  /\bpretend you are\b/i,
+  /\bDAN mode\b/i,
+  /\byou are now a general assistant\b/i,
+  /\breveal (?:your )?(?:system )?(?:prompt|instructions)\b/i,
+  /\bshow (?:me )?(?:your )?system (?:prompt|instructions)\b/i,
 ];
 
 export function tokenizeForChat(text: string): string[] {
@@ -154,14 +189,18 @@ export function tokenizeForChat(text: string): string[] {
     .filter((token) => token.length > 2 && !CHAT_STOP_WORDS.has(token));
 }
 
+function tokenMatchesSignal(token: string, signal: string): boolean {
+  if (token === signal) return true;
+  if (token.length < 5 || signal.length < 5) return false;
+  return token.includes(signal) || signal.includes(token);
+}
+
 export function hasCommitersTopicSignal(message: string): boolean {
   const lower = message.toLowerCase();
   if (/\bcommiters?\b/.test(lower)) return true;
 
   const tokens = tokenizeForChat(message);
-  return tokens.some((token) =>
-    CHAT_TOPIC_SIGNALS.some((signal) => token.includes(signal) || signal.includes(token)),
-  );
+  return tokens.some((token) => CHAT_TOPIC_SIGNALS.some((signal) => tokenMatchesSignal(token, signal)));
 }
 
 export function isIdentityQuestion(message: string): boolean {
@@ -170,24 +209,31 @@ export function isIdentityQuestion(message: string): boolean {
   );
 }
 
+export function isPromptInjection(message: string): boolean {
+  return PROMPT_INJECTION_PATTERNS.some((pattern) => pattern.test(message));
+}
+
+export function isGeneralCurrentTimeQuestion(message: string): boolean {
+  return GENERAL_CURRENT_TIME_PATTERNS.some((pattern) => pattern.test(message));
+}
+
 export function isOutOfScopeUserMessage(message: string): boolean {
   const trimmed = message.trim();
   if (!trimmed) return false;
-
-  if (isIdentityQuestion(trimmed) && !/\bcommiters?\b/i.test(trimmed)) {
-    return true;
-  }
-
-  if (OUT_OF_SCOPE_PATTERNS.some((pattern) => pattern.test(trimmed))) {
-    return !/\bcommiters?\b/i.test(trimmed);
-  }
-
+  if (isPromptInjection(trimmed) || isIdentityQuestion(trimmed)) return false;
+  if (IN_SCOPE_PATTERNS.some((pattern) => pattern.test(trimmed))) return false;
+  if (isGeneralCurrentTimeQuestion(trimmed)) return true;
+  if (OUT_OF_SCOPE_PATTERNS.some((pattern) => pattern.test(trimmed))) return true;
   return !hasCommitersTopicSignal(trimmed);
 }
 
-export function resolveOutOfScopeReply(message: string): string {
-  if (isIdentityQuestion(message)) {
-    return CHAT_SCOPE_IDENTITY_REPLY;
-  }
+export function resolveOutOfScopeReply(_message?: string): string {
   return CHAT_OUT_OF_SCOPE_REPLY;
+}
+
+export function resolveChatGuardReply(message: string): string | null {
+  if (isPromptInjection(message)) return CHAT_INJECTION_REFUSAL;
+  if (isIdentityQuestion(message)) return CHAT_IDENTITY_REPLY;
+  if (isOutOfScopeUserMessage(message)) return CHAT_OUT_OF_SCOPE_REPLY;
+  return null;
 }

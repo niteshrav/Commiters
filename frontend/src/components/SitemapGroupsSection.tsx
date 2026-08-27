@@ -58,7 +58,7 @@ export default function SitemapGroupsSection() {
             data-testid={`sitemap-group-${group.id}`}
             aria-labelledby={`sitemap-group-title-${group.id}`}
           >
-            <header className={SITEMAP_CARD_HEADER_CLASS}>
+            <div className={SITEMAP_CARD_HEADER_CLASS}>
               <span className={SITEMAP_CARD_ICON_CLASS}>
                 <SitemapGroupIcon icon={group.icon} />
               </span>
@@ -68,7 +68,7 @@ export default function SitemapGroupsSection() {
                 </h2>
                 <p className={SITEMAP_CARD_DESCRIPTION_CLASS}>{group.description}</p>
               </div>
-            </header>
+            </div>
 
             <ul className={SITEMAP_LINK_LIST_CLASS}>
               {group.links.map((link) => (
@@ -76,7 +76,7 @@ export default function SitemapGroupsSection() {
                   <NavLink to={link.to} end={link.to === "/"} className={SITEMAP_LINK_ROW_CLASS}>
                     <span className="sitemap-link-copy">
                       <span className={SITEMAP_LINK_LABEL_CLASS}>{link.label}</span>
-                      {link.description ? (
+                      {"description" in link && link.description ? (
                         <span className={SITEMAP_LINK_DESCRIPTION_CLASS}>{link.description}</span>
                       ) : null}
                     </span>

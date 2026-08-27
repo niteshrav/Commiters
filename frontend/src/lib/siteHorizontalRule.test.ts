@@ -35,6 +35,6 @@ describe("siteHorizontalRule", () => {
 
   it("matches the nock footer shell with a light top border rule", () => {
     const footer = ruleBlock(".footer--nock.footer--home-mockup {", ".footer--nock .footer-nock-shell {");
-    expect(footer).toContain("border-top: 1px solid rgba(17, 24, 39, 0.08)");
+    expect(footer).toContain("border-top: 1px solid #e2e8f0");
   });
 });

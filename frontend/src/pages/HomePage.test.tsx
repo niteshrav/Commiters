@@ -23,7 +23,7 @@ describe("HomePage", () => {
       "home-core-pillars",
       HOME_SECTION_SEPARATOR_IDS.afterPillars,
       "home-built-for-scale",
-      HOME_SECTION_SEPARATOR_IDS.afterBuiltForScale,
+      "home-lead-magnet",
       "home-ready-cta",
     ]);
 
@@ -33,6 +33,9 @@ describe("HomePage", () => {
       HOME_SECTION_SEPARATOR_CLASS,
     );
     expect(screen.getByTestId("home-core-pillars")).toHaveClass(HOME_CORE_PILLARS_SURFACE_CLASS);
+    expect(screen.getByText(/OPSFLOW AI • DOCUMENT INTELLIGENCE/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Architecture & Tech Debt Audit Checklist/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Streamline Your Business Operations with OpsFlow AI/i)).not.toBeInTheDocument();
   });
 
   it("matches hero copy and links without the sprint overlay card", () => {

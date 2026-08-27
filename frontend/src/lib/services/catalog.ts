@@ -404,8 +404,14 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
 
 export const SERVICE_SLUGS = SERVICES_CATALOG.map((service) => service.slug);
 
+/** Public nav slugs that resolve to an existing service detail page. */
+export const SERVICE_SLUG_ALIASES: Record<string, string> = {
+  "marketplace-platforms": "e-commerce-development",
+};
+
 export function getServiceBySlug(slug: string): ServiceDetail | undefined {
-  return SERVICES_CATALOG.find((service) => service.slug === slug);
+  const canonical = SERVICE_SLUG_ALIASES[slug] ?? slug;
+  return SERVICES_CATALOG.find((service) => service.slug === canonical);
 }
 
 export function getServiceByGridId(gridId: string): ServiceDetail | undefined {

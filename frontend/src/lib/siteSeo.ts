@@ -28,7 +28,7 @@ export function buildOrganizationSchema() {
     email: COMMITERS_EMAIL_PRIMARY,
     telephone: COMMITERS_PHONE_DISPLAY,
     description:
-      "Committers Softwares is a software development company specializing in web development, mobile app development, and SaaS development.",
+      "Commiters is a software development company specializing in web development, mobile app development, and SaaS development.",
     sameAs: [SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL, SITE_MEDIUM_URL],
     contactPoint: {
       "@type": "ContactPoint",

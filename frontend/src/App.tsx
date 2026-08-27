@@ -24,9 +24,14 @@ import SitemapPage from "./pages/SitemapPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import TrustTapPage from "./pages/TrustTapPage";
+import OpsFlowPage from "./pages/OpsFlowPage";
 import WebsiteDevelopmentUdaipurPage from "./pages/WebsiteDevelopmentUdaipurPage";
 import WhatsAppAutomationUdaipurPage from "./pages/WhatsAppAutomationUdaipurPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
+import AiOperationalAuditPage from "./pages/AiOperationalAuditPage";
+import AiSolutionsPage from "./pages/AiSolutionsPage";
+import WebApplicationsPage from "./pages/WebApplicationsPage";
+import WorkflowAutomationPage from "./pages/WorkflowAutomationPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
@@ -35,6 +40,10 @@ export default function App() {
       <Routes>
         <Route path={ROUTES.home} element={<HomePage />} />
         <Route path={ROUTES.services} element={<ServicesPage />} />
+        <Route path={ROUTES.aiOperationalAudit} element={<AiOperationalAuditPage />} />
+        <Route path={ROUTES.aiSolutions} element={<AiSolutionsPage />} />
+        <Route path={ROUTES.webApplications} element={<WebApplicationsPage />} />
+        <Route path={ROUTES.workflowAutomation} element={<WorkflowAutomationPage />} />
         <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
         <Route path={ROUTES.caseStudies} element={<CaseStudiesPage />} />
         <Route path={ROUTES.caseStudiesLegacy} element={<Navigate to={ROUTES.caseStudies} replace />} />
@@ -52,6 +61,8 @@ export default function App() {
         <Route path={ROUTES.browseMyVacationCaseStudyLegacy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.nextsaasCaseStudy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.trustTap} element={<TrustTapPage />} />
+        <Route path={ROUTES.opsFlow} element={<OpsFlowPage />} />
+        <Route path={ROUTES.opsFlowPlayground} element={<OpsFlowPage />} />
         <Route path={ROUTES.websiteDevelopmentUdaipur} element={<WebsiteDevelopmentUdaipurPage />} />
         <Route path={ROUTES.whatsappAutomationUdaipur} element={<WhatsAppAutomationUdaipurPage />} />
         <Route path={ROUTES.about} element={<AboutPage />} />

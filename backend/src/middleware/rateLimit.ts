@@ -16,3 +16,11 @@ export const chatRateLimit = rateLimit({
   message: { error: "Too many chat requests. Please try again later." },
 });
 
+export const opsFlowRateLimit = rateLimit({
+  windowMs: Number(process.env.OPSFLOW_RATE_LIMIT_WINDOW_MS ?? 15 * 60 * 1000),
+  max: Number(process.env.OPSFLOW_RATE_LIMIT_MAX ?? 20),
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many extraction requests. Please try again later." },
+});
+

@@ -54,7 +54,15 @@ export default function BrandLogo({
   );
 
   if (isFooter) {
-    return <div className="footer-brand-logo-wrap">{img}</div>;
+    return (
+      <Link
+        to={ROUTES.home}
+        className="footer-brand-logo-wrap brand-logo-link"
+        aria-label={logoAlt}
+      >
+        {img}
+      </Link>
+    );
   }
 
   return (

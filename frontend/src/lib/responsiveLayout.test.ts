@@ -58,13 +58,12 @@ describe("responsiveLayout", () => {
   it("switches to mobile navigation at the nav breakpoint", () => {
     const navStack = mediaBlocks(BREAKPOINT_NAV_PX);
     expect(navStack).toMatch(/\.nav\s*\{[\s\S]*display:\s*none/);
-    expect(navStack).toMatch(/\.nav-mobile-accordion\s*\{[\s\S]*display:\s*block/);
+    expect(navStack).toMatch(/\.header-menu-btn\s*\{[\s\S]*display:\s*inline-flex/);
     expect(navStack).toMatch(/\.nav-cta-desktop\s*\{[\s\S]*display:\s*none/);
   });
 
-  it("switches to mobile navigation at the stack breakpoint", () => {
+  it("keeps the desktop Start Project CTA hidden at the stack breakpoint", () => {
     const stack = mediaBlocks(BREAKPOINT_STACK_PX);
-    expect(stack).toMatch(/\.nav-mobile-accordion\s*\{[\s\S]*display:\s*block/);
     expect(stack).toMatch(/\.nav-cta-desktop\s*\{[\s\S]*display:\s*none/);
   });
 

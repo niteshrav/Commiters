@@ -12,6 +12,11 @@ import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./siteMeta";
 import { SITE_SEO_KEYWORDS, buildWebSiteSchema } from "./siteSeo";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { TRUSTTAP_SEO } from "./trustTapPageContent";
+import { OPSFLOW_SEO } from "./opsFlowPageContent";
+import { AI_OPERATIONAL_AUDIT_SEO } from "./aiOperationalAuditPageContent";
+import { AI_SOLUTIONS_SEO } from "./aiSolutionsPageContent";
+import { WEB_APPLICATIONS_SEO } from "./webApplicationsPageContent";
+import { WORKFLOW_AUTOMATION_SEO } from "./workflowAutomationPageContent";
 import { TECHNICAL_LEDGER_PAGE_COPY } from "./technicalLedgerPageContent";
 import { TESTIMONIALS_PAGE_COPY } from "./testimonialsPageContent";
 
@@ -27,7 +32,7 @@ export function homePageSeo(): PageSeoInput {
   return page({
     title: DEFAULT_DOCUMENT_TITLE,
     description:
-      "Committers Softwares is a software development company for web development, mobile app development, and SaaS development—building premium products for startups and growing businesses worldwide.",
+      "Commiters is a software development company for web development, mobile app development, and SaaS development—building premium products for startups and growing businesses worldwide.",
     path: ROUTES.home,
     structuredData: buildWebSiteSchema(),
   });
@@ -35,9 +40,9 @@ export function homePageSeo(): PageSeoInput {
 
 export function aboutPageSeo(): PageSeoInput {
   return page({
-    title: pageTitle("About Committers Softwares"),
+    title: pageTitle("About Commiters"),
     description:
-      "Learn about Committers Softwares—a software development company focused on web development, mobile app development, and SaaS development with engineering precision.",
+      "Learn about Commiters—a software development company focused on web development, mobile app development, and SaaS development with engineering precision.",
     path: ROUTES.about,
   });
 }
@@ -55,7 +60,7 @@ export function caseStudiesPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Case Studies & SaaS Development Portfolio"),
     description:
-      "See Committers Softwares work—web development, mobile apps, and SaaS development case studies built for high-performance digital products.",
+      "See Commiters work—web development, mobile apps, and SaaS development case studies built for high-performance digital products.",
     path: ROUTES.caseStudies,
   });
 }
@@ -64,14 +69,14 @@ export function technicalLedgerPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(TECHNICAL_LEDGER_PAGE_COPY.title),
     description:
-      "Technical Ledger by Committers Softwares—notes on web development, mobile engineering, and SaaS development craft.",
+      "Technical Ledger by Commiters—notes on web development, mobile engineering, and SaaS development craft.",
     path: ROUTES.technicalLedger,
   });
 }
 
 export function contactPageSeo(): PageSeoInput {
   return page({
-    title: pageTitle("Contact Committers Softwares"),
+    title: pageTitle("Contact Commiters"),
     description:
       "Contact Committers for web development, mobile app development, and SaaS development projects. Talk with our software development company team.",
     path: ROUTES.contact,
@@ -82,7 +87,7 @@ export function faqPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(FAQ_PAGE_COPY.title),
     description:
-      "Frequently asked questions about working with Committers Softwares on web development, mobile app development, and SaaS development engagements.",
+      "Frequently asked questions about working with Commiters on web development, mobile app development, and SaaS development engagements.",
     path: ROUTES.faq,
   });
 }
@@ -91,7 +96,7 @@ export function testimonialsPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(TESTIMONIALS_PAGE_COPY.title),
     description:
-      "Read client testimonials for Committers Softwares—including BrowseMyVacation travel platform founder Rahul on web application delivery, communication, and quality.",
+      "Read client testimonials for Commiters—including BrowseMyVacation travel platform founder Rahul on web application delivery, communication, and quality.",
     path: ROUTES.testimonials,
   });
 }
@@ -100,7 +105,7 @@ export function joinUsPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Apply — Careers at Committers"),
     description:
-      "Apply to join Committers Softwares. We're hiring engineers who care about web development, mobile apps, and SaaS product quality.",
+      "Apply to join Commiters. We're hiring engineers who care about web development, mobile apps, and SaaS product quality.",
     path: ROUTES.joinUs,
   });
 }
@@ -109,7 +114,7 @@ export function openPositionsPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Careers"),
     description:
-      "Open roles at Committers Softwares across web development, mobile app development, AI, and SaaS engineering teams.",
+      "Open roles at Commiters across web development, mobile app development, AI, and SaaS engineering teams.",
     path: ROUTES.openPositions,
   });
 }
@@ -151,7 +156,7 @@ export function sitemapPageSeo(): PageSeoInput {
 export function thankYouPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Thank you"),
-    description: "Thank you for contacting Committers Softwares.",
+    description: "Thank you for contacting Commiters.",
     path: ROUTES.thankYou,
     robots: "noindex, follow",
   });
@@ -160,7 +165,7 @@ export function thankYouPageSeo(): PageSeoInput {
 export function notFoundPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Page not found"),
-    description: "The page you requested was not found on Committers Softwares.",
+    description: "The page you requested was not found on Commiters.",
     path: ROUTES.notFound,
     robots: "noindex, follow",
   });
@@ -193,7 +198,7 @@ export function neardropCaseStudyPageSeo(): PageSeoInput {
 export function multiRoleCrmCaseStudyPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(MULTI_ROLE_CRM_CASE_STUDY_COPY.documentTitle),
-    description: `${MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline}. Enterprise SaaS development case study by Committers Softwares.`,
+    description: `${MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline}. Enterprise SaaS development case study by Commiters.`,
     path: ROUTES.multiRoleCrmCaseStudy,
   });
 }
@@ -203,6 +208,123 @@ export function nextsaasCaseStudyPageSeo(): PageSeoInput {
     title: pageTitle(NEXTSAAS_CASE_STUDY_COPY.documentTitle),
     description: NEXTSAAS_CASE_STUDY_COPY.description,
     path: ROUTES.browseMyVacationCaseStudy,
+  });
+}
+
+export function workflowAutomationPageSeo(): PageSeoInput {
+  return page({
+    title: WORKFLOW_AUTOMATION_SEO.title,
+    description: WORKFLOW_AUTOMATION_SEO.description,
+    keywords: WORKFLOW_AUTOMATION_SEO.keywords,
+    path: WORKFLOW_AUTOMATION_SEO.path,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Workflow & Process Automation",
+      description: WORKFLOW_AUTOMATION_SEO.description,
+      provider: {
+        "@type": "Organization",
+        name: "Commiters",
+        url: SITE_ORIGIN,
+      },
+      url: `${SITE_ORIGIN}${WORKFLOW_AUTOMATION_SEO.path}`,
+    },
+  });
+}
+
+export function webApplicationsPageSeo(): PageSeoInput {
+  return page({
+    title: WEB_APPLICATIONS_SEO.title,
+    description: WEB_APPLICATIONS_SEO.description,
+    keywords: WEB_APPLICATIONS_SEO.keywords,
+    path: WEB_APPLICATIONS_SEO.path,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Custom Web Applications",
+      description: WEB_APPLICATIONS_SEO.description,
+      provider: {
+        "@type": "Organization",
+        name: "Commiters",
+        url: SITE_ORIGIN,
+      },
+      url: `${SITE_ORIGIN}${WEB_APPLICATIONS_SEO.path}`,
+    },
+  });
+}
+
+export function aiSolutionsPageSeo(): PageSeoInput {
+  return page({
+    title: AI_SOLUTIONS_SEO.title,
+    description: AI_SOLUTIONS_SEO.description,
+    keywords: AI_SOLUTIONS_SEO.keywords,
+    path: AI_SOLUTIONS_SEO.path,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Generative AI & LLM Solutions",
+      description: AI_SOLUTIONS_SEO.description,
+      provider: {
+        "@type": "Organization",
+        name: "Commiters",
+        url: SITE_ORIGIN,
+      },
+      url: `${SITE_ORIGIN}${AI_SOLUTIONS_SEO.path}`,
+    },
+  });
+}
+
+export function aiOperationalAuditPageSeo(): PageSeoInput {
+  return page({
+    title: AI_OPERATIONAL_AUDIT_SEO.title,
+    description: AI_OPERATIONAL_AUDIT_SEO.description,
+    keywords: AI_OPERATIONAL_AUDIT_SEO.keywords,
+    path: AI_OPERATIONAL_AUDIT_SEO.path,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "AI Operational Audit",
+      description: AI_OPERATIONAL_AUDIT_SEO.description,
+      provider: {
+        "@type": "Organization",
+        name: "Commiters",
+        url: SITE_ORIGIN,
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "USD",
+        price: "3000",
+      },
+      url: `${SITE_ORIGIN}${AI_OPERATIONAL_AUDIT_SEO.path}`,
+    },
+  });
+}
+
+export function opsFlowPageSeo(): PageSeoInput {
+  return page({
+    title: OPSFLOW_SEO.title,
+    description: OPSFLOW_SEO.description,
+    keywords: OPSFLOW_SEO.keywords,
+    path: OPSFLOW_SEO.path,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "OpsFlow AI",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: OPSFLOW_SEO.description,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "INR",
+      },
+      provider: {
+        "@type": "Organization",
+        name: "Commiters",
+        url: SITE_ORIGIN,
+      },
+      url: `${SITE_ORIGIN}${OPSFLOW_SEO.path}`,
+    },
   });
 }
 

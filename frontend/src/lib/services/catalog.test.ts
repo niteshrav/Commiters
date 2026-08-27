@@ -27,6 +27,11 @@ describe("services catalog", () => {
     expect(getServiceBySlug("website-development")?.title).toBe("Website Development");
     expect(getServiceByGridId("web-applications")?.slug).toBe("web-application-development");
     expect(buildServiceDetailPath("mvp-development")).toBe("/services/mvp-development");
+    expect(getServiceBySlug("ai-solutions")).toBeUndefined();
+    expect(getServiceBySlug("workflow-automation")).toBeUndefined();
+    expect(getServiceBySlug("web-applications")).toBeUndefined();
+    expect(getServiceBySlug("marketplace-platforms")?.slug).toBe("e-commerce-development");
+    expect(getServiceBySlug("ai-operational-audit")).toBeUndefined();
   });
 
   it("includes timeline and pricing for engagement planning", () => {

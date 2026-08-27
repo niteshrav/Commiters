@@ -3,7 +3,7 @@ import { ROUTES } from "../routes";
 import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
-import { SITE_FOOTER_COPY, SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS, SITE_FOOTER_COMPANY_NAV_LINK_LABELS, SITE_FOOTER_PRIMARY_NAV_LINK_LABELS, SITE_FOOTER_RESOURCES_LINK_LABELS, SITE_FOOTER_SERVICES_NAV_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
+import { SITE_FOOTER_COPY, SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS, SITE_FOOTER_COMPANY_NAV_LINK_LABELS, SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS, SITE_FOOTER_RESOURCES_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
 import { CONTACT_STUDIO } from "../contactPageContent";
 import { buildMailtoPublicContactHref, publicContactEmailDisplay } from "../siteContact";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
@@ -35,6 +35,10 @@ function asString(value: unknown, fallback = ""): string {
 
 function asRecord(value: unknown): Record<string, unknown> | null {
   return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
+}
+
+function isPresent<T>(value: T | null | undefined): value is T {
+  return value != null;
 }
 
 export function mapCmsServiceToCard(service: Record<string, unknown>, index: number): StitchServiceCard {
@@ -126,7 +130,7 @@ function mapFooterLink(link: Record<string, unknown>): FooterLinkCell | null {
   return { kind: "internal", label, to: normalizeInternalPath(url) };
 }
 
-const SOCIAL_LINK_ORDER = ["LinkedIn", "WhatsApp", "Instagram", "Medium"] as const;
+const SOCIAL_LINK_ORDER = ["LinkedIn", "WhatsApp", "GitHub"] as const;
 
 function footerLinkTarget(link: FooterLinkCell): string {
   return link.kind === "internal" ? link.to : link.href;
@@ -155,30 +159,39 @@ function orderLinksByLabels(links: FooterLinkCell[], labels: readonly string[]):
     .filter((link): link is FooterLinkCell => Boolean(link));
 }
 
-function mergePrimaryLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
-  return orderLinksByLabels(
-    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[0].links]),
-    SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
-  );
+function withFallbackBadges(
+  links: FooterLinkCell[],
+  fallbackLinks: readonly FooterLinkCell[],
+): FooterLinkCell[] {
+  return links.map((link) => {
+    if (link.kind !== "internal" || link.badge) return link;
+    const match = fallbackLinks.find((entry) => entry.label.toLowerCase() === link.label.toLowerCase());
+    if (match?.kind === "internal" && match.badge) {
+      return { ...link, badge: match.badge };
+    }
+    return link;
+  });
 }
 
-function mergeServicesLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+function mergeProductsLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+  const fallback = SITE_FOOTER_COPY.navColumns[0].links;
   return orderLinksByLabels(
-    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[1].links]),
-    SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
+    withFallbackBadges(mergeLinkGroups(cmsLinks, [...fallback]), fallback),
+    SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS,
   );
 }
 
 function mergeCompanyLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+  const fallback = SITE_FOOTER_COPY.navColumns[1].links;
   return orderLinksByLabels(
-    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[2].links]),
+    withFallbackBadges(mergeLinkGroups(cmsLinks, [...fallback]), fallback),
     SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
   );
 }
 
 function mergeResourcesLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
   return orderLinksByLabels(
-    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[3].links]),
+    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[2].links]),
     SITE_FOOTER_RESOURCES_LINK_LABELS,
   );
 }
@@ -210,11 +223,13 @@ function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
     if (!exists) merged.push(defaultLink);
   }
 
-  return merged.sort((a, b) => {
-    const aIndex = SOCIAL_LINK_ORDER.indexOf(a.label as (typeof SOCIAL_LINK_ORDER)[number]);
-    const bIndex = SOCIAL_LINK_ORDER.indexOf(b.label as (typeof SOCIAL_LINK_ORDER)[number]);
-    return (aIndex === -1 ? 99 : aIndex) - (bIndex === -1 ? 99 : bIndex);
-  });
+  return merged
+    .filter((link) => SOCIAL_LINK_ORDER.includes(link.label as (typeof SOCIAL_LINK_ORDER)[number]))
+    .sort((a, b) => {
+      const aIndex = SOCIAL_LINK_ORDER.indexOf(a.label as (typeof SOCIAL_LINK_ORDER)[number]);
+      const bIndex = SOCIAL_LINK_ORDER.indexOf(b.label as (typeof SOCIAL_LINK_ORDER)[number]);
+      return (aIndex === -1 ? 99 : aIndex) - (bIndex === -1 ? 99 : bIndex);
+    });
 }
 
 export function resolveFooter(
@@ -241,26 +256,26 @@ export function resolveFooter(
   const navigationLinks = Array.isArray(cmsFooter.navigationLinks)
     ? cmsFooter.navigationLinks
         .map(asRecord)
-        .filter(Boolean)
+        .filter(isPresent)
         .sort((a, b) => {
           const aOrder = typeof a.order === "number" ? a.order : 0;
           const bOrder = typeof b.order === "number" ? b.order : 0;
           return aOrder - bOrder;
         })
         .map(mapFooterLink)
-        .filter(Boolean)
+        .filter(isPresent)
     : null;
   const legalLinks = Array.isArray(cmsFooter.legalLinks)
     ? cmsFooter.legalLinks
         .map(asRecord)
-        .filter(Boolean)
+        .filter(isPresent)
         .sort((a, b) => {
           const aOrder = typeof a.order === "number" ? a.order : 0;
           const bOrder = typeof b.order === "number" ? b.order : 0;
           return aOrder - bOrder;
         })
         .map(mapFooterLink)
-        .filter(Boolean)
+        .filter(isPresent)
     : null;
   const socialLinks = Array.isArray(cmsFooter.socialLinks)
     ? cmsFooter.socialLinks
@@ -277,20 +292,19 @@ export function resolveFooter(
 
   const navColumns: FooterNavColumn[] = [
     {
-      heading: "PRIMARY",
-      links: mergePrimaryLinks(navigationLinks),
+      id: "products",
+      heading: "Products & Solutions",
+      links: mergeProductsLinks(navigationLinks),
     },
     {
-      heading: "SERVICES",
-      links: mergeServicesLinks(navigationLinks),
-    },
-    {
-      heading: "COMPANY",
+      id: "company",
+      heading: "Company",
       links: mergeCompanyLinks(navigationLinks),
     },
     {
-      heading: "RESOURCES",
-      links: mergeResourcesLinks(null),
+      id: "resources",
+      heading: "Resources & Contact",
+      links: mergeResourcesLinks(navigationLinks),
     },
   ];
 

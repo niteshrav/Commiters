@@ -91,7 +91,7 @@ describe("CaseStudyProjectCard", () => {
   });
 
   it("renders stacked portfolio cards with visible project photography", () => {
-    for (const projectId of ["multi-role-crm", "nextsaas"] as const) {
+    for (const projectId of ["multi-role-crm", "browse-my-vacation"] as const) {
       const project = CASE_STUDY_PROJECTS.find((entry) => entry.id === projectId)!;
 
       const { unmount } = render(

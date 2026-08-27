@@ -2,6 +2,7 @@ import HomeBottomCta from "../components/HomeBottomCta";
 import HomeBuiltForScale from "../components/HomeBuiltForScale";
 import HomeCorePillars from "../components/HomeCorePillars";
 import HomeHeroStitch from "../components/HomeHeroStitch";
+import HomeLeadMagnetSection from "../components/HomeLeadMagnetSection";
 import HomeSectionSeparator from "../components/HomeSectionSeparator";
 import { usePageSeo } from "../hooks/usePageSeo";
 import { HOME_SECTION_SEPARATOR_IDS } from "../lib/homeSectionLayout";
@@ -17,7 +18,7 @@ export default function HomePage() {
       <HomeCorePillars />
       <HomeSectionSeparator testId={HOME_SECTION_SEPARATOR_IDS.afterPillars} />
       <HomeBuiltForScale />
-      <HomeSectionSeparator testId={HOME_SECTION_SEPARATOR_IDS.afterBuiltForScale} />
+      <HomeLeadMagnetSection />
       <HomeBottomCta />
     </div>
   );

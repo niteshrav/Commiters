@@ -43,14 +43,14 @@ export default function NextSaasCaseStudyBottomCta() {
             >
               {bottomCta.secondaryLabel}
             </a>
-          ) : (
+          ) : "secondaryTo" in bottomCta && bottomCta.secondaryTo ? (
             <Link
               className={`${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}
               to={bottomCta.secondaryTo}
             >
               {bottomCta.secondaryLabel}
             </Link>
-          )}
+          ) : null}
           {"tertiaryTo" in bottomCta && bottomCta.tertiaryTo ? (
             <Link
               className={`${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}

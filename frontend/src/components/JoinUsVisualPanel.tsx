@@ -13,7 +13,7 @@ const HIGHLIGHT_ICONS = [IconCheckCircle, IconBolt] as const;
 export default function JoinUsVisualPanel() {
   const { sidebar } = JOIN_US_PAGE_COPY;
   const { officePhoto } = JOIN_US_PAGE_ASSETS;
-  const [imageSrc, setImageSrc] = useState(officePhoto.src);
+  const [imageSrc, setImageSrc] = useState<string>(officePhoto.src);
 
   return (
     <aside className={JOIN_US_VISUAL_PANEL_CLASS} data-testid="join-us-sidebar-panel">

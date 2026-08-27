@@ -1,0 +1,16 @@
+export const OPSFLOW_PAGE_CLASS = "opsflow-page" as const;
+export const OPSFLOW_SECTION_CLASS = "opsflow-section" as const;
+export const OPSFLOW_INNER_CLASS = "opsflow-inner" as const;
+export const OPSFLOW_HERO_CLASS = "opsflow-hero" as const;
+export const OPSFLOW_EYEBROW_CLASS = "opsflow-eyebrow" as const;
+export const OPSFLOW_HEADLINE_CLASS = "opsflow-headline" as const;
+export const OPSFLOW_SUBHEAD_CLASS = "opsflow-subhead" as const;
+export const OPSFLOW_CARDS_CLASS = "opsflow-cards" as const;
+export const OPSFLOW_CARD_CLASS = "opsflow-card" as const;
+export const OPSFLOW_FORM_CLASS = "opsflow-form" as const;
+export const OPSFLOW_DROPZONE_CLASS = "opsflow-dropzone" as const;
+export const OPSFLOW_DROPZONE_ACTIVE_CLASS = "opsflow-dropzone--active" as const;
+export const OPSFLOW_FIELD_CLASS = "opsflow-field" as const;
+export const OPSFLOW_PROGRESS_CLASS = "opsflow-progress" as const;
+export const OPSFLOW_SUCCESS_CLASS = "opsflow-success" as const;
+export const OPSFLOW_TRUST_CLASS = "opsflow-trust" as const;

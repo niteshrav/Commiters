@@ -1,0 +1,12 @@
+export const WEBAPP_PAGE_CLASS = "webapp-page" as const;
+export const WEBAPP_SECTION_CLASS = "webapp-section" as const;
+export const WEBAPP_INNER_CLASS = "webapp-inner" as const;
+export const WEBAPP_HERO_CLASS = "webapp-hero" as const;
+export const WEBAPP_EYEBROW_CLASS = "webapp-eyebrow" as const;
+export const WEBAPP_HEADLINE_CLASS = "webapp-headline" as const;
+export const WEBAPP_SUBHEAD_CLASS = "webapp-subhead" as const;
+export const WEBAPP_CARDS_CLASS = "webapp-cards" as const;
+export const WEBAPP_CARD_CLASS = "webapp-card" as const;
+export const WEBAPP_STANDARDS_CLASS = "webapp-standards" as const;
+export const WEBAPP_FORM_CLASS = "webapp-form" as const;
+export const WEBAPP_FIELD_CLASS = "webapp-field" as const;

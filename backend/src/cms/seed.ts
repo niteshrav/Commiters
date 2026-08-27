@@ -410,8 +410,7 @@ async function seed() {
       socialLinks: [
         { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/?viewAsMember=true" },
         { platform: "WhatsApp", url: "https://wa.me/919024882899" },
-        { platform: "Instagram", url: "https://www.instagram.com/commitersconnect/" },
-        { platform: "Medium", url: "https://medium.com/@erniteshrav" },
+        { platform: "GitHub", url: "https://github.com/niteshrav" },
       ],
       quickLinks: [],
       navigationLinks: [
@@ -435,8 +434,7 @@ async function seed() {
       const requiredSocial = [
         { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/?viewAsMember=true" },
         { platform: "WhatsApp", url: "https://wa.me/919024882899" },
-        { platform: "Instagram", url: "https://www.instagram.com/commitersconnect/" },
-        { platform: "Medium", url: "https://medium.com/@erniteshrav" },
+        { platform: "GitHub", url: "https://github.com/niteshrav" },
       ];
       const current = footerDoc.socialLinks ?? [];
       const merged = [...current];

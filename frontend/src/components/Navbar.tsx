@@ -4,13 +4,21 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useNavbarContent } from "../lib/cms/hooks";
 import {
   NAV_DROPDOWN_LINK_CLASS,
+  NAV_DROPDOWN_PANEL_GLASS_CLASS,
   type DesktopHeaderNavEntry,
   type NavDropdownConfig,
+  type NavDropdownLink,
   type PrimaryNavItem,
   resolveDesktopHeaderNav,
 } from "../lib/navSections";
 import BrandLogo from "./BrandLogo";
-import { IconChevronDown } from "./icons";
+import MobileNavDrawer from "./MobileNavDrawer";
+import { IconMenu } from "./icons";
+import {
+  HEADER_DRAWER_OPEN_CLASS,
+  HEADER_MENU_BTN_TESTID,
+  MOBILE_NAV_DRAWER_TESTID,
+} from "../lib/mobileNavDrawer";
 
 const MEGA_CLOSE_DELAY_MS = 140;
 
@@ -29,6 +37,32 @@ type NavItemDropdownPanelProps = {
   onPointerLeave: () => void;
 };
 
+function NavDropdownItemLink({
+  link,
+  onNavigate,
+  role,
+}: {
+  link: NavDropdownLink;
+  onNavigate: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  role?: "menuitem";
+}) {
+  return (
+    <NavLink
+      to={link.to}
+      role={role}
+      className={() =>
+        [NAV_DROPDOWN_LINK_CLASS, "nav-dropdown-link--stacked", link.featured ? "nav-dropdown-link--featured" : ""]
+          .filter(Boolean)
+          .join(" ")
+      }
+      onClick={onNavigate}
+    >
+      <span className="nav-dropdown-link-label">{link.label}</span>
+      <span className="nav-dropdown-link-description">{link.description}</span>
+    </NavLink>
+  );
+}
+
 function NavItemDropdownPanel({
   config,
   alignEnd,
@@ -38,7 +72,7 @@ function NavItemDropdownPanel({
   onPointerLeave,
 }: NavItemDropdownPanelProps) {
   const [position, setPosition] = useState<DropdownPanelPosition | null>(null);
-  const linkColumns = config.links.length > 4 ? "nav-item-dropdown-panel--columns" : "";
+  const grouped = Boolean(config.groups?.length);
 
   useLayoutEffect(() => {
     const anchor = anchorRef.current;
@@ -46,6 +80,10 @@ function NavItemDropdownPanel({
 
     const updatePosition = () => {
       const rect = anchor.getBoundingClientRect();
+      if (grouped) {
+        setPosition({ top: rect.bottom, left: 16, right: 16 });
+        return;
+      }
       setPosition(
         alignEnd
           ? { top: rect.bottom, right: Math.max(16, window.innerWidth - rect.right) }
@@ -60,36 +98,37 @@ function NavItemDropdownPanel({
       window.removeEventListener("resize", updatePosition);
       window.removeEventListener("scroll", updatePosition, true);
     };
-  }, [alignEnd, anchorRef, config.id]);
+  }, [alignEnd, anchorRef, config.id, grouped]);
 
   if (!position) return null;
 
   return createPortal(
     <div
-      className={`nav-item-dropdown-panel nav-item-dropdown-panel--fixed ${linkColumns}`.trim()}
+      className={`nav-item-dropdown-panel nav-item-dropdown-panel--fixed ${NAV_DROPDOWN_PANEL_GLASS_CLASS} ${grouped ? "nav-item-dropdown-panel--grouped" : "nav-item-dropdown-panel--cards"}`.trim()}
       data-testid={`nav-mega-panel-${config.id}`}
       role="menu"
       style={{ top: position.top, left: position.left, right: position.right }}
       onMouseEnter={onPointerEnter}
       onMouseLeave={onPointerLeave}
     >
-      {config.links.map((link) => (
-        <NavLink
-          key={link.id}
-          to={link.to}
-          role="menuitem"
-          className={() => NAV_DROPDOWN_LINK_CLASS}
-          onClick={onNavigate}
-        >
-          {link.label}
-        </NavLink>
-      ))}
+      {grouped
+        ? config.groups!.map((group) => (
+            <div key={group.id} className="nav-mega-column" data-testid={`nav-mega-column-${group.id}`}>
+              <p className="nav-mega-column-title">{group.label}</p>
+              {group.links.map((link) => (
+                <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
+              ))}
+            </div>
+          ))
+        : config.links.map((link) => (
+            <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
+          ))}
     </div>,
     document.body,
   );
 }
 
-const NAV_ITEM_ALIGN_END_IDS = new Set(["trusttap", "more"]);
+const NAV_ITEM_ALIGN_END_IDS = new Set(["about"]);
 
 type NavDesktopItemsProps = {
   entries: DesktopHeaderNavEntry[];
@@ -195,12 +234,6 @@ function NavDesktopDropdownItem({
         onClick={onNavigate}
       >
         {config.label}
-        <IconChevronDown
-          width={14}
-          height={14}
-          aria-hidden
-          className={isOpen ? "nav-dropdown-chevron--open" : undefined}
-        />
       </NavLink>
 
       {isOpen ? (
@@ -217,90 +250,24 @@ function NavDesktopDropdownItem({
   );
 }
 
-type NavMobileAccordionProps = {
-  entries: DesktopHeaderNavEntry[];
-  expandedId: string | null;
-  onToggle: (id: string) => void;
-  onNavigate: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-};
-
-function NavMobileAccordion({ entries, expandedId, onToggle, onNavigate }: NavMobileAccordionProps) {
-  return (
-    <div className="nav-mobile-accordion" data-testid="nav-mobile-accordion">
-      {entries.map((entry) => {
-        if (entry.kind === "link") {
-          return (
-            <NavLink
-              key={entry.item.id}
-              to={entry.item.to}
-              end={entry.item.end}
-              className={NAV_DROPDOWN_LINK_CLASS}
-              data-testid={`nav-mobile-link-${entry.item.id}`}
-              onClick={onNavigate}
-            >
-              {entry.item.label}
-            </NavLink>
-          );
-        }
-
-        const config = entry.config;
-        const isOpen = expandedId === config.id;
-        const panelId = `nav-mobile-panel-${config.id}`;
-
-        return (
-          <div key={config.id} className="nav-mobile-group" data-testid={`nav-mobile-group-${config.id}`}>
-            <button
-              type="button"
-              className={["nav-mobile-group-trigger", isOpen ? "nav-mobile-group-trigger--open" : ""]
-                .filter(Boolean)
-                .join(" ")}
-              aria-expanded={isOpen}
-              aria-controls={panelId}
-              onClick={() => onToggle(config.id)}
-            >
-              {config.label}
-              <IconChevronDown width={16} height={16} aria-hidden className={isOpen ? "nav-dropdown-chevron--open" : undefined} />
-            </button>
-
-            {isOpen ? (
-              <div id={panelId} className="nav-mobile-group-panel">
-                {config.links.map((link) => (
-                  <NavLink
-                    key={link.id}
-                    to={link.to}
-                    className={NAV_DROPDOWN_LINK_CLASS}
-                    onClick={onNavigate}
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
-              </div>
-            ) : null}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 export default function Navbar() {
   const location = useLocation();
   const closeTimerRef = useRef<number | null>(null);
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
-  const [expandedMobileId, setExpandedMobileId] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { logo, logoAlt, navItems, ctaLabel, ctaUrl } = useNavbarContent();
   const headerNavEntries = resolveDesktopHeaderNav(navItems);
 
   useEffect(() => {
     setOpenDropdownId(null);
-    setExpandedMobileId(null);
+    setMobileMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
       setOpenDropdownId(null);
-      setExpandedMobileId(null);
+      setMobileMenuOpen(false);
     }
 
     document.addEventListener("keydown", onKey);
@@ -325,13 +292,13 @@ export default function Navbar() {
   function handleNavigate(event: React.MouseEvent<HTMLAnchorElement>) {
     cancelCloseTimer();
     setOpenDropdownId(null);
-    setExpandedMobileId(null);
+    setMobileMenuOpen(false);
     const element = event.currentTarget;
     queueMicrotask(() => element?.blur());
   }
 
   return (
-    <header className="header header-light">
+    <header className={["header", "header-light", mobileMenuOpen ? HEADER_DRAWER_OPEN_CLASS : ""].filter(Boolean).join(" ")}>
       <div className="container header-inner">
         <BrandLogo onNavigate={handleNavigate} logoSrc={logo} logoAlt={logoAlt} />
 
@@ -355,23 +322,30 @@ export default function Navbar() {
           >
             {ctaLabel}
           </Link>
-          <Link
-            className="btn btn-primary btn-nav-cta nav-cta-mobile"
-            to={ctaUrl}
-            onClick={handleNavigate}
-            data-testid="nav-start-project-cta-mobile"
+          <button
+            type="button"
+            className="header-menu-btn"
+            data-testid={HEADER_MENU_BTN_TESTID}
+            aria-label="Open menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls={MOBILE_NAV_DRAWER_TESTID}
+            onClick={() => setMobileMenuOpen(true)}
           >
-            {ctaLabel}
-          </Link>
+            <IconMenu width={22} height={22} />
+          </button>
         </div>
       </div>
 
-      <NavMobileAccordion
-        entries={headerNavEntries}
-        expandedId={expandedMobileId}
-        onToggle={(id) => setExpandedMobileId((current) => (current === id ? null : id))}
-        onNavigate={handleNavigate}
-      />
+      {mobileMenuOpen ? (
+        <MobileNavDrawer
+          ctaLabel={ctaLabel}
+          ctaUrl={ctaUrl}
+          logoSrc={logo}
+          logoAlt={logoAlt}
+          onNavigate={handleNavigate}
+          onClose={() => setMobileMenuOpen(false)}
+        />
+      ) : null}
     </header>
   );
 }

@@ -77,7 +77,7 @@ describe("PrivacyPolicyPage", () => {
     expect(screen.getByTestId("privacy-page")).toBeInTheDocument();
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
-    expect(copyrightCell).toHaveTextContent("Copyright 2026 (C) Commiters. All Rights Reserved.");
+    expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);
     expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass("footer-brand-tagline");
     expect(screen.getByTestId("footer-logo-cell").querySelector(".brand-logo--footer")).toBeTruthy();
   });

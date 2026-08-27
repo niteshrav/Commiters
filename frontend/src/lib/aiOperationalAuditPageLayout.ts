@@ -1,0 +1,12 @@
+export const AUDIT_PAGE_CLASS = "audit-page" as const;
+export const AUDIT_SECTION_CLASS = "audit-section" as const;
+export const AUDIT_INNER_CLASS = "audit-inner" as const;
+export const AUDIT_HERO_CLASS = "audit-hero" as const;
+export const AUDIT_EYEBROW_CLASS = "audit-eyebrow" as const;
+export const AUDIT_HEADLINE_CLASS = "audit-headline" as const;
+export const AUDIT_SUBHEAD_CLASS = "audit-subhead" as const;
+export const AUDIT_CARDS_CLASS = "audit-cards" as const;
+export const AUDIT_CARD_CLASS = "audit-card" as const;
+export const AUDIT_TIMELINE_CLASS = "audit-timeline" as const;
+export const AUDIT_FORM_CLASS = "audit-form" as const;
+export const AUDIT_FIELD_CLASS = "audit-field" as const;

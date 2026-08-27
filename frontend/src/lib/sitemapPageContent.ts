@@ -49,6 +49,7 @@ export const SITEMAP_PAGE_COPY = {
         { label: "Services", to: ROUTES.services, description: "Full-stack development capabilities and expertise." },
         { label: "Work", to: ROUTES.caseStudies, description: "Case studies and shipped products." },
         { label: "TrustTap", to: ROUTES.trustTap, description: "Our trust and verification product." },
+        { label: "OpsFlow AI", to: ROUTES.opsFlow, description: "Free invoice-to-Excel sandbox for operations teams." },
         { label: "Blog", to: ROUTES.technicalLedger, description: "Technical notes and engineering insights." },
         { label: "FAQ", to: ROUTES.faq, description: "Common questions about process, pricing, and delivery." },
         { label: "Testimonials", to: ROUTES.testimonials, description: "Client feedback and delivery outcomes." },
@@ -60,10 +61,32 @@ export const SITEMAP_PAGE_COPY = {
       title: "Services",
       description: "Dedicated pages for each engineering offering.",
       icon: "services",
-      links: SERVICE_NAV_ENTRIES.map((entry) => ({
-        label: entry.label,
-        to: buildServiceDetailMenuHref(entry.id),
-      })),
+      links: [
+        ...SERVICE_NAV_ENTRIES.map((entry) => ({
+          label: entry.label,
+          to: buildServiceDetailMenuHref(entry.id),
+        })),
+        {
+          label: "AI Operational Audit",
+          to: ROUTES.aiOperationalAudit,
+          description: "2-week diagnostic that maps bottlenecks and ships a working AI prototype.",
+        },
+        {
+          label: "Generative AI & LLM Solutions",
+          to: ROUTES.aiSolutions,
+          description: "Custom Gen AI pipelines, RAG search, and workflow agents for operations teams.",
+        },
+        {
+          label: "Custom Web Applications",
+          to: ROUTES.webApplications,
+          description: "Next.js/Node.js platforms with RBAC, APIs, and cloud-native infrastructure.",
+        },
+        {
+          label: "Workflow & Process Automation",
+          to: ROUTES.workflowAutomation,
+          description: "Automated pipelines connecting CRM, WhatsApp, email, and accounting systems.",
+        },
+      ],
     },
     {
       id: "work",

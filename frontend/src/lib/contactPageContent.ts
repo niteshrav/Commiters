@@ -1,8 +1,10 @@
 import {
   COMMITERS_EMAIL_STRIP_DISPLAY,
   COMMITERS_PHONE_DISPLAY,
+  buildDiscoveryCallCalendarUrl,
   buildMailtoPublicContactHref,
   buildTelHref,
+  buildWhatsAppUrl,
 } from "./siteContact";
 
 /** Contact page studio panel copy from the Stitch screenshot. */
@@ -17,4 +19,7 @@ export const CONTACT_STUDIO = {
   emailHref: buildMailtoPublicContactHref(),
   phone: COMMITERS_PHONE_DISPLAY,
   phoneHref: buildTelHref(),
+  mapEmbedUrl: "",
+  whatsappUrl: buildWhatsAppUrl(),
+  calendarUrl: buildDiscoveryCallCalendarUrl(),
 } as const;

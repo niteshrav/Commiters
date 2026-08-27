@@ -16,6 +16,12 @@ describe("routes", () => {
     expect(ROUTES.nextsaasCaseStudy).toBe("/case-studies/nextsaas");
     expect(ROUTES.browseMyVacationCaseStudyLegacy).toBe("/case-studies/browse-my-vacation");
     expect(ROUTES.trustTap).toBe("/products/trusttap");
+    expect(ROUTES.opsFlow).toBe("/products/opsflow");
+    expect(ROUTES.opsFlowPlayground).toBe("/opsflow");
+    expect(ROUTES.aiOperationalAudit).toBe("/services/ai-operational-audit");
+    expect(ROUTES.aiSolutions).toBe("/services/ai-solutions");
+    expect(ROUTES.webApplications).toBe("/services/web-applications");
+    expect(ROUTES.workflowAutomation).toBe("/services/workflow-automation");
     expect(ROUTES.services).toBe("/services");
     expect(ROUTES.joinUs).toBe("/join-us");
     expect(ROUTES.contact).toBe("/contact");

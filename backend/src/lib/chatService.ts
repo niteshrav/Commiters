@@ -1,5 +1,4 @@
 import {
-  CHAT_ASSISTANT_NAME,
   CHAT_DEFAULT_GREETING,
   CHAT_FALLBACK_REPLY,
   CHAT_KNOWLEDGE_BASE,
@@ -7,9 +6,10 @@ import {
 } from "./chatKnowledge";
 import {
   isOutOfScopeUserMessage,
-  resolveOutOfScopeReply,
+  resolveChatGuardReply,
   tokenizeForChat,
 } from "./chatScope";
+import { buildChatSystemPrompt } from "./chatSystemPrompt";
 
 export type ChatHistoryItem = {
   role: "user" | "assistant";
@@ -25,16 +25,22 @@ function tokenize(text: string): string[] {
   return tokenizeForChat(text);
 }
 
+function tokenHitsKeyword(token: string, keyword: string): boolean {
+  if (token === keyword) return true;
+  if (token.length < 5 || keyword.length < 5) return false;
+  return keyword.includes(token) || token.includes(keyword);
+}
+
 function scoreEntry(messageTokens: string[], entry: ChatKnowledgeEntry): number {
   const questionTokens = tokenizeForChat(entry.question);
   let score = 0;
 
   for (const token of messageTokens) {
-    if (entry.keywords.some((keyword) => keyword.includes(token) || token.includes(keyword))) {
+    if (entry.keywords.some((keyword) => tokenHitsKeyword(token, keyword))) {
       score += 2;
       continue;
     }
-    if (questionTokens.some((word) => word === token || word.includes(token) || token.includes(word))) {
+    if (questionTokens.some((word) => word === token)) {
       score += 1;
     }
   }
@@ -43,7 +49,7 @@ function scoreEntry(messageTokens: string[], entry: ChatKnowledgeEntry): number 
 }
 
 export function findFaqAnswer(message: string): ChatKnowledgeEntry | null {
-  if (isOutOfScopeUserMessage(message)) {
+  if (resolveChatGuardReply(message) || isOutOfScopeUserMessage(message)) {
     return null;
   }
 
@@ -65,8 +71,9 @@ export function findFaqAnswer(message: string): ChatKnowledgeEntry | null {
 }
 
 export function answerFromKnowledgeBase(message: string): ChatAnswer {
-  if (isOutOfScopeUserMessage(message)) {
-    return { reply: resolveOutOfScopeReply(message), source: "static" };
+  const guard = resolveChatGuardReply(message);
+  if (guard) {
+    return { reply: guard, source: "static" };
   }
 
   const match = findFaqAnswer(message);
@@ -84,18 +91,9 @@ function getOpenAiModel(env: NodeJS.ProcessEnv = process.env): string {
   return env.OPENAI_CHAT_MODEL?.trim() || "gpt-4o-mini";
 }
 
-function buildSystemPrompt(): string {
+export function buildSystemPrompt(): string {
   const faqContext = CHAT_KNOWLEDGE_BASE.map((entry) => `Q: ${entry.question}\nA: ${entry.answer}`).join("\n\n");
-  return [
-    `You are ${CHAT_ASSISTANT_NAME}, the Commiters website assistant for a software studio in Udaipur, India.`,
-    "Only answer questions about Commiters: services, delivery process, careers, pricing, contact, and starting a project.",
-    "If a question is general, unrelated, or outside Commiters (for example office visiting hours, weather, jokes, homework, or broad identity questions), politely decline.",
-    "Say you can only help with Commiters-related topics and direct visitors to the Contact page or WhatsApp.",
-    "Do not invent facts. Do not answer unrelated general knowledge questions.",
-    "",
-    "Reference knowledge:",
-    faqContext,
-  ].join("\n");
+  return `${buildChatSystemPrompt()}\n\nReference knowledge:\n${faqContext}`;
 }
 
 type OpenAiChatResponse = {
@@ -146,8 +144,9 @@ export async function answerChatMessage(message: string, history: ChatHistoryIte
     return { reply: CHAT_DEFAULT_GREETING, source: "static" };
   }
 
-  if (isOutOfScopeUserMessage(trimmed)) {
-    return { reply: resolveOutOfScopeReply(trimmed), source: "static" };
+  const guard = resolveChatGuardReply(trimmed);
+  if (guard) {
+    return { reply: guard, source: "static" };
   }
 
   if (isOpenAiChatConfigured()) {

@@ -29,13 +29,18 @@ describe("BrandLogo", () => {
     expect(link.querySelector(`.${BRAND_LOGO_WRAP_CLASS}`)).toBeTruthy();
   });
 
-  it("renders a large bold footer logo without a home link or tagline text", () => {
-    render(<BrandLogo variant="footer" />);
+  it("renders a large bold footer logo that links home without tagline text", () => {
+    render(
+      <MemoryRouter>
+        <BrandLogo variant="footer" />
+      </MemoryRouter>,
+    );
+    const link = screen.getByRole("link", { name: COMMITERS_HEADER_LOGO_ALT });
+    expect(link).toHaveAttribute("href", "/");
     const img = screen.getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT });
     expect(img).toHaveClass("brand-logo", BRAND_LOGO_DISPLAY_CLASS, "brand-logo--footer");
     expect(img).toHaveAttribute("height", String(BRAND_LOGO_FOOTER_HEIGHT_PX));
     expect(img).toHaveAttribute("width", String(brandLogoWidthPx(BRAND_LOGO_FOOTER_HEIGHT_PX)));
     expect(screen.queryByTestId("brand-tagline")).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: COMMITERS_HEADER_LOGO_ALT })).not.toBeInTheDocument();
   });
 });

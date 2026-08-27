@@ -1,0 +1,12 @@
+export const WFLOW_PAGE_CLASS = "wflow-page" as const;
+export const WFLOW_SECTION_CLASS = "wflow-section" as const;
+export const WFLOW_INNER_CLASS = "wflow-inner" as const;
+export const WFLOW_HERO_CLASS = "wflow-hero" as const;
+export const WFLOW_EYEBROW_CLASS = "wflow-eyebrow" as const;
+export const WFLOW_HEADLINE_CLASS = "wflow-headline" as const;
+export const WFLOW_SUBHEAD_CLASS = "wflow-subhead" as const;
+export const WFLOW_SOLUTIONS_CLASS = "wflow-solutions" as const;
+export const WFLOW_CARD_CLASS = "wflow-card" as const;
+export const WFLOW_PIPELINE_CLASS = "wflow-pipeline" as const;
+export const WFLOW_FORM_CLASS = "wflow-form" as const;
+export const WFLOW_FIELD_CLASS = "wflow-field" as const;

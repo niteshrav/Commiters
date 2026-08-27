@@ -22,5 +22,25 @@ describe("sitemapPageContent", () => {
     expect(SITEMAP_PAGE_COPY.groups.find((group) => group.id === "legal")?.links.some((link) => link.to === ROUTES.sitemap)).toBe(
       true,
     );
+    expect(
+      SITEMAP_PAGE_COPY.groups
+        .find((group) => group.id === "services")
+        ?.links.some((link) => link.to === ROUTES.aiOperationalAudit && link.label === "AI Operational Audit"),
+    ).toBe(true);
+    expect(
+      SITEMAP_PAGE_COPY.groups
+        .find((group) => group.id === "services")
+        ?.links.some((link) => link.to === ROUTES.aiSolutions && link.label === "Generative AI & LLM Solutions"),
+    ).toBe(true);
+    expect(
+      SITEMAP_PAGE_COPY.groups
+        .find((group) => group.id === "services")
+        ?.links.some((link) => link.to === ROUTES.webApplications && link.label === "Custom Web Applications"),
+    ).toBe(true);
+    expect(
+      SITEMAP_PAGE_COPY.groups
+        .find((group) => group.id === "services")
+        ?.links.some((link) => link.to === ROUTES.workflowAutomation && link.label === "Workflow & Process Automation"),
+    ).toBe(true);
   });
 });

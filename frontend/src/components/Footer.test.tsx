@@ -1,6 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
+import { vi } from "vitest";
 import Footer from "./Footer";
 import { BRAND_LOGO_FOOTER_HEIGHT_PX } from "../lib/brandDisplay";
 import {
@@ -13,23 +14,31 @@ import {
   FOOTER_NOCK_MAIN_CLASS,
   FOOTER_NOCK_SHELL_CLASS,
 } from "../lib/footerLayout";
-import { COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
+import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
 import { ROUTES } from "../lib/routes";
 import {
   SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
-  SITE_FOOTER_COPY,
+  SITE_FOOTER_CAREERS_HIRING_BADGE,
   SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
-  SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
+  SITE_FOOTER_COPY,
+  SITE_FOOTER_OPSFLOW_PARSER_BADGE,
+  SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS,
   SITE_FOOTER_RESOURCES_LINK_LABELS,
-  SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
   SITE_FOOTER_SOCIAL_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
+  SITE_FOOTER_TRUSTTAP_PRODUCT_BADGE,
 } from "../lib/siteFooterCopy";
-import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "../lib/siteLinks";
-import { buildWhatsAppUrl } from "../lib/siteContact";
+import { SITE_GITHUB_URL, SITE_LINKEDIN_URL } from "../lib/siteLinks";
+import { buildDiscoveryCallCalendarUrl, buildWhatsAppUrl } from "../lib/siteContact";
+
+function columnLabels(nav: HTMLElement) {
+  return within(nav)
+    .getAllByRole("link")
+    .map((link) => link.querySelector(".footer-link-label")?.textContent ?? link.textContent);
+}
 
 describe("Footer", () => {
-  it("matches the merged nock footer with nav columns, bottom social icons, and copyright bar", () => {
+  it("renders a 4-column Option 1 footer with brand socials and a legal bar", () => {
     render(
       <MemoryRouter>
         <Footer />
@@ -43,8 +52,7 @@ describe("Footer", () => {
     expect(footer.querySelector(`.${FOOTER_BLACKBOOK_BAR_CLASS}`)).toBeInTheDocument();
 
     const logoCell = screen.getByTestId("footer-logo-cell");
-    const primaryNav = screen.getByTestId("footer-nav-column-primary");
-    const servicesNav = screen.getByTestId("footer-nav-column-services");
+    const productsNav = screen.getByTestId("footer-nav-column-products");
     const companyNav = screen.getByTestId("footer-nav-column-company");
     const resourcesNav = screen.getByTestId("footer-nav-column-resources");
     const socialIcons = screen.getByTestId("footer-social-icons");
@@ -53,61 +61,64 @@ describe("Footer", () => {
 
     expect(logoCell).toHaveClass(FOOTER_LOGO_CELL_CLASS);
     expect(copyrightCell).toHaveClass(FOOTER_COPYRIGHT_CELL_CLASS);
-    expect(within(primaryNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_PRIMARY_NAV_LINK_LABELS,
-    ]);
-    expect(within(servicesNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_SERVICES_NAV_LINK_LABELS,
-    ]);
-    expect(within(companyNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
-    ]);
-    expect(within(resourcesNav).getAllByRole("link").map((link) => link.textContent)).toEqual([
-      ...SITE_FOOTER_RESOURCES_LINK_LABELS,
-    ]);
+    expect(columnLabels(productsNav)).toEqual([...SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS]);
+    expect(columnLabels(companyNav)).toEqual([...SITE_FOOTER_COMPANY_NAV_LINK_LABELS]);
+    expect(columnLabels(resourcesNav)).toEqual([...SITE_FOOTER_RESOURCES_LINK_LABELS]);
     expect(within(socialIcons).getAllByRole("link").map((link) => link.getAttribute("aria-label"))).toEqual([
       ...SITE_FOOTER_SOCIAL_LINK_LABELS,
     ]);
+    expect(socialIcons.closest(".footer-nock-brand")).toBeTruthy();
     expect(screen.queryByTestId("footer-nav-column-social")).not.toBeInTheDocument();
     expect(screen.queryByTestId("footer-contact-block")).not.toBeInTheDocument();
     expect(screen.queryByTestId("footer-status-pill")).not.toBeInTheDocument();
 
     expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass(FOOTER_BRAND_TAGLINE_CLASS);
-    expect(copyrightCell).toHaveTextContent("Copyright 2026 (C) Commiters. All Rights Reserved.");
-    expect(within(legalCell).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
-    expect(within(legalCell).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
+    expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);
+    expect(within(legalCell).getByRole("link", { name: /^Privacy Policy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
+    expect(within(legalCell).getByRole("link", { name: /^Terms of Service$/i })).toHaveAttribute("href", ROUTES.terms);
     expect(within(legalCell).getByRole("link", { name: /^Site Map$/i })).toHaveAttribute("href", ROUTES.sitemap);
     expect(screen.getByRole("button", { name: /back to top/i })).toHaveClass(FOOTER_BACK_TO_TOP_CLASS);
 
-    const logo = within(logoCell).getByRole("img", { name: /Commiters/i });
+    const logoLink = within(logoCell).getByRole("link", { name: /Commiters/i });
+    expect(logoLink).toHaveAttribute("href", ROUTES.home);
+    const logo = within(logoLink).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT });
     expect(logo).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
     expect(logo).toHaveAttribute("height", String(BRAND_LOGO_FOOTER_HEIGHT_PX));
 
-    expect(within(primaryNav).getByRole("link", { name: /^Principles$/i })).toHaveAttribute(
+    expect(within(productsNav).getByRole("link", { name: /OpsFlow AI/i })).toHaveAttribute("href", ROUTES.opsFlow);
+    expect(within(productsNav).getByText(SITE_FOOTER_OPSFLOW_PARSER_BADGE)).toBeInTheDocument();
+    expect(within(productsNav).getByRole("link", { name: /TrustTap/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(within(productsNav).getByText(SITE_FOOTER_TRUSTTAP_PRODUCT_BADGE)).toBeInTheDocument();
+    expect(within(productsNav).getByRole("link", { name: /^Custom Web Applications$/i })).toHaveAttribute(
       "href",
-      `${ROUTES.about}#principles`,
+      "/services/web-applications",
     );
-    expect(within(primaryNav).getByRole("link", { name: /^Core Pillars$/i })).toHaveAttribute(
+    expect(within(companyNav).getByRole("link", { name: /^About Us$/i })).toHaveAttribute("href", ROUTES.about);
+    expect(within(companyNav).getByRole("link", { name: /^Core Pillars$/i })).toHaveAttribute(
       "href",
       `${ROUTES.home}#core-pillars`,
     );
-    expect(within(primaryNav).getByRole("link", { name: /^How We Work$/i })).toHaveAttribute(
+    expect(within(companyNav).getByRole("link", { name: /^How We Work$/i })).toHaveAttribute(
       "href",
       `${ROUTES.about}#how-we-work`,
     );
-    expect(within(primaryNav).getByRole("link", { name: /^Product$/i })).toHaveAttribute("href", ROUTES.trustTap);
-    expect(within(servicesNav).getByRole("link", { name: /^Website Development$/i })).toHaveAttribute(
+    expect(within(companyNav).getByRole("link", { name: /Case Studies \/ Work/i })).toHaveAttribute(
       "href",
-      "/services/website-development",
+      ROUTES.caseStudies,
     );
-    expect(within(companyNav).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
-    expect(within(resourcesNav).getByRole("link", { name: /^Careers$/i })).toHaveAttribute("href", ROUTES.openPositions);
-    expect(within(companyNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
+    expect(within(companyNav).getByRole("link", { name: /Careers/i })).toHaveAttribute("href", ROUTES.openPositions);
+    expect(within(companyNav).getByText(SITE_FOOTER_CAREERS_HIRING_BADGE)).toBeInTheDocument();
+    expect(within(resourcesNav).getByRole("link", { name: /^Blog & Insights$/i })).toHaveAttribute(
+      "href",
+      ROUTES.technicalLedger,
+    );
+    expect(within(resourcesNav).getByRole("link", { name: /^Book Consultation$/i })).toHaveAttribute(
+      "href",
+      buildDiscoveryCallCalendarUrl(),
+    );
     expect(within(socialIcons).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
     expect(within(socialIcons).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
-    expect(within(socialIcons).getByRole("link", { name: /^Instagram$/i })).toHaveAttribute("href", SITE_INSTAGRAM_URL);
-    expect(within(socialIcons).getByRole("link", { name: /^Medium$/i })).toHaveAttribute("href", SITE_MEDIUM_URL);
-    expect(screen.getByText(SITE_FOOTER_COPY.copyrightLine1)).toBeInTheDocument();
+    expect(within(socialIcons).getByRole("link", { name: /^GitHub$/i })).toHaveAttribute("href", SITE_GITHUB_URL);
     expect(within(legalCell).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
     ]);
@@ -115,13 +126,13 @@ describe("Footer", () => {
 
   it("highlights the active route in the navigation columns", () => {
     render(
-      <MemoryRouter initialEntries={["/services/website-development"]}>
+      <MemoryRouter initialEntries={["/work"]}>
         <Footer />
       </MemoryRouter>,
     );
 
-    expect(screen.getByTestId("footer-nav-column-services").querySelector("a.active")).toHaveTextContent(
-      "Website Development",
+    expect(screen.getByTestId("footer-nav-column-company").querySelector("a.active")).toHaveTextContent(
+      "Case Studies / Work",
     );
   });
 

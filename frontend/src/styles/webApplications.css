@@ -1,0 +1,207 @@
+/* Custom web applications landing — responsive slate/indigo layout */
+
+.webapp-page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 calc(-1 * clamp(14px, 2.5vw, 32px));
+  width: calc(100% + 2 * clamp(14px, 2.5vw, 32px));
+  max-width: 100vw;
+  --webapp-indigo: #1d4ed8;
+  --webapp-indigo-rgb: 29, 78, 216;
+  --webapp-slate: #0f172a;
+}
+
+.webapp-section {
+  padding: clamp(40px, 6vw, 88px) clamp(14px, 2.5vw, 32px) clamp(56px, 8vw, 104px);
+  background:
+    radial-gradient(ellipse 80% 55% at 8% 0%, rgba(var(--webapp-indigo-rgb), 0.14), transparent 58%),
+    radial-gradient(ellipse 60% 45% at 100% 10%, rgba(15, 23, 42, 0.08), transparent 50%),
+    linear-gradient(180deg, #eff6ff 0%, #ffffff 42%, #f8fafc 100%);
+}
+
+.webapp-inner {
+  max-width: var(--max-width, 1120px);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.webapp-hero {
+  max-width: 48rem;
+  margin: 0 auto clamp(32px, 5vw, 56px);
+  text-align: center;
+}
+
+.webapp-eyebrow {
+  display: inline-flex;
+  margin: 0 0 16px;
+  padding: 6px 12px;
+  border: 1px solid rgba(var(--webapp-indigo-rgb), 0.22);
+  background: rgba(var(--webapp-indigo-rgb), 0.1);
+  color: var(--webapp-indigo);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.webapp-headline {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 4.4vw, 3.05rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--webapp-slate);
+  overflow-wrap: break-word;
+}
+
+.webapp-subhead {
+  margin: 0 auto 24px;
+  max-width: 42rem;
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.webapp-hero-cta {
+  display: inline-flex;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.webapp-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 0 clamp(32px, 5vw, 56px);
+  padding: 0;
+  list-style: none;
+}
+
+.webapp-card,
+.webapp-standard {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  overflow-wrap: break-word;
+}
+
+.webapp-card h2,
+.webapp-standard h2 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.02rem, 2vw, 1.12rem);
+  font-weight: 700;
+  color: var(--webapp-slate);
+}
+
+.webapp-card p,
+.webapp-standard p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.webapp-standards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 0 clamp(32px, 5vw, 56px);
+  padding: 0;
+  list-style: none;
+}
+
+.webapp-form {
+  display: grid;
+  gap: 16px;
+  max-width: 40rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 36px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  scroll-margin-top: 96px;
+}
+
+.webapp-form h2 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  color: var(--webapp-slate);
+}
+
+.webapp-field {
+  display: grid;
+  gap: 6px;
+}
+
+.webapp-field label {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--webapp-slate);
+}
+
+.webapp-field input,
+.webapp-field textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  color: var(--text);
+  font: inherit;
+}
+
+.webapp-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.webapp-form .btn {
+  width: 100%;
+  justify-content: center;
+  white-space: normal;
+}
+
+@media (min-width: 720px) {
+  .webapp-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .webapp-form .btn {
+    width: auto;
+    justify-self: start;
+  }
+}
+
+@media (min-width: 800px) {
+  .webapp-standards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1080px) {
+  .webapp-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 479px) {
+  .webapp-hero-cta,
+  .webapp-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .webapp-eyebrow {
+    max-width: 100%;
+    letter-spacing: 0.08em;
+    white-space: normal;
+    text-align: center;
+  }
+}

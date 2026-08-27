@@ -1,0 +1,11 @@
+export const AISOL_PAGE_CLASS = "aisol-page" as const;
+export const AISOL_SECTION_CLASS = "aisol-section" as const;
+export const AISOL_INNER_CLASS = "aisol-inner" as const;
+export const AISOL_HERO_CLASS = "aisol-hero" as const;
+export const AISOL_EYEBROW_CLASS = "aisol-eyebrow" as const;
+export const AISOL_HEADLINE_CLASS = "aisol-headline" as const;
+export const AISOL_SUBHEAD_CLASS = "aisol-subhead" as const;
+export const AISOL_CARDS_CLASS = "aisol-cards" as const;
+export const AISOL_CARD_CLASS = "aisol-card" as const;
+export const AISOL_STACK_CLASS = "aisol-stack" as const;
+export const AISOL_CTA_CLASS = "aisol-cta" as const;

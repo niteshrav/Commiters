@@ -1,11 +1,20 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import Layout from "./Layout";
 import ServicesPage from "../pages/ServicesPage";
 import { ROUTES } from "../lib/routes";
+import { HEADER_MENU_BTN_TESTID, MOBILE_NAV_BODY_LOCK_CLASS } from "../lib/mobileNavDrawer";
+import { WHATSAPP_FLOATING_ACTION_TEST_ID } from "../lib/whatsappFloatingAction";
+import { SITE_CHAT_TEST_ID } from "../lib/siteChatCopy";
 
 describe("Layout", () => {
+  afterEach(() => {
+    document.body.classList.remove(MOBILE_NAV_BODY_LOCK_CLASS);
+    document.body.style.overflow = "unset";
+  });
+
   it("wraps pages in a fluid route transition shell", () => {
     render(
       <MemoryRouter initialEntries={["/services"]}>
@@ -51,18 +60,43 @@ describe("Layout", () => {
   });
 
   it("reveals scroll-animated sections with fallback when observer is unavailable", async () => {
+    const OriginalObserver = window.IntersectionObserver;
+    Reflect.deleteProperty(window, "IntersectionObserver");
+
+    try {
+      render(
+        <MemoryRouter initialEntries={["/"]}>
+          <Layout>
+            <section data-testid="demo-reveal" className="reveal-on-scroll">
+              Demo Content
+            </section>
+          </Layout>
+        </MemoryRouter>,
+      );
+
+      await waitFor(() => {
+        expect(screen.getByTestId("demo-reveal")).toHaveClass("reveal-on-scroll", "is-visible");
+      });
+    } finally {
+      window.IntersectionObserver = OriginalObserver;
+    }
+  });
+
+  it("applies the drawer body lock so floating widgets sit behind the open menu", async () => {
+    const user = userEvent.setup();
     render(
-      <MemoryRouter initialEntries={["/"]}>
+      <MemoryRouter>
         <Layout>
-          <section data-testid="demo-reveal" className="reveal-on-scroll">
-            Demo Content
-          </section>
+          <section>Page Content</section>
         </Layout>
       </MemoryRouter>,
     );
 
-    await waitFor(() => {
-      expect(screen.getByTestId("demo-reveal")).toHaveClass("reveal-on-scroll", "is-visible");
-    });
+    expect(screen.getByTestId(WHATSAPP_FLOATING_ACTION_TEST_ID)).toBeInTheDocument();
+    expect(screen.getByTestId(SITE_CHAT_TEST_ID)).toBeInTheDocument();
+    expect(screen.getByTestId("accessibility-widget")).toBeInTheDocument();
+
+    await user.click(screen.getByTestId(HEADER_MENU_BTN_TESTID));
+    expect(document.body).toHaveClass(MOBILE_NAV_BODY_LOCK_CLASS);
   });
 });
