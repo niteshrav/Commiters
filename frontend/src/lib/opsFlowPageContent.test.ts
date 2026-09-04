@@ -1,12 +1,17 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import {
+  formatOpsFlowRemainingLabel,
   OPSFLOW_BOTTOM_CTA,
+  OPSFLOW_DAILY_LIMIT,
   OPSFLOW_DOCUMENT_CATEGORIES,
   OPSFLOW_HERO,
   OPSFLOW_HOW_IT_WORKS,
   OPSFLOW_PREVIEW,
   OPSFLOW_PROCESSING_LABEL,
+  OPSFLOW_QUOTA_BODY,
+  OPSFLOW_QUOTA_CONTACT_EMAIL,
+  OPSFLOW_QUOTA_TITLE,
   OPSFLOW_SECURITY_FOOTER,
   OPSFLOW_SEO,
   OPSFLOW_SUBMIT_LABEL,
@@ -59,5 +64,16 @@ describe("opsFlowPageContent", () => {
     expect(OPSFLOW_PROCESSING_LABEL).toBe("Analyzing document fields with Gemini...");
     expect(OPSFLOW_SECURITY_FOOTER).toMatch(/Google Gemini via Google AI Studio/i);
     expect(OPSFLOW_SECURITY_FOOTER).toMatch(/deleted automatically/i);
+  });
+
+  it("formats remaining extractions and quota copy for the sandbox", () => {
+    expect(OPSFLOW_DAILY_LIMIT).toBe(10);
+    expect(formatOpsFlowRemainingLabel(10)).toBe("Extractions remaining today: 10/10");
+    expect(formatOpsFlowRemainingLabel(7)).toBe("Extractions remaining today: 7/10");
+    expect(formatOpsFlowRemainingLabel(0)).toBe("Extractions remaining today: 0/10");
+    expect(OPSFLOW_QUOTA_TITLE).toMatch(/Daily limit reached/i);
+    expect(OPSFLOW_QUOTA_BODY).toMatch(/10 free extractions/i);
+    expect(OPSFLOW_QUOTA_BODY).toContain("hello@commiters.com");
+    expect(OPSFLOW_QUOTA_CONTACT_EMAIL).toBe("hello@commiters.com");
   });
 });

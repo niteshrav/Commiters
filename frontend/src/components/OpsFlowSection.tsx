@@ -1,12 +1,14 @@
 import { useRef, useState, type DragEvent, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { IconChartLine, IconCheckCircle, IconCloudUpload, IconWorkflow } from "./icons";
+import { IconChartLine, IconCheckCircle, IconClock, IconCloudUpload, IconWorkflow } from "./icons";
 import { OPSFLOW_FILE_ACCEPT, validateOpsFlowLead, type OpsFlowExtractPayload } from "../lib/opsFlowLeadGate";
-import { parseOpsFlowDocument } from "../lib/opsFlowParse";
+import { parseOpsFlowDocument, OpsFlowQuotaError, type OpsFlowParseResult } from "../lib/opsFlowParse";
 import {
+  formatOpsFlowRemainingLabel,
   OPSFLOW_BOTTOM_CTA,
   OPSFLOW_CATEGORY_LABEL,
   OPSFLOW_CATEGORY_PLACEHOLDER,
+  OPSFLOW_DAILY_LIMIT,
   OPSFLOW_DOCUMENT_CATEGORIES,
   OPSFLOW_DROPZONE_HELP,
   OPSFLOW_DROPZONE_LABEL,
@@ -15,6 +17,9 @@ import {
   OPSFLOW_HOW_IT_WORKS,
   OPSFLOW_PREVIEW,
   OPSFLOW_PROCESSING_LABEL,
+  OPSFLOW_QUOTA_BODY,
+  OPSFLOW_QUOTA_CONTACT_EMAIL,
+  OPSFLOW_QUOTA_TITLE,
   OPSFLOW_SECURITY_FOOTER,
   OPSFLOW_SUBMIT_LABEL,
   OPSFLOW_SUCCESS_COPY,
@@ -41,6 +46,8 @@ import {
   OPSFLOW_PANEL_HEADER_CLASS,
   OPSFLOW_PREVIEW_CLASS,
   OPSFLOW_PROGRESS_CLASS,
+  OPSFLOW_QUOTA_CLASS,
+  OPSFLOW_REMAINING_CLASS,
   OPSFLOW_SECTION_CLASS,
   OPSFLOW_STEP_CLASS,
   OPSFLOW_STEPS_CLASS,
@@ -52,7 +59,7 @@ import {
 import { ROUTES } from "../lib/routes";
 
 export type OpsFlowSectionProps = {
-  onExtract?: (payload: OpsFlowExtractPayload) => Promise<void>;
+  onExtract?: (payload: OpsFlowExtractPayload) => Promise<void | OpsFlowParseResult>;
 };
 
 function ValueCardIcon({ icon }: { icon: (typeof OPSFLOW_VALUE_CARDS)[number]["icon"] }) {
@@ -68,8 +75,11 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
   const [category, setCategory] = useState("");
   const [workEmail, setWorkEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [quotaMessage, setQuotaMessage] = useState<string | null>(null);
   const [dragActive, setDragActive] = useState(false);
-  const [status, setStatus] = useState<"idle" | "processing" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "processing" | "success" | "quota">("idle");
+  const [remaining, setRemaining] = useState<number>(OPSFLOW_DAILY_LIMIT);
+  const [dailyLimit, setDailyLimit] = useState<number>(OPSFLOW_DAILY_LIMIT);
 
   function applyFile(nextFile: File | null) {
     setFile(nextFile);
@@ -96,12 +106,26 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
     }
 
     setError(null);
+    setQuotaMessage(null);
     setStatus("processing");
 
     try {
-      await onExtract(result.payload);
+      const extractResult = await onExtract(result.payload);
+      if (extractResult && typeof extractResult.remainingExtractions === "number") {
+        setRemaining(extractResult.remainingExtractions);
+        if (typeof extractResult.dailyLimit === "number" && extractResult.dailyLimit > 0) {
+          setDailyLimit(extractResult.dailyLimit);
+        }
+      }
       setStatus("success");
     } catch (extractError) {
+      if (extractError instanceof OpsFlowQuotaError) {
+        setQuotaMessage(extractError.message);
+        setRemaining(0);
+        setError(null);
+        setStatus("quota");
+        return;
+      }
       const message =
         extractError instanceof Error ? extractError.message : "Something went wrong. Please try again or use the Contact page.";
       setError(message);
@@ -122,6 +146,22 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
           <button className="btn btn-secondary opsflow-success-reset" type="button" onClick={() => setStatus("idle")}>
             Extract another document
           </button>
+        </div>
+      </div>
+    ) : status === "quota" ? (
+      <div className={OPSFLOW_QUOTA_CLASS} role="alert" data-testid="opsflow-quota">
+        <IconClock width={22} height={22} />
+        <div>
+          <p className="opsflow-quota-title">{OPSFLOW_QUOTA_TITLE}</p>
+          <p className="opsflow-quota-body">{quotaMessage ?? OPSFLOW_QUOTA_BODY}</p>
+          <div className="opsflow-quota-actions">
+            <a className="btn btn-secondary" href={`mailto:${OPSFLOW_QUOTA_CONTACT_EMAIL}`}>
+              {OPSFLOW_QUOTA_CONTACT_EMAIL}
+            </a>
+            <Link className="btn btn-primary" to={ROUTES.contact}>
+              {OPSFLOW_ENGINEER_CTA_LABEL}
+            </Link>
+          </div>
         </div>
       </div>
     ) : (
@@ -223,6 +263,9 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
             <aside className={OPSFLOW_PANEL_CLASS} data-testid="opsflow-panel">
               <div className={OPSFLOW_PANEL_CARD_CLASS} data-testid="opsflow-panel-card">
                 <div className={OPSFLOW_PANEL_BODY_CLASS}>
+                  <p className={OPSFLOW_REMAINING_CLASS} data-testid="opsflow-remaining">
+                    {formatOpsFlowRemainingLabel(remaining, dailyLimit)}
+                  </p>
                   {formPanel}
                 </div>
                 <p className={OPSFLOW_TRUST_CLASS}>{OPSFLOW_SECURITY_FOOTER}</p>

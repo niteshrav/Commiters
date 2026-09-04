@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildInquiryPdf, inquiryPdfFilename } from "./inquiryPdf";
+import { buildInquiryPdf, inquiryKindLabel, inquiryPdfFilename } from "./inquiryPdf";
 import type { InquiryNotificationInput } from "./inquiryNotificationTypes";
 
 const sampleInquiry: InquiryNotificationInput = {
@@ -37,5 +37,23 @@ describe("buildInquiryPdf", () => {
 
     expect(pdf.subarray(0, 4).toString()).toBe("%PDF");
     expect(pdf.length).toBeGreaterThan(500);
+  });
+
+  it("labels OpsFlow extractions instead of project inquiries", async () => {
+    const pdf = await buildInquiryPdf({
+      ...sampleInquiry,
+      id: "opsflow_lead_1",
+      kind: "opsflow_extract",
+      name: "hello@commiters.com",
+      email: "hello@commiters.com",
+      serviceOrPosition: "GST Invoices",
+      message: "Work email: hello@commiters.com\nUsage: 3/10",
+    });
+
+    expect(inquiryKindLabel("opsflow_extract")).toBe("OpsFlow Extract");
+    expect(inquiryKindLabel("project_inquiry")).toBe("Project Inquiry");
+    expect(pdf.subarray(0, 4).toString()).toBe("%PDF");
+    expect(pdf.length).toBeGreaterThan(500);
+    expect(inquiryPdfFilename({ id: "opsflow_lead_1" })).toBe("commiters-inquiry-opsflow_lead_1.pdf");
   });
 });

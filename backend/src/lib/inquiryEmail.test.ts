@@ -124,4 +124,31 @@ describe("sendInquiryEmail", () => {
     expect(emailMocks.createTransport).not.toHaveBeenCalled();
     expect(emailMocks.sendMail).not.toHaveBeenCalled();
   });
+
+  it("uses the OpsFlow lead subject and body for document extractions", async () => {
+    const opsFlowLead: InquiryNotificationInput = {
+      ...inquiry,
+      id: "opsflow_lead_1",
+      kind: "opsflow_extract",
+      name: "hello@commiters.com",
+      email: "hello@commiters.com",
+      serviceOrPosition: "GST Invoices",
+      message:
+        "Work email: hello@commiters.com\nDocument category: GST Invoices\nFilename: ticket.pdf\nUsage: 3/10\nTimestamp: 2026-09-04T12:00:00.000Z",
+    };
+
+    await sendInquiryEmail(opsFlowLead, Buffer.from("%PDF-test"));
+
+    expect(emailMocks.sendMail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        subject: "[OpsFlow Lead] New Document Extracted by hello@commiters.com",
+        text: expect.stringMatching(/Work email: hello@commiters.com/),
+      }),
+    );
+    const sendArgs = emailMocks.sendMail.mock.calls[0]?.[0] as { text: string };
+    expect(sendArgs.text).toMatch(/GST Invoices/);
+    expect(sendArgs.text).toMatch(/ticket\.pdf/);
+    expect(sendArgs.text).toMatch(/3\/10/);
+    expect(sendArgs.text).not.toMatch(/project inquiry/i);
+  });
 });

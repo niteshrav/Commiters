@@ -1,4 +1,4 @@
-export type InquiryKind = "project_inquiry" | "job_application";
+export type InquiryKind = "project_inquiry" | "job_application" | "opsflow_extract";
 
 export type InquiryNotificationInput = {
   id: string;

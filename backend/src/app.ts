@@ -90,6 +90,7 @@ export function createApp() {
         return callback(null, false);
       },
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      exposedHeaders: ["X-OpsFlow-Remaining-Extractions", "X-OpsFlow-Daily-Limit"],
     }),
   );
   app.use(express.json({ limit: "256kb" }));

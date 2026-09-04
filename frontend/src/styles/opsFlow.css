@@ -84,12 +84,14 @@
   padding: 0 24px 20px;
 }
 
-.opsflow-panel-card-body:has(.opsflow-success) {
+.opsflow-panel-card-body:has(.opsflow-success),
+.opsflow-panel-card-body:has(.opsflow-quota) {
   padding: 24px;
 }
 
 .opsflow-panel-card .opsflow-form,
-.opsflow-panel-card .opsflow-success {
+.opsflow-panel-card .opsflow-success,
+.opsflow-panel-card .opsflow-quota {
   padding: 0;
   margin: 0;
   border: none;
@@ -385,7 +387,8 @@
 }
 
 .opsflow-form,
-.opsflow-success {
+.opsflow-success,
+.opsflow-quota {
   padding: clamp(22px, 3vw, 28px);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -577,6 +580,54 @@
   justify-content: center;
 }
 
+.opsflow-remaining {
+  margin: 0 0 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(var(--opsflow-indigo-rgb), 0.08);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--opsflow-indigo);
+}
+
+.opsflow-quota {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #9a3412;
+}
+
+.opsflow-quota svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #c2410c;
+}
+
+.opsflow-quota-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #9a3412;
+}
+
+.opsflow-quota-body {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #c2410c;
+}
+
+.opsflow-quota-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.opsflow-quota-actions .btn {
+  justify-content: center;
+}
+
 .opsflow-trust {
   margin: 0;
   text-align: left;
@@ -636,6 +687,7 @@
 [data-theme="dark"] .opsflow-dropzone,
 [data-theme="dark"] .opsflow-form,
 [data-theme="dark"] .opsflow-success,
+[data-theme="dark"] .opsflow-quota,
 [data-theme="dark"] .opsflow-card,
 [data-theme="dark"] .opsflow-step,
 [data-theme="dark"] .opsflow-preview-pane,

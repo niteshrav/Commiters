@@ -5,11 +5,18 @@ import { resolveSmtpConfig } from "./smtpConfig";
 import { teamInboxRecipients } from "./teamInboxes";
 
 function buildSubject(input: InquiryNotificationInput): string {
+  if (input.kind === "opsflow_extract") {
+    return `[OpsFlow Lead] New Document Extracted by ${input.email}`;
+  }
   const label = input.kind === "job_application" ? "Job Application" : "Project Inquiry";
   return `New ${label}: ${input.name}`;
 }
 
 function buildTextBody(input: InquiryNotificationInput): string {
+  if (input.kind === "opsflow_extract") {
+    return ["A new OpsFlow document extraction was submitted on commiters.com.", "", input.message].join("\n");
+  }
+
   const lines = [
     `A new ${input.kind === "job_application" ? "job application" : "project inquiry"} was submitted on commiters.com.`,
     "",

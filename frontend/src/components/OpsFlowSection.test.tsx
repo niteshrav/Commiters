@@ -6,7 +6,9 @@ import { MemoryRouter } from "react-router-dom";
 import OpsFlowSection from "./OpsFlowSection";
 import { OPSFLOW_PERSONAL_EMAIL_ERROR } from "../lib/opsFlowLeadGate";
 import { ROUTES } from "../lib/routes";
+import { OpsFlowQuotaError } from "../lib/opsFlowParse";
 import {
+  formatOpsFlowRemainingLabel,
   OPSFLOW_BOTTOM_CTA,
   OPSFLOW_DOCUMENT_CATEGORIES,
   OPSFLOW_DROPZONE_LABEL,
@@ -15,6 +17,9 @@ import {
   OPSFLOW_HOW_IT_WORKS,
   OPSFLOW_PREVIEW,
   OPSFLOW_PROCESSING_LABEL,
+  OPSFLOW_QUOTA_BODY,
+  OPSFLOW_QUOTA_CONTACT_EMAIL,
+  OPSFLOW_QUOTA_TITLE,
   OPSFLOW_SECURITY_FOOTER,
   OPSFLOW_SUBMIT_LABEL,
   OPSFLOW_VALUE_CARDS,
@@ -63,6 +68,7 @@ describe("OpsFlowSection", () => {
     expect(screen.getByTestId("opsflow-panel-card")).toBeInTheDocument();
     expect(screen.getByTestId("opsflow-bottom-cta")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: OPSFLOW_BOTTOM_CTA.primaryLabel })).toHaveAttribute("href", ROUTES.contact);
+    expect(screen.getByTestId("opsflow-remaining")).toHaveTextContent(formatOpsFlowRemainingLabel(10));
   });
 
   it("warns when a personal email domain is used", async () => {
@@ -112,5 +118,41 @@ describe("OpsFlowSection", () => {
       expect(status).toHaveTextContent(/Extraction Complete/i);
       expect(within(status).getByRole("link", { name: OPSFLOW_ENGINEER_CTA_LABEL })).toHaveAttribute("href", ROUTES.contact);
     });
+  });
+
+  it("updates remaining extractions after a successful parse result", async () => {
+    const user = userEvent.setup();
+    const onExtract = vi.fn().mockResolvedValue({ remainingExtractions: 7, dailyLimit: 10 });
+    renderSection(<OpsFlowSection onExtract={onExtract} />);
+
+    await user.upload(screen.getByTestId("opsflow-file-input"), pdfFile());
+    await user.selectOptions(screen.getByLabelText(/document category/i), "GST Invoices");
+    await user.type(screen.getByLabelText(OPSFLOW_WORK_EMAIL_LABEL), "coo@acme.co.in");
+    await user.click(screen.getByRole("button", { name: OPSFLOW_SUBMIT_LABEL }));
+
+    await waitFor(() => {
+      expect(screen.getByTestId("opsflow-remaining")).toHaveTextContent(formatOpsFlowRemainingLabel(7));
+    });
+  });
+
+  it("shows a quota card with engineer contact when the daily limit is reached", async () => {
+    const user = userEvent.setup();
+    const onExtract = vi.fn().mockRejectedValue(new OpsFlowQuotaError(OPSFLOW_QUOTA_BODY));
+    renderSection(<OpsFlowSection onExtract={onExtract} />);
+
+    await user.upload(screen.getByTestId("opsflow-file-input"), pdfFile());
+    await user.selectOptions(screen.getByLabelText(/document category/i), "GST Invoices");
+    await user.type(screen.getByLabelText(OPSFLOW_WORK_EMAIL_LABEL), "coo@acme.co.in");
+    await user.click(screen.getByRole("button", { name: OPSFLOW_SUBMIT_LABEL }));
+
+    const quota = await screen.findByTestId("opsflow-quota");
+    expect(quota).toHaveTextContent(OPSFLOW_QUOTA_TITLE);
+    expect(quota).toHaveTextContent(/10 free extractions/i);
+    expect(within(quota).getByRole("link", { name: OPSFLOW_QUOTA_CONTACT_EMAIL })).toHaveAttribute(
+      "href",
+      `mailto:${OPSFLOW_QUOTA_CONTACT_EMAIL}`,
+    );
+    expect(within(quota).getByRole("link", { name: OPSFLOW_ENGINEER_CTA_LABEL })).toHaveAttribute("href", ROUTES.contact);
+    expect(screen.getByTestId("opsflow-remaining")).toHaveTextContent(formatOpsFlowRemainingLabel(0));
   });
 });

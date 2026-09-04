@@ -1,8 +1,10 @@
 import PDFDocument from "pdfkit";
 import type { InquiryNotificationInput } from "./inquiryNotificationTypes";
 
-function formatLabel(kind: InquiryNotificationInput["kind"]): string {
-  return kind === "job_application" ? "Job Application" : "Project Inquiry";
+export function inquiryKindLabel(kind: InquiryNotificationInput["kind"]): string {
+  if (kind === "job_application") return "Job Application";
+  if (kind === "opsflow_extract") return "OpsFlow Extract";
+  return "Project Inquiry";
 }
 
 function addLine(doc: InstanceType<typeof PDFDocument>, label: string, value: string) {
@@ -27,7 +29,7 @@ export async function buildInquiryPdf(input: InquiryNotificationInput): Promise<
 
   doc.fontSize(20).font("Helvetica-Bold").text("Commiters");
   doc.moveDown(0.5);
-  doc.fontSize(14).text(`New ${formatLabel(input.kind)}`);
+  doc.fontSize(14).text(`New ${inquiryKindLabel(input.kind)}`);
   doc.moveDown();
 
   addLine(doc, "Reference ID", input.id);
@@ -37,7 +39,7 @@ export async function buildInquiryPdf(input: InquiryNotificationInput): Promise<
   if (input.phone) addLine(doc, "Phone", input.phone);
   addLine(
     doc,
-    input.kind === "job_application" ? "Position" : "Service Needed",
+    input.kind === "job_application" ? "Position" : input.kind === "opsflow_extract" ? "Document Category" : "Service Needed",
     input.serviceOrPosition,
   );
   if (input.budgetRange) addLine(doc, "Budget Range", input.budgetRange);

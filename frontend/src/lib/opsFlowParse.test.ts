@@ -4,7 +4,7 @@ vi.mock("./siteRuntime", () => ({
   getApiBaseUrl: () => "http://localhost:4000",
 }));
 
-import { OPSFLOW_DOWNLOAD_FILENAME, parseOpsFlowDocument } from "./opsFlowParse";
+import { OPSFLOW_DOWNLOAD_FILENAME, OpsFlowQuotaError, parseOpsFlowDocument } from "./opsFlowParse";
 
 describe("parseOpsFlowDocument", () => {
   afterEach(() => {
@@ -18,6 +18,10 @@ describe("parseOpsFlowDocument", () => {
     });
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
+      headers: new Headers({
+        "X-OpsFlow-Remaining-Extractions": "9",
+        "X-OpsFlow-Daily-Limit": "10",
+      }),
       blob: async () => blob,
     });
     vi.stubGlobal("fetch", fetchMock);
@@ -43,7 +47,7 @@ describe("parseOpsFlowDocument", () => {
     });
 
     const file = new File(["%PDF"], "ticket.pdf", { type: "application/pdf" });
-    await parseOpsFlowDocument({
+    const result = await parseOpsFlowDocument({
       file,
       category: "Other",
       workEmail: "hello@commiters.com",
@@ -59,6 +63,7 @@ describe("parseOpsFlowDocument", () => {
     expect(body.get("file")).toBeInstanceOf(File);
     expect(click).toHaveBeenCalled();
     expect(OPSFLOW_DOWNLOAD_FILENAME).toBe("OpsFlow_Extracted_Data.xlsx");
+    expect(result).toEqual({ remainingExtractions: 9, dailyLimit: 10 });
   });
 
   it("surfaces API errors", async () => {
@@ -66,6 +71,7 @@ describe("parseOpsFlowDocument", () => {
       "fetch",
       vi.fn().mockResolvedValue({
         ok: false,
+        status: 400,
         json: async () => ({ error: "Please enter your official work email." }),
       }),
     );
@@ -77,5 +83,34 @@ describe("parseOpsFlowDocument", () => {
         workEmail: "ops@gmail.com",
       }),
     ).rejects.toThrow(/work email/i);
+  });
+
+  it("throws OpsFlowQuotaError when the daily limit is reached", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: false,
+        status: 429,
+        json: async () => ({
+          success: false,
+          error:
+            "Daily limit reached. You have used your 10 free extractions for today. Need high-volume automated pipelines? Contact us at hello@commiters.com.",
+        }),
+      }),
+    );
+
+    const thrown = await parseOpsFlowDocument({
+      file: new File(["%PDF"], "ticket.pdf", { type: "application/pdf" }),
+      category: "Other",
+      workEmail: "hello@commiters.com",
+    }).catch((error: unknown) => error);
+
+    expect(thrown).toBeInstanceOf(OpsFlowQuotaError);
+    expect(thrown).toMatchObject({
+      name: "OpsFlowQuotaError",
+      status: 429,
+    });
+    expect((thrown as Error).message).toMatch(/Daily limit reached/i);
+    expect((thrown as Error).message).toContain("hello@commiters.com");
   });
 });

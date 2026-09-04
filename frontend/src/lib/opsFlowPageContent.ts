@@ -112,3 +112,13 @@ export const OPSFLOW_SUCCESS_COPY =
 export const OPSFLOW_ENGINEER_CTA_LABEL = "Talk to an Engineer" as const;
 export const OPSFLOW_SECURITY_FOOTER =
   "Powered by Google Gemini via Google AI Studio. 100% Confidential — files are processed securely and deleted automatically after extraction." as const;
+
+export const OPSFLOW_DAILY_LIMIT = 10 as const;
+export const OPSFLOW_QUOTA_CONTACT_EMAIL = "hello@commiters.com" as const;
+export const OPSFLOW_QUOTA_TITLE = "Daily limit reached" as const;
+export const OPSFLOW_QUOTA_BODY =
+  "Daily limit reached. You have used your 10 free extractions for today. Need high-volume automated pipelines? Contact us at hello@commiters.com." as const;
+
+export function formatOpsFlowRemainingLabel(remaining: number, limit: number = OPSFLOW_DAILY_LIMIT): string {
+  return `Extractions remaining today: ${remaining}/${limit}`;
+}
