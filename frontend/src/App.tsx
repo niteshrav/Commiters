@@ -43,6 +43,8 @@ export default function App() {
         <Route path={ROUTES.aiOperationalAudit} element={<AiOperationalAuditPage />} />
         <Route path={ROUTES.aiSolutions} element={<AiSolutionsPage />} />
         <Route path={ROUTES.webApplications} element={<WebApplicationsPage />} />
+        <Route path={ROUTES.aiSolutionsLegacy} element={<Navigate to={ROUTES.aiSolutions} replace />} />
+        <Route path={ROUTES.webApplicationsLegacy} element={<Navigate to={ROUTES.webApplications} replace />} />
         <Route path={ROUTES.workflowAutomation} element={<WorkflowAutomationPage />} />
         <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
         <Route path={ROUTES.caseStudies} element={<CaseStudiesPage />} />

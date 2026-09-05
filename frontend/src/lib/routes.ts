@@ -25,8 +25,12 @@ export const ROUTES = {
   opsFlow: "/products/opsflow",
   opsFlowPlayground: "/opsflow",
   aiOperationalAudit: "/services/ai-operational-audit",
-  aiSolutions: "/services/ai-solutions",
-  webApplications: "/services/web-applications",
+  aiSolutions: "/services/ai-pipeline-engineering",
+  /** Legacy URL — redirect to AI pipeline engineering */
+  aiSolutionsLegacy: "/services/ai-solutions",
+  webApplications: "/services/b2b-web-applications",
+  /** Legacy URL — redirect to B2B web applications */
+  webApplicationsLegacy: "/services/web-applications",
   workflowAutomation: "/services/workflow-automation",
   contact: "/contact",
   joinUs: "/join-us",

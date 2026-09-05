@@ -8,4 +8,5 @@ export const AISOL_SUBHEAD_CLASS = "aisol-subhead" as const;
 export const AISOL_CARDS_CLASS = "aisol-cards" as const;
 export const AISOL_CARD_CLASS = "aisol-card" as const;
 export const AISOL_STACK_CLASS = "aisol-stack" as const;
-export const AISOL_CTA_CLASS = "aisol-cta" as const;
+export const AISOL_FORM_CLASS = "aisol-form" as const;
+export const AISOL_FIELD_CLASS = "aisol-field" as const;

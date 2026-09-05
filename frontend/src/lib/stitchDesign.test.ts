@@ -81,7 +81,7 @@ describe("stitchDesign", () => {
   });
 
   it("exposes hero and nav copy from the light Stitch UI", () => {
-    expect(STITCH_COPY.navCta).toBe("Start Project");
+    expect(STITCH_COPY.navCta).toBe("Book Operational Audit");
     expect(STITCH_COPY.home.title).toBe("Code Your Success");
     expect(STITCH_COPY.services.kicker).toBe("OUR EXPERTISE");
     expect(STITCH_COPY.contact.formTitle).toBe("Direct Inquiry");

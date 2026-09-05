@@ -19,8 +19,10 @@ describe("routes", () => {
     expect(ROUTES.opsFlow).toBe("/products/opsflow");
     expect(ROUTES.opsFlowPlayground).toBe("/opsflow");
     expect(ROUTES.aiOperationalAudit).toBe("/services/ai-operational-audit");
-    expect(ROUTES.aiSolutions).toBe("/services/ai-solutions");
-    expect(ROUTES.webApplications).toBe("/services/web-applications");
+    expect(ROUTES.aiSolutions).toBe("/services/ai-pipeline-engineering");
+    expect(ROUTES.aiSolutionsLegacy).toBe("/services/ai-solutions");
+    expect(ROUTES.webApplications).toBe("/services/b2b-web-applications");
+    expect(ROUTES.webApplicationsLegacy).toBe("/services/web-applications");
     expect(ROUTES.workflowAutomation).toBe("/services/workflow-automation");
     expect(ROUTES.services).toBe("/services");
     expect(ROUTES.joinUs).toBe("/join-us");

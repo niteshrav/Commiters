@@ -65,6 +65,7 @@ describe("sendInquiryEmail", () => {
       expect.objectContaining({
         to: [...teamInboxRecipients()],
         subject: expect.stringMatching(/New Project Inquiry/i),
+        text: expect.stringContaining("B2B Lead Card"),
         attachments: [
           expect.objectContaining({
             filename: "commiters-inquiry-lead_email_1.pdf",
@@ -79,8 +80,12 @@ describe("sendInquiryEmail", () => {
   it("routes inquiry alerts to hello@commiters.com and commitersudaipur@gmail.com", async () => {
     await sendInquiryEmail(inquiry, Buffer.from("%PDF-test"));
 
-    const sendArgs = emailMocks.sendMail.mock.calls[0]?.[0] as { to: string[] };
+    const sendArgs = emailMocks.sendMail.mock.calls[0]?.[0] as { to: string[]; text: string };
     expect(sendArgs.to).toEqual(["hello@commiters.com", "commitersudaipur@gmail.com"]);
+    expect(sendArgs.text).toContain("Client Email: jane@company.com");
+    expect(sendArgs.text).toContain("Company Domain: company.com");
+    expect(sendArgs.text).toContain("Interest: Web App");
+    expect(sendArgs.text).toContain("Suggested Next Action: Schedule Scoping Call");
   });
 
   it("attaches the applicant resume PDF for job applications", async () => {
@@ -146,6 +151,9 @@ describe("sendInquiryEmail", () => {
       }),
     );
     const sendArgs = emailMocks.sendMail.mock.calls[0]?.[0] as { text: string };
+    expect(sendArgs.text).toContain("B2B Lead Card");
+    expect(sendArgs.text).toContain("Interest: OpsFlow Lead");
+    expect(sendArgs.text).toContain("Suggested Next Action: Send Audit Pitch");
     expect(sendArgs.text).toMatch(/GST Invoices/);
     expect(sendArgs.text).toMatch(/ticket\.pdf/);
     expect(sendArgs.text).toMatch(/3\/10/);

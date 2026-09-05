@@ -7,6 +7,7 @@ import {
   AI_OPERATIONAL_AUDIT_DELIVERABLES,
   AI_OPERATIONAL_AUDIT_FORM,
   AI_OPERATIONAL_AUDIT_HERO,
+  AI_OPERATIONAL_AUDIT_PRICING,
   AI_OPERATIONAL_AUDIT_PROCESS,
 } from "../lib/aiOperationalAuditPageContent";
 import {
@@ -18,11 +19,13 @@ import {
   AUDIT_HEADLINE_CLASS,
   AUDIT_HERO_CLASS,
   AUDIT_INNER_CLASS,
+  AUDIT_PRICING_CLASS,
   AUDIT_SECTION_CLASS,
   AUDIT_SUBHEAD_CLASS,
   AUDIT_TIMELINE_CLASS,
 } from "../lib/aiOperationalAuditPageLayout";
 import { sanitizeNameInput } from "../lib/contactValidation";
+import { FROSTED_GLASS_CLASS_NAME } from "../lib/frostedGlass";
 import { ROUTES } from "../lib/routes";
 
 export default function AiOperationalAuditSection() {
@@ -75,9 +78,16 @@ export default function AiOperationalAuditSection() {
           </a>
         </div>
 
+        <aside className={`${AUDIT_PRICING_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} data-testid="audit-pricing">
+          <h2>{AI_OPERATIONAL_AUDIT_PRICING.title}</h2>
+          <p className="audit-pricing-engagement">{AI_OPERATIONAL_AUDIT_PRICING.engagement}</p>
+          <p className="audit-pricing-range">{AI_OPERATIONAL_AUDIT_PRICING.range}</p>
+          <p>{AI_OPERATIONAL_AUDIT_PRICING.summary}</p>
+        </aside>
+
         <ul className={AUDIT_CARDS_CLASS} data-testid="audit-deliverables">
           {AI_OPERATIONAL_AUDIT_DELIVERABLES.map((card) => (
-            <li key={card.id} className={AUDIT_CARD_CLASS}>
+            <li key={card.id} className={`${AUDIT_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}>
               <h2>{card.title}</h2>
               <p>{card.body}</p>
             </li>
@@ -86,14 +96,14 @@ export default function AiOperationalAuditSection() {
 
         <ol className={AUDIT_TIMELINE_CLASS} data-testid="audit-process">
           {AI_OPERATIONAL_AUDIT_PROCESS.map((step) => (
-            <li key={step.id} className="audit-timeline-step">
+            <li key={step.id} className={`audit-timeline-step ${FROSTED_GLASS_CLASS_NAME}`}>
               <span className="audit-timeline-week">{step.week}</span>
               <p>{step.body}</p>
             </li>
           ))}
         </ol>
 
-        <form id="audit-booking" className={AUDIT_FORM_CLASS} onSubmit={onSubmit} aria-label="AI Operational Audit booking">
+        <form id="audit-booking" className={`${AUDIT_FORM_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} onSubmit={onSubmit} aria-label="AI Operational Audit booking">
           <h2>{AI_OPERATIONAL_AUDIT_FORM.title}</h2>
           <div className={AUDIT_FIELD_CLASS}>
             <label htmlFor="audit-name">{AI_OPERATIONAL_AUDIT_FORM.nameLabel}</label>

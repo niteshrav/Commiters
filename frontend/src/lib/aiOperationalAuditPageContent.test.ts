@@ -5,6 +5,7 @@ import {
   AI_OPERATIONAL_AUDIT_DELIVERABLES,
   AI_OPERATIONAL_AUDIT_FORM,
   AI_OPERATIONAL_AUDIT_HERO,
+  AI_OPERATIONAL_AUDIT_PRICING,
   AI_OPERATIONAL_AUDIT_PROCESS,
   AI_OPERATIONAL_AUDIT_SEO,
 } from "./aiOperationalAuditPageContent";
@@ -14,34 +15,39 @@ describe("aiOperationalAuditPageContent", () => {
     expect(AI_OPERATIONAL_AUDIT_SEO.path).toBe(ROUTES.aiOperationalAudit);
     expect(AI_OPERATIONAL_AUDIT_SEO.path).toBe("/services/ai-operational-audit");
     expect(AI_OPERATIONAL_AUDIT_SEO.title).toMatch(/AI Operational Audit/i);
-    expect(AI_OPERATIONAL_AUDIT_SEO.description).toMatch(/20\+ hours/i);
+    expect(AI_OPERATIONAL_AUDIT_SEO.description).toMatch(/2-week/i);
   });
 
-  it("uses the 2-week diagnostic hero copy", () => {
+  it("uses the 2-week cash-generator hero and value proposition", () => {
     expect(AI_OPERATIONAL_AUDIT_HERO.eyebrow).toBe("2-WEEK FIXED DIAGNOSTIC ENGAGEMENT");
     expect(AI_OPERATIONAL_AUDIT_HERO.headline).toBe(
-      "Identify & Eliminate Back-Office Bottlenecks with AI Operational Engineering",
+      "Eliminate Back-Office Bottlenecks with a 2-Week AI Operational Audit.",
     );
     expect(AI_OPERATIONAL_AUDIT_HERO.subheadline).toBe(
-      "We audit your manual workflows, spreadsheet dependencies, and legacy bottlenecks to deliver a blueprint and working prototype that saves 20+ hours per week.",
+      "We shadow your back-office workflows, identify manual spreadsheet friction, and build a live working AI automation prototype.",
     );
-    expect(AI_OPERATIONAL_AUDIT_CTA_LABEL).toBe("Book an AI Operational Audit ($3,000 - $5,000)");
+    expect(AI_OPERATIONAL_AUDIT_CTA_LABEL).toBe("Book Operational Audit");
   });
 
-  it("lists four deliverable cards and a two-week process", () => {
+  it("publishes a fixed-scope dual-currency pricing block", () => {
+    expect(AI_OPERATIONAL_AUDIT_PRICING.title).toBe("Pricing & Scope");
+    expect(AI_OPERATIONAL_AUDIT_PRICING.engagement).toBe("Fixed-scope 2-week engagement");
+    expect(AI_OPERATIONAL_AUDIT_PRICING.range).toBe("$3,000–$5,000 / ₹35,000–₹50,000");
+    expect(AI_OPERATIONAL_AUDIT_PRICING.summary).toBe(
+      "Fixed-scope 2-week engagement ($3,000–$5,000 / ₹35,000–₹50,000).",
+    );
+  });
+
+  it("lists three deliverable cards and a two-week process", () => {
     expect(AI_OPERATIONAL_AUDIT_DELIVERABLES.map((card) => card.title)).toEqual([
-      "Bottleneck Mapping",
-      "AI Architecture Spec",
-      "Working Proof-of-Concept",
-      "ROI & Execution Roadmap",
+      "Workflow Bottleneck Diagnostic Map",
+      "Working AI / Automation Prototype",
+      "ROI & Implementation Roadmap",
     ]);
-    expect(AI_OPERATIONAL_AUDIT_DELIVERABLES[0]?.body).toMatch(/visual flowchart/i);
-    expect(AI_OPERATIONAL_AUDIT_DELIVERABLES[1]?.body).toMatch(/GCP & Vertex AI/i);
-    expect(AI_OPERATIONAL_AUDIT_DELIVERABLES[2]?.body).toMatch(/14-day prototype/i);
-    expect(AI_OPERATIONAL_AUDIT_DELIVERABLES[3]?.body).toMatch(/hours saved/i);
+    expect(AI_OPERATIONAL_AUDIT_DELIVERABLES.every((card) => card.body.trim().length > 24)).toBe(true);
     expect(AI_OPERATIONAL_AUDIT_PROCESS.map((step) => step.week)).toEqual(["Week 1", "Week 2"]);
-    expect(AI_OPERATIONAL_AUDIT_PROCESS[0]?.body).toMatch(/Discovery/i);
-    expect(AI_OPERATIONAL_AUDIT_PROCESS[1]?.body).toMatch(/Prototype Build/i);
+    expect(AI_OPERATIONAL_AUDIT_PROCESS[0]?.body).toMatch(/shadow/i);
+    expect(AI_OPERATIONAL_AUDIT_PROCESS[1]?.body).toMatch(/prototype/i);
   });
 
   it("defines booking form labels for work-email gated intake", () => {
@@ -50,5 +56,6 @@ describe("aiOperationalAuditPageContent", () => {
     expect(AI_OPERATIONAL_AUDIT_FORM.companyLabel).toBe("Company Name");
     expect(AI_OPERATIONAL_AUDIT_FORM.bottleneckLabel).toBe("Current Manual Bottleneck Description");
     expect(AI_OPERATIONAL_AUDIT_FORM.submitLabel).toBe(AI_OPERATIONAL_AUDIT_CTA_LABEL);
+    expect(AI_OPERATIONAL_AUDIT_FORM.budgetRange).toBe("$3,000–$5,000 / ₹35,000–₹50,000");
   });
 });

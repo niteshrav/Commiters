@@ -27,7 +27,7 @@ export const STITCH_THANK_YOU_PREVIEW_URL =
 
 /** Copy and labels from Stitch preview screenshots. */
 export const STITCH_COPY = {
-  navCta: "Start Project",
+  navCta: "Book Operational Audit",
   engineeringPrecision: "ENGINEERING PRECISION",
   home: {
     title: "Code Your Success",

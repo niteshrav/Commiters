@@ -9,6 +9,7 @@ const mocks = vi.hoisted(() => ({
   recordOpsFlowExtraction: vi.fn(),
   dispatchInquiryNotifications: vi.fn(),
   createSubmissionRef: vi.fn(),
+  saveInternalLead: vi.fn(),
 }));
 
 vi.mock("../lib/opsFlowGemini", () => ({
@@ -33,6 +34,11 @@ vi.mock("../lib/inquirySubmissionRef", () => ({
   createSubmissionRef: mocks.createSubmissionRef,
 }));
 
+vi.mock("../lib/internalLeads", () => ({
+  saveInternalLead: mocks.saveInternalLead,
+  listInternalLeads: vi.fn(),
+}));
+
 import { createApp } from "../app";
 import { OPSFLOW_DAILY_LIMIT, OPSFLOW_QUOTA_ERROR } from "../lib/opsFlowQuota";
 
@@ -53,6 +59,7 @@ function stubSuccessfulExtract() {
   mocks.getOpsFlowDailyCount.mockResolvedValue(0);
   mocks.recordOpsFlowExtraction.mockResolvedValue({ count: 1, remaining: 9, utcDate: "2026-09-04" });
   mocks.dispatchInquiryNotifications.mockResolvedValue(undefined);
+  mocks.saveInternalLead.mockResolvedValue({ status: "NEW" });
   mocks.createSubmissionRef.mockReturnValue({
     id: "opsflow_lead_1",
     submittedAt: new Date("2026-09-04T12:00:00.000Z"),
@@ -69,6 +76,7 @@ describe("POST /api/opsflow/parse", () => {
     mocks.recordOpsFlowExtraction.mockReset();
     mocks.dispatchInquiryNotifications.mockReset();
     mocks.createSubmissionRef.mockReset();
+    mocks.saveInternalLead.mockReset();
   });
 
   it("rejects personal email domains before calling Gemini", async () => {
@@ -113,6 +121,13 @@ describe("POST /api/opsflow/parse", () => {
         kind: "opsflow_extract",
         email: "hello@commiters.com",
         serviceOrPosition: "Other",
+      }),
+    );
+    expect(mocks.saveInternalLead).toHaveBeenCalledWith(
+      expect.objectContaining({
+        source: "opsflow",
+        email: "hello@commiters.com",
+        serviceNeeded: "Other",
       }),
     );
   });

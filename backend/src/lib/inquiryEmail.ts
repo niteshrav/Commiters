@@ -1,8 +1,15 @@
 import nodemailer from "nodemailer";
+import { buildB2bLeadCard, type LeadSource } from "./b2bLeadCard";
 import type { InquiryNotificationInput } from "./inquiryNotificationTypes";
 import { inquiryPdfFilename } from "./inquiryPdf";
 import { resolveSmtpConfig } from "./smtpConfig";
 import { teamInboxRecipients } from "./teamInboxes";
+
+function leadSourceForInquiry(kind: InquiryNotificationInput["kind"]): LeadSource | undefined {
+  if (kind === "opsflow_extract") return "opsflow";
+  if (kind === "project_inquiry") return "lead";
+  return undefined;
+}
 
 function buildSubject(input: InquiryNotificationInput): string {
   if (input.kind === "opsflow_extract") {
@@ -13,11 +20,29 @@ function buildSubject(input: InquiryNotificationInput): string {
 }
 
 function buildTextBody(input: InquiryNotificationInput): string {
+  const source = leadSourceForInquiry(input.kind);
+  const leadCard = source
+    ? buildB2bLeadCard({
+        email: input.email,
+        serviceNeeded: input.serviceOrPosition,
+        source,
+      }).text
+    : null;
+
   if (input.kind === "opsflow_extract") {
-    return ["A new OpsFlow document extraction was submitted on commiters.com.", "", input.message].join("\n");
+    return [
+      leadCard,
+      "",
+      "A new OpsFlow document extraction was submitted on commiters.com.",
+      "",
+      input.message,
+    ]
+      .filter((line) => line !== null)
+      .join("\n");
   }
 
   const lines = [
+    ...(leadCard ? [leadCard, ""] : []),
     `A new ${input.kind === "job_application" ? "job application" : "project inquiry"} was submitted on commiters.com.`,
     "",
     `Name: ${input.name}`,

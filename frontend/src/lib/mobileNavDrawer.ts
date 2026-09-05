@@ -1,5 +1,6 @@
 import { ROUTES } from "./routes";
 import { SITE_FOOTER_CONNECT_LINKS } from "./siteFooterCopy";
+import { SERVICE_MEGA_CARDS } from "./navSections";
 
 export const MOBILE_NAV_DRAWER_TESTID = "nav-mobile-drawer" as const;
 export const MOBILE_NAV_CLOSE_BTN_TESTID = "nav-mobile-close-btn" as const;
@@ -15,6 +16,7 @@ export type MobileNavDrawerChildLink = {
   id: string;
   label: string;
   to: string;
+  description: string;
 };
 
 export type MobileNavDrawerItem =
@@ -31,19 +33,22 @@ export type MobileNavDrawerItem =
       children: readonly MobileNavDrawerChildLink[];
     };
 
-export const MOBILE_NAV_PRODUCT_LINKS = [
-  { id: "opsflow", label: "OpsFlow AI", to: ROUTES.opsFlow },
-  { id: "trusttap", label: "TrustTap", to: ROUTES.trustTap },
-] as const satisfies readonly MobileNavDrawerChildLink[];
+export const MOBILE_NAV_SERVICE_LINKS: readonly MobileNavDrawerChildLink[] = SERVICE_MEGA_CARDS.map((card) => ({
+  id: card.id,
+  label: card.label,
+  to: card.to,
+  description: card.description,
+}));
 
-export const MOBILE_NAV_DRAWER_ITEMS = [
-  { id: "products", label: "Products", expandable: true, children: MOBILE_NAV_PRODUCT_LINKS },
-  { id: "services", label: "Services", to: ROUTES.services },
-  { id: "work", label: "Work", to: ROUTES.caseStudies },
+export const MOBILE_NAV_DRAWER_ITEMS: readonly MobileNavDrawerItem[] = [
+  { id: "services", label: "Services", expandable: true, children: MOBILE_NAV_SERVICE_LINKS },
   { id: "about", label: "About", to: ROUTES.about },
+  { id: "work", label: "Work", to: ROUTES.caseStudies },
+  { id: "trusttap", label: "TrustTap", to: ROUTES.trustTap },
+  { id: "opsflow", label: "OpsFlow AI", to: ROUTES.opsFlow },
   { id: "contact", label: "Contact", to: ROUTES.contact },
   { id: "careers", label: "Careers", to: ROUTES.openPositions },
-] as const satisfies readonly MobileNavDrawerItem[];
+];
 
 export const MOBILE_NAV_DRAWER_PRIMARY_LABELS = MOBILE_NAV_DRAWER_ITEMS.map((item) => item.label);
 

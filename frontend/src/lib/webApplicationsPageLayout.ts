@@ -7,6 +7,6 @@ export const WEBAPP_HEADLINE_CLASS = "webapp-headline" as const;
 export const WEBAPP_SUBHEAD_CLASS = "webapp-subhead" as const;
 export const WEBAPP_CARDS_CLASS = "webapp-cards" as const;
 export const WEBAPP_CARD_CLASS = "webapp-card" as const;
-export const WEBAPP_STANDARDS_CLASS = "webapp-standards" as const;
+export const WEBAPP_STACK_CLASS = "webapp-stack" as const;
 export const WEBAPP_FORM_CLASS = "webapp-form" as const;
 export const WEBAPP_FIELD_CLASS = "webapp-field" as const;

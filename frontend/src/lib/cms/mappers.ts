@@ -85,7 +85,7 @@ export function resolveNavbar(cmsNavbar: Record<string, unknown> | null | undefi
       logoAlt: COMMITERS_HEADER_LOGO_ALT,
       navItems: fallbackNav,
       ctaLabel: STITCH_COPY.navCta,
-      ctaUrl: ROUTES.contact,
+      ctaUrl: ROUTES.aiOperationalAudit,
     };
   }
 
@@ -116,7 +116,7 @@ export function resolveNavbar(cmsNavbar: Record<string, unknown> | null | undefi
     logoAlt: asString(cmsNavbar.logoAlt, COMMITERS_HEADER_LOGO_ALT),
     navItems,
     ctaLabel: asString(cmsNavbar.ctaLabel, STITCH_COPY.navCta),
-    ctaUrl: asString(cmsNavbar.ctaUrl, ROUTES.contact),
+    ctaUrl: asString(cmsNavbar.ctaUrl, ROUTES.aiOperationalAudit),
   };
 }
 

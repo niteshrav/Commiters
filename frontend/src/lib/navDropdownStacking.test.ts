@@ -27,10 +27,10 @@ describe("navDropdownStacking (styles contract)", () => {
     expect(header).toMatch(/overflow:\s*visible/);
   });
 
-  it("lays out the Services mega-menu as a four-column grouped grid", () => {
-    const grouped = ruleBlock(".nav-item-dropdown-panel--grouped {", ".nav-mega-column {");
-    expect(grouped).toMatch(/display:\s*grid/);
-    expect(grouped).toMatch(/grid-template-columns:\s*repeat\(4/);
+  it("lays out the Services mega-menu as a four-column rich-card grid", () => {
+    const mega = ruleBlock(".nav-item-dropdown-panel--mega-cards {", ".nav-item-dropdown-panel--mega-cards .nav-dropdown-link--stacked {");
+    expect(mega).toMatch(/display:\s*grid/);
+    expect(mega).toMatch(/grid-template-columns:\s*repeat\(4/);
   });
 
   it("styles card dropdowns with stacked titles, muted descriptions, and rounded panels", () => {
@@ -40,13 +40,17 @@ describe("navDropdownStacking (styles contract)", () => {
   });
 
   it("uses frosted-glass panels, subtle item hover, and a fade-drop entrance", () => {
-    const panel = ruleBlock(".nav-item-dropdown-panel {", ".nav-item-dropdown-panel--fixed {");
-    expect(panel).toMatch(/background:\s*rgba\(var\(--white-rgb\),\s*0\.9\)/);
+    const panel = ruleBlock(".nav-item-dropdown-panel {", ".nav-item-dropdown-panel.backdrop-blur-md {");
+    expect(panel).toMatch(/background:\s*rgba\(255,\s*255,\s*255,\s*0\.8\)/);
     expect(panel).toMatch(/backdrop-filter:\s*blur\(12px\)/);
-    expect(panel).toMatch(/border:\s*1px solid var\(--border\)/);
+    expect(panel).toMatch(/border:\s*1px solid rgba\(226,\s*232,\s*240,\s*0\.5\)/);
     expect(panel).toMatch(/box-shadow:\s*var\(--shadow\)/);
-    expect(panel).not.toMatch(/#f8fafc|#e2e8f0|rgba\(226,\s*232,\s*240/);
 
+    expect(css).toMatch(/\.nav-item-dropdown-panel\.backdrop-blur-md\s*\{[^}]*backdrop-filter:\s*blur\(12px\)/s);
+    expect(css).toMatch(/\.nav-item-dropdown-panel\.bg-white\\\/80\s*\{[^}]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.8\)/s);
+    expect(css).toMatch(
+      /\[data-theme="dark"\] \.nav-item-dropdown-panel\.dark\\:bg-slate-900\\\/80\s*\{[^}]*background:\s*rgba\(15,\s*23,\s*42,\s*0\.8\)/s,
+    );
     expect(css).toMatch(
       /\.nav-item-dropdown-panel \.nav-dropdown-link:hover\s*\{[^}]*background:\s*var\(--navy-soft\)/s,
     );
@@ -55,7 +59,7 @@ describe("navDropdownStacking (styles contract)", () => {
     expect(css).toMatch(/\.nav-item-dropdown-panel \.nav-dropdown-link\s*\{[^}]*transition:[^}]*150ms/s);
     expect(css).toMatch(/@keyframes nav-dropdown-enter[\s\S]*opacity:\s*0[\s\S]*translateY\(-8px\)/);
     expect(css).toMatch(/\.nav-item-dropdown-panel--fixed\s*\{[^}]*animation:\s*nav-dropdown-enter 200ms ease-out/s);
-    expect(css).not.toMatch(/rgba\(15,\s*23,\s*42,\s*0\.9\)/);
-    expect(css).not.toMatch(/rgba\(241,\s*245,\s*249,\s*0\.7\)/);
+    expect(css).toMatch(/\.nav-item-dropdown-panel--glass\s*\{[^}]*backdrop-filter:\s*blur\(12px\)/s);
+    expect(css).toMatch(/\.nav-dropdown-link-label\s*\{[^}]*font-weight:\s*700/s);
   });
 });

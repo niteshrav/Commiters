@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import {
-  AI_SOLUTIONS_BOTTOM_CTA,
   AI_SOLUTIONS_CTA_LABEL,
+  AI_SOLUTIONS_FORM,
   AI_SOLUTIONS_HERO,
   AI_SOLUTIONS_OFFERINGS,
   AI_SOLUTIONS_SEO,
@@ -10,41 +10,40 @@ import {
 } from "./aiSolutionsPageContent";
 
 describe("aiSolutionsPageContent", () => {
-  it("defines SEO metadata for the Gen AI service page", () => {
+  it("defines SEO metadata for the AI pipeline engineering page", () => {
     expect(AI_SOLUTIONS_SEO.path).toBe(ROUTES.aiSolutions);
-    expect(AI_SOLUTIONS_SEO.path).toBe("/services/ai-solutions");
-    expect(AI_SOLUTIONS_SEO.title).toMatch(/Generative AI/i);
-    expect(AI_SOLUTIONS_SEO.description).toMatch(/Vertex AI/i);
+    expect(AI_SOLUTIONS_SEO.path).toBe("/services/ai-pipeline-engineering");
+    expect(AI_SOLUTIONS_SEO.title).toMatch(/AI Pipeline Engineering/i);
+    expect(AI_SOLUTIONS_SEO.description).toMatch(/document parsing|LLM/i);
   });
 
-  it("uses the enterprise Gen AI hero copy", () => {
-    expect(AI_SOLUTIONS_HERO.eyebrow).toBe("ENTERPRISE-GRADE GEN AI INTEGRATIONS");
-    expect(AI_SOLUTIONS_HERO.headline).toBe("Custom Generative AI Pipelines Built for Your Specific Business Logic");
+  it("uses the enterprise document-parsing hero copy", () => {
+    expect(AI_SOLUTIONS_HERO.eyebrow).toBe("ENTERPRISE-GRADE DOCUMENT PARSING");
+    expect(AI_SOLUTIONS_HERO.headline).toBe("Enterprise-Grade Document Parsing & LLM Workflows Built for Speed.");
     expect(AI_SOLUTIONS_HERO.subheadline).toBe(
-      "We connect Google Vertex AI, Gemini 1.5, and fine-tuned LLMs directly into your databases, web apps, and operational workflows.",
+      "We design custom extraction pipelines for Indian GST/PAN documents, wire Gemini and Claude into your operations, and keep the backend free of vendor lock-in.",
     );
-    expect(AI_SOLUTIONS_CTA_LABEL).toBe("Explore Custom AI Solutions");
+    expect(AI_SOLUTIONS_CTA_LABEL).toBe("Schedule Technical Scoping Call");
   });
 
-  it("lists three core offerings, a cloud stack banner, and a closing CTA", () => {
+  it("lists GST/PAN extraction, Gemini/Claude, and zero-lock-in features", () => {
     expect(AI_SOLUTIONS_OFFERINGS.map((card) => card.title)).toEqual([
-      "Intelligent Document Processing",
-      "Knowledge Base & Vector Search (RAG)",
-      "Automated Workflow Agents",
+      "Custom Document Extraction",
+      "Gemini & Claude Integrations",
+      "Zero Vendor-Lock-In Architecture",
     ]);
-    expect(AI_SOLUTIONS_OFFERINGS[0]?.body).toMatch(/ERP\/Database/i);
-    expect(AI_SOLUTIONS_OFFERINGS[1]?.body).toMatch(/LLM-powered search/i);
-    expect(AI_SOLUTIONS_OFFERINGS[2]?.body).toMatch(/triage emails/i);
+    expect(AI_SOLUTIONS_OFFERINGS[0]?.body).toMatch(/GST\/PAN/i);
+    expect(AI_SOLUTIONS_OFFERINGS[1]?.body).toMatch(/Gemini/i);
+    expect(AI_SOLUTIONS_OFFERINGS[1]?.body).toMatch(/Claude/i);
+    expect(AI_SOLUTIONS_OFFERINGS[2]?.body).toMatch(/vendor[- ]lock/i);
     expect(AI_SOLUTIONS_STACK.map((item) => item.label)).toEqual([
-      "Google Cloud Run",
-      "Vertex AI",
-      "Gemini 1.5",
-      "PostgreSQL",
-      "Python",
+      "Gemini",
+      "Claude",
       "Node.js",
-      "Terraform",
+      "Python",
+      "Google Cloud Run",
     ]);
-    expect(AI_SOLUTIONS_BOTTOM_CTA.headline).toBe("Ready to embed Gen AI into your core stack?");
-    expect(AI_SOLUTIONS_BOTTOM_CTA.to).toBe(ROUTES.aiOperationalAudit);
+    expect(AI_SOLUTIONS_FORM.submitLabel).toBe(AI_SOLUTIONS_CTA_LABEL);
+    expect(AI_SOLUTIONS_FORM.serviceNeeded).toBe("Custom AI Pipeline Engineering");
   });
 });

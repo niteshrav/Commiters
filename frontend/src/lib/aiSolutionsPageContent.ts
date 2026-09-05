@@ -1,55 +1,61 @@
 import { ROUTES } from "./routes";
 
-export const AI_SOLUTIONS_DOCUMENT_TITLE = "Generative AI & LLM Solutions | Commiters" as const;
+export const AI_SOLUTIONS_DOCUMENT_TITLE = "AI Pipeline Engineering | Commiters" as const;
 
 export const AI_SOLUTIONS_SEO = {
   title: AI_SOLUTIONS_DOCUMENT_TITLE,
   description:
-    "Custom generative AI pipelines from Commiters. We connect Vertex AI, Gemini, and fine-tuned LLMs into your databases, web apps, and operational workflows.",
+    "Enterprise-grade document parsing and LLM workflows from Commiters. GST/PAN extraction, Gemini and Claude integrations, and a zero-vendor-lock-in backend.",
   keywords:
-    "generative AI, LLM solutions, Vertex AI, Gemini, RAG, document processing, workflow agents, Commiters",
+    "AI pipeline engineering, document parsing, GST PAN extraction, Gemini, Claude, LLM workflows, Commiters",
   path: ROUTES.aiSolutions,
 } as const;
 
 export const AI_SOLUTIONS_HERO = {
-  eyebrow: "ENTERPRISE-GRADE GEN AI INTEGRATIONS",
-  headline: "Custom Generative AI Pipelines Built for Your Specific Business Logic",
+  eyebrow: "ENTERPRISE-GRADE DOCUMENT PARSING",
+  headline: "Enterprise-Grade Document Parsing & LLM Workflows Built for Speed.",
   subheadline:
-    "We connect Google Vertex AI, Gemini 1.5, and fine-tuned LLMs directly into your databases, web apps, and operational workflows.",
+    "We design custom extraction pipelines for Indian GST/PAN documents, wire Gemini and Claude into your operations, and keep the backend free of vendor lock-in.",
 } as const;
 
-export const AI_SOLUTIONS_CTA_LABEL = "Explore Custom AI Solutions" as const;
+export const AI_SOLUTIONS_CTA_LABEL = "Schedule Technical Scoping Call" as const;
 
 export const AI_SOLUTIONS_OFFERINGS = [
   {
-    id: "document-processing",
-    title: "Intelligent Document Processing",
-    body: "Automatically extract, validate, and structure data from invoices, receipts, and PDFs directly into your ERP/Database.",
+    id: "document-extraction",
+    title: "Custom Document Extraction",
+    body: "Parse GST/PAN Indian formats — invoices, PAN records, and related documents — into structured data your ERP can trust.",
   },
   {
-    id: "rag-search",
-    title: "Knowledge Base & Vector Search (RAG)",
-    body: "Search through internal operational logs, contracts, and customer tickets instantly with LLM-powered search.",
+    id: "gemini-claude",
+    title: "Gemini & Claude Integrations",
+    body: "Production LLM workflows on Gemini and Claude, wired into your databases, queues, and approval paths.",
   },
   {
-    id: "workflow-agents",
-    title: "Automated Workflow Agents",
-    body: "AI workers that triage emails, flag anomalies, and handle repetitive multi-system task approvals.",
+    id: "zero-lock-in",
+    title: "Zero Vendor-Lock-In Architecture",
+    body: "A backend you own: swappable models, portable prompts, and zero vendor-lock-in infrastructure.",
   },
 ] as const;
 
 export const AI_SOLUTIONS_STACK = [
-  { id: "cloud-run", label: "Google Cloud Run", slug: "googlecloud" },
-  { id: "vertex-ai", label: "Vertex AI", slug: "googlecloud" },
-  { id: "gemini", label: "Gemini 1.5", slug: "googlegemini" },
-  { id: "postgresql", label: "PostgreSQL", slug: "postgresql" },
-  { id: "python", label: "Python", slug: "python" },
+  { id: "gemini", label: "Gemini", slug: "googlegemini" },
+  { id: "claude", label: "Claude", slug: "anthropic" },
   { id: "nodejs", label: "Node.js", slug: "nodedotjs" },
-  { id: "terraform", label: "Terraform", slug: "terraform" },
+  { id: "python", label: "Python", slug: "python" },
+  { id: "cloud-run", label: "Google Cloud Run", slug: "googlecloud" },
 ] as const;
 
-export const AI_SOLUTIONS_BOTTOM_CTA = {
-  headline: "Ready to embed Gen AI into your core stack?",
-  buttonLabel: "Book an AI Operational Audit",
-  to: ROUTES.aiOperationalAudit,
+export const AI_SOLUTIONS_FORM = {
+  title: "Schedule a technical scoping call",
+  nameLabel: "Name",
+  namePlaceholder: "Your name",
+  emailLabel: "Work Email",
+  emailPlaceholder: "name@company.com",
+  companyLabel: "Company Name",
+  companyPlaceholder: "Company name",
+  projectLabel: "Documents & workflows to automate",
+  projectPlaceholder: "Which GST, PAN, or operational documents should the pipeline handle?",
+  submitLabel: AI_SOLUTIONS_CTA_LABEL,
+  serviceNeeded: "Custom AI Pipeline Engineering",
 } as const;

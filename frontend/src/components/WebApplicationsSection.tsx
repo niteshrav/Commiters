@@ -2,6 +2,8 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { createLead } from "../lib/api";
 import { sanitizeNameInput } from "../lib/contactValidation";
+import { FROSTED_GLASS_CLASS_NAME } from "../lib/frostedGlass";
+import { resolveTechIconUrl } from "../lib/homeTechStack";
 import { ROUTES } from "../lib/routes";
 import { validateWebApplicationsLead } from "../lib/webApplicationsLeadGate";
 import {
@@ -9,7 +11,7 @@ import {
   WEB_APPLICATIONS_CTA_LABEL,
   WEB_APPLICATIONS_FORM,
   WEB_APPLICATIONS_HERO,
-  WEB_APPLICATIONS_STANDARDS,
+  WEB_APPLICATIONS_STACK,
 } from "../lib/webApplicationsPageContent";
 import {
   WEBAPP_CARD_CLASS,
@@ -21,7 +23,7 @@ import {
   WEBAPP_HERO_CLASS,
   WEBAPP_INNER_CLASS,
   WEBAPP_SECTION_CLASS,
-  WEBAPP_STANDARDS_CLASS,
+  WEBAPP_STACK_CLASS,
   WEBAPP_SUBHEAD_CLASS,
 } from "../lib/webApplicationsPageLayout";
 
@@ -75,23 +77,31 @@ export default function WebApplicationsSection() {
 
         <ul className={WEBAPP_CARDS_CLASS} data-testid="web-applications-capabilities">
           {WEB_APPLICATIONS_CAPABILITIES.map((card) => (
-            <li key={card.id} className={WEBAPP_CARD_CLASS}>
+            <li key={card.id} className={`${WEBAPP_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}>
               <h2>{card.title}</h2>
               <p>{card.body}</p>
             </li>
           ))}
         </ul>
 
-        <ul className={WEBAPP_STANDARDS_CLASS} data-testid="web-applications-standards">
-          {WEB_APPLICATIONS_STANDARDS.map((item) => (
-            <li key={item.id} className="webapp-standard">
-              <h2>{item.title}</h2>
-              <p>{item.body}</p>
-            </li>
-          ))}
-        </ul>
+        <div className={`${WEBAPP_STACK_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} data-testid="web-applications-stack">
+          <p className="webapp-stack-label">Stack Highlights</p>
+          <ul className="webapp-stack-list">
+            {WEB_APPLICATIONS_STACK.map((item) => (
+              <li key={item.id} className="webapp-stack-badge">
+                <img src={resolveTechIconUrl({ slug: item.slug, alt: item.label })} alt="" />
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <form id="webapp-project" className={WEBAPP_FORM_CLASS} onSubmit={onSubmit} aria-label={WEB_APPLICATIONS_FORM.title}>
+        <form
+          id="webapp-project"
+          className={`${WEBAPP_FORM_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}
+          onSubmit={onSubmit}
+          aria-label={WEB_APPLICATIONS_FORM.title}
+        >
           <h2>{WEB_APPLICATIONS_FORM.title}</h2>
           <div className={WEBAPP_FIELD_CLASS}>
             <label htmlFor="webapp-name">{WEB_APPLICATIONS_FORM.nameLabel}</label>

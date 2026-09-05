@@ -9,8 +9,10 @@ import {
   AI_OPERATIONAL_AUDIT_DELIVERABLES,
   AI_OPERATIONAL_AUDIT_FORM,
   AI_OPERATIONAL_AUDIT_HERO,
+  AI_OPERATIONAL_AUDIT_PRICING,
   AI_OPERATIONAL_AUDIT_PROCESS,
 } from "../lib/aiOperationalAuditPageContent";
+import { FROSTED_GLASS_CLASSES } from "../lib/frostedGlass";
 import { ROUTES } from "../lib/routes";
 
 const createLead = vi.fn();
@@ -35,7 +37,7 @@ describe("AiOperationalAuditSection", () => {
     navigate.mockReset();
   });
 
-  it("renders hero, four deliverable cards, two-week process, and booking form", () => {
+  it("renders hero, pricing, three deliverable cards, two-week process, and booking form", () => {
     render(
       <MemoryRouter>
         <AiOperationalAuditSection />
@@ -47,6 +49,12 @@ describe("AiOperationalAuditSection", () => {
     expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_HERO.headline, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(AI_OPERATIONAL_AUDIT_HERO.subheadline)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: AI_OPERATIONAL_AUDIT_CTA_LABEL })).toHaveAttribute("href", "#audit-booking");
+
+    const pricing = screen.getByTestId("audit-pricing");
+    expect(pricing).toHaveClass(...FROSTED_GLASS_CLASSES);
+    expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_PRICING.title, level: 2 })).toBeInTheDocument();
+    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.range);
+    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.summary);
 
     for (const card of AI_OPERATIONAL_AUDIT_DELIVERABLES) {
       expect(screen.getByRole("heading", { name: card.title, level: 2 })).toBeInTheDocument();
@@ -108,7 +116,7 @@ describe("AiOperationalAuditSection", () => {
       name: "Nitesh Rav",
       email: "hello@commiters.com",
       serviceNeeded: "AI Operational Audit",
-      budgetRange: "$3,000 - $5,000",
+      budgetRange: AI_OPERATIONAL_AUDIT_FORM.budgetRange,
       timeline: "2-week diagnostic",
       message: expect.stringContaining("GST invoice matching across three spreadsheets."),
     });

@@ -5,6 +5,7 @@ export const AUDIT_HERO_CLASS = "audit-hero" as const;
 export const AUDIT_EYEBROW_CLASS = "audit-eyebrow" as const;
 export const AUDIT_HEADLINE_CLASS = "audit-headline" as const;
 export const AUDIT_SUBHEAD_CLASS = "audit-subhead" as const;
+export const AUDIT_PRICING_CLASS = "audit-pricing" as const;
 export const AUDIT_CARDS_CLASS = "audit-cards" as const;
 export const AUDIT_CARD_CLASS = "audit-card" as const;
 export const AUDIT_TIMELINE_CLASS = "audit-timeline" as const;

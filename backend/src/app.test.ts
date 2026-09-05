@@ -5,6 +5,7 @@ import { registerNotificationMedia } from "./lib/notificationMediaStore";
 const mocks = vi.hoisted(() => ({
   notifyMock: vi.fn(),
   submissionRefMock: vi.fn(),
+  saveInternalLead: vi.fn(),
 }));
 
 vi.mock("./lib/inquirySubmissionRef", () => ({
@@ -13,6 +14,11 @@ vi.mock("./lib/inquirySubmissionRef", () => ({
 
 vi.mock("./lib/inquiryNotifications", () => ({
   dispatchInquiryNotifications: mocks.notifyMock,
+}));
+
+vi.mock("./lib/internalLeads", () => ({
+  saveInternalLead: mocks.saveInternalLead,
+  listInternalLeads: vi.fn(),
 }));
 
 describe("API", () => {
@@ -27,6 +33,8 @@ describe("API", () => {
       submittedAt: new Date("2026-04-15T10:30:00.000Z"),
     });
     mocks.notifyMock.mockResolvedValue(undefined);
+    mocks.saveInternalLead.mockReset();
+    mocks.saveInternalLead.mockResolvedValue({ status: "NEW" });
   });
 
   afterAll(() => {
@@ -113,6 +121,15 @@ describe("API", () => {
 
     expect(res.status).toBe(201);
     expect(res.body).toEqual({ ok: true, id: "lead_123" });
+    expect(mocks.saveInternalLead).toHaveBeenCalledWith(
+      expect.objectContaining({
+        source: "lead",
+        name: "Nitesh",
+        email: "hello@example.com",
+        serviceNeeded: "Website Development",
+        submittedAt: new Date("2026-04-15T10:30:00.000Z"),
+      }),
+    );
     expect(mocks.notifyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         id: "lead_123",

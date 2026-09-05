@@ -24,7 +24,7 @@ export function validateWebApplicationsLead(input: {
   if (!company) return { ok: false, error: "Please enter your company name." };
 
   const project = input.project.trim();
-  if (!project) return { ok: false, error: "Please describe your web application project." };
+  if (!project) return { ok: false, error: "Please describe your project." };
 
   return {
     ok: true,

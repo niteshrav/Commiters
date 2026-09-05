@@ -9,7 +9,7 @@ import {
   WEB_APPLICATIONS_CTA_LABEL,
   WEB_APPLICATIONS_FORM,
   WEB_APPLICATIONS_HERO,
-  WEB_APPLICATIONS_STANDARDS,
+  WEB_APPLICATIONS_STACK,
 } from "../lib/webApplicationsPageContent";
 import { ROUTES } from "../lib/routes";
 
@@ -35,7 +35,7 @@ describe("WebApplicationsSection", () => {
     navigate.mockReset();
   });
 
-  it("renders hero, capabilities, architecture standards, and project form", () => {
+  it("renders hero, capabilities, stack highlights, and estimate form", () => {
     render(
       <MemoryRouter>
         <WebApplicationsSection />
@@ -55,11 +55,10 @@ describe("WebApplicationsSection", () => {
       expect(screen.getByText(card.body)).toBeInTheDocument();
     }
 
-    const standards = screen.getByTestId("web-applications-standards");
-    expect(standards).toHaveClass("webapp-standards");
-    for (const item of WEB_APPLICATIONS_STANDARDS) {
-      expect(screen.getByRole("heading", { name: item.title, level: 2 })).toBeInTheDocument();
-      expect(screen.getByText(item.body)).toBeInTheDocument();
+    const stack = screen.getByTestId("web-applications-stack");
+    expect(stack).toHaveClass("webapp-stack");
+    for (const item of WEB_APPLICATIONS_STACK) {
+      expect(stack).toHaveTextContent(item.label);
     }
 
     expect(screen.getByRole("heading", { name: WEB_APPLICATIONS_FORM.title, level: 2 })).toBeInTheDocument();
@@ -111,7 +110,7 @@ describe("WebApplicationsSection", () => {
     expect(createLead).toHaveBeenCalledWith({
       name: "Nitesh Rav",
       email: "hello@commiters.com",
-      serviceNeeded: "Custom Web Applications",
+      serviceNeeded: "B2B Web Applications",
       message: expect.stringContaining("Role-based operations platform for field teams."),
     });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });

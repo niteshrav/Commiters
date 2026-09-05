@@ -8,31 +8,52 @@ import {
   MOBILE_NAV_DRAWER_ITEMS,
   MOBILE_NAV_DRAWER_PRIMARY_LABELS,
   MOBILE_NAV_DRAWER_SOCIAL_LINKS,
-  MOBILE_NAV_PRODUCT_LINKS,
+  MOBILE_NAV_SERVICE_LINKS,
 } from "./mobileNavDrawer";
 
 describe("mobileNavDrawer", () => {
-  it("lists primary drawer links with expandable Products and Contact/Careers", () => {
+  it("lists primary drawer links with an expandable Services accordion", () => {
     expect(MOBILE_NAV_DRAWER_PRIMARY_LABELS).toEqual([
-      "Products",
       "Services",
-      "Work",
       "About",
+      "Work",
+      "TrustTap",
+      "OpsFlow AI",
       "Contact",
       "Careers",
     ]);
-    expect(MOBILE_NAV_PRODUCT_LINKS.map((link) => ({ label: link.label, to: link.to }))).toEqual([
-      { label: "OpsFlow AI", to: ROUTES.opsFlow },
-      { label: "TrustTap", to: ROUTES.trustTap },
+    expect(MOBILE_NAV_SERVICE_LINKS.map((link) => ({ label: link.label, to: link.to, description: link.description }))).toEqual([
+      {
+        label: "AI Operational Audits",
+        to: ROUTES.aiOperationalAudit,
+        description: "2-week workflow diagnostics & custom automation prototypes.",
+      },
+      {
+        label: "Custom AI Pipeline Engineering",
+        to: ROUTES.aiSolutions,
+        description: "Bespoke document parsing, LLM integrations & workflow automation.",
+      },
+      {
+        label: "Full-Stack B2B Web Applications",
+        to: ROUTES.webApplications,
+        description: "High-performance web applications built on Vite, Express & React.",
+      },
+      {
+        label: "Free Business Utilities",
+        to: ROUTES.opsFlowPlayground,
+        description: "Zero-code tools including OpsFlow AI PDF-to-Excel extraction.",
+      },
     ]);
-    const services = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "services");
-    const work = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "work");
     const about = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "about");
+    const work = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "work");
+    const trusttap = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "trusttap");
+    const opsflow = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "opsflow");
     const contact = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "contact");
     const careers = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "careers");
-    expect(services && "to" in services ? services.to : undefined).toBe(ROUTES.services);
-    expect(work && "to" in work ? work.to : undefined).toBe(ROUTES.caseStudies);
     expect(about && "to" in about ? about.to : undefined).toBe(ROUTES.about);
+    expect(work && "to" in work ? work.to : undefined).toBe(ROUTES.caseStudies);
+    expect(trusttap && "to" in trusttap ? trusttap.to : undefined).toBe(ROUTES.trustTap);
+    expect(opsflow && "to" in opsflow ? opsflow.to : undefined).toBe(ROUTES.opsFlow);
     expect(contact && "to" in contact ? contact.to : undefined).toBe(ROUTES.contact);
     expect(careers && "to" in careers ? careers.to : undefined).toBe(ROUTES.openPositions);
   });

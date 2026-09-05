@@ -13,8 +13,10 @@ describe("sitemapPublicUrls", () => {
     expect(paths).toContain("/products/trusttap");
     expect(paths).toContain("/products/opsflow");
     expect(paths).toContain("/services/ai-operational-audit");
-    expect(paths).toContain("/services/ai-solutions");
-    expect(paths).toContain("/services/web-applications");
+    expect(paths).toContain("/services/ai-pipeline-engineering");
+    expect(paths).toContain("/services/b2b-web-applications");
+    expect(paths).not.toContain("/services/ai-solutions");
+    expect(paths).not.toContain("/services/web-applications");
     expect(paths).toContain("/services/workflow-automation");
     expect(paths).toContain("/faq");
     expect(paths).toContain("/cookie-policy");

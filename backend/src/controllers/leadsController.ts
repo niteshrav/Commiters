@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { z } from "zod";
 import { dispatchInquiryNotifications } from "../lib/inquiryNotifications";
 import { createSubmissionRef } from "../lib/inquirySubmissionRef";
+import { saveInternalLead } from "../lib/internalLeads";
 import { LEAD_BUDGET_RANGE_VALUES } from "../lib/budgetRanges";
 
 const leadSchema = z.object({
@@ -36,6 +37,19 @@ export async function createLead(req: Request, res: Response) {
   const submission = createSubmissionRef();
 
   try {
+    try {
+      await saveInternalLead({
+        source: "lead",
+        name: data.name,
+        email: data.email,
+        serviceNeeded: data.serviceNeeded,
+        message: data.message,
+        submittedAt: submission.submittedAt,
+      });
+    } catch (storageError) {
+      req.log?.warn({ err: storageError }, "Internal lead storage skipped");
+    }
+
     await dispatchInquiryNotifications({
       id: submission.id,
       kind: "project_inquiry",

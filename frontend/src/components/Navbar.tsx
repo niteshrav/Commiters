@@ -3,8 +3,11 @@ import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useNavbarContent } from "../lib/cms/hooks";
 import {
+  NAV_CTA_LABEL,
+  NAV_CTA_TO,
   NAV_DROPDOWN_LINK_CLASS,
   NAV_DROPDOWN_PANEL_GLASS_CLASS,
+  NAV_MEGA_FROST_CLASSES,
   type DesktopHeaderNavEntry,
   type NavDropdownConfig,
   type NavDropdownLink,
@@ -72,7 +75,7 @@ function NavItemDropdownPanel({
   onPointerLeave,
 }: NavItemDropdownPanelProps) {
   const [position, setPosition] = useState<DropdownPanelPosition | null>(null);
-  const grouped = Boolean(config.groups?.length);
+  const mega = config.layout === "mega";
 
   useLayoutEffect(() => {
     const anchor = anchorRef.current;
@@ -80,7 +83,7 @@ function NavItemDropdownPanel({
 
     const updatePosition = () => {
       const rect = anchor.getBoundingClientRect();
-      if (grouped) {
+      if (mega) {
         setPosition({ top: rect.bottom, left: 16, right: 16 });
         return;
       }
@@ -98,31 +101,23 @@ function NavItemDropdownPanel({
       window.removeEventListener("resize", updatePosition);
       window.removeEventListener("scroll", updatePosition, true);
     };
-  }, [alignEnd, anchorRef, config.id, grouped]);
+  }, [alignEnd, anchorRef, config.id, mega]);
 
   if (!position) return null;
 
   return createPortal(
     <div
-      className={`nav-item-dropdown-panel nav-item-dropdown-panel--fixed ${NAV_DROPDOWN_PANEL_GLASS_CLASS} ${grouped ? "nav-item-dropdown-panel--grouped" : "nav-item-dropdown-panel--cards"}`.trim()}
+      className={`nav-item-dropdown-panel nav-item-dropdown-panel--fixed ${NAV_DROPDOWN_PANEL_GLASS_CLASS} ${NAV_MEGA_FROST_CLASSES.join(" ")} ${mega ? "nav-item-dropdown-panel--mega-cards" : "nav-item-dropdown-panel--cards"}`.trim()}
+      id={`nav-mega-panel-${config.id}`}
       data-testid={`nav-mega-panel-${config.id}`}
       role="menu"
       style={{ top: position.top, left: position.left, right: position.right }}
       onMouseEnter={onPointerEnter}
       onMouseLeave={onPointerLeave}
     >
-      {grouped
-        ? config.groups!.map((group) => (
-            <div key={group.id} className="nav-mega-column" data-testid={`nav-mega-column-${group.id}`}>
-              <p className="nav-mega-column-title">{group.label}</p>
-              {group.links.map((link) => (
-                <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
-              ))}
-            </div>
-          ))
-        : config.links.map((link) => (
-            <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
-          ))}
+      {config.links.map((link) => (
+        <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
+      ))}
     </div>,
     document.body,
   );
@@ -152,6 +147,7 @@ function NavDesktopPlainLink({
       end={item.end}
       className={() => "nav-primary-link"}
       data-testid={`nav-item-${item.id}`}
+      data-nav-emphasis={item.emphasis}
       onClick={onNavigate}
     >
       {item.label}
@@ -255,8 +251,8 @@ export default function Navbar() {
   const closeTimerRef = useRef<number | null>(null);
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { logo, logoAlt, navItems, ctaLabel, ctaUrl } = useNavbarContent();
-  const headerNavEntries = resolveDesktopHeaderNav(navItems);
+  const { logo, logoAlt } = useNavbarContent();
+  const headerNavEntries = resolveDesktopHeaderNav();
 
   useEffect(() => {
     setOpenDropdownId(null);
@@ -316,11 +312,11 @@ export default function Navbar() {
         <div className="header-actions">
           <Link
             className="btn btn-primary btn-nav-cta nav-cta-desktop"
-            to={ctaUrl}
+            to={NAV_CTA_TO}
             onClick={handleNavigate}
             data-testid="nav-start-project-cta"
           >
-            {ctaLabel}
+            {NAV_CTA_LABEL}
           </Link>
           <button
             type="button"
@@ -338,8 +334,8 @@ export default function Navbar() {
 
       {mobileMenuOpen ? (
         <MobileNavDrawer
-          ctaLabel={ctaLabel}
-          ctaUrl={ctaUrl}
+          ctaLabel={NAV_CTA_LABEL}
+          ctaUrl={NAV_CTA_TO}
           logoSrc={logo}
           logoAlt={logoAlt}
           onNavigate={handleNavigate}

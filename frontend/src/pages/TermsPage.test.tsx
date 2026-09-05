@@ -45,7 +45,7 @@ describe("TermsPage", () => {
     const banner = screen.getByRole("banner");
     expect(within(banner).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT })).toBeInTheDocument();
     expect(within(banner).getByRole("link", { name: COMMITERS_HEADER_LOGO_ALT })).toHaveAttribute("href", ROUTES.home);
-    expect(within(banner).getByTestId("nav-start-project-cta")).toHaveTextContent("Start Project");
+    expect(within(banner).getByTestId("nav-start-project-cta")).toHaveTextContent("Book Operational Audit");
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
     expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);

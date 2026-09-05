@@ -91,7 +91,7 @@ describe("Footer", () => {
     expect(within(productsNav).getByText(SITE_FOOTER_TRUSTTAP_PRODUCT_BADGE)).toBeInTheDocument();
     expect(within(productsNav).getByRole("link", { name: /^Custom Web Applications$/i })).toHaveAttribute(
       "href",
-      "/services/web-applications",
+      ROUTES.webApplications,
     );
     expect(within(companyNav).getByRole("link", { name: /^About Us$/i })).toHaveAttribute("href", ROUTES.about);
     expect(within(companyNav).getByRole("link", { name: /^Core Pillars$/i })).toHaveAttribute(

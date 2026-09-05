@@ -99,10 +99,11 @@ export default function MobileNavDrawer({ ctaLabel, ctaUrl, logoSrc, logoAlt, on
                       <NavLink
                         key={child.id}
                         to={child.to}
-                        className="nav-mobile-drawer-sublink"
+                        className="nav-mobile-drawer-sublink nav-dropdown-link--stacked"
                         onClick={onNavigate}
                       >
-                        {child.label}
+                        <span className="nav-dropdown-link-label">{child.label}</span>
+                        <span className="nav-dropdown-link-description">{child.description}</span>
                       </NavLink>
                     ))}
                   </div>

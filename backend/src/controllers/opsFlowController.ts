@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { isMongoConnected } from "../cms/config/database";
 import { dispatchInquiryNotifications } from "../lib/inquiryNotifications";
 import { createSubmissionRef } from "../lib/inquirySubmissionRef";
+import { saveInternalLead } from "../lib/internalLeads";
 import { validateOpsFlowWorkEmail } from "../lib/opsFlowEmail";
 import { extractDocumentFields, isOpsFlowGeminiConfigured } from "../lib/opsFlowGemini";
 import { buildOpsFlowInquiryNotification } from "../lib/opsFlowLeadNotification";
@@ -87,6 +88,18 @@ export async function parseOpsFlowDocument(req: Request, res: Response) {
     }
 
     const submission = createSubmissionRef();
+    try {
+      await saveInternalLead({
+        source: "opsflow",
+        name: normalizedEmail,
+        email: normalizedEmail,
+        serviceNeeded: category,
+        message: `OpsFlow extract: ${file.originalname}`,
+        submittedAt: submission.submittedAt,
+      });
+    } catch (error) {
+      req.log?.warn({ err: error }, "OpsFlow internal lead storage skipped");
+    }
     try {
       await dispatchInquiryNotifications(
         buildOpsFlowInquiryNotification({

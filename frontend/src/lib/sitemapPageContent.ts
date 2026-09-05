@@ -72,14 +72,14 @@ export const SITEMAP_PAGE_COPY = {
           description: "2-week diagnostic that maps bottlenecks and ships a working AI prototype.",
         },
         {
-          label: "Generative AI & LLM Solutions",
+          label: "AI Pipeline Engineering",
           to: ROUTES.aiSolutions,
-          description: "Custom Gen AI pipelines, RAG search, and workflow agents for operations teams.",
+          description: "GST/PAN document parsing, Gemini and Claude integrations, and portable LLM backends.",
         },
         {
-          label: "Custom Web Applications",
+          label: "B2B Web Applications",
           to: ROUTES.webApplications,
-          description: "Next.js/Node.js platforms with RBAC, APIs, and cloud-native infrastructure.",
+          description: "Operational web systems and support portals on Vite, Express, MongoDB, and GCP Serverless.",
         },
         {
           label: "Workflow & Process Automation",

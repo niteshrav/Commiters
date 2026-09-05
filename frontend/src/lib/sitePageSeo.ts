@@ -241,7 +241,7 @@ export function webApplicationsPageSeo(): PageSeoInput {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Custom Web Applications",
+      name: "B2B Web Applications",
       description: WEB_APPLICATIONS_SEO.description,
       provider: {
         "@type": "Organization",
@@ -262,7 +262,7 @@ export function aiSolutionsPageSeo(): PageSeoInput {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Generative AI & LLM Solutions",
+      name: "Custom AI Pipeline Engineering",
       description: AI_SOLUTIONS_SEO.description,
       provider: {
         "@type": "Organization",

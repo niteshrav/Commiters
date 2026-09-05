@@ -4,9 +4,13 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
 import { BRAND_LOGO_HEADER_HEIGHT_PX } from "../lib/brandDisplay";
 import {
+  NAV_CTA_LABEL,
+  NAV_CTA_TO,
   NAV_DROPDOWN_CONFIGS,
   NAV_DROPDOWN_PANEL_GLASS_CLASS,
+  NAV_MEGA_FROST_CLASSES,
   PRIMARY_NAV_ITEMS,
+  SERVICE_MEGA_CARDS,
   resolveNavDropdownConfigs,
 } from "../lib/navSections";
 import { afterEach } from "vitest";
@@ -27,12 +31,20 @@ function desktopNavTriggers(container: HTMLElement) {
   return within(container).getAllByRole("link").filter((link) => link.classList.contains("nav-dropdown-trigger"));
 }
 
+function primaryNavLabels(container: HTMLElement) {
+  return within(container)
+    .getAllByRole("link")
+    .filter((link) => link.classList.contains("nav-primary-link"))
+    .map((link) => link.textContent?.replace(/\s+/g, " ").trim());
+}
+
 describe("Navbar", () => {
   afterEach(() => {
     document.body.classList.remove(MOBILE_NAV_BODY_LOCK_CLASS);
     document.body.style.overflow = "unset";
   });
-  it("shows the Commiters header logo and hover mega-menu nav items", () => {
+
+  it("shows the Commiters header logo and conversion-focused primary nav", () => {
     render(
       <MemoryRouter>
         <Navbar />
@@ -50,30 +62,33 @@ describe("Navbar", () => {
     expect(screen.queryByText(/^Commiters$/)).not.toBeInTheDocument();
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    const triggers = desktopNavTriggers(primaryNav);
-    expect(triggers.map((link) => link.textContent?.replace(/\s+/g, " ").trim())).toEqual(
-      resolveNavDropdownConfigs().map((item) => item.label),
-    );
-    expect(triggers.map((link) => link.getAttribute("href"))).toEqual(
-      resolveNavDropdownConfigs().map((item) => item.overviewTo),
-    );
+    expect(primaryNavLabels(primaryNav)).toEqual(["Services", "About", "Work", "TrustTap", "OpsFlow AI"]);
+    expect(desktopNavTriggers(primaryNav).map((link) => link.textContent?.replace(/\s+/g, " ").trim())).toEqual(["Services"]);
+    expect(desktopNavTriggers(primaryNav)[0]).toHaveAttribute("href", ROUTES.services);
+
+    expect(within(primaryNav).getByTestId("nav-item-trusttap")).toHaveAttribute("data-nav-emphasis", "flagship");
+    expect(within(primaryNav).getByTestId("nav-item-opsflow")).toHaveAttribute("data-nav-emphasis", "lead-magnet");
+    expect(within(primaryNav).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(within(primaryNav).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("href", ROUTES.opsFlow);
 
     expect(within(primaryNav).queryByRole("link", { name: /^Home$/i })).not.toBeInTheDocument();
     expect(within(primaryNav).queryByRole("link", { name: /^Careers$/i })).not.toBeInTheDocument();
     expect(within(primaryNav).queryByRole("link", { name: /^More$/i })).not.toBeInTheDocument();
     expect(within(primaryNav).queryByRole("link", { name: /^Contact$/i })).not.toBeInTheDocument();
+    expect(within(primaryNav).queryByRole("link", { name: /^Products$/i })).not.toBeInTheDocument();
     expect(within(primaryNav).queryByTestId("nav-more-menu")).not.toBeInTheDocument();
     expect(screen.getByTestId(HEADER_MENU_BTN_TESTID)).toHaveAttribute("aria-label", "Open menu");
     expect(screen.getByTestId(HEADER_MENU_BTN_TESTID)).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();
-    expect(screen.getByTestId("nav-start-project-cta")).toHaveAttribute("href", ROUTES.contact);
-    expect(screen.getByTestId("nav-start-project-cta")).toHaveTextContent("Start Project");
+    expect(screen.getByTestId("nav-start-project-cta")).toHaveAttribute("href", NAV_CTA_TO);
+    expect(screen.getByTestId("nav-start-project-cta")).toHaveTextContent(NAV_CTA_LABEL);
+    expect(screen.getByTestId("nav-start-project-cta")).toHaveClass("btn-primary");
     expect(screen.queryByTestId("nav-start-project-cta-mobile")).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Get Started/i })).not.toBeInTheDocument();
     expect(screen.getByRole("banner")).toHaveClass("header", "header-light");
   });
 
-  it("opens each dropdown menu on hover without chevron arrows", async () => {
+  it("opens the Services mega-menu on hover without a chevron", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter>
@@ -83,6 +98,7 @@ describe("Navbar", () => {
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     const configs = resolveNavDropdownConfigs();
+    expect(configs).toHaveLength(1);
 
     for (const config of configs) {
       const trigger = within(primaryNav).getByRole("link", { name: new RegExp(`^${config.label}$`, "i") });
@@ -92,10 +108,6 @@ describe("Navbar", () => {
 
       expect(screen.getByTestId(`nav-mega-panel-${config.id}`)).toBeInTheDocument();
       expect(trigger).toHaveClass("nav-dropdown-trigger--open");
-      for (const other of configs) {
-        if (other.id === config.id) continue;
-        expect(screen.queryByTestId(`nav-mega-panel-${other.id}`)).not.toBeInTheDocument();
-      }
     }
   });
 
@@ -107,11 +119,11 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    const labels = desktopNavTriggers(primaryNav).map((link) => link.textContent?.replace(/\s+/g, " ").trim());
+    const labels = primaryNavLabels(primaryNav);
     expect(labels.indexOf("Services")).toBeLessThan(labels.indexOf("Work"));
   });
 
-  it("opens a services mega-menu panel on hover with grouped service links", async () => {
+  it("opens a frosted-glass Services mega-menu of two-line rich cards", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter>
@@ -125,21 +137,18 @@ describe("Navbar", () => {
 
     await user.hover(servicesTrigger);
     const panel = screen.getByTestId("nav-mega-panel-services");
-    expect(panel).toHaveClass("nav-item-dropdown-panel--grouped", NAV_DROPDOWN_PANEL_GLASS_CLASS);
-    expect(within(panel).getByTestId("nav-mega-column-ai-operational-engineering")).toHaveTextContent(
-      "AI Operational Engineering",
-    );
-    expect(within(panel).getByRole("menuitem", { name: /Generative AI & LLM Solutions/i })).toHaveAttribute(
-      "href",
-      "/services/ai-solutions",
-    );
-    expect(within(panel).getByRole("menuitem", { name: /OpsFlow AI Playground/i })).toHaveAttribute("href", "/opsflow");
-    expect(within(panel).getByRole("menuitem", { name: /AI Operational Audit/i })).toHaveClass(
-      "nav-dropdown-link--featured",
-    );
-    expect(within(panel).getByRole("menuitem", { name: /AI Operational Audit/i })).toHaveTextContent(
-      /2-week fixed diagnostic/i,
-    );
+    expect(panel).toHaveAttribute("id", "nav-mega-panel-services");
+    expect(servicesTrigger).toHaveAttribute("aria-controls", "nav-mega-panel-services");
+    expect(panel).toHaveClass("nav-item-dropdown-panel--mega-cards", NAV_DROPDOWN_PANEL_GLASS_CLASS, ...NAV_MEGA_FROST_CLASSES);
+
+    for (const card of SERVICE_MEGA_CARDS) {
+      const item = within(panel).getByRole("menuitem", { name: new RegExp(card.label, "i") });
+      expect(item).toHaveAttribute("href", card.to);
+      expect(item).toHaveClass("nav-dropdown-link--stacked");
+      expect(item).toHaveTextContent(card.description);
+    }
+
+    expect(within(panel).getByRole("menuitem", { name: /AI Operational Audits/i })).toHaveClass("nav-dropdown-link--featured");
     expect(within(panel).queryByRole("menuitem", { name: /^Website Development$/i })).not.toBeInTheDocument();
     expect(within(panel).queryByRole("link", { name: /^See overview$/i })).not.toBeInTheDocument();
   });
@@ -183,7 +192,7 @@ describe("Navbar", () => {
     expect(servicesStyle.backgroundColor).toBe(aboutStyle.backgroundColor);
   });
 
-  it("opens Work dropdown without navbar pill highlight on hover", async () => {
+  it("keeps Work as a plain link without a dropdown panel", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={[ROUTES.caseStudies]}>
@@ -195,12 +204,12 @@ describe("Navbar", () => {
     const workLink = within(primaryNav).getByRole("link", { name: /^Work$/i });
 
     await user.hover(workLink);
-    expect(workLink).toHaveClass("nav-dropdown-trigger--open");
+    expect(workLink).not.toHaveClass("nav-dropdown-trigger");
     expect(workLink).not.toHaveClass("nav-primary-link--hover");
-    expect(screen.getByTestId("nav-mega-panel-work")).toBeInTheDocument();
+    expect(screen.queryByTestId("nav-mega-panel-work")).not.toBeInTheDocument();
   });
 
-  it("opens a full-screen mobile drawer with primary links, CTA, socials, and copyright", async () => {
+  it("opens a full-screen mobile drawer with an accordion Services menu, CTA, socials, and copyright", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter>
@@ -226,23 +235,28 @@ describe("Navbar", () => {
     expect(within(drawer).getByRole("link", { name: COMMITERS_HEADER_LOGO_ALT })).toHaveAttribute("href", ROUTES.home);
     expect(within(drawer).getByTestId(MOBILE_NAV_CLOSE_BTN_TESTID)).toHaveAttribute("aria-label", "Close menu");
 
-    expect(within(drawer).getByRole("button", { name: /^Products$/i })).toBeInTheDocument();
-    expect(within(drawer).getByRole("link", { name: /^Services$/i })).toHaveAttribute("href", ROUTES.services);
-    expect(within(drawer).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(within(drawer).getByRole("button", { name: /^Services$/i })).toBeInTheDocument();
     expect(within(drawer).getByRole("link", { name: /^About$/i })).toHaveAttribute("href", ROUTES.about);
+    expect(within(drawer).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(within(drawer).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(within(drawer).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("href", ROUTES.opsFlow);
     expect(within(drawer).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
     expect(within(drawer).getByRole("link", { name: /^Careers$/i })).toHaveAttribute("href", ROUTES.openPositions);
     expect(within(drawer).queryByRole("link", { name: /^Home$/i })).not.toBeInTheDocument();
     expect(within(drawer).queryByRole("link", { name: /^More$/i })).not.toBeInTheDocument();
-    expect(within(drawer).queryByRole("link", { name: /^OpsFlow AI$/i })).not.toBeInTheDocument();
+    expect(within(drawer).queryByRole("button", { name: /^Products$/i })).not.toBeInTheDocument();
 
-    await user.click(within(drawer).getByRole("button", { name: /^Products$/i }));
-    expect(within(drawer).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("href", ROUTES.opsFlow);
-    expect(within(drawer).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
+    await user.click(within(drawer).getByRole("button", { name: /^Services$/i }));
+    const auditCard = within(drawer).getByRole("link", { name: /AI Operational Audits/i });
+    expect(auditCard).toHaveAttribute("href", ROUTES.aiOperationalAudit);
+    expect(auditCard).toHaveTextContent("2-week workflow diagnostics & custom automation prototypes.");
+    const utilitiesCard = within(drawer).getByRole("link", { name: /Free Business Utilities/i });
+    expect(utilitiesCard).toHaveAttribute("href", ROUTES.opsFlowPlayground);
+    expect(utilitiesCard).toHaveTextContent("Zero-code tools including OpsFlow AI PDF-to-Excel extraction.");
 
-    expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveAttribute("href", ROUTES.contact);
-    expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveTextContent("Start Project");
-    expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveClass("nav-mobile-cta");
+    expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveAttribute("href", NAV_CTA_TO);
+    expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveTextContent(NAV_CTA_LABEL);
+    expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveClass("nav-mobile-cta", "btn-primary");
     expect(within(drawer).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
     expect(within(drawer).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
     expect(within(drawer).getByRole("link", { name: /^GitHub$/i })).toHaveAttribute("href", SITE_GITHUB_URL);
@@ -311,7 +325,8 @@ describe("Navbar", () => {
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     const workLink = within(primaryNav).getByRole("link", { name: /^Work$/i });
-    expect(workLink).toHaveClass("nav-dropdown-trigger");
+    expect(workLink).toHaveClass("nav-primary-link");
+    expect(workLink).not.toHaveClass("nav-dropdown-trigger");
     expect(workLink).not.toHaveClass("nav-primary-link--hover");
     expect(workLink).not.toHaveClass("nav-dropdown-trigger--open");
   });
@@ -330,46 +345,9 @@ describe("Navbar", () => {
     expect(screen.queryByTestId("nav-mega-panel-more")).not.toBeInTheDocument();
   });
 
-  it("opens Products, About, and Work as stacked card dropdowns with descriptions", async () => {
-    const user = userEvent.setup();
-    render(
-      <MemoryRouter>
-        <Navbar />
-      </MemoryRouter>,
-    );
-
-    const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-
-    await user.hover(within(primaryNav).getByRole("link", { name: /^Products$/i }));
-    const productsPanel = screen.getByTestId("nav-mega-panel-products");
-    expect(productsPanel).toHaveClass("nav-item-dropdown-panel--cards", NAV_DROPDOWN_PANEL_GLASS_CLASS);
-    expect(within(productsPanel).getByRole("menuitem", { name: /^TrustTap/i })).toHaveAttribute("href", ROUTES.trustTap);
-    expect(within(productsPanel).getByRole("menuitem", { name: /OpsFlow AI/i })).toHaveAttribute("href", ROUTES.opsFlow);
-
-    await user.hover(within(primaryNav).getByRole("link", { name: /^About$/i }));
-    const aboutPanel = screen.getByTestId("nav-mega-panel-about");
-    expect(aboutPanel).toHaveClass("nav-item-dropdown-panel--cards", NAV_DROPDOWN_PANEL_GLASS_CLASS);
-    expect(within(aboutPanel).getByRole("menuitem", { name: /Company Overview/i })).toHaveAttribute("href", ROUTES.about);
-    expect(within(aboutPanel).getByRole("menuitem", { name: /Company Overview/i })).toHaveClass("nav-dropdown-link--stacked");
-    expect(within(aboutPanel).getByText(/Learn about Commiters, our background/i)).toBeInTheDocument();
-
-    await user.hover(within(primaryNav).getByRole("link", { name: /^Work$/i }));
-    const workPanel = screen.getByTestId("nav-mega-panel-work");
-    expect(workPanel).toHaveClass("nav-item-dropdown-panel--cards", NAV_DROPDOWN_PANEL_GLASS_CLASS);
-    expect(within(workPanel).getByRole("menuitem", { name: /Case Studies/i })).toHaveAttribute("href", ROUTES.caseStudies);
-    expect(within(workPanel).getByRole("menuitem", { name: /Browse My Vacations/i })).toHaveAttribute(
-      "href",
-      ROUTES.browseMyVacationCaseStudy,
-    );
-    expect(within(workPanel).getByRole("menuitem", { name: /Client Stories/i })).toHaveAttribute("href", ROUTES.testimonials);
-  });
-
-  it("defines dropdown configs for every desktop nav item", () => {
-    expect(NAV_DROPDOWN_CONFIGS.map((config) => config.id)).toEqual(["products", "services", "work", "about"]);
-    expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "products")?.links.map((link) => link.label)).toEqual([
-      "TrustTap",
-      "OpsFlow AI",
-    ]);
+  it("defines a Services-only dropdown config for the desktop bar", () => {
+    expect(NAV_DROPDOWN_CONFIGS.map((config) => config.id)).toEqual(["services"]);
+    expect(NAV_DROPDOWN_CONFIGS[0]?.links.map((link) => link.label)).toEqual(SERVICE_MEGA_CARDS.map((card) => card.label));
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
   });
 });

@@ -62,7 +62,7 @@ describe("responsiveLayout", () => {
     expect(navStack).toMatch(/\.nav-cta-desktop\s*\{[\s\S]*display:\s*none/);
   });
 
-  it("keeps the desktop Start Project CTA hidden at the stack breakpoint", () => {
+  it("keeps the desktop header CTA hidden at the stack breakpoint", () => {
     const stack = mediaBlocks(BREAKPOINT_STACK_PX);
     expect(stack).toMatch(/\.nav-cta-desktop\s*\{[\s\S]*display:\s*none/);
   });

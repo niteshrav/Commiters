@@ -30,12 +30,12 @@ describe("sitemapPageContent", () => {
     expect(
       SITEMAP_PAGE_COPY.groups
         .find((group) => group.id === "services")
-        ?.links.some((link) => link.to === ROUTES.aiSolutions && link.label === "Generative AI & LLM Solutions"),
+        ?.links.some((link) => link.to === ROUTES.aiSolutions && link.label === "AI Pipeline Engineering"),
     ).toBe(true);
     expect(
       SITEMAP_PAGE_COPY.groups
         .find((group) => group.id === "services")
-        ?.links.some((link) => link.to === ROUTES.webApplications && link.label === "Custom Web Applications"),
+        ?.links.some((link) => link.to === ROUTES.webApplications && link.label === "B2B Web Applications"),
     ).toBe(true);
     expect(
       SITEMAP_PAGE_COPY.groups

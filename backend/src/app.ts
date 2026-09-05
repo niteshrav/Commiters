@@ -3,6 +3,8 @@ import cors from "cors";
 import helmet from "helmet";
 import pinoHttp from "pino-http";
 import { jobApplicationsRouter } from "./routes/jobApplications";
+import { internalLeadsRouter } from "./routes/internalLeads";
+import { invoiceReminderRouter } from "./routes/invoiceReminder";
 import { leadsRouter } from "./routes/leads";
 import { notificationMediaRouter } from "./routes/notificationMedia";
 import { chatRouter } from "./routes/chat";
@@ -107,6 +109,8 @@ export function createApp() {
   app.use("/api/admin", adminRouter);
 
   app.use(leadsRouter);
+  app.use(internalLeadsRouter);
+  app.use(invoiceReminderRouter);
   app.use(jobApplicationsRouter);
   app.use(notificationMediaRouter);
   app.use(chatRouter);

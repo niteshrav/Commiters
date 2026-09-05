@@ -5,41 +5,43 @@ export const AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE = "AI Operational Audit | Commi
 export const AI_OPERATIONAL_AUDIT_SEO = {
   title: AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE,
   description:
-    "2-week AI Operational Audit from Commiters. We map back-office bottlenecks and deliver a GCP blueprint plus working prototype that saves 20+ hours per week.",
+    "Eliminate back-office bottlenecks with a 2-week AI Operational Audit. We shadow workflows, map spreadsheet friction, and deliver a live automation prototype.",
   keywords:
-    "AI operational audit, back-office automation, Vertex AI, GCP architecture, workflow bottleneck, Commiters diagnostic",
+    "AI operational audit, back-office automation, workflow bottleneck, spreadsheet automation, Commiters diagnostic",
   path: ROUTES.aiOperationalAudit,
 } as const;
 
 export const AI_OPERATIONAL_AUDIT_HERO = {
   eyebrow: "2-WEEK FIXED DIAGNOSTIC ENGAGEMENT",
-  headline: "Identify & Eliminate Back-Office Bottlenecks with AI Operational Engineering",
+  headline: "Eliminate Back-Office Bottlenecks with a 2-Week AI Operational Audit.",
   subheadline:
-    "We audit your manual workflows, spreadsheet dependencies, and legacy bottlenecks to deliver a blueprint and working prototype that saves 20+ hours per week.",
+    "We shadow your back-office workflows, identify manual spreadsheet friction, and build a live working AI automation prototype.",
 } as const;
 
-export const AI_OPERATIONAL_AUDIT_CTA_LABEL = "Book an AI Operational Audit ($3,000 - $5,000)" as const;
+export const AI_OPERATIONAL_AUDIT_CTA_LABEL = "Book Operational Audit" as const;
+
+export const AI_OPERATIONAL_AUDIT_PRICING = {
+  title: "Pricing & Scope",
+  engagement: "Fixed-scope 2-week engagement",
+  range: "$3,000–$5,000 / ₹35,000–₹50,000",
+  summary: "Fixed-scope 2-week engagement ($3,000–$5,000 / ₹35,000–₹50,000).",
+} as const;
 
 export const AI_OPERATIONAL_AUDIT_DELIVERABLES = [
   {
-    id: "bottleneck-mapping",
-    title: "Bottleneck Mapping",
-    body: "Full visual flowchart of your operational waste.",
+    id: "workflow-bottleneck-map",
+    title: "Workflow Bottleneck Diagnostic Map",
+    body: "A visual map of back-office handoffs, spreadsheet friction, and the delays we will automate first.",
   },
   {
-    id: "ai-architecture-spec",
-    title: "AI Architecture Spec",
-    body: "Custom GCP & Vertex AI solution design.",
-  },
-  {
-    id: "working-poc",
-    title: "Working Proof-of-Concept",
-    body: "A live 14-day prototype targeting your single biggest bottleneck.",
+    id: "working-prototype",
+    title: "Working AI / Automation Prototype",
+    body: "A live prototype that shadows your workflow and proves the automation inside the two-week window.",
   },
   {
     id: "roi-roadmap",
-    title: "ROI & Execution Roadmap",
-    body: "Clear metrics showing exact cost & hours saved.",
+    title: "ROI & Implementation Roadmap",
+    body: "Hours saved, implementation cost, and the sequence to take the prototype into production.",
   },
 ] as const;
 
@@ -47,12 +49,12 @@ export const AI_OPERATIONAL_AUDIT_PROCESS = [
   {
     id: "week-1",
     week: "Week 1",
-    body: "Discovery, Workflow Shadowing & Data Source Mapping.",
+    body: "Discovery, workflow shadowing, and mapping of spreadsheet and legacy-system friction.",
   },
   {
     id: "week-2",
     week: "Week 2",
-    body: "Prototype Build, Architecture Delivery & Executive Demo.",
+    body: "Prototype build, ROI model, and executive demo of the working automation.",
   },
 ] as const;
 
@@ -68,6 +70,6 @@ export const AI_OPERATIONAL_AUDIT_FORM = {
   bottleneckPlaceholder: "Where do hours disappear each week?",
   submitLabel: AI_OPERATIONAL_AUDIT_CTA_LABEL,
   serviceNeeded: "AI Operational Audit",
-  budgetRange: "$3,000 - $5,000",
+  budgetRange: "$3,000–$5,000 / ₹35,000–₹50,000",
   timeline: "2-week diagnostic",
 } as const;

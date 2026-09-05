@@ -3,26 +3,33 @@ import { resolveServiceDetailHref } from "./services";
 
 export type ServiceNavEntry = { id: string; label: string };
 
+export type PrimaryNavEmphasis = "flagship" | "lead-magnet";
+
 export type PrimaryNavItem = {
   id: string;
   to: string;
   label: string;
   end?: boolean;
+  emphasis?: PrimaryNavEmphasis;
 };
 
-/** Compact conversion-focused header: Products, Services, Work, About. */
+export const NAV_CTA_LABEL = "Book Operational Audit" as const;
+export const NAV_CTA_TO = ROUTES.aiOperationalAudit;
+
+/** Conversion-focused header: Services mega-menu, then About, Work, TrustTap, OpsFlow AI. */
 export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
-  { id: "products", to: ROUTES.trustTap, label: "Products" },
   { id: "services", to: ROUTES.services, label: "Services" },
-  { id: "work", to: ROUTES.caseStudies, label: "Work" },
   { id: "about", to: ROUTES.about, label: "About" },
+  { id: "work", to: ROUTES.caseStudies, label: "Work" },
+  { id: "trusttap", to: ROUTES.trustTap, label: "TrustTap", emphasis: "flagship" },
+  { id: "opsflow", to: ROUTES.opsFlow, label: "OpsFlow AI", emphasis: "lead-magnet" },
 ];
 
 /** Desktop bar links shown in the header. */
-export const DESKTOP_HEADER_BAR_IDS = ["products", "services", "work", "about"] as const;
+export const DESKTOP_HEADER_BAR_IDS = ["services", "about", "work", "trusttap", "opsflow"] as const;
 
 /** Header items that navigate directly without a dropdown panel. */
-export const DESKTOP_HEADER_PLAIN_LINK_IDS = [] as const;
+export const DESKTOP_HEADER_PLAIN_LINK_IDS = ["about", "work", "trusttap", "opsflow"] as const;
 
 /** @deprecated More menu removed; secondary links live in the footer. */
 export const DESKTOP_HEADER_MORE_IDS = [] as const;
@@ -72,6 +79,8 @@ export type NavDropdownGroup = {
   links: NavDropdownLink[];
 };
 
+export type NavDropdownLayout = "cards" | "mega";
+
 export type NavDropdownConfig = {
   id: string;
   label: string;
@@ -79,6 +88,7 @@ export type NavDropdownConfig = {
   overviewLabel?: string;
   headline: string;
   end?: boolean;
+  layout?: NavDropdownLayout;
   links: NavDropdownLink[];
   groups?: NavDropdownGroup[];
 };
@@ -114,73 +124,40 @@ export function buildServiceNavHref(slug: string): string {
   return `/services/${slug}`;
 }
 
-export const SERVICE_NAV_GROUPS: NavDropdownGroup[] = [
+export const SERVICE_MEGA_CARDS: NavDropdownLink[] = [
   {
-    id: "ai-operational-engineering",
-    label: "AI Operational Engineering",
-    links: [
-      {
-        id: "ai-solutions",
-        label: "Generative AI & LLM Solutions",
-        to: buildServiceNavHref("ai-solutions"),
-        description: "Custom GenAI agents, Vertex AI integrations, and LLM workflows.",
-      },
-      {
-        id: "workflow-automation",
-        label: "Workflow & Process Automation",
-        to: buildServiceNavHref("workflow-automation"),
-        description: "Eliminate back-office bottlenecks and manual data syncs.",
-      },
-    ],
+    id: "ai-operational-audits",
+    label: "AI Operational Audits",
+    to: ROUTES.aiOperationalAudit,
+    description: "2-week workflow diagnostics & custom automation prototypes.",
+    featured: true,
   },
   {
-    id: "custom-web-platform-engineering",
-    label: "Custom Web & Platform Engineering",
-    links: [
-      {
-        id: "web-applications",
-        label: "Custom Web Applications",
-        to: buildServiceNavHref("web-applications"),
-        description: "High-performance Next.js, Node.js, and PostgreSQL web platforms.",
-      },
-      {
-        id: "marketplace-platforms",
-        label: "E-commerce & Marketplace Engines",
-        to: buildServiceNavHref("marketplace-platforms"),
-        description: "Dynamic booking grids and custom quote funnels.",
-      },
-    ],
+    id: "custom-ai-pipeline-engineering",
+    label: "Custom AI Pipeline Engineering",
+    to: ROUTES.aiSolutions,
+    description: "Bespoke document parsing, LLM integrations & workflow automation.",
   },
   {
-    id: "strategic-diagnostic-product-studio",
-    label: "Strategic Diagnostic & Product Studio",
-    links: [
-      {
-        id: "ai-operational-audit",
-        label: "AI Operational Audit (Featured)",
-        to: buildServiceNavHref("ai-operational-audit"),
-        description: "2-week fixed diagnostic engagement ($3k-$5k) mapping your operational waste.",
-        featured: true,
-      },
-      {
-        id: "mvp-development",
-        label: "MVP & SaaS Development",
-        to: buildServiceNavHref("mvp-development"),
-        description: "Rapid 3-to-6 week product engineering for bootstrapped founders.",
-      },
-    ],
+    id: "full-stack-b2b-web-applications",
+    label: "Full-Stack B2B Web Applications",
+    to: ROUTES.webApplications,
+    description: "High-performance web applications built on Vite, Express & React.",
   },
   {
     id: "free-business-utilities",
     label: "Free Business Utilities",
-    links: [
-      {
-        id: "opsflow-playground",
-        label: "OpsFlow AI Playground",
-        to: ROUTES.opsFlowPlayground,
-        description: "Zero-code unstructured document parser converting PDFs/Invoices to Excel.",
-      },
-    ],
+    to: ROUTES.opsFlowPlayground,
+    description: "Zero-code tools including OpsFlow AI PDF-to-Excel extraction.",
+  },
+];
+
+/** @deprecated Use SERVICE_MEGA_CARDS. Kept as a grouped view of the four mega-menu cards. */
+export const SERVICE_NAV_GROUPS: NavDropdownGroup[] = [
+  {
+    id: "services-mega",
+    label: "Services",
+    links: SERVICE_MEGA_CARDS,
   },
 ];
 
@@ -192,88 +169,24 @@ export const NAV_DROPDOWN_LINK_CLASS = "nav-dropdown-link" as const;
 export const NAV_DROPDOWN_LINK_ACTIVE_CLASS = "nav-dropdown-link--active" as const;
 export const NAV_DROPDOWN_PANEL_GLASS_CLASS = "nav-item-dropdown-panel--glass" as const;
 export const NAV_MEGA_OVERVIEW_CLASS = "nav-mega-overview" as const;
+export const NAV_MEGA_FROST_CLASSES = [
+  "backdrop-blur-md",
+  "bg-white/80",
+  "dark:bg-slate-900/80",
+  "border",
+  "border-slate-200/50",
+  "dark:border-slate-800/50",
+] as const;
 
-/** Hover mega-menu content for each desktop nav item. */
+/** Hover mega-menu content for desktop dropdown parents. */
 export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
-  {
-    id: "products",
-    label: "Products",
-    overviewTo: ROUTES.trustTap,
-    headline: "Product platforms for operations and document intelligence.",
-    links: [
-      {
-        id: "trusttap",
-        label: "TrustTap",
-        to: ROUTES.trustTap,
-        description: "Physical-to-digital operational verification and QR review workflows.",
-      },
-      {
-        id: "opsflow",
-        label: "OpsFlow AI",
-        to: ROUTES.opsFlow,
-        description: "Unstructured document extraction from invoices and PDFs into Excel.",
-      },
-    ],
-  },
   {
     id: "services",
     label: "Services",
     overviewTo: ROUTES.services,
     headline: "Full-stack development for ambitious teams.",
-    groups: SERVICE_NAV_GROUPS,
-    links: SERVICE_NAV_GROUPS.flatMap((group) => group.links),
-  },
-  {
-    id: "work",
-    label: "Work",
-    overviewTo: ROUTES.caseStudies,
-    headline: "Case studies, products, and client outcomes.",
-    links: [
-      {
-        id: "case-studies",
-        label: "Case Studies",
-        to: ROUTES.caseStudies,
-        description: "Detailed technical blueprints and ROI outcomes from our client projects.",
-      },
-      {
-        id: "browse-my-vacation",
-        label: "Browse My Vacations",
-        to: ROUTES.browseMyVacationCaseStudy,
-        description: "Curated travel marketplace platform built with Next.js and custom quote engines.",
-      },
-      {
-        id: "client-stories",
-        label: "Client Stories",
-        to: ROUTES.testimonials,
-        description: "Real outcomes from B2B operations and local businesses.",
-      },
-    ],
-  },
-  {
-    id: "about",
-    label: "About",
-    overviewTo: ROUTES.about,
-    headline: "Craftsmanship, vision, and how we operate.",
-    links: [
-      {
-        id: "company-overview",
-        label: "Company Overview",
-        to: ROUTES.about,
-        description: "Learn about Commiters, our background, and our team.",
-      },
-      {
-        id: "principles",
-        label: "Principles & Core Pillars",
-        to: buildAboutSectionHref("principles"),
-        description: "How we approach AI engineering, transparency, and product delivery.",
-      },
-      {
-        id: "how-we-work",
-        label: "How We Work",
-        to: buildAboutSectionHref("how-we-work"),
-        description: "Our 2-week sprint model, product-led agency approach, and code standards.",
-      },
-    ],
+    layout: "mega",
+    links: SERVICE_MEGA_CARDS,
   },
 ];
 

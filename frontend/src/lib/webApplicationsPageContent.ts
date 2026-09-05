@@ -1,68 +1,58 @@
 import { ROUTES } from "./routes";
 
-export const WEB_APPLICATIONS_DOCUMENT_TITLE = "Custom Web Applications | Commiters" as const;
+export const WEB_APPLICATIONS_DOCUMENT_TITLE = "B2B Web Applications | Commiters" as const;
 
 export const WEB_APPLICATIONS_SEO = {
   title: WEB_APPLICATIONS_DOCUMENT_TITLE,
   description:
-    "Scalable custom web applications from Commiters. Next.js/React frontends, Node.js and Python services, PostgreSQL, and RBAC APIs built for high-growth operations.",
+    "High-margin operational web systems and support portals from Commiters, built on Vite, Express, MongoDB, Node.js, and GCP Serverless.",
   keywords:
-    "custom web applications, Next.js, Node.js, PostgreSQL, Cloud Run, RBAC, REST API, GraphQL, Commiters",
+    "B2B web applications, operational portals, Vite, Express, MongoDB, Node.js, GCP Serverless, Commiters",
   path: ROUTES.webApplications,
 } as const;
 
 export const WEB_APPLICATIONS_HERO = {
-  eyebrow: "FULL-STACK PLATFORM ENGINEERING",
-  headline: "Scalable Custom Web Applications Built for High-Growth Operations",
+  eyebrow: "B2B OPERATIONAL WEB SYSTEMS",
+  headline: "High-Margin Operational Web Systems & Support Portals.",
   subheadline:
-    "We engineer fast, secure, and modern Next.js/Node.js web applications tailored to your exact business requirements.",
+    "We ship high-performance operations platforms and client support portals on Vite, Express, MongoDB, and GCP Serverless — built for teams that need reliability without a bloated stack.",
 } as const;
 
-export const WEB_APPLICATIONS_CTA_LABEL = "Discuss Your Application" as const;
+export const WEB_APPLICATIONS_CTA_LABEL = "Request Project Estimate" as const;
 
 export const WEB_APPLICATIONS_CAPABILITIES = [
   {
-    id: "frontends",
-    title: "High-Performance Next.js/React Frontends",
-    body: "Lightning-fast SSR/SSG user experiences.",
+    id: "operational-systems",
+    title: "Operational Web Systems",
+    body: "Internal tools that replace spreadsheet ops with fast, auditable workflows your team will actually use.",
   },
   {
-    id: "microservices",
-    title: "Robust Node.js/Python Microservices",
-    body: "Serverless backend pipelines hosted on Google Cloud Run.",
-  },
-  {
-    id: "databases",
-    title: "Enterprise Database Design",
-    body: "Scalable PostgreSQL, Cloud SQL, and Redis caching.",
+    id: "support-portals",
+    title: "Client Support Portals",
+    body: "Branded portals for tickets, documents, and status — so clients self-serve instead of flooding inboxes.",
   },
   {
     id: "rbac-apis",
-    title: "Role-Based Security (RBAC) & APIs",
-    body: "Granular access control, OAuth/SSO integration, and REST/GraphQL APIs.",
-  },
-] as const;
-
-export const WEB_APPLICATIONS_STANDARDS = [
-  {
-    id: "uptime",
-    title: "99.9% Uptime",
-    body: "Production platforms designed for reliability, observability, and graceful failure.",
-  },
-  {
-    id: "cicd",
-    title: "CI/CD Automated Deployment",
-    body: "Every merge ships through automated tests, previews, and repeatable release pipelines.",
+    title: "Role-Based Access & APIs",
+    body: "Granular RBAC, REST APIs, and SSO-ready auth so every role sees only what they should.",
   },
   {
     id: "cloud-native",
-    title: "Scalable Cloud-Native Engineering",
-    body: "Containerized services, managed databases, and infrastructure as code from day one.",
+    title: "Cloud-Native Delivery",
+    body: "GCP Serverless services with CI/CD, observability, and a stack you can operate without a platform army.",
   },
 ] as const;
 
+export const WEB_APPLICATIONS_STACK = [
+  { id: "vite", label: "Vite", slug: "vite" },
+  { id: "express", label: "Express", slug: "express" },
+  { id: "mongodb", label: "MongoDB", slug: "mongodb" },
+  { id: "nodejs", label: "Node.js", slug: "nodedotjs" },
+  { id: "gcp", label: "GCP Serverless", slug: "googlecloud" },
+] as const;
+
 export const WEB_APPLICATIONS_FORM = {
-  title: "Start Your Web Application Project",
+  title: "Request a project estimate",
   nameLabel: "Name",
   namePlaceholder: "Your name",
   emailLabel: "Work Email",
@@ -70,7 +60,7 @@ export const WEB_APPLICATIONS_FORM = {
   companyLabel: "Company Name",
   companyPlaceholder: "Company name",
   projectLabel: "Project Description",
-  projectPlaceholder: "What should this application do for your operations?",
+  projectPlaceholder: "What operational system or support portal should we estimate?",
   submitLabel: WEB_APPLICATIONS_CTA_LABEL,
-  serviceNeeded: "Custom Web Applications",
+  serviceNeeded: "B2B Web Applications",
 } as const;

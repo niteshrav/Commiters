@@ -2,12 +2,15 @@ import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import {
   MENU_SECTION_LINKS,
+  NAV_CTA_LABEL,
+  NAV_CTA_TO,
   NAV_DROPDOWN_CONFIGS,
   NAV_DROPDOWN_LINK_ACTIVE_CLASS,
   NAV_DROPDOWN_PANEL_GLASS_CLASS,
+  NAV_MEGA_FROST_CLASSES,
   PRIMARY_NAV_ITEMS,
+  SERVICE_MEGA_CARDS,
   SERVICE_NAV_ENTRIES,
-  SERVICE_NAV_GROUPS,
   buildAboutSectionHref,
   buildServiceSectionHref,
   buildServiceSectionLocation,
@@ -20,62 +23,61 @@ import {
 } from "./navSections";
 
 describe("navSections", () => {
-  it("lists compact primary nav items focused on products, services, work, and about", () => {
-    expect(PRIMARY_NAV_ITEMS.map((item) => item.label)).toEqual(["Products", "Services", "Work", "About"]);
-    expect(PRIMARY_NAV_ITEMS.map((item) => item.to)).toEqual([
-      ROUTES.trustTap,
-      ROUTES.services,
-      ROUTES.caseStudies,
-      ROUTES.about,
+  it("lists conversion-focused primary links with Services first", () => {
+    expect(PRIMARY_NAV_ITEMS.map((item) => item.label)).toEqual([
+      "Services",
+      "About",
+      "Work",
+      "TrustTap",
+      "OpsFlow AI",
     ]);
-    const productsIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "products");
-    const servicesIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "services");
-    const workIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "work");
-    const aboutIndex = PRIMARY_NAV_ITEMS.findIndex((item) => item.id === "about");
-    expect(productsIndex).toBe(0);
-    expect(servicesIndex).toBeGreaterThan(productsIndex);
-    expect(workIndex).toBeGreaterThan(servicesIndex);
-    expect(aboutIndex).toBeGreaterThan(workIndex);
+    expect(PRIMARY_NAV_ITEMS.map((item) => item.to)).toEqual([
+      ROUTES.services,
+      ROUTES.about,
+      ROUTES.caseStudies,
+      ROUTES.trustTap,
+      ROUTES.opsFlow,
+    ]);
+    expect(PRIMARY_NAV_ITEMS.find((item) => item.id === "trusttap")?.emphasis).toBe("flagship");
+    expect(PRIMARY_NAV_ITEMS.find((item) => item.id === "opsflow")?.emphasis).toBe("lead-magnet");
+    expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Products")).toBe(false);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Home")).toBe(false);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Careers")).toBe(false);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "More")).toBe(false);
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
-    expect(PRIMARY_NAV_ITEMS.some((item) => item.id === "testimonials")).toBe(false);
+    expect(NAV_CTA_LABEL).toBe("Book Operational Audit");
+    expect(NAV_CTA_TO).toBe(ROUTES.aiOperationalAudit);
   });
 
-  it("structures the Services mega-menu into four categories with descriptions", () => {
-    expect(SERVICE_NAV_GROUPS.map((group) => group.label)).toEqual([
-      "AI Operational Engineering",
-      "Custom Web & Platform Engineering",
-      "Strategic Diagnostic & Product Studio",
-      "Free Business Utilities",
+  it("structures the Services mega-menu as four rich cards", () => {
+    expect(SERVICE_MEGA_CARDS.map((card) => ({ label: card.label, description: card.description, to: card.to }))).toEqual([
+      {
+        label: "AI Operational Audits",
+        description: "2-week workflow diagnostics & custom automation prototypes.",
+        to: ROUTES.aiOperationalAudit,
+      },
+      {
+        label: "Custom AI Pipeline Engineering",
+        description: "Bespoke document parsing, LLM integrations & workflow automation.",
+        to: ROUTES.aiSolutions,
+      },
+      {
+        label: "Full-Stack B2B Web Applications",
+        description: "High-performance web applications built on Vite, Express & React.",
+        to: ROUTES.webApplications,
+      },
+      {
+        label: "Free Business Utilities",
+        description: "Zero-code tools including OpsFlow AI PDF-to-Excel extraction.",
+        to: ROUTES.opsFlowPlayground,
+      },
     ]);
-    expect(
-      SERVICE_NAV_GROUPS.flatMap((group) =>
-        group.links.map((link) => ({ id: link.id, to: link.to, featured: Boolean(link.featured) })),
-      ),
-    ).toEqual([
-      { id: "ai-solutions", to: "/services/ai-solutions", featured: false },
-      { id: "workflow-automation", to: "/services/workflow-automation", featured: false },
-      { id: "web-applications", to: "/services/web-applications", featured: false },
-      { id: "marketplace-platforms", to: "/services/marketplace-platforms", featured: false },
-      { id: "ai-operational-audit", to: "/services/ai-operational-audit", featured: true },
-      { id: "mvp-development", to: "/services/mvp-development", featured: false },
-      { id: "opsflow-playground", to: "/opsflow", featured: false },
-    ]);
-    expect(SERVICE_NAV_GROUPS.find((group) => group.id === "ai-operational-engineering")?.links[0]?.description).toMatch(
-      /Vertex AI/i,
-    );
-    expect(SERVICE_NAV_GROUPS.find((group) => group.id === "strategic-diagnostic-product-studio")?.links[0]?.label).toBe(
-      "AI Operational Audit (Featured)",
-    );
-    expect(SERVICE_NAV_GROUPS.find((group) => group.id === "custom-web-platform-engineering")?.links[1]?.label).toBe(
-      "E-commerce & Marketplace Engines",
-    );
+    expect(NAV_DROPDOWN_CONFIGS).toHaveLength(1);
+    expect(NAV_DROPDOWN_CONFIGS[0]?.layout).toBe("mega");
     expect(NAV_DROPDOWN_CONFIGS.every((config) => flattenNavDropdownLinks(config).every((link) => Boolean(link.description)))).toBe(
       true,
     );
-    expect(flattenNavDropdownLinks(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services")!)).toHaveLength(7);
+    expect(flattenNavDropdownLinks(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services")!)).toHaveLength(4);
   });
 
   it("builds stable service section URLs for Services page anchors", () => {
@@ -95,84 +97,57 @@ describe("navSections", () => {
     ]);
   });
 
-  it("lists dropdown section links derived from nav mega-menu configs", () => {
-    expect(MENU_SECTION_LINKS.length).toBeGreaterThan(10);
-    expect(MENU_SECTION_LINKS.some((link) => link.label === "TrustTap" && link.to === ROUTES.trustTap)).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.label === "OpsFlow AI" && link.to === ROUTES.opsFlow)).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.label === "Company Overview" && link.to === ROUTES.about)).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("principles"))).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("how-we-work"))).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.label === "Generative AI & LLM Solutions")).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.to === "/services/ai-solutions")).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.label === "Case Studies" && link.to === ROUTES.caseStudies)).toBe(true);
-    expect(
-      MENU_SECTION_LINKS.some((link) => link.label === "Browse My Vacations" && link.to === ROUTES.browseMyVacationCaseStudy),
-    ).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.label === "Client Stories" && link.to === ROUTES.testimonials)).toBe(true);
-    expect(MENU_SECTION_LINKS.some((link) => link.label === "OpsFlow AI Playground" && link.to === ROUTES.opsFlowPlayground)).toBe(
-      true,
-    );
+  it("lists dropdown section links from the Services mega-menu only", () => {
+    expect(MENU_SECTION_LINKS.map((link) => link.label)).toEqual([
+      "AI Operational Audits",
+      "Custom AI Pipeline Engineering",
+      "Full-Stack B2B Web Applications",
+      "Free Business Utilities",
+    ]);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("principles"))).toBe(false);
   });
 
   it("builds desktop dropdown configs from primary nav items", () => {
     const configs = resolveNavDropdownConfigs();
-    expect(configs.map((config) => config.label)).toEqual(["Products", "Services", "Work", "About"]);
-    expect(configs.find((config) => config.id === "services")?.groups?.map((group) => group.label)).toEqual([
-      "AI Operational Engineering",
-      "Custom Web & Platform Engineering",
-      "Strategic Diagnostic & Product Studio",
-      "Free Business Utilities",
-    ]);
+    expect(configs.map((config) => config.label)).toEqual(["Services"]);
     expect(configs.find((config) => config.id === "services")?.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
-      { label: "Generative AI & LLM Solutions", to: "/services/ai-solutions" },
-      { label: "Workflow & Process Automation", to: "/services/workflow-automation" },
-      { label: "Custom Web Applications", to: "/services/web-applications" },
-      { label: "E-commerce & Marketplace Engines", to: "/services/marketplace-platforms" },
-      { label: "AI Operational Audit (Featured)", to: "/services/ai-operational-audit" },
-      { label: "MVP & SaaS Development", to: "/services/mvp-development" },
-      { label: "OpsFlow AI Playground", to: "/opsflow" },
+      { label: "AI Operational Audits", to: ROUTES.aiOperationalAudit },
+      { label: "Custom AI Pipeline Engineering", to: ROUTES.aiSolutions },
+      { label: "Full-Stack B2B Web Applications", to: ROUTES.webApplications },
+      { label: "Free Business Utilities", to: ROUTES.opsFlowPlayground },
     ]);
   });
 
-  it("keeps the desktop header to Products, Services, Work, and About dropdowns", () => {
+  it("keeps a Services dropdown with About, Work, TrustTap, and OpsFlow AI as plain links", () => {
     const entries = resolveDesktopHeaderNav();
     expect(entries.map((entry) => (entry.kind === "link" ? entry.item.label : entry.config.label))).toEqual([
-      "Products",
       "Services",
-      "Work",
       "About",
+      "Work",
+      "TrustTap",
+      "OpsFlow AI",
     ]);
-    expect(entries.every((entry) => entry.kind === "dropdown")).toBe(true);
-    const products = entries.find((entry) => entry.kind === "dropdown" && entry.config.id === "products");
-    expect(products?.kind === "dropdown" ? products.config.overviewTo : undefined).toBe(ROUTES.trustTap);
+    expect(entries.filter((entry) => entry.kind === "dropdown")).toHaveLength(1);
+    expect(entries[0]).toMatchObject({ kind: "dropdown", config: { id: "services" } });
+    expect(entries.slice(1).every((entry) => entry.kind === "link")).toBe(true);
   });
 
-  it("defines stacked card dropdowns for About, Work, and Products", () => {
-    const about = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "about")!;
-    const work = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "work")!;
-    const products = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "products")!;
-
-    expect(about.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
-      { label: "Company Overview", to: ROUTES.about },
-      { label: "Principles & Core Pillars", to: buildAboutSectionHref("principles") },
-      { label: "How We Work", to: buildAboutSectionHref("how-we-work") },
+  it("exposes frosted-glass utility classes for the mega-menu panel", () => {
+    expect(NAV_DROPDOWN_PANEL_GLASS_CLASS).toBe("nav-item-dropdown-panel--glass");
+    expect([...NAV_MEGA_FROST_CLASSES]).toEqual([
+      "backdrop-blur-md",
+      "bg-white/80",
+      "dark:bg-slate-900/80",
+      "border",
+      "border-slate-200/50",
+      "dark:border-slate-800/50",
     ]);
-    expect(work.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
-      { label: "Case Studies", to: ROUTES.caseStudies },
-      { label: "Browse My Vacations", to: ROUTES.browseMyVacationCaseStudy },
-      { label: "Client Stories", to: ROUTES.testimonials },
-    ]);
-    expect(products.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
-      { label: "TrustTap", to: ROUTES.trustTap },
-      { label: "OpsFlow AI", to: ROUTES.opsFlow },
-    ]);
-    expect([about, work, products].every((config) => config.links.every((link) => Boolean(link.description)))).toBe(true);
   });
 
-  it("marks dropdown parents active for nested routes and section links", () => {
+  it("marks the Services dropdown active for nested service and playground routes", () => {
     const services = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services");
     expect(services).toBeTruthy();
-    expect(isNavDropdownActive(services!, "/services/ai-solutions")).toBe(true);
+    expect(isNavDropdownActive(services!, "/services/ai-pipeline-engineering")).toBe(true);
     expect(isNavDropdownActive(services!, "/opsflow")).toBe(true);
     expect(isNavDropdownActive(services!, "/about")).toBe(false);
   });
@@ -186,13 +161,12 @@ describe("navSections", () => {
 
   it("exports the active dropdown link class for hover-matched highlighting", () => {
     expect(NAV_DROPDOWN_LINK_ACTIVE_CLASS).toBe("nav-dropdown-link--active");
-    expect(NAV_DROPDOWN_PANEL_GLASS_CLASS).toBe("nav-item-dropdown-panel--glass");
   });
 
-  it("partitions desktop header links into the compact conversion bar", () => {
+  it("partitions desktop header links into the conversion bar", () => {
     const groups = partitionHeaderNavItems(PRIMARY_NAV_ITEMS);
 
-    expect(groups.bar.map((item) => item.label)).toEqual(["Products", "Services", "Work", "About"]);
+    expect(groups.bar.map((item) => item.label)).toEqual(["Services", "About", "Work", "TrustTap", "OpsFlow AI"]);
     expect(groups.more.map((item) => item.label)).toEqual([]);
     expect(groups.mobile.map((item) => item.label)).toEqual(PRIMARY_NAV_ITEMS.map((item) => item.label));
   });

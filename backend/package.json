@@ -11,6 +11,7 @@
     "test:run": "vitest run",
     "start": "node dist/index.js",
     "cms:seed": "tsx src/cms/seed.ts",
+    "invoice:reminder": "tsx src/scripts/sendInvoiceReminder.ts",
     "prisma:generate": "prisma generate --schema=../database/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema=../database/prisma/schema.prisma",
     "prisma:studio": "prisma studio --schema=../database/prisma/schema.prisma"

@@ -117,7 +117,7 @@ describe("WorkflowAutomationSection", () => {
       name: "Nitesh Rav",
       email: "hello@commiters.com",
       serviceNeeded: "AI Operational Audit",
-      budgetRange: "$3,000 - $5,000",
+      budgetRange: WORKFLOW_AUTOMATION_FORM.budgetRange,
       timeline: "2-week diagnostic",
       message: expect.stringContaining("WhatsApp order updates are sent by hand every evening."),
     });
