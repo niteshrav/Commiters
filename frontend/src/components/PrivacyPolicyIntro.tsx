@@ -5,6 +5,7 @@ import {
   PRIVACY_INTRO_INNER_CLASS,
   PRIVACY_INTRO_SECTION_CLASS,
   PRIVACY_LAST_UPDATED_CLASS,
+  PRIVACY_SUBTITLE_CLASS,
   PRIVACY_TITLE_CLASS,
 } from "../lib/privacyPageLayout";
 import { PRIVACY_PAGE_COPY } from "../lib/privacyPageContent";
@@ -20,6 +21,7 @@ export default function PrivacyPolicyIntro() {
         <h1 id="privacy-policy-title" className={PRIVACY_TITLE_CLASS}>
           {PRIVACY_PAGE_COPY.title}
         </h1>
+        <p className={PRIVACY_SUBTITLE_CLASS}>{PRIVACY_PAGE_COPY.subtitle}</p>
         <p className={PRIVACY_LAST_UPDATED_CLASS}>
           {PRIVACY_PAGE_COPY.lastUpdatedLabel} {PRIVACY_PAGE_COPY.lastUpdatedDate}
         </p>

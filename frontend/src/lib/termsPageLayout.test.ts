@@ -10,6 +10,7 @@ import {
   TERMS_DIVIDER_BORDER_CSS,
   TERMS_DIVIDER_CLASS,
   TERMS_ENTERPRISE_INNER_CLASS,
+  TERMS_CYAN_ACCENT_COLOR,
   TERMS_GOLD_ACCENT_COLOR,
   TERMS_HIGHLIGHT_BACKGROUND,
   TERMS_HIGHLIGHT_CLASS,
@@ -58,8 +59,11 @@ describe("termsPageLayout", () => {
     const blueIndex = ruleBlock(".terms-section-index--blue {", ".terms-section-index--gold {");
     expect(blueIndex).toContain(`color: ${TERMS_BLUE_ACCENT_COLOR}`);
 
-    const goldIndex = ruleBlock(".terms-section-index--gold {", `.${TERMS_SECTION_TITLE_CLASS} {`);
+    const goldIndex = ruleBlock(".terms-section-index--gold {", `.terms-section-index--cyan {`);
     expect(goldIndex).toContain(`color: ${TERMS_GOLD_ACCENT_COLOR}`);
+
+    const cyanIndex = ruleBlock(".terms-section-index--cyan {", `.${TERMS_SECTION_TITLE_CLASS} {`);
+    expect(cyanIndex).toContain(`color: ${TERMS_CYAN_ACCENT_COLOR}`);
 
     const highlight = ruleBlock(`.${TERMS_HIGHLIGHT_CLASS} {`, `.terms-enterprise-cta {`);
     expect(highlight).toContain(`background: ${TERMS_HIGHLIGHT_BACKGROUND}`);

@@ -3,7 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { NEARDROP_CASE_STUDY_COPY } from "../lib/neardropCaseStudyContent";
 import { ROUTES } from "../lib/routes";
-import { buildDiscoveryCallCalendarUrl } from "../lib/siteContact";
 import NearDropCaseStudyBottomCta from "./NearDropCaseStudyBottomCta";
 
 describe("NearDropCaseStudyBottomCta", () => {
@@ -24,9 +23,9 @@ describe("NearDropCaseStudyBottomCta", () => {
     expect(within(cta).getByText(NEARDROP_CASE_STUDY_COPY.bottomCta.subtext)).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Need Precision Software?" })).not.toBeInTheDocument();
 
-    expect(screen.getByRole("link", { name: "Book a Consultation" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Discuss Your Cloud Platform" })).toHaveAttribute(
       "href",
-      buildDiscoveryCallCalendarUrl(),
+      ROUTES.contact,
     );
     expect(screen.getByRole("link", { name: "View Portfolio" })).toHaveAttribute("href", ROUTES.caseStudies);
   });

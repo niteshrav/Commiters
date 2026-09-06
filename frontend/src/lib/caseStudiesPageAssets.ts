@@ -6,14 +6,25 @@ export type CaseStudyImageAsset = {
 };
 
 export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
+  "opsflow",
+  "governed-ai",
   "commiters",
-  "ai-summarizer",
-  "multi-role-crm",
   "neardrop-mvp",
-  "browse-my-vacation",
 ] as const;
 
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
+  {
+    id: "opsflow",
+    src: "/assets/case-studies/ai-summarizer.png",
+    srcSet: "/assets/case-studies/ai-summarizer@2x.png 2x",
+    alt: "OpsFlow AI PDF ingestion engine converting unstructured documents into structured datasets",
+  },
+  {
+    id: "governed-ai",
+    src: "/assets/case-studies/multi-role-crm.png",
+    srcSet: "/assets/case-studies/multi-role-crm@2x.png 2x",
+    alt: "Governed enterprise AI pipeline with policy-gated invocation and row-level security",
+  },
   {
     id: "commiters",
     src: "/assets/case-studies/commiters@2x.png",
@@ -21,28 +32,10 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
     alt: "Commiters digital architecture showcase with code and data visualizations",
   },
   {
-    id: "ai-summarizer",
-    src: "/assets/case-studies/ai-summarizer.png",
-    srcSet: "/assets/case-studies/ai-summarizer@2x.png 2x",
-    alt: "AI Summarizer generative AI landscape with a vertical blue light beam",
-  },
-  {
-    id: "multi-role-crm",
-    src: "/assets/case-studies/multi-role-crm.png",
-    srcSet: "/assets/case-studies/multi-role-crm@2x.png 2x",
-    alt: "Multi-Role CRM analytics dashboard with a blue network operations icon",
-  },
-  {
     id: "neardrop-mvp",
     src: "/assets/case-studies/neardrop-mvp.png",
     srcSet: "/assets/case-studies/neardrop-mvp@2x.png 2x",
     alt: "NearDrop MVP delivery map with teal location pins on a tablet",
-  },
-  {
-    id: "browse-my-vacation",
-    src: "/assets/case-studies/browse-my-vacation.png",
-    srcSet: "/assets/case-studies/browse-my-vacation@2x.png 2x",
-    alt: "BrowseMyVacation curated Rajasthan travel packages on browsemyvacations.com",
   },
 ] as const;
 
@@ -70,7 +63,7 @@ export function caseStudyImageAlt(projectId: string): string {
 
 /** Hint responsive loading so retina Work cards pick the @2x asset. */
 export function caseStudyImageSizes(projectId: string, layout: "horizontal" | "stacked"): string {
-  if (projectId === "commiters") {
+  if (projectId === "opsflow" || projectId === "commiters") {
     return "(min-width: 1024px) 540px, (min-width: 768px) 46vw, 92vw";
   }
   return layout === "horizontal" ? "(min-width: 768px) 420px, 92vw" : "(min-width: 768px) 360px, 92vw";

@@ -1,14 +1,19 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import { SITE_FOOTER_CONNECT_LINKS } from "./siteFooterCopy";
-import { SITE_GITHUB_URL, SITE_LINKEDIN_URL } from "./siteLinks";
-import { buildWhatsAppUrl } from "./siteContact";
+import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "./siteLinks";
 import {
+  HEADER_MENU_CLOSE_LABEL,
+  HEADER_MENU_OPEN_LABEL,
   MOBILE_NAV_DRAWER_COPYRIGHT,
   MOBILE_NAV_DRAWER_ITEMS,
   MOBILE_NAV_DRAWER_PRIMARY_LABELS,
   MOBILE_NAV_DRAWER_SOCIAL_LINKS,
+  MOBILE_NAV_DRAWER_WIDTH,
+  MOBILE_NAV_SHEET_TOP,
   MOBILE_NAV_SERVICE_LINKS,
+  SITE_HEADER_HEIGHT,
+  SITE_HEADER_HEIGHT_MOBILE,
 } from "./mobileNavDrawer";
 
 describe("mobileNavDrawer", () => {
@@ -26,22 +31,22 @@ describe("mobileNavDrawer", () => {
       {
         label: "AI Operational Audits",
         to: ROUTES.aiOperationalAudit,
-        description: "2-week workflow diagnostics & custom automation prototypes.",
+        description: "2-week workflow diagnostics & spec-driven cloud blueprints.",
       },
       {
-        label: "Custom AI Pipeline Engineering",
+        label: "Governed AI & Workflow Systems",
         to: ROUTES.aiSolutions,
-        description: "Bespoke document parsing, LLM integrations & workflow automation.",
+        description: "Enterprise document parsing, LLM integrations & automated workflows.",
       },
       {
-        label: "Full-Stack B2B Web Applications",
+        label: "Spec-Driven Full-Stack Platforms",
         to: ROUTES.webApplications,
-        description: "High-performance web applications built on Vite, Express & React.",
+        description: "Scalable B2B web portals, SaaS platforms, & cloud web applications.",
       },
       {
         label: "Free Business Utilities",
-        to: ROUTES.opsFlowPlayground,
-        description: "Zero-code tools including OpsFlow AI PDF-to-Excel extraction.",
+        to: ROUTES.utilities,
+        description: "Zero-code operational tools including OpsFlow AI PDF-to-Excel extraction.",
       },
     ]);
     const about = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "about");
@@ -58,15 +63,30 @@ describe("mobileNavDrawer", () => {
     expect(careers && "to" in careers ? careers.to : undefined).toBe(ROUTES.openPositions);
   });
 
-  it("pins drawer socials to LinkedIn, WhatsApp, and GitHub", () => {
+  it("pins drawer socials to the same brand-column icons as the footer", () => {
     expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS).toBe(SITE_FOOTER_CONNECT_LINKS);
-    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS.map((link) => link.label)).toEqual(["LinkedIn", "WhatsApp", "GitHub"]);
+    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS.map((link) => link.label)).toEqual([
+      "LinkedIn",
+      "Instagram",
+      "Medium",
+      "GitHub",
+    ]);
     expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[0].href).toBe(SITE_LINKEDIN_URL);
-    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[1].href).toBe(buildWhatsAppUrl());
-    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[2].href).toBe(SITE_GITHUB_URL);
+    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[1].href).toBe(SITE_INSTAGRAM_URL);
+    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[2].href).toBe(SITE_MEDIUM_URL);
+    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[3].href).toBe(SITE_GITHUB_URL);
   });
 
   it("uses the short legal copyright line in the drawer footer", () => {
     expect(MOBILE_NAV_DRAWER_COPYRIGHT).toBe("Copyright 2026 © Commiters Softwares");
+  });
+
+  it("pins a full-width sheet below the sticky header instead of a side drawer", () => {
+    expect(SITE_HEADER_HEIGHT).toBe("84px");
+    expect(SITE_HEADER_HEIGHT_MOBILE).toBe("64px");
+    expect(MOBILE_NAV_SHEET_TOP).toBe("var(--site-header-height)");
+    expect(MOBILE_NAV_DRAWER_WIDTH).toBe("100%");
+    expect(HEADER_MENU_OPEN_LABEL).toBe("Open menu");
+    expect(HEADER_MENU_CLOSE_LABEL).toBe("Close menu");
   });
 });

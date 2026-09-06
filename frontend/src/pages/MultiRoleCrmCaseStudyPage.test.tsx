@@ -20,7 +20,9 @@ describe("MultiRoleCrmCaseStudyPage", () => {
     const intro = screen.getByTestId("multi-role-crm-case-study-intro");
     expect(intro).toHaveClass("multi-role-crm-case-study-intro", "band-breakout");
     expect(within(intro).getByText(MULTI_ROLE_CRM_CASE_STUDY_COPY.kicker)).toBeInTheDocument();
-    expect(within(intro).getByRole("heading", { level: 1, name: "AI-Powered Multi-Role CRM" })).toBeInTheDocument();
+    expect(
+      within(intro).getByRole("heading", { level: 1, name: "Governed AI CRM & Multi-Role Operational Portal" }),
+    ).toBeInTheDocument();
     expect(intro.querySelector(".multi-role-crm-case-study-intro-stage")).toBeTruthy();
     const heroImage = within(intro).getByRole("img", { name: MULTI_ROLE_CRM_CASE_STUDY_COPY.heroImage.alt });
     expect(heroImage).toHaveAttribute("src", MULTI_ROLE_CRM_CASE_STUDY_COPY.heroImage.src);
@@ -42,11 +44,11 @@ describe("MultiRoleCrmCaseStudyPage", () => {
     const techStack = within(vision).getByTestId("multi-role-crm-case-study-tech-stack");
     expect(screen.queryByRole("heading", { name: "Tech Stack" })).not.toBeInTheDocument();
     expect(within(techStack).getByText("React")).toBeInTheDocument();
-    expect(within(techStack).getByText("PostgreSQL")).toBeInTheDocument();
+    expect(within(techStack).getByText("PostgreSQL (RLS)")).toBeInTheDocument();
     expect(within(techStack).getByText("Node.js")).toBeInTheDocument();
-    expect(within(techStack).getByText("Generative AI")).toBeInTheDocument();
+    expect(within(techStack).getByText("MCP Sockets")).toBeInTheDocument();
     expect(within(techStack).getByText("Frontend")).toBeInTheDocument();
-    expect(within(techStack).getByText("LLM & RAG Integration")).toBeInTheDocument();
+    expect(within(techStack).getByText("Generative AI")).toBeInTheDocument();
     expect(techStack.querySelector(".multi-role-crm-case-study-tech-stack-item--highlight")).toBeTruthy();
     expect(techStack.querySelectorAll(".multi-role-crm-case-study-tech-stack-item--wide")).toHaveLength(2);
 
@@ -61,16 +63,19 @@ describe("MultiRoleCrmCaseStudyPage", () => {
 
     const features = within(architecture).getByTestId("multi-role-crm-case-study-features");
     expect(features).toHaveClass("multi-role-crm-case-study-feature-grid");
-    expect(within(features).getByRole("heading", { name: "Multi-role RBAC" })).toBeInTheDocument();
-    expect(within(features).getByRole("heading", { name: "RAG Chatbot" })).toBeInTheDocument();
-    expect(within(features).getByRole("heading", { name: "Real-time Sync" })).toBeInTheDocument();
+    expect(within(features).getByRole("heading", { name: "Multi-Role RBAC & RLS" })).toBeInTheDocument();
+    expect(within(features).getByRole("heading", { name: "Policy-Gated RAG Engine" })).toBeInTheDocument();
+    expect(within(features).getByRole("heading", { name: "Real-Time WebSockets" })).toBeInTheDocument();
     expect(within(features).getByRole("heading", { name: "Smart Analytics" })).toBeInTheDocument();
-    expect(within(features).getByText(/WebSocket-driven query updates/i)).toBeInTheDocument();
+    expect(within(features).getByText(/Zero-latency sync/i)).toBeInTheDocument();
 
     const cta = screen.getByTestId("multi-role-crm-case-study-bottom-cta");
-    expect(within(cta).getByRole("heading", { name: "Ready to build?" })).toBeInTheDocument();
-    expect(within(cta).getByText(/enterprise-grade AI/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Get Started" })).toHaveAttribute("href", ROUTES.contact);
+    expect(within(cta).getByRole("heading", { name: "Ready to build your B2B platform?" })).toBeInTheDocument();
+    expect(within(cta).getByText(/spec-driven web systems/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Build Your B2B Web Platform" })).toHaveAttribute(
+      "href",
+      ROUTES.webApplications,
+    );
     expect(within(cta).queryByRole("img", { name: /Commiters/i })).not.toBeInTheDocument();
     expect(screen.queryByText("Join 50+ companies scaling with AI")).not.toBeInTheDocument();
   });

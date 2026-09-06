@@ -27,10 +27,10 @@ describe("navDropdownStacking (styles contract)", () => {
     expect(header).toMatch(/overflow:\s*visible/);
   });
 
-  it("lays out the Services mega-menu as a four-column rich-card grid", () => {
+  it("lays out the Services mega-menu as a four-quadrant rich-card grid", () => {
     const mega = ruleBlock(".nav-item-dropdown-panel--mega-cards {", ".nav-item-dropdown-panel--mega-cards .nav-dropdown-link--stacked {");
     expect(mega).toMatch(/display:\s*grid/);
-    expect(mega).toMatch(/grid-template-columns:\s*repeat\(4/);
+    expect(mega).toMatch(/grid-template-columns:\s*repeat\(2/);
   });
 
   it("styles card dropdowns with stacked titles, muted descriptions, and rounded panels", () => {

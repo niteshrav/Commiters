@@ -25,7 +25,8 @@ describe("ServiceDetailPage", () => {
     expect(screen.getByTestId("service-detail-final-cta")).toBeInTheDocument();
     expect(screen.queryByTestId("service-detail-testimonials")).not.toBeInTheDocument();
     expect(screen.queryByTestId("service-detail-faqs")).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Get Free Consultation/i })).toBeInTheDocument();
+    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveTextContent("Book Operational Audit");
+    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveAttribute("href", ROUTES.aiOperationalAudit);
     expect(screen.getByRole("link", { name: /Request Quote/i })).toHaveAttribute("href", ROUTES.contact);
     expect(screen.getByRole("link", { name: /Browse our FAQ/i })).toHaveAttribute("href", ROUTES.faq);
   });

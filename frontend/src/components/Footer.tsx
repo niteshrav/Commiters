@@ -5,6 +5,7 @@ import {
   FOOTER_BACK_TO_TOP_CLASS,
   FOOTER_BLACKBOOK_BAR_CLASS,
   FOOTER_BLACKBOOK_SOCIAL_CLASS,
+  FOOTER_BRAND_SUBTEXT_CLASS,
   FOOTER_BRAND_TAGLINE_CLASS,
   FOOTER_COPYRIGHT_CELL_CLASS,
   FOOTER_LOGO_CELL_CLASS,
@@ -30,7 +31,7 @@ import {
   type FooterNavColumn,
 } from "../lib/siteFooterCopy";
 import { resolveAdminPanelUrl } from "../lib/siteAdmin";
-import { IconChevronUp, IconGitHub, IconLinkedIn, IconWhatsApp } from "./icons";
+import { IconChevronUp, SocialBrandIcon } from "./icons";
 
 function isAdminFooterLink(link: FooterLinkCell): boolean {
   return link.label.trim().toLowerCase() === "admin";
@@ -84,18 +85,7 @@ function FooterNavColumnBlock({ column }: { column: FooterNavColumn }) {
 }
 
 function FooterSocialIcon({ label }: { label: string }) {
-  const iconProps = { width: 16, height: 16, "aria-hidden": true as const };
-
-  switch (label) {
-    case "LinkedIn":
-      return <IconLinkedIn {...iconProps} />;
-    case "WhatsApp":
-      return <IconWhatsApp {...iconProps} />;
-    case "GitHub":
-      return <IconGitHub {...iconProps} />;
-    default:
-      return null;
-  }
+  return <SocialBrandIcon label={label} width={16} height={16} aria-hidden />;
 }
 
 function scrollToTop() {
@@ -127,7 +117,7 @@ function FooterCopyrightLine({ copyrightLine1 }: { copyrightLine1: string }) {
 }
 
 export default function Footer() {
-  const { brandTagline, copyrightLine1, navColumns, socialLinks, bottomLegalLinks } = useFooterContent();
+  const { brandTagline, brandSubtext, copyrightLine1, navColumns, socialLinks, bottomLegalLinks } = useFooterContent();
   const visibleNavColumns = navColumns.filter((column) => !isSocialFooterColumn(column.heading));
   const visibleSocialLinks = socialLinks.filter(
     (link): link is FooterExternalLink => link.kind === "external" && !isAdminFooterLink(link),
@@ -137,12 +127,13 @@ export default function Footer() {
   return (
     <footer className={`footer footer-rich footer--stitch ${FOOTER_NOCK_CLASS} footer--home-mockup`}>
       <div className={FOOTER_NOCK_SHELL_CLASS}>
-        <div className={FOOTER_NOCK_MAIN_CLASS}>
+        <div className={`${FOOTER_NOCK_MAIN_CLASS} grid-cols-1 md:grid-cols-4`}>
           <div className={`${FOOTER_NOCK_BRAND_CLASS} footer-mockup-brand-stack`}>
             <div className={FOOTER_LOGO_CELL_CLASS} data-testid="footer-logo-cell">
               <BrandLogo variant="footer" logoSrc={footerBrandLogoSrc()} />
             </div>
             <p className={FOOTER_BRAND_TAGLINE_CLASS}>{brandTagline}</p>
+            <p className={FOOTER_BRAND_SUBTEXT_CLASS}>{brandSubtext}</p>
             <div className={FOOTER_BLACKBOOK_SOCIAL_CLASS} data-testid="footer-social-icons">
               {visibleSocialLinks.map((link) => (
                 <a

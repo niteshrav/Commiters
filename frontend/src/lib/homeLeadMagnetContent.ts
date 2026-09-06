@@ -1,10 +1,14 @@
+import { HOME_OPS_FLOW_SECTION_ID } from "./homePageContent";
+import { ROUTES } from "./routes";
+
 export const HOME_LEAD_MAGNET_TEST_ID = "home-lead-magnet" as const;
+export const HOME_LEAD_MAGNET_SECTION_ID = HOME_OPS_FLOW_SECTION_ID;
 
 export const HOME_LEAD_MAGNET_COPY = {
-  badge: "OPSFLOW AI • DOCUMENT INTELLIGENCE",
-  title: "Transform Unstructured PDFs into Clean, Structured Excel Datasets",
+  badge: "PROPRIETARY CLOUD PRODUCT",
+  title: "OpsFlow AI: Transform Unstructured PDFs into Clean, Structured Excel Datasets",
   description:
-    "OpsFlow AI eliminates manual document entry by automatically extracting tables, line items, and complex financial fields from PDFs directly into production-ready Excel workbooks.",
+    "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and financial records.",
   features: [
     {
       title: "Precision Extraction",
@@ -15,15 +19,18 @@ export const HOME_LEAD_MAGNET_COPY = {
       body: "Instant conversion of multi-page invoices and receipts into .xlsx.",
     },
     {
-      title: "Zero Manual Effort",
-      body: "Eliminates copy-paste errors and speeds up reconciliation cycles.",
+      title: "Enterprise MCP Integration",
+      body: "Governed Model Context Protocol sockets connect models to data without direct database access.",
     },
   ],
+  ctaConverter: "Try Free Converter",
+  ctaConverterTo: ROUTES.opsFlowPlayground,
+  ctaDemo: "Request Enterprise Demo",
   formTitle: "Test OpsFlow AI with Your Document Format",
   formSubtitle: "Submit a sample layout to receive your benchmark Excel conversion.",
   emailLabel: "Business email",
   emailPlaceholder: "Enter your business email",
-  submitLabel: "Request Sample Extraction",
+  submitLabel: "Request Enterprise Demo",
   microcopy: "Zero spam. Direct benchmark results delivered within 1 business day.",
   successMessage:
     "Request Received! Our engineering team will reach out shortly to process your sample PDF-to-Excel conversion.",

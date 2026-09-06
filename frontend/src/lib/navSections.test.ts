@@ -4,6 +4,7 @@ import {
   MENU_SECTION_LINKS,
   NAV_CTA_LABEL,
   NAV_CTA_TO,
+  NAV_HEADER_BADGE,
   NAV_DROPDOWN_CONFIGS,
   NAV_DROPDOWN_LINK_ACTIVE_CLASS,
   NAV_DROPDOWN_PANEL_GLASS_CLASS,
@@ -47,33 +48,35 @@ describe("navSections", () => {
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
     expect(NAV_CTA_LABEL).toBe("Book Operational Audit");
     expect(NAV_CTA_TO).toBe(ROUTES.aiOperationalAudit);
+    expect(NAV_HEADER_BADGE).toBe("COMMITERS — Enterprise AI & Cloud Systems");
   });
 
   it("structures the Services mega-menu as four rich cards", () => {
     expect(SERVICE_MEGA_CARDS.map((card) => ({ label: card.label, description: card.description, to: card.to }))).toEqual([
       {
         label: "AI Operational Audits",
-        description: "2-week workflow diagnostics & custom automation prototypes.",
+        description: "2-week workflow diagnostics & spec-driven cloud blueprints.",
         to: ROUTES.aiOperationalAudit,
       },
       {
-        label: "Custom AI Pipeline Engineering",
-        description: "Bespoke document parsing, LLM integrations & workflow automation.",
+        label: "Governed AI & Workflow Systems",
+        description: "Enterprise document parsing, LLM integrations & automated workflows.",
         to: ROUTES.aiSolutions,
       },
       {
-        label: "Full-Stack B2B Web Applications",
-        description: "High-performance web applications built on Vite, Express & React.",
+        label: "Spec-Driven Full-Stack Platforms",
+        description: "Scalable B2B web portals, SaaS platforms, & cloud web applications.",
         to: ROUTES.webApplications,
       },
       {
         label: "Free Business Utilities",
-        description: "Zero-code tools including OpsFlow AI PDF-to-Excel extraction.",
-        to: ROUTES.opsFlowPlayground,
+        description: "Zero-code operational tools including OpsFlow AI PDF-to-Excel extraction.",
+        to: ROUTES.utilities,
       },
     ]);
     expect(NAV_DROPDOWN_CONFIGS).toHaveLength(1);
     expect(NAV_DROPDOWN_CONFIGS[0]?.layout).toBe("mega");
+    expect(NAV_DROPDOWN_CONFIGS[0]?.headline).toBe(NAV_HEADER_BADGE);
     expect(NAV_DROPDOWN_CONFIGS.every((config) => flattenNavDropdownLinks(config).every((link) => Boolean(link.description)))).toBe(
       true,
     );
@@ -81,27 +84,23 @@ describe("navSections", () => {
   });
 
   it("builds stable service section URLs for Services page anchors", () => {
-    expect(buildServiceSectionHref("website-development")).toBe(`${ROUTES.services}#website-development`);
-    expect(buildServiceSectionLocation("website-development")).toEqual({
+    expect(buildServiceSectionHref("ai-operational-audits")).toBe(`${ROUTES.services}#ai-operational-audits`);
+    expect(buildServiceSectionLocation("ai-operational-audits")).toEqual({
       pathname: ROUTES.services,
-      hash: "#website-development",
+      hash: "#ai-operational-audits",
     });
     expect(SERVICE_NAV_ENTRIES.map((e) => e.id)).toEqual([
-      "website-development",
-      "web-applications",
-      "mobile-applications",
-      "e-commerce-development",
-      "ai-integration",
-      "automation-tools",
-      "mvp-development",
+      "ai-operational-audits",
+      "governed-ai-workflow-systems",
+      "spec-driven-full-stack-platforms",
     ]);
   });
 
   it("lists dropdown section links from the Services mega-menu only", () => {
     expect(MENU_SECTION_LINKS.map((link) => link.label)).toEqual([
       "AI Operational Audits",
-      "Custom AI Pipeline Engineering",
-      "Full-Stack B2B Web Applications",
+      "Governed AI & Workflow Systems",
+      "Spec-Driven Full-Stack Platforms",
       "Free Business Utilities",
     ]);
     expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("principles"))).toBe(false);
@@ -112,9 +111,9 @@ describe("navSections", () => {
     expect(configs.map((config) => config.label)).toEqual(["Services"]);
     expect(configs.find((config) => config.id === "services")?.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
       { label: "AI Operational Audits", to: ROUTES.aiOperationalAudit },
-      { label: "Custom AI Pipeline Engineering", to: ROUTES.aiSolutions },
-      { label: "Full-Stack B2B Web Applications", to: ROUTES.webApplications },
-      { label: "Free Business Utilities", to: ROUTES.opsFlowPlayground },
+      { label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutions },
+      { label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplications },
+      { label: "Free Business Utilities", to: ROUTES.utilities },
     ]);
   });
 
@@ -147,16 +146,17 @@ describe("navSections", () => {
   it("marks the Services dropdown active for nested service and playground routes", () => {
     const services = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services");
     expect(services).toBeTruthy();
-    expect(isNavDropdownActive(services!, "/services/ai-pipeline-engineering")).toBe(true);
-    expect(isNavDropdownActive(services!, "/opsflow")).toBe(true);
+    expect(isNavDropdownActive(services!, "/services/governed-ai-workflow-systems")).toBe(true);
+    expect(isNavDropdownActive(services!, "/utilities")).toBe(true);
     expect(isNavDropdownActive(services!, "/about")).toBe(false);
   });
 
   it("resolves the active service section only on /services with a known hash", () => {
-    expect(resolveActiveServiceSectionId(ROUTES.services, "#automation-tools")).toBe("automation-tools");
+    expect(resolveActiveServiceSectionId(ROUTES.services, "#ai-operational-audits")).toBe("ai-operational-audits");
     expect(resolveActiveServiceSectionId(ROUTES.services, "")).toBeNull();
-    expect(resolveActiveServiceSectionId(ROUTES.home, "#automation-tools")).toBeNull();
+    expect(resolveActiveServiceSectionId(ROUTES.home, "#ai-operational-audits")).toBeNull();
     expect(resolveActiveServiceSectionId(ROUTES.services, "#unknown")).toBeNull();
+    expect(resolveActiveServiceSectionId(ROUTES.services, "#website-development")).toBeNull();
   });
 
   it("exports the active dropdown link class for hover-matched highlighting", () => {

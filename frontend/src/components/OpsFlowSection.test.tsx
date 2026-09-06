@@ -43,6 +43,9 @@ describe("OpsFlowSection", () => {
     expect(screen.getByText(OPSFLOW_HERO.eyebrow)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: OPSFLOW_HERO.headline, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(OPSFLOW_HERO.subheadline)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: OPSFLOW_HERO.tryFreeLabel })).toHaveAttribute("href", OPSFLOW_HERO.tryFreeHref);
+    expect(screen.getByRole("link", { name: OPSFLOW_HERO.demoLabel })).toHaveAttribute("href", OPSFLOW_HERO.demoTo);
+    expect(screen.getByTestId("opsflow-panel")).toHaveAttribute("id", "opsflow-sandbox");
 
     for (const card of OPSFLOW_VALUE_CARDS) {
       expect(screen.getByRole("heading", { name: card.title, level: 2 })).toBeInTheDocument();

@@ -9,5 +9,6 @@ export const AUDIT_PRICING_CLASS = "audit-pricing" as const;
 export const AUDIT_CARDS_CLASS = "audit-cards" as const;
 export const AUDIT_CARD_CLASS = "audit-card" as const;
 export const AUDIT_TIMELINE_CLASS = "audit-timeline" as const;
+export const AUDIT_GOVERNANCE_CLASS = "audit-governance" as const;
 export const AUDIT_FORM_CLASS = "audit-form" as const;
 export const AUDIT_FIELD_CLASS = "audit-field" as const;

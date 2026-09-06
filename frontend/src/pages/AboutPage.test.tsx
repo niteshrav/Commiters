@@ -37,7 +37,19 @@ describe("AboutPage", () => {
     expect(screen.getByTestId("about-founder-quote")).toHaveTextContent(ABOUT_FOUNDER_QUOTE.text);
     expect(screen.getByTestId("about-founder-quote")).toHaveTextContent(ABOUT_FOUNDER_QUOTE.attribution);
 
+    expect(screen.getByText(STITCH_COPY.about.kicker)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: STITCH_COPY.about.title })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: ABOUT_PAGE_COPY.principles.title })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "AI Operational Audit" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Governed Deployment & Handoff" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: ABOUT_PAGE_COPY.bottomCta.primaryLabel })).toHaveAttribute(
+      "href",
+      ABOUT_PAGE_COPY.bottomCta.primaryTo,
+    );
+    expect(screen.getByRole("link", { name: ABOUT_PAGE_COPY.bottomCta.secondaryLabel })).toHaveAttribute(
+      "href",
+      ABOUT_PAGE_COPY.bottomCta.secondaryTo,
+    );
     expect(screen.queryByText(ABOUT_REJECTED_CTA_SUBTEXT)).not.toBeInTheDocument();
   });
 });

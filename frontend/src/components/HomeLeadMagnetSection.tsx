@@ -1,6 +1,12 @@
 import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import { createLead } from "../lib/api";
-import { HOME_LEAD_MAGNET_COPY, HOME_LEAD_MAGNET_LAYOUT, HOME_LEAD_MAGNET_TEST_ID } from "../lib/homeLeadMagnetContent";
+import {
+  HOME_LEAD_MAGNET_COPY,
+  HOME_LEAD_MAGNET_LAYOUT,
+  HOME_LEAD_MAGNET_SECTION_ID,
+  HOME_LEAD_MAGNET_TEST_ID,
+} from "../lib/homeLeadMagnetContent";
 import { validateHomeLeadMagnetEmail } from "../lib/homeLeadMagnetLeadGate";
 import { IconCheckCircle } from "./icons";
 
@@ -34,6 +40,7 @@ export default function HomeLeadMagnetSection() {
 
   return (
     <section
+      id={HOME_LEAD_MAGNET_SECTION_ID}
       className={HOME_LEAD_MAGNET_LAYOUT.sectionClass}
       data-testid={HOME_LEAD_MAGNET_TEST_ID}
       aria-labelledby="home-lead-magnet-title"
@@ -58,9 +65,17 @@ export default function HomeLeadMagnetSection() {
               </li>
             ))}
           </ul>
+          <div className="home-lead-magnet-actions" data-testid="home-lead-magnet-actions">
+            <Link className="btn btn-primary" to={HOME_LEAD_MAGNET_COPY.ctaConverterTo}>
+              {HOME_LEAD_MAGNET_COPY.ctaConverter}
+            </Link>
+            <a className="btn btn-secondary" href="#home-lead-magnet-card">
+              {HOME_LEAD_MAGNET_COPY.ctaDemo}
+            </a>
+          </div>
         </div>
 
-        <div className={HOME_LEAD_MAGNET_LAYOUT.formCardClass} data-testid="home-lead-magnet-card">
+        <div className={HOME_LEAD_MAGNET_LAYOUT.formCardClass} id="home-lead-magnet-card" data-testid="home-lead-magnet-card">
           {submitted ? (
             <div className="home-lead-magnet-success" role="status">
               <p className="home-lead-magnet-success-body">{HOME_LEAD_MAGNET_COPY.successMessage}</p>

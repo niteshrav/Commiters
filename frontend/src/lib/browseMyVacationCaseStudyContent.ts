@@ -41,13 +41,13 @@ export type BrowseMyVacationCaseStudyMetadataItem = {
 /** Case study copy for the BrowseMyVacation travel platform (reuses NextSaas page layout). */
 export const BROWSE_MY_VACATION_CASE_STUDY_COPY = {
   documentTitle: "BrowseMyVacation Case Study",
-  kicker: "CASE STUDY — TRAVEL PLATFORM",
-  title: "BrowseMyVacation — Curated Rajasthan Vacations.",
+  kicker: "CASE STUDY: B2B E-COMMERCE PLATFORM",
+  title: "BrowseMyVacation: Curated B2C/B2B Travel Platform",
   description:
-    "Vacations you'll love, memories you'll keep. A Next.js travel platform where travelers explore curated Rajasthan packages by city—no dates required—with transparent pricing and Customise & Quote flows.",
+    "Full-stack cloud marketplace featuring custom quote workflows, city-first discovery, and automated enquiry pipelines.",
   metadata: {
     timeline: { label: "TIMELINE", value: "8 Weeks to Production" },
-    coreStack: { label: "CORE STACK", value: "React, Next.js, Node.js, PostgreSQL" },
+    coreStack: { label: "CORE STACK", value: "React, Node.js, PostgreSQL, Vercel Edge" },
     client: { label: "CLIENT", value: "Rahul Kumawat · BrowseMyVacation" },
     liveSite: {
       label: "LIVE SITE",
@@ -78,9 +78,9 @@ export const BROWSE_MY_VACATION_CASE_STUDY_COPY = {
       "Curated experiences, no dates needed, best-price transparency, and 24/7 travel support—wrapped in a fast Next.js experience on mobile and desktop.",
   },
   outcomes: {
-    heading: "What we delivered",
+    heading: "Value delivered",
     description:
-      "Founder Rahul Kumawat needed more than a brochure site—customers had to discover Udaipur, Jaipur, and Jaisalmer packages, request custom quotes, and trust the brand. These were the outcomes we shipped together.",
+      "City-first search engines, transparent pricing calculators, and founder-led rapid development loops—shipped as a production cloud marketplace.",
     items: [
       {
         id: "launch",
@@ -92,13 +92,13 @@ export const BROWSE_MY_VACATION_CASE_STUDY_COPY = {
         id: "discovery",
         label: "DISCOVERY",
         value: "City-first search",
-        body: "Travelers browse Rajasthan packages by destination with transparent starting prices, rich photography, and clear View Details paths—no forced date pickers.",
+        body: "City-first search engines with transparent pricing calculators, rich photography, and clear View Details paths—no forced date pickers.",
       },
       {
         id: "partnership",
         label: "DELIVERY",
         value: "Founder-led loops",
-        body: "Weekly releases, direct feedback with Rahul, and fast turnarounds from discovery workshops through launch and post-go-live refinements.",
+        body: "Founder-led rapid development loops—weekly releases, direct feedback, and fast turnarounds from discovery through launch.",
       },
     ] satisfies BrowseMyVacationCaseStudyOutcome[],
   },

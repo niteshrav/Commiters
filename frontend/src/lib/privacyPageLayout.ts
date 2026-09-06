@@ -9,6 +9,7 @@ export const PRIVACY_CONTENT_COLUMN_CLASS = "privacy-policy-content" as const;
 export const PRIVACY_INTRO_SECTION_CLASS = "privacy-policy-intro" as const;
 export const PRIVACY_INTRO_INNER_CLASS = "privacy-policy-intro-inner" as const;
 export const PRIVACY_TITLE_CLASS = "privacy-policy-title" as const;
+export const PRIVACY_SUBTITLE_CLASS = "privacy-policy-subtitle" as const;
 export const PRIVACY_LAST_UPDATED_CLASS = "privacy-policy-last-updated" as const;
 export const PRIVACY_ACCENT_LINE_CLASS = "privacy-policy-accent-line" as const;
 export const PRIVACY_INTRO_BODY_CLASS = "privacy-policy-intro-body" as const;
@@ -46,7 +47,7 @@ export const PRIVACY_DPO_BUTTON_CLASS = "privacy-policy-dpo-button" as const;
 
 export const PRIVACY_PROSE_MAX_WIDTH = "56rem" as const;
 export const PRIVACY_SECTION_NUMBER_COLOR = "#0066ff" as const;
-export const PRIVACY_ACCENT_COLOR = "#a68948" as const;
+export const PRIVACY_ACCENT_COLOR = "#d4a017" as const;
 export const PRIVACY_DIVIDER_COLOR = "var(--border)" as const;
 export const PRIVACY_DIVIDER_BORDER_CSS = SITE_HORIZONTAL_RULE_BORDER_CSS;
 /** Equal breathing room above and below each privacy page separator line. */

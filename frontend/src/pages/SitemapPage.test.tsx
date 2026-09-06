@@ -28,9 +28,9 @@ describe("SitemapPage", () => {
     expect(within(companyGroup).getByText("Engineering studio overview and featured work.")).toBeInTheDocument();
 
     const servicesGroup = screen.getByTestId("sitemap-group-services");
-    expect(within(servicesGroup).getByRole("link", { name: "Website Development" })).toHaveAttribute(
+    expect(within(servicesGroup).getByRole("link", { name: /AI Operational Audits/ })).toHaveAttribute(
       "href",
-      "/services/website-development",
+      ROUTES.aiOperationalAudit,
     );
 
     const legalGroup = screen.getByTestId("sitemap-group-legal");

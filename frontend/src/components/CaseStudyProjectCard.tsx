@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { CaseStudyProject, CaseStudyTagVariant } from "../lib/caseStudiesPageContent";
+import { BRAND_CARD_HOVER_CLASSES, BRAND_TECH_BADGE_CLASSES } from "../lib/brandColorKit";
 import {
   caseStudyHasImage,
   caseStudyImageAlt,
@@ -21,13 +22,17 @@ import {
   CASE_STUDY_CARD_MEDIA_CLASS,
   CASE_STUDY_CARD_MEDIA_SHOWCASE_CLASS,
   CASE_STUDY_CARD_STACKED_CLASS,
+  CASE_STUDY_CATEGORY_CLASS,
   CASE_STUDY_DETAILS_LINK_CLASS,
+  CASE_STUDY_IMPACT_CLASS,
+  CASE_STUDY_IMPACT_ITEM_CLASS,
   CASE_STUDY_PROBLEM_LABEL_CLASS,
   CASE_STUDY_PROBLEM_SOLUTION_CLASS,
   CASE_STUDY_SOLUTION_LABEL_CLASS,
   isShowcaseHorizontalCard,
   CASE_STUDY_TAG_ACCENT_CLASS,
   CASE_STUDY_TAG_CLASS,
+  CASE_STUDY_TAG_CYAN_CLASS,
   CASE_STUDY_TAG_OUTLINE_CLASS,
   CASE_STUDY_TAG_PILL_CLASS,
   CASE_STUDY_TITLE_CLASS,
@@ -38,6 +43,9 @@ type Props = { project: CaseStudyProject };
 function tagClass(variant: CaseStudyTagVariant = "pill"): string {
   if (variant === "outline") return `${CASE_STUDY_TAG_CLASS} ${CASE_STUDY_TAG_OUTLINE_CLASS}`;
   if (variant === "accent") return `${CASE_STUDY_TAG_CLASS} ${CASE_STUDY_TAG_ACCENT_CLASS}`;
+  if (variant === "cyan") {
+    return `${CASE_STUDY_TAG_CLASS} ${CASE_STUDY_TAG_CYAN_CLASS} ${BRAND_TECH_BADGE_CLASSES}`;
+  }
   return `${CASE_STUDY_TAG_CLASS} ${CASE_STUDY_TAG_PILL_CLASS}`;
 }
 
@@ -92,6 +100,20 @@ function CaseStudyProblemSolution({ project }: Props) {
   );
 }
 
+function CaseStudyImpact({ project }: Props) {
+  if (!project.impact?.length) return null;
+
+  return (
+    <ul className={CASE_STUDY_IMPACT_CLASS} data-testid="case-study-impact">
+      {project.impact.map((item) => (
+        <li key={item} className={CASE_STUDY_IMPACT_ITEM_CLASS}>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function CaseStudyCopy({
   project,
   includeDetailsLink = true,
@@ -107,9 +129,11 @@ function CaseStudyCopy({
 
   return (
     <div className={copyClass}>
+      {project.category ? <p className={CASE_STUDY_CATEGORY_CLASS}>{project.category}</p> : null}
       <CaseStudyTags project={project} />
       <h3 className={CASE_STUDY_TITLE_CLASS}>{project.title}</h3>
       <CaseStudyProblemSolution project={project} />
+      <CaseStudyImpact project={project} />
       {includeDetailsLink ? <CaseStudyDetailsLink project={project} /> : null}
     </div>
   );
@@ -147,7 +171,14 @@ export default function CaseStudyProjectCard({ project }: Props) {
   const layoutClass = project.layout === "horizontal" ? CASE_STUDY_CARD_HORIZONTAL_CLASS : CASE_STUDY_CARD_STACKED_CLASS;
   const noMediaClass = caseStudyHasImage(project.id) ? "" : CASE_STUDY_CARD_NO_MEDIA_CLASS;
   const showcaseClass = isShowcaseHorizontalCard(project.id) ? CASE_STUDY_CARD_SHOWCASE_CLASS : "";
-  const cardClassName = [CASE_STUDY_CARD_CLASS, gridClass, layoutClass, showcaseClass, noMediaClass]
+  const cardClassName = [
+    CASE_STUDY_CARD_CLASS,
+    gridClass,
+    layoutClass,
+    showcaseClass,
+    noMediaClass,
+    BRAND_CARD_HOVER_CLASSES,
+  ]
     .filter(Boolean)
     .join(" ");
 

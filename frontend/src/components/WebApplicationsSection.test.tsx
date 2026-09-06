@@ -62,6 +62,7 @@ describe("WebApplicationsSection", () => {
     }
 
     expect(screen.getByRole("heading", { name: WEB_APPLICATIONS_FORM.title, level: 2 })).toBeInTheDocument();
+    expect(screen.getByLabelText(WEB_APPLICATIONS_FORM.scopeLabel)).toHaveValue(WEB_APPLICATIONS_FORM.serviceNeeded);
     expect(screen.getByLabelText(WEB_APPLICATIONS_FORM.nameLabel)).toBeRequired();
     expect(screen.getByLabelText(WEB_APPLICATIONS_FORM.emailLabel)).toHaveAttribute(
       "placeholder",
@@ -110,7 +111,7 @@ describe("WebApplicationsSection", () => {
     expect(createLead).toHaveBeenCalledWith({
       name: "Nitesh Rav",
       email: "hello@commiters.com",
-      serviceNeeded: "B2B Web Applications",
+      serviceNeeded: "Spec-Driven Full-Stack Platforms",
       message: expect.stringContaining("Role-based operations platform for field teams."),
     });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });

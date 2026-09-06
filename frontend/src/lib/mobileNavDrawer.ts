@@ -3,12 +3,17 @@ import { SITE_FOOTER_CONNECT_LINKS } from "./siteFooterCopy";
 import { SERVICE_MEGA_CARDS } from "./navSections";
 
 export const MOBILE_NAV_DRAWER_TESTID = "nav-mobile-drawer" as const;
-export const MOBILE_NAV_CLOSE_BTN_TESTID = "nav-mobile-close-btn" as const;
 export const HEADER_MENU_BTN_TESTID = "header-menu-btn" as const;
 export const MOBILE_NAV_OVERLAY_CLASS = "nav-mobile-overlay" as const;
 export const MOBILE_NAV_DRAWER_CLASS = "nav-mobile-drawer" as const;
 export const MOBILE_NAV_BODY_LOCK_CLASS = "nav-mobile-drawer-open" as const;
 export const HEADER_DRAWER_OPEN_CLASS = "header--drawer-open" as const;
+export const HEADER_MENU_OPEN_LABEL = "Open menu" as const;
+export const HEADER_MENU_CLOSE_LABEL = "Close menu" as const;
+export const SITE_HEADER_HEIGHT = "84px" as const;
+export const SITE_HEADER_HEIGHT_MOBILE = "64px" as const;
+export const MOBILE_NAV_SHEET_TOP = "var(--site-header-height)" as const;
+export const MOBILE_NAV_DRAWER_WIDTH = "100%" as const;
 
 export const MOBILE_NAV_DRAWER_COPYRIGHT = "Copyright 2026 © Commiters Softwares" as const;
 

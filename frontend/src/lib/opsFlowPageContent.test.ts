@@ -21,26 +21,32 @@ import {
 describe("opsFlowPageContent", () => {
   it("defines SEO metadata for the product landing page", () => {
     expect(OPSFLOW_SEO.path).toBe(ROUTES.opsFlow);
-    expect(OPSFLOW_SEO.title).toBe("OpsFlow AI");
-    expect(OPSFLOW_SEO.description).toMatch(/PDF invoices/i);
+    expect(OPSFLOW_SEO.title).toBe("OpsFlow AI: Automated Document Ingestion | Commiters");
+    expect(OPSFLOW_SEO.description).toMatch(/PDF-to-Excel/i);
   });
 
-  it("uses the free-utility hero copy", () => {
-    expect(OPSFLOW_HERO.eyebrow).toBe("FREE BUSINESS UTILITY | ZERO SETUP REQUIRED");
-    expect(OPSFLOW_HERO.headline).toBe("Turn PDF Invoices, Receipts & Shipping Bills into Clean Excel Files");
-    expect(OPSFLOW_HERO.subheadline).toMatch(/Indian GST invoices/i);
+  it("uses the live product showcase hero copy and dual CTAs", () => {
+    expect(OPSFLOW_HERO.eyebrow).toBe("PROPRIETARY CLOUD PRODUCT");
+    expect(OPSFLOW_HERO.headline).toBe("OpsFlow AI: Automated Document Ingestion");
+    expect(OPSFLOW_HERO.subheadline).toBe(
+      "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and operational records.",
+    );
+    expect(OPSFLOW_HERO.tryFreeLabel).toBe("Try Free Version");
+    expect(OPSFLOW_HERO.tryFreeHref).toBe("#opsflow-sandbox");
+    expect(OPSFLOW_HERO.demoLabel).toBe("Request Enterprise Demo");
+    expect(OPSFLOW_HERO.demoTo).toBe(ROUTES.contact);
   });
 
-  it("lists three B2B value propositions", () => {
+  it("lists three product features", () => {
     expect(OPSFLOW_VALUE_CARDS.map((card) => card.title)).toEqual([
-      "Zero-Friction Web Sandbox",
-      "Direct Excel & CSV Bridge",
-      "B2B Pipeline Ready",
+      "Instant PDF Ingestion",
+      "Deterministic Schema Checking",
+      "Enterprise MCP API Integration",
     ]);
     expect(OPSFLOW_VALUE_CARDS.map((card) => card.icon)).toEqual(["upload", "spreadsheet", "pipeline"]);
-    expect(OPSFLOW_VALUE_CARDS[0]?.body).toMatch(/10 free daily extractions/i);
-    expect(OPSFLOW_VALUE_CARDS[1]?.body).toMatch(/Tally\/QuickBooks/i);
-    expect(OPSFLOW_VALUE_CARDS[2]?.body).toMatch(/Zapier\/ERP/i);
+    expect(OPSFLOW_VALUE_CARDS[0]?.body).toMatch(/PDF/i);
+    expect(OPSFLOW_VALUE_CARDS[1]?.body).toMatch(/schema/i);
+    expect(OPSFLOW_VALUE_CARDS[2]?.body).toMatch(/MCP/i);
   });
 
   it("defines how-it-works steps, preview fields, and bottom CTA", () => {

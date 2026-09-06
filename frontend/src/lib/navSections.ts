@@ -15,6 +15,7 @@ export type PrimaryNavItem = {
 
 export const NAV_CTA_LABEL = "Book Operational Audit" as const;
 export const NAV_CTA_TO = ROUTES.aiOperationalAudit;
+export const NAV_HEADER_BADGE = "COMMITERS — Enterprise AI & Cloud Systems" as const;
 
 /** Conversion-focused header: Services mega-menu, then About, Work, TrustTap, OpsFlow AI. */
 export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
@@ -54,15 +55,11 @@ export function partitionHeaderNavItems(items: readonly PrimaryNavItem[]): Heade
   return { bar, more, mobile: [...items] };
 }
 
-/** Section ids on `ServicesPage` (order matches page). */
+/** Section ids on `ServicesPage` (order matches the 3-card strategic grid). */
 export const SERVICE_NAV_ENTRIES: ServiceNavEntry[] = [
-  { id: "website-development", label: "Website Development" },
-  { id: "web-applications", label: "Web Applications" },
-  { id: "mobile-applications", label: "Mobile Applications" },
-  { id: "e-commerce-development", label: "E-commerce Development" },
-  { id: "ai-integration", label: "AI Integration" },
-  { id: "automation-tools", label: "Automation Tools" },
-  { id: "mvp-development", label: "MVP Development" },
+  { id: "ai-operational-audits", label: "AI Operational Audits" },
+  { id: "governed-ai-workflow-systems", label: "Governed AI & Workflow Systems" },
+  { id: "spec-driven-full-stack-platforms", label: "Spec-Driven Full-Stack Platforms" },
 ];
 
 export type NavDropdownLink = {
@@ -129,26 +126,26 @@ export const SERVICE_MEGA_CARDS: NavDropdownLink[] = [
     id: "ai-operational-audits",
     label: "AI Operational Audits",
     to: ROUTES.aiOperationalAudit,
-    description: "2-week workflow diagnostics & custom automation prototypes.",
+    description: "2-week workflow diagnostics & spec-driven cloud blueprints.",
     featured: true,
   },
   {
-    id: "custom-ai-pipeline-engineering",
-    label: "Custom AI Pipeline Engineering",
+    id: "governed-ai-workflow-systems",
+    label: "Governed AI & Workflow Systems",
     to: ROUTES.aiSolutions,
-    description: "Bespoke document parsing, LLM integrations & workflow automation.",
+    description: "Enterprise document parsing, LLM integrations & automated workflows.",
   },
   {
-    id: "full-stack-b2b-web-applications",
-    label: "Full-Stack B2B Web Applications",
+    id: "spec-driven-full-stack-platforms",
+    label: "Spec-Driven Full-Stack Platforms",
     to: ROUTES.webApplications,
-    description: "High-performance web applications built on Vite, Express & React.",
+    description: "Scalable B2B web portals, SaaS platforms, & cloud web applications.",
   },
   {
     id: "free-business-utilities",
     label: "Free Business Utilities",
-    to: ROUTES.opsFlowPlayground,
-    description: "Zero-code tools including OpsFlow AI PDF-to-Excel extraction.",
+    to: ROUTES.utilities,
+    description: "Zero-code operational tools including OpsFlow AI PDF-to-Excel extraction.",
   },
 ];
 
@@ -184,7 +181,7 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
     id: "services",
     label: "Services",
     overviewTo: ROUTES.services,
-    headline: "Full-stack development for ambitious teams.",
+    headline: "COMMITERS — Enterprise AI & Cloud Systems",
     layout: "mega",
     links: SERVICE_MEGA_CARDS,
   },

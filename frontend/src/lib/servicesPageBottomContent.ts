@@ -1,35 +1,36 @@
-import { buildDiscoveryCallCalendarUrl } from "./siteContact";
 import { ROUTES } from "./routes";
 
 export type ServicesProcessStep = {
   index: string;
   title: string;
   body: string;
+  href?: string;
 };
 
 export const SERVICES_HOW_WE_WORK = {
   title: "How We Work",
-  subtext: "Our engineering process is designed for transparency, speed, and uncompromising quality.",
+  subtext: "A four-stage process from operational audit through governed deployment and handoff.",
   steps: [
     {
       index: "01",
-      title: "Discovery",
-      body: "Technical audit of your current stack and requirements gathering.",
+      title: "AI Operational Audit",
+      body: "2-week workflow diagnostic and spec-driven architecture blueprint (/specs).",
+      href: ROUTES.aiOperationalAudit,
     },
     {
       index: "02",
-      title: "Architecture",
-      body: "Designing scalable systems and database schemas before a line of code is written.",
+      title: "Architecture & Policy Design",
+      body: "Schema definitions, two-tier API policy gateways, and MCP tool socket layout.",
     },
     {
       index: "03",
-      title: "Sprints",
-      body: "Bi-weekly development cycles with constant staging updates for your review.",
+      title: "Spec-Driven Sprints",
+      body: "Production-ready full-stack engineering with continuous automated testing.",
     },
     {
       index: "04",
-      title: "Handoff",
-      body: "Deployment, rigorous QA testing, and full documentation for your team.",
+      title: "Governed Deployment & Handoff",
+      body: "CI/CD guardrail enforcement, RLS verification, and complete operational handoff.",
     },
   ] as const satisfies readonly ServicesProcessStep[],
 } as const;
@@ -37,9 +38,9 @@ export const SERVICES_HOW_WE_WORK = {
 export const SERVICES_BOTTOM_CTA = {
   title: "Ready to start building?",
   subtext:
-    "Connect with our engineering team to discuss your project requirements and receive a technical proposal.",
-  primaryLabel: "Book a Technical Call",
-  primaryHref: buildDiscoveryCallCalendarUrl(),
+    "Book a 2-week AI Operational Audit to map spreadsheet bottlenecks and leave with a working automation prototype.",
+  primaryLabel: "Book a 2-Week AI Audit",
+  primaryHref: ROUTES.aiOperationalAudit,
   secondaryLabel: "View Our Stack",
   secondaryHref: ROUTES.about,
 } as const;

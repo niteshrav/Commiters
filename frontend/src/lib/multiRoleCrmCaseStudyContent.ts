@@ -24,10 +24,10 @@ export type MultiRoleCrmArchitectureIndicator = {
 
 export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
   documentTitle: "Multi-Role CRM Case Study",
-  kicker: "CASE STUDY: ENTERPRISE AI",
-  titleLead: "AI-Powered",
-  titleAccent: "Multi-Role CRM",
-  subheadline: "Intelligent Operations with RAG & LLMs",
+  kicker: "CASE STUDY: SPEC-DRIVEN B2B PLATFORM",
+  titleLead: "Governed AI CRM &",
+  titleAccent: "Multi-Role Operational Portal",
+  subheadline: "Intelligent enterprise operations platform combining RAG-enhanced query engines with Row-Level Security (RLS).",
   heroImage: {
     src: "/assets/case-studies/multi-role-crm-hero.png",
     srcSet: "/assets/case-studies/multi-role-crm-hero@2x.png 2x",
@@ -35,25 +35,25 @@ export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
   },
   vision: {
     heading: "The Vision",
-    body: "A proof-of-concept multi-role CRM featuring a real-time chatbot powered by LLM and RAG (Retrieval-Augmented Generation) to handle complex user queries. This project bridges the gap between static customer data and dynamic, intelligent interaction.",
+    body: "A spec-driven multi-role CRM featuring a policy-gated chatbot powered by LLM and RAG (Retrieval-Augmented Generation). Row-Level Security (RLS) and MCP sockets keep every query inside authorized user context—bridging static customer data and governed intelligent interaction.",
     challenge: {
       label: "Challenge",
-      text: "Fragmented data access and slow manual query resolution for enterprise support teams.",
+      text: "Fragmented data access and slow manual query resolution for enterprise support teams without leaking unauthorized records.",
     },
     solution: {
       label: "Solution",
-      text: "Centralized RAG-enhanced AI that understands institutional knowledge in real-time.",
+      text: "Centralized RAG-enhanced AI grounded in institutional knowledge, scoped by RLS and two-tier policy gateways.",
     },
   },
   techStack: {
     items: [
       { slug: "react", alt: "React", role: "Frontend", icon: "code", layout: "wide" },
-      { slug: "postgresql", alt: "PostgreSQL", role: "Storage", icon: "database", layout: "compact" },
+      { slug: "postgresql", alt: "PostgreSQL (RLS)", role: "Storage", icon: "database", layout: "compact" },
       { slug: "nodedotjs", alt: "Node.js", role: "Runtime", icon: "cloud", layout: "compact" },
       {
         slug: "openai",
-        alt: "Generative AI",
-        role: "LLM & RAG Integration",
+        alt: "MCP Sockets",
+        role: "Generative AI",
         icon: "ai",
         layout: "wide",
         highlight: true,
@@ -62,7 +62,7 @@ export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
   },
   architecture: {
     heading: "Architectural Excellence",
-    description: "Modular, scalable, and secure. Designed for high-density enterprise environments.",
+    description: "Modular, scalable, and secure. Designed for high-density enterprise environments with zero ambient authority.",
     indicators: [
       { id: "security", label: "Enterprise Security", icon: "shield" },
       { id: "scale", label: "Cloud-Native Scale", icon: "gauge" },
@@ -70,38 +70,38 @@ export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
     features: [
       {
         id: "rbac",
-        title: "Multi-role RBAC",
-        body: "Granular access control for Admins, Managers, and Agents with real-time session validation.",
+        title: "Multi-Role RBAC & RLS",
+        body: "Session-scoped permissions enforcing Row-Level Security at the database tier for Admins, Managers, and Field Agents.",
         icon: "rbac",
         iconTone: "blue",
       },
       {
         id: "rag",
-        title: "RAG Chatbot",
-        body: "Retrieval-Augmented Generation ensuring AI responses are grounded in your specific data.",
+        title: "Policy-Gated RAG Engine",
+        body: "Grounded AI queries restricted strictly to authorized user context through two-tier API policy gateways.",
         icon: "rag",
         iconTone: "gold",
       },
       {
         id: "sync",
-        title: "Real-time Sync",
-        body: "WebSocket-driven query updates ensuring zero-latency communication between users and AI.",
+        title: "Real-Time WebSockets",
+        body: "Zero-latency sync across Admin, Manager, and Field Agent dashboards with JIT permission scoping.",
         icon: "sync",
         iconTone: "blue",
       },
       {
         id: "analytics",
         title: "Smart Analytics",
-        body: "Automated reporting on user sentiment and query frequency to optimize support flows.",
+        body: "Automated reporting on user sentiment and query frequency to optimize support flows without ambient data access.",
         icon: "analytics",
         iconTone: "gold",
       },
     ] satisfies MultiRoleCrmCaseStudyFeature[],
   },
   bottomCta: {
-    title: "Ready to build?",
-    subtext: "Transform your operations with enterprise-grade AI. Let's discuss your roadmap today.",
-    primaryLabel: "Get Started",
-    primaryTo: ROUTES.contact,
+    title: "Ready to build your B2B platform?",
+    subtext: "Transform operations with spec-driven web systems, RLS, and governed AI. Let's discuss your roadmap today.",
+    primaryLabel: "Build Your B2B Web Platform",
+    primaryTo: ROUTES.webApplications,
   },
 } as const;

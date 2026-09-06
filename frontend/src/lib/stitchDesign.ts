@@ -44,12 +44,13 @@ export const STITCH_COPY = {
     button: "Start Your Project Cycle",
   },
   about: {
-    title: "We build the invisible architecture that powers digital leaders.",
+    kicker: "ENTERPRISE AI & CLOUD ENGINEERING",
+    title: "Engineering High-Trust AI Products & Cloud-Native Web Systems",
     subtext:
-      "Commiters is a boutique engineering studio founded on the principle that code should be as elegant as it is robust. Led by Nitesh Rav, we translate complex business logic into scalable digital reality.",
-    visionTitle: "A Vision of Craftsmanship",
+      "Commiters is an enterprise AI product and cloud software firm built on the principle that high-stakes automation requires strict architectural governance, zero ambient authority, and spec-driven engineering.",
+    visionTitle: "Governed Engineering for High-Stakes Operations",
     visionBody:
-      "Founded by Nitesh Rav, Commiters emerged from a decade of high-stakes engineering in the global tech hubs. Nitesh noticed a gap between rapid development and long-term maintainability. He built this studio to prove that speed and precision aren't mutually exclusive.",
+      "Founded by Nitesh Rav, Commiters emerged from over a decade of high-stakes software engineering in global technology hubs. We bridge the gap between cutting-edge LLM capabilities and strict enterprise security.",
   },
   services: {
     kicker: "OUR EXPERTISE",
@@ -200,13 +201,15 @@ export const STITCH_COPY = {
     lastUpdatedDate: "April 15, 2026",
     introBeforeBold: "At ",
     introBold: "Commiters",
+    subtitle:
+      "Data protection, zero ambient authority, and transparency are the core pillars of our engineering philosophy.",
     introAfterBold:
-      ", data protection and transparency are the pillars of our engineering philosophy. This policy outlines how we handle your digital footprint with surgical precision and absolute integrity.",
+      ", data protection, zero ambient authority, and transparency are the core pillars of our engineering philosophy. This policy outlines how we handle your digital footprint with surgical precision and absolute integrity.",
     dpoCta: {
       title: "Have specific privacy questions?",
       description:
-        "Our Data Protection Officer is ready to assist with any inquiries regarding your personal data.",
-      buttonLabel: "Contact DPO",
+        "Our Data Protection Officer and security team are ready to assist with any inquiries regarding your personal data.",
+      buttonLabel: "Contact DPO / Security Team",
     },
   },
 } as const;

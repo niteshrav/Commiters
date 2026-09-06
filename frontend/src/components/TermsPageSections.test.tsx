@@ -22,11 +22,12 @@ describe("TermsPageSections", () => {
 
     expect(screen.getByTestId("terms-sections")).toBeInTheDocument();
     expect(screen.getByTestId("terms-section-01")).toHaveClass(TERMS_SECTION_CLASS);
-    expect(screen.getByText("01")).toHaveClass(TERMS_SECTION_INDEX_CLASS, "terms-section-index--blue");
+    expect(screen.getByText("01")).toHaveClass(TERMS_SECTION_INDEX_CLASS, "terms-section-index--cyan");
     expect(screen.getByRole("heading", { name: "Acceptance of Terms" })).toHaveClass(TERMS_SECTION_TITLE_CLASS);
     expect(document.querySelector(`.${TERMS_SECTION_CONTENT_CLASS}`)).toBeTruthy();
     expect(screen.getByText(/By accessing or using the services provided by Commiters/i)).toBeInTheDocument();
-    expect(screen.getByText("Custom Web & Mobile Engineering")).toBeInTheDocument();
+    expect(screen.getByText(/enterprise AI products, cloud-native web platforms/i)).toBeInTheDocument();
+    expect(screen.getByText("2-week AI Operational Audits")).toBeInTheDocument();
     expect(document.querySelector(`.${TERMS_CHECKLIST_CLASS}`)).toBeTruthy();
     expect(document.querySelectorAll(`.${TERMS_CHECKLIST_ICON_CLASS}`)).toHaveLength(3);
     expect(document.querySelector(`.${TERMS_HIGHLIGHT_CLASS}`)).toHaveTextContent(

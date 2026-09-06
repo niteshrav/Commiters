@@ -1,7 +1,7 @@
 import { ROUTES } from "./routes";
 import { STITCH_COPY } from "./stitchDesign";
 
-export type TermsPageAccent = "blue" | "gold";
+export type TermsPageAccent = "blue" | "gold" | "cyan";
 
 export type TermsPageBlock =
   | { kind: "paragraph"; text: string }
@@ -25,7 +25,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
   {
     number: "01",
     title: "Acceptance of Terms",
-    accent: "blue",
+    accent: "cyan",
     blocks: [
       {
         kind: "paragraph",
@@ -40,14 +40,14 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "Commiters provides premium custom software development, technical consulting, and digital architecture services. Our engagement models include fixed-price projects, time-and-materials consulting, and dedicated engineering teams.",
+        text: "Commiters provides enterprise AI products, cloud-native web platforms, and governed software engineering services. Engagement models include 2-week AI Operational Audits, spec-driven platform development, and enterprise SaaS solutions.",
       },
       {
         kind: "checklist",
         items: [
-          "Custom Web & Mobile Engineering",
-          "Cloud Infrastructure & DevOps",
-          "Technical Strategy Consulting",
+          "2-week AI Operational Audits",
+          "Spec-driven platform development",
+          "Enterprise SaaS solutions",
         ],
       },
     ],
@@ -55,7 +55,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
   {
     number: "03",
     title: "Intellectual Property",
-    accent: "blue",
+    accent: "cyan",
     blocks: [
       {
         kind: "paragraph",
@@ -77,7 +77,7 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
   {
     number: "05",
     title: "Governing Law",
-    accent: "blue",
+    accent: "cyan",
     blocks: [
       {
         kind: "paragraph",

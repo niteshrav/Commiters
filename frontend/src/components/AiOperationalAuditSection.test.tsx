@@ -6,11 +6,14 @@ import AiOperationalAuditSection from "./AiOperationalAuditSection";
 import { AI_OPERATIONAL_AUDIT_PERSONAL_EMAIL_ERROR } from "../lib/aiOperationalAuditLeadGate";
 import {
   AI_OPERATIONAL_AUDIT_CTA_LABEL,
-  AI_OPERATIONAL_AUDIT_DELIVERABLES,
+  AI_OPERATIONAL_AUDIT_DIAGNOSE,
+  AI_OPERATIONAL_AUDIT_DIAGNOSE_TITLE,
   AI_OPERATIONAL_AUDIT_FORM,
+  AI_OPERATIONAL_AUDIT_GOVERNANCE,
   AI_OPERATIONAL_AUDIT_HERO,
   AI_OPERATIONAL_AUDIT_PRICING,
   AI_OPERATIONAL_AUDIT_PROCESS,
+  AI_OPERATIONAL_AUDIT_PROCESS_TITLE,
 } from "../lib/aiOperationalAuditPageContent";
 import { FROSTED_GLASS_CLASSES } from "../lib/frostedGlass";
 import { ROUTES } from "../lib/routes";
@@ -37,7 +40,7 @@ describe("AiOperationalAuditSection", () => {
     navigate.mockReset();
   });
 
-  it("renders hero, pricing, three deliverable cards, two-week process, and booking form", () => {
+  it("renders hero, diagnose grid, 14-day timeline, governance banner, and booking form", () => {
     render(
       <MemoryRouter>
         <AiOperationalAuditSection />
@@ -56,17 +59,27 @@ describe("AiOperationalAuditSection", () => {
     expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.range);
     expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.summary);
 
-    for (const card of AI_OPERATIONAL_AUDIT_DELIVERABLES) {
-      expect(screen.getByRole("heading", { name: card.title, level: 2 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_DIAGNOSE_TITLE, level: 2 })).toBeInTheDocument();
+    for (const card of AI_OPERATIONAL_AUDIT_DIAGNOSE) {
+      expect(screen.getByRole("heading", { name: card.title, level: 3 })).toBeInTheDocument();
       expect(screen.getByText(card.body)).toBeInTheDocument();
     }
-    expect(screen.getByTestId("audit-deliverables")).toHaveClass("audit-cards");
+    expect(screen.getByTestId("audit-diagnose")).toHaveClass("audit-cards");
 
+    expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_PROCESS_TITLE, level: 2 })).toBeInTheDocument();
     for (const step of AI_OPERATIONAL_AUDIT_PROCESS) {
       expect(screen.getByText(step.week)).toBeInTheDocument();
       expect(screen.getByText(step.body)).toBeInTheDocument();
     }
 
+    const governance = screen.getByTestId("audit-governance");
+    expect(governance).toHaveClass(...FROSTED_GLASS_CLASSES);
+    expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_GOVERNANCE.title, level: 2 })).toBeInTheDocument();
+    expect(governance).toHaveTextContent(AI_OPERATIONAL_AUDIT_GOVERNANCE.body);
+
+    const scope = screen.getByLabelText(AI_OPERATIONAL_AUDIT_FORM.scopeLabel);
+    expect(scope).toHaveValue(AI_OPERATIONAL_AUDIT_FORM.serviceNeeded);
+    expect(scope).toHaveAttribute("readonly");
     expect(screen.getByLabelText(AI_OPERATIONAL_AUDIT_FORM.nameLabel)).toBeRequired();
     expect(screen.getByLabelText(AI_OPERATIONAL_AUDIT_FORM.emailLabel)).toHaveAttribute(
       "placeholder",
@@ -115,7 +128,7 @@ describe("AiOperationalAuditSection", () => {
     expect(createLead).toHaveBeenCalledWith({
       name: "Nitesh Rav",
       email: "hello@commiters.com",
-      serviceNeeded: "AI Operational Audit",
+      serviceNeeded: "AI Operational Audit (2-Week Blueprint)",
       budgetRange: AI_OPERATIONAL_AUDIT_FORM.budgetRange,
       timeline: "2-week diagnostic",
       message: expect.stringContaining("GST invoice matching across three spreadsheets."),

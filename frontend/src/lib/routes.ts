@@ -14,6 +14,8 @@ export const ROUTES = {
   neardropCaseStudy: "/work/neardrop-mvp",
   multiRoleCrmCaseStudy: "/work/multi-role-crm",
   browseMyVacationCaseStudy: "/work/browse-my-vacation",
+  prospectIqCaseStudy: "/work/prospectiq-ai",
+  ecoRouteCaseStudy: "/work/ecoroute-intelligence",
   /** Legacy URL — redirect to BrowseMyVacation case study */
   nextsaasCaseStudy: "/case-studies/nextsaas",
   commitersCaseStudyLegacy: "/case-studies/commiters",
@@ -22,15 +24,24 @@ export const ROUTES = {
   multiRoleCrmCaseStudyLegacy: "/case-studies/multi-role-crm",
   browseMyVacationCaseStudyLegacy: "/case-studies/browse-my-vacation",
   trustTap: "/products/trusttap",
+  /** Short URL — redirect to TrustTap product page */
+  trustTapShort: "/trusttap",
   opsFlow: "/products/opsflow",
   opsFlowPlayground: "/opsflow",
+  /** Marketing URL — redirect to OpsFlow playground */
+  opsFlowAi: "/opsflow-ai",
+  utilities: "/utilities",
   aiOperationalAudit: "/services/ai-operational-audit",
-  aiSolutions: "/services/ai-pipeline-engineering",
-  /** Legacy URL — redirect to AI pipeline engineering */
+  aiSolutions: "/services/governed-ai-workflow-systems",
+  /** Legacy URL — redirect to governed AI */
   aiSolutionsLegacy: "/services/ai-solutions",
-  webApplications: "/services/b2b-web-applications",
-  /** Legacy URL — redirect to B2B web applications */
+  /** Legacy URL — redirect to governed AI */
+  aiSolutionsPipelineLegacy: "/services/ai-pipeline-engineering",
+  webApplications: "/services/spec-driven-full-stack-platforms",
+  /** Legacy URL — redirect to spec-driven platforms */
   webApplicationsLegacy: "/services/web-applications",
+  /** Legacy URL — redirect to spec-driven platforms */
+  webApplicationsB2bLegacy: "/services/b2b-web-applications",
   workflowAutomation: "/services/workflow-automation",
   contact: "/contact",
   joinUs: "/join-us",
@@ -39,6 +50,8 @@ export const ROUTES = {
   /** Legacy CMS/admin URLs — redirect to openPositions */
   openPositionsLegacy: "/open-position",
   jobPositionsLegacy: "/job-positions",
+  /** Short URL — redirect to Privacy Policy */
+  privacy: "/privacy",
   privacyPolicy: "/privacy-policy",
   cookiePolicy: "/cookie-policy",
   terms: "/terms",
@@ -73,8 +86,11 @@ export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.neardropCaseStudy,
   ROUTES.multiRoleCrmCaseStudy,
   ROUTES.browseMyVacationCaseStudy,
+  ROUTES.prospectIqCaseStudy,
+  ROUTES.ecoRouteCaseStudy,
   ROUTES.trustTap,
   ROUTES.opsFlow,
+  ROUTES.utilities,
   ROUTES.aiOperationalAudit,
   ROUTES.aiSolutions,
   ROUTES.webApplications,

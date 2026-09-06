@@ -25,9 +25,9 @@ describe("NearDropCaseStudyExecutionSection", () => {
     expect(within(list).getByText("01")).toBeInTheDocument();
     expect(within(list).getByText("03")).toBeInTheDocument();
     expect(within(list).getByRole("heading", { name: "Architectural Integrity" })).toBeInTheDocument();
-    expect(within(list).getByRole("heading", { name: "Precision Engineering" })).toBeInTheDocument();
+    expect(within(list).getByRole("heading", { name: "Role-Isolated Portals" })).toBeInTheDocument();
     expect(within(list).getByRole("heading", { name: "Security First" })).toBeInTheDocument();
-    expect(within(list).getByText(/high-concurrency writes/i)).toBeInTheDocument();
+    expect(within(list).getByText(/high-concurrency real-time location writes/i)).toBeInTheDocument();
     expect(within(list).getByText(/Multi-factor authentication/i)).toBeInTheDocument();
   });
 });

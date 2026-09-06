@@ -19,5 +19,8 @@ describe("brandImprint (styles contract)", () => {
     expect(css).toContain(`--brand-logo-footer-height: ${BRAND_LOGO_FOOTER_HEIGHT_PX}px`);
     expect(css).toMatch(/\.brand-logo--header\s*\{[\s\S]*?height:\s*var\(--brand-logo-header-height\)/);
     expect(css).toMatch(/\.brand-logo--footer\s*\{[\s\S]*?height:\s*var\(--brand-logo-footer-height\)/);
+    expect(css).toMatch(/\.brand-logo-wrap\s*\{[\s\S]*?box-shadow:\s*none/);
+    expect(css).toMatch(/\.brand-logo\s*\{[\s\S]*?background:\s*transparent/);
+    expect(css).toMatch(/\.brand-watermark\s*\{[\s\S]*?opacity:\s*0\.1/);
   });
 });

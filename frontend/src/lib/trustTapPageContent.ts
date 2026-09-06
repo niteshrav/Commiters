@@ -12,25 +12,25 @@ export const TRUSTTAP_DOCUMENT_TITLE = "TrustTap";
 export const TRUSTTAP_SEO = {
   title: TRUSTTAP_DOCUMENT_TITLE,
   description:
-    "QR-powered customer feedback that helps local businesses improve service and make Google reviews easy.",
+    "NFC and QR-based ground verification for logistics, field personnel tracking, and facility inspection auditing.",
   keywords:
-    "TrustTap, Google reviews, QR feedback, reputation management, local business reviews, Commiters product",
+    "TrustTap, ground verification, NFC, QR inspection, field tracking, logistics auditing, Commiters product",
   path: ROUTES.trustTap,
 } as const;
 
 export const TRUSTTAP_ADMIN_DASHBOARD_URL = "https://trusttap.commiters.com/admin" as const;
 
 export const TRUSTTAP_HERO = {
-  kicker: "COMMITERS TRUSTTAP",
-  titleLead: "Collect better feedback.",
-  titleAccent: "Grow Google reviews.",
+  kicker: "PROPRIETARY CLOUD PRODUCT",
+  titleLead: "TrustTap:",
+  titleAccent: "Ground Verification & Physical Inspection Tracking",
   tagline:
-    "QR-powered customer feedback for local businesses — private notes for you, an ungated Google review path for everyone.",
-  footnote: "Compliant by design — we never gate Google reviews by rating.",
-  primaryLabel: "Open admin dashboard",
-  primaryHref: TRUSTTAP_ADMIN_DASHBOARD_URL,
-  secondaryLabel: "See how it works",
-  secondaryHref: "#trusttap-how-it-works",
+    "NFC and QR-based ground verification system for logistics, field personnel tracking, and facility inspection auditing.",
+  footnote: "Built for field operations — tamper-proof scans, offline sync, and live ops visibility.",
+  primaryLabel: "Request Field Demo",
+  primaryHref: ROUTES.contact,
+  secondaryLabel: "Explore OpsFlow AI",
+  secondaryHref: ROUTES.opsFlow,
 } as const;
 
 /** Hero right column — TrustTap product marketing visual. */
@@ -63,33 +63,27 @@ export type TrustTapFeature = {
 };
 
 export const TRUSTTAP_FEATURES = {
-  kicker: "FEATURES",
-  title: "Built for real counters",
-  subtext: "Everything you need for Phase 1 pilots — without clutter or review-gating dark patterns.",
+  kicker: "CAPABILITIES",
+  title: "Built for the field",
+  subtext: "Core capabilities for logistics, facility inspection, and personnel verification — with zero ambient authority.",
   items: [
     {
       id: "qr",
       index: "01",
-      title: "QR-powered collection",
-      body: "Print one QR code. Customers land on a clean mobile page in seconds.",
+      title: "Tamper-Proof Verification",
+      body: "NFC tag scanning and geo-fenced QR verification for ground-truth inspection events.",
     },
     {
       id: "private-feedback",
       index: "02",
-      title: "Private feedback first",
-      body: "Capture honest ratings and comments privately so you can improve faster.",
+      title: "Offline-First Mobile Sync",
+      body: "Field teams log inspections seamlessly without active cellular coverage, then sync under policy.",
     },
     {
       id: "google-reviews",
       index: "03",
-      title: "Google reviews, ungated",
-      body: "Every customer sees the same Google review option. No rating tricks.",
-    },
-    {
-      id: "owner-alerts",
-      index: "04",
-      title: "Owner alerts",
-      body: "Low ratings can trigger email alerts so you can follow up quickly.",
+      title: "Live Ops Dashboard",
+      body: "Real-time ground status feeds for operations managers with session-scoped access.",
     },
   ] satisfies TrustTapFeature[],
 } as const;
@@ -106,22 +100,22 @@ export type TrustTapBenefit = {
 
 export const TRUSTTAP_BENEFITS = {
   kicker: "BENEFITS",
-  title: "Why businesses choose it",
+  title: "Why operations teams choose it",
   items: [
     {
       id: "reputation",
-      title: "Protect reputation",
-      body: "Private feedback catches issues early while Google stays open to everyone.",
+      title: "Prove presence",
+      body: "Tamper-proof NFC and geo-fenced QR scans create an auditable ground-truth trail.",
     },
     {
       id: "professional",
-      title: "Look professional",
-      body: "Customers land on a trustworthy, branded mobile experience — not a form dump.",
+      title: "Work offline",
+      body: "Field teams keep logging inspections when coverage drops, then sync under policy.",
     },
     {
       id: "simple",
-      title: "Operate simply",
-      body: "Admin tools for businesses, QR export, and feedback logs — no extra apps.",
+      title: "See live status",
+      body: "Operations managers get real-time ground feeds without ambient data access.",
     },
   ] satisfies TrustTapBenefit[],
 } as const;
@@ -184,17 +178,19 @@ export const TRUSTTAP_FAQ = {
 } as const;
 
 export const TRUSTTAP_BOTTOM_CTA = {
-  title: "Ready to launch your pilot?",
+  title: "Ready to verify the ground truth?",
   subtext:
-    "Sign in to the admin panel, create a business, download your QR, and start collecting feedback today.",
-  primaryLabel: "Launch admin",
-  primaryHref: TRUSTTAP_ADMIN_DASHBOARD_URL,
+    "Request a field demo for logistics, facility inspection, or personnel tracking — or explore OpsFlow AI for document ingestion.",
+  primaryLabel: "Request Field Demo",
+  primaryHref: ROUTES.contact,
+  secondaryLabel: "Explore OpsFlow AI",
+  secondaryHref: ROUTES.opsFlow,
 } as const;
 
 export const TRUSTTAP_ABOUT = {
   kicker: "ABOUT",
-  title: "Built for the shop floor, not a slide deck.",
-  body: "TrustTap gives local teams a QR-first feedback loop: private notes stay with the owner, while every guest still gets a clear path to Google reviews.",
+  title: "Built for the field, not a slide deck.",
+  body: "TrustTap gives operations teams NFC and QR ground verification: tamper-proof scans, offline inspection logs, and a live ops dashboard scoped by policy.",
   illustration: TRUSTTAP_HERO_SHOWCASE.image,
 } as const;
 

@@ -89,7 +89,9 @@ export default function WebApplicationsSection() {
           <ul className="webapp-stack-list">
             {WEB_APPLICATIONS_STACK.map((item) => (
               <li key={item.id} className="webapp-stack-badge">
-                <img src={resolveTechIconUrl({ slug: item.slug, alt: item.label })} alt="" />
+                {"slug" in item && item.slug ? (
+                  <img src={resolveTechIconUrl({ slug: item.slug, alt: item.label })} alt="" />
+                ) : null}
                 <span>{item.label}</span>
               </li>
             ))}
@@ -103,6 +105,10 @@ export default function WebApplicationsSection() {
           aria-label={WEB_APPLICATIONS_FORM.title}
         >
           <h2>{WEB_APPLICATIONS_FORM.title}</h2>
+          <div className={WEBAPP_FIELD_CLASS}>
+            <label htmlFor="webapp-engagement-scope">{WEB_APPLICATIONS_FORM.scopeLabel}</label>
+            <input id="webapp-engagement-scope" value={WEB_APPLICATIONS_FORM.serviceNeeded} readOnly />
+          </div>
           <div className={WEBAPP_FIELD_CLASS}>
             <label htmlFor="webapp-name">{WEB_APPLICATIONS_FORM.nameLabel}</label>
             <input

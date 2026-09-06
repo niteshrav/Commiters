@@ -1,4 +1,4 @@
-import { CASE_STUDY_PROJECTS, type CaseStudyProject } from "../caseStudiesPageContent";
+import { CASE_STUDY_PROJECTS, isHiddenFromWorkPage, type CaseStudyProject } from "../caseStudiesPageContent";
 import { TESTIMONIALS_PAGE_ITEMS } from "../testimonialsPageContent";
 import { ROUTES } from "../routes";
 import type { Testimonial } from "../siteTrustContent";
@@ -60,6 +60,7 @@ export function mapCmsProjectToCaseStudy(project: Record<string, unknown>, index
   return {
     id: fallback?.id ?? slug,
     title: name,
+    category: fallback?.category,
     tags,
     tagVariant: fallback?.tagVariant ?? (technologies.length ? "accent" : "pill"),
     tagsPlacement: fallback?.tagsPlacement,
@@ -69,6 +70,7 @@ export function mapCmsProjectToCaseStudy(project: Record<string, unknown>, index
         ? `${category} engagement requiring a reliable engineering partner.`
         : "A product challenge requiring focused engineering execution."),
     solution: description || fallback?.solution || "Delivered with Commiters' sprint-based delivery model.",
+    impact: fallback?.impact,
     gridSpan: fallback?.gridSpan ?? (isFeatured ? "wide" : "narrow"),
     layout: fallback?.layout ?? (isFeatured ? "horizontal" : "stacked"),
     detailsLabel: fallback?.detailsLabel ?? "View Project Details",
@@ -77,10 +79,14 @@ export function mapCmsProjectToCaseStudy(project: Record<string, unknown>, index
   };
 }
 
-export function resolveCaseStudyProjects(cmsProjects: Record<string, unknown>[] | null | undefined): CaseStudyProject[] {
-  if (!hasCmsItems(cmsProjects)) return [...CASE_STUDY_PROJECTS];
+function isSameCaseStudy(left: CaseStudyProject, right: CaseStudyProject): boolean {
+  return left.id === right.id || left.detailsHref === right.detailsHref;
+}
 
-  return cmsProjects
+export function resolveCaseStudyProjects(cmsProjects: Record<string, unknown>[] | null | undefined): CaseStudyProject[] {
+  if (!hasCmsItems(cmsProjects)) return CASE_STUDY_PROJECTS.filter((project) => !isHiddenFromWorkPage(project));
+
+  const mapped = cmsProjects
     .filter((project) => asRecord(project) && project.isActive !== false)
     .sort((a, b) => {
       const aOrder = typeof a.order === "number" ? a.order : 0;
@@ -88,6 +94,12 @@ export function resolveCaseStudyProjects(cmsProjects: Record<string, unknown>[] 
       return aOrder - bOrder;
     })
     .map((project, index) => mapCmsProjectToCaseStudy(project, index));
+
+  const extras = CASE_STUDY_PROJECTS.filter(
+    (entry) => !mapped.some((project) => isSameCaseStudy(project, entry)),
+  );
+
+  return [...mapped, ...extras].filter((project) => !isHiddenFromWorkPage(project));
 }
 
 const TESTIMONIAL_ACCENTS: Testimonial["accent"][] = ["gold", "teal", "violet"];

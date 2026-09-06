@@ -5,6 +5,11 @@ export type HomeMetric = {
   label: string;
 };
 
+export type HomeGovernancePillar = {
+  title: string;
+  body: string;
+};
+
 /** Public paths for home mockup photography (cropped from Stitch screenshots). */
 export const HOME_PAGE_ASSETS = {
   heroMonitor: "/assets/home/home-hero-monitor.png",
@@ -13,61 +18,60 @@ export const HOME_PAGE_ASSETS = {
   serverRacks2x: "/assets/home/server-racks@2x.png",
 } as const;
 
+export const HOME_OPS_FLOW_SECTION_ID = "opsflow-ai" as const;
+export const HOME_HERO_OPS_FLOW_HREF = `/#${HOME_OPS_FLOW_SECTION_ID}` as const;
+
 export const HOME_PAGE_COPY = {
   hero: {
-    title: "Code Your Success",
+    badge: "AN AI & CLOUD PRODUCT & ENGINEERING FIRM",
+    title: "Enterprise AI Products & Cloud-Native Web Systems",
     subtext:
-      "We transform complex architectural challenges into scalable, production-ready systems. Founder-led engineering for high-stakes digital products.",
-    ctaPrimary: "Our Work",
-    ctaPrimaryTo: ROUTES.caseStudies,
-    ctaSecondary: "Meet Our Team",
+      "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
+    ctaPrimary: "Explore AI Products",
+    ctaPrimaryTo: HOME_HERO_OPS_FLOW_HREF,
+    ctaSecondary: "Book 2-Week AI Audit",
+    ctaSecondaryTo: ROUTES.aiOperationalAudit,
     sprintLabel: "CURRENT SPRINT",
     sprintValue: "v2.4.0 Engine",
   },
   corePillars: {
-    title: "Our Core Pillars",
+    title: "The Commiters Governance Standard",
     subtext:
-      "We don't just build features; we build foundations. Our methodology is rooted in absolute transparency and technical rigor.",
-    founderLed: {
-      title: "Founder-Led Delivery",
-      body:
-        "Every project is architected and overseen by our founder. No hand-offs to juniors, just direct communication with the expert building your vision.",
-      linkLabel: "Learn about our process",
-      linkTo: ROUTES.about,
-    },
-    fastLaunch: {
-      title: "Fast Launch Cycles",
-      body:
-        "We prioritize speed-to-market without compromising integrity. Weekly deployments and real-time feedback loops keep us agile.",
-    },
-    quality: {
-      title: "Quality-First Engineering",
-      body:
-        "Our 'Commit Early, Test Often' philosophy ensures your codebase remains a strategic asset, not a technical debt burden. Automated testing and rigorous code reviews are non-negotiable.",
-      metrics: [
-        { value: "99.9%", label: "TARGET UPTIME SLA" },
-        { value: "<200ms", label: "CORE API RESPONSE (P95)" },
-        { value: "Every release", label: "AUTOMATED TESTING" },
-        { value: "24/7", label: "MONITORING & ALERTS" },
-      ],
-    },
+      "Four technical and governance pillars that keep enterprise AI products and cloud platforms auditable, permissioned, and production-safe.",
+    items: [
+      {
+        title: "Governed MCP Integration",
+        body: "Models connect to data via Model Context Protocol (MCP) sockets rather than direct DB access.",
+      },
+      {
+        title: "Two-Tier Policy Gateways",
+        body: "All API calls pass deterministic RBAC checks and semantic input validation before execution.",
+      },
+      {
+        title: "Zero Ambient Authority & RLS",
+        body: "AI actions inherit user session permissions, enforcing Row-Level Security (RLS) at the database level.",
+      },
+      {
+        title: "Human-in-the-Loop ('Vibe Diff')",
+        body: "High-stakes operations require explicit user confirmation before database commit.",
+      },
+    ] satisfies readonly HomeGovernancePillar[],
   },
   builtForScale: {
-    title: "Built for Scale",
-    body:
-      "We architect systems that evolve with your business. By focusing on clean interfaces and modular components, we ensure that today's code supports tomorrow's growth.",
+    title: "Spec-Driven Cloud Infrastructure",
+    body: "We architect systems that evolve with your business—combining cloud-native web platforms with rigid policy guardrails and production-grade security.",
     features: [
       {
-        title: "Cloud-Native Architecture",
-        description: "Seamless integration with AWS, Azure, or GCP for infinite scalability.",
+        title: "Cloud-Native Web Architecture (AWS, GCP, Azure, Vercel)",
+        description: "Cloud-native platforms on AWS, GCP, Azure, and Vercel that scale with demand.",
       },
       {
-        title: "Security by Design",
-        description: "End-to-end encryption and strict compliance adherence from day one.",
+        title: "Zero Ambient Authority & Database Row-Level Security (RLS)",
+        description: "Session-inherited permissions with row-level security enforced at the database.",
       },
       {
-        title: "Performance Optimization",
-        description: "Micro-optimizations to ensure lightning-fast user experiences.",
+        title: "Micro-optimized API Response Times (<200ms) with strict SLA tracking",
+        description: "Core APIs are tuned for sub-200ms responses with explicit SLA monitoring.",
       },
     ],
   },

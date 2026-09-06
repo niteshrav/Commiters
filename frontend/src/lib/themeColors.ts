@@ -1,3 +1,4 @@
+import { BRAND_COLOR_KIT, BRAND_COLOR_KIT_CSS_VARIABLES } from "./brandColorKit";
 import { PRECISION_MINIMALIST_DESIGN } from "./precisionMinimalistDesign";
 import { STITCH_LIGHT_PALETTE } from "./stitchLightPalette";
 
@@ -5,9 +6,9 @@ const { colors, typography, spacing, radius } = PRECISION_MINIMALIST_DESIGN;
 
 /** Theme tokens — Precision Minimalist void-first palette mapped to CSS variables. */
 export const LOGO_THEME = {
-  brandGold: STITCH_LIGHT_PALETTE.kickerTan,
-  brandGoldDeep: "#7a6240",
-  brandGoldSoft: "#e8dfd2",
+  brandGold: BRAND_COLOR_KIT.gold,
+  brandGoldDeep: BRAND_COLOR_KIT.goldDeep,
+  brandGoldSoft: BRAND_COLOR_KIT.goldSoft,
   darkNavy: colors.heading,
   teal: colors.primary,
   tealDeep: colors.primaryHover,
@@ -37,6 +38,7 @@ export const LOGO_CSS_VARIABLES = {
   "--brand-gold": LOGO_THEME.brandGold,
   "--brand-gold-deep": LOGO_THEME.brandGoldDeep,
   "--brand-gold-soft": LOGO_THEME.brandGoldSoft,
+  ...BRAND_COLOR_KIT_CSS_VARIABLES,
   "--dark-navy": LOGO_THEME.darkNavy,
   "--teal": LOGO_THEME.stitchBlue,
   "--teal-deep": LOGO_THEME.stitchBlueHover,

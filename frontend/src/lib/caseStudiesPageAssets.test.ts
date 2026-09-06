@@ -30,8 +30,10 @@ describe("caseStudiesPageAssets", () => {
     expect(CASE_STUDY_IMAGE_ASSETS.map((asset) => asset.id)).toEqual(CASE_STUDY_GRID_IMAGE_PROJECT_IDS);
     expect(CASE_STUDIES_ROW_ONE_PROJECT_IDS).toEqual(["commiters", "ai-summarizer"]);
     expect(CASE_STUDIES_MOSAIC_PROJECT_IDS).toEqual([]);
+    expect(caseStudyHasImage("opsflow")).toBe(true);
+    expect(caseStudyHasImage("governed-ai")).toBe(true);
     expect(caseStudyHasImage("commiters")).toBe(true);
-    expect(caseStudyHasImage("ai-summarizer")).toBe(true);
+    expect(caseStudyHasImage("neardrop-mvp")).toBe(true);
     expect(existsSync(join(publicRoot, "assets/case-studies/case-studies-row-one-mockup.png"))).toBe(true);
   });
 

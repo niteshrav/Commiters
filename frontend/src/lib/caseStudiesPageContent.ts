@@ -2,17 +2,19 @@ import { ROUTES } from "./routes";
 
 export type CaseStudyGridSpan = "wide" | "narrow";
 export type CaseStudyLayout = "horizontal" | "stacked";
-export type CaseStudyTagVariant = "pill" | "outline" | "accent";
+export type CaseStudyTagVariant = "pill" | "outline" | "accent" | "cyan";
 export type CaseStudyTagsPlacement = "header" | "below-media";
 
 export type CaseStudyProject = {
   id: string;
   title: string;
+  category?: string;
   tags: string[];
   tagVariant?: CaseStudyTagVariant;
   tagsPlacement?: CaseStudyTagsPlacement;
   problem: string;
   solution: string;
+  impact?: readonly string[];
   gridSpan: CaseStudyGridSpan;
   layout: CaseStudyLayout;
   detailsLabel: string;
@@ -22,85 +24,100 @@ export type CaseStudyProject = {
 
 export const CASE_STUDIES_PAGE_COPY = {
   intro: {
-    kicker: "OUR WORK",
-    title: "Proven Precision",
+    kicker: "PROVEN ENTERPRISE ARCHITECTURE",
+    title: "Governed AI & Cloud Engineering in Action",
     subtext:
-      "We build high-performance digital products for visionary founders who demand technical excellence and minimalist aesthetic clarity.",
+      "Explore how we engineer production-grade cloud web platforms, governed AI pipelines, and high-stakes operational products—backed by strict policy guardrails and zero ambient authority.",
   },
   bottomCta: {
     title: "Ready for the next level?",
-    primaryLabel: "Start a Project",
-    primaryTo: ROUTES.contact,
-    secondaryLabel: "View All Services",
+    primaryLabel: "Book Operational Audit",
+    primaryTo: ROUTES.aiOperationalAudit,
+    secondaryLabel: "View Services & Products",
     secondaryTo: ROUTES.services,
   },
 } as const;
 
+export function isHiddenFromWorkPage(project: Pick<CaseStudyProject, "id" | "detailsHref" | "title">): boolean {
+  return (
+    project.id === "opsflow" ||
+    project.id === "opsflow-ai" ||
+    project.detailsHref === ROUTES.opsFlow ||
+    project.title.startsWith("OpsFlow AI")
+  );
+}
+
 export const CASE_STUDY_PROJECTS: CaseStudyProject[] = [
   {
+    id: "governed-ai",
+    title: "Governed Enterprise AI & Automated Ingestion",
+    tags: ["Model Context Protocol (MCP)", "Row-Level Security (RLS)", "Express", "MongoDB"],
+    tagVariant: "cyan",
+    problem: "Enterprise client required LLM automation without prompt injection risks.",
+    solution:
+      'Two-tier API policy gateway with JIT permissions and human-in-the-loop ("Vibe Diff") checks.',
+    impact: ["Zero Security Leaks", "100% Policy-Gated Invocation"],
+    gridSpan: "narrow",
+    layout: "stacked",
+    detailsLabel: "View Project Details",
+    detailsHref: ROUTES.aiSolutions,
+  },
+  {
     id: "commiters",
-    title: "Commiters.com",
-    tags: ["Design Showcase"],
-    tagVariant: "pill",
-    problem: "Needed a high-performance brand showcase that mirrors the precision of our codebase.",
-    solution: "Built a zero-latency React/Next.js ecosystem with a custom minimalist design system.",
-    gridSpan: "wide",
-    layout: "horizontal",
+    title: "Commiters.com — Spec-Driven Cloud Platform",
+    tags: ["React", "Vite", "Tailwind CSS", "Cloud-Native"],
+    tagVariant: "cyan",
+    problem: "Required zero-latency, high-security web presence reflecting engineering precision.",
+    solution: "Spec-driven cloud web platform built for high performance and clean UI execution.",
+    impact: ["100/100 Lighthouse Speed", "<150ms TTFB"],
+    gridSpan: "narrow",
+    layout: "stacked",
     detailsLabel: "View Project Details",
     detailsHref: ROUTES.commitersCaseStudy,
   },
   {
-    id: "ai-summarizer",
-    title: "AI Summarizer",
-    tags: ["Python • Google ADK"],
-    tagVariant: "accent",
-    tagsPlacement: "header",
-    problem:
-      "Distilling complex, multi-page documents into strategic insights was time-consuming for executives.",
-    solution:
-      "Engineered a generative AI tool using Google ADK to produce precise, three-point executive summaries.",
-    gridSpan: "narrow",
-    layout: "stacked",
-    detailsLabel: "View Project Details",
-    detailsHref: ROUTES.aiSummarizerCaseStudy,
-  },
-  {
-    id: "multi-role-crm",
-    title: "Multi-Role CRM & AI Chatbot",
-    tags: [],
-    problem: "Enterprise support teams struggled with manual query resolution and fragmented customer data.",
-    solution:
-      "Created an AI-powered CRM with RAG-enhanced chatbots for intelligent, real-time customer interaction.",
-    gridSpan: "narrow",
-    layout: "stacked",
-    detailsLabel: "View Project Details",
-    detailsHref: ROUTES.multiRoleCrmCaseStudy,
-  },
-  {
     id: "neardrop-mvp",
-    title: "NearDrop MVP",
-    tags: ["AFFILIATES", "VENDORS", "CUSTOMERS"],
-    tagVariant: "outline",
-    problem: "Merchant-driver coordination in logistics was fragmented and lacked real-time visibility.",
-    solution:
-      "Developed a robust three-role system (Affiliates, Vendors, Customers) for seamless tracking and coordination.",
+    title: "NearDrop — Field & Logistics Coordination System",
+    tags: ["Node.js", "React", "Geo-Fencing", "Real-time WebSockets"],
+    tagVariant: "cyan",
+    problem: "Merchant-driver logistics lacked real-time visibility and verification.",
+    solution: "Three-role cloud operational portal with live tracking and offline sync.",
+    impact: ["Real-Time GPS Tracking", "Zero-Downtime Architecture"],
     gridSpan: "wide",
     layout: "horizontal",
     detailsLabel: "View Project Details",
     detailsHref: ROUTES.neardropCaseStudy,
   },
   {
-    id: "browse-my-vacation",
-    title: "BrowseMyVacation",
-    tags: ["Travel • Rajasthan"],
-    tagVariant: "outline",
+    id: "prospectiq-ai",
+    title: "ProspectIQ AI — Governed B2B Prospecting & Intelligence Engine",
+    category: "ENTERPRISE AI & WORKFLOW SYSTEM",
+    tags: ["Python", "FastAPI", "MCP Protocol", "LLM Pipeline", "PostgreSQL"],
+    tagVariant: "cyan",
     problem:
-      "Rahul needed a curated Rajasthan travel platform where customers could discover packages by city—without forced dates—and request custom quotes with transparent pricing.",
+      "Sales teams lose hundreds of hours manually discovering, verifying, and enriching lead context across fragmented B2B databases and unstructured web sources.",
     solution:
-      "Shipped browsemyvacations.com on Next.js: city search, curated package grids, Customise & Quote, Vacation Meter, MICE pages, and 24/7 travel support messaging.",
-    gridSpan: "narrow",
-    layout: "stacked",
+      "Built an automated lead discovery and intent intelligence pipeline powered by governed LLM agents, automated schema validation, and strict API policy gateways.",
+    impact: ["10x Lead Discovery Velocity", "Zero Hallucinated Contacts"],
+    gridSpan: "wide",
+    layout: "horizontal",
     detailsLabel: "View Project Details",
-    detailsHref: ROUTES.browseMyVacationCaseStudy,
+    detailsHref: ROUTES.prospectIqCaseStudy,
+  },
+  {
+    id: "ecoroute-intelligence",
+    title: "EcoRoute Intelligence — Cloud-Native Green Fleet & Route Optimization",
+    category: "SPEC-DRIVEN CLOUD PLATFORM",
+    tags: ["React", "Node.js", "Geo-Spatial Algorithms", "PostgreSQL (RLS)", "Express"],
+    tagVariant: "cyan",
+    problem:
+      "Logistics fleets suffer high carbon footprints and cost inefficiencies due to static, non-adaptive route planning that ignores real-time traffic and emissions metrics.",
+    solution:
+      "Engineered an intelligent geo-routing and green fleet optimization engine with live telemetry processing, route carbon analytics, and session-gated portal views.",
+    impact: ["-24% Emissions Footprint", "<100ms Route Computation"],
+    gridSpan: "wide",
+    layout: "horizontal",
+    detailsLabel: "View Project Details",
+    detailsHref: ROUTES.ecoRouteCaseStudy,
   },
 ];

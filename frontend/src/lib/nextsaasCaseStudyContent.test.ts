@@ -14,7 +14,7 @@ describe("nextsaasCaseStudyContent (BrowseMyVacation)", () => {
   });
 
   it("matches the BrowseMyVacation travel platform case study copy", () => {
-    expect(NEXTSAAS_CASE_STUDY_COPY.title).toBe("BrowseMyVacation — Curated Rajasthan Vacations.");
+    expect(NEXTSAAS_CASE_STUDY_COPY.title).toBe("BrowseMyVacation: Curated B2C/B2B Travel Platform");
     expect(NEXTSAAS_CASE_STUDY_COPY.scope.items).toEqual([
       "City-based package discovery",
       "Customise & Quote journeys",

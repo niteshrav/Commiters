@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { TRUSTTAP_BOTTOM_CTA } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_BOTTOM_CTA_ACTIONS_CLASS,
@@ -22,9 +23,14 @@ export default function TrustTapBottomCtaSection() {
         </h2>
         <p className={TRUSTTAP_SECTION_SUBTEXT_CLASS}>{copy.subtext}</p>
         <div className={TRUSTTAP_BOTTOM_CTA_ACTIONS_CLASS}>
-          <a className="btn btn-primary trusttap-hero-btn-primary" href={copy.primaryHref} target="_blank" rel="noopener noreferrer">
+          <Link className="btn btn-primary trusttap-hero-btn-primary" to={copy.primaryHref}>
             {copy.primaryLabel}
-          </a>
+          </Link>
+          {copy.secondaryHref ? (
+            <Link className="btn btn-secondary trusttap-hero-btn-secondary" to={copy.secondaryHref}>
+              {copy.secondaryLabel}
+            </Link>
+          ) : null}
         </div>
       </div>
     </section>

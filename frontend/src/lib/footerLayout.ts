@@ -7,6 +7,7 @@ export const FOOTER_NOCK_NAV_CLASS = "footer-nock-nav" as const;
 export const FOOTER_NOCK_NAV_COLUMN_CLASS = "footer-nock-nav-column" as const;
 export const FOOTER_NOCK_WATERMARK_CLASS = "footer-nock-watermark" as const;
 export const FOOTER_BRAND_TAGLINE_CLASS = "footer-brand-tagline" as const;
+export const FOOTER_BRAND_SUBTEXT_CLASS = "footer-brand-subtext" as const;
 
 /** Blackbook-style bottom bar tokens (social icons, copyright). */
 export const FOOTER_BLACKBOOK_BAR_CLASS = "footer-blackbook-bar" as const;

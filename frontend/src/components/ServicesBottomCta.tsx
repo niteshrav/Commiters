@@ -23,14 +23,9 @@ export default function ServicesBottomCta() {
         </h2>
         <p className={SERVICES_BOTTOM_CTA_SUBTEXT_CLASS}>{SERVICES_BOTTOM_CTA.subtext}</p>
         <div className={SERVICES_BOTTOM_CTA_ACTIONS_CLASS}>
-          <a
-            className={`btn btn-primary ${SERVICES_BOTTOM_CTA_PRIMARY_CLASS}`}
-            href={SERVICES_BOTTOM_CTA.primaryHref}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link className={`btn btn-primary ${SERVICES_BOTTOM_CTA_PRIMARY_CLASS}`} to={SERVICES_BOTTOM_CTA.primaryHref}>
             {SERVICES_BOTTOM_CTA.primaryLabel}
-          </a>
+          </Link>
           <Link className={`btn btn-secondary ${SERVICES_BOTTOM_CTA_SECONDARY_CLASS}`} to={SERVICES_BOTTOM_CTA.secondaryHref}>
             {SERVICES_BOTTOM_CTA.secondaryLabel}
           </Link>

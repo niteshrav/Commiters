@@ -19,7 +19,7 @@ describe("MultiRoleCrmCaseStudyBottomCta", () => {
     expect(within(cta).getByText(MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.subtext)).toBeInTheDocument();
     expect(within(cta).getByRole("link", { name: MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.primaryLabel })).toHaveAttribute(
       "href",
-      ROUTES.contact,
+      ROUTES.webApplications,
     );
 
     expect(cta.querySelector(".multi-role-crm-case-study-bottom-cta-brand")).toBeNull();

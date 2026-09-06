@@ -1,24 +1,24 @@
 import { ROUTES } from "./routes";
 
-export const AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE = "AI Operational Audit | Commiters" as const;
+export const AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE = "AI Operational Audits & Cloud Diagnostics | Commiters" as const;
 
 export const AI_OPERATIONAL_AUDIT_SEO = {
   title: AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE,
   description:
-    "Eliminate back-office bottlenecks with a 2-week AI Operational Audit. We shadow workflows, map spreadsheet friction, and deliver a live automation prototype.",
+    "Book a 2-week AI Operational Audit. We analyze manual bottlenecks, spreadsheet dependencies, and legacy workflows to deliver a live automation prototype and a Spec-Driven Architecture Blueprint.",
   keywords:
-    "AI operational audit, back-office automation, workflow bottleneck, spreadsheet automation, Commiters diagnostic",
+    "AI operational audit, workflow diagnostics, spec-driven blueprint, spreadsheet automation, workflow security, Commiters diagnostic",
   path: ROUTES.aiOperationalAudit,
 } as const;
 
 export const AI_OPERATIONAL_AUDIT_HERO = {
-  eyebrow: "2-WEEK FIXED DIAGNOSTIC ENGAGEMENT",
-  headline: "Eliminate Back-Office Bottlenecks with a 2-Week AI Operational Audit.",
+  eyebrow: "2-WEEK ENGAGEMENT",
+  headline: "AI Operational Audits & Cloud Diagnostics",
   subheadline:
-    "We shadow your back-office workflows, identify manual spreadsheet friction, and build a live working AI automation prototype.",
+    "We analyze your manual operational bottlenecks, spreadsheet dependencies, and legacy workflows to deliver a live automation prototype and a Spec-Driven Architecture Blueprint (/specs).",
 } as const;
 
-export const AI_OPERATIONAL_AUDIT_CTA_LABEL = "Book Operational Audit" as const;
+export const AI_OPERATIONAL_AUDIT_CTA_LABEL = "Book Your 2-Week Audit" as const;
 
 export const AI_OPERATIONAL_AUDIT_PRICING = {
   title: "Pricing & Scope",
@@ -27,36 +27,53 @@ export const AI_OPERATIONAL_AUDIT_PRICING = {
   summary: "Fixed-scope 2-week engagement ($3,000–$5,000 / ₹35,000–₹50,000).",
 } as const;
 
-export const AI_OPERATIONAL_AUDIT_DELIVERABLES = [
+export const AI_OPERATIONAL_AUDIT_DIAGNOSE_TITLE = "What We Diagnose" as const;
+
+export const AI_OPERATIONAL_AUDIT_DIAGNOSE = [
   {
-    id: "workflow-bottleneck-map",
-    title: "Workflow Bottleneck Diagnostic Map",
-    body: "A visual map of back-office handoffs, spreadsheet friction, and the delays we will automate first.",
+    id: "spreadsheet-manual-bottlenecks",
+    title: "Spreadsheet & Manual Bottlenecks",
+    body: "Identify re-typing, manual invoice parsing, and slow data entry.",
   },
   {
-    id: "working-prototype",
-    title: "Working AI / Automation Prototype",
-    body: "A live prototype that shadows your workflow and proves the automation inside the two-week window.",
+    id: "workflow-security-policy-gaps",
+    title: "Workflow Security & Policy Gaps",
+    body: "Audit where sensitive company data is exposed to unmonitored AI tools.",
   },
   {
-    id: "roi-roadmap",
-    title: "ROI & Implementation Roadmap",
-    body: "Hours saved, implementation cost, and the sequence to take the prototype into production.",
+    id: "automation-roi-roadmap",
+    title: "Automation ROI Roadmap",
+    body: "Deliver a clear cost-benefit breakdown before you write a single line of production code.",
   },
 ] as const;
 
+/** @deprecated Use AI_OPERATIONAL_AUDIT_DIAGNOSE */
+export const AI_OPERATIONAL_AUDIT_DELIVERABLES = AI_OPERATIONAL_AUDIT_DIAGNOSE;
+
+export const AI_OPERATIONAL_AUDIT_PROCESS_TITLE = "The 2-Week Deliverables" as const;
+
 export const AI_OPERATIONAL_AUDIT_PROCESS = [
   {
-    id: "week-1",
-    week: "Week 1",
-    body: "Discovery, workflow shadowing, and mapping of spreadsheet and legacy-system friction.",
+    id: "days-1-3",
+    week: "Days 1-3",
+    body: "Discovery",
   },
   {
-    id: "week-2",
-    week: "Week 2",
-    body: "Prototype build, ROI model, and executive demo of the working automation.",
+    id: "days-4-8",
+    week: "Days 4-8",
+    body: "Prototype Build",
+  },
+  {
+    id: "days-9-14",
+    week: "Days 9-14",
+    body: "Deliver Spec-Driven Blueprint",
   },
 ] as const;
+
+export const AI_OPERATIONAL_AUDIT_GOVERNANCE = {
+  title: "The Committers Way",
+  body: 'All audit recommendations follow "The Committers Way": Zero ambient authority, two-tier policy gateways, and human-in-the-loop validation.',
+} as const;
 
 export const AI_OPERATIONAL_AUDIT_FORM = {
   title: "Book your diagnostic",
@@ -66,10 +83,11 @@ export const AI_OPERATIONAL_AUDIT_FORM = {
   emailPlaceholder: "name@company.com",
   companyLabel: "Company Name",
   companyPlaceholder: "Company name",
+  scopeLabel: "What should we scope?",
   bottleneckLabel: "Current Manual Bottleneck Description",
   bottleneckPlaceholder: "Where do hours disappear each week?",
   submitLabel: AI_OPERATIONAL_AUDIT_CTA_LABEL,
-  serviceNeeded: "AI Operational Audit",
+  serviceNeeded: "AI Operational Audit (2-Week Blueprint)",
   budgetRange: "$3,000–$5,000 / ₹35,000–₹50,000",
   timeline: "2-week diagnostic",
 } as const;

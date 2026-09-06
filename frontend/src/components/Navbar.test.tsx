@@ -17,15 +17,17 @@ import { afterEach } from "vitest";
 import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
 import { ROUTES } from "../lib/routes";
 import {
+  HEADER_DRAWER_OPEN_CLASS,
   HEADER_MENU_BTN_TESTID,
+  HEADER_MENU_CLOSE_LABEL,
+  HEADER_MENU_OPEN_LABEL,
   MOBILE_NAV_BODY_LOCK_CLASS,
-  MOBILE_NAV_CLOSE_BTN_TESTID,
+  MOBILE_NAV_DRAWER_CLASS,
   MOBILE_NAV_DRAWER_COPYRIGHT,
   MOBILE_NAV_DRAWER_TESTID,
   MOBILE_NAV_OVERLAY_CLASS,
 } from "../lib/mobileNavDrawer";
-import { SITE_GITHUB_URL, SITE_LINKEDIN_URL } from "../lib/siteLinks";
-import { buildWhatsAppUrl } from "../lib/siteContact";
+import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "../lib/siteLinks";
 
 function desktopNavTriggers(container: HTMLElement) {
   return within(container).getAllByRole("link").filter((link) => link.classList.contains("nav-dropdown-trigger"));
@@ -53,12 +55,14 @@ describe("Navbar", () => {
 
     const brandLink = screen.getByRole("link", { name: COMMITERS_HEADER_LOGO_ALT });
     expect(brandLink).toHaveAttribute("href", ROUTES.home);
-    expect(brandLink).toHaveClass("brand", "brand-logo-link");
+    expect(brandLink).toHaveClass("brand", "brand-logo-link", "opacity-90", "transition-opacity");
     const banner = screen.getByRole("banner");
+    expect(banner).toHaveClass("backdrop-blur-md", "bg-background/80", "border-b", "border-border/40");
     const logo = within(banner).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT });
     expect(logo).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
     expect(logo).toHaveAttribute("height", String(BRAND_LOGO_HEADER_HEIGHT_PX));
     expect(within(banner).queryByTestId("brand-tagline")).not.toBeInTheDocument();
+    expect(within(banner).getByTestId("nav-header-badge")).toHaveTextContent("COMMITERS — Enterprise AI & Cloud Systems");
     expect(screen.queryByText(/^Commiters$/)).not.toBeInTheDocument();
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
@@ -77,7 +81,7 @@ describe("Navbar", () => {
     expect(within(primaryNav).queryByRole("link", { name: /^Contact$/i })).not.toBeInTheDocument();
     expect(within(primaryNav).queryByRole("link", { name: /^Products$/i })).not.toBeInTheDocument();
     expect(within(primaryNav).queryByTestId("nav-more-menu")).not.toBeInTheDocument();
-    expect(screen.getByTestId(HEADER_MENU_BTN_TESTID)).toHaveAttribute("aria-label", "Open menu");
+    expect(screen.getByTestId(HEADER_MENU_BTN_TESTID)).toHaveAttribute("aria-label", HEADER_MENU_OPEN_LABEL);
     expect(screen.getByTestId(HEADER_MENU_BTN_TESTID)).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();
     expect(screen.getByTestId("nav-start-project-cta")).toHaveAttribute("href", NAV_CTA_TO);
@@ -209,7 +213,7 @@ describe("Navbar", () => {
     expect(screen.queryByTestId("nav-mega-panel-work")).not.toBeInTheDocument();
   });
 
-  it("opens a full-screen mobile drawer with an accordion Services menu, CTA, socials, and copyright", async () => {
+  it("opens a header-locked sheet with accordion Services menu, CTA, socials, and copyright", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter>
@@ -224,16 +228,24 @@ describe("Navbar", () => {
     await user.click(menuButton);
 
     const drawer = screen.getByTestId(MOBILE_NAV_DRAWER_TESTID);
-    expect(drawer).toHaveClass(MOBILE_NAV_OVERLAY_CLASS);
-    expect(drawer.parentElement).toBe(document.body);
+    const banner = screen.getByRole("banner");
+    expect(banner).toHaveClass(HEADER_DRAWER_OPEN_CLASS);
+    expect(drawer).toHaveClass(MOBILE_NAV_DRAWER_CLASS);
+    expect(drawer).not.toHaveClass("p-6");
+    expect(drawer).not.toHaveClass(MOBILE_NAV_OVERLAY_CLASS);
+    expect(drawer.parentElement).toHaveClass(MOBILE_NAV_OVERLAY_CLASS);
+    expect(drawer.parentElement?.parentElement).toBe(document.body);
     expect(drawer).toHaveAttribute("role", "dialog");
     expect(drawer).toHaveAttribute("aria-modal", "true");
     expect(menuButton).toHaveAttribute("aria-expanded", "true");
+    expect(menuButton).toHaveAttribute("aria-label", HEADER_MENU_CLOSE_LABEL);
     expect(document.body).toHaveClass(MOBILE_NAV_BODY_LOCK_CLASS);
     expect(document.body.style.overflow).toBe("hidden");
 
-    expect(within(drawer).getByRole("link", { name: COMMITERS_HEADER_LOGO_ALT })).toHaveAttribute("href", ROUTES.home);
-    expect(within(drawer).getByTestId(MOBILE_NAV_CLOSE_BTN_TESTID)).toHaveAttribute("aria-label", "Close menu");
+    expect(screen.getAllByRole("link", { name: COMMITERS_HEADER_LOGO_ALT })).toHaveLength(1);
+    expect(within(banner).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT })).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
+    expect(within(drawer).queryByRole("link", { name: COMMITERS_HEADER_LOGO_ALT })).not.toBeInTheDocument();
+    expect(within(drawer).queryByRole("button", { name: HEADER_MENU_CLOSE_LABEL })).not.toBeInTheDocument();
 
     expect(within(drawer).getByRole("button", { name: /^Services$/i })).toBeInTheDocument();
     expect(within(drawer).getByRole("link", { name: /^About$/i })).toHaveAttribute("href", ROUTES.about);
@@ -249,21 +261,23 @@ describe("Navbar", () => {
     await user.click(within(drawer).getByRole("button", { name: /^Services$/i }));
     const auditCard = within(drawer).getByRole("link", { name: /AI Operational Audits/i });
     expect(auditCard).toHaveAttribute("href", ROUTES.aiOperationalAudit);
-    expect(auditCard).toHaveTextContent("2-week workflow diagnostics & custom automation prototypes.");
+    expect(auditCard).toHaveTextContent("2-week workflow diagnostics & spec-driven cloud blueprints.");
     const utilitiesCard = within(drawer).getByRole("link", { name: /Free Business Utilities/i });
-    expect(utilitiesCard).toHaveAttribute("href", ROUTES.opsFlowPlayground);
-    expect(utilitiesCard).toHaveTextContent("Zero-code tools including OpsFlow AI PDF-to-Excel extraction.");
+    expect(utilitiesCard).toHaveAttribute("href", ROUTES.utilities);
+    expect(utilitiesCard).toHaveTextContent("Zero-code operational tools including OpsFlow AI PDF-to-Excel extraction.");
 
     expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveAttribute("href", NAV_CTA_TO);
     expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveTextContent(NAV_CTA_LABEL);
     expect(within(drawer).getByTestId("nav-start-project-cta-mobile")).toHaveClass("nav-mobile-cta", "btn-primary");
     expect(within(drawer).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
-    expect(within(drawer).getByRole("link", { name: /^WhatsApp$/i })).toHaveAttribute("href", buildWhatsAppUrl());
+    expect(within(drawer).getByRole("link", { name: /^Instagram$/i })).toHaveAttribute("href", SITE_INSTAGRAM_URL);
+    expect(within(drawer).getByRole("link", { name: /^Medium$/i })).toHaveAttribute("href", SITE_MEDIUM_URL);
     expect(within(drawer).getByRole("link", { name: /^GitHub$/i })).toHaveAttribute("href", SITE_GITHUB_URL);
+    expect(within(drawer).queryByRole("link", { name: /^Twitter$/i })).not.toBeInTheDocument();
     expect(within(drawer).getByText(MOBILE_NAV_DRAWER_COPYRIGHT)).toBeInTheDocument();
   });
 
-  it("closes the mobile drawer from the close button, Escape, and navigation", async () => {
+  it("closes the mobile sheet from the header toggle, Escape, and navigation", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={["/"]}>
@@ -277,19 +291,22 @@ describe("Navbar", () => {
       </MemoryRouter>,
     );
 
-    await user.click(screen.getByTestId(HEADER_MENU_BTN_TESTID));
+    const menuButton = screen.getByTestId(HEADER_MENU_BTN_TESTID);
+    await user.click(menuButton);
     expect(screen.getByTestId(MOBILE_NAV_DRAWER_TESTID)).toBeInTheDocument();
+    expect(menuButton).toHaveAttribute("aria-label", HEADER_MENU_CLOSE_LABEL);
 
-    await user.click(screen.getByTestId(MOBILE_NAV_CLOSE_BTN_TESTID));
+    await user.click(menuButton);
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();
+    expect(menuButton).toHaveAttribute("aria-label", HEADER_MENU_OPEN_LABEL);
     expect(document.body).not.toHaveClass(MOBILE_NAV_BODY_LOCK_CLASS);
     expect(document.body.style.overflow).toBe("unset");
 
-    await user.click(screen.getByTestId(HEADER_MENU_BTN_TESTID));
+    await user.click(menuButton);
     await user.keyboard("{Escape}");
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();
 
-    await user.click(screen.getByTestId(HEADER_MENU_BTN_TESTID));
+    await user.click(menuButton);
     await user.click(within(screen.getByTestId(MOBILE_NAV_DRAWER_TESTID)).getByRole("link", { name: /^About$/i }));
     expect(await screen.findByTestId("about-outlet")).toBeInTheDocument();
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();

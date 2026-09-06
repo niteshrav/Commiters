@@ -5,6 +5,7 @@ import { useNavbarContent } from "../lib/cms/hooks";
 import {
   NAV_CTA_LABEL,
   NAV_CTA_TO,
+  NAV_HEADER_BADGE,
   NAV_DROPDOWN_LINK_CLASS,
   NAV_DROPDOWN_PANEL_GLASS_CLASS,
   NAV_MEGA_FROST_CLASSES,
@@ -16,10 +17,12 @@ import {
 } from "../lib/navSections";
 import BrandLogo from "./BrandLogo";
 import MobileNavDrawer from "./MobileNavDrawer";
-import { IconMenu } from "./icons";
+import { IconClose, IconMenu } from "./icons";
 import {
   HEADER_DRAWER_OPEN_CLASS,
   HEADER_MENU_BTN_TESTID,
+  HEADER_MENU_CLOSE_LABEL,
+  HEADER_MENU_OPEN_LABEL,
   MOBILE_NAV_DRAWER_TESTID,
 } from "../lib/mobileNavDrawer";
 
@@ -294,9 +297,26 @@ export default function Navbar() {
   }
 
   return (
-    <header className={["header", "header-light", mobileMenuOpen ? HEADER_DRAWER_OPEN_CLASS : ""].filter(Boolean).join(" ")}>
+    <header
+      className={[
+        "header",
+        "header-light",
+        "backdrop-blur-md",
+        "bg-background/80",
+        "border-b",
+        "border-border/40",
+        mobileMenuOpen ? HEADER_DRAWER_OPEN_CLASS : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <div className="container header-inner">
-        <BrandLogo onNavigate={handleNavigate} logoSrc={logo} logoAlt={logoAlt} />
+        <div className="header-brand">
+          <BrandLogo onNavigate={handleNavigate} logoSrc={logo} logoAlt={logoAlt} />
+          <p className="nav-header-badge" data-testid="nav-header-badge">
+            {NAV_HEADER_BADGE}
+          </p>
+        </div>
 
         <nav className="nav" aria-label="Primary navigation">
           <NavDesktopItems
@@ -322,12 +342,12 @@ export default function Navbar() {
             type="button"
             className="header-menu-btn"
             data-testid={HEADER_MENU_BTN_TESTID}
-            aria-label="Open menu"
+            aria-label={mobileMenuOpen ? HEADER_MENU_CLOSE_LABEL : HEADER_MENU_OPEN_LABEL}
             aria-expanded={mobileMenuOpen}
             aria-controls={MOBILE_NAV_DRAWER_TESTID}
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => setMobileMenuOpen((open) => !open)}
           >
-            <IconMenu width={22} height={22} />
+            {mobileMenuOpen ? <IconClose width={22} height={22} /> : <IconMenu width={22} height={22} />}
           </button>
         </div>
       </div>
@@ -336,10 +356,7 @@ export default function Navbar() {
         <MobileNavDrawer
           ctaLabel={NAV_CTA_LABEL}
           ctaUrl={NAV_CTA_TO}
-          logoSrc={logo}
-          logoAlt={logoAlt}
           onNavigate={handleNavigate}
-          onClose={() => setMobileMenuOpen(false)}
         />
       ) : null}
     </header>

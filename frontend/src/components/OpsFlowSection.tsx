@@ -15,6 +15,7 @@ import {
   OPSFLOW_ENGINEER_CTA_LABEL,
   OPSFLOW_HERO,
   OPSFLOW_HOW_IT_WORKS,
+  OPSFLOW_SANDBOX_ANCHOR,
   OPSFLOW_PREVIEW,
   OPSFLOW_PROCESSING_LABEL,
   OPSFLOW_QUOTA_BODY,
@@ -258,9 +259,17 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
                 {OPSFLOW_HERO.headline}
               </h1>
               <p className={OPSFLOW_SUBHEAD_CLASS}>{OPSFLOW_HERO.subheadline}</p>
+              <div className="opsflow-hero-actions">
+                <a className="btn btn-primary" href={OPSFLOW_HERO.tryFreeHref}>
+                  {OPSFLOW_HERO.tryFreeLabel}
+                </a>
+                <Link className="btn btn-secondary" to={OPSFLOW_HERO.demoTo}>
+                  {OPSFLOW_HERO.demoLabel}
+                </Link>
+              </div>
             </div>
 
-            <aside className={OPSFLOW_PANEL_CLASS} data-testid="opsflow-panel">
+            <aside className={OPSFLOW_PANEL_CLASS} id={OPSFLOW_SANDBOX_ANCHOR} data-testid="opsflow-panel">
               <div className={OPSFLOW_PANEL_CARD_CLASS} data-testid="opsflow-panel-card">
                 <div className={OPSFLOW_PANEL_BODY_CLASS}>
                   <p className={OPSFLOW_REMAINING_CLASS} data-testid="opsflow-remaining">

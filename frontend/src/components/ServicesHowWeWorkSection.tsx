@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   SERVICES_HOW_WE_WORK_GRID_CLASS,
   SERVICES_HOW_WE_WORK_INNER_CLASS,
@@ -10,6 +11,7 @@ import {
   SERVICES_HOW_WE_WORK_TITLE_CLASS,
 } from "../lib/servicesPageBottomLayout";
 import { SERVICES_HOW_WE_WORK } from "../lib/servicesPageBottomContent";
+import { BRAND_CARD_HOVER_CLASSES } from "../lib/brandColorKit";
 
 export default function ServicesHowWeWorkSection() {
   return (
@@ -28,11 +30,17 @@ export default function ServicesHowWeWorkSection() {
           {SERVICES_HOW_WE_WORK.steps.map((step) => (
             <article
               key={step.index}
-              className={SERVICES_HOW_WE_WORK_STEP_CLASS}
+              className={`${SERVICES_HOW_WE_WORK_STEP_CLASS} ${BRAND_CARD_HOVER_CLASSES}`}
               data-testid="services-how-we-work-step"
             >
               <p className={SERVICES_HOW_WE_WORK_STEP_INDEX_CLASS}>{step.index}</p>
-              <h3 className={SERVICES_HOW_WE_WORK_STEP_TITLE_CLASS}>{step.title}</h3>
+              <h3 className={SERVICES_HOW_WE_WORK_STEP_TITLE_CLASS}>
+                {"href" in step && step.href ? (
+                  <Link to={step.href}>{step.title}</Link>
+                ) : (
+                  step.title
+                )}
+              </h3>
               <p className={SERVICES_HOW_WE_WORK_STEP_BODY_CLASS}>{step.body}</p>
             </article>
           ))}

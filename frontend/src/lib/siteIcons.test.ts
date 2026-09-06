@@ -7,6 +7,7 @@ import {
   SITE_FAVICON_16_HREF,
   SITE_FAVICON_32_HREF,
   SITE_FAVICON_HREF,
+  SITE_FAVICON_ICO_HREF,
   SITE_FAVICON_TYPE,
 } from "./siteIcons";
 
@@ -16,16 +17,23 @@ const indexHtml = readFileSync(join(frontendRoot, "index.html"), "utf8");
 
 describe("siteIcons", () => {
   it("ships the Commiters eagle PNG for tab, bookmark, and touch icons", () => {
-    for (const href of [SITE_FAVICON_HREF, SITE_FAVICON_32_HREF, SITE_FAVICON_16_HREF, SITE_APPLE_TOUCH_ICON_HREF]) {
+    for (const href of [
+      SITE_FAVICON_ICO_HREF,
+      SITE_FAVICON_HREF,
+      SITE_FAVICON_32_HREF,
+      SITE_FAVICON_16_HREF,
+      SITE_APPLE_TOUCH_ICON_HREF,
+    ]) {
       expect(existsSync(join(publicRoot, href.replace(/^\//, "")))).toBe(true);
     }
   });
 
   it("wires favicon and apple-touch-icon links in index.html", () => {
+    expect(indexHtml).toContain(`rel="icon" href="${SITE_FAVICON_ICO_HREF}"`);
     expect(indexHtml).toContain(`rel="icon" type="${SITE_FAVICON_TYPE}" href="${SITE_FAVICON_HREF}"`);
     expect(indexHtml).toContain(`rel="icon" type="${SITE_FAVICON_TYPE}" sizes="32x32" href="${SITE_FAVICON_32_HREF}"`);
     expect(indexHtml).toContain(`rel="icon" type="${SITE_FAVICON_TYPE}" sizes="16x16" href="${SITE_FAVICON_16_HREF}"`);
-    expect(indexHtml).toContain(`rel="apple-touch-icon" href="${SITE_APPLE_TOUCH_ICON_HREF}"`);
-    expect(indexHtml).not.toContain("favicon.svg");
+    expect(indexHtml).toContain(`rel="apple-touch-icon" sizes="180x180" href="${SITE_APPLE_TOUCH_ICON_HREF}"`);
+    expect(indexHtml).not.toContain('href="/assets/icons/favicon.svg"');
   });
 });

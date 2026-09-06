@@ -116,7 +116,7 @@ describe("WorkflowAutomationSection", () => {
     expect(createLead).toHaveBeenCalledWith({
       name: "Nitesh Rav",
       email: "hello@commiters.com",
-      serviceNeeded: "AI Operational Audit",
+      serviceNeeded: "AI Operational Audit (2-Week Blueprint)",
       budgetRange: WORKFLOW_AUTOMATION_FORM.budgetRange,
       timeline: "2-week diagnostic",
       message: expect.stringContaining("WhatsApp order updates are sent by hand every evening."),

@@ -42,6 +42,6 @@ describe("workflowAutomationPageContent", () => {
     ]);
     expect(WORKFLOW_AUTOMATION_FORM.title).toMatch(/AI Operational Audit/i);
     expect(WORKFLOW_AUTOMATION_FORM.auditTo).toBe(ROUTES.aiOperationalAudit);
-    expect(WORKFLOW_AUTOMATION_FORM.serviceNeeded).toBe("AI Operational Audit");
+    expect(WORKFLOW_AUTOMATION_FORM.serviceNeeded).toBe("AI Operational Audit (2-Week Blueprint)");
   });
 });

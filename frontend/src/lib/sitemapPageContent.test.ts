@@ -25,17 +25,22 @@ describe("sitemapPageContent", () => {
     expect(
       SITEMAP_PAGE_COPY.groups
         .find((group) => group.id === "services")
-        ?.links.some((link) => link.to === ROUTES.aiOperationalAudit && link.label === "AI Operational Audit"),
+        ?.links.some((link) => link.to === ROUTES.aiOperationalAudit && link.label === "AI Operational Audits"),
     ).toBe(true);
     expect(
       SITEMAP_PAGE_COPY.groups
         .find((group) => group.id === "services")
-        ?.links.some((link) => link.to === ROUTES.aiSolutions && link.label === "AI Pipeline Engineering"),
+        ?.links.some((link) => link.to === ROUTES.aiSolutions && link.label === "Governed AI & Workflow Systems"),
     ).toBe(true);
     expect(
       SITEMAP_PAGE_COPY.groups
         .find((group) => group.id === "services")
-        ?.links.some((link) => link.to === ROUTES.webApplications && link.label === "B2B Web Applications"),
+        ?.links.some((link) => link.to === ROUTES.webApplications && link.label === "Spec-Driven Full-Stack Platforms"),
+    ).toBe(true);
+    expect(
+      SITEMAP_PAGE_COPY.groups
+        .find((group) => group.id === "company")
+        ?.links.some((link) => link.to === ROUTES.utilities && link.label === "Free Utilities"),
     ).toBe(true);
     expect(
       SITEMAP_PAGE_COPY.groups

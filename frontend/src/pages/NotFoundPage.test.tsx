@@ -12,7 +12,14 @@ describe("NotFoundPage", () => {
 
     expect(screen.getByTestId("page-hero-premium")).toBeInTheDocument();
     expect(screen.getByTestId("section-figure-constellation")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Page not found/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Go to Home/i })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("heading", { name: "Page Not Found" })).toBeInTheDocument();
+    expect(screen.getByText(/architectural route you are looking for does not exist/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Return to Home/i })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: /Return to Home/i })).toHaveClass(
+      "bg-primary",
+      "text-white",
+      "hover:bg-primary/90",
+    );
+    expect(document.querySelector(".not-found-circuit")).toBeTruthy();
   });
 });

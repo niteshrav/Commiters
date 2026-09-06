@@ -14,9 +14,9 @@ describe("browseMyVacationCaseStudyContent", () => {
   });
 
   it("matches the BrowseMyVacation travel platform case study copy", () => {
-    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.title).toBe("BrowseMyVacation — Curated Rajasthan Vacations.");
-    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.kicker).toMatch(/TRAVEL PLATFORM/i);
-    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.description).toMatch(/Rajasthan packages/i);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.title).toBe("BrowseMyVacation: Curated B2C/B2B Travel Platform");
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.kicker).toMatch(/B2B E-COMMERCE PLATFORM/i);
+    expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.description).toMatch(/city-first discovery/i);
     expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.scope.items).toEqual([
       "City-based package discovery",
       "Customise & Quote journeys",

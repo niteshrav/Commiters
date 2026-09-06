@@ -32,6 +32,7 @@ export type PrivacyPolicySection = {
 
 export const PRIVACY_PAGE_COPY = {
   title: STITCH_COPY.privacy.title,
+  subtitle: STITCH_COPY.privacy.subtitle,
   lastUpdatedLabel: STITCH_COPY.privacy.lastUpdatedLabel,
   lastUpdatedDate: STITCH_COPY.privacy.lastUpdatedDate,
   introBeforeBold: STITCH_COPY.privacy.introBeforeBold,

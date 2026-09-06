@@ -1,15 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { fetchJobFilters, fetchPublicJobs } from "./api";
-import { getStaticJobBySlug, enrichJobDetailFromStaticFallback } from "./staticPublicJobs";
+import {
+  getStaticJobBySlug,
+  enrichJobDetailFromStaticFallback,
+  listStaticPublicJobs,
+  STATIC_JOB_FILTER_OPTIONS,
+} from "./staticPublicJobs";
 
 describe("static public jobs", () => {
-  it("exposes filter options and three roles when the API is off", async () => {
-    const filters = await fetchJobFilters();
-    expect(filters.departments).toEqual(["Development", "Marketing", "Sales"]);
-    expect(filters.workModes).toEqual(["Remote"]);
-    expect(filters.employmentTypes).toEqual(["Internship"]);
+  it("exposes filter options and three roles when the API is off", () => {
+    expect(STATIC_JOB_FILTER_OPTIONS.departments).toEqual(["Development", "Marketing", "Sales"]);
+    expect(STATIC_JOB_FILTER_OPTIONS.workModes).toEqual(["Remote"]);
+    expect(STATIC_JOB_FILTER_OPTIONS.employmentTypes).toEqual(["Internship"]);
 
-    const jobs = await fetchPublicJobs({ page: 1, limit: 12 });
+    const jobs = listStaticPublicJobs({ page: 1, limit: 12 });
     expect(jobs.items.map((j) => j.slug).sort()).toEqual(
       ["ai-engineer-intern", "marketing-executive", "sales-executive"].sort(),
     );

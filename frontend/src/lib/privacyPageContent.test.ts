@@ -13,7 +13,8 @@ describe("privacyPageContent", () => {
     expect(STITCH_COPY.privacy.lastUpdatedLabel).toBe("LAST UPDATED:");
     expect(STITCH_COPY.privacy.lastUpdatedDate).toBe("April 15, 2026");
     expect(PRIVACY_PAGE_COPY.introBold).toBe("Commiters");
-    expect(PRIVACY_PAGE_COPY.intro).toContain("data protection and transparency");
+    expect(PRIVACY_PAGE_COPY.subtitle).toContain("zero ambient authority");
+    expect(PRIVACY_PAGE_COPY.intro).toContain("data protection, zero ambient authority, and transparency");
     expect(PRIVACY_PAGE_COPY.intro).toContain("surgical precision and absolute integrity");
   });
 
@@ -77,7 +78,7 @@ describe("privacyPageContent", () => {
   it("defines the DPO contact CTA from the screenshot", () => {
     expect(PRIVACY_DPO_CTA.title).toBe(STITCH_COPY.privacy.dpoCta.title);
     expect(PRIVACY_DPO_CTA.description).toContain("Data Protection Officer");
-    expect(PRIVACY_DPO_CTA.buttonLabel).toBe("Contact DPO");
+    expect(PRIVACY_DPO_CTA.buttonLabel).toBe("Contact DPO / Security Team");
     expect(PRIVACY_DPO_CTA.href).toBe(ROUTES.contact);
   });
 });

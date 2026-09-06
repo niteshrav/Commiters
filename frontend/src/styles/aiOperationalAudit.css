@@ -5,7 +5,9 @@
   flex-direction: column;
   margin: 0 calc(-1 * clamp(14px, 2.5vw, 32px));
   width: calc(100% + 2 * clamp(14px, 2.5vw, 32px));
-  max-width: 100vw;
+  max-width: none;
+  overflow-x: clip;
+  box-sizing: border-box;
   --audit-indigo: #4338ca;
   --audit-indigo-rgb: 67, 56, 202;
   --audit-slate: #0f172a;
@@ -65,6 +67,43 @@
   display: inline-flex;
 }
 
+.audit-diagnose-block,
+.audit-process-block {
+  margin: 0 0 clamp(36px, 5vw, 56px);
+}
+
+.audit-diagnose-block > h2,
+.audit-process-block > h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  color: var(--audit-slate);
+  text-align: center;
+}
+
+.audit-governance {
+  max-width: 48rem;
+  margin: 0 auto clamp(36px, 5vw, 56px);
+  padding: clamp(22px, 3vw, 32px);
+  text-align: center;
+}
+
+.audit-governance h2 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--audit-slate);
+}
+
+.audit-governance p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
 .audit-pricing {
   max-width: 40rem;
   margin: 0 auto clamp(36px, 5vw, 56px);
@@ -106,18 +145,18 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  margin: 0 0 clamp(36px, 5vw, 56px);
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 768px) {
   .audit-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 1080px) {
+@media (min-width: 1090px) {
   .audit-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -130,7 +169,8 @@
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
 }
 
-.audit-card h2 {
+.audit-card h2,
+.audit-card h3 {
   margin: 0 0 10px;
   font-family: var(--font-display);
   font-size: 1.05rem;
@@ -149,15 +189,21 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  margin: 0 0 clamp(36px, 5vw, 56px);
+  margin: 0;
   padding: 0;
   list-style: none;
   counter-reset: audit-week;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 768px) {
   .audit-timeline {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1090px) {
+  .audit-timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -240,6 +286,11 @@
   background: #f8fafc;
   color: var(--text);
   font: inherit;
+}
+
+.audit-field input[readonly] {
+  cursor: default;
+  color: var(--muted);
 }
 
 .audit-field textarea {

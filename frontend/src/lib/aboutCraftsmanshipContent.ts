@@ -64,7 +64,7 @@ export const ABOUT_FOUNDER_PHOTO_SRC = "/assets/about/nitesh-rav-founder.png" as
 export const ABOUT_FOUNDER_PHOTO_ALT = "Nitesh Rav — Founder, Commiters" as const;
 
 export const ABOUT_FOUNDER_QUOTE = {
-  text: '"Code is temporary. Architecture is forever."',
+  text: '"Code is temporary. Architecture and governance are forever."',
   attribution: "— NITESH RAV",
 } as const;
 

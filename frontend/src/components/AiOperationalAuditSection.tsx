@@ -4,11 +4,14 @@ import { createLead } from "../lib/api";
 import { validateAiOperationalAuditLead } from "../lib/aiOperationalAuditLeadGate";
 import {
   AI_OPERATIONAL_AUDIT_CTA_LABEL,
-  AI_OPERATIONAL_AUDIT_DELIVERABLES,
+  AI_OPERATIONAL_AUDIT_DIAGNOSE,
+  AI_OPERATIONAL_AUDIT_DIAGNOSE_TITLE,
   AI_OPERATIONAL_AUDIT_FORM,
+  AI_OPERATIONAL_AUDIT_GOVERNANCE,
   AI_OPERATIONAL_AUDIT_HERO,
   AI_OPERATIONAL_AUDIT_PRICING,
   AI_OPERATIONAL_AUDIT_PROCESS,
+  AI_OPERATIONAL_AUDIT_PROCESS_TITLE,
 } from "../lib/aiOperationalAuditPageContent";
 import {
   AUDIT_CARD_CLASS,
@@ -16,6 +19,7 @@ import {
   AUDIT_EYEBROW_CLASS,
   AUDIT_FIELD_CLASS,
   AUDIT_FORM_CLASS,
+  AUDIT_GOVERNANCE_CLASS,
   AUDIT_HEADLINE_CLASS,
   AUDIT_HERO_CLASS,
   AUDIT_INNER_CLASS,
@@ -78,6 +82,35 @@ export default function AiOperationalAuditSection() {
           </a>
         </div>
 
+        <div className="audit-diagnose-block">
+          <h2 id="audit-diagnose-title">{AI_OPERATIONAL_AUDIT_DIAGNOSE_TITLE}</h2>
+          <ul className={AUDIT_CARDS_CLASS} data-testid="audit-diagnose" aria-labelledby="audit-diagnose-title">
+            {AI_OPERATIONAL_AUDIT_DIAGNOSE.map((card) => (
+              <li key={card.id} className={`${AUDIT_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="audit-process-block">
+          <h2 id="audit-process-title">{AI_OPERATIONAL_AUDIT_PROCESS_TITLE}</h2>
+          <ol className={AUDIT_TIMELINE_CLASS} data-testid="audit-process" aria-labelledby="audit-process-title">
+            {AI_OPERATIONAL_AUDIT_PROCESS.map((step) => (
+              <li key={step.id} className={`audit-timeline-step ${FROSTED_GLASS_CLASS_NAME}`}>
+                <span className="audit-timeline-week">{step.week}</span>
+                <p>{step.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <aside className={`${AUDIT_GOVERNANCE_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} data-testid="audit-governance">
+          <h2>{AI_OPERATIONAL_AUDIT_GOVERNANCE.title}</h2>
+          <p>{AI_OPERATIONAL_AUDIT_GOVERNANCE.body}</p>
+        </aside>
+
         <aside className={`${AUDIT_PRICING_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} data-testid="audit-pricing">
           <h2>{AI_OPERATIONAL_AUDIT_PRICING.title}</h2>
           <p className="audit-pricing-engagement">{AI_OPERATIONAL_AUDIT_PRICING.engagement}</p>
@@ -85,26 +118,12 @@ export default function AiOperationalAuditSection() {
           <p>{AI_OPERATIONAL_AUDIT_PRICING.summary}</p>
         </aside>
 
-        <ul className={AUDIT_CARDS_CLASS} data-testid="audit-deliverables">
-          {AI_OPERATIONAL_AUDIT_DELIVERABLES.map((card) => (
-            <li key={card.id} className={`${AUDIT_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}>
-              <h2>{card.title}</h2>
-              <p>{card.body}</p>
-            </li>
-          ))}
-        </ul>
-
-        <ol className={AUDIT_TIMELINE_CLASS} data-testid="audit-process">
-          {AI_OPERATIONAL_AUDIT_PROCESS.map((step) => (
-            <li key={step.id} className={`audit-timeline-step ${FROSTED_GLASS_CLASS_NAME}`}>
-              <span className="audit-timeline-week">{step.week}</span>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
-
         <form id="audit-booking" className={`${AUDIT_FORM_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} onSubmit={onSubmit} aria-label="AI Operational Audit booking">
           <h2>{AI_OPERATIONAL_AUDIT_FORM.title}</h2>
+          <div className={AUDIT_FIELD_CLASS}>
+            <label htmlFor="audit-scope">{AI_OPERATIONAL_AUDIT_FORM.scopeLabel}</label>
+            <input id="audit-scope" value={AI_OPERATIONAL_AUDIT_FORM.serviceNeeded} readOnly />
+          </div>
           <div className={AUDIT_FIELD_CLASS}>
             <label htmlFor="audit-name">{AI_OPERATIONAL_AUDIT_FORM.nameLabel}</label>
             <input

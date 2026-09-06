@@ -17,8 +17,8 @@ import { ROUTES } from "../lib/routes";
 import {
   SITE_FOOTER_COPY,
   SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
-  SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS,
-  SITE_FOOTER_RESOURCES_LINK_LABELS,
+  SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS,
+  SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
 } from "../lib/siteFooterCopy";
 
@@ -79,24 +79,24 @@ describe("CookiePolicyPage", () => {
     expect(within(banner).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT })).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toHaveClass("footer--nock");
 
-    const productsNav = screen.getByTestId("footer-nav-column-products");
+    const flagshipNav = screen.getByTestId("footer-nav-column-flagship");
+    const engineeringNav = screen.getByTestId("footer-nav-column-engineering");
     const companyNav = screen.getByTestId("footer-nav-column-company");
-    const resourcesNav = screen.getByTestId("footer-nav-column-resources");
     expect(
-      within(productsNav)
+      within(flagshipNav)
         .getAllByRole("link")
         .map((link) => link.querySelector(".footer-link-label")?.textContent),
-    ).toEqual([...SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS]);
+    ).toEqual([...SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS]);
+    expect(
+      within(engineeringNav)
+        .getAllByRole("link")
+        .map((link) => link.querySelector(".footer-link-label")?.textContent),
+    ).toEqual([...SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS]);
     expect(
       within(companyNav)
         .getAllByRole("link")
         .map((link) => link.querySelector(".footer-link-label")?.textContent),
     ).toEqual([...SITE_FOOTER_COMPANY_NAV_LINK_LABELS]);
-    expect(
-      within(resourcesNav)
-        .getAllByRole("link")
-        .map((link) => link.querySelector(".footer-link-label")?.textContent),
-    ).toEqual([...SITE_FOOTER_RESOURCES_LINK_LABELS]);
 
     const copyrightCell = screen.getByTestId("footer-copyright-cell");
     expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);

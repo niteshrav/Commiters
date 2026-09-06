@@ -1,12 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { HOME_LEAD_MAGNET_COPY, HOME_LEAD_MAGNET_LAYOUT } from "./homeLeadMagnetContent";
+import { HOME_OPS_FLOW_SECTION_ID } from "./homePageContent";
+import { HOME_LEAD_MAGNET_COPY, HOME_LEAD_MAGNET_LAYOUT, HOME_LEAD_MAGNET_SECTION_ID } from "./homeLeadMagnetContent";
+import { ROUTES } from "./routes";
 
 describe("homeLeadMagnetContent", () => {
-  it("defines OpsFlow AI PDF-to-Excel showcase copy and capture fields", () => {
-    expect(HOME_LEAD_MAGNET_COPY.badge).toBe("OPSFLOW AI • DOCUMENT INTELLIGENCE");
-    expect(HOME_LEAD_MAGNET_COPY.title).toBe("Transform Unstructured PDFs into Clean, Structured Excel Datasets");
+  it("defines the OpsFlow AI proprietary product showcase and capture fields", () => {
+    expect(HOME_LEAD_MAGNET_SECTION_ID).toBe(HOME_OPS_FLOW_SECTION_ID);
+    expect(HOME_LEAD_MAGNET_COPY.badge).toBe("PROPRIETARY CLOUD PRODUCT");
+    expect(HOME_LEAD_MAGNET_COPY.title).toBe(
+      "OpsFlow AI: Transform Unstructured PDFs into Clean, Structured Excel Datasets",
+    );
     expect(HOME_LEAD_MAGNET_COPY.description).toBe(
-      "OpsFlow AI eliminates manual document entry by automatically extracting tables, line items, and complex financial fields from PDFs directly into production-ready Excel workbooks.",
+      "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and financial records.",
     );
     expect(HOME_LEAD_MAGNET_COPY.features).toEqual([
       {
@@ -18,14 +23,17 @@ describe("homeLeadMagnetContent", () => {
         body: "Instant conversion of multi-page invoices and receipts into .xlsx.",
       },
       {
-        title: "Zero Manual Effort",
-        body: "Eliminates copy-paste errors and speeds up reconciliation cycles.",
+        title: "Enterprise MCP Integration",
+        body: "Governed Model Context Protocol sockets connect models to data without direct database access.",
       },
     ]);
+    expect(HOME_LEAD_MAGNET_COPY.ctaConverter).toBe("Try Free Converter");
+    expect(HOME_LEAD_MAGNET_COPY.ctaConverterTo).toBe(ROUTES.opsFlowPlayground);
+    expect(HOME_LEAD_MAGNET_COPY.ctaDemo).toBe("Request Enterprise Demo");
+    expect(HOME_LEAD_MAGNET_COPY.submitLabel).toBe("Request Enterprise Demo");
     expect(HOME_LEAD_MAGNET_COPY.formTitle).toBe("Test OpsFlow AI with Your Document Format");
     expect(HOME_LEAD_MAGNET_COPY.formSubtitle).toBe("Submit a sample layout to receive your benchmark Excel conversion.");
     expect(HOME_LEAD_MAGNET_COPY.emailPlaceholder).toBe("Enter your business email");
-    expect(HOME_LEAD_MAGNET_COPY.submitLabel).toBe("Request Sample Extraction");
     expect(HOME_LEAD_MAGNET_COPY.microcopy).toBe(
       "Zero spam. Direct benchmark results delivered within 1 business day.",
     );

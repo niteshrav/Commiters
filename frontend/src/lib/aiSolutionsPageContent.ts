@@ -1,40 +1,65 @@
 import { ROUTES } from "./routes";
 
-export const AI_SOLUTIONS_DOCUMENT_TITLE = "AI Pipeline Engineering | Commiters" as const;
+export const AI_SOLUTIONS_DOCUMENT_TITLE = "Governed AI & Operational Workflow Systems | Commiters" as const;
 
 export const AI_SOLUTIONS_SEO = {
   title: AI_SOLUTIONS_DOCUMENT_TITLE,
   description:
-    "Enterprise-grade document parsing and LLM workflows from Commiters. GST/PAN extraction, Gemini and Claude integrations, and a zero-vendor-lock-in backend.",
+    "Bespoke document parsing, automated back-office pipelines, and cloud verification systems—built with strict Model Context Protocol (MCP) sockets and zero vendor lock-in.",
   keywords:
-    "AI pipeline engineering, document parsing, GST PAN extraction, Gemini, Claude, LLM workflows, Commiters",
+    "governed AI, workflow systems, MCP sockets, document parsing, GST PAN, field verification, zero vendor lock-in, Commiters",
   path: ROUTES.aiSolutions,
 } as const;
 
 export const AI_SOLUTIONS_HERO = {
-  eyebrow: "ENTERPRISE-GRADE DOCUMENT PARSING",
-  headline: "Enterprise-Grade Document Parsing & LLM Workflows Built for Speed.",
+  eyebrow: "ENTERPRISE AI ENGINEERING",
+  headline: "Governed AI & Operational Workflow Systems",
   subheadline:
-    "We design custom extraction pipelines for Indian GST/PAN documents, wire Gemini and Claude into your operations, and keep the backend free of vendor lock-in.",
+    "Bespoke document parsing, automated back-office pipelines, and cloud verification systems—built with strict Model Context Protocol (MCP) sockets and zero vendor lock-in.",
 } as const;
 
-export const AI_SOLUTIONS_CTA_LABEL = "Schedule Technical Scoping Call" as const;
+export const AI_SOLUTIONS_CTA_LABEL = "Request Governed AI Scoping" as const;
 
 export const AI_SOLUTIONS_OFFERINGS = [
   {
-    id: "document-extraction",
-    title: "Custom Document Extraction",
-    body: "Parse GST/PAN Indian formats — invoices, PAN records, and related documents — into structured data your ERP can trust.",
+    id: "enterprise-document-ingestion",
+    title: "Enterprise Document Ingestion",
+    body: "Parse GST/PAN bills, invoices, and operational PDFs into structured records your systems can trust.",
   },
   {
-    id: "gemini-claude",
-    title: "Gemini & Claude Integrations",
-    body: "Production LLM workflows on Gemini and Claude, wired into your databases, queues, and approval paths.",
+    id: "field-back-office-automation",
+    title: "Field & Back-Office Automation",
+    body: "Connect field verification and back-office handoffs into monitored, policy-gated workflows.",
   },
   {
-    id: "zero-lock-in",
-    title: "Zero Vendor-Lock-In Architecture",
-    body: "A backend you own: swappable models, portable prompts, and zero vendor-lock-in infrastructure.",
+    id: "zero-vendor-lock-in",
+    title: "Zero Vendor Lock-in",
+    body: "Own the pipeline: portable MCP sockets, swappable models, and no proprietary lock-in.",
+  },
+] as const;
+
+export const AI_SOLUTIONS_ARCHITECTURE_TITLE = "Architecture" as const;
+
+export const AI_SOLUTIONS_ARCHITECTURE = [
+  {
+    id: "mcp-tool-sockets",
+    title: "MCP Tool Sockets",
+    body: "Models reach data only through Model Context Protocol sockets, never direct database access.",
+  },
+  {
+    id: "two-tier-policy-gateways",
+    title: "Two-Tier Policy Gateways",
+    body: "Every call passes deterministic RBAC checks and semantic input validation before execution.",
+  },
+  {
+    id: "row-level-security-rls",
+    title: "Row-Level Security (RLS)",
+    body: "AI actions inherit session permissions so database rows stay scoped to the user.",
+  },
+  {
+    id: "vibe-diff-approval",
+    title: "Vibe Diff Approval",
+    body: "High-stakes mutations require explicit human confirmation before commit.",
   },
 ] as const;
 
@@ -47,15 +72,16 @@ export const AI_SOLUTIONS_STACK = [
 ] as const;
 
 export const AI_SOLUTIONS_FORM = {
-  title: "Schedule a technical scoping call",
+  title: "Scope a governed AI engagement",
   nameLabel: "Name",
   namePlaceholder: "Your name",
   emailLabel: "Work Email",
   emailPlaceholder: "name@company.com",
   companyLabel: "Company Name",
   companyPlaceholder: "Company name",
+  scopeLabel: "What should we scope?",
   projectLabel: "Documents & workflows to automate",
   projectPlaceholder: "Which GST, PAN, or operational documents should the pipeline handle?",
   submitLabel: AI_SOLUTIONS_CTA_LABEL,
-  serviceNeeded: "Custom AI Pipeline Engineering",
+  serviceNeeded: "Governed AI & Workflow Systems",
 } as const;

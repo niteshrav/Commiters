@@ -1,7 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { COMMITERS_CASE_STUDY_COPY } from "./commitersCaseStudyContent";
-import { NEARDROP_CASE_STUDY_COPY } from "./neardropCaseStudyContent";
-import { SERVICES_BOTTOM_CTA } from "./servicesPageBottomContent";
 import { STITCH_CONTACT_SIDEBAR } from "./stitchPageContent";
 import {
   COMMITERS_EMAIL_LEGAL_DISPLAY,
@@ -76,12 +73,7 @@ describe("siteContact", () => {
   });
 
   it("wires every discovery-call CTA to the Udaipur calendar inbox instead of Calendly", () => {
-    const discoveryHrefs = [
-      STITCH_CONTACT_SIDEBAR[1].href,
-      SERVICES_BOTTOM_CTA.primaryHref,
-      COMMITERS_CASE_STUDY_COPY.bottomCta.primaryHref,
-      NEARDROP_CASE_STUDY_COPY.bottomCta.primaryHref,
-    ];
+    const discoveryHrefs = [STITCH_CONTACT_SIDEBAR[1].href];
 
     for (const href of discoveryHrefs) {
       expect(href).toBe(discoveryCallUrl);

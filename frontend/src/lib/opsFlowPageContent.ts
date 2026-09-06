@@ -1,41 +1,46 @@
 import { ROUTES } from "./routes";
 
-export const OPSFLOW_DOCUMENT_TITLE = "OpsFlow AI" as const;
+export const OPSFLOW_DOCUMENT_TITLE = "OpsFlow AI: Automated Document Ingestion | Commiters" as const;
+export const OPSFLOW_SANDBOX_ANCHOR = "opsflow-sandbox" as const;
 
 export const OPSFLOW_SEO = {
   title: OPSFLOW_DOCUMENT_TITLE,
   description:
-    "Turn PDF invoices, receipts, and shipping bills into clean Excel files. Free OpsFlow AI sandbox tuned for Indian GST invoices and B2B document layouts.",
+    "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and operational records.",
   keywords:
     "OpsFlow AI, invoice OCR, GST invoice to Excel, shipping bill parser, Commiters automation, document to CSV",
   path: ROUTES.opsFlow,
 } as const;
 
 export const OPSFLOW_HERO = {
-  eyebrow: "FREE BUSINESS UTILITY | ZERO SETUP REQUIRED",
-  headline: "Turn PDF Invoices, Receipts & Shipping Bills into Clean Excel Files",
+  eyebrow: "PROPRIETARY CLOUD PRODUCT",
+  headline: "OpsFlow AI: Automated Document Ingestion",
   subheadline:
-    "Specially tuned for Indian GST invoices, PAN fields, bilingual receipts, and complex B2B layouts that generic OCR tools get wrong.",
+    "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and operational records.",
+  tryFreeLabel: "Try Free Version",
+  tryFreeHref: `#${OPSFLOW_SANDBOX_ANCHOR}`,
+  demoLabel: "Request Enterprise Demo",
+  demoTo: ROUTES.contact,
 } as const;
 
 export const OPSFLOW_VALUE_CARDS = [
   {
-    id: "sandbox",
+    id: "ingestion",
     icon: "upload",
-    title: "Zero-Friction Web Sandbox",
-    body: "10 free daily extractions with zero credit card or complex developer setup.",
+    title: "Instant PDF Ingestion",
+    body: "Drop invoices, receipts, GST bills, and operational PDFs into a zero-code extractor.",
   },
   {
-    id: "excel",
+    id: "schema",
     icon: "spreadsheet",
-    title: "Direct Excel & CSV Bridge",
-    body: "Download clean .xlsx spreadsheets ready for Tally/QuickBooks, not raw developer JSON arrays.",
+    title: "Deterministic Schema Checking",
+    body: "Extracted fields are validated against a fixed schema so Excel output stays predictable.",
   },
   {
-    id: "pipeline",
+    id: "mcp",
     icon: "pipeline",
-    title: "B2B Pipeline Ready",
-    body: "Need auto-syncing email pipelines or Zapier/ERP integrations? We build custom workflows for your operations.",
+    title: "Enterprise MCP API Integration",
+    body: "Graduate from the sandbox to governed MCP sockets when you need production document pipelines.",
   },
 ] as const;
 

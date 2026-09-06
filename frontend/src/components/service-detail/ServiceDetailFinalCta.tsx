@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Reveal from "../motion/Reveal";
+import { NAV_CTA_LABEL, NAV_CTA_TO } from "../../lib/navSections";
 import { ROUTES } from "../../lib/routes";
-import { buildDiscoveryCallCalendarUrl } from "../../lib/siteContact";
 
 export default function ServiceDetailFinalCta() {
   return (
@@ -10,14 +10,9 @@ export default function ServiceDetailFinalCta() {
         <h2>Let&apos;s Build Your Next Project</h2>
         <p>Share your goals and we&apos;ll respond with a technical proposal and realistic timeline.</p>
         <div className="svc-detail-hero-actions">
-          <a
-            className="btn btn-primary svc-detail-btn"
-            href={buildDiscoveryCallCalendarUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Book Free Consultation
-          </a>
+          <Link className="btn btn-primary svc-detail-btn" to={NAV_CTA_TO}>
+            {NAV_CTA_LABEL}
+          </Link>
           <Link className="btn btn-secondary svc-detail-btn" to={ROUTES.contact}>
             Contact Us
           </Link>

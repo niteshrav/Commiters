@@ -43,17 +43,19 @@ describe("TrustTapPage", () => {
       expect(screen.getByText(benefit.body)).toBeInTheDocument();
     }
 
-    expect(screen.getByRole("link", { name: TRUSTTAP_HERO.primaryLabel })).toHaveAttribute("href", TRUSTTAP_HERO.primaryHref);
-    expect(screen.getByRole("link", { name: TRUSTTAP_HERO.secondaryLabel })).toHaveAttribute(
-      "href",
-      TRUSTTAP_HERO.secondaryHref,
-    );
+    const primaryLinks = screen.getAllByRole("link", { name: TRUSTTAP_HERO.primaryLabel });
+    expect(primaryLinks.length).toBeGreaterThanOrEqual(1);
+    for (const link of primaryLinks) {
+      expect(link).toHaveAttribute("href", TRUSTTAP_HERO.primaryHref);
+    }
+    const secondaryLinks = screen.getAllByRole("link", { name: TRUSTTAP_HERO.secondaryLabel });
+    expect(secondaryLinks.length).toBeGreaterThanOrEqual(1);
+    for (const link of secondaryLinks) {
+      expect(link).toHaveAttribute("href", TRUSTTAP_HERO.secondaryHref);
+    }
 
     expect(screen.getByTestId("trusttap-faq")).toBeInTheDocument();
     expect(screen.getByText(TRUSTTAP_FAQ.subtext)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Launch admin" })).toHaveAttribute(
-      "href",
-      "https://trusttap.commiters.com/admin",
-    );
+    expect(screen.queryByRole("link", { name: "Launch admin" })).not.toBeInTheDocument();
   });
 });

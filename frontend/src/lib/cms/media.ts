@@ -1,4 +1,4 @@
-import { COMMITERS_HEADER_LOGO_SRC } from "../siteBrand";
+import { COMMITERS_FOOTER_LOGO_SRC, COMMITERS_HEADER_LOGO_SRC } from "../siteBrand";
 import { getApiBaseUrl } from "../siteRuntime";
 
 const PLACEHOLDER_LOGO_PATHS = new Set([
@@ -7,6 +7,10 @@ const PLACEHOLDER_LOGO_PATHS = new Set([
   "/assets/icons/favicon.png",
   "/assets/icons/favicon-16x16.png",
   "/assets/icons/favicon-32x32.png",
+  "/brand/favicon.png",
+  "/brand/favicon-16x16.png",
+  "/brand/favicon-32x32.png",
+  "/brand/logo-mark.png",
 ]);
 
 /** Turn CMS media paths (e.g. /uploads/...) into URLs the browser can load. */
@@ -33,5 +37,5 @@ export function resolveBrandLogoSrc(cmsLogo: unknown): string {
 }
 
 export function footerBrandLogoSrc(): string {
-  return COMMITERS_HEADER_LOGO_SRC;
+  return COMMITERS_FOOTER_LOGO_SRC;
 }

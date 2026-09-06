@@ -12,11 +12,11 @@ import { ROUTES } from "./routes";
 const publicRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "public");
 
 describe("multiRoleCrmCaseStudyContent", () => {
-  it("matches the centered grid intro copy and hero asset", () => {
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.kicker).toBe("CASE STUDY: ENTERPRISE AI");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleLead).toBe("AI-Powered");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleAccent).toBe("Multi-Role CRM");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline).toBe("Intelligent Operations with RAG & LLMs");
+  it("matches the governed B2B portal intro copy and hero asset", () => {
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.kicker).toBe("CASE STUDY: SPEC-DRIVEN B2B PLATFORM");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleLead).toBe("Governed AI CRM &");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleAccent).toBe("Multi-Role Operational Portal");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline).toMatch(/Row-Level Security/);
     expect("title" in MULTI_ROLE_CRM_CASE_STUDY_COPY).toBe(false);
     expect("heroActions" in MULTI_ROLE_CRM_CASE_STUDY_COPY).toBe(false);
     expect(MULTI_ROLE_CRM_CASE_STUDY_HERO_IMAGE_WIDTH).toBe(512);
@@ -34,22 +34,27 @@ describe("multiRoleCrmCaseStudyContent", () => {
   it("matches the vision and tech stack mosaic copy", () => {
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.heading).toBe("The Vision");
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.body).toMatch(/Retrieval-Augmented Generation/i);
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.challenge.text).toMatch(/Fragmented data access/i);
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.solution.text).toMatch(/institutional knowledge/i);
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.body).toMatch(/Row-Level Security/);
     expect("heading" in MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack).toBe(false);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack.items).toHaveLength(4);
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack.items.map((item) => item.alt)).toEqual([
+      "React",
+      "PostgreSQL (RLS)",
+      "Node.js",
+      "MCP Sockets",
+    ]);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack.items.map((item) => item.role)).toEqual([
       "Frontend",
       "Storage",
       "Runtime",
-      "LLM & RAG Integration",
+      "Generative AI",
     ]);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack.items.filter((item) => item.layout === "wide")).toHaveLength(2);
   });
 
   it("matches the architectural excellence feature grid copy", () => {
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.architecture.heading).toBe("Architectural Excellence");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.architecture.description).toMatch(/high-density enterprise/i);
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.architecture.description).toMatch(/zero ambient authority/i);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.architecture.indicators.map((item) => item.icon)).toEqual([
       "shield",
       "gauge",
@@ -57,17 +62,16 @@ describe("multiRoleCrmCaseStudyContent", () => {
     expect("features" in MULTI_ROLE_CRM_CASE_STUDY_COPY).toBe(false);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.architecture.features).toHaveLength(4);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.architecture.features.map((item) => item.title)).toEqual([
-      "Multi-role RBAC",
-      "RAG Chatbot",
-      "Real-time Sync",
+      "Multi-Role RBAC & RLS",
+      "Policy-Gated RAG Engine",
+      "Real-Time WebSockets",
       "Smart Analytics",
     ]);
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.title).toBe("Ready to build?");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("Build Your B2B Web Platform");
     expect("socialProof" in MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta).toBe(false);
-    expect("socialProofIconSrc" in MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta).toBe(false);
   });
 
-  it("wires the bottom CTA to contact", () => {
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.contact);
+  it("wires the bottom CTA to spec-driven platforms", () => {
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.webApplications);
   });
 });

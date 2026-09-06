@@ -39,7 +39,7 @@ describe("Layout", () => {
     HTMLElement.prototype.scrollIntoView = scrollIntoView;
 
     render(
-      <MemoryRouter initialEntries={[`${ROUTES.services}#website-development`]}>
+      <MemoryRouter initialEntries={[`${ROUTES.services}#ai-operational-audits`]}>
         <Layout>
           <Routes>
             <Route path={ROUTES.services} element={<ServicesPage />} />
@@ -52,8 +52,8 @@ describe("Layout", () => {
       expect(scrollIntoView).toHaveBeenCalled();
     });
 
-    const anchor = document.getElementById("website-development");
-    expect(anchor).toHaveAttribute("data-testid", "stitch-service-card");
+    const anchor = document.getElementById("ai-operational-audits");
+    expect(anchor).toHaveAttribute("data-testid", "services-offering-card");
     expect(scrollIntoView).toHaveBeenCalledWith({ behavior: "smooth", block: "start" });
 
     HTMLElement.prototype.scrollIntoView = original;

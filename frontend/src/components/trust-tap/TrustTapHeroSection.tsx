@@ -30,14 +30,20 @@ export default function TrustTapHeroSection() {
             </h1>
             <p className={TRUSTTAP_HERO_TAGLINE_CLASS}>{copy.tagline}</p>
             <div className={TRUSTTAP_HERO_ACTIONS_CLASS}>
-              <a
-                className="btn btn-primary trusttap-hero-btn-primary"
-                href={copy.primaryHref}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {copy.primaryLabel}
-              </a>
+              {copy.primaryHref.startsWith("http") ? (
+                <a
+                  className="btn btn-primary trusttap-hero-btn-primary"
+                  href={copy.primaryHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {copy.primaryLabel}
+                </a>
+              ) : (
+                <Link className="btn btn-primary trusttap-hero-btn-primary" to={copy.primaryHref}>
+                  {copy.primaryLabel}
+                </Link>
+              )}
               {secondaryIsHash ? (
                 <a className="btn btn-secondary trusttap-hero-btn-secondary" href={copy.secondaryHref}>
                   {copy.secondaryLabel}

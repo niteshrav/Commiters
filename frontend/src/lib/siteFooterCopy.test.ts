@@ -1,93 +1,110 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
-import { buildDiscoveryCallCalendarUrl, buildWhatsAppUrl } from "./siteContact";
 import {
   SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
-  SITE_FOOTER_CAREERS_HIRING_BADGE,
   SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
   SITE_FOOTER_CONNECT_LINKS,
   SITE_FOOTER_COPY,
+  SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS,
+  SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS,
   SITE_FOOTER_MAX_LINKS_PER_COLUMN,
-  SITE_FOOTER_OPSFLOW_PARSER_BADGE,
-  SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS,
-  SITE_FOOTER_RESOURCES_LINK_LABELS,
   SITE_FOOTER_SOCIAL_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
-  SITE_FOOTER_TRUSTTAP_PRODUCT_BADGE,
   resolveSiteFooterNavColumns,
 } from "./siteFooterCopy";
-import { SITE_GITHUB_URL, SITE_LINKEDIN_URL } from "./siteLinks";
+import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "./siteLinks";
 
 describe("siteFooterCopy", () => {
-  it("matches the Option 1 brand tagline and legal copyright line", () => {
+  it("matches the brand tagline and legal copyright line", () => {
     expect(SITE_FOOTER_COPY.brandTagline).toBe(SITE_FOOTER_TAGLINE);
-    expect(SITE_FOOTER_COPY.brandTagline).toBe(
-      "Engineering precision for world-class digital products and scalable enterprise architectures.",
-    );
-    expect(SITE_FOOTER_COPY.copyrightLine1).toBe("Copyright 2026 © Commiters Softwares. All Rights Reserved.");
+    expect(SITE_FOOTER_COPY.brandTagline).toBe("Commiters — Enterprise AI & Cloud Systems");
+    expect(SITE_FOOTER_COPY.brandSubtext).toBe("Commit. Code. Connect.");
+    expect(SITE_FOOTER_COPY.copyrightLine1).toBe("© Commiters Softwares. All rights reserved.");
   });
 
-  it("lists three footer navigation columns for products, company, and resources", () => {
+  it("lists three footer navigation columns for flagship AI, engineering, and company legal", () => {
     expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual([
-      "Products & Solutions",
-      "Company",
-      "Resources & Contact",
+      "Flagship Solutions & Products",
+      "Full-Lifecycle Engineering Services",
+      "Company & Legal",
     ]);
-    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.id)).toEqual(["products", "company", "resources"]);
+    expect(SITE_FOOTER_COPY.navColumns.map((column) => column.id)).toEqual(["flagship", "engineering", "company"]);
     expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toEqual([
-      ...SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS,
+      ...SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS,
     ]);
     expect(SITE_FOOTER_COPY.navColumns[1].links.map((link) => link.label)).toEqual([
-      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
+      ...SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS,
     ]);
     expect(SITE_FOOTER_COPY.navColumns[2].links.map((link) => link.label)).toEqual([
-      ...SITE_FOOTER_RESOURCES_LINK_LABELS,
+      ...SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
     ]);
     for (const column of SITE_FOOTER_COPY.navColumns) {
       expect(column.links.length).toBeLessThanOrEqual(SITE_FOOTER_MAX_LINKS_PER_COLUMN);
     }
+
+    const audits = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "AI Operational Audits");
+    expect(audits?.kind === "internal" ? audits.to : undefined).toBe(ROUTES.aiOperationalAudit);
+    const governed = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Governed AI & Workflow Systems");
+    expect(governed?.kind === "internal" ? governed.to : undefined).toBe(ROUTES.aiSolutions);
+    const platforms = SITE_FOOTER_COPY.navColumns[0].links.find(
+      (link) => link.label === "Spec-Driven Full-Stack Platforms",
+    );
+    expect(platforms?.kind === "internal" ? platforms.to : undefined).toBe(ROUTES.webApplications);
     const opsFlow = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "OpsFlow AI");
-    expect(opsFlow?.kind === "internal" ? opsFlow.to : undefined).toBe(ROUTES.opsFlow);
-    expect(opsFlow?.kind === "internal" ? opsFlow.badge : undefined).toBe(SITE_FOOTER_OPSFLOW_PARSER_BADGE);
-    const trustTap = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "TrustTap");
-    expect(trustTap?.kind === "internal" ? trustTap.to : undefined).toBe(ROUTES.trustTap);
-    expect(trustTap?.kind === "internal" ? trustTap.badge : undefined).toBe(SITE_FOOTER_TRUSTTAP_PRODUCT_BADGE);
-    const customWeb = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Custom Web Applications");
-    expect(customWeb?.kind === "internal" ? customWeb.to : undefined).toBe(ROUTES.webApplications);
-    const aiIntegrations = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "AI Integrations");
-    expect(aiIntegrations?.kind === "internal" ? aiIntegrations.to : undefined).toBe("/services/ai-integration");
-    const aboutUs = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "About Us");
+    expect(opsFlow?.kind === "internal" ? opsFlow.to : undefined).toBe(ROUTES.opsFlowPlayground);
+    const utilities = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Free Business Utilities");
+    expect(utilities?.kind === "internal" ? utilities.to : undefined).toBe(ROUTES.utilities);
+    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).not.toContain("TrustTap");
+    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).not.toContain("Custom AI Pipelines");
+
+    const ecommerce = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Automated E-commerce Systems");
+    expect(ecommerce?.kind === "internal" ? ecommerce.to : undefined).toBe("/services/e-commerce-development");
+    const b2b = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "B2B Web Applications");
+    expect(b2b?.kind === "internal" ? b2b.to : undefined).toBe(ROUTES.webApplications);
+    const mobile = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Mobile Application Development");
+    expect(mobile?.kind === "internal" ? mobile.to : undefined).toBe("/services/mobile-app-development");
+    const mvp = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Rapid SaaS MVP Development");
+    expect(mvp?.kind === "internal" ? mvp.to : undefined).toBe("/services/mvp-development");
+    const automation = SITE_FOOTER_COPY.navColumns[1].links.find(
+      (link) => link.label === "Automation & Integration Tools",
+    );
+    expect(automation?.kind === "internal" ? automation.to : undefined).toBe("/services/automation-tools");
+
+    const aboutUs = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "About Us");
     expect(aboutUs?.kind === "internal" ? aboutUs.to : undefined).toBe(ROUTES.about);
-    const corePillars = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Core Pillars");
-    expect(corePillars?.kind === "internal" ? corePillars.to : undefined).toBe(`${ROUTES.home}#core-pillars`);
-    const howWeWork = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "How We Work");
-    expect(howWeWork?.kind === "internal" ? howWeWork.to : undefined).toBe(`${ROUTES.about}#how-we-work`);
-    const caseStudies = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Case Studies / Work");
-    expect(caseStudies?.kind === "internal" ? caseStudies.to : undefined).toBe(ROUTES.caseStudies);
-    const careers = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Careers");
-    expect(careers?.kind === "internal" ? careers.badge : undefined).toBe(SITE_FOOTER_CAREERS_HIRING_BADGE);
-    const blogInsights = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Blog & Insights");
-    expect(blogInsights?.kind === "internal" ? blogInsights.to : undefined).toBe(ROUTES.technicalLedger);
-    const contactUs = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Contact Us");
-    expect(contactUs?.kind === "internal" ? contactUs.to : undefined).toBe(ROUTES.contact);
-    const bookConsultation = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Book Consultation");
-    expect(bookConsultation?.kind === "external" ? bookConsultation.href : undefined).toBe(buildDiscoveryCallCalendarUrl());
+    const clientWork = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Client Work");
+    expect(clientWork?.kind === "internal" ? clientWork.to : undefined).toBe(ROUTES.caseStudies);
+    const contact = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Contact");
+    expect(contact?.kind === "internal" ? contact.to : undefined).toBe(ROUTES.contact);
+    const privacy = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Privacy");
+    expect(privacy?.kind === "internal" ? privacy.to : undefined).toBe(ROUTES.privacy);
+    const terms = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Terms");
+    expect(terms?.kind === "internal" ? terms.to : undefined).toBe(ROUTES.terms);
+
     expect(SITE_FOOTER_COPY.bottomLegalLinks.map((link) => link.label)).toEqual([
       ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
     ]);
-    expect(SITE_FOOTER_COPY.bottomLegalLinks.find((link) => link.label === "Site Map" && link.kind === "internal")?.to).toBe(
-      ROUTES.sitemap,
+    expect(SITE_FOOTER_COPY.bottomLegalLinks.find((link) => link.label === "Privacy" && link.kind === "internal")?.to).toBe(
+      ROUTES.privacy,
+    );
+    expect(SITE_FOOTER_COPY.bottomLegalLinks.find((link) => link.label === "Terms" && link.kind === "internal")?.to).toBe(
+      ROUTES.terms,
     );
   });
 
-  it("orders brand-column social links LinkedIn, WhatsApp, and GitHub", () => {
-    expect(SITE_FOOTER_CONNECT_LINKS.map((link) => link.label)).toEqual(["LinkedIn", "WhatsApp", "GitHub"]);
-    expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("X");
-    expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("Instagram");
-    expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("Medium");
+  it("orders brand-column social links LinkedIn, Instagram, Medium, and GitHub", () => {
+    expect(SITE_FOOTER_CONNECT_LINKS.map((link) => link.label)).toEqual([
+      "LinkedIn",
+      "Instagram",
+      "Medium",
+      "GitHub",
+    ]);
+    expect(SITE_FOOTER_SOCIAL_LINK_LABELS).toEqual(["LinkedIn", "Instagram", "Medium", "GitHub"]);
+    expect(SITE_FOOTER_SOCIAL_LINK_LABELS).not.toContain("Twitter");
     expect(SITE_FOOTER_CONNECT_LINKS[0].href).toBe(SITE_LINKEDIN_URL);
-    expect(SITE_FOOTER_CONNECT_LINKS[1].href).toBe(buildWhatsAppUrl());
-    expect(SITE_FOOTER_CONNECT_LINKS[2].href).toBe(SITE_GITHUB_URL);
+    expect(SITE_FOOTER_CONNECT_LINKS[1].href).toBe(SITE_INSTAGRAM_URL);
+    expect(SITE_FOOTER_CONNECT_LINKS[2].href).toBe(SITE_MEDIUM_URL);
+    expect(SITE_FOOTER_CONNECT_LINKS[3].href).toBe(SITE_GITHUB_URL);
   });
 
   it("uses the same footer links on every route", () => {

@@ -42,12 +42,11 @@ describe("HomeBuiltForScale", () => {
     expect(screen.getByText(builtForScale.body)).toHaveClass("home-built-for-scale-lead");
 
     expect(screen.getAllByTestId("home-scale-feature")).toHaveLength(BUILT_FOR_SCALE_FEATURE_COUNT);
-    expect(screen.getByText("Cloud-Native Architecture")).toBeInTheDocument();
-    expect(screen.getByText("Seamless integration with AWS, Azure, or GCP for infinite scalability.")).toBeInTheDocument();
-    expect(screen.getByText("Security by Design")).toBeInTheDocument();
-    expect(screen.getByText("End-to-end encryption and strict compliance adherence from day one.")).toBeInTheDocument();
-    expect(screen.getByText("Performance Optimization")).toBeInTheDocument();
-    expect(screen.getByText("Micro-optimizations to ensure lightning-fast user experiences.")).toBeInTheDocument();
+    expect(screen.getByText("Cloud-Native Web Architecture (AWS, GCP, Azure, Vercel)")).toBeInTheDocument();
+    expect(screen.getByText("Zero Ambient Authority & Database Row-Level Security (RLS)")).toBeInTheDocument();
+    expect(
+      screen.getByText("Micro-optimized API Response Times (<200ms) with strict SLA tracking"),
+    ).toBeInTheDocument();
     expect(screen.getAllByTestId("home-scale-feature-icon")).toHaveLength(BUILT_FOR_SCALE_FEATURE_COUNT);
   });
 });

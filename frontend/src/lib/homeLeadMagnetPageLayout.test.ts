@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { HOME_LEAD_MAGNET_LAYOUT } from "./homeLeadMagnetContent";
+import { BREAKPOINT_MOBILE_PX, BREAKPOINT_STACK_PX } from "./responsiveLayout";
 
 const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "styles", "homeLeadMagnet.css"), "utf8");
 
@@ -16,7 +17,8 @@ describe("homeLeadMagnet layout", () => {
     expect(css).toMatch(/\.home-lead-magnet-inner\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.1fr\)\s*minmax\(0,\s*0\.9fr\)/i);
     expect(css).toMatch(/\.home-lead-magnet-card\s*\{[^}]*background:\s*#fff/i);
     expect(css).toMatch(/\.home-lead-magnet-card\s*\{[^}]*border:\s*1px solid #e2e8f0/i);
-    expect(css).toMatch(/@media \(max-width: 800px\)[\s\S]*\.home-lead-magnet-inner[\s\S]*grid-template-columns:\s*1fr/);
+    expect(css).toMatch(new RegExp(`@media \\(max-width: ${BREAKPOINT_STACK_PX}px\\)[\\s\\S]*\\.home-lead-magnet-inner[\\s\\S]*grid-template-columns:\\s*1fr`));
+    expect(css).toMatch(new RegExp(`@media \\(min-width: ${BREAKPOINT_MOBILE_PX}px\\)[\\s\\S]*\\.home-lead-magnet-form-row[\\s\\S]*flex-direction:\\s*row`));
     expect(HOME_LEAD_MAGNET_LAYOUT.innerClass).toBe("home-lead-magnet-inner");
     expect(HOME_LEAD_MAGNET_LAYOUT.formCardClass).toBe("home-lead-magnet-card");
     expect(HOME_LEAD_MAGNET_LAYOUT.formTitleClass).toBe("home-lead-magnet-form-title");

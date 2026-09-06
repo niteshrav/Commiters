@@ -24,13 +24,15 @@ describe("NearDropCaseStudyIntroSection", () => {
     expect(within(intro).getByText(NEARDROP_CASE_STUDY_COPY.description)).toBeInTheDocument();
 
     const stack = within(intro).getByTestId("neardrop-case-study-intro-stack");
-    expect(stack.querySelectorAll(".neardrop-case-study-intro-stack-item")).toHaveLength(3);
-    expect(within(stack).getByText("ARCHITECTURE")).toBeInTheDocument();
+    expect(stack.querySelectorAll(".neardrop-case-study-intro-stack-item")).toHaveLength(4);
+    expect(within(stack).getByText("FRONTEND")).toBeInTheDocument();
     expect(within(stack).getByText("DATABASE")).toBeInTheDocument();
     expect(within(stack).getByText("BACKEND")).toBeInTheDocument();
-    expect(within(stack).getByText("Next.js")).toBeInTheDocument();
+    expect(within(stack).getByText("REALTIME")).toBeInTheDocument();
+    expect(within(stack).getByText("React / Next.js")).toBeInTheDocument();
     expect(within(stack).getByText("PostgreSQL")).toBeInTheDocument();
     expect(within(stack).getByText("Node.js")).toBeInTheDocument();
+    expect(within(stack).getByText("WebSockets")).toBeInTheDocument();
     expect(screen.queryByTestId("neardrop-case-study-core-stack")).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "CORE STACK" })).not.toBeInTheDocument();
   });

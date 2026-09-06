@@ -2,6 +2,8 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { createLead } from "../lib/api";
 import {
+  AI_SOLUTIONS_ARCHITECTURE,
+  AI_SOLUTIONS_ARCHITECTURE_TITLE,
   AI_SOLUTIONS_CTA_LABEL,
   AI_SOLUTIONS_FORM,
   AI_SOLUTIONS_HERO,
@@ -9,6 +11,8 @@ import {
   AI_SOLUTIONS_STACK,
 } from "../lib/aiSolutionsPageContent";
 import {
+  AISOL_ARCH_CLASS,
+  AISOL_ARCH_GRID_CLASS,
   AISOL_CARD_CLASS,
   AISOL_CARDS_CLASS,
   AISOL_EYEBROW_CLASS,
@@ -84,6 +88,18 @@ export default function AiSolutionsSection() {
           ))}
         </ul>
 
+        <div className={AISOL_ARCH_CLASS} data-testid="ai-solutions-architecture">
+          <h2 className="aisol-arch-title">{AI_SOLUTIONS_ARCHITECTURE_TITLE}</h2>
+          <ul className={AISOL_ARCH_GRID_CLASS}>
+            {AI_SOLUTIONS_ARCHITECTURE.map((card) => (
+              <li key={card.id} className={`${AISOL_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <div className={`${AISOL_STACK_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} data-testid="ai-solutions-stack">
           <p className="aisol-stack-label">Technology & Cloud Stack</p>
           <ul className="aisol-stack-list">
@@ -103,6 +119,10 @@ export default function AiSolutionsSection() {
           aria-label={AI_SOLUTIONS_FORM.title}
         >
           <h2>{AI_SOLUTIONS_FORM.title}</h2>
+          <div className={AISOL_FIELD_CLASS}>
+            <label htmlFor="pipeline-engagement-scope">{AI_SOLUTIONS_FORM.scopeLabel}</label>
+            <input id="pipeline-engagement-scope" value={AI_SOLUTIONS_FORM.serviceNeeded} readOnly />
+          </div>
           <div className={AISOL_FIELD_CLASS}>
             <label htmlFor="pipeline-name">{AI_SOLUTIONS_FORM.nameLabel}</label>
             <input

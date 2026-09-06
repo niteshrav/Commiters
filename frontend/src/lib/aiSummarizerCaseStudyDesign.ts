@@ -13,7 +13,7 @@ export const AI_SUMMARIZER_CASE_STUDY_DESIGN = {
     divider: "#e5e7eb",
     sectionHeading: "#111827",
     sectionBody: "#6b7280",
-    accentBlue: "#2563eb",
+    accentBlue: "#0066ff",
     badgeDarkBackground: "#111827",
     badgeLightBackground: "#f3f4f6",
     badgeLightText: "#374151",

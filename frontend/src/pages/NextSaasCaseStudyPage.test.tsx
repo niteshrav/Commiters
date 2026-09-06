@@ -31,7 +31,7 @@ describe("NextSaasCaseStudyPage", () => {
     expect(intro.querySelector(".nextsaas-case-study-title")).toHaveTextContent(/BrowseMyVacation/i);
     expect(within(intro).getByTestId("nextsaas-case-study-metadata")).toBeInTheDocument();
     expect(within(intro).getByText("8 Weeks to Production")).toBeInTheDocument();
-    expect(within(intro).getByText(/React, Next.js, Node.js, PostgreSQL/i)).toBeInTheDocument();
+    expect(within(intro).getByText(/React, Node.js, PostgreSQL, Vercel Edge/i)).toBeInTheDocument();
     expect(within(intro).getByRole("link", { name: "browsemyvacations.com" })).toHaveAttribute(
       "href",
       "https://browsemyvacations.com/",
@@ -89,7 +89,7 @@ describe("NextSaasCaseStudyPage", () => {
 
     const outcomes = within(features).getByTestId("nextsaas-case-study-outcomes");
     expect(techStack.compareDocumentPosition(outcomes) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(within(outcomes).getByRole("heading", { name: "What we delivered" })).toBeInTheDocument();
+    expect(within(outcomes).getByRole("heading", { name: "Value delivered" })).toBeInTheDocument();
     expect(within(outcomes).getByText("Production-ready")).toBeInTheDocument();
 
     const infrastructure = within(features).getByTestId("nextsaas-case-study-infrastructure");

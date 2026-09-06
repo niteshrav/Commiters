@@ -28,14 +28,12 @@ export default function NearDropCaseStudyBottomCta() {
           </h2>
           <p className={NEARDROP_CASE_STUDY_BOTTOM_CTA_SUBTEXT_CLASS}>{bottomCta.subtext}</p>
           <div className={NEARDROP_CASE_STUDY_BOTTOM_CTA_ACTIONS_CLASS}>
-            <a
+            <Link
               className={`${NEARDROP_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEARDROP_CASE_STUDY_BOTTOM_CTA_PRIMARY_CLASS}`}
-              href={bottomCta.primaryHref}
-              target="_blank"
-              rel="noopener noreferrer"
+              to={bottomCta.primaryTo}
             >
               {bottomCta.primaryLabel}
-            </a>
+            </Link>
             <Link
               className={`${NEARDROP_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEARDROP_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}
               to={bottomCta.secondaryTo}

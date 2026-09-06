@@ -6,7 +6,7 @@ import { CASE_STUDY_IMAGE_ASSETS } from "../lib/caseStudiesPageAssets";
 import { ROUTES } from "../lib/routes";
 
 describe("CaseStudiesPage", () => {
-  it("renders the OUR WORK intro, five problem-solution project cards, and bottom CTAs", () => {
+  it("renders the governed architecture intro, five case-study cards, and bottom CTAs", () => {
     render(
       <MemoryRouter>
         <CaseStudiesPage />
@@ -21,11 +21,13 @@ describe("CaseStudiesPage", () => {
     const grid = screen.getByTestId("case-studies-grid");
     const cards = within(grid).getAllByTestId("case-study-card");
     expect(cards).toHaveLength(5);
-    expect(cards[0]).toHaveClass("case-study-card--grid-wide", "case-study-card--horizontal", "case-study-card--showcase");
-    expect(cards[1]).toHaveClass("case-study-card--grid-narrow", "case-study-card--stacked");
-    expect(cards[3]).toHaveClass("case-study-card--grid-wide", "case-study-card--horizontal");
+    expect(cards[0]).toHaveClass("case-study-card--grid-narrow", "case-study-card--stacked");
+    expect(cards[2]).toHaveClass("case-study-card--grid-wide", "case-study-card--horizontal");
 
-    for (const asset of CASE_STUDY_IMAGE_ASSETS) {
+    const gridAssets = CASE_STUDY_IMAGE_ASSETS.filter((asset) =>
+      CASE_STUDY_PROJECTS.some((project) => project.id === asset.id),
+    );
+    for (const asset of gridAssets) {
       const card = cards.find((entry) => entry.getAttribute("data-case-study-id") === asset.id);
       expect(card).toBeDefined();
       const image = within(card!).getByRole("img", { name: asset.alt });
@@ -35,46 +37,52 @@ describe("CaseStudiesPage", () => {
       }
     }
 
-    expect(screen.getAllByRole("img")).toHaveLength(5);
+    expect(screen.getAllByRole("img")).toHaveLength(gridAssets.length);
+    expect(screen.queryByText("OpsFlow AI — PDF Ingestion Engine")).not.toBeInTheDocument();
 
     for (const project of CASE_STUDY_PROJECTS) {
       expect(screen.getByRole("heading", { name: project.title })).toBeInTheDocument();
       expect(screen.getByText(project.problem)).toBeInTheDocument();
       expect(screen.getByText(project.solution)).toBeInTheDocument();
+      for (const impact of project.impact ?? []) {
+        expect(screen.getByText(impact)).toBeInTheDocument();
+      }
     }
 
     const detailLinks = screen.getAllByRole("link", { name: /View Project Details/i });
     expect(detailLinks).toHaveLength(5);
 
-    const commitersCard = cards[0];
-    expect(within(commitersCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
+    const governedAiCard = cards[0];
+    expect(within(governedAiCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
       "href",
-      ROUTES.commitersCaseStudy,
+      ROUTES.aiSolutions,
     );
 
-    const aiSummarizerCard = cards[1];
-    expect(within(aiSummarizerCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
-      "href",
-      ROUTES.aiSummarizerCaseStudy,
-    );
-
-    const neardropCard = cards[3];
+    const neardropCard = cards[2];
     expect(within(neardropCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
       "href",
       ROUTES.neardropCaseStudy,
     );
 
-    const bmvCard = cards[4];
-    expect(within(bmvCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
+    const prospectIqCard = cards[3];
+    expect(within(prospectIqCard).getByText("ENTERPRISE AI & WORKFLOW SYSTEM")).toBeInTheDocument();
+    expect(within(prospectIqCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
       "href",
-      ROUTES.browseMyVacationCaseStudy,
+      ROUTES.prospectIqCaseStudy,
+    );
+
+    const ecoRouteCard = cards[4];
+    expect(within(ecoRouteCard).getByText("SPEC-DRIVEN CLOUD PLATFORM")).toBeInTheDocument();
+    expect(within(ecoRouteCard).getByRole("link", { name: /View Project Details/i })).toHaveAttribute(
+      "href",
+      ROUTES.ecoRouteCaseStudy,
     );
 
     expect(screen.queryByRole("link", { name: /View Product/i })).not.toBeInTheDocument();
 
     expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_COPY.bottomCta.primaryLabel })).toHaveAttribute(
       "href",
-      ROUTES.contact,
+      ROUTES.aiOperationalAudit,
     );
     expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_COPY.bottomCta.secondaryLabel })).toHaveAttribute(
       "href",

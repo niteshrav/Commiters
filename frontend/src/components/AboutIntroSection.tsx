@@ -1,3 +1,4 @@
+import BrandWatermark from "./BrandWatermark";
 import {
   ABOUT_INTRO_BODY_CLASS,
   ABOUT_INTRO_INNER_CLASS,
@@ -16,6 +17,7 @@ export default function AboutIntroSection() {
       data-testid="about-intro-section"
       aria-labelledby="about-intro-title"
     >
+      <BrandWatermark />
       <div className={ABOUT_INTRO_INNER_CLASS} data-testid="about-intro-inner">
         <p className={ABOUT_INTRO_KICKER_CLASS}>{about.kicker}</p>
         <h1 id="about-intro-title" className={ABOUT_INTRO_TITLE_CLASS}>

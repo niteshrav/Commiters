@@ -104,6 +104,17 @@
   line-height: 1.5;
 }
 
+.home-lead-magnet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+#opsflow-ai {
+  scroll-margin-top: var(--sticky-header-offset);
+}
+
 .home-lead-magnet-card {
   background: #fff;
   border: 1px solid #e2e8f0;
@@ -170,7 +181,7 @@
   line-height: 1.55;
 }
 
-@media (min-width: 801px) {
+@media (min-width: 768px) {
   .home-lead-magnet-form-row {
     flex-direction: row;
     align-items: stretch;
@@ -187,7 +198,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 960px) {
   .home-lead-magnet-inner {
     grid-template-columns: 1fr;
   }

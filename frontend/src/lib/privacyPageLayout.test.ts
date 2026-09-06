@@ -33,6 +33,7 @@ import {
   PRIVACY_SECTION_NUMBER_COLOR,
   PRIVACY_SECTION_TITLE_CLASS,
   PRIVACY_SECTIONS_CLASS,
+  PRIVACY_SUBTITLE_CLASS,
   PRIVACY_SUBSECTION_BODY_CLASS,
   PRIVACY_SUBSECTION_LABEL_CLASS,
   PRIVACY_TITLE_CLASS,
@@ -50,7 +51,7 @@ function ruleBlock(selector: string, nextSelector: string): string {
 
 describe("privacyPageLayout", () => {
   it("matches the privacy hero typography from the Stitch screenshot", () => {
-    const title = ruleBlock(`.${PRIVACY_TITLE_CLASS} {`, `.${PRIVACY_LAST_UPDATED_CLASS} {`);
+    const title = ruleBlock(`.${PRIVACY_TITLE_CLASS} {`, `.${PRIVACY_SUBTITLE_CLASS} {`);
     expect(title).toContain(`font-size: ${PRIVACY_TITLE_SIZE}`);
 
     const updated = ruleBlock(`.${PRIVACY_LAST_UPDATED_CLASS} {`, `.${PRIVACY_ACCENT_LINE_CLASS} {`);

@@ -21,11 +21,11 @@ describe("NearDropCaseStudyFunctionalExcellenceSection", () => {
     expect(screen.queryByRole("heading", { name: "Key Features" })).not.toBeInTheDocument();
     expect(within(section).queryByText("01")).not.toBeInTheDocument();
 
-    expect(within(section).getByRole("heading", { name: "Role-Based Access Control" })).toBeInTheDocument();
+    expect(within(section).getByRole("heading", { name: "Role-Isolated Portals" })).toBeInTheDocument();
     expect(within(section).getByRole("heading", { name: "Real-time Tracking" })).toBeInTheDocument();
     expect(within(section).getByRole("heading", { name: "Normalized Schema" })).toBeInTheDocument();
     expect(within(section).getByRole("heading", { name: "Driver-Merchant Coordination" })).toBeInTheDocument();
-    expect(within(section).getByText(/Sub-second latency updates/i)).toBeInTheDocument();
-    expect(within(section).getByText(/massive scale and complex relationship queries/i)).toBeInTheDocument();
+    expect(within(section).getByText(/Sub-second WebSocket updates/i)).toBeInTheDocument();
+    expect(within(section).getByText(/high-concurrency real-time location writes/i)).toBeInTheDocument();
   });
 });

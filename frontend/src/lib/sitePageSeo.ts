@@ -6,6 +6,8 @@ import { FAQ_PAGE_COPY } from "./faqPageContent";
 import { MULTI_ROLE_CRM_CASE_STUDY_COPY } from "./multiRoleCrmCaseStudyContent";
 import { NEARDROP_CASE_STUDY_COPY } from "./neardropCaseStudyContent";
 import { NEXTSAAS_CASE_STUDY_COPY } from "./nextsaasCaseStudyContent";
+import { PROSPECT_IQ_CASE_STUDY_COPY } from "./prospectIqCaseStudyContent";
+import { ECO_ROUTE_CASE_STUDY_COPY } from "./ecoRouteCaseStudyContent";
 import { PRIVACY_PAGE_COPY } from "./privacyPageContent";
 import { ROUTES } from "./routes";
 import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./siteMeta";
@@ -17,6 +19,8 @@ import { AI_OPERATIONAL_AUDIT_SEO } from "./aiOperationalAuditPageContent";
 import { AI_SOLUTIONS_SEO } from "./aiSolutionsPageContent";
 import { WEB_APPLICATIONS_SEO } from "./webApplicationsPageContent";
 import { WORKFLOW_AUTOMATION_SEO } from "./workflowAutomationPageContent";
+import { SERVICES_OVERVIEW_SEO } from "./servicesOverviewPageContent";
+import { UTILITIES_SEO } from "./utilitiesPageContent";
 import { TECHNICAL_LEDGER_PAGE_COPY } from "./technicalLedgerPageContent";
 import { TESTIMONIALS_PAGE_COPY } from "./testimonialsPageContent";
 
@@ -42,16 +46,15 @@ export function aboutPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("About Commiters"),
     description:
-      "Learn about Commiters—a software development company focused on web development, mobile app development, and SaaS development with engineering precision.",
+      "Commiters is an enterprise AI product and cloud software firm. Learn how we engineer high-trust AI products and cloud-native web systems with architectural governance.",
     path: ROUTES.about,
   });
 }
 
 export function servicesPageSeo(): PageSeoInput {
   return page({
-    title: pageTitle("Web Development & Mobile App Development Services"),
-    description:
-      "Explore Committers services: custom web development, mobile app development, SaaS development, AI integration, and MVP delivery from a trusted software development company.",
+    title: pageTitle(SERVICES_OVERVIEW_SEO.title),
+    description: SERVICES_OVERVIEW_SEO.description,
     path: ROUTES.services,
   });
 }
@@ -60,7 +63,7 @@ export function caseStudiesPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Case Studies & SaaS Development Portfolio"),
     description:
-      "See Commiters work—web development, mobile apps, and SaaS development case studies built for high-performance digital products.",
+      "Explore Commiters case studies—governed AI pipelines, cloud web platforms, and high-stakes operational products backed by policy guardrails.",
     path: ROUTES.caseStudies,
   });
 }
@@ -165,7 +168,7 @@ export function thankYouPageSeo(): PageSeoInput {
 export function notFoundPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Page not found"),
-    description: "The page you requested was not found on Commiters.",
+    description: "The architectural route you are looking for does not exist or has been relocated.",
     path: ROUTES.notFound,
     robots: "noindex, follow",
   });
@@ -211,6 +214,22 @@ export function nextsaasCaseStudyPageSeo(): PageSeoInput {
   });
 }
 
+export function prospectIqCaseStudyPageSeo(): PageSeoInput {
+  return page({
+    title: pageTitle(PROSPECT_IQ_CASE_STUDY_COPY.documentTitle),
+    description: PROSPECT_IQ_CASE_STUDY_COPY.subtitle,
+    path: ROUTES.prospectIqCaseStudy,
+  });
+}
+
+export function ecoRouteCaseStudyPageSeo(): PageSeoInput {
+  return page({
+    title: pageTitle(ECO_ROUTE_CASE_STUDY_COPY.documentTitle),
+    description: ECO_ROUTE_CASE_STUDY_COPY.subtitle,
+    path: ROUTES.ecoRouteCaseStudy,
+  });
+}
+
 export function workflowAutomationPageSeo(): PageSeoInput {
   return page({
     title: WORKFLOW_AUTOMATION_SEO.title,
@@ -241,7 +260,7 @@ export function webApplicationsPageSeo(): PageSeoInput {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "B2B Web Applications",
+      name: "Spec-Driven Full-Stack Platforms",
       description: WEB_APPLICATIONS_SEO.description,
       provider: {
         "@type": "Organization",
@@ -262,7 +281,7 @@ export function aiSolutionsPageSeo(): PageSeoInput {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: "Custom AI Pipeline Engineering",
+      name: "Governed AI & Workflow Systems",
       description: AI_SOLUTIONS_SEO.description,
       provider: {
         "@type": "Organization",
@@ -296,6 +315,22 @@ export function aiOperationalAuditPageSeo(): PageSeoInput {
         price: "3000",
       },
       url: `${SITE_ORIGIN}${AI_OPERATIONAL_AUDIT_SEO.path}`,
+    },
+  });
+}
+
+export function utilitiesPageSeo(): PageSeoInput {
+  return page({
+    title: UTILITIES_SEO.title,
+    description: UTILITIES_SEO.description,
+    keywords: UTILITIES_SEO.keywords,
+    path: UTILITIES_SEO.path,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: UTILITIES_SEO.title,
+      description: UTILITIES_SEO.description,
+      url: `${SITE_ORIGIN}${UTILITIES_SEO.path}`,
     },
   });
 }

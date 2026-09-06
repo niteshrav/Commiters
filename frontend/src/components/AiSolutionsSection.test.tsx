@@ -1,10 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import AiSolutionsSection from "./AiSolutionsSection";
 import { AI_OPERATIONAL_AUDIT_PERSONAL_EMAIL_ERROR } from "../lib/aiOperationalAuditLeadGate";
 import {
+  AI_SOLUTIONS_ARCHITECTURE,
   AI_SOLUTIONS_CTA_LABEL,
   AI_SOLUTIONS_FORM,
   AI_SOLUTIONS_HERO,
@@ -55,12 +56,19 @@ describe("AiSolutionsSection", () => {
       expect(screen.getByText(card.body)).toBeInTheDocument();
     }
 
+    const architecture = screen.getByTestId("ai-solutions-architecture");
+    for (const card of AI_SOLUTIONS_ARCHITECTURE) {
+      expect(within(architecture).getByRole("heading", { name: card.title, level: 3 })).toBeInTheDocument();
+      expect(within(architecture).getByText(card.body)).toBeInTheDocument();
+    }
+
     const stack = screen.getByTestId("ai-solutions-stack");
     for (const item of AI_SOLUTIONS_STACK) {
       expect(stack).toHaveTextContent(item.label);
     }
 
     expect(screen.getByRole("heading", { name: AI_SOLUTIONS_FORM.title, level: 2 })).toBeInTheDocument();
+    expect(screen.getByLabelText(AI_SOLUTIONS_FORM.scopeLabel)).toHaveValue(AI_SOLUTIONS_FORM.serviceNeeded);
     expect(screen.getByLabelText(AI_SOLUTIONS_FORM.nameLabel)).toBeRequired();
     expect(screen.getByLabelText(AI_SOLUTIONS_FORM.projectLabel)).toBeRequired();
     expect(screen.getByRole("button", { name: AI_SOLUTIONS_FORM.submitLabel })).toBeInTheDocument();
@@ -101,7 +109,7 @@ describe("AiSolutionsSection", () => {
     expect(createLead).toHaveBeenCalledWith({
       name: "Nitesh Rav",
       email: "hello@commiters.com",
-      serviceNeeded: "Custom AI Pipeline Engineering",
+      serviceNeeded: "Governed AI & Workflow Systems",
       message: expect.stringContaining("PAN and GST invoice parsing into Mongo."),
     });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });

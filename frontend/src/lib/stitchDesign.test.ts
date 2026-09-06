@@ -70,7 +70,8 @@ describe("stitchDesign", () => {
     expect(STITCH_COPY.privacy.lastUpdatedLabel).toBe("LAST UPDATED:");
     expect(STITCH_COPY.privacy.lastUpdatedDate).toBe("April 15, 2026");
     expect(STITCH_COPY.privacy.introBold).toBe("Commiters");
-    expect(STITCH_COPY.privacy.dpoCta.buttonLabel).toBe("Contact DPO");
+    expect(STITCH_COPY.privacy.dpoCta.buttonLabel).toBe("Contact DPO / Security Team");
+    expect(STITCH_COPY.privacy.subtitle).toMatch(/zero ambient authority/);
   });
 
   it("exposes terms hero copy from the Stitch legal screenshot", () => {
@@ -115,12 +116,13 @@ describe("stitchDesign", () => {
     expect(STITCH_COPY.joinUs.submitButton).toBe("Submit Application");
   });
 
-  it("exposes about intro copy from the Stitch screenshot", () => {
-    expect(STITCH_COPY.about.title).toBe("We build the invisible architecture that powers digital leaders.");
+  it("exposes about intro copy for the enterprise AI positioning", () => {
+    expect(STITCH_COPY.about.kicker).toBe("ENTERPRISE AI & CLOUD ENGINEERING");
+    expect(STITCH_COPY.about.title).toBe("Engineering High-Trust AI Products & Cloud-Native Web Systems");
     expect(STITCH_COPY.about.subtext).toBe(
-      "Commiters is a boutique engineering studio founded on the principle that code should be as elegant as it is robust. Led by Nitesh Rav, we translate complex business logic into scalable digital reality.",
+      "Commiters is an enterprise AI product and cloud software firm built on the principle that high-stakes automation requires strict architectural governance, zero ambient authority, and spec-driven engineering.",
     );
-    expect(STITCH_COPY.about.visionTitle).toBe("A Vision of Craftsmanship");
+    expect(STITCH_COPY.about.visionTitle).toBe("Governed Engineering for High-Stakes Operations");
     expect(STITCH_COPY.about.visionBody).toContain("Founded by Nitesh Rav");
   });
 });

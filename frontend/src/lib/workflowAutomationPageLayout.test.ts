@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { BREAKPOINT_DESKTOP_MIN_MQ, BREAKPOINT_TABLET_MIN_MQ } from "./responsiveLayout";
 import {
   WFLOW_PAGE_CLASS,
   WFLOW_PIPELINE_CLASS,
@@ -19,8 +20,9 @@ describe("workflowAutomationPageLayout", () => {
 
   it("defines responsive grids for mobile, tablet, and desktop", () => {
     expect(css).toMatch(/\.wflow-solutions\s*\{[^}]*grid-template-columns:\s*1fr/s);
-    expect(css).toMatch(/@media \(min-width: 800px\)[\s\S]*\.wflow-solutions[\s\S]*repeat\(3/);
+    expect(css).toMatch(new RegExp(`@media ${BREAKPOINT_TABLET_MIN_MQ.replace(/[()]/g, "\\$&")}[\\s\\S]*\\.wflow-solutions[\\s\\S]*repeat\\(2`));
+    expect(css).toMatch(new RegExp(`@media ${BREAKPOINT_DESKTOP_MIN_MQ.replace(/[()]/g, "\\$&")}[\\s\\S]*\\.wflow-solutions[\\s\\S]*repeat\\(3`));
     expect(css).toMatch(/\.wflow-pipeline\s*\{[^}]*flex-direction:\s*column/s);
-    expect(css).toMatch(/@media \(min-width: 800px\)[\s\S]*\.wflow-pipeline[\s\S]*flex-direction:\s*row/);
+    expect(css).toMatch(new RegExp(`@media ${BREAKPOINT_DESKTOP_MIN_MQ.replace(/[()]/g, "\\$&")}[\\s\\S]*\\.wflow-pipeline[\\s\\S]*flex-direction:\\s*row`));
   });
 });

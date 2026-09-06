@@ -1,8 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import HomeLeadMagnetSection from "./HomeLeadMagnetSection";
-import { HOME_LEAD_MAGNET_COPY, HOME_LEAD_MAGNET_LAYOUT, HOME_LEAD_MAGNET_TEST_ID } from "../lib/homeLeadMagnetContent";
+import {
+  HOME_LEAD_MAGNET_COPY,
+  HOME_LEAD_MAGNET_LAYOUT,
+  HOME_LEAD_MAGNET_SECTION_ID,
+  HOME_LEAD_MAGNET_TEST_ID,
+} from "../lib/homeLeadMagnetContent";
 
 const createLead = vi.fn();
 
@@ -17,7 +23,11 @@ describe("HomeLeadMagnetSection", () => {
   });
 
   it("renders the full-bleed PDF-to-Excel showcase and capture card", () => {
-    render(<HomeLeadMagnetSection />);
+    render(
+      <MemoryRouter>
+        <HomeLeadMagnetSection />
+      </MemoryRouter>,
+    );
 
     const section = screen.getByTestId(HOME_LEAD_MAGNET_TEST_ID);
     expect(section).toHaveClass(...HOME_LEAD_MAGNET_LAYOUT.sectionClass.split(" "));
@@ -40,6 +50,16 @@ describe("HomeLeadMagnetSection", () => {
       "placeholder",
       HOME_LEAD_MAGNET_COPY.emailPlaceholder,
     );
+    const actions = screen.getByTestId("home-lead-magnet-actions");
+    expect(within(actions).getByRole("link", { name: HOME_LEAD_MAGNET_COPY.ctaConverter })).toHaveAttribute(
+      "href",
+      HOME_LEAD_MAGNET_COPY.ctaConverterTo,
+    );
+    expect(within(actions).getByRole("link", { name: HOME_LEAD_MAGNET_COPY.ctaDemo })).toHaveAttribute(
+      "href",
+      "#home-lead-magnet-card",
+    );
+    expect(section).toHaveAttribute("id", HOME_LEAD_MAGNET_SECTION_ID);
     expect(screen.getByRole("button", { name: HOME_LEAD_MAGNET_COPY.submitLabel })).toBeInTheDocument();
     expect(screen.getByText(HOME_LEAD_MAGNET_COPY.microcopy)).toBeInTheDocument();
     expect(screen.queryByText(/Streamline Your Business Operations/i)).not.toBeInTheDocument();
@@ -47,7 +67,11 @@ describe("HomeLeadMagnetSection", () => {
 
   it("replaces the form with the success message after a valid submission", async () => {
     const user = userEvent.setup();
-    render(<HomeLeadMagnetSection />);
+    render(
+      <MemoryRouter>
+        <HomeLeadMagnetSection />
+      </MemoryRouter>,
+    );
 
     await user.type(screen.getByLabelText(HOME_LEAD_MAGNET_COPY.emailLabel), "founder@acme.io");
     await user.click(screen.getByRole("button", { name: HOME_LEAD_MAGNET_COPY.submitLabel }));
@@ -67,7 +91,11 @@ describe("HomeLeadMagnetSection", () => {
 
   it("does not submit an invalid email", async () => {
     const user = userEvent.setup();
-    render(<HomeLeadMagnetSection />);
+    render(
+      <MemoryRouter>
+        <HomeLeadMagnetSection />
+      </MemoryRouter>,
+    );
 
     await user.click(screen.getByRole("button", { name: HOME_LEAD_MAGNET_COPY.submitLabel }));
     expect(createLead).not.toHaveBeenCalled();

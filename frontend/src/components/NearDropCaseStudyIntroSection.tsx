@@ -16,7 +16,7 @@ import {
   NEARDROP_CASE_STUDY_TITLE_LEAD_CLASS,
   NEARDROP_CASE_STUDY_TITLE_TRAIL_CLASS,
 } from "../lib/neardropCaseStudyLayout";
-import { IconBrowserWindow, IconCodeBracket, IconDatabase } from "./icons";
+import { IconBrowserWindow, IconCodeBracket, IconDatabase, IconWorkflow } from "./icons";
 
 function StackIcon({ icon }: { icon: NearDropCaseStudyStackItem["icon"] }) {
   if (icon === "database") {
@@ -24,6 +24,9 @@ function StackIcon({ icon }: { icon: NearDropCaseStudyStackItem["icon"] }) {
   }
   if (icon === "code") {
     return <IconCodeBracket width={22} height={22} />;
+  }
+  if (icon === "sync") {
+    return <IconWorkflow width={22} height={22} />;
   }
   return <IconBrowserWindow width={22} height={22} />;
 }

@@ -33,7 +33,7 @@ describe("HomePage", () => {
       HOME_SECTION_SEPARATOR_CLASS,
     );
     expect(screen.getByTestId("home-core-pillars")).toHaveClass(HOME_CORE_PILLARS_SURFACE_CLASS);
-    expect(screen.getByText(/OPSFLOW AI • DOCUMENT INTELLIGENCE/i)).toBeInTheDocument();
+    expect(screen.getByText(/PROPRIETARY CLOUD PRODUCT/i)).toBeInTheDocument();
     expect(screen.queryByText(/Architecture & Tech Debt Audit Checklist/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Streamline Your Business Operations with OpsFlow AI/i)).not.toBeInTheDocument();
   });
@@ -45,8 +45,11 @@ describe("HomePage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByTestId("engineering-precision-badge")).toHaveTextContent(/ENGINEERING PRECISION/i);
+    expect(screen.getByTestId("engineering-precision-badge")).toHaveTextContent(
+      /AN AI & CLOUD PRODUCT & ENGINEERING FIRM/i,
+    );
     expect(screen.getByRole("heading", { name: HOME_PAGE_COPY.hero.title })).toBeInTheDocument();
+    expect(screen.getByText(HOME_PAGE_COPY.hero.subtext)).toBeInTheDocument();
     expect(screen.getByTestId("home-hero-visual")).toHaveAttribute("src", HOME_PAGE_ASSETS.heroMonitor);
   });
 
@@ -63,12 +66,12 @@ describe("HomePage", () => {
     expect(scale).toHaveClass("home-primary-surface");
     expect(within(scale).getByRole("heading", { name: HOME_PAGE_COPY.builtForScale.title })).toBeInTheDocument();
     expect(within(scale).getByText(HOME_PAGE_COPY.builtForScale.body)).toBeInTheDocument();
-    expect(within(scale).getByText("Cloud-Native Architecture")).toBeInTheDocument();
+    expect(within(scale).getByText("Cloud-Native Web Architecture (AWS, GCP, Azure, Vercel)")).toBeInTheDocument();
     expect(within(scale).getAllByTestId("home-scale-feature")).toHaveLength(3);
     expect(within(scale).getByTestId("home-built-for-scale-image")).toHaveAttribute("src", HOME_PAGE_ASSETS.serverRacks);
   });
 
-  it("links the hero to Our Work without a tech stack link", () => {
+  it("links the hero to OpsFlow and the two-week audit without a tech stack link", () => {
     render(
       <MemoryRouter>
         <HomePage />
@@ -78,9 +81,13 @@ describe("HomePage", () => {
     expect(screen.queryByRole("link", { name: /tech stack|our stack/i })).not.toBeInTheDocument();
 
     const heroActions = screen.getByTestId("hero-actions");
-    expect(within(heroActions).getByRole("link", { name: /Our Work/i })).toHaveAttribute(
+    expect(within(heroActions).getByRole("link", { name: /Explore AI Products/i })).toHaveAttribute(
       "href",
-      ROUTES.caseStudies,
+      HOME_PAGE_COPY.hero.ctaPrimaryTo,
+    );
+    expect(within(heroActions).getByRole("link", { name: /Book 2-Week AI Audit/i })).toHaveAttribute(
+      "href",
+      ROUTES.aiOperationalAudit,
     );
   });
 

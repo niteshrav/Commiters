@@ -5,7 +5,9 @@
   flex-direction: column;
   margin: 0 calc(-1 * clamp(14px, 2.5vw, 32px));
   width: calc(100% + 2 * clamp(14px, 2.5vw, 32px));
-  max-width: 100vw;
+  max-width: none;
+  overflow-x: clip;
+  box-sizing: border-box;
   --webapp-indigo: #1d4ed8;
   --webapp-indigo-rgb: 29, 78, 216;
   --webapp-slate: #0f172a;
@@ -202,7 +204,7 @@
   white-space: normal;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 768px) {
   .webapp-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -213,13 +215,13 @@
   }
 }
 
-@media (min-width: 1080px) {
+@media (min-width: 1090px) {
   .webapp-cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 479px) {
+@media (max-width: 620px) {
   .webapp-hero-cta,
   .webapp-form .btn {
     width: 100%;

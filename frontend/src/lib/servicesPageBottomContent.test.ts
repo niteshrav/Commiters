@@ -7,7 +7,6 @@ import {
   SERVICES_HOW_WE_WORK,
   SERVICES_REJECTED_BOTTOM_CTA_SUBTEXT,
 } from "./servicesPageBottomContent";
-import { buildDiscoveryCallCalendarUrl } from "./siteContact";
 import { ROUTES } from "./routes";
 import {
   SERVICES_BOTTOM_CTA_SECTION_CLASS,
@@ -31,26 +30,29 @@ function ruleBlock(selector: string, nextSelector: string): string {
 describe("servicesPageBottomContent", () => {
   it("uses the services CTA copy from the Stitch screenshot", () => {
     expect(SERVICES_BOTTOM_CTA.subtext).toBe(
-      "Connect with our engineering team to discuss your project requirements and receive a technical proposal.",
+      "Book a 2-week AI Operational Audit to map spreadsheet bottlenecks and leave with a working automation prototype.",
     );
     expect(SERVICES_BOTTOM_CTA.subtext).not.toBe(SERVICES_REJECTED_BOTTOM_CTA_SUBTEXT);
   });
 
   it("exposes the booking action and View Our Stack secondary link", () => {
-    expect(SERVICES_BOTTOM_CTA.primaryLabel).toBe("Book a Technical Call");
-    expect(SERVICES_BOTTOM_CTA.primaryHref).toBe(buildDiscoveryCallCalendarUrl());
+    expect(SERVICES_BOTTOM_CTA.primaryLabel).toBe("Book a 2-Week AI Audit");
+    expect(SERVICES_BOTTOM_CTA.primaryHref).toBe(ROUTES.aiOperationalAudit);
     expect(SERVICES_BOTTOM_CTA.primaryHref).not.toContain("calendly.com");
     expect(SERVICES_BOTTOM_CTA.secondaryLabel).toBe("View Our Stack");
     expect(SERVICES_BOTTOM_CTA.secondaryHref).toBe(ROUTES.about);
   });
 
-  it("lists the four Stitch process steps", () => {
+  it("lists the four governed delivery stages", () => {
     expect(SERVICES_HOW_WE_WORK.steps).toHaveLength(4);
     expect(SERVICES_HOW_WE_WORK.steps[0]).toMatchObject({
       index: "01",
-      title: "Discovery",
+      title: "AI Operational Audit",
+      href: ROUTES.aiOperationalAudit,
     });
-    expect(SERVICES_HOW_WE_WORK.steps[3].title).toBe("Handoff");
+    expect(SERVICES_HOW_WE_WORK.steps[1].title).toBe("Architecture & Policy Design");
+    expect(SERVICES_HOW_WE_WORK.steps[2].title).toBe("Spec-Driven Sprints");
+    expect(SERVICES_HOW_WE_WORK.steps[3].title).toBe("Governed Deployment & Handoff");
   });
 });
 

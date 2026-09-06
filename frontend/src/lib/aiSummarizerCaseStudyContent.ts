@@ -1,3 +1,5 @@
+import { ROUTES } from "./routes";
+
 export type AiSummarizerArchitectureIcon = "layers" | "list" | "gauge";
 export type AiSummarizerBadgeVariant = "dark" | "light";
 
@@ -27,13 +29,13 @@ export type AiSummarizerExecutionItem = {
 
 export const AI_SUMMARIZER_CASE_STUDY_COPY = {
   documentTitle: "AI Summarizer Case Study",
-  kicker: "TECHNICAL CASE STUDY",
-  title: "AI Summarizer POC",
+  kicker: "CASE STUDY: GOVERNED AI & WORKFLOW SYSTEMS",
+  title: "Enterprise Document Ingestion & Governed LLM Pipeline",
   description:
-    "A high-speed generative AI tool designed to distill complex multi-page documents into precise three-point executive summaries.",
+    "High-speed document parsing engine built with strict Model Context Protocol (MCP) sockets and zero ambient authority.",
   metadata: {
     timeline: { label: "TIMELINE", value: "4 Weeks Development" },
-    coreStack: { label: "CORE STACK", value: "Python, Google ADK, Google Cloud" },
+    coreStack: { label: "CORE STACK", value: "Python 3.11, MCP Protocol, Pydantic / FastAPI, Google Cloud Run / Vertex AI" },
   },
   heroImage: {
     src: "/assets/case-studies/ai-summarizer-hero.png",
@@ -45,22 +47,22 @@ export const AI_SUMMARIZER_CASE_STUDY_COPY = {
     cards: [
       {
         id: "multi-page",
-        title: "Multi-page Processing",
-        body: "Engineered to ingest documents exceeding 100 pages using a sliding window context window approach, ensuring no loss of nuance across chapter boundaries.",
+        title: "Multi-Page Processing",
+        body: "Streaming context-window ingestion for multi-page invoices, receipts, and GST records, ensuring no loss of nuance across chapter boundaries.",
         icon: "layers",
         badge: { text: "OPTIMIZED", variant: "dark" },
       },
       {
         id: "synthesis",
-        title: "3-Point Synthesis",
-        body: "Custom prompt engineering logic that forces the LLM to categorize insights into Strategic, Operational, and Financial impact points.",
+        title: "Governance & Security",
+        body: "Policy-gated execution via two-tier API gateways and human-in-the-loop (\"Vibe Diff\") approval, eliminating unmonitored model access.",
         icon: "list",
         badge: { text: "LOGIC ENGINE", variant: "light" },
       },
       {
         id: "latency",
-        title: "Latency Optimization",
-        body: "Asynchronous Google ADK calls and Google Cloud Functions (Gen 2) reduced response times by 64% compared to standard sequential processing.",
+        title: "Latency & Schema Optimization",
+        body: "Parallel thread execution delivering structured JSON outputs with guaranteed schema validation and deterministic Pydantic contracts.",
         icon: "gauge",
         badge: { text: "HIGH-SPEED", variant: "dark" },
       },
@@ -69,7 +71,7 @@ export const AI_SUMMARIZER_CASE_STUDY_COPY = {
   techStack: {
     heading: "The Tech Stack",
     description:
-      "Our selection of tools prioritized scalability and the specific requirements of multi-modal generative AI pipelines.",
+      "Our selection of tools prioritized governed Model Context Protocol (MCP) sockets, schema validation, and scalable LLM pipelines.",
     items: [
       {
         id: "language",
@@ -79,20 +81,20 @@ export const AI_SUMMARIZER_CASE_STUDY_COPY = {
       },
       {
         id: "ai-framework",
-        label: "AI FRAMEWORK",
-        title: "Google ADK",
-        body: "Utilizing advanced embedding models and vector search to maintain document hierarchy during processing.",
+        label: "GOVERNANCE",
+        title: "MCP Protocol",
+        body: "Model Context Protocol sockets connect models without unmonitored database access or ambient authority.",
       },
       {
         id: "cloud",
         label: "CLOUD INFRA",
-        title: "Google Cloud",
+        title: "Google Cloud Run / Vertex AI",
         body: "Vertex AI pipelines paired with Cloud Run for serverless scaling of intensive LLM workloads.",
       },
       {
         id: "delivery",
-        label: "DELIVERY",
-        title: "JSON-Structured API",
+        label: "VALIDATION",
+        title: "Pydantic / FastAPI",
         body: "Guaranteed schema output for seamless integration into enterprise ERP and reporting systems.",
       },
     ] satisfies AiSummarizerStackItem[],
@@ -102,19 +104,25 @@ export const AI_SUMMARIZER_CASE_STUDY_COPY = {
     items: [
       {
         id: "tokenization",
-        title: "Data Tokenization",
+        title: "Streaming Ingestion",
         body: "Breaking multi-page PDFs into semantic chunks without losing context between headers and tables.",
       },
       {
         id: "chaining",
-        title: "Latency Chaining",
-        body: "Executing parallel processing threads for document ingestion while the summary engine initializes.",
+        title: "Policy-Gated Invocation",
+        body: "Two-tier API gateways and JIT permissions keep every LLM call inside authorized MCP sockets.",
       },
       {
         id: "validation",
-        title: "Output Validation",
-        body: "An automated feedback loop that cross-references the summary against the source text for factual grounding.",
+        title: "Schema Validation",
+        body: "An automated feedback loop that cross-references structured JSON against the source text for factual grounding.",
       },
     ] satisfies AiSummarizerExecutionItem[],
+  },
+  bottomCta: {
+    title: "Need a governed ingestion pipeline?",
+    subtext: "We design MCP-socketed LLM systems with two-tier policy gateways and zero ambient authority.",
+    primaryLabel: "Scope Your Governed AI Pipeline",
+    primaryTo: ROUTES.aiSolutions,
   },
 } as const;

@@ -1,4 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import ServicesHowWeWorkSection from "./ServicesHowWeWorkSection";
 import {
   SERVICES_HOW_WE_WORK_GRID_CLASS,
@@ -7,10 +8,15 @@ import {
   SERVICES_HOW_WE_WORK_TITLE_CLASS,
 } from "../lib/servicesPageBottomLayout";
 import { SERVICES_HOW_WE_WORK } from "../lib/servicesPageBottomContent";
+import { ROUTES } from "../lib/routes";
 
 describe("ServicesHowWeWorkSection", () => {
   it("renders the Stitch process band with four steps", () => {
-    render(<ServicesHowWeWorkSection />);
+    render(
+      <MemoryRouter>
+        <ServicesHowWeWorkSection />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByTestId("services-how-we-work-section")).toHaveClass(SERVICES_HOW_WE_WORK_SECTION_CLASS);
     expect(screen.getByRole("heading", { name: SERVICES_HOW_WE_WORK.title })).toHaveClass(
@@ -23,6 +29,10 @@ describe("ServicesHowWeWorkSection", () => {
     expect(within(grid).getAllByTestId("services-how-we-work-step")).toHaveLength(4);
     expect(within(grid).getAllByTestId("services-how-we-work-step")[0]).toHaveClass(
       SERVICES_HOW_WE_WORK_STEP_CLASS,
+    );
+    expect(within(grid).getByRole("link", { name: "AI Operational Audit" })).toHaveAttribute(
+      "href",
+      ROUTES.aiOperationalAudit,
     );
   });
 });

@@ -3,7 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import HomeHeroStitch from "./HomeHeroStitch";
 import { HOME_IMAGE_FULL_COLOR_CLASS } from "../lib/homeImagePresentation";
 import { HOME_PRIMARY_SURFACE_CLASS } from "../lib/homePrimarySurface";
-import { HOME_PAGE_ASSETS } from "../lib/homePageContent";
+import { HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "../lib/homePageContent";
 import { ROUTES } from "../lib/routes";
 
 describe("HomeHeroStitch", () => {
@@ -26,6 +26,13 @@ describe("HomeHeroStitch", () => {
     expect(heroImage).toHaveAttribute("src", HOME_PAGE_ASSETS.heroMonitor);
     expect(heroImage).toHaveClass("stitch-home-hero-photo", HOME_IMAGE_FULL_COLOR_CLASS);
     expect(heroImage).not.toHaveClass("home-image-tone");
-    expect(screen.getByRole("link", { name: /Our Work/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(screen.getByRole("link", { name: /Explore AI Products/i })).toHaveAttribute(
+      "href",
+      HOME_PAGE_COPY.hero.ctaPrimaryTo,
+    );
+    expect(screen.getByRole("link", { name: /Book 2-Week AI Audit/i })).toHaveAttribute(
+      "href",
+      ROUTES.aiOperationalAudit,
+    );
   });
 });

@@ -1,5 +1,4 @@
 import { HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "../homePageContent";
-import { ROUTES } from "../routes";
 import { ADMIN_PANEL_URL } from "../siteAdmin";
 import { hasCmsDoc } from "./api";
 import { useCms } from "./CmsProvider";
@@ -25,10 +24,10 @@ export function useHeroContent() {
       ctaPrimary: fallback.ctaPrimary,
       ctaPrimaryTo: fallback.ctaPrimaryTo,
       ctaSecondary: fallback.ctaSecondary,
-      ctaSecondaryTo: ROUTES.about,
+      ctaSecondaryTo: fallback.ctaSecondaryTo,
       heroImage: HOME_PAGE_ASSETS.heroMonitor,
       heroImage2x: HOME_PAGE_ASSETS.heroMonitor2x,
-      badgeText: undefined as string | undefined,
+      badgeText: fallback.badge,
     };
   }
 
@@ -39,10 +38,10 @@ export function useHeroContent() {
     ctaPrimary: hero.primaryButtonLabel || fallback.ctaPrimary,
     ctaPrimaryTo: hero.primaryButtonUrl || fallback.ctaPrimaryTo,
     ctaSecondary: hero.secondaryButtonLabel || fallback.ctaSecondary,
-    ctaSecondaryTo: hero.secondaryButtonUrl || ROUTES.about,
+    ctaSecondaryTo: hero.secondaryButtonUrl || fallback.ctaSecondaryTo,
     heroImage: hero.heroImage || HOME_PAGE_ASSETS.heroMonitor,
     heroImage2x: hero.heroImage || HOME_PAGE_ASSETS.heroMonitor2x,
-    badgeText: hero.badgeText,
+    badgeText: hero.badgeText || fallback.badge,
   };
 }
 

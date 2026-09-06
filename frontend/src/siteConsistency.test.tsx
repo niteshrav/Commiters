@@ -5,11 +5,12 @@ import App from "./App";
 import { APP_ROUTE_PATHS, ROUTES } from "./lib/routes";
 import { buildServiceDetailPath } from "./lib/services";
 import { serviceDetailTitleForTests } from "./pages/ServiceDetailPage";
-import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "./lib/siteBrand";
+import { COMMITERS_FOOTER_LOGO_SRC, COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "./lib/siteBrand";
 import { SITE_GITHUB_URL } from "./lib/siteLinks";
 import { WHATSAPP_FLOATING_ACTION_LABEL } from "./lib/whatsappFloatingAction";
 import { TRUSTTAP_DOCUMENT_TITLE } from "./lib/trustTapPageContent";
 import { OPSFLOW_DOCUMENT_TITLE } from "./lib/opsFlowPageContent";
+import { UTILITIES_DOCUMENT_TITLE } from "./lib/utilitiesPageContent";
 import { AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE } from "./lib/aiOperationalAuditPageContent";
 import { AI_SOLUTIONS_DOCUMENT_TITLE } from "./lib/aiSolutionsPageContent";
 import { WEB_APPLICATIONS_DOCUMENT_TITLE } from "./lib/webApplicationsPageContent";
@@ -46,10 +47,16 @@ function expectedTitle(path: string): string {
       return pageTitle("Multi-Role CRM Case Study");
     case ROUTES.browseMyVacationCaseStudy:
       return pageTitle("BrowseMyVacation Case Study");
+    case ROUTES.prospectIqCaseStudy:
+      return pageTitle("ProspectIQ AI Case Study");
+    case ROUTES.ecoRouteCaseStudy:
+      return pageTitle("EcoRoute Intelligence Case Study");
     case ROUTES.trustTap:
       return TRUSTTAP_DOCUMENT_TITLE;
     case ROUTES.opsFlow:
       return OPSFLOW_DOCUMENT_TITLE;
+    case ROUTES.utilities:
+      return UTILITIES_DOCUMENT_TITLE;
     case ROUTES.aiOperationalAudit:
       return AI_OPERATIONAL_AUDIT_DOCUMENT_TITLE;
     case ROUTES.aiSolutions:
@@ -169,7 +176,7 @@ describe("Site-wide consistency", () => {
     const footerLogo = within(footer).getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT });
 
     expect(headerLogo).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
-    expect(footerLogo).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
+    expect(footerLogo).toHaveAttribute("src", COMMITERS_FOOTER_LOGO_SRC);
     expect(banner.querySelector(".brand-logo--header")).toBeTruthy();
     expect(footer.querySelector(".brand-logo--footer")).toBeTruthy();
   });

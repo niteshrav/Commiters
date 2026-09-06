@@ -12,15 +12,17 @@ export default function NotFoundPage() {
   return (
     <>
       <PageHeroImmersive centered>
-        <h1 className="hero-title typography-display">Page not found</h1>
-        <p className="muted hero-subtext--premium">The page you are looking for does not exist or may have moved.</p>
+        <h1 className="hero-title typography-display">Page Not Found</h1>
+        <p className="muted hero-subtext--premium">
+          The architectural route you are looking for does not exist or has been relocated.
+        </p>
         <div className="hero-actions">
-          <Link className="btn btn-primary btn-hero-primary" to={ROUTES.home}>
-            Go to Home
+          <Link className="btn btn-primary btn-hero-primary bg-primary text-white hover:bg-primary/90" to={ROUTES.home}>
+            Return to Home
           </Link>
         </div>
       </PageHeroImmersive>
-      <div className="section-figure-host section-figure-host--tight">
+      <div className="section-figure-host section-figure-host--tight not-found-circuit">
         <SectionFigure pattern="constellation" />
       </div>
     </>

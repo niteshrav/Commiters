@@ -40,3 +40,4 @@ export const AI_SUMMARIZER_CASE_STUDY_EXECUTION_ICON_CLASS = "ai-summarizer-case
 export const AI_SUMMARIZER_CASE_STUDY_EXECUTION_ITEM_COPY_CLASS = "ai-summarizer-case-study-execution-item-copy" as const;
 export const AI_SUMMARIZER_CASE_STUDY_EXECUTION_ITEM_TITLE_CLASS = "ai-summarizer-case-study-execution-item-title" as const;
 export const AI_SUMMARIZER_CASE_STUDY_EXECUTION_ITEM_BODY_CLASS = "ai-summarizer-case-study-execution-item-body" as const;
+export const AI_SUMMARIZER_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS = "ai-summarizer-case-study-bottom-cta" as const;

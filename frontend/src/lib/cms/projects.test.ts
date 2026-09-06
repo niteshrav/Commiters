@@ -33,11 +33,42 @@ describe("cms projects", () => {
       },
     ]);
 
-    expect(projects).toHaveLength(2);
     expect(projects[0].detailsHref).toBe(ROUTES.commitersCaseStudy);
-    expect(projects[0].gridSpan).toBe("wide");
+    expect(projects[0].gridSpan).toBe("narrow");
+    expect(projects[0].impact).toEqual(["100/100 Lighthouse Speed", "<150ms TTFB"]);
     expect(projects[1].external).toBe(true);
     expect(projects[1].tags).toEqual(["React", "Node.js"]);
+    expect(projects.filter((project) => project.id === "commiters")).toHaveLength(1);
+    expect(projects.map((project) => project.id)).toEqual(
+      expect.arrayContaining(["prospectiq-ai", "ecoroute-intelligence"]),
+    );
+  });
+
+  it("appends curated static case studies the CMS bundle does not include", () => {
+    const projects = resolveCaseStudyProjects([
+      {
+        name: "OpsFlow AI — PDF Ingestion Engine",
+        projectUrl: ROUTES.opsFlow,
+        isActive: true,
+        order: 1,
+      },
+      {
+        name: "NearDrop — Field & Logistics Coordination System",
+        projectUrl: ROUTES.neardropCaseStudy,
+        isActive: true,
+        order: 2,
+      },
+    ]);
+
+    expect(projects.map((project) => project.id)).toEqual(
+      expect.arrayContaining(["neardrop-mvp", "prospectiq-ai", "ecoroute-intelligence"]),
+    );
+    expect(projects.map((project) => project.id)).not.toContain("opsflow");
+    expect(projects.some((project) => project.detailsHref === ROUTES.opsFlow)).toBe(false);
+    expect(projects.find((project) => project.id === "prospectiq-ai")?.detailsHref).toBe(ROUTES.prospectIqCaseStudy);
+    expect(projects.find((project) => project.id === "ecoroute-intelligence")?.detailsHref).toBe(
+      ROUTES.ecoRouteCaseStudy,
+    );
   });
 
   it("builds a case study card from CMS-only projects", () => {

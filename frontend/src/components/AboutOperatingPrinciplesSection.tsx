@@ -1,30 +1,31 @@
 import { Link } from "react-router-dom";
 import {
-  IconBolt,
-  IconCheckCircle,
   IconGlobe,
+  IconLayers,
   IconShieldCheck,
+  IconWorkflow,
 } from "./icons";
 import {
   ABOUT_OPERATING_PRINCIPLES,
   ABOUT_PAGE_COPY,
   type AboutPrincipleIcon,
 } from "../lib/aboutPageContent";
+import { BRAND_CARD_HOVER_CLASSES } from "../lib/brandColorKit";
 
 function PrincipleIcon({ icon }: { icon: AboutPrincipleIcon }) {
   const props = { width: 22, height: 22 };
 
   switch (icon) {
-    case "innovation":
-      return <IconBolt {...props} />;
-    case "quality":
+    case "mcp":
+      return <IconWorkflow {...props} />;
+    case "authority":
       return <IconShieldCheck {...props} />;
-    case "client":
-      return <IconCheckCircle {...props} />;
+    case "spec":
+      return <IconLayers {...props} />;
     case "async":
       return <IconGlobe {...props} />;
     default:
-      return <IconBolt {...props} />;
+      return <IconWorkflow {...props} />;
   }
 }
 
@@ -49,7 +50,11 @@ export default function AboutOperatingPrinciplesSection() {
 
       <div className="about-principles-grid">
         {ABOUT_OPERATING_PRINCIPLES.map((principle) => (
-          <article key={principle.id} className="about-principle-card" data-testid="about-principle-card">
+          <article
+            key={principle.id}
+            className={`about-principle-card ${BRAND_CARD_HOVER_CLASSES}`}
+            data-testid="about-principle-card"
+          >
             <span className="about-principle-icon" aria-hidden>
               <PrincipleIcon icon={principle.icon} />
             </span>

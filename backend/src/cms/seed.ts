@@ -9,13 +9,13 @@ import {
   HeroSection,
   JobPosition,
   Navbar,
-  Project,
   Service,
   TeamMember,
   Testimonial,
   User,
   WebsiteSettings,
 } from "./models";
+import { ensureMissingCmsProjects } from "./seedProjects";
 
 async function seed() {
   const connected = await connectMongo();
@@ -157,69 +157,9 @@ async function seed() {
     ]);
   }
 
-  if ((await Project.countDocuments()) === 0) {
-    await Project.insertMany([
-      {
-        name: "Commiters.com",
-        category: "Web Platform",
-        description: "Built a zero-latency React ecosystem with a custom minimalist design system.",
-        images: [],
-        technologies: ["React", "Node.js", "Express"],
-        projectUrl: "/work/commiters",
-        slug: "commiters",
-        isFeatured: true,
-        isActive: true,
-        order: 1,
-      },
-      {
-        name: "AI Summarizer",
-        category: "AI Product",
-        description: "Engineered a generative AI tool to produce precise executive summaries.",
-        images: [],
-        technologies: ["Python", "Google ADK"],
-        projectUrl: "/work/ai-summarizer",
-        slug: "ai-summarizer",
-        isFeatured: true,
-        isActive: true,
-        order: 2,
-      },
-      {
-        name: "Multi-Role CRM & AI Chatbot",
-        category: "Enterprise SaaS",
-        description: "Created an AI-powered CRM with RAG-enhanced chatbots for real-time customer interaction.",
-        images: [],
-        technologies: ["React", "Node.js", "OpenAI"],
-        projectUrl: "/work/multi-role-crm",
-        slug: "multi-role-crm",
-        isFeatured: false,
-        isActive: true,
-        order: 3,
-      },
-      {
-        name: "NearDrop MVP",
-        category: "Logistics",
-        description: "Developed a three-role system for seamless tracking and coordination.",
-        images: [],
-        technologies: ["React Native", "Node.js"],
-        projectUrl: "/work/neardrop-mvp",
-        slug: "neardrop-mvp",
-        isFeatured: true,
-        isActive: true,
-        order: 4,
-      },
-      {
-        name: "BrowseMyVacation",
-        category: "Travel",
-        description: "Shipped a curated Rajasthan travel platform with custom quote workflows.",
-        images: [],
-        technologies: ["Next.js", "Node.js"],
-        projectUrl: "/work/browse-my-vacation",
-        slug: "browse-my-vacation",
-        isFeatured: false,
-        isActive: true,
-        order: 5,
-      },
-    ]);
+  const addedProjects = await ensureMissingCmsProjects();
+  if (addedProjects) {
+    console.log(`Added ${addedProjects} missing CMS case study project(s).`);
   }
 
   if ((await Testimonial.countDocuments()) === 0) {

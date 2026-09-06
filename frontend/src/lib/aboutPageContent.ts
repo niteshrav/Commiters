@@ -3,7 +3,7 @@ import { ROUTES } from "./routes";
 export const ABOUT_REJECTED_CTA_SUBTEXT =
   "We are currently accepting new projects for Q3 2024." as const;
 
-export type AboutPrincipleIcon = "innovation" | "quality" | "client" | "async";
+export type AboutPrincipleIcon = "mcp" | "authority" | "spec" | "async";
 
 export type AboutOperatingPrinciple = {
   id: string;
@@ -14,43 +14,43 @@ export type AboutOperatingPrinciple = {
 
 export const ABOUT_OPERATING_PRINCIPLES: AboutOperatingPrinciple[] = [
   {
-    id: "innovation-first",
-    title: "Innovation First",
-    body: "We adopt modern stacks and proven patterns so your product stays ahead without chasing novelty for its own sake.",
-    icon: "innovation",
+    id: "governed-ai-integration",
+    title: "Governed AI Integration",
+    body: "Connect models via Model Context Protocol (MCP) sockets, eliminating unmonitored database access.",
+    icon: "mcp",
   },
   {
-    id: "quality-delivered",
-    title: "Quality Delivered",
-    body: "Every release is tested, documented, and production-ready — not a prototype dressed up as a launch.",
-    icon: "quality",
+    id: "zero-ambient-authority",
+    title: "Zero Ambient Authority",
+    body: "Built with strict Row-Level Security (RLS) and JIT permission scoping.",
+    icon: "authority",
   },
   {
-    id: "client-focused",
-    title: "Client Focused",
-    body: "Founder-led communication keeps scope honest, timelines clear, and decisions tied to business outcomes.",
-    icon: "client",
+    id: "spec-driven-development",
+    title: "Spec-Driven Development",
+    body: "Absolute predictability, structured database schemas, and zero technical debt.",
+    icon: "spec",
   },
   {
-    id: "async-friendly",
-    title: "Async-Friendly",
-    body: "Structured updates, written specs, and timezone-aware collaboration keep momentum without constant meetings.",
+    id: "async-first-transparent",
+    title: "Async-First & Transparent",
+    body: "Spec-driven delivery, structured written updates, and direct engineering access.",
     icon: "async",
   },
 ];
 
 export const ABOUT_PAGE_COPY = {
   principles: {
-    title: "Our Core Operating Principles",
+    title: "Core Operating Principles",
     viewAllLabel: "VIEW ALL WORK",
     viewAllTo: ROUTES.caseStudies,
   },
   bottomCta: {
     title: "Ready to build something monumental?",
     subtext: "Let's discuss your technical roadmap.",
-    primaryLabel: "Start a Project",
-    primaryTo: ROUTES.contact,
-    secondaryLabel: "View the Portfolio",
-    secondaryTo: ROUTES.services,
+    primaryLabel: "Book Operational Audit",
+    primaryTo: ROUTES.aiOperationalAudit,
+    secondaryLabel: "Explore AI Products",
+    secondaryTo: "/#opsflow-ai",
   },
 } as const;

@@ -10,39 +10,42 @@ import {
 } from "./webApplicationsPageContent";
 
 describe("webApplicationsPageContent", () => {
-  it("defines SEO metadata for the B2B web application page", () => {
+  it("defines SEO metadata for the spec-driven platform page", () => {
     expect(WEB_APPLICATIONS_SEO.path).toBe(ROUTES.webApplications);
-    expect(WEB_APPLICATIONS_SEO.path).toBe("/services/b2b-web-applications");
-    expect(WEB_APPLICATIONS_SEO.title).toMatch(/B2B Web Applications/i);
-    expect(WEB_APPLICATIONS_SEO.description).toMatch(/operational/i);
+    expect(WEB_APPLICATIONS_SEO.path).toBe("/services/spec-driven-full-stack-platforms");
+    expect(WEB_APPLICATIONS_SEO.title).toMatch(/Spec-Driven Full-Stack Cloud Platforms/i);
+    expect(WEB_APPLICATIONS_SEO.description).toMatch(/Vite, React, Express, and MongoDB/i);
   });
 
-  it("uses the high-margin operational systems hero copy", () => {
-    expect(WEB_APPLICATIONS_HERO.eyebrow).toBe("B2B OPERATIONAL WEB SYSTEMS");
-    expect(WEB_APPLICATIONS_HERO.headline).toBe("High-Margin Operational Web Systems & Support Portals.");
+  it("uses the enterprise web engineering hero copy", () => {
+    expect(WEB_APPLICATIONS_HERO.eyebrow).toBe("CLOUD PLATFORM ENGINEERING");
+    expect(WEB_APPLICATIONS_HERO.headline).toBe("Spec-Driven Full-Stack Cloud Platforms");
     expect(WEB_APPLICATIONS_HERO.subheadline).toBe(
-      "We ship high-performance operations platforms and client support portals on Vite, Express, MongoDB, and GCP Serverless — built for teams that need reliability without a bloated stack.",
+      "Scalable B2B portals, SaaS applications, and operational cloud systems built on Vite, React, Express, and MongoDB—engineered with rigid specifications and zero technical debt.",
     );
-    expect(WEB_APPLICATIONS_CTA_LABEL).toBe("Request Project Estimate");
+    expect(WEB_APPLICATIONS_CTA_LABEL).toBe("Request Platform Estimate");
   });
 
-  it("lists operational capabilities, the Vite/Express/Mongo stack, and an estimate form", () => {
+  it("lists spec-driven capabilities, stack badges, and a pre-selected platform form", () => {
     expect(WEB_APPLICATIONS_CAPABILITIES.map((card) => card.title)).toEqual([
-      "Operational Web Systems",
-      "Client Support Portals",
-      "Role-Based Access & APIs",
-      "Cloud-Native Delivery",
+      "High-Performance B2B Portals",
+      "Declarative UI (A2UI Pattern)",
+      "Database Security & RLS",
+      "CI/CD Policy Enforcement",
     ]);
     expect(WEB_APPLICATIONS_CAPABILITIES.every((card) => card.body.trim().length > 24)).toBe(true);
     expect(WEB_APPLICATIONS_STACK.map((item) => item.label)).toEqual([
+      "React",
       "Vite",
+      "Tailwind CSS",
       "Express",
-      "MongoDB",
       "Node.js",
-      "GCP Serverless",
+      "MongoDB/PostgreSQL",
+      "MCP Sockets",
     ]);
+    expect(WEB_APPLICATIONS_FORM.scopeLabel).toBe("What should we scope?");
     expect(WEB_APPLICATIONS_FORM.title).toBe("Request a project estimate");
     expect(WEB_APPLICATIONS_FORM.submitLabel).toBe(WEB_APPLICATIONS_CTA_LABEL);
-    expect(WEB_APPLICATIONS_FORM.serviceNeeded).toBe("B2B Web Applications");
+    expect(WEB_APPLICATIONS_FORM.serviceNeeded).toBe("Spec-Driven Full-Stack Platforms");
   });
 });

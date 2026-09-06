@@ -3,7 +3,16 @@ import { ROUTES } from "../routes";
 import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
-import { SITE_FOOTER_COPY, SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS, SITE_FOOTER_COMPANY_NAV_LINK_LABELS, SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS, SITE_FOOTER_RESOURCES_LINK_LABELS, type FooterLinkCell, type FooterNavColumn } from "../siteFooterCopy";
+import {
+  SITE_FOOTER_COPY,
+  SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
+  SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
+  SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS,
+  SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS,
+  SITE_FOOTER_SOCIAL_LINK_LABELS,
+  type FooterLinkCell,
+  type FooterNavColumn,
+} from "../siteFooterCopy";
 import { CONTACT_STUDIO } from "../contactPageContent";
 import { buildMailtoPublicContactHref, publicContactEmailDisplay } from "../siteContact";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
@@ -130,7 +139,7 @@ function mapFooterLink(link: Record<string, unknown>): FooterLinkCell | null {
   return { kind: "internal", label, to: normalizeInternalPath(url) };
 }
 
-const SOCIAL_LINK_ORDER = ["LinkedIn", "WhatsApp", "GitHub"] as const;
+const SOCIAL_LINK_ORDER = SITE_FOOTER_SOCIAL_LINK_LABELS;
 
 function footerLinkTarget(link: FooterLinkCell): string {
   return link.kind === "internal" ? link.to : link.href;
@@ -173,26 +182,27 @@ function withFallbackBadges(
   });
 }
 
-function mergeProductsLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+function mergeFlagshipLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
   const fallback = SITE_FOOTER_COPY.navColumns[0].links;
   return orderLinksByLabels(
     withFallbackBadges(mergeLinkGroups(cmsLinks, [...fallback]), fallback),
-    SITE_FOOTER_PRODUCTS_NAV_LINK_LABELS,
+    SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS,
+  );
+}
+
+function mergeEngineeringLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
+  const fallback = SITE_FOOTER_COPY.navColumns[1].links;
+  return orderLinksByLabels(
+    withFallbackBadges(mergeLinkGroups(cmsLinks, [...fallback]), fallback),
+    SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS,
   );
 }
 
 function mergeCompanyLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
-  const fallback = SITE_FOOTER_COPY.navColumns[1].links;
+  const fallback = SITE_FOOTER_COPY.navColumns[2].links;
   return orderLinksByLabels(
     withFallbackBadges(mergeLinkGroups(cmsLinks, [...fallback]), fallback),
     SITE_FOOTER_COMPANY_NAV_LINK_LABELS,
-  );
-}
-
-function mergeResourcesLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
-  return orderLinksByLabels(
-    mergeLinkGroups(cmsLinks, [...SITE_FOOTER_COPY.navColumns[2].links]),
-    SITE_FOOTER_RESOURCES_LINK_LABELS,
   );
 }
 
@@ -236,6 +246,7 @@ export function resolveFooter(
   cmsFooter: Record<string, unknown> | null | undefined,
 ): {
   brandTagline: string;
+  brandSubtext: string;
   copyrightLine1: string;
   socialLinks: readonly FooterLinkCell[];
   bottomLegalLinks: readonly FooterLinkCell[];
@@ -246,6 +257,7 @@ export function resolveFooter(
   if (!hasCmsDoc(cmsFooter)) {
     return {
       brandTagline: fallback.brandTagline,
+      brandSubtext: fallback.brandSubtext,
       copyrightLine1: fallback.copyrightLine1,
       socialLinks: fallback.socialLinks,
       bottomLegalLinks: stripAdminLinks(fallback.bottomLegalLinks),
@@ -292,24 +304,25 @@ export function resolveFooter(
 
   const navColumns: FooterNavColumn[] = [
     {
-      id: "products",
-      heading: "Products & Solutions",
-      links: mergeProductsLinks(navigationLinks),
+      id: "flagship",
+      heading: fallback.navColumns[0].heading,
+      links: mergeFlagshipLinks(navigationLinks),
+    },
+    {
+      id: "engineering",
+      heading: "Full-Lifecycle Engineering Services",
+      links: mergeEngineeringLinks(navigationLinks),
     },
     {
       id: "company",
-      heading: "Company",
+      heading: "Company & Legal",
       links: mergeCompanyLinks(navigationLinks),
-    },
-    {
-      id: "resources",
-      heading: "Resources & Contact",
-      links: mergeResourcesLinks(navigationLinks),
     },
   ];
 
   return {
     brandTagline: asString(cmsFooter.description, fallback.brandTagline),
+    brandSubtext: fallback.brandSubtext,
     copyrightLine1: asString(cmsFooter.copyright, fallback.copyrightLine1),
     socialLinks: mergeSocialLinks(socialLinks),
     bottomLegalLinks: stripAdminLinks(mergeLegalLinks(legalLinks)),
@@ -319,7 +332,7 @@ export function resolveFooter(
 
 export function resolveAbout(cmsAbout: Record<string, unknown> | null | undefined) {
   return {
-    kicker: STITCH_COPY.engineeringPrecision,
+    kicker: STITCH_COPY.about.kicker,
     title: hasCmsDoc(cmsAbout) ? asString(cmsAbout.heading, STITCH_COPY.about.title) : STITCH_COPY.about.title,
     subtext: hasCmsDoc(cmsAbout) ? asString(cmsAbout.description, STITCH_COPY.about.subtext) : STITCH_COPY.about.subtext,
     visionTitle: STITCH_COPY.about.visionTitle,

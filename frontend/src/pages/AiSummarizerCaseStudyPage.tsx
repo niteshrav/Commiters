@@ -1,4 +1,5 @@
 import AiSummarizerCaseStudyArchitectureSection from "../components/AiSummarizerCaseStudyArchitectureSection";
+import AiSummarizerCaseStudyBottomCta from "../components/AiSummarizerCaseStudyBottomCta";
 import AiSummarizerCaseStudyExecutionSection from "../components/AiSummarizerCaseStudyExecutionSection";
 import AiSummarizerCaseStudyIntroSection from "../components/AiSummarizerCaseStudyIntroSection";
 import AiSummarizerCaseStudyTechStackSection from "../components/AiSummarizerCaseStudyTechStackSection";
@@ -15,6 +16,7 @@ export default function AiSummarizerCaseStudyPage() {
       <AiSummarizerCaseStudyArchitectureSection />
       <AiSummarizerCaseStudyTechStackSection />
       <AiSummarizerCaseStudyExecutionSection />
+      <AiSummarizerCaseStudyBottomCta />
     </div>
   );
 }

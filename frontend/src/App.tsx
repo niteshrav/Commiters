@@ -10,6 +10,8 @@ import AiSummarizerCaseStudyPage from "./pages/AiSummarizerCaseStudyPage";
 import NearDropCaseStudyPage from "./pages/NearDropCaseStudyPage";
 import MultiRoleCrmCaseStudyPage from "./pages/MultiRoleCrmCaseStudyPage";
 import NextSaasCaseStudyPage from "./pages/NextSaasCaseStudyPage";
+import ProspectIqCaseStudyPage from "./pages/ProspectIqCaseStudyPage";
+import EcoRouteCaseStudyPage from "./pages/EcoRouteCaseStudyPage";
 import TechnicalLedgerPage from "./pages/TechnicalLedgerPage";
 import AboutPage from "./pages/AboutPage";
 import FaqPage from "./pages/FaqPage";
@@ -25,6 +27,7 @@ import ThankYouPage from "./pages/ThankYouPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import TrustTapPage from "./pages/TrustTapPage";
 import OpsFlowPage from "./pages/OpsFlowPage";
+import UtilitiesPage from "./pages/UtilitiesPage";
 import WebsiteDevelopmentUdaipurPage from "./pages/WebsiteDevelopmentUdaipurPage";
 import WhatsAppAutomationUdaipurPage from "./pages/WhatsAppAutomationUdaipurPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
@@ -44,7 +47,9 @@ export default function App() {
         <Route path={ROUTES.aiSolutions} element={<AiSolutionsPage />} />
         <Route path={ROUTES.webApplications} element={<WebApplicationsPage />} />
         <Route path={ROUTES.aiSolutionsLegacy} element={<Navigate to={ROUTES.aiSolutions} replace />} />
+        <Route path={ROUTES.aiSolutionsPipelineLegacy} element={<Navigate to={ROUTES.aiSolutions} replace />} />
         <Route path={ROUTES.webApplicationsLegacy} element={<Navigate to={ROUTES.webApplications} replace />} />
+        <Route path={ROUTES.webApplicationsB2bLegacy} element={<Navigate to={ROUTES.webApplications} replace />} />
         <Route path={ROUTES.workflowAutomation} element={<WorkflowAutomationPage />} />
         <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
         <Route path={ROUTES.caseStudies} element={<CaseStudiesPage />} />
@@ -56,6 +61,8 @@ export default function App() {
         <Route path={ROUTES.neardropCaseStudy} element={<NearDropCaseStudyPage />} />
         <Route path={ROUTES.multiRoleCrmCaseStudy} element={<MultiRoleCrmCaseStudyPage />} />
         <Route path={ROUTES.browseMyVacationCaseStudy} element={<NextSaasCaseStudyPage />} />
+        <Route path={ROUTES.prospectIqCaseStudy} element={<ProspectIqCaseStudyPage />} />
+        <Route path={ROUTES.ecoRouteCaseStudy} element={<EcoRouteCaseStudyPage />} />
         <Route path={ROUTES.commitersCaseStudyLegacy} element={<Navigate to={ROUTES.commitersCaseStudy} replace />} />
         <Route path={ROUTES.aiSummarizerCaseStudyLegacy} element={<Navigate to={ROUTES.aiSummarizerCaseStudy} replace />} />
         <Route path={ROUTES.neardropCaseStudyLegacy} element={<Navigate to={ROUTES.neardropCaseStudy} replace />} />
@@ -63,8 +70,11 @@ export default function App() {
         <Route path={ROUTES.browseMyVacationCaseStudyLegacy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.nextsaasCaseStudy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.trustTap} element={<TrustTapPage />} />
+        <Route path={ROUTES.trustTapShort} element={<Navigate to={ROUTES.trustTap} replace />} />
         <Route path={ROUTES.opsFlow} element={<OpsFlowPage />} />
         <Route path={ROUTES.opsFlowPlayground} element={<OpsFlowPage />} />
+        <Route path={ROUTES.opsFlowAi} element={<Navigate to={ROUTES.opsFlowPlayground} replace />} />
+        <Route path={ROUTES.utilities} element={<UtilitiesPage />} />
         <Route path={ROUTES.websiteDevelopmentUdaipur} element={<WebsiteDevelopmentUdaipurPage />} />
         <Route path={ROUTES.whatsappAutomationUdaipur} element={<WhatsAppAutomationUdaipurPage />} />
         <Route path={ROUTES.about} element={<AboutPage />} />
@@ -77,6 +87,7 @@ export default function App() {
         <Route path={ROUTES.jobPositionsLegacy} element={<Navigate to={ROUTES.openPositions} replace />} />
         <Route path={ROUTES.contact} element={<ContactPage />} />
         <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />
+        <Route path={ROUTES.privacy} element={<Navigate to={ROUTES.privacyPolicy} replace />} />
         <Route path={ROUTES.cookiePolicy} element={<CookiePolicyPage />} />
         <Route path={ROUTES.terms} element={<TermsPage />} />
         <Route path={ROUTES.sitemap} element={<SitemapPage />} />

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { COMMITERS_HEADER_LOGO_SRC } from "../lib/siteBrand";
 
 export const SITE_ORIGIN = "https://www.commiters.com";
 
@@ -48,7 +49,7 @@ export function usePageSeo(input: PageSeoInput | null): void {
       ? input.ogImage.startsWith("http")
         ? input.ogImage
         : `${SITE_ORIGIN}${input.ogImage}`
-      : `${SITE_ORIGIN}/assets/commiters-header-logo.png`;
+      : `${SITE_ORIGIN}${COMMITERS_HEADER_LOGO_SRC}`;
 
     document.title = input.title;
     upsertMeta("name", "description", input.description);

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import {
+  AI_SOLUTIONS_ARCHITECTURE,
   AI_SOLUTIONS_CTA_LABEL,
   AI_SOLUTIONS_FORM,
   AI_SOLUTIONS_HERO,
@@ -10,32 +11,34 @@ import {
 } from "./aiSolutionsPageContent";
 
 describe("aiSolutionsPageContent", () => {
-  it("defines SEO metadata for the AI pipeline engineering page", () => {
+  it("defines SEO metadata for the governed AI workflow page", () => {
     expect(AI_SOLUTIONS_SEO.path).toBe(ROUTES.aiSolutions);
-    expect(AI_SOLUTIONS_SEO.path).toBe("/services/ai-pipeline-engineering");
-    expect(AI_SOLUTIONS_SEO.title).toMatch(/AI Pipeline Engineering/i);
-    expect(AI_SOLUTIONS_SEO.description).toMatch(/document parsing|LLM/i);
+    expect(AI_SOLUTIONS_SEO.path).toBe("/services/governed-ai-workflow-systems");
+    expect(AI_SOLUTIONS_SEO.title).toMatch(/Governed AI & Operational Workflow Systems/i);
+    expect(AI_SOLUTIONS_SEO.description).toMatch(/MCP/i);
   });
 
-  it("uses the enterprise document-parsing hero copy", () => {
-    expect(AI_SOLUTIONS_HERO.eyebrow).toBe("ENTERPRISE-GRADE DOCUMENT PARSING");
-    expect(AI_SOLUTIONS_HERO.headline).toBe("Enterprise-Grade Document Parsing & LLM Workflows Built for Speed.");
+  it("uses the custom AI engineering hero copy", () => {
+    expect(AI_SOLUTIONS_HERO.eyebrow).toBe("ENTERPRISE AI ENGINEERING");
+    expect(AI_SOLUTIONS_HERO.headline).toBe("Governed AI & Operational Workflow Systems");
     expect(AI_SOLUTIONS_HERO.subheadline).toBe(
-      "We design custom extraction pipelines for Indian GST/PAN documents, wire Gemini and Claude into your operations, and keep the backend free of vendor lock-in.",
+      "Bespoke document parsing, automated back-office pipelines, and cloud verification systems—built with strict Model Context Protocol (MCP) sockets and zero vendor lock-in.",
     );
-    expect(AI_SOLUTIONS_CTA_LABEL).toBe("Schedule Technical Scoping Call");
+    expect(AI_SOLUTIONS_CTA_LABEL).toBe("Request Governed AI Scoping");
   });
 
-  it("lists GST/PAN extraction, Gemini/Claude, and zero-lock-in features", () => {
+  it("lists capabilities, architecture pillars, and a pre-selected governed AI form", () => {
     expect(AI_SOLUTIONS_OFFERINGS.map((card) => card.title)).toEqual([
-      "Custom Document Extraction",
-      "Gemini & Claude Integrations",
-      "Zero Vendor-Lock-In Architecture",
+      "Enterprise Document Ingestion",
+      "Field & Back-Office Automation",
+      "Zero Vendor Lock-in",
     ]);
-    expect(AI_SOLUTIONS_OFFERINGS[0]?.body).toMatch(/GST\/PAN/i);
-    expect(AI_SOLUTIONS_OFFERINGS[1]?.body).toMatch(/Gemini/i);
-    expect(AI_SOLUTIONS_OFFERINGS[1]?.body).toMatch(/Claude/i);
-    expect(AI_SOLUTIONS_OFFERINGS[2]?.body).toMatch(/vendor[- ]lock/i);
+    expect(AI_SOLUTIONS_ARCHITECTURE.map((card) => card.title)).toEqual([
+      "MCP Tool Sockets",
+      "Two-Tier Policy Gateways",
+      "Row-Level Security (RLS)",
+      "Vibe Diff Approval",
+    ]);
     expect(AI_SOLUTIONS_STACK.map((item) => item.label)).toEqual([
       "Gemini",
       "Claude",
@@ -43,7 +46,8 @@ describe("aiSolutionsPageContent", () => {
       "Python",
       "Google Cloud Run",
     ]);
+    expect(AI_SOLUTIONS_FORM.scopeLabel).toBe("What should we scope?");
     expect(AI_SOLUTIONS_FORM.submitLabel).toBe(AI_SOLUTIONS_CTA_LABEL);
-    expect(AI_SOLUTIONS_FORM.serviceNeeded).toBe("Custom AI Pipeline Engineering");
+    expect(AI_SOLUTIONS_FORM.serviceNeeded).toBe("Governed AI & Workflow Systems");
   });
 });

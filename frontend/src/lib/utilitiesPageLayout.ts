@@ -1,0 +1,10 @@
+export const UTILITIES_PAGE_CLASS = "utilities-page" as const;
+export const UTILITIES_SECTION_CLASS = "utilities-section" as const;
+export const UTILITIES_INNER_CLASS = "utilities-inner" as const;
+export const UTILITIES_HERO_CLASS = "utilities-hero" as const;
+export const UTILITIES_EYEBROW_CLASS = "utilities-eyebrow" as const;
+export const UTILITIES_HEADLINE_CLASS = "utilities-headline" as const;
+export const UTILITIES_SUBHEAD_CLASS = "utilities-subhead" as const;
+export const UTILITIES_TOOLS_GRID_CLASS = "utilities-tools-grid" as const;
+export const UTILITIES_TOOL_CARD_CLASS = "utilities-tool-card" as const;
+export const UTILITIES_BANNER_CLASS = "utilities-banner" as const;

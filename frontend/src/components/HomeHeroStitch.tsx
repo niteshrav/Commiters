@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import EngineeringPrecisionBadge from "./EngineeringPrecisionBadge";
 import { HOME_IMAGE_FULL_COLOR_CLASS } from "../lib/homeImagePresentation";
 import { HOME_PRIMARY_SURFACE_CLASS } from "../lib/homePrimarySurface";
 import { useHeroContent } from "../lib/cms/hooks";
@@ -14,11 +13,10 @@ export default function HomeHeroStitch() {
     >
       <div className="stitch-home-hero-grid">
         <div className="stitch-home-hero-copy">
-          {hero.badgeText ? (
-            <span className="engineering-precision-badge">{hero.badgeText}</span>
-          ) : (
-            <EngineeringPrecisionBadge />
-          )}
+          <span className="stitch-precision-badge engineering-precision-badge" data-testid="engineering-precision-badge">
+            <span className="stitch-precision-badge-dot" aria-hidden />
+            {hero.badgeText}
+          </span>
           <h1 className="stitch-home-title typography-display">{hero.title}</h1>
           <p className="stitch-home-subtext typography-body">{hero.subtext}</p>
           <div className="stitch-home-actions" data-testid="hero-actions">

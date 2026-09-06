@@ -25,11 +25,11 @@ describe("termsPageContent", () => {
       "Governing Law",
     ]);
     expect(TERMS_PAGE_SECTIONS.map((section) => section.accent)).toEqual([
-      "blue",
+      "cyan",
       "gold",
-      "blue",
+      "cyan",
       "gold",
-      "blue",
+      "cyan",
     ]);
   });
 
@@ -42,10 +42,14 @@ describe("termsPageContent", () => {
     const services = TERMS_PAGE_SECTIONS[1].blocks[1];
     expect(services.kind).toBe("checklist");
     if (services.kind !== "checklist") return;
+    expect(TERMS_PAGE_SECTIONS[1].blocks[0]).toMatchObject({
+      kind: "paragraph",
+      text: expect.stringContaining("enterprise AI products, cloud-native web platforms"),
+    });
     expect(services.items).toEqual([
-      "Custom Web & Mobile Engineering",
-      "Cloud Infrastructure & DevOps",
-      "Technical Strategy Consulting",
+      "2-week AI Operational Audits",
+      "Spec-driven platform development",
+      "Enterprise SaaS solutions",
     ]);
 
     const liability = TERMS_PAGE_SECTIONS[3].blocks[0];

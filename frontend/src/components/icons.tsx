@@ -485,6 +485,26 @@ export function IconMedium(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function SocialBrandIcon({
+  label,
+  ...props
+}: SVGProps<SVGSVGElement> & { label: string }) {
+  switch (label) {
+    case "LinkedIn":
+      return <IconLinkedIn {...props} />;
+    case "Instagram":
+      return <IconInstagram {...props} />;
+    case "Medium":
+      return <IconMedium {...props} />;
+    case "GitHub":
+      return <IconGitHub {...props} />;
+    case "WhatsApp":
+      return <IconWhatsApp {...props} />;
+    default:
+      return null;
+  }
+}
+
 export function IconMenu(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>

@@ -19,6 +19,7 @@ describe("PrivacyPolicyIntro", () => {
     expect(screen.getByTestId("privacy-policy-intro-inner")).toHaveClass(PRIVACY_INTRO_INNER_CLASS);
     expect(screen.queryByTestId("legal-intro-section")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: PRIVACY_PAGE_COPY.title })).toHaveClass(PRIVACY_TITLE_CLASS);
+    expect(screen.getByText(PRIVACY_PAGE_COPY.subtitle)).toBeInTheDocument();
     expect(screen.getByText(`${PRIVACY_PAGE_COPY.lastUpdatedLabel} ${PRIVACY_PAGE_COPY.lastUpdatedDate}`)).toHaveClass(
       PRIVACY_LAST_UPDATED_CLASS,
     );

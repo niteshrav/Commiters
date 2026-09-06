@@ -4,15 +4,36 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   BREAKPOINT_COMPACT_PX,
+  BREAKPOINT_DESKTOP_MIN_MQ,
   BREAKPOINT_NAV_PX,
   BREAKPOINT_MOBILE_PX,
   BREAKPOINT_STACK_PX,
+  BREAKPOINT_TABLET_MIN_MQ,
   BREAKPOINT_TABLET_PX,
+  COMPACT_FULL_WIDTH_CTA_SELECTORS,
+  FULL_BLEED_PAGE_SELECTORS,
+  LEGACY_LAYOUT_MEDIA_QUERIES,
+  PAGE_STYLE_FILES,
+  RESPONSIVE_LANDING_FOUR_COL_SELECTORS,
+  RESPONSIVE_LANDING_THREE_COL_SELECTORS,
+  RESPONSIVE_LANDING_TWO_COL_SELECTORS,
   RESPONSIVE_STACK_GRID_SELECTORS,
   RESPONSIVE_TABLET_GRID_SELECTORS,
 } from "./responsiveLayout";
 
-const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "styles.css"), "utf8");
+const stylesDir = join(dirname(fileURLToPath(import.meta.url)), "..");
+const css = readFileSync(join(stylesDir, "styles.css"), "utf8");
+const pageSheets = PAGE_STYLE_FILES.map((file) => ({
+  file,
+  css: readFileSync(join(stylesDir, file), "utf8"),
+}));
+const pageCss = pageSheets.map((sheet) => sheet.css).join("\n");
+
+function sheetContaining(selector: string): string {
+  const sheet = pageSheets.find((entry) => entry.css.includes(selector));
+  expect(sheet).toBeTruthy();
+  return sheet!.css;
+}
 
 function mediaBlocks(maxWidthPx: number): string {
   const marker = `@media (max-width: ${maxWidthPx}px)`;
@@ -104,5 +125,60 @@ describe("responsiveLayout", () => {
 
   it("does not keep a legacy 840px navigation breakpoint", () => {
     expect(css).not.toContain("@media (max-width: 840px)");
+  });
+
+  it("shrinks the brand watermark on mobile so headings stay readable", () => {
+    const mobile = mediaBlocks(BREAKPOINT_MOBILE_PX);
+    expect(mobile).toMatch(/\.brand-watermark\s*\{[\s\S]*max-height:\s*140px/);
+    expect(mobile).toMatch(/\.brand-watermark\s*\{[\s\S]*opacity:\s*0\.07/);
+  });
+
+  it("keeps landing-page stylesheets on the shared breakpoint scale", () => {
+    for (const query of LEGACY_LAYOUT_MEDIA_QUERIES) {
+      expect(pageCss).not.toContain(query);
+    }
+  });
+
+  it("prevents full-bleed page wrappers from using 100vw overflow", () => {
+    for (const selector of FULL_BLEED_PAGE_SELECTORS) {
+      const sheet = sheetContaining(selector);
+      const escaped = selector.replace(/\./g, "\\.");
+      expect(sheet).toMatch(new RegExp(`${escaped}\\s*\\{[\\s\\S]*?overflow-x:\\s*clip`));
+      expect(sheet).toMatch(new RegExp(`${escaped}\\s*\\{[\\s\\S]*?max-width:\\s*none`));
+    }
+    expect(sheetContaining(".opsflow-page")).not.toMatch(/\.opsflow-page\s*\{[^}]*width:\s*100vw/s);
+  });
+
+  it("uses a two-column tablet layout for landing grids", () => {
+    const query = BREAKPOINT_TABLET_MIN_MQ.replace(/[()]/g, "\\$&");
+    for (const selector of RESPONSIVE_LANDING_TWO_COL_SELECTORS) {
+      expect(sheetContaining(selector)).toMatch(
+        new RegExp(`@media ${query}[\\s\\S]*${selector.replace(/\./g, "\\.")}[\\s\\S]*repeat\\(2`),
+      );
+    }
+  });
+
+  it("uses a three-or-four-column desktop layout for landing grids", () => {
+    const query = BREAKPOINT_DESKTOP_MIN_MQ.replace(/[()]/g, "\\$&");
+    for (const selector of RESPONSIVE_LANDING_THREE_COL_SELECTORS) {
+      expect(sheetContaining(selector)).toMatch(
+        new RegExp(`@media ${query}[\\s\\S]*${selector.replace(/\./g, "\\.")}[\\s\\S]*repeat\\(3`),
+      );
+    }
+    for (const selector of RESPONSIVE_LANDING_FOUR_COL_SELECTORS) {
+      expect(sheetContaining(selector)).toMatch(
+        new RegExp(`@media ${query}[\\s\\S]*${selector.replace(/\./g, "\\.")}[\\s\\S]*repeat\\(4`),
+      );
+    }
+  });
+
+  it("stretches landing CTAs across compact phones", () => {
+    for (const selector of COMPACT_FULL_WIDTH_CTA_SELECTORS) {
+      expect(sheetContaining(selector)).toMatch(
+        new RegExp(
+          `@media \\(max-width: ${BREAKPOINT_COMPACT_PX}px\\)[\\s\\S]*${selector.replace(/\./g, "\\.")}[\\s\\S]*width:\\s*100%`,
+        ),
+      );
+    }
   });
 });

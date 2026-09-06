@@ -4,8 +4,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  max-width: 100vw;
+  margin: 0 calc(-1 * clamp(14px, 2.5vw, 32px));
+  width: calc(100% + 2 * clamp(14px, 2.5vw, 32px));
+  max-width: none;
+  overflow-x: clip;
   box-sizing: border-box;
   --opsflow-indigo: var(--stitch-blue, #0066ff);
   --opsflow-indigo-rgb: var(--stitch-blue-rgb, 0, 102, 255);
@@ -15,8 +17,8 @@
 
 .opsflow-section.band-breakout,
 .opsflow-bottom-cta.band-breakout {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: none;
   box-sizing: border-box;
 }
 
@@ -33,7 +35,7 @@
 }
 
 .opsflow-inner {
-  width: min(var(--max-width, 1360px), calc(100vw - 40px));
+  width: min(var(--max-width, 1360px), 100%);
   max-width: var(--max-width, 1360px);
   margin-inline: auto;
 }
@@ -59,6 +61,7 @@
   top: clamp(88px, 10vw, 112px);
   width: 100%;
   min-width: 0;
+  scroll-margin-top: 96px;
 }
 
 .opsflow-panel-card {
@@ -131,11 +134,17 @@
 }
 
 .opsflow-subhead {
-  margin: 0;
+  margin: 0 0 20px;
   max-width: 36rem;
   font-size: clamp(1rem, 1.8vw, 1.125rem);
   line-height: 1.65;
   color: var(--muted);
+}
+
+.opsflow-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .opsflow-cards {
@@ -727,7 +736,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 620px) {
   .opsflow-preview-fields {
     grid-template-columns: 1fr;
   }
