@@ -34,6 +34,11 @@ describe("caseStudiesPageAssets", () => {
     expect(caseStudyHasImage("governed-ai")).toBe(true);
     expect(caseStudyHasImage("commiters")).toBe(true);
     expect(caseStudyHasImage("neardrop-mvp")).toBe(true);
+    expect(caseStudyHasImage("prospectiq-ai")).toBe(true);
+    expect(caseStudyHasImage("ecoroute-intelligence")).toBe(true);
+    expect(caseStudyHasImage("ai-summarizer")).toBe(true);
+    expect(caseStudyHasImage("multi-role-crm")).toBe(true);
+    expect(caseStudyHasImage("browse-my-vacation")).toBe(true);
     expect(existsSync(join(publicRoot, "assets/case-studies/case-studies-row-one-mockup.png"))).toBe(true);
   });
 

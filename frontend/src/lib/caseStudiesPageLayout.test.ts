@@ -47,6 +47,7 @@ import {
   CASE_STUDY_COMMITERS_PROBLEM_SOLUTION_FLEX,
   CASE_STUDY_COMMITERS_PROBLEM_SOLUTION_GAP,
   CASE_STUDY_CARD_SQUARE_IMAGE_ASPECT_RATIO,
+  CASE_STUDY_HORIZONTAL_IMAGE_ASPECT_RATIO,
   CASE_STUDY_NEARDROP_IMAGE_ASPECT_RATIO,
   CASE_STUDY_NEARDROP_IMAGE_BORDER_RADIUS,
   CASE_STUDY_NEARDROP_MEDIA_OVERFLOW,
@@ -85,14 +86,17 @@ describe("caseStudiesPageLayout", () => {
     const grid = ruleBlock(`.${CASE_STUDIES_GRID_CLASS} {`, `.${CASE_STUDY_CARD_GRID_WIDE_CLASS} {`);
     expect(grid).toContain(`grid-template-columns: ${CASE_STUDIES_GRID_COLUMNS}`);
     expect(grid).toContain(`gap: ${CASE_STUDIES_GRID_GAP}`);
+    expect(grid).toContain("align-items: start");
+    expect(grid).toContain("grid-auto-flow: dense");
   });
 
   it("styles wide/narrow spans, horizontal cards, links, and mockup CTA buttons", () => {
     const wide = ruleBlock(`.${CASE_STUDY_CARD_GRID_WIDE_CLASS} {`, `.${CASE_STUDY_CARD_GRID_NARROW_CLASS} {`);
-    expect(wide).toContain("grid-column: span 2");
+    expect(wide).toContain("grid-column: 1 / -1");
 
     const horizontal = ruleBlock(`.${CASE_STUDY_CARD_HORIZONTAL_CLASS} {`, `.${CASE_STUDY_CARD_STACKED_CLASS} {`);
-    expect(horizontal).toContain("grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr)");
+    expect(horizontal).toContain("grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)");
+    expect(horizontal).toContain("align-items: start");
 
     const link = ruleBlock(`.${CASE_STUDY_DETAILS_LINK_CLASS} {`, ".case-studies-bottom-cta-btn {");
     expect(link).toContain("color: var(--stitch-blue");
@@ -130,34 +134,32 @@ describe("caseStudiesPageLayout", () => {
 
     const commitersImage = ruleBlock(
       '.case-study-card[data-case-study-id="commiters"] .case-study-card-image {',
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {',
+      '.case-study-card[data-case-study-id="trusttap"] .case-study-card-image {',
     );
     expect(commitersImage).toContain("aspect-ratio: auto");
     expect(commitersImage).toContain("border: none");
 
-    const aiImage = ruleBlock(
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {',
-      ".case-study-tag-row {",
+    const horizontalImage = ruleBlock(
+      ".case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-image {",
+      ".case-study-card-image {",
     );
-    expect(aiImage).toContain(`height: ${CASE_STUDY_AI_IMAGE_HEIGHT}`);
-    expect(aiImage).toContain(`max-height: ${CASE_STUDY_AI_IMAGE_MAX_HEIGHT}`);
-    expect(aiImage).toContain("width: 100%");
-    expect(aiImage).toContain("display: block");
-    expect(aiImage).toContain(`aspect-ratio: ${CASE_STUDY_AI_IMAGE_ASPECT_RATIO}`);
-    expect(aiImage).toContain("object-fit: cover");
-    expect(aiImage).toContain(`border-radius: ${CASE_STUDY_AI_IMAGE_BORDER_RADIUS}`);
+    expect(horizontalImage).toContain("height: auto");
+    expect(horizontalImage).toContain(`aspect-ratio: ${CASE_STUDY_HORIZONTAL_IMAGE_ASPECT_RATIO}`);
+    expect(horizontalImage).toContain("object-fit: cover");
+    expect(horizontalImage).not.toContain("height: 100%");
+    expect(horizontalImage).not.toContain("min-height: 220px");
 
-    const aiMedia = ruleBlock(
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-media {',
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {',
+    const horizontalCopy = ruleBlock(
+      ".case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-copy {",
+      ".case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-media {",
     );
-    expect(aiMedia).toContain(`overflow: ${CASE_STUDY_AI_MEDIA_OVERFLOW}`);
-    expect(aiMedia).toContain("align-items: stretch");
-    expect(aiMedia).toContain(`padding-block-start: ${CASE_STUDY_AI_MEDIA_PADDING_BLOCK_START}`);
-    expect(aiMedia).toContain(`padding-block-end: ${CASE_STUDY_AI_MEDIA_PADDING_BLOCK_END}`);
-    expect(aiMedia).toContain(`padding-inline: ${CASE_STUDY_AI_MEDIA_PADDING_INLINE}`);
-    expect(aiMedia).toContain("border-bottom: none");
-    expect(aiMedia).not.toContain("padding: 0");
+    expect(horizontalCopy).toContain("padding-inline-end: 0");
+
+    const horizontalMedia = ruleBlock(
+      ".case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-media {",
+      ".case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-image {",
+    );
+    expect(horizontalMedia).toContain("padding-inline-start: 0");
 
     const problemSolution = ruleBlock(
       ".case-study-problem-solution {\n  display: grid;",
@@ -176,7 +178,7 @@ describe("caseStudiesPageLayout", () => {
 
     expect(CASE_STUDY_AI_MEDIA_PADDING_BLOCK_START).toBe(CASE_STUDY_CARD_INNER_PADDING);
     expect(CASE_STUDY_AI_MEDIA_PADDING_INLINE).toBe(CASE_STUDY_CARD_INNER_PADDING);
-    expect(CASE_STUDY_AI_MEDIA_PADDING_BLOCK_END).toBe("0");
+    expect(CASE_STUDY_AI_MEDIA_PADDING_BLOCK_END).toBe(CASE_STUDY_CARD_INNER_PADDING);
   });
 
   it("balances Commiters gutters and pins the CTA to the image baseline", () => {
@@ -244,12 +246,12 @@ describe("caseStudiesPageLayout", () => {
     expect(showcaseMedia).not.toContain("padding: clamp");
 
     const commitersImage = ruleBlock(
-      '.case-study-card[data-case-study-id="commiters"] .case-study-card-image {',
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {',
+      '.case-study-card[data-case-study-id="commiters"].case-study-card--horizontal .case-study-card-image {',
+      ".case-study-card--showcase .case-study-card-media--showcase {",
     );
     expect(commitersImage).toContain("height: auto");
-    expect(commitersImage).toContain("aspect-ratio: auto");
-    expect(commitersImage).toContain("object-fit: contain");
+    expect(commitersImage).toContain("aspect-ratio: 4 / 3");
+    expect(commitersImage).toContain("object-fit: cover");
     expect(commitersImage).toContain(`border-radius: ${CASE_STUDY_COMMITERS_IMAGE_BORDER_RADIUS}`);
     expect(commitersImage).not.toContain("height: 100%");
     expect(commitersImage).not.toContain("min-height: 220px");
@@ -258,13 +260,11 @@ describe("caseStudiesPageLayout", () => {
   it("styles the NearDrop card with Commiters-sized square media", () => {
     expect(CASE_STUDY_NEARDROP_IMAGE_ASPECT_RATIO).toBe(CASE_STUDY_CARD_SQUARE_IMAGE_ASPECT_RATIO);
 
-    const neardropProblemSolution = ruleBlock(
-      '.case-study-card[data-case-study-id="neardrop-mvp"] .case-study-problem-solution {',
-      '.case-study-card[data-case-study-id="neardrop-mvp"] .case-study-details-link {',
+    const horizontalProblemSolution = ruleBlock(
+      ".case-study-card--horizontal {",
+      ".case-study-card--showcase.case-study-card--horizontal {",
     );
-    expect(neardropProblemSolution).not.toContain("gap:");
-    expect(neardropProblemSolution).not.toContain("align-content:");
-    expect(neardropProblemSolution).toContain(`flex: ${CASE_STUDY_NEARDROP_PROBLEM_SOLUTION_FLEX}`);
+    expect(horizontalProblemSolution).not.toContain("flex: 1");
 
     const neardropMedia = ruleBlock(
       '.case-study-card[data-case-study-id="neardrop-mvp"] .case-study-card-media {',
@@ -274,7 +274,7 @@ describe("caseStudiesPageLayout", () => {
 
     const neardropImage = ruleBlock(
       '.case-study-card[data-case-study-id="neardrop-mvp"] .case-study-card-image {',
-      ".case-study-card-media {",
+      '.case-study-card[data-case-study-id="commiters"].case-study-card--horizontal .case-study-card-image {',
     );
     expect(neardropImage).toContain("height: auto");
     expect(neardropImage).toContain(`aspect-ratio: ${CASE_STUDY_NEARDROP_IMAGE_ASPECT_RATIO}`);
@@ -302,24 +302,8 @@ describe("caseStudiesPageLayout", () => {
     expect(multiRoleCrmProblemSolution).toBeNull();
   });
 
-  it("keeps the AI Summarizer card on a uniform surface with equal copy spacing", () => {
-    const aiCopy = ruleBlock(
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-copy {',
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-media {',
-    );
-    expect(aiCopy).toContain(`padding: ${CASE_STUDY_AI_INNER_PADDING}`);
-    expect(aiCopy).toContain(`gap: ${CASE_STUDY_AI_COPY_GAP}`);
-    expect(aiCopy).toContain("background: #ffffff");
-
-    const aiMedia = ruleBlock(
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-media {',
-      '.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {',
-    );
-    expect(aiMedia).toContain("background: #ffffff");
-    expect(aiMedia).toContain(`overflow: ${CASE_STUDY_AI_MEDIA_OVERFLOW}`);
-    expect(aiMedia).toContain(`padding-block-start: ${CASE_STUDY_AI_MEDIA_PADDING_BLOCK_START}`);
-    expect(aiMedia).toContain(`padding-inline: ${CASE_STUDY_AI_MEDIA_PADDING_INLINE}`);
-    expect(aiMedia).toContain(`padding-block-end: ${CASE_STUDY_AI_MEDIA_PADDING_BLOCK_END}`);
-    expect(aiMedia).toContain("box-sizing: border-box");
+  it("keeps stacked portfolio cards compact without forced vertical stretch", () => {
+    const stackedCard = ruleBlock(".case-study-card--stacked {", ".case-study-card--showcase .case-study-card-copy--showcase {");
+    expect(stackedCard).not.toContain("height: 100%");
   });
 });

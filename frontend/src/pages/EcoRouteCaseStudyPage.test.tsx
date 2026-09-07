@@ -18,6 +18,10 @@ describe("EcoRouteCaseStudyPage", () => {
     expect(screen.getByText(ECO_ROUTE_CASE_STUDY_COPY.kicker)).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1, name: ECO_ROUTE_CASE_STUDY_COPY.title })).toBeInTheDocument();
     expect(screen.getByText(ECO_ROUTE_CASE_STUDY_COPY.subtitle)).toBeInTheDocument();
+    expect(screen.getByTestId("ecoroute-case-study-hero-image")).toHaveAttribute(
+      "src",
+      ECO_ROUTE_CASE_STUDY_COPY.heroImage?.src,
+    );
 
     const stack = screen.getByTestId("ecoroute-case-study-core-stack");
     expect(stack).toHaveClass("commiters-case-study-core-stack--slate");

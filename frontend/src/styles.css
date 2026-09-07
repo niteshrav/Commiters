@@ -4063,6 +4063,8 @@ textarea {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
+  align-items: start;
+  grid-auto-flow: dense;
 }
 
 .case-study-card {
@@ -4083,7 +4085,7 @@ textarea {
 }
 
 .case-study-card--grid-wide {
-  grid-column: span 2;
+  grid-column: 1 / -1;
 }
 
 .case-study-card--grid-narrow {
@@ -4092,8 +4094,9 @@ textarea {
 
 .case-study-card--horizontal {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(16px, 2vw, 24px);
+  align-items: start;
 }
 
 .case-study-card--showcase.case-study-card--horizontal {
@@ -4126,7 +4129,31 @@ textarea {
 }
 
 .case-study-card--horizontal .case-study-card-copy {
-  min-height: 100%;
+  min-height: 0;
+}
+
+.case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-copy {
+  padding-inline-end: 0;
+}
+
+.case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-media {
+  overflow: hidden;
+  align-items: stretch;
+  justify-content: stretch;
+  padding-inline-start: 0;
+}
+
+.case-study-card--horizontal:not(.case-study-card--showcase) .case-study-card-image {
+  width: 100%;
+  height: auto;
+  min-height: unset;
+  max-height: none;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .case-study-card--showcase .case-study-card-copy--showcase {
@@ -4172,14 +4199,6 @@ textarea {
   justify-content: flex-start;
 }
 
-.case-study-card[data-case-study-id="neardrop-mvp"] .case-study-problem-solution {
-  flex: 1;
-}
-
-.case-study-card[data-case-study-id="neardrop-mvp"] .case-study-details-link {
-  margin-top: auto;
-}
-
 .case-study-card[data-case-study-id="neardrop-mvp"] .case-study-card-media {
   overflow: hidden;
 }
@@ -4215,21 +4234,17 @@ textarea {
   align-self: stretch;
 }
 
-.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-media {
-  padding-block-start: clamp(24px, 3vw, 32px);
-  padding-block-end: 0;
-  padding-inline: clamp(24px, 3vw, 32px);
-  border-bottom: none;
-  background: #ffffff;
-  box-sizing: border-box;
-  overflow: hidden;
-  align-items: stretch;
-}
-
-.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-copy {
-  gap: 12px;
-  padding: clamp(24px, 3vw, 32px);
-  background: #ffffff;
+.case-study-card[data-case-study-id="commiters"].case-study-card--horizontal .case-study-card-image {
+  width: 100%;
+  height: auto;
+  min-height: unset;
+  max-height: none;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .case-study-card--showcase .case-study-card-media--showcase {
@@ -4259,12 +4274,6 @@ textarea {
   object-fit: cover;
   object-position: center;
   border-radius: 0;
-}
-
-.case-study-card--horizontal .case-study-card-image {
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
 }
 
 .case-study-card--stacked .case-study-card-image {
@@ -4298,16 +4307,8 @@ textarea {
   border-radius: 0;
 }
 
-.case-study-card[data-case-study-id="ai-summarizer"] .case-study-card-image {
-  display: block;
-  width: 100%;
-  height: 180px;
-  max-height: 180px;
-  min-height: unset;
-  aspect-ratio: auto;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 0;
+.case-study-card[data-case-study-id="neardrop-mvp"] .case-study-card-image {
+  aspect-ratio: 1 / 1;
 }
 
 .case-study-tag-row {
@@ -4865,6 +4866,17 @@ textarea {
   background: #0a0e17;
   border-color: #d4a017;
   color: #f8fafc;
+}
+
+.technical-case-study-hero-image {
+  display: block;
+  width: min(100%, 960px);
+  margin: clamp(24px, 4vw, 40px) auto 0;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
 }
 
 .commiters-case-study-bottom-cta-btn--secondary {
@@ -9497,6 +9509,17 @@ html[data-a11y-reduce-motion="true"] *::after {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 767px) {
+  .about-founder-quote {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    max-width: none;
+    margin-top: 16px;
+  }
 }
 
 .about-principles-section {

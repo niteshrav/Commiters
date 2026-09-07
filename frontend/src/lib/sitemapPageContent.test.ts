@@ -40,7 +40,7 @@ describe("sitemapPageContent", () => {
     expect(
       SITEMAP_PAGE_COPY.groups
         .find((group) => group.id === "company")
-        ?.links.some((link) => link.to === ROUTES.utilities && link.label === "Free Utilities"),
+        ?.links.some((link) => link.to === ROUTES.utilities && link.label === "Free Business Utilities"),
     ).toBe(true);
     expect(
       SITEMAP_PAGE_COPY.groups

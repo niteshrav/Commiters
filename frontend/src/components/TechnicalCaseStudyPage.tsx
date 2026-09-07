@@ -77,6 +77,16 @@ export default function TechnicalCaseStudyPage({ copy }: Props) {
             {copy.title}
           </h1>
           <p className={COMMITERS_CASE_STUDY_SUBTITLE_CLASS}>{copy.subtitle}</p>
+          {copy.heroImage ? (
+            <img
+              className="technical-case-study-hero-image"
+              data-testid={`${pageId}-case-study-hero-image`}
+              src={copy.heroImage.src}
+              alt={copy.heroImage.alt}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : null}
         </div>
       </section>
 

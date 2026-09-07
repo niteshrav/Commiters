@@ -8,9 +8,9 @@ describe("contactPageContent", () => {
   it("exposes Stitch contact form labels and placeholders from the screenshot", () => {
     expect(STITCH_COPY.contact.formTitle).toBe("Direct Inquiry");
     expect(STITCH_COPY.contact.nameLabel).toBe("Full Name");
-    expect(STITCH_COPY.contact.namePlaceholder).toBe("John Doe");
+    expect(STITCH_COPY.contact.namePlaceholder).toBe("Your full name");
     expect(STITCH_COPY.contact.emailLabel).toBe("Email Address");
-    expect(STITCH_COPY.contact.emailPlaceholder).toBe("john@company.com");
+    expect(STITCH_COPY.contact.emailPlaceholder).toBe("name@company.com");
     expect(STITCH_COPY.contact.projectTypeLabel).toBe("Project Type");
     expect(STITCH_COPY.contact.messageLabel).toBe("Brief Project Summary");
     expect(STITCH_COPY.contact.messagePlaceholder).toBe(

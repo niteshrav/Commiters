@@ -27,6 +27,8 @@ describe("utilitiesPageContent", () => {
     ]);
     expect(UTILITIES_TOOLS[0]?.to).toBe(ROUTES.opsFlowPlayground);
     expect(UTILITIES_TOOLS[1]?.to).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`);
+    expect(UTILITIES_TOOLS[0]?.availability).toBe("live");
+    expect(UTILITIES_TOOLS[1]?.availability).toBe("request-access");
     expect(UTILITIES_TOOLS.every((tool) => tool.to !== ROUTES.trustTap)).toBe(true);
   });
 

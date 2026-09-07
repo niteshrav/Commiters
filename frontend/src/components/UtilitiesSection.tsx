@@ -26,6 +26,15 @@ export default function UtilitiesSection() {
         <ul className={UTILITIES_TOOLS_GRID_CLASS} data-testid="utilities-tools">
           {UTILITIES_TOOLS.map((tool) => (
             <li key={tool.id} id={tool.id} className={`${UTILITIES_TOOL_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}>
+              {tool.availability === "request-access" ? (
+                <span className="utilities-tool-badge" data-testid={`utilities-tool-badge-${tool.id}`}>
+                  Request access
+                </span>
+              ) : (
+                <span className="utilities-tool-badge utilities-tool-badge--live" data-testid={`utilities-tool-badge-${tool.id}`}>
+                  Live now
+                </span>
+              )}
               <h2>{tool.title}</h2>
               <p>{tool.description}</p>
               <Link className="btn btn-primary" to={tool.to}>

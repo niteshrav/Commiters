@@ -30,7 +30,7 @@ describe("servicesOverviewPageContent", () => {
     );
     expect(SERVICES_OVERVIEW_HERO.productsCtaLabel).toBe("Explore AI Products");
     expect(SERVICES_OVERVIEW_HERO.productsCtaTo).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_PRODUCTS_ANCHOR}`);
-    expect(SERVICES_OVERVIEW_HERO.auditCtaLabel).toBe("Book 2-Week AI Audit");
+    expect(SERVICES_OVERVIEW_HERO.auditCtaLabel).toBe("Book Operational Audit");
     expect(SERVICES_OVERVIEW_HERO.auditCtaTo).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`);
     expect(SERVICES_OVERVIEW_SEO.path).toBe(ROUTES.services);
     expect(SERVICES_OVERVIEW_SEO.description).toMatch(/enterprise AI products/i);

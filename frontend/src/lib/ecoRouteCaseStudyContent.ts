@@ -8,6 +8,10 @@ export const ECO_ROUTE_CASE_STUDY_COPY = {
   title: "EcoRoute Intelligence: Cloud-Native Green Fleet & Route Engine",
   subtitle:
     "Spec-driven geo-spatial optimization platform designed for low-emission logistics tracking, real-time telemetry processing, and fleet analytics.",
+  heroImage: {
+    src: "/assets/case-studies/ecoroute-intelligence.png",
+    alt: "EcoRoute Intelligence fleet routing and emissions analytics dashboard",
+  },
   overview: {
     heading: "Core Metrics",
     body: "Static route plans ignore live traffic and emissions, inflating cost and carbon. EcoRoute Intelligence combines PostGIS spatial indexing, session-scoped RLS, and a micro-optimized dashboard so fleet managers, drivers, and enterprise clients see only authorized telemetry.",

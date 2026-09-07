@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CASE_STUDY_PROJECTS } from "../caseStudiesPageContent";
+import { CASE_STUDY_PROJECTS, isHiddenFromWorkPage } from "../caseStudiesPageContent";
 import { ROUTES } from "../routes";
 import { TESTIMONIALS_PAGE_ITEMS } from "../testimonialsPageContent";
 import { mapCmsProjectToCaseStudy, resolveCaseStudyProjects } from "./projects";
@@ -7,8 +7,73 @@ import { mapCmsTestimonial, resolveTestimonialsPageItems } from "./projects";
 
 describe("cms projects", () => {
   it("falls back to static case studies when CMS projects are empty", () => {
-    expect(resolveCaseStudyProjects(null)).toEqual(CASE_STUDY_PROJECTS);
-    expect(resolveCaseStudyProjects([])).toEqual(CASE_STUDY_PROJECTS);
+    const expectedIds = CASE_STUDY_PROJECTS.filter((project) => !isHiddenFromWorkPage(project)).map(
+      (project) => project.id,
+    );
+    const projects = resolveCaseStudyProjects(null);
+    expect(projects.map((project) => project.id)).toEqual(expectedIds);
+    expect(projects.find((project) => project.id === "commiters")?.gridSpan).toBe("wide");
+    expect(projects.find((project) => project.id === "commiters")?.layout).toBe("horizontal");
+    expect(resolveCaseStudyProjects([]).find((project) => project.id === "commiters")?.gridSpan).toBe("wide");
+  });
+
+  it("dedupes legacy and canonical Commiters.com CMS hrefs", () => {
+    const projects = resolveCaseStudyProjects([
+      {
+        name: "Commiters.com",
+        description: "Founder-led engineering studio website.",
+        projectUrl: "/case-studies/commiters",
+        isActive: true,
+        order: 1,
+      },
+      {
+        name: "Commiters.com",
+        slug: "commiters",
+        description: "Built a zero-latency React ecosystem with a custom minimalist design system.",
+        projectUrl: "/work/commiters",
+        isFeatured: true,
+        isActive: true,
+        order: 2,
+      },
+    ]);
+
+    expect(projects.filter((project) => project.id === "commiters")).toHaveLength(1);
+    expect(projects.find((project) => project.id === "commiters")?.detailsHref).toBe(ROUTES.commitersCaseStudy);
+  });
+
+  it("dedupes duplicate CMS Commiters.com cards that share the same case study href", () => {
+    const projects = resolveCaseStudyProjects([
+      {
+        name: "Commiters.com",
+        category: "Web Platform",
+        description: "Founder-led engineering studio website.",
+        projectUrl: "/work/commiters",
+        isActive: true,
+        order: 1,
+      },
+      {
+        name: "Commiters.com",
+        slug: "commiters",
+        category: "Web Platform",
+        description: "Built a zero-latency React ecosystem with a custom minimalist design system.",
+        projectUrl: "/work/commiters",
+        isFeatured: true,
+        isActive: true,
+        order: 2,
+      },
+    ]);
+
+    expect(projects.filter((project) => project.detailsHref === ROUTES.commitersCaseStudy)).toHaveLength(1);
+    expect(projects.find((project) => project.id === "commiters")?.title).toBe(
+      "Commiters.com — Spec-Driven Cloud Platform",
+    );
+    expect(projects.find((project) => project.id === "commiters")?.impact).toEqual([
+      "100/100 Lighthouse Speed",
+      "<150ms TTFB",
+    ]);
+    expect(projects.find((project) => project.id === "commiters")?.solution).toBe(
+      "Spec-driven cloud web platform built for high performance and clean UI execution.",
+    );
   });
 
   it("maps CMS projects and preserves known case study layout metadata", () => {
@@ -34,7 +99,8 @@ describe("cms projects", () => {
     ]);
 
     expect(projects[0].detailsHref).toBe(ROUTES.commitersCaseStudy);
-    expect(projects[0].gridSpan).toBe("narrow");
+    expect(projects[0].gridSpan).toBe("wide");
+    expect(projects[0].layout).toBe("horizontal");
     expect(projects[0].impact).toEqual(["100/100 Lighthouse Speed", "<150ms TTFB"]);
     expect(projects[1].external).toBe(true);
     expect(projects[1].tags).toEqual(["React", "Node.js"]);

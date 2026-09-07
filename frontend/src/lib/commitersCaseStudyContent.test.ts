@@ -28,8 +28,8 @@ describe("commitersCaseStudyContent", () => {
     expect(COMMITERS_CASE_STUDY_COPY.architecture.sections[2].body).toContain("zero ambient authority");
     expect("heroImage" in COMMITERS_CASE_STUDY_COPY).toBe(false);
     expect(COMMITERS_CASE_STUDY_COPY.features).toHaveLength(3);
-    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("Book 2-Week AI Operational Audit");
-    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.secondaryLabel).toBe("Explore AI Products");
+    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("Book Operational Audit");
+    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.secondaryLabel).toBe("Try OpsFlow AI");
   });
 
   it("wires CTAs to the operational audit and AI products", () => {

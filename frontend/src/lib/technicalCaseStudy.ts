@@ -32,6 +32,10 @@ export type TechnicalCaseStudyCopy = {
   kicker: string;
   title: string;
   subtitle: string;
+  heroImage?: {
+    src: string;
+    alt: string;
+  };
   overview: {
     heading: string;
     body: string;

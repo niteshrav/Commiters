@@ -20,9 +20,9 @@ describe("joinUsPageContent", () => {
     expect(JOIN_US_PAGE_COPY.sections.digital).toEqual({ number: "02.", title: "Digital Footprint" });
     expect(JOIN_US_PAGE_COPY.sections.credentials).toEqual({ number: "03.", title: "Credentials" });
     expect(JOIN_US_PAGE_COPY.sections.core).toEqual({ number: "04.", title: "The Core" });
-    expect(JOIN_US_PAGE_COPY.fields.namePlaceholder).toBe("John Doe");
-    expect(JOIN_US_PAGE_COPY.fields.emailPlaceholder).toBe("john@example.com");
-    expect(JOIN_US_PAGE_COPY.fields.phonePlaceholder).toBe("+91 00000 00000");
+    expect(JOIN_US_PAGE_COPY.fields.namePlaceholder).toBe("Your full name");
+    expect(JOIN_US_PAGE_COPY.fields.emailPlaceholder).toBe("name@company.com");
+    expect(JOIN_US_PAGE_COPY.fields.phonePlaceholder).toBe("+91 98765 43210");
     expect(JOIN_US_PAGE_COPY.fields.positionLabel).toBe("Position Applied For");
     expect(JOIN_US_PAGE_COPY.fields.linkedinPlaceholder).toBe("https://linkedin.com/in/username");
     expect(JOIN_US_PAGE_COPY.fields.portfolioPlaceholder).toBe("https://github.com/username");

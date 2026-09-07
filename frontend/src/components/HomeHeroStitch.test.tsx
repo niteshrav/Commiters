@@ -26,11 +26,11 @@ describe("HomeHeroStitch", () => {
     expect(heroImage).toHaveAttribute("src", HOME_PAGE_ASSETS.heroMonitor);
     expect(heroImage).toHaveClass("stitch-home-hero-photo", HOME_IMAGE_FULL_COLOR_CLASS);
     expect(heroImage).not.toHaveClass("home-image-tone");
-    expect(screen.getByRole("link", { name: /Explore AI Products/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Try OpsFlow AI/i })).toHaveAttribute(
       "href",
       HOME_PAGE_COPY.hero.ctaPrimaryTo,
     );
-    expect(screen.getByRole("link", { name: /Book 2-Week AI Audit/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Book Operational Audit/i })).toHaveAttribute(
       "href",
       ROUTES.aiOperationalAudit,
     );

@@ -23,7 +23,7 @@ describe("aboutPageContent", () => {
     expect(ABOUT_PAGE_COPY.bottomCta.subtext).toBe("Let's discuss your technical roadmap.");
     expect(ABOUT_PAGE_COPY.bottomCta.subtext).not.toContain(ABOUT_REJECTED_CTA_SUBTEXT);
     expect(ABOUT_PAGE_COPY.bottomCta.primaryLabel).toBe("Book Operational Audit");
-    expect(ABOUT_PAGE_COPY.bottomCta.secondaryLabel).toBe("Explore AI Products");
+    expect(ABOUT_PAGE_COPY.bottomCta.secondaryLabel).toBe("Try OpsFlow AI");
     expect(ABOUT_PAGE_COPY.bottomCta.primaryTo).toBe(ROUTES.aiOperationalAudit);
     expect(ABOUT_PAGE_COPY.bottomCta.secondaryTo).toBe("/#opsflow-ai");
   });

@@ -18,6 +18,10 @@ describe("ProspectIqCaseStudyPage", () => {
     expect(screen.getByText(PROSPECT_IQ_CASE_STUDY_COPY.kicker)).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1, name: PROSPECT_IQ_CASE_STUDY_COPY.title })).toBeInTheDocument();
     expect(screen.getByText(PROSPECT_IQ_CASE_STUDY_COPY.subtitle)).toBeInTheDocument();
+    expect(screen.getByTestId("prospectiq-case-study-hero-image")).toHaveAttribute(
+      "src",
+      PROSPECT_IQ_CASE_STUDY_COPY.heroImage?.src,
+    );
 
     const stack = screen.getByTestId("prospectiq-case-study-core-stack");
     expect(stack).toHaveClass("commiters-case-study-core-stack--slate");

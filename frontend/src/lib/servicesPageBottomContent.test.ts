@@ -36,7 +36,7 @@ describe("servicesPageBottomContent", () => {
   });
 
   it("exposes the booking action and View Our Stack secondary link", () => {
-    expect(SERVICES_BOTTOM_CTA.primaryLabel).toBe("Book a 2-Week AI Audit");
+    expect(SERVICES_BOTTOM_CTA.primaryLabel).toBe("Book Operational Audit");
     expect(SERVICES_BOTTOM_CTA.primaryHref).toBe(ROUTES.aiOperationalAudit);
     expect(SERVICES_BOTTOM_CTA.primaryHref).not.toContain("calendly.com");
     expect(SERVICES_BOTTOM_CTA.secondaryLabel).toBe("View Our Stack");

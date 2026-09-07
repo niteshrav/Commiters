@@ -50,7 +50,7 @@ export const ABOUT_PAGE_COPY = {
     subtext: "Let's discuss your technical roadmap.",
     primaryLabel: "Book Operational Audit",
     primaryTo: ROUTES.aiOperationalAudit,
-    secondaryLabel: "Explore AI Products",
+    secondaryLabel: "Try OpsFlow AI",
     secondaryTo: "/#opsflow-ai",
   },
 } as const;

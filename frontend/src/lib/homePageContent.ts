@@ -27,9 +27,9 @@ export const HOME_PAGE_COPY = {
     title: "Enterprise AI Products & Cloud-Native Web Systems",
     subtext:
       "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
-    ctaPrimary: "Explore AI Products",
+    ctaPrimary: "Try OpsFlow AI",
     ctaPrimaryTo: HOME_HERO_OPS_FLOW_HREF,
-    ctaSecondary: "Book 2-Week AI Audit",
+    ctaSecondary: "Book Operational Audit",
     ctaSecondaryTo: ROUTES.aiOperationalAudit,
     sprintLabel: "CURRENT SPRINT",
     sprintValue: "v2.4.0 Engine",

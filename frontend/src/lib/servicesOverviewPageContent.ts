@@ -20,7 +20,7 @@ export const SERVICES_OVERVIEW_HERO = {
     "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
   productsCtaLabel: "Explore AI Products",
   productsCtaTo: `${ROUTES.services}#${SERVICES_OVERVIEW_PRODUCTS_ANCHOR}`,
-  auditCtaLabel: "Book 2-Week AI Audit",
+  auditCtaLabel: "Book Operational Audit",
   auditCtaTo: `${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`,
 } as const;
 

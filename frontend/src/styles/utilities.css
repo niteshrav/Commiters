@@ -77,6 +77,24 @@
   border-radius: 16px;
 }
 
+.utilities-tool-badge {
+  display: inline-flex;
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.16);
+  color: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.utilities-tool-badge--live {
+  background: rgba(var(--primary-rgb), 0.12);
+  color: var(--primary);
+}
+
 .utilities-tool-card h2,
 .utilities-banner h2 {
   margin: 0;

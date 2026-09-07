@@ -84,9 +84,9 @@ export const COMMITERS_CASE_STUDY_COPY = {
   bottomCta: {
     title: "Ready to build your next breakthrough?",
     subtext: "Book a 2-week AI Operational Audit to map bottlenecks and leave with a spec-driven architecture blueprint.",
-    primaryLabel: "Book 2-Week AI Operational Audit",
+    primaryLabel: "Book Operational Audit",
     primaryTo: ROUTES.aiOperationalAudit,
-    secondaryLabel: "Explore AI Products",
+    secondaryLabel: "Try OpsFlow AI",
     secondaryTo: HOME_HERO_OPS_FLOW_HREF,
   },
 } as const;

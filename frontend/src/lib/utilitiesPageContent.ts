@@ -25,6 +25,7 @@ export type UtilitiesTool = {
   description: string;
   to: string;
   ctaLabel: string;
+  availability: "live" | "request-access";
 };
 
 export const UTILITIES_TOOLS: readonly UtilitiesTool[] = [
@@ -35,6 +36,7 @@ export const UTILITIES_TOOLS: readonly UtilitiesTool[] = [
       "Zero-code PDF-to-Excel data ingestion for invoices, receipts, GST bills, and operational records.",
     to: ROUTES.opsFlowPlayground,
     ctaLabel: "Open OpsFlow AI",
+    availability: "live",
   },
   {
     id: "gst-business-verification",
@@ -43,6 +45,7 @@ export const UTILITIES_TOOLS: readonly UtilitiesTool[] = [
       "Verify GSTIN status, legal names, and registration details before you invoice or onboard a vendor. Request access and we will scope a checker for your operations team.",
     to: `${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`,
     ctaLabel: "Request this utility",
+    availability: "request-access",
   },
 ] as const;
 

@@ -39,7 +39,7 @@ export const SERVICES_BOTTOM_CTA = {
   title: "Ready to start building?",
   subtext:
     "Book a 2-week AI Operational Audit to map spreadsheet bottlenecks and leave with a working automation prototype.",
-  primaryLabel: "Book a 2-Week AI Audit",
+  primaryLabel: "Book Operational Audit",
   primaryHref: ROUTES.aiOperationalAudit,
   secondaryLabel: "View Our Stack",
   secondaryHref: ROUTES.about,

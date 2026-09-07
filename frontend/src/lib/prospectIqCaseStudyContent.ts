@@ -8,6 +8,10 @@ export const PROSPECT_IQ_CASE_STUDY_COPY = {
   title: "ProspectIQ AI: Automated B2B Sales Intelligence & Intent Scoring",
   subtitle:
     "Governed multi-agent lead enrichment pipeline engineered with strict Model Context Protocol (MCP) tool sockets, semantic input validation, and zero vendor lock-in.",
+  heroImage: {
+    src: "/assets/case-studies/prospectiq-ai.png",
+    alt: "ProspectIQ AI governed B2B prospecting dashboard",
+  },
   overview: {
     heading: "Core Metrics",
     body: "Sales teams lose hundreds of hours discovering, verifying, and enriching leads across fragmented B2B databases. ProspectIQ AI automates that pipeline with governed LLM agents, schema validation, and two-tier API policy gateways—without ambient authority or hallucinated contacts.",

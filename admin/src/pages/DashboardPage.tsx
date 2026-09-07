@@ -123,7 +123,7 @@ export default function DashboardPage() {
           <p>Overview of your software studio operations, client engagement, and recruitment pipeline.</p>
         </div>
         <Link className="admin-btn admin-btn--outline" to="/contact-queries">
-          Export Inquiries
+          View Inquiries
         </Link>
       </div>
 
@@ -217,7 +217,7 @@ export default function DashboardPage() {
           <div className="admin-panel-header">
             <div>
               <h4>Traffic &amp; Retention Insights</h4>
-              <p>Studio content performance snapshot across your digital properties.</p>
+              <p>Sample engagement preview — connect analytics to replace this chart.</p>
             </div>
             <div className="admin-chart-legend">
               <span>

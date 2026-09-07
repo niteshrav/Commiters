@@ -81,11 +81,11 @@ describe("HomePage", () => {
     expect(screen.queryByRole("link", { name: /tech stack|our stack/i })).not.toBeInTheDocument();
 
     const heroActions = screen.getByTestId("hero-actions");
-    expect(within(heroActions).getByRole("link", { name: /Explore AI Products/i })).toHaveAttribute(
+    expect(within(heroActions).getByRole("link", { name: /Try OpsFlow AI/i })).toHaveAttribute(
       "href",
       HOME_PAGE_COPY.hero.ctaPrimaryTo,
     );
-    expect(within(heroActions).getByRole("link", { name: /Book 2-Week AI Audit/i })).toHaveAttribute(
+    expect(within(heroActions).getByRole("link", { name: /Book Operational Audit/i })).toHaveAttribute(
       "href",
       ROUTES.aiOperationalAudit,
     );

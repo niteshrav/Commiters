@@ -14,10 +14,10 @@ describe("homePageContent", () => {
     expect(HOME_PAGE_COPY.hero.badge).toBe("AN AI & CLOUD PRODUCT & ENGINEERING FIRM");
     expect(HOME_PAGE_COPY.hero.title).toBe("Enterprise AI Products & Cloud-Native Web Systems");
     expect(HOME_PAGE_COPY.hero.subtext).toMatch(/governed Model Context Protocol \(MCP\)/);
-    expect(HOME_PAGE_COPY.hero.ctaPrimary).toBe("Explore AI Products");
+    expect(HOME_PAGE_COPY.hero.ctaPrimary).toBe("Try OpsFlow AI");
     expect(HOME_PAGE_COPY.hero.ctaPrimaryTo).toBe(HOME_HERO_OPS_FLOW_HREF);
     expect(HOME_HERO_OPS_FLOW_HREF).toBe(`/#${HOME_OPS_FLOW_SECTION_ID}`);
-    expect(HOME_PAGE_COPY.hero.ctaSecondary).toBe("Book 2-Week AI Audit");
+    expect(HOME_PAGE_COPY.hero.ctaSecondary).toBe("Book Operational Audit");
     expect(HOME_PAGE_COPY.hero.ctaSecondaryTo).toBe(ROUTES.aiOperationalAudit);
   });
 
