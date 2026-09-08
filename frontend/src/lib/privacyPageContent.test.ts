@@ -14,8 +14,8 @@ describe("privacyPageContent", () => {
     expect(STITCH_COPY.privacy.lastUpdatedDate).toBe("April 15, 2026");
     expect(PRIVACY_PAGE_COPY.introBold).toBe("Commiters");
     expect(PRIVACY_PAGE_COPY.subtitle).toContain("zero ambient authority");
-    expect(PRIVACY_PAGE_COPY.intro).toContain("data protection, zero ambient authority, and transparency");
-    expect(PRIVACY_PAGE_COPY.intro).toContain("surgical precision and absolute integrity");
+    expect(PRIVACY_PAGE_COPY.intro).toContain("outlines how we collect, use, and protect information");
+    expect(PRIVACY_PAGE_COPY.intro).not.toContain("data protection, zero ambient authority, and transparency");
   });
 
   it("lists numbered privacy sections in Stitch order below the intro", () => {

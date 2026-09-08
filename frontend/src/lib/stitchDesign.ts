@@ -204,7 +204,7 @@ export const STITCH_COPY = {
     subtitle:
       "Data protection, zero ambient authority, and transparency are the core pillars of our engineering philosophy.",
     introAfterBold:
-      ", data protection, zero ambient authority, and transparency are the core pillars of our engineering philosophy. This policy outlines how we handle your digital footprint with surgical precision and absolute integrity.",
+      " outlines how we collect, use, and protect information across our products and client engagements.",
     dpoCta: {
       title: "Have specific privacy questions?",
       description:

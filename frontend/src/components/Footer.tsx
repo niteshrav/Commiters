@@ -1,11 +1,10 @@
-﻿import { Fragment } from "react";
+import { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import BrandLogo from "./BrandLogo";
 import {
   FOOTER_BACK_TO_TOP_CLASS,
   FOOTER_BLACKBOOK_BAR_CLASS,
   FOOTER_BLACKBOOK_SOCIAL_CLASS,
-  FOOTER_BRAND_SUBTEXT_CLASS,
   FOOTER_BRAND_TAGLINE_CLASS,
   FOOTER_COPYRIGHT_CELL_CLASS,
   FOOTER_LOGO_CELL_CLASS,
@@ -117,7 +116,7 @@ function FooterCopyrightLine({ copyrightLine1 }: { copyrightLine1: string }) {
 }
 
 export default function Footer() {
-  const { brandTagline, brandSubtext, copyrightLine1, navColumns, socialLinks, bottomLegalLinks } = useFooterContent();
+  const { brandTagline, copyrightLine1, navColumns, socialLinks, bottomLegalLinks } = useFooterContent();
   const visibleNavColumns = navColumns.filter((column) => !isSocialFooterColumn(column.heading));
   const visibleSocialLinks = socialLinks.filter(
     (link): link is FooterExternalLink => link.kind === "external" && !isAdminFooterLink(link),
@@ -133,7 +132,6 @@ export default function Footer() {
               <BrandLogo variant="footer" logoSrc={footerBrandLogoSrc()} />
             </div>
             <p className={FOOTER_BRAND_TAGLINE_CLASS}>{brandTagline}</p>
-            <p className={FOOTER_BRAND_SUBTEXT_CLASS}>{brandSubtext}</p>
             <div className={FOOTER_BLACKBOOK_SOCIAL_CLASS} data-testid="footer-social-icons">
               {visibleSocialLinks.map((link) => (
                 <a

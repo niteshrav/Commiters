@@ -72,7 +72,7 @@ describe("NearDropCaseStudyPage", () => {
     expect(within(execution).getByText(/performant cloud-native ecosystem/i)).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "The Execution" })).not.toBeInTheDocument();
     expect(within(execution).getByRole("heading", { name: "Architectural Integrity" })).toBeInTheDocument();
-    expect(within(execution).getByRole("heading", { name: "Role-Isolated Portals" })).toBeInTheDocument();
+    expect(within(execution).getByRole("heading", { name: "Dedicated Portal Surfaces" })).toBeInTheDocument();
     expect(within(execution).getByRole("heading", { name: "Security First" })).toBeInTheDocument();
     expect(within(execution).getByText(/high-concurrency real-time location writes/i)).toBeInTheDocument();
     expect(within(execution).getByText(/Multi-factor authentication/i)).toBeInTheDocument();

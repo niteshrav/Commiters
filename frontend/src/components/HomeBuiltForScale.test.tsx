@@ -1,4 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import HomeBuiltForScale from "./HomeBuiltForScale";
 import {
   BUILT_FOR_SCALE_FEATURE_COUNT,
@@ -10,13 +11,18 @@ import {
 import { HOME_IMAGE_FULL_COLOR_CLASS } from "../lib/homeImagePresentation";
 import { HOME_PRIMARY_SURFACE_CLASS } from "../lib/homePrimarySurface";
 import { HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "../lib/homePageContent";
+import { ROUTES } from "../lib/routes";
 
 describe("HomeBuiltForScale", () => {
-  it("renders mockup two-column layout with white surface, image left, copy right", () => {
-    render(<HomeBuiltForScale />);
+  it("renders the cloud-built-right mockup with image badges and feature cards", () => {
+    render(
+      <MemoryRouter>
+        <HomeBuiltForScale />
+      </MemoryRouter>,
+    );
 
     const section = screen.getByTestId("home-built-for-scale");
-    expect(section).toHaveClass("home-built-for-scale", HOME_PRIMARY_SURFACE_CLASS);
+    expect(section).toHaveClass("home-built-for-scale", "home-built-for-scale--cloud", HOME_PRIMARY_SURFACE_CLASS);
 
     const grid = within(section).getByTestId("home-built-for-scale-grid");
     expect(grid).toHaveClass(BUILT_FOR_SCALE_GRID_CLASS);
@@ -27,26 +33,33 @@ describe("HomeBuiltForScale", () => {
 
     const image = within(media).getByTestId("home-built-for-scale-image");
     expect(image).toHaveClass(HOME_IMAGE_FULL_COLOR_CLASS);
-    expect(image).not.toHaveClass("home-image-tone");
     expect(image).toHaveAttribute("src", HOME_PAGE_ASSETS.serverRacks);
+    expect(image).toHaveAttribute("sizes", BUILT_FOR_SCALE_IMAGE_SIZES);
     expect(image).toHaveAttribute("width", String(BUILT_FOR_SCALE_IMAGE_WIDTH));
     expect(image).toHaveAttribute("height", String(BUILT_FOR_SCALE_IMAGE_HEIGHT));
-    expect(image).toHaveAttribute("sizes", BUILT_FOR_SCALE_IMAGE_SIZES);
-  });
-
-  it("matches mockup heading, body, and three blue checkmark features", () => {
-    render(<HomeBuiltForScale />);
+    expect(within(media).getByText("SCALABLE")).toBeInTheDocument();
+    expect(within(media).getByText(HOME_PAGE_COPY.builtForScale.imageUptimeLabel)).toBeInTheDocument();
 
     const { builtForScale } = HOME_PAGE_COPY;
-    expect(screen.getByRole("heading", { name: builtForScale.title })).toHaveClass("home-built-for-scale-title");
+    expect(screen.getByText(builtForScale.kicker)).toHaveClass("home-built-for-scale-kicker");
+    expect(screen.getByRole("heading", { name: /Cloud, Built Right/i })).toHaveClass("home-built-for-scale-title");
     expect(screen.getByText(builtForScale.body)).toHaveClass("home-built-for-scale-lead");
 
-    expect(screen.getAllByTestId("home-scale-feature")).toHaveLength(BUILT_FOR_SCALE_FEATURE_COUNT);
-    expect(screen.getByText("Cloud-Native Web Architecture (AWS, GCP, Azure, Vercel)")).toBeInTheDocument();
-    expect(screen.getByText("Zero Ambient Authority & Database Row-Level Security (RLS)")).toBeInTheDocument();
-    expect(
-      screen.getByText("Micro-optimized API Response Times (<200ms) with strict SLA tracking"),
-    ).toBeInTheDocument();
-    expect(screen.getAllByTestId("home-scale-feature-icon")).toHaveLength(BUILT_FOR_SCALE_FEATURE_COUNT);
+    const cards = within(copy).getAllByTestId("home-scale-feature");
+    expect(cards).toHaveLength(BUILT_FOR_SCALE_FEATURE_COUNT);
+    for (const feature of builtForScale.features) {
+      expect(within(copy).getByText(feature.title)).toBeInTheDocument();
+      expect(within(copy).getByText(feature.description)).toBeInTheDocument();
+    }
+
+    const actions = within(copy).getByTestId("home-built-for-scale-actions");
+    expect(within(actions).getByRole("link", { name: builtForScale.ctaPrimary })).toHaveAttribute(
+      "href",
+      ROUTES.webApplications,
+    );
+    expect(within(actions).getByRole("link", { name: builtForScale.ctaSecondary })).toHaveAttribute(
+      "href",
+      ROUTES.services,
+    );
   });
 });

@@ -4,33 +4,52 @@ import { ROUTES } from "./routes";
 export const HOME_LEAD_MAGNET_TEST_ID = "home-lead-magnet" as const;
 export const HOME_LEAD_MAGNET_SECTION_ID = HOME_OPS_FLOW_SECTION_ID;
 
+export type HomeLeadMagnetFeatureTone = "blue" | "green" | "purple";
+
+export type HomeLeadMagnetFeature = {
+  title: string;
+  description: string;
+  tone: HomeLeadMagnetFeatureTone;
+};
+
 export const HOME_LEAD_MAGNET_COPY = {
-  badge: "PROPRIETARY CLOUD PRODUCT",
-  title: "OpsFlow AI: Transform Unstructured PDFs into Clean, Structured Excel Datasets",
-  description:
-    "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and financial records.",
+  badge: "PROPRIETARY AI PRODUCT",
+  titleLead: "Turn PDFs into ",
+  titleAccent: "Data",
+  description: "Extract clean, structured data from any business document.",
   features: [
     {
-      title: "Precision Extraction",
-      body: "High-accuracy table and key-value field mapping.",
+      title: "Smart Extract",
+      description: "Accurate data capture",
+      tone: "blue",
     },
     {
-      title: "Automated Formatting",
-      body: "Instant conversion of multi-page invoices and receipts into .xlsx.",
+      title: "Auto Format",
+      description: "Ready-to-use Excel",
+      tone: "green",
     },
     {
-      title: "Enterprise MCP Integration",
-      body: "Governed Model Context Protocol sockets connect models to data without direct database access.",
+      title: "Fast Export",
+      description: "Built for workflows",
+      tone: "purple",
     },
-  ],
-  ctaConverter: "Try Free Converter",
-  ctaConverterTo: ROUTES.opsFlowPlayground,
+  ] satisfies HomeLeadMagnetFeature[],
+  documentTypes: ["PDF", "Invoice", "Receipt", "GST Bill", "Statement"],
+  visual: {
+    uploadTitle: "Upload Your Document",
+    uploadSubtitle: "PDF, Images or Scanned Files",
+    uploadCta: "Upload Sample",
+    uploadNote: "No data is stored. Secure and private.",
+    outputLabel: "Structured Excel Output",
+  },
+  ctaPrimary: "Try OpsFlow AI",
+  ctaPrimaryTo: ROUTES.opsFlowPlayground,
   ctaDemo: "Request Enterprise Demo",
-  formTitle: "Test OpsFlow AI with Your Document Format",
+  formTitle: "Request an Enterprise Demo",
   formSubtitle: "Submit a sample layout to receive your benchmark Excel conversion.",
   emailLabel: "Business email",
   emailPlaceholder: "Enter your business email",
-  submitLabel: "Request Enterprise Demo",
+  submitLabel: "Send Benchmark Request",
   microcopy: "Zero spam. Direct benchmark results delivered within 1 business day.",
   successMessage:
     "Request Received! Our engineering team will reach out shortly to process your sample PDF-to-Excel conversion.",
@@ -41,15 +60,16 @@ export const HOME_LEAD_MAGNET_COPY = {
 } as const;
 
 export const HOME_LEAD_MAGNET_LAYOUT = {
-  sectionClass: "home-lead-magnet band-breakout",
+  sectionClass: "home-lead-magnet home-lead-magnet--opsflow band-breakout",
   innerClass: "home-lead-magnet-inner",
   offerClass: "home-lead-magnet-offer",
+  visualClass: "home-lead-magnet-visual",
   formClass: "home-lead-magnet-form",
   formCardClass: "home-lead-magnet-card",
   formTitleClass: "home-lead-magnet-form-title",
   formSubtitleClass: "home-lead-magnet-form-subtitle",
   badgeClass: "home-lead-magnet-badge",
-  featuresClass: "home-lead-magnet-features",
+  featuresClass: "home-lead-magnet-feature-cards",
   background: "#F8FAFC",
   paddingBlock: "clamp(48px, 5vw, 64px)",
   innerMaxWidth: "var(--max-width, 1360px)",

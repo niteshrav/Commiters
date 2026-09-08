@@ -5,7 +5,7 @@ export const ECO_ROUTE_CASE_STUDY_COPY = {
   documentTitle: "EcoRoute Intelligence Case Study",
   pageId: "ecoroute",
   kicker: "TECHNICAL CASE STUDY: SPEC-DRIVEN CLOUD PLATFORM",
-  title: "EcoRoute Intelligence: Cloud-Native Green Fleet & Route Engine",
+  title: "EcoRoute Intelligence — Cloud-Native Green Fleet & Route Optimization",
   subtitle:
     "Spec-driven geo-spatial optimization platform designed for low-emission logistics tracking, real-time telemetry processing, and fleet analytics.",
   heroImage: {

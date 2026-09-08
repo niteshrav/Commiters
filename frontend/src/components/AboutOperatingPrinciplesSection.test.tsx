@@ -5,7 +5,7 @@ import { ABOUT_OPERATING_PRINCIPLES, ABOUT_PAGE_COPY } from "../lib/aboutPageCon
 import { ROUTES } from "../lib/routes";
 
 describe("AboutOperatingPrinciplesSection", () => {
-  it("renders the four Stitch operating principles in a grid", () => {
+  it("renders the mockup operating principles in a card grid", () => {
     render(
       <MemoryRouter>
         <AboutOperatingPrinciplesSection />
@@ -13,11 +13,13 @@ describe("AboutOperatingPrinciplesSection", () => {
     );
 
     expect(screen.getByTestId("about-principles-section")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: ABOUT_PAGE_COPY.principles.title })).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_PAGE_COPY.principles.kicker)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Core Operating Principles/i })).toBeInTheDocument();
+    expect(screen.getByText(ABOUT_PAGE_COPY.principles.subtext)).toBeInTheDocument();
     expect(screen.getByText(ABOUT_PAGE_COPY.principles.viewAllLabel)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: ABOUT_PAGE_COPY.principles.viewAllLabel })).toHaveAttribute(
       "href",
-      ROUTES.caseStudies,
+      ROUTES.services,
     );
 
     const cards = screen.getAllByTestId("about-principle-card");
@@ -25,6 +27,7 @@ describe("AboutOperatingPrinciplesSection", () => {
     ABOUT_OPERATING_PRINCIPLES.forEach((principle) => {
       expect(screen.getByRole("heading", { name: principle.title })).toBeInTheDocument();
       expect(screen.getByText(principle.body)).toBeInTheDocument();
+      expect(screen.getByText(principle.index)).toBeInTheDocument();
     });
   });
 });

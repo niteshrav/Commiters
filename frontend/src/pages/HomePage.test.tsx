@@ -33,7 +33,7 @@ describe("HomePage", () => {
       HOME_SECTION_SEPARATOR_CLASS,
     );
     expect(screen.getByTestId("home-core-pillars")).toHaveClass(HOME_CORE_PILLARS_SURFACE_CLASS);
-    expect(screen.getByText(/PROPRIETARY CLOUD PRODUCT/i)).toBeInTheDocument();
+    expect(screen.getByText(/PROPRIETARY AI PRODUCT/i)).toBeInTheDocument();
     expect(screen.queryByText(/Architecture & Tech Debt Audit Checklist/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Streamline Your Business Operations with OpsFlow AI/i)).not.toBeInTheDocument();
   });
@@ -64,9 +64,9 @@ describe("HomePage", () => {
     const scale = screen.getByTestId("home-built-for-scale");
     expect(hero).toHaveClass("home-primary-surface");
     expect(scale).toHaveClass("home-primary-surface");
-    expect(within(scale).getByRole("heading", { name: HOME_PAGE_COPY.builtForScale.title })).toBeInTheDocument();
+    expect(within(scale).getByRole("heading", { name: /Cloud, Built Right/i })).toBeInTheDocument();
     expect(within(scale).getByText(HOME_PAGE_COPY.builtForScale.body)).toBeInTheDocument();
-    expect(within(scale).getByText("Cloud-Native Web Architecture (AWS, GCP, Azure, Vercel)")).toBeInTheDocument();
+    expect(within(scale).getByText("Cloud Native")).toBeInTheDocument();
     expect(within(scale).getAllByTestId("home-scale-feature")).toHaveLength(3);
     expect(within(scale).getByTestId("home-built-for-scale-image")).toHaveAttribute("src", HOME_PAGE_ASSETS.serverRacks);
   });

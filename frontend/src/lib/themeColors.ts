@@ -1,4 +1,6 @@
 import { BRAND_COLOR_KIT, BRAND_COLOR_KIT_CSS_VARIABLES } from "./brandColorKit";
+import { HOME_CORE_PILLARS_SURFACE_HEX } from "./homeCorePillarsSurface";
+import { HOME_DARK_BAND_BG } from "./homeDarkBandSurface";
 import { PRECISION_MINIMALIST_DESIGN } from "./precisionMinimalistDesign";
 import { STITCH_LIGHT_PALETTE } from "./stitchLightPalette";
 
@@ -87,7 +89,8 @@ export const LOGO_CSS_VARIABLES = {
   "--label-tracking": typography.labelTracking,
   "--stack-lg": spacing.stackLg,
   "--radius-card": radius.card,
-  "--home-core-pillars-surface": colors.surfaceContainerLow,
+  "--home-core-pillars-surface": HOME_CORE_PILLARS_SURFACE_HEX,
+  "--home-dark-band-bg": HOME_DARK_BAND_BG,
 } as const;
 
 export type LogoCssVariableName = keyof typeof LOGO_CSS_VARIABLES;

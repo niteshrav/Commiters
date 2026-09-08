@@ -101,7 +101,7 @@ describe("ServicesPage", () => {
     }
   });
 
-  it("adds a four-card core engineering capabilities grid with badges and bullets", () => {
+  it("adds a four-card core engineering capabilities grid with badges and subtext", () => {
     renderPage();
 
     expect(screen.getByRole("heading", { name: SERVICES_OVERVIEW_CAPABILITIES_TITLE, level: 2 })).toBeInTheDocument();
@@ -122,9 +122,6 @@ describe("ServicesPage", () => {
       expect(within(card!).getByText(capability.badge)).toBeInTheDocument();
       expect(within(card!).getByRole("heading", { name: capability.title })).toBeInTheDocument();
       expect(within(card!).getByText(capability.subtext)).toBeInTheDocument();
-      for (const bullet of capability.bullets) {
-        expect(within(card!).getByText(bullet)).toBeInTheDocument();
-      }
       expect(within(card!).getByRole("link", { name: capability.title })).toHaveAttribute("href", capability.to);
     }
   });

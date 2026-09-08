@@ -7,7 +7,6 @@ import { BRAND_LOGO_FOOTER_HEIGHT_PX } from "../lib/brandDisplay";
 import {
   FOOTER_BACK_TO_TOP_CLASS,
   FOOTER_BLACKBOOK_BAR_CLASS,
-  FOOTER_BRAND_SUBTEXT_CLASS,
   FOOTER_BRAND_TAGLINE_CLASS,
   FOOTER_COPYRIGHT_CELL_CLASS,
   FOOTER_LOGO_CELL_CLASS,
@@ -15,7 +14,7 @@ import {
   FOOTER_NOCK_MAIN_CLASS,
   FOOTER_NOCK_SHELL_CLASS,
 } from "../lib/footerLayout";
-import { COMMITERS_FOOTER_LOGO_SRC, COMMITERS_HEADER_LOGO_ALT } from "../lib/siteBrand";
+import { COMMITERS_FOOTER_LOGO_SRC, COMMITERS_HEADER_LOGO_ALT, COMMITERS_TAGLINE } from "../lib/siteBrand";
 import { ROUTES } from "../lib/routes";
 import {
   SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
@@ -70,7 +69,7 @@ describe("Footer", () => {
     expect(screen.queryByTestId("footer-status-pill")).not.toBeInTheDocument();
 
     expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass(FOOTER_BRAND_TAGLINE_CLASS);
-    expect(screen.getByText(SITE_FOOTER_COPY.brandSubtext)).toHaveClass(FOOTER_BRAND_SUBTEXT_CLASS);
+    expect(screen.queryByText(COMMITERS_TAGLINE)).not.toBeInTheDocument();
     expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);
     expect(within(legalCell).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacy);
     expect(within(legalCell).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
@@ -112,8 +111,8 @@ describe("Footer", () => {
     expect(within(companyNav).getByRole("link", { name: /^About Us$/i })).toHaveAttribute("href", ROUTES.about);
     expect(within(companyNav).getByRole("link", { name: /^Client Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
     expect(within(companyNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
-    expect(within(companyNav).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacy);
-    expect(within(companyNav).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
+    expect(within(companyNav).queryByRole("link", { name: /^Privacy$/i })).not.toBeInTheDocument();
+    expect(within(companyNav).queryByRole("link", { name: /^Terms$/i })).not.toBeInTheDocument();
 
     const socialLinks = within(socialIcons).getAllByRole("link");
     for (const link of socialLinks) {

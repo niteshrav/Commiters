@@ -4,8 +4,6 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   ABOUT_PRINCIPLE_CARD_CLASS,
-  ABOUT_PRINCIPLES_CARD_DIVIDER,
-  ABOUT_PRINCIPLES_GRID_BORDER,
   ABOUT_PRINCIPLES_GRID_CLASS,
   ABOUT_PRINCIPLES_GRID_COLUMNS,
   ABOUT_PRINCIPLES_GRID_GAP,
@@ -21,7 +19,7 @@ function ruleBlock(selector: string, nextSelector: string): string {
 }
 
 describe("aboutPrinciplesLayout", () => {
-  it("boxes the four operating principles in a bordered grid with column dividers", () => {
+  it("lays out four mockup principle cards in a spaced grid", () => {
     const sectionStart = css.indexOf(".about-principles-section {");
     expect(sectionStart).toBeGreaterThan(-1);
 
@@ -32,12 +30,9 @@ describe("aboutPrinciplesLayout", () => {
     expect(grid).toContain("display: grid");
     expect(grid).toContain(`grid-template-columns: ${ABOUT_PRINCIPLES_GRID_COLUMNS}`);
     expect(grid).toContain(`gap: ${ABOUT_PRINCIPLES_GRID_GAP}`);
-    expect(grid).toContain(`border: ${ABOUT_PRINCIPLES_GRID_BORDER}`);
 
-    const card = ruleBlock(`.${ABOUT_PRINCIPLE_CARD_CLASS} {`, `.${ABOUT_PRINCIPLE_CARD_CLASS}:last-child {`);
-    expect(card).toContain(`border-right: ${ABOUT_PRINCIPLES_CARD_DIVIDER}`);
-
-    const lastCard = ruleBlock(`.${ABOUT_PRINCIPLE_CARD_CLASS}:last-child {`, `.about-principle-icon {`);
-    expect(lastCard).toContain("border-right: none");
+    const card = ruleBlock(`.${ABOUT_PRINCIPLE_CARD_CLASS} {`, `.${ABOUT_PRINCIPLE_CARD_CLASS}:hover {`);
+    expect(card).toContain("border-radius: 20px");
+    expect(card).toContain("box-shadow:");
   });
 });

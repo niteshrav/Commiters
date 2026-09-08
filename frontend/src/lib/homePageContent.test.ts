@@ -22,29 +22,46 @@ describe("homePageContent", () => {
   });
 
   it("defines the four Commiters governance pillars", () => {
+    expect(HOME_PAGE_COPY.corePillars.kicker).toBe("BUILT ON TRUST");
     expect(HOME_PAGE_COPY.corePillars.title).toBe("The Commiters Governance Standard");
     expect(HOME_PAGE_COPY.corePillars.items).toHaveLength(4);
+    expect(HOME_PAGE_COPY.corePillars.items.map((item) => item.label)).toEqual([
+      "MCP Connect",
+      "Policy Guard",
+      "Access Shield",
+      "Vibe Check",
+    ]);
     expect(HOME_PAGE_COPY.corePillars.items.map((item) => item.title)).toEqual([
       "Governed MCP Integration",
       "Two-Tier Policy Gateways",
       "Zero Ambient Authority & RLS",
-      "Human-in-the-Loop ('Vibe Diff')",
+      "Human-in-the-Loop",
     ]);
-    expect(HOME_PAGE_COPY.corePillars.items[0].body).toMatch(/Model Context Protocol \(MCP\) sockets/);
-    expect(HOME_PAGE_COPY.corePillars.items[1].body).toMatch(/deterministic RBAC/);
-    expect(HOME_PAGE_COPY.corePillars.items[2].body).toMatch(/Row-Level Security \(RLS\)/);
-    expect(HOME_PAGE_COPY.corePillars.items[3].body).toMatch(/explicit user confirmation/);
+    expect(HOME_PAGE_COPY.corePillars.items.map((item) => item.summary)).toEqual([
+      "Secure model-to-data integration.",
+      "AI calls with built-in policy checks.",
+      "Automatic RLS and least privilege.",
+      "Human approval for high-stakes actions.",
+    ]);
+    expect(HOME_PAGE_COPY.corePillars.items.map((item) => item.tone)).toEqual(["blue", "gold", "green", "purple"]);
+    expect(HOME_PAGE_COPY.corePillars.items[0].to).toBe(`${ROUTES.services}#governed-mcp-integration`);
   });
 
-  it("describes spec-driven cloud infrastructure with three scale bullets", () => {
-    expect(HOME_PAGE_COPY.builtForScale.title).toBe("Spec-Driven Cloud Infrastructure");
-    expect(HOME_PAGE_COPY.builtForScale.body).toMatch(/cloud-native web platforms/);
+  it("describes the cloud-built-right infrastructure band", () => {
+    expect(HOME_PAGE_COPY.builtForScale.kicker).toBe("CLOUD INFRASTRUCTURE");
+    expect(HOME_PAGE_COPY.builtForScale.titleLead).toBe("Cloud, Built ");
+    expect(HOME_PAGE_COPY.builtForScale.titleAccent).toBe("Right");
+    expect(HOME_PAGE_COPY.builtForScale.body).toMatch(/Secure, scalable infrastructure/);
     expect(HOME_PAGE_COPY.builtForScale.features).toHaveLength(3);
     expect(HOME_PAGE_COPY.builtForScale.features.map((feature) => feature.title)).toEqual([
-      "Cloud-Native Web Architecture (AWS, GCP, Azure, Vercel)",
-      "Zero Ambient Authority & Database Row-Level Security (RLS)",
-      "Micro-optimized API Response Times (<200ms) with strict SLA tracking",
+      "Cloud Native",
+      "Always Observable",
+      "Sub-200ms APIs",
     ]);
+    expect(HOME_PAGE_COPY.builtForScale.ctaPrimaryTo).toBe(ROUTES.webApplications);
+  });
+
+  it("keeps the dark home bottom CTA copy", () => {
     expect(HOME_PAGE_COPY.bottomCta.title).toBe("Ready to Build the Future?");
     expect(HOME_PAGE_COPY.bottomCta.subtext).toBe(
       "Join the ranks of high-performance companies powered by Commiters.",

@@ -17,7 +17,7 @@ export type CommitersCaseStudyStackItem = TechLogoDef & {
 export const COMMITERS_CASE_STUDY_COPY = {
   documentTitle: "Commiters Case Study",
   kicker: "TECHNICAL CASE STUDY: SPEC-DRIVEN CLOUD PLATFORM",
-  title: "Commiters.com: Spec-Driven Cloud Platform Architecture",
+  title: "Commiters.com — Spec-Driven Cloud Platform",
   subtitle:
     "Engineered a zero-latency cloud web ecosystem featuring rigid component isolation, micro-optimized performance, and strict design system adherence.",
   overview: {

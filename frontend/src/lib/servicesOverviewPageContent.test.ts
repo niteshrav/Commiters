@@ -98,7 +98,7 @@ describe("servicesOverviewPageContent", () => {
     expect(SERVICES_OVERVIEW_STANDARDS_BANNER).toEqual(SERVICES_OVERVIEW_STANDARDS[3]);
   });
 
-  it("adds four core engineering capability cards with badges, bullets, and live routes", () => {
+  it("adds four core engineering capability cards with badges, subtext, and live routes", () => {
     expect(SERVICES_OVERVIEW_CAPABILITIES_TITLE).toBe("Full-Lifecycle Software Engineering Capabilities");
     expect(SERVICES_OVERVIEW_CAPABILITIES_SUBTEXT).toBe(
       "Comprehensive software development backed by automated workflows and cloud-native architecture.",
@@ -125,7 +125,6 @@ describe("servicesOverviewPageContent", () => {
         to: "/services/mvp-development",
       },
     ]);
-    expect(SERVICES_OVERVIEW_CAPABILITIES.every((card) => card.bullets.length >= 3)).toBe(true);
     expect(SERVICES_OVERVIEW_CAPABILITIES[0]?.subtext).toMatch(/GST invoice pipelines/);
   });
 

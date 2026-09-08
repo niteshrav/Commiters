@@ -8,6 +8,15 @@ export const SERVICES_HOW_WE_WORK_STEP_CLASS = "services-how-we-work-step" as co
 export const SERVICES_HOW_WE_WORK_STEP_INDEX_CLASS = "services-how-we-work-step-index" as const;
 export const SERVICES_HOW_WE_WORK_STEP_TITLE_CLASS = "services-how-we-work-step-title" as const;
 export const SERVICES_HOW_WE_WORK_STEP_BODY_CLASS = "services-how-we-work-step-body" as const;
+export const SERVICES_HOW_WE_WORK_KICKER_CLASS = "services-how-we-work-kicker" as const;
+export const SERVICES_HOW_WE_WORK_HEADER_CLASS = "services-how-we-work-header" as const;
+export const SERVICES_HOW_WE_WORK_TITLE_ACCENT_CLASS = "services-how-we-work-title-accent" as const;
+export const SERVICES_HOW_WE_WORK_TRACK_CLASS = "services-how-we-work-track" as const;
+export const SERVICES_HOW_WE_WORK_CARD_CLASS = "services-how-we-work-card" as const;
+export const SERVICES_HOW_WE_WORK_CARD_ICON_CLASS = "services-how-we-work-card-icon" as const;
+export const SERVICES_HOW_WE_WORK_CONNECTOR_CLASS = "services-how-we-work-connector" as const;
+export const SERVICES_HOW_WE_WORK_CTA_BAND_CLASS = "services-how-we-work-cta-band" as const;
+export const SERVICES_HOW_WE_WORK_CTA_TEST_ID = "about-how-we-work-cta" as const;
 export const SERVICES_HOW_WE_WORK_SEPARATOR_CLASS = "services-page-section-separator" as const;
 export const SERVICES_HOW_WE_WORK_SEPARATOR_TEST_ID = "services-how-we-work-separator" as const;
 

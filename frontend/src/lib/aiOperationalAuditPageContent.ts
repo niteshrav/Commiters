@@ -24,7 +24,7 @@ export const AI_OPERATIONAL_AUDIT_PRICING = {
   title: "Pricing & Scope",
   engagement: "Fixed-scope 2-week engagement",
   range: "$3,000–$5,000 / ₹35,000–₹50,000",
-  summary: "Fixed-scope 2-week engagement ($3,000–$5,000 / ₹35,000–₹50,000).",
+  summary: "Includes discovery sessions, a working prototype, and the Spec-Driven Architecture Blueprint.",
 } as const;
 
 export const AI_OPERATIONAL_AUDIT_DIAGNOSE_TITLE = "What We Diagnose" as const;
@@ -86,7 +86,7 @@ export const AI_OPERATIONAL_AUDIT_FORM = {
   scopeLabel: "What should we scope?",
   bottleneckLabel: "Current Manual Bottleneck Description",
   bottleneckPlaceholder: "Where do hours disappear each week?",
-  submitLabel: AI_OPERATIONAL_AUDIT_CTA_LABEL,
+  submitLabel: "Submit Audit Request",
   serviceNeeded: "AI Operational Audit (2-Week Blueprint)",
   budgetRange: "$3,000–$5,000 / ₹35,000–₹50,000",
   timeline: "2-week diagnostic",

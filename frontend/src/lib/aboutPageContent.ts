@@ -5,45 +5,60 @@ export const ABOUT_REJECTED_CTA_SUBTEXT =
 
 export type AboutPrincipleIcon = "mcp" | "authority" | "spec" | "async";
 
+export type AboutPrincipleTone = "blue" | "green" | "purple" | "gold";
+
 export type AboutOperatingPrinciple = {
   id: string;
+  index: string;
   title: string;
   body: string;
   icon: AboutPrincipleIcon;
+  tone: AboutPrincipleTone;
 };
 
 export const ABOUT_OPERATING_PRINCIPLES: AboutOperatingPrinciple[] = [
   {
-    id: "governed-ai-integration",
-    title: "Governed AI Integration",
-    body: "Connect models via Model Context Protocol (MCP) sockets, eliminating unmonitored database access.",
+    id: "ai-integration",
+    index: "01",
+    title: "AI Integration",
+    body: "Connect models via MCP sockets with full governance.",
     icon: "mcp",
+    tone: "blue",
   },
   {
-    id: "zero-ambient-authority",
-    title: "Zero Ambient Authority",
-    body: "Built with strict Row-Level Security (RLS) and JIT permission scoping.",
+    id: "secure-by-design",
+    index: "02",
+    title: "Secure by Design",
+    body: "Built with strict RLS and least privilege access.",
     icon: "authority",
+    tone: "green",
   },
   {
     id: "spec-driven-development",
+    index: "03",
     title: "Spec-Driven Development",
-    body: "Absolute predictability, structured database schemas, and zero technical debt.",
+    body: "Predictable builds with structured schemas and zero technical debt.",
     icon: "spec",
+    tone: "purple",
   },
   {
     id: "async-first-transparent",
+    index: "04",
     title: "Async-First & Transparent",
-    body: "Spec-driven delivery, structured written updates, and direct engineering access.",
+    body: "Structured updates with direct engineering access.",
     icon: "async",
+    tone: "gold",
   },
 ];
 
 export const ABOUT_PAGE_COPY = {
   principles: {
-    title: "Core Operating Principles",
-    viewAllLabel: "VIEW ALL WORK",
-    viewAllTo: ROUTES.caseStudies,
+    kicker: "OUR FOUNDATION",
+    titleLead: "Core Operating ",
+    titleAccent: "Principles",
+    subtext: "Guiding how we build, operate, and deliver lasting impact.",
+    viewAllLabel: "VIEW ALL PRINCIPLES",
+    viewAllTo: ROUTES.services,
   },
   bottomCta: {
     title: "Ready to build something monumental?",

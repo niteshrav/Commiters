@@ -6,7 +6,7 @@ describe("ecoRouteCaseStudyContent", () => {
   it("matches the spec-driven green fleet case study copy", () => {
     expect(ECO_ROUTE_CASE_STUDY_COPY.kicker).toBe("TECHNICAL CASE STUDY: SPEC-DRIVEN CLOUD PLATFORM");
     expect(ECO_ROUTE_CASE_STUDY_COPY.title).toBe(
-      "EcoRoute Intelligence: Cloud-Native Green Fleet & Route Engine",
+      "EcoRoute Intelligence — Cloud-Native Green Fleet & Route Optimization",
     );
     expect(ECO_ROUTE_CASE_STUDY_COPY.subtitle).toMatch(/geo-spatial optimization/i);
     expect(ECO_ROUTE_CASE_STUDY_COPY.coreStack.items.map((item) => item.title)).toEqual([

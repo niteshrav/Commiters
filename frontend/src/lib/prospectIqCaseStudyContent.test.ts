@@ -6,7 +6,7 @@ describe("prospectIqCaseStudyContent", () => {
   it("matches the governed B2B prospecting case study copy", () => {
     expect(PROSPECT_IQ_CASE_STUDY_COPY.kicker).toBe("TECHNICAL CASE STUDY: GOVERNED AI & WORKFLOW SYSTEM");
     expect(PROSPECT_IQ_CASE_STUDY_COPY.title).toBe(
-      "ProspectIQ AI: Automated B2B Sales Intelligence & Intent Scoring",
+      "ProspectIQ AI — Governed B2B Prospecting & Intelligence Engine",
     );
     expect(PROSPECT_IQ_CASE_STUDY_COPY.subtitle).toMatch(/Model Context Protocol/);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.coreStack.items.map((item) => item.title)).toEqual([

@@ -33,10 +33,10 @@ export const SITE_FOOTER_BRAND_SUBTEXT = "Commit. Code. Connect." as const;
 export const SITE_FOOTER_TAGLINE = SITE_FOOTER_BRAND_TAGLINE;
 
 export const SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS = [
+  "OpsFlow AI",
+  "Spec-Driven Full-Stack Platforms",
   "AI Operational Audits",
   "Governed AI & Workflow Systems",
-  "Spec-Driven Full-Stack Platforms",
-  "OpsFlow AI",
   "Free Business Utilities",
 ] as const;
 
@@ -64,8 +64,6 @@ export const SITE_FOOTER_COMPANY_NAV_LINK_LABELS = [
   "About Us",
   "Client Work",
   "Contact",
-  "Privacy",
-  "Terms",
 ] as const;
 
 export const SITE_FOOTER_OPSFLOW_PARSER_BADGE = "PARSER" as const;
@@ -81,10 +79,10 @@ export const SITE_FOOTER_NAV_LINK_LABELS = [
 ] as const;
 
 const SITE_FOOTER_FLAGSHIP_NAV_LINKS = [
+  { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowPlayground },
+  { kind: "internal", label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplications },
   { kind: "internal", label: "AI Operational Audits", to: ROUTES.aiOperationalAudit },
   { kind: "internal", label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutions },
-  { kind: "internal", label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplications },
-  { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowPlayground },
   { kind: "internal", label: "Free Business Utilities", to: ROUTES.utilities },
 ] as const satisfies readonly FooterLinkCell[];
 
@@ -100,8 +98,6 @@ const SITE_FOOTER_COMPANY_NAV_LINKS = [
   { kind: "internal", label: "About Us", to: ROUTES.about },
   { kind: "internal", label: "Client Work", to: ROUTES.caseStudies },
   { kind: "internal", label: "Contact", to: ROUTES.contact },
-  { kind: "internal", label: "Privacy", to: ROUTES.privacy },
-  { kind: "internal", label: "Terms", to: ROUTES.terms },
 ] as const satisfies readonly FooterLinkCell[];
 
 const SITE_FOOTER_BOTTOM_LEGAL_LINKS = [

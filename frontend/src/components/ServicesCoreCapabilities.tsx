@@ -47,11 +47,6 @@ export default function ServicesCoreCapabilities() {
                 <Link to={capability.to}>{capability.title}</Link>
               </h3>
               <p>{capability.subtext}</p>
-              <ul>
-                {capability.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
             </article>
           );
         })}

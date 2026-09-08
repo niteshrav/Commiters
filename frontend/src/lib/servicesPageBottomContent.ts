@@ -1,36 +1,45 @@
 import { ROUTES } from "./routes";
 
+export type ServicesProcessStepTone = "blue" | "green" | "gold" | "purple";
+
 export type ServicesProcessStep = {
   index: string;
   title: string;
   body: string;
+  tone: ServicesProcessStepTone;
   href?: string;
 };
 
 export const SERVICES_HOW_WE_WORK = {
-  title: "How We Work",
-  subtext: "A four-stage process from operational audit through governed deployment and handoff.",
+  kicker: "OUR PROCESS",
+  titleLead: "How We ",
+  titleAccent: "Work",
+  subtext: "A simple, structured process from audit to deployment, built for real-world impact.",
   steps: [
     {
       index: "01",
       title: "AI Operational Audit",
-      body: "2-week workflow diagnostic and spec-driven architecture blueprint (/specs).",
+      body: "Assess your workflows and create a spec-driven blueprint.",
+      tone: "blue",
       href: ROUTES.aiOperationalAudit,
     },
     {
       index: "02",
       title: "Architecture & Policy Design",
-      body: "Schema definitions, two-tier API policy gateways, and MCP tool socket layout.",
+      body: "Define schemas, policy gateways, and MCP layouts.",
+      tone: "green",
     },
     {
       index: "03",
       title: "Spec-Driven Sprints",
-      body: "Production-ready full-stack engineering with continuous automated testing.",
+      body: "Build and test with continuous automation.",
+      tone: "gold",
     },
     {
       index: "04",
       title: "Governed Deployment & Handoff",
-      body: "CI/CD guardrail enforcement, RLS verification, and complete operational handoff.",
+      body: "CI/CD, RLS verification, and smooth handoff.",
+      tone: "purple",
     },
   ] as const satisfies readonly ServicesProcessStep[],
 } as const;

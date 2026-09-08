@@ -76,10 +76,11 @@ describe("siteFooterCopy", () => {
     expect(clientWork?.kind === "internal" ? clientWork.to : undefined).toBe(ROUTES.caseStudies);
     const contact = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Contact");
     expect(contact?.kind === "internal" ? contact.to : undefined).toBe(ROUTES.contact);
-    const privacy = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Privacy");
-    expect(privacy?.kind === "internal" ? privacy.to : undefined).toBe(ROUTES.privacy);
-    const terms = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Terms");
-    expect(terms?.kind === "internal" ? terms.to : undefined).toBe(ROUTES.terms);
+    expect(SITE_FOOTER_COPY.navColumns[2].links.map((link) => link.label)).toEqual([
+      "About Us",
+      "Client Work",
+      "Contact",
+    ]);
 
     expect(SITE_FOOTER_COPY.bottomLegalLinks.map((link) => link.label)).toEqual([
       ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,

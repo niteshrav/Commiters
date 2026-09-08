@@ -5,9 +5,22 @@ export type HomeMetric = {
   label: string;
 };
 
-export type HomeGovernancePillar = {
+export type HomeBuiltForScaleFeatureTone = "blue" | "green" | "gold";
+
+export type HomeBuiltForScaleFeature = {
   title: string;
-  body: string;
+  description: string;
+  tone: HomeBuiltForScaleFeatureTone;
+};
+
+export type HomeGovernancePillarTone = "blue" | "gold" | "green" | "purple";
+
+export type HomeGovernancePillar = {
+  label: string;
+  title: string;
+  summary: string;
+  tone: HomeGovernancePillarTone;
+  to: string;
 };
 
 /** Public paths for home mockup photography (cropped from Stitch screenshots). */
@@ -35,45 +48,68 @@ export const HOME_PAGE_COPY = {
     sprintValue: "v2.4.0 Engine",
   },
   corePillars: {
+    kicker: "BUILT ON TRUST",
     title: "The Commiters Governance Standard",
-    subtext:
-      "Four technical and governance pillars that keep enterprise AI products and cloud platforms auditable, permissioned, and production-safe.",
     items: [
       {
+        label: "MCP Connect",
         title: "Governed MCP Integration",
-        body: "Models connect to data via Model Context Protocol (MCP) sockets rather than direct DB access.",
+        summary: "Secure model-to-data integration.",
+        tone: "blue",
+        to: `${ROUTES.services}#governed-mcp-integration`,
       },
       {
+        label: "Policy Guard",
         title: "Two-Tier Policy Gateways",
-        body: "All API calls pass deterministic RBAC checks and semantic input validation before execution.",
+        summary: "AI calls with built-in policy checks.",
+        tone: "gold",
+        to: `${ROUTES.services}#two-tier-policy-gateways`,
       },
       {
+        label: "Access Shield",
         title: "Zero Ambient Authority & RLS",
-        body: "AI actions inherit user session permissions, enforcing Row-Level Security (RLS) at the database level.",
+        summary: "Automatic RLS and least privilege.",
+        tone: "green",
+        to: `${ROUTES.services}#zero-ambient-authority-rls`,
       },
       {
-        title: "Human-in-the-Loop ('Vibe Diff')",
-        body: "High-stakes operations require explicit user confirmation before database commit.",
+        label: "Vibe Check",
+        title: "Human-in-the-Loop",
+        summary: "Human approval for high-stakes actions.",
+        tone: "purple",
+        to: `${ROUTES.services}#human-in-the-loop-vibe-diff`,
       },
     ] satisfies readonly HomeGovernancePillar[],
   },
   builtForScale: {
-    title: "Spec-Driven Cloud Infrastructure",
-    body: "We architect systems that evolve with your business—combining cloud-native web platforms with rigid policy guardrails and production-grade security.",
+    kicker: "CLOUD INFRASTRUCTURE",
+    titleLead: "Cloud, Built ",
+    titleAccent: "Right",
+    body: "Secure, scalable infrastructure that grows with your business.",
+    imageAlt: "Cloud-native server infrastructure with high-availability networking",
+    imageBadgeLines: ["SCALABLE", "SECURE", "ALWAYS ON"],
+    imageUptimeLabel: "99.99% UPTIME",
     features: [
       {
-        title: "Cloud-Native Web Architecture (AWS, GCP, Azure, Vercel)",
-        description: "Cloud-native platforms on AWS, GCP, Azure, and Vercel that scale with demand.",
+        title: "Cloud Native",
+        description: "AWS • GCP • Azure • Vercel",
+        tone: "blue",
       },
       {
-        title: "Zero Ambient Authority & Database Row-Level Security (RLS)",
-        description: "Session-inherited permissions with row-level security enforced at the database.",
+        title: "Always Observable",
+        description: "Monitoring & smart alerts",
+        tone: "green",
       },
       {
-        title: "Micro-optimized API Response Times (<200ms) with strict SLA tracking",
-        description: "Core APIs are tuned for sub-200ms responses with explicit SLA monitoring.",
+        title: "Sub-200ms APIs",
+        description: "Fast, reliable performance",
+        tone: "gold",
       },
-    ],
+    ] satisfies readonly HomeBuiltForScaleFeature[],
+    ctaPrimary: "Explore Our Cloud Stack",
+    ctaPrimaryTo: ROUTES.webApplications,
+    ctaSecondary: "Learn More",
+    ctaSecondaryTo: ROUTES.services,
   },
   bottomCta: {
     title: "Ready to Build the Future?",

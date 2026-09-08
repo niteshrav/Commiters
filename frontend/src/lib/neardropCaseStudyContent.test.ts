@@ -28,7 +28,7 @@ describe("neardropCaseStudyContent", () => {
     expect("heroImage" in NEARDROP_CASE_STUDY_COPY).toBe(false);
     expect(NEARDROP_CASE_STUDY_COPY.execution.items.map((item) => item.title)).toEqual([
       "Architectural Integrity",
-      "Role-Isolated Portals",
+      "Dedicated Portal Surfaces",
       "Security First",
     ]);
     expect(NEARDROP_CASE_STUDY_COPY.execution.items[2].body).toMatch(/JWT session scoping/i);

@@ -36,7 +36,7 @@ describe("aiOperationalAuditPageContent", () => {
     expect(AI_OPERATIONAL_AUDIT_PRICING.engagement).toBe("Fixed-scope 2-week engagement");
     expect(AI_OPERATIONAL_AUDIT_PRICING.range).toBe("$3,000–$5,000 / ₹35,000–₹50,000");
     expect(AI_OPERATIONAL_AUDIT_PRICING.summary).toBe(
-      "Fixed-scope 2-week engagement ($3,000–$5,000 / ₹35,000–₹50,000).",
+      "Includes discovery sessions, a working prototype, and the Spec-Driven Architecture Blueprint.",
     );
   });
 
@@ -87,7 +87,7 @@ describe("aiOperationalAuditPageContent", () => {
     expect(AI_OPERATIONAL_AUDIT_FORM.bottleneckLabel).toBe("Current Manual Bottleneck Description");
     expect(AI_OPERATIONAL_AUDIT_FORM.scopeLabel).toBe("What should we scope?");
     expect(AI_OPERATIONAL_AUDIT_FORM.serviceNeeded).toBe("AI Operational Audit (2-Week Blueprint)");
-    expect(AI_OPERATIONAL_AUDIT_FORM.submitLabel).toBe(AI_OPERATIONAL_AUDIT_CTA_LABEL);
+    expect(AI_OPERATIONAL_AUDIT_FORM.submitLabel).toBe("Submit Audit Request");
     expect(AI_OPERATIONAL_AUDIT_FORM.budgetRange).toBe("$3,000–$5,000 / ₹35,000–₹50,000");
   });
 });

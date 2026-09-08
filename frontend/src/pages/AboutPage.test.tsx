@@ -8,7 +8,7 @@ import {
   ABOUT_CRAFTSMANSHIP_YEARS_STAT,
   ABOUT_FOUNDER_QUOTE,
 } from "../lib/aboutCraftsmanshipContent";
-import { ABOUT_PAGE_COPY, ABOUT_REJECTED_CTA_SUBTEXT } from "../lib/aboutPageContent";
+import { ABOUT_PAGE_COPY } from "../lib/aboutPageContent";
 import { STITCH_COPY } from "../lib/stitchDesign";
 
 describe("AboutPage", () => {
@@ -39,8 +39,8 @@ describe("AboutPage", () => {
 
     expect(screen.getByText(STITCH_COPY.about.kicker)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: STITCH_COPY.about.title })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: ABOUT_PAGE_COPY.principles.title })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "AI Operational Audit" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Core Operating Principles/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "AI Integration" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Governed Deployment & Handoff" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: ABOUT_PAGE_COPY.bottomCta.primaryLabel })).toHaveAttribute(
       "href",
@@ -50,6 +50,5 @@ describe("AboutPage", () => {
       "href",
       ABOUT_PAGE_COPY.bottomCta.secondaryTo,
     );
-    expect(screen.queryByText(ABOUT_REJECTED_CTA_SUBTEXT)).not.toBeInTheDocument();
   });
 });

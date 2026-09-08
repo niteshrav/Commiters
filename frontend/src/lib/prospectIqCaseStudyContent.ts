@@ -5,7 +5,7 @@ export const PROSPECT_IQ_CASE_STUDY_COPY = {
   documentTitle: "ProspectIQ AI Case Study",
   pageId: "prospectiq",
   kicker: "TECHNICAL CASE STUDY: GOVERNED AI & WORKFLOW SYSTEM",
-  title: "ProspectIQ AI: Automated B2B Sales Intelligence & Intent Scoring",
+  title: "ProspectIQ AI — Governed B2B Prospecting & Intelligence Engine",
   subtitle:
     "Governed multi-agent lead enrichment pipeline engineered with strict Model Context Protocol (MCP) tool sockets, semantic input validation, and zero vendor lock-in.",
   heroImage: {

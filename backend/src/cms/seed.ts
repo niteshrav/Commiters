@@ -345,7 +345,7 @@ async function seed() {
   if ((await Footer.countDocuments()) === 0) {
     await Footer.create({
       logo: "/assets/commiters-header-logo.png",
-      description: "Commit. Code. Connect.",
+      description: "Commiters — Enterprise AI & Cloud Systems",
       copyright: "© Commiters. All rights reserved.",
       socialLinks: [
         { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/?viewAsMember=true" },
@@ -423,6 +423,11 @@ async function seed() {
       }
       if (mergedLegal.length !== currentLegal.length) {
         footerDoc.legalLinks = mergedLegal.sort((a, b) => a.order - b.order);
+        await footerDoc.save();
+      }
+
+      if (footerDoc.description?.trim() === "Commit. Code. Connect.") {
+        footerDoc.description = "Commiters — Enterprise AI & Cloud Systems";
         await footerDoc.save();
       }
     }

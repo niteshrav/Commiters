@@ -6,7 +6,7 @@ import { ROUTES } from "./routes";
 describe("commitersCaseStudyContent", () => {
   it("matches the spec-driven cloud platform case study copy", () => {
     expect(COMMITERS_CASE_STUDY_COPY.kicker).toBe("TECHNICAL CASE STUDY: SPEC-DRIVEN CLOUD PLATFORM");
-    expect(COMMITERS_CASE_STUDY_COPY.title).toBe("Commiters.com: Spec-Driven Cloud Platform Architecture");
+    expect(COMMITERS_CASE_STUDY_COPY.title).toBe("Commiters.com — Spec-Driven Cloud Platform");
     expect(COMMITERS_CASE_STUDY_COPY.subtitle).toMatch(/zero-latency cloud web ecosystem/i);
     expect(COMMITERS_CASE_STUDY_COPY.overview.heading).toBe("Project Overview");
     expect(COMMITERS_CASE_STUDY_COPY.coreStack.heading).toBe("CORE STACK");

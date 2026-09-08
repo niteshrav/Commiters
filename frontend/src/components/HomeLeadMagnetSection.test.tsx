@@ -22,7 +22,7 @@ describe("HomeLeadMagnetSection", () => {
     createLead.mockResolvedValue({ ok: true });
   });
 
-  it("renders the full-bleed PDF-to-Excel showcase and capture card", () => {
+  it("renders the OpsFlow mockup showcase, upload visual, and capture card", () => {
     render(
       <MemoryRouter>
         <HomeLeadMagnetSection />
@@ -32,14 +32,23 @@ describe("HomeLeadMagnetSection", () => {
     const section = screen.getByTestId(HOME_LEAD_MAGNET_TEST_ID);
     expect(section).toHaveClass(...HOME_LEAD_MAGNET_LAYOUT.sectionClass.split(" "));
     expect(screen.getByText(HOME_LEAD_MAGNET_COPY.badge)).toHaveClass(HOME_LEAD_MAGNET_LAYOUT.badgeClass);
-    expect(screen.getByRole("heading", { name: HOME_LEAD_MAGNET_COPY.title })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Turn PDFs into Data/i })).toBeInTheDocument();
     expect(screen.getByText(HOME_LEAD_MAGNET_COPY.description)).toBeInTheDocument();
 
     const features = screen.getByTestId("home-lead-magnet-features");
-    expect(within(features).getAllByRole("listitem")).toHaveLength(HOME_LEAD_MAGNET_COPY.features.length);
+    expect(within(features).getAllByTestId("home-lead-magnet-feature")).toHaveLength(
+      HOME_LEAD_MAGNET_COPY.features.length,
+    );
     for (const feature of HOME_LEAD_MAGNET_COPY.features) {
       expect(within(features).getByText(feature.title)).toBeInTheDocument();
-      expect(within(features).getByText(feature.body)).toBeInTheDocument();
+      expect(within(features).getByText(feature.description)).toBeInTheDocument();
+    }
+
+    const visual = screen.getByTestId("home-lead-magnet-visual");
+    expect(within(visual).getByText(HOME_LEAD_MAGNET_COPY.visual.uploadTitle)).toBeInTheDocument();
+    expect(within(visual).getByText(HOME_LEAD_MAGNET_COPY.visual.outputLabel)).toBeInTheDocument();
+    for (const label of HOME_LEAD_MAGNET_COPY.documentTypes) {
+      expect(within(visual).getByText(label)).toBeInTheDocument();
     }
 
     const card = screen.getByTestId("home-lead-magnet-card");
@@ -50,15 +59,17 @@ describe("HomeLeadMagnetSection", () => {
       "placeholder",
       HOME_LEAD_MAGNET_COPY.emailPlaceholder,
     );
+
     const actions = screen.getByTestId("home-lead-magnet-actions");
-    expect(within(actions).getByRole("link", { name: HOME_LEAD_MAGNET_COPY.ctaConverter })).toHaveAttribute(
+    expect(within(actions).getByRole("link", { name: HOME_LEAD_MAGNET_COPY.ctaPrimary })).toHaveAttribute(
       "href",
-      HOME_LEAD_MAGNET_COPY.ctaConverterTo,
+      HOME_LEAD_MAGNET_COPY.ctaPrimaryTo,
     );
     expect(within(actions).getByRole("link", { name: HOME_LEAD_MAGNET_COPY.ctaDemo })).toHaveAttribute(
       "href",
       "#home-lead-magnet-card",
     );
+
     expect(section).toHaveAttribute("id", HOME_LEAD_MAGNET_SECTION_ID);
     expect(screen.getByRole("button", { name: HOME_LEAD_MAGNET_COPY.submitLabel })).toBeInTheDocument();
     expect(screen.getByText(HOME_LEAD_MAGNET_COPY.microcopy)).toBeInTheDocument();

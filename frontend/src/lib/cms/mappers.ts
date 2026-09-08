@@ -17,7 +17,7 @@ import { CONTACT_STUDIO } from "../contactPageContent";
 import { buildMailtoPublicContactHref, publicContactEmailDisplay } from "../siteContact";
 import { JOIN_US_POSITION_OPTIONS } from "../joinUsPositions";
 import { LEAD_SERVICE_LABELS } from "../leadServices";
-import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC } from "../siteBrand";
+import { COMMITERS_HEADER_LOGO_ALT, COMMITERS_HEADER_LOGO_SRC, COMMITERS_TAGLINE } from "../siteBrand";
 import { hasCmsDoc, hasCmsItems } from "./api";
 import { resolveBrandLogoSrc } from "./media";
 
@@ -242,6 +242,18 @@ function mergeSocialLinks(cmsLinks: FooterLinkCell[] | null): FooterLinkCell[] {
     });
 }
 
+function footerBrandLinesMatch(a: string, b: string): boolean {
+  return a.trim().toLowerCase() === b.trim().toLowerCase();
+}
+
+function resolveFooterBrandTagline(cmsDescription: unknown, fallbackTagline: string): string {
+  const raw = asString(cmsDescription, fallbackTagline);
+  if (footerBrandLinesMatch(raw, COMMITERS_TAGLINE)) {
+    return fallbackTagline;
+  }
+  return raw;
+}
+
 export function resolveFooter(
   cmsFooter: Record<string, unknown> | null | undefined,
 ): {
@@ -257,7 +269,7 @@ export function resolveFooter(
   if (!hasCmsDoc(cmsFooter)) {
     return {
       brandTagline: fallback.brandTagline,
-      brandSubtext: fallback.brandSubtext,
+      brandSubtext: "",
       copyrightLine1: fallback.copyrightLine1,
       socialLinks: fallback.socialLinks,
       bottomLegalLinks: stripAdminLinks(fallback.bottomLegalLinks),
@@ -320,9 +332,11 @@ export function resolveFooter(
     },
   ];
 
+  const brandTagline = resolveFooterBrandTagline(cmsFooter.description, fallback.brandTagline);
+
   return {
-    brandTagline: asString(cmsFooter.description, fallback.brandTagline),
-    brandSubtext: fallback.brandSubtext,
+    brandTagline,
+    brandSubtext: "",
     copyrightLine1: asString(cmsFooter.copyright, fallback.copyrightLine1),
     socialLinks: mergeSocialLinks(socialLinks),
     bottomLegalLinks: stripAdminLinks(mergeLegalLinks(legalLinks)),

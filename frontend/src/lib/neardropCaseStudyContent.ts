@@ -113,7 +113,7 @@ export const NEARDROP_CASE_STUDY_COPY = {
       {
         id: "precision",
         number: "02",
-        title: "Role-Isolated Portals",
+        title: "Dedicated Portal Surfaces",
         body: "Multi-tenant dashboards for Vendors, Drivers, and Customers, keeping each workflow isolated with spec-driven access paths.",
       },
       {
