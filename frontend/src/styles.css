@@ -91,8 +91,8 @@
   --radius-sm: 0;
   --radius-md: 0;
   --radius-lg: 0;
-  --max-width: 1360px;
-  --site-gutter: clamp(16px, 2.5vw, 32px);
+  --max-width: 100%;
+  --site-gutter: 5cm;
   /* Sticky navbar (~74px) + comfortable gap so hash targets aren’t clipped under the header */
   --sticky-header-offset: 90px;
   --site-header-height: 84px;
@@ -165,7 +165,8 @@ select:focus-visible {
 }
 
 .container {
-  width: min(var(--max-width), 96vw);
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   padding-inline: var(--site-gutter);
   box-sizing: border-box;
@@ -178,7 +179,9 @@ select:focus-visible {
 .site-shell > main.container:has(> .route-shell[data-route="/work"]),
 .site-shell > main.container:has(.commiters-case-study-page),
 .site-shell > main.container:has(.ai-summarizer-case-study-page),
-.site-shell > main.container:has(.multi-role-crm-case-study-page) {
+.site-shell > main.container:has(.multi-role-crm-case-study-page),
+.site-shell > main.container:has(.neardrop-case-study-page),
+.site-shell > main.container:has(.nextsaas-case-study-page) {
   width: 100%;
   max-width: none;
   padding-inline: 0;
@@ -3932,7 +3935,7 @@ textarea {
 
 .case-studies-page {
   width: 100%;
-  max-width: 1200px;
+  max-width: none;
   min-width: 0;
   margin: 0 auto;
   padding-left: var(--site-gutter);
@@ -4561,7 +4564,7 @@ textarea {
 
 .commiters-case-study-page {
   width: 100%;
-  max-width: 1200px;
+  max-width: none;
   min-width: 0;
   margin: 0 auto;
   padding-left: var(--site-gutter);
@@ -5006,7 +5009,10 @@ textarea {
 .prospectiq-case-study-page {
   position: relative;
   isolation: isolate;
-  max-width: 1220px;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
   background: #ffffff;
   color: #0a1628;
   overflow-x: hidden;
@@ -5614,7 +5620,10 @@ textarea {
 .ecoroute-case-study-page {
   position: relative;
   isolation: isolate;
-  max-width: 1220px;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
   overflow-x: hidden;
   color: #042f2e;
   background:
@@ -6236,6 +6245,11 @@ textarea {
 }
 
 .ai-summarizer-case-study-page {
+  width: 100%;
+  max-width: min(var(--max-width), 100%);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
   background: #ffffff;
   color: #0f172a;
 }
@@ -6574,6 +6588,11 @@ textarea {
 }
 
 .neardrop-case-study-page {
+  width: 100%;
+  max-width: min(var(--max-width), 100%);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
   background: #ffffff;
   color: #000000;
 }
@@ -7002,6 +7021,11 @@ textarea {
 }
 
 .multi-role-crm-case-study-page {
+  width: 100%;
+  max-width: min(var(--max-width), 100%);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
   background: #ffffff;
   color: #000000;
 }
@@ -7505,6 +7529,11 @@ textarea {
 }
 
 .nextsaas-case-study-page {
+  width: 100%;
+  max-width: min(var(--max-width), 100%);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
   background: #ffffff;
   color: #121317;
 }
@@ -11832,10 +11861,10 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 /* —— Home page (Stitch screenshots 1–5) —— */
 .band-breakout {
-  width: 100cqw;
-  max-width: 100cqw;
-  margin-left: calc(50% - 50cqw);
-  margin-right: calc(50% - 50cqw);
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
   box-sizing: border-box;
 }
 
@@ -11900,9 +11929,10 @@ html[data-a11y-reduce-motion="true"] *::after {
 .home-core-pillars-inner {
   position: relative;
   z-index: 1;
-  max-width: var(--container-max, 1120px);
+  max-width: none;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 32px);
+  padding: 0;
 }
 
 .home-core-pillars-header {
@@ -12217,9 +12247,9 @@ html[data-a11y-reduce-motion="true"] *::after {
 .home-built-for-scale-inner {
   position: relative;
   z-index: 1;
-  width: min(var(--max-width), 96vw);
+  width: 100%;
   margin: 0 auto;
-  padding-inline: var(--site-gutter);
+  padding-inline: 0;
 }
 
 .home-built-for-scale-grid {
@@ -13008,7 +13038,7 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .footer-columns--mockup.footer-mockup-grid.footer-v2-main {
   max-width: var(--max-width, 1120px);
-  width: min(var(--max-width), 96vw);
+  width: 100%;
   margin: 0 auto;
   padding: clamp(32px, 4vw, 44px) var(--site-gutter) clamp(24px, 3vw, 32px);
   display: grid;
@@ -13046,7 +13076,7 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .footer-v2-bar-inner {
   max-width: var(--max-width, 1120px);
-  width: min(var(--max-width), 96vw);
+  width: 100%;
   margin: 0 auto;
   padding: 14px var(--site-gutter);
 }
@@ -13153,9 +13183,9 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .footer-columns--mockup.footer-mockup-grid {
   max-width: var(--max-width, 1120px);
-  width: min(var(--max-width), 96vw);
+  width: 100%;
   margin: 0 auto;
-  padding: clamp(28px, 3vw, 36px) clamp(20px, 3vw, 28px);
+  padding: clamp(28px, 3vw, 36px) var(--site-gutter);
   display: grid;
   grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
   align-items: start;
@@ -13248,9 +13278,9 @@ html[data-a11y-reduce-motion="true"] *::after {
   grid-column: auto;
   grid-row: auto;
   max-width: var(--max-width, 1120px);
-  width: min(var(--max-width), 96vw);
+  width: 100%;
   margin: 0 auto;
-  padding: 18px clamp(16px, 4vw, 32px) 24px;
+  padding: 18px var(--site-gutter) 24px;
   border-top: 1px solid #e2e8f0;
   display: flex;
   flex-wrap: wrap;
@@ -13460,6 +13490,7 @@ html[data-a11y-reduce-motion="true"] *::after {
 @media (max-width: 768px) {
   :root {
     --site-header-height: 64px;
+    --site-gutter: 16px;
   }
 
   .header.header-light {

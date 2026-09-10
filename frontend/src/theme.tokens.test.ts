@@ -2,7 +2,6 @@ import { readFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { BRAND_LOGO_FOOTER_HEIGHT_PX, BRAND_LOGO_HEADER_HEIGHT_PX } from "./lib/brandDisplay";
-import { SITE_CONTENT_MAX_WIDTH_PX } from "./lib/layoutTokens";
 import { LOGO_CSS_VARIABLES, LOGO_THEME } from "./lib/themeColors";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -13,7 +12,8 @@ describe("theme CSS tokens", () => {
   it("uses white canvas and site button tokens in :root", () => {
     expect(css).toContain(`--page-background: ${LOGO_THEME.pageBackground}`);
     expect(css).toContain(`--stitch-blue: ${LOGO_THEME.stitchBlue}`);
-    expect(css).toContain(`--max-width: ${SITE_CONTENT_MAX_WIDTH_PX}px`);
+    expect(css).toContain("--max-width: 100%");
+    expect(css).toContain("--site-gutter: 5cm");
     expect(LOGO_THEME.pageBackground).toBe("#ffffff");
   });
 
