@@ -4,6 +4,9 @@ export const CASE_STUDIES_INTRO_SECTION_CLASS = "case-studies-intro-section" as 
 export const CASE_STUDIES_INTRO_INNER_CLASS = "case-studies-intro-inner" as const;
 export const CASE_STUDIES_INTRO_KICKER_CLASS = "case-studies-intro-kicker" as const;
 export const CASE_STUDIES_INTRO_TITLE_CLASS = "case-studies-intro-title" as const;
+export const CASE_STUDIES_INTRO_TITLE_ACCENT_CLASS = "case-studies-intro-title-accent" as const;
+export const CASE_STUDIES_FEATURED_CLASS = "case-studies-featured" as const;
+export const CASE_STUDIES_PAGE_MAX_WIDTH = "1200px" as const;
 export const CASE_STUDIES_INTRO_SUBTEXT_CLASS = "case-studies-intro-subtext" as const;
 export const CASE_STUDIES_GRID_SECTION_CLASS = "case-studies-grid-section" as const;
 export const CASE_STUDIES_GRID_CLASS = "case-studies-grid" as const;
@@ -31,6 +34,7 @@ export function isShowcaseHorizontalCard(projectId: string): projectId is CaseSt
 }
 export {
   CASE_STUDY_CARD_BORDER_VAR,
+  CASE_STUDY_CARD_RADIUS,
   CASE_STUDY_AI_COPY_GAP,
   CASE_STUDY_AI_IMAGE_ASPECT_RATIO,
   CASE_STUDY_AI_IMAGE_BORDER_RADIUS,
@@ -92,8 +96,11 @@ export const CASE_STUDY_BODY_CLASS = "case-study-card-body" as const;
 export const CASE_STUDY_DETAILS_LINK_CLASS = "case-study-details-link" as const;
 export const CASE_STUDIES_BOTTOM_CTA_SECTION_CLASS = "case-studies-bottom-cta" as const;
 export const CASE_STUDIES_BOTTOM_CTA_TITLE_CLASS = "case-studies-bottom-cta-title" as const;
+export const CASE_STUDIES_BOTTOM_CTA_SUBTEXT_CLASS = "case-studies-bottom-cta-subtext" as const;
 export const CASE_STUDIES_BOTTOM_CTA_ACTIONS_CLASS = "case-studies-bottom-cta-actions" as const;
 export const CASE_STUDIES_BOTTOM_CTA_PRIMARY_CLASS = "case-studies-bottom-cta-btn--primary" as const;
 export const CASE_STUDIES_BOTTOM_CTA_SECONDARY_CLASS = "case-studies-bottom-cta-btn--secondary" as const;
 export const CASE_STUDIES_GRID_COLUMNS = "repeat(3, minmax(0, 1fr))";
 export const CASE_STUDIES_GRID_GAP = "20px";
+export const CASE_STUDIES_FEATURED_GAP = "22px";
+export const CASE_STUDY_FEATURED_COLUMNS = "minmax(0, 0.45fr) minmax(0, 0.55fr)";

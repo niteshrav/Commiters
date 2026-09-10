@@ -12,16 +12,15 @@ describe("NearDropCaseStudyFunctionalExcellenceSection", () => {
     expect(
       within(section).getByRole("heading", { name: NEARDROP_CASE_STUDY_COPY.functionalExcellence.heading }),
     ).toBeInTheDocument();
-    expect(within(section).getByText(NEARDROP_CASE_STUDY_COPY.functionalExcellence.description)).toBeInTheDocument();
-    expect(within(section).getByText(NEARDROP_CASE_STUDY_COPY.functionalExcellence.countLabel)).toBeInTheDocument();
+    expect(within(section).getByText(/Sub-second WebSocket updates/i)).toBeInTheDocument();
 
     const grid = within(section).getByTestId("neardrop-case-study-functional-excellence-grid");
     expect(grid.querySelectorAll(".neardrop-case-study-feature-card")).toHaveLength(4);
-    expect(grid.querySelector(".neardrop-case-study-feature-card--highlight")).toBeTruthy();
-    expect(screen.queryByRole("heading", { name: "Key Features" })).not.toBeInTheDocument();
+    expect(grid.querySelector(".neardrop-case-study-feature-card--highlight")).toBeFalsy();
+    expect(screen.queryByRole("heading", { name: "Functional Excellence" })).not.toBeInTheDocument();
     expect(within(section).queryByText("01")).not.toBeInTheDocument();
 
-    expect(within(section).getByRole("heading", { name: "Role-Isolated Portals" })).toBeInTheDocument();
+    expect(within(section).getByRole("heading", { name: "Role-based Access" })).toBeInTheDocument();
     expect(within(section).getByRole("heading", { name: "Real-time Tracking" })).toBeInTheDocument();
     expect(within(section).getByRole("heading", { name: "Normalized Schema" })).toBeInTheDocument();
     expect(within(section).getByRole("heading", { name: "Driver-Merchant Coordination" })).toBeInTheDocument();

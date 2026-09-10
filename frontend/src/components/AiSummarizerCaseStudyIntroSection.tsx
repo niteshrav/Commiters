@@ -11,12 +11,14 @@ import {
   AI_SUMMARIZER_CASE_STUDY_METADATA_LIST_CLASS,
   AI_SUMMARIZER_CASE_STUDY_METADATA_PANEL_CLASS,
   AI_SUMMARIZER_CASE_STUDY_METADATA_VALUE_CLASS,
+  AI_SUMMARIZER_CASE_STUDY_TAG_CLASS,
+  AI_SUMMARIZER_CASE_STUDY_TAGS_CLASS,
   AI_SUMMARIZER_CASE_STUDY_TITLE_CLASS,
 } from "../lib/aiSummarizerCaseStudyLayout";
 
 export default function AiSummarizerCaseStudyIntroSection() {
-  const { kicker, title, description, metadata, heroImage } = AI_SUMMARIZER_CASE_STUDY_COPY;
-  const metadataItems = [metadata.timeline, metadata.coreStack];
+  const { kicker, title, description, tags, metadata, heroImage } = AI_SUMMARIZER_CASE_STUDY_COPY;
+  const metadataItems = [metadata.timeline, metadata.coreStack, metadata.industry];
 
   return (
     <section
@@ -31,6 +33,13 @@ export default function AiSummarizerCaseStudyIntroSection() {
             {title}
           </h1>
           <p className={AI_SUMMARIZER_CASE_STUDY_DESCRIPTION_CLASS}>{description}</p>
+          <ul className={AI_SUMMARIZER_CASE_STUDY_TAGS_CLASS} aria-label="Project tags">
+            {tags.map((tag) => (
+              <li key={tag} className={AI_SUMMARIZER_CASE_STUDY_TAG_CLASS}>
+                {tag}
+              </li>
+            ))}
+          </ul>
         </div>
         <aside className={AI_SUMMARIZER_CASE_STUDY_METADATA_PANEL_CLASS} data-testid="ai-summarizer-case-study-metadata">
           <dl className={AI_SUMMARIZER_CASE_STUDY_METADATA_LIST_CLASS}>

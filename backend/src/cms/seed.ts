@@ -140,7 +140,7 @@ async function seed() {
       vision:
         "Founded by Nitesh Rav, Commiters emerged from a decade of high-stakes engineering in global tech hubs.",
       images: ["/assets/about/nitesh-rav-founder.png"],
-      statistics: [{ value: "13+", label: "Years Experience" }],
+      statistics: [{ value: "15+", label: "Years Experience" }],
       isActive: true,
     });
   }

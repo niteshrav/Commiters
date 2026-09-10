@@ -4,7 +4,12 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { NEARDROP_CASE_STUDY_DESIGN, NEARDROP_CASE_STUDY_STITCH_PREVIEW_NODE_ID } from "./neardropCaseStudyDesign";
 import {
-  NEARDROP_CASE_STUDY_DESCRIPTION_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_BODY_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_ITEM_ICON_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_KICKER_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_SECTION_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_DESCRIPTION_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_HEADING_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_ITEM_CLASS,
@@ -16,14 +21,13 @@ import {
   NEARDROP_CASE_STUDY_BOTTOM_CTA_PRIMARY_CLASS,
   NEARDROP_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS,
   NEARDROP_CASE_STUDY_BOTTOM_CTA_TITLE_CLASS,
-  NEARDROP_CASE_STUDY_FEATURE_CARD_HIGHLIGHT_CLASS,
+  NEARDROP_CASE_STUDY_DESCRIPTION_CLASS,
   NEARDROP_CASE_STUDY_FEATURE_GRID_CLASS,
   NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_COUNT_CLASS,
   NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_HEADING_CLASS,
   NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_SECTION_CLASS,
   NEARDROP_CASE_STUDY_INTRO_INNER_CLASS,
   NEARDROP_CASE_STUDY_INTRO_SECTION_CLASS,
-  NEARDROP_CASE_STUDY_INTRO_STACK_CLASS,
   NEARDROP_CASE_STUDY_KICKER_CLASS,
   NEARDROP_CASE_STUDY_TITLE_ACCENT_CLASS,
   NEARDROP_CASE_STUDY_TITLE_CLASS,
@@ -44,8 +48,8 @@ describe("neardropCaseStudyDesign", () => {
     expect(NEARDROP_CASE_STUDY_DESIGN.colors.pageBackground).toBe("#ffffff");
     expect(NEARDROP_CASE_STUDY_DESIGN.colors.primary).toBe("#0066ff");
     expect(NEARDROP_CASE_STUDY_DESIGN.colors.body).toBe("#4b5563");
-    expect(NEARDROP_CASE_STUDY_DESIGN.layout.introStackColumns).toBe("repeat(3, minmax(0, 1fr))");
-    expect(NEARDROP_CASE_STUDY_DESIGN.layout.featureColumns).toBe("repeat(2, minmax(0, 1fr))");
+    expect(NEARDROP_CASE_STUDY_DESIGN.layout.architectureColumns).toBe("repeat(4, minmax(0, 1fr))");
+    expect(NEARDROP_CASE_STUDY_DESIGN.layout.featureColumns).toBe("repeat(4, minmax(0, 1fr))");
   });
 
   it("paints the full case study page with the pure white canvas tone", () => {
@@ -60,15 +64,15 @@ describe("neardropCaseStudyDesign", () => {
       `.${NEARDROP_CASE_STUDY_INTRO_SECTION_CLASS} {`,
       `.${NEARDROP_CASE_STUDY_INTRO_INNER_CLASS} {`,
     );
-    expect(intro).toContain("text-align: center");
+    expect(intro).toContain("text-align: left");
 
     const inner = ruleBlock(
       `.${NEARDROP_CASE_STUDY_INTRO_INNER_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`,
+      `.neardrop-case-study-intro-copy {`,
     );
     expect(inner).toContain(`max-width: ${NEARDROP_CASE_STUDY_DESIGN.layout.introInnerMaxWidth}`);
 
-    const kicker = ruleBlock(`.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`, `.neardrop-case-study-kicker-dot {`);
+    const kicker = ruleBlock(`.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`, `.${NEARDROP_CASE_STUDY_TITLE_CLASS} {`);
     expect(kicker).toContain(`font-weight: ${NEARDROP_CASE_STUDY_DESIGN.typography.kickerWeight}`);
     expect(kicker).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
     expect(kicker).toContain(`background: ${NEARDROP_CASE_STUDY_DESIGN.colors.kickerSurface}`);
@@ -84,12 +88,45 @@ describe("neardropCaseStudyDesign", () => {
 
     const description = ruleBlock(
       `.${NEARDROP_CASE_STUDY_DESCRIPTION_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_INTRO_STACK_CLASS} {`,
+      `.neardrop-case-study-intro-stack {`,
     );
     expect(description).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.body}`);
   });
 
-  it("styles the functional excellence feature grid with a highlighted coordination card", () => {
+  it("styles the technical architecture four-pillar grid", () => {
+    const kicker = ruleBlock(
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_KICKER_CLASS} {`,
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS} {`,
+    );
+    expect(kicker).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.goldLabel}`);
+
+    const heading = ruleBlock(
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS} {`,
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_BODY_CLASS} {`,
+    );
+    expect(heading).toContain(`font-weight: ${NEARDROP_CASE_STUDY_DESIGN.typography.titleWeight}`);
+
+    const body = ruleBlock(
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_BODY_CLASS} {`,
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS} {`,
+    );
+    expect(body).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.body}`);
+
+    const grid = ruleBlock(
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS} {`,
+      `.neardrop-case-study-architecture-item {`,
+    );
+    expect(grid).toContain(`grid-template-columns: ${NEARDROP_CASE_STUDY_DESIGN.layout.architectureColumns}`);
+
+    const icon = ruleBlock(
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_ITEM_ICON_CLASS} {`,
+      `.neardrop-case-study-architecture-item-title {`,
+    );
+    expect(icon).toContain("border-radius: 999px");
+    expect(icon).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
+  });
+
+  it("styles the functional excellence feature grid with matching white cards", () => {
     const section = ruleBlock(
       `.${NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_SECTION_CLASS} {`,
       `.neardrop-case-study-functional-excellence-header {`,
@@ -100,7 +137,7 @@ describe("neardropCaseStudyDesign", () => {
       `.${NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_HEADING_CLASS} {`,
       `.neardrop-case-study-functional-excellence-description {`,
     );
-    expect(heading).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.title}`);
+    expect(heading).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
 
     const count = ruleBlock(
       `.${NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_COUNT_CLASS} {`,
@@ -114,11 +151,13 @@ describe("neardropCaseStudyDesign", () => {
     );
     expect(featureGrid).toContain(`grid-template-columns: ${NEARDROP_CASE_STUDY_DESIGN.layout.featureColumns}`);
 
-    const highlightCard = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_FEATURE_CARD_HIGHLIGHT_CLASS} {`,
+    const featureCard = ruleBlock(
+      `.neardrop-case-study-feature-card {`,
       `.neardrop-case-study-feature-icon {`,
     );
-    expect(highlightCard).toContain(`background: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
+    expect(featureCard).toContain("border-radius: 22px");
+    expect(css).not.toContain(".neardrop-case-study-feature-card--highlight");
+    expect(css).not.toContain(".neardrop-case-study-feature-watermark");
   });
 
   it("styles the precision execution process band with a split layout and white step cards", () => {
@@ -150,10 +189,10 @@ describe("neardropCaseStudyDesign", () => {
       `.${NEARDROP_CASE_STUDY_EXECUTION_ITEM_CLASS} {`,
       `.neardrop-case-study-execution-number {`,
     );
-    expect(item).toContain("background: #ffffff");
+    expect(item).toContain("background: transparent");
   });
 
-  it("styles the enterprise-grade gradient bottom CTA banner", () => {
+  it("styles the light bottom CTA banner", () => {
     const section = ruleBlock(
       `.${NEARDROP_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS} {`,
       `.${NEARDROP_CASE_STUDY_BOTTOM_CTA_PANEL_CLASS} {`,

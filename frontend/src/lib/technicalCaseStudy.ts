@@ -46,6 +46,7 @@ export type TechnicalCaseStudyCopy = {
     items: readonly TechnicalCaseStudyStackItem[];
   };
   architecture: {
+    kicker?: string;
     heading: string;
     sections: readonly TechnicalCaseStudySection[];
   };

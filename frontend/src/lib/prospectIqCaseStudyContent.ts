@@ -1,3 +1,4 @@
+import { TECH_LOCAL_ICONS } from "./homeTechStack";
 import { ROUTES } from "./routes";
 import type { TechnicalCaseStudyCopy } from "./technicalCaseStudy";
 
@@ -26,7 +27,13 @@ export const PROSPECT_IQ_CASE_STUDY_COPY = {
     items: [
       { slug: "python", alt: "Python", title: "Python 3.11", subtitle: "Agent runtime & ingestion" },
       { slug: "fastapi", alt: "FastAPI", title: "FastAPI", subtitle: "Typed policy-gated APIs" },
-      { slug: "openai", alt: "MCP", title: "MCP Protocol", subtitle: "Scoped tool sockets" },
+      {
+        slug: "mcp",
+        alt: "MCP",
+        title: "MCP Protocol",
+        subtitle: "Scoped tool sockets",
+        iconSrc: TECH_LOCAL_ICONS.mcp,
+      },
       { slug: "anthropic", alt: "LLM", title: "OpenAI / Anthropic APIs", subtitle: "Vendor-portable models" },
       { slug: "postgresql", alt: "PostgreSQL", title: "PostgreSQL", subtitle: "Validated firmographics" },
     ],
@@ -36,18 +43,18 @@ export const PROSPECT_IQ_CASE_STUDY_COPY = {
     sections: [
       {
         id: "enrichment",
-        title: "Multi-Agent Lead Enrichment Engine",
-        body: "Parallel ingestion threads that query web targets, verify domain records, and synthesize company intent signals into structured JSON schemas.",
+        title: "Multi-Agent Lead Enrichment",
+        body: "Parallel agents query, verify domains, and emit structured firmographics.",
       },
       {
         id: "mcp",
-        title: "Model Context Protocol (MCP) & Policy Gateways",
-        body: "AI agents access enrichment tools and CRM databases strictly via scoped MCP sockets, preventing raw database execution or unmonitored API calls.",
+        title: "Policy-Gated MCP",
+        body: "Tools and CRM stay behind scoped MCP sockets — no raw database access.",
       },
       {
         id: "vibe-diff",
-        title: 'Deterministic Output & Human-in-the-Loop ("Vibe Diff")',
-        body: "High-stakes actions (such as automated bulk outreach or CRM record updating) require explicit human confirmation before database commit.",
+        title: "Human-in-the-Loop",
+        body: "Bulk outreach and CRM writes wait for explicit human confirmation.",
       },
     ],
   },
@@ -55,19 +62,19 @@ export const PROSPECT_IQ_CASE_STUDY_COPY = {
     {
       id: "agents",
       title: "Parallel Enrichment",
-      body: "Multi-agent threads verify domains and emit schema-valid JSON without leaking unmonitored context.",
+      body: "Agents verify domains and emit schema-valid JSON.",
       icon: "performance",
     },
     {
       id: "mcp",
       title: "Policy-Gated MCP",
-      body: "Two-tier API gateways keep every tool call inside authorized MCP sockets and zero ambient authority.",
+      body: "Every tool call stays inside authorized MCP sockets.",
       icon: "seo",
     },
     {
       id: "hitl",
       title: "Vibe Diff Approval",
-      body: "Bulk outreach and CRM writes wait for human confirmation before any persistence commit.",
+      body: "CRM writes wait for human confirmation before commit.",
       icon: "minimalist",
     },
   ],

@@ -55,7 +55,7 @@ export const ABOUT_FOUNDER_QUOTE_RIGHT = "-24px";
 export const ABOUT_FOUNDER_QUOTE_Z_INDEX = "2";
 
 export const ABOUT_CRAFTSMANSHIP_YEARS_STAT = {
-  value: "13+ Years",
+  value: "15+ Years",
   label: "INDUSTRY EXCELLENCE",
   valueClassName: ABOUT_CRAFTSMANSHIP_STAT_VALUE_CLASS,
 } as const;

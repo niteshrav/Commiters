@@ -4,9 +4,10 @@ import { ROUTES } from "./routes";
 
 describe("caseStudiesPageContent", () => {
   it("matches the governed architecture work-page hero copy", () => {
-    expect(CASE_STUDIES_PAGE_COPY.intro.kicker).toBe("PROVEN ENTERPRISE ARCHITECTURE");
+    expect(CASE_STUDIES_PAGE_COPY.intro.kicker).toBe("CASE STUDIES");
     expect(CASE_STUDIES_PAGE_COPY.intro.title).toBe("Governed AI & Cloud Engineering in Action");
-    expect(CASE_STUDIES_PAGE_COPY.intro.subtext).toMatch(/zero ambient authority/i);
+    expect(CASE_STUDIES_PAGE_COPY.intro.titleAccent).toBe("in Action");
+    expect(CASE_STUDIES_PAGE_COPY.intro.subtext).toMatch(/AI, cloud, and secure engineering/i);
   });
 
   it("lists five enterprise case studies with problem-solution and impact framing", () => {
@@ -90,13 +91,12 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDY_PROJECTS[4].external).toBeUndefined();
   });
 
-  it("uses portfolio CTAs and a bottom band linking to the audit and services", () => {
+  it("uses portfolio CTAs and a bottom band linking to conversation", () => {
     const projectDetailLabels = CASE_STUDY_PROJECTS.map((project) => project.detailsLabel);
     expect(projectDetailLabels.every((label) => label === "View Project Details")).toBe(true);
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.title).toBe("Ready for the next level?");
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryLabel).toBe("Book Operational Audit");
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.secondaryLabel).toBe("View Services & Products");
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryTo).toBe(ROUTES.aiOperationalAudit);
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.secondaryTo).toBe(ROUTES.services);
+    expect(CASE_STUDIES_PAGE_COPY.bottomCta.title).toBe("Have a project in mind?");
+    expect(CASE_STUDIES_PAGE_COPY.bottomCta.subtext).toBe("Let's build something impactful together.");
+    expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryLabel).toBe("Start a Conversation");
+    expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryTo).toBe(ROUTES.contact);
   });
 });

@@ -327,7 +327,7 @@ export function resolveFooter(
     },
     {
       id: "company",
-      heading: "Company & Legal",
+      heading: fallback.navColumns[2].heading,
       links: mergeCompanyLinks(navigationLinks),
     },
   ];

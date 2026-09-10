@@ -11,9 +11,9 @@ import {
 } from "../lib/commitersCaseStudyLayout";
 
 function FeatureIcon({ icon }: { icon: CommitersCaseStudyHighlight["icon"] }) {
-  if (icon === "seo") return <IconSearch width={28} height={28} />;
-  if (icon === "minimalist") return <IconLayers width={28} height={28} />;
-  return <IconBolt width={28} height={28} />;
+  if (icon === "seo") return <IconSearch width={18} height={18} />;
+  if (icon === "minimalist") return <IconLayers width={18} height={18} />;
+  return <IconBolt width={18} height={18} />;
 }
 
 export default function CommitersCaseStudyFeaturesSection() {

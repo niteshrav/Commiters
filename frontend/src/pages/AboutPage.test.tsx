@@ -26,8 +26,8 @@ describe("AboutPage", () => {
     expect(screen.getByTestId("about-craftsmanship-section")).toBeInTheDocument();
     expect(screen.getByTestId(ABOUT_CRAFTSMANSHIP_COPY_START_TEST_ID)).toBeInTheDocument();
     expect(screen.getByTestId("about-principles-section")).toBeInTheDocument();
-    expect(screen.getByTestId("services-how-we-work-section")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /How We Work/i })).toBeInTheDocument();
+    expect(screen.getByTestId("about-journey-section")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /From Idea to Production/i })).toBeInTheDocument();
     expect(screen.getByTestId("about-bottom-cta")).toBeInTheDocument();
 
     expect(screen.getByText(STITCH_COPY.about.visionBody)).toBeInTheDocument();
@@ -39,9 +39,9 @@ describe("AboutPage", () => {
 
     expect(screen.getByText(STITCH_COPY.about.kicker)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: STITCH_COPY.about.title })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /Core Operating Principles/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "AI Integration" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Governed Deployment & Handoff" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /What We Stand For/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "AI With Guardrails" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Launch" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: ABOUT_PAGE_COPY.bottomCta.primaryLabel })).toHaveAttribute(
       "href",
       ABOUT_PAGE_COPY.bottomCta.primaryTo,

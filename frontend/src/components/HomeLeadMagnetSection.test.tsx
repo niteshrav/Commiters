@@ -32,7 +32,7 @@ describe("HomeLeadMagnetSection", () => {
     const section = screen.getByTestId(HOME_LEAD_MAGNET_TEST_ID);
     expect(section).toHaveClass(...HOME_LEAD_MAGNET_LAYOUT.sectionClass.split(" "));
     expect(screen.getByText(HOME_LEAD_MAGNET_COPY.badge)).toHaveClass(HOME_LEAD_MAGNET_LAYOUT.badgeClass);
-    expect(screen.getByRole("heading", { name: /Turn PDFs into Data/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /OpsFlow AI/i })).toBeInTheDocument();
     expect(screen.getByText(HOME_LEAD_MAGNET_COPY.description)).toBeInTheDocument();
 
     const features = screen.getByTestId("home-lead-magnet-features");

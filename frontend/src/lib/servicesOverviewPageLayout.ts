@@ -21,3 +21,7 @@ export const SERVICES_OVERVIEW_STANDARDS_BANNER_CLASS = "services-overview-stand
 export const SERVICES_OVERVIEW_INQUIRY_SECTION_CLASS = "services-overview-inquiry" as const;
 export const SERVICES_OVERVIEW_INQUIRY_FORM_CLASS = "services-overview-inquiry-form" as const;
 export const SERVICES_OVERVIEW_FIELD_CLASS = "services-overview-field" as const;
+export const SERVICES_OVERVIEW_HERO_COPY_CLASS = "services-overview-hero-copy" as const;
+export const SERVICES_OVERVIEW_HERO_VISUAL_CLASS = "services-overview-hero-visual" as const;
+export const SERVICES_OVERVIEW_HERO_CHIPS_CLASS = "services-overview-hero-chips" as const;
+export const SERVICES_OVERVIEW_ENGAGE_CLASS = "services-overview-engage" as const;

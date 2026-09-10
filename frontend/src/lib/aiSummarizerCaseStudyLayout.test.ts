@@ -65,7 +65,7 @@ describe("aiSummarizerCaseStudyLayout", () => {
       `.${AI_SUMMARIZER_CASE_STUDY_METADATA_ITEM_CLASS}:not(:last-child) {`,
       `.${AI_SUMMARIZER_CASE_STUDY_METADATA_LABEL_CLASS} {`,
     );
-    expect(metadataDivider).toContain(`border-bottom: 1px solid ${AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.divider}`);
+    expect(metadataDivider).toContain(`border-right: 1px solid ${AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.divider}`);
 
     const heroImage = ruleBlock(
       `.${AI_SUMMARIZER_CASE_STUDY_HERO_IMAGE_CLASS} {`,
@@ -88,14 +88,15 @@ describe("aiSummarizerCaseStudyLayout", () => {
       `.${AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_CARD_CLASS} {`,
     );
     expect(architectureGrid).toContain(`grid-template-columns: ${AI_SUMMARIZER_CASE_STUDY_DESIGN.layout.architectureColumns}`);
-    expect(architectureGrid).toContain(`border-top: 1px solid ${AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.divider}`);
+    expect(architectureGrid).toContain("gap: 16px");
 
     const architectureCard = ruleBlock(
       `.${AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_CARD_CLASS} {`,
       `.${AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_ICON_CLASS} {`,
     );
     expect(architectureCard).toContain(`padding: ${AI_SUMMARIZER_CASE_STUDY_DESIGN.layout.cardPadding}`);
-    expect(architectureCard).not.toContain("box-shadow:");
+    expect(architectureCard).toContain(`border-radius: ${AI_SUMMARIZER_CASE_STUDY_DESIGN.layout.cardRadius}`);
+    expect(architectureCard).toContain("box-shadow:");
 
     const architectureIcon = ruleBlock(
       `.${AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_ICON_CLASS} {`,

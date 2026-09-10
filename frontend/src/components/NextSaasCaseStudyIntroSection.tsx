@@ -1,7 +1,10 @@
 import { NEXTSAAS_CASE_STUDY_COPY } from "../lib/nextsaasCaseStudyContent";
 import {
   NEXTSAAS_CASE_STUDY_DESCRIPTION_CLASS,
+  NEXTSAAS_CASE_STUDY_HERO_COLLAGE_CLASS,
+  NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_COPY_CLASS,
+  NEXTSAAS_CASE_STUDY_INTRO_DECOR_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_HERO_IMAGE_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_SCOPE_PIPELINES_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_SECTION_CLASS,
@@ -23,7 +26,7 @@ import {
   NEXTSAAS_CASE_STUDY_SCOPE_PIPELINES_GRID_CLASS,
   NEXTSAAS_CASE_STUDY_TITLE_CLASS,
 } from "../lib/nextsaasCaseStudyLayout";
-import { IconGlobe } from "./icons";
+import { IconAirplane, IconGlobe } from "./icons";
 import { NextSaasCaseStudyMetadataPanel } from "./NextSaasCaseStudyOutcomesSection";
 
 export default function NextSaasCaseStudyIntroSection() {
@@ -35,6 +38,9 @@ export default function NextSaasCaseStudyIntroSection() {
       data-testid="nextsaas-case-study-intro"
       aria-labelledby="nextsaas-case-study-title"
     >
+      <span className={NEXTSAAS_CASE_STUDY_INTRO_DECOR_CLASS} aria-hidden>
+        <IconAirplane width={28} height={28} />
+      </span>
       <div className={NEXTSAAS_CASE_STUDY_INTRO_SHELL_CLASS}>
         <div className={NEXTSAAS_CASE_STUDY_INTRO_COPY_CLASS}>
           <p className={NEXTSAAS_CASE_STUDY_KICKER_CLASS}>{kicker}</p>
@@ -73,15 +79,33 @@ export default function NextSaasCaseStudyIntroSection() {
                 <p className={NEXTSAAS_CASE_STUDY_PIPELINES_SUBHEADING_CLASS}>{pipelines.subheading}</p>
               </div>
               <div className={NEXTSAAS_CASE_STUDY_PIPELINES_MEDIA_CLASS}>
-                <img
-                  className={NEXTSAAS_CASE_STUDY_INTRO_HERO_IMAGE_CLASS}
-                  src={introHeroImage.src}
-                  srcSet={introHeroImage.srcSet}
-                  sizes={introHeroImage.sizes}
-                  alt={introHeroImage.alt}
-                  loading="eager"
-                  decoding="async"
-                />
+                <div className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_CLASS}>
+                  <img
+                    className={NEXTSAAS_CASE_STUDY_INTRO_HERO_IMAGE_CLASS}
+                    src={introHeroImage.src}
+                    srcSet={introHeroImage.srcSet}
+                    sizes={introHeroImage.sizes}
+                    alt={introHeroImage.alt}
+                    loading="eager"
+                    decoding="async"
+                  />
+                  <img
+                    className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS}
+                    src="/assets/case-studies/work-browse-my-vacation.png"
+                    srcSet="/assets/case-studies/work-browse-my-vacation.png 1x, /assets/case-studies/work-browse-my-vacation@2x.png 2x"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS}
+                    src="/assets/case-studies/browse-my-vacation-hero.png"
+                    srcSet="/assets/case-studies/browse-my-vacation-hero.png 1x, /assets/case-studies/browse-my-vacation-hero@2x.png 2x"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
           </article>

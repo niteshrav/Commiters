@@ -117,7 +117,7 @@ describe("responsiveLayout", () => {
     const mobile = mediaBlocks(BREAKPOINT_MOBILE_PX);
     expect(mobile).toMatch(/\.stitch-home-hero-photo\s*\{[\s\S]*object-fit:\s*contain/);
     expect(mobile).toMatch(/\.stitch-home-hero-photo\s*\{[\s\S]*height:\s*auto/);
-    expect(mobile).toMatch(/\.case-study-card--showcase\.case-study-card--horizontal\s*\{[\s\S]*grid-template-rows:\s*auto auto auto/);
+    expect(mobile).toMatch(/\.case-study-card--horizontal\s*\{[\s\S]*grid-template-columns:\s*1fr/);
     expect(mobile).toMatch(/\.case-study-card--showcase \.case-study-card-cta-row\s*\{[\s\S]*grid-row:\s*3/);
     expect(mobile).toMatch(/\.nextsaas-case-study-pipelines-layout\s*\{[\s\S]*grid-template-columns:\s*1fr/);
     expect(mobile).toMatch(/\.multi-role-crm-case-study-tech-stack-item--wide\s*\{[\s\S]*flex-direction:\s*column/);

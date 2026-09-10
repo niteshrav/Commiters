@@ -1,5 +1,8 @@
 import { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 import { IconChevronDown } from "../icons";
+import { ROUTES } from "../../lib/routes";
+import { TRUSTTAP_DISPLAY } from "../../lib/trustTapPageDesign";
 import { TRUSTTAP_FAQ } from "../../lib/trustTapPageContent";
 import { TRUSTTAP_FAQ_LIST_CLASS, TRUSTTAP_SECTION_CLASS, TRUSTTAP_SECTION_INNER_CLASS } from "../../lib/trustTapPageLayout";
 import TrustTapSectionHeader from "./TrustTapSectionHeader";
@@ -14,7 +17,7 @@ export default function TrustTapFaqSection() {
 
   return (
     <section
-      className={`${TRUSTTAP_SECTION_CLASS} reveal-on-scroll`}
+      className={`${TRUSTTAP_SECTION_CLASS} trusttap-faq reveal-on-scroll`}
       data-testid="trusttap-faq"
       aria-labelledby="trusttap-faq-title"
     >
@@ -24,6 +27,11 @@ export default function TrustTapFaqSection() {
           title={copy.title}
           titleId="trusttap-faq-title"
           subtext={copy.subtext}
+          action={
+            <Link className="btn btn-secondary trusttap-faq-all" to={ROUTES.faq}>
+              {TRUSTTAP_DISPLAY.faqAllLabel}
+            </Link>
+          }
         />
         <ul className={`faq-accordion-list ${TRUSTTAP_FAQ_LIST_CLASS}`}>
           {copy.items.map((item) => {

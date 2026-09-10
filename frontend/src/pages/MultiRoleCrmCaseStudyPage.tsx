@@ -1,5 +1,6 @@
 import MultiRoleCrmCaseStudyArchitectureSection from "../components/MultiRoleCrmCaseStudyArchitectureSection";
 import MultiRoleCrmCaseStudyBottomCta from "../components/MultiRoleCrmCaseStudyBottomCta";
+import MultiRoleCrmCaseStudyImpactSection from "../components/MultiRoleCrmCaseStudyImpactSection";
 import MultiRoleCrmCaseStudyIntroSection from "../components/MultiRoleCrmCaseStudyIntroSection";
 import MultiRoleCrmCaseStudyVisionSection from "../components/MultiRoleCrmCaseStudyVisionSection";
 import { usePageSeo } from "../hooks/usePageSeo";
@@ -14,6 +15,7 @@ export default function MultiRoleCrmCaseStudyPage() {
       <MultiRoleCrmCaseStudyIntroSection />
       <MultiRoleCrmCaseStudyVisionSection />
       <MultiRoleCrmCaseStudyArchitectureSection />
+      <MultiRoleCrmCaseStudyImpactSection />
       <MultiRoleCrmCaseStudyBottomCta />
     </div>
   );

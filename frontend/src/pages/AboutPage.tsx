@@ -1,8 +1,8 @@
 import AboutBottomCta from "../components/AboutBottomCta";
 import AboutCraftsmanshipSection from "../components/AboutCraftsmanshipSection";
+import AboutDeliveryJourneySection from "../components/AboutDeliveryJourneySection";
 import AboutIntroSection from "../components/AboutIntroSection";
 import AboutOperatingPrinciplesSection from "../components/AboutOperatingPrinciplesSection";
-import ServicesHowWeWorkSection from "../components/ServicesHowWeWorkSection";
 import { usePageSeo } from "../hooks/usePageSeo";
 import { aboutPageSeo } from "../lib/sitePageSeo";
 
@@ -14,7 +14,7 @@ export default function AboutPage() {
       <AboutIntroSection />
       <AboutCraftsmanshipSection />
       <AboutOperatingPrinciplesSection />
-      <ServicesHowWeWorkSection />
+      <AboutDeliveryJourneySection />
       <AboutBottomCta />
     </div>
   );

@@ -5,11 +5,10 @@ export const ABOUT_REJECTED_CTA_SUBTEXT =
 
 export type AboutPrincipleIcon = "mcp" | "authority" | "spec" | "async";
 
-export type AboutPrincipleTone = "blue" | "green" | "purple" | "gold";
+export type AboutPrincipleTone = "blue" | "green" | "orange" | "navy";
 
 export type AboutOperatingPrinciple = {
   id: string;
-  index: string;
   title: string;
   body: string;
   icon: AboutPrincipleIcon;
@@ -18,45 +17,83 @@ export type AboutOperatingPrinciple = {
 
 export const ABOUT_OPERATING_PRINCIPLES: AboutOperatingPrinciple[] = [
   {
-    id: "ai-integration",
-    index: "01",
-    title: "AI Integration",
-    body: "Connect models via MCP sockets with full governance.",
+    id: "ai-with-guardrails",
+    title: "AI With Guardrails",
+    body: "Governed AI integrations",
     icon: "mcp",
     tone: "blue",
   },
   {
-    id: "secure-by-design",
-    index: "02",
-    title: "Secure by Design",
-    body: "Built with strict RLS and least privilege access.",
+    id: "security-by-default",
+    title: "Security by Default",
+    body: "RLS and least-privilege access",
     icon: "authority",
     tone: "green",
   },
   {
-    id: "spec-driven-development",
-    index: "03",
-    title: "Spec-Driven Development",
-    body: "Predictable builds with structured schemas and zero technical debt.",
+    id: "build-from-specs",
+    title: "Build From Specs",
+    body: "Predictable, documented systems",
     icon: "spec",
-    tone: "purple",
+    tone: "orange",
   },
   {
-    id: "async-first-transparent",
-    index: "04",
-    title: "Async-First & Transparent",
-    body: "Structured updates with direct engineering access.",
+    id: "transparent-delivery",
+    title: "Transparent Delivery",
+    body: "Clear progress and ownership",
     icon: "async",
-    tone: "gold",
+    tone: "navy",
   },
 ];
 
+export type AboutJourneyStage = {
+  id: string;
+  index: string;
+  title: string;
+  body: string;
+  href?: string;
+};
+
+export const ABOUT_DELIVERY_JOURNEY = {
+  kicker: "DELIVERY JOURNEY",
+  titleLead: "From Idea to ",
+  titleAccent: "Production",
+  subtext: "Four connected stages from discovery to a governed launch.",
+  stages: [
+    {
+      id: "discover",
+      index: "01",
+      title: "Discover",
+      body: "Map the problem, constraints, and what success looks like.",
+      href: ROUTES.aiOperationalAudit,
+    },
+    {
+      id: "architect",
+      index: "02",
+      title: "Architect",
+      body: "Define the system shape, policies, and delivery plan.",
+    },
+    {
+      id: "build",
+      index: "03",
+      title: "Build",
+      body: "Ship in spec-driven sprints with continuous checks.",
+    },
+    {
+      id: "launch",
+      index: "04",
+      title: "Launch",
+      body: "Deploy, verify, and hand off a production-ready system.",
+    },
+  ] as const satisfies readonly AboutJourneyStage[],
+} as const;
+
 export const ABOUT_PAGE_COPY = {
   principles: {
-    kicker: "OUR FOUNDATION",
-    titleLead: "Core Operating ",
-    titleAccent: "Principles",
-    subtext: "Guiding how we build, operate, and deliver lasting impact.",
+    kicker: "OUR VALUES",
+    titleLead: "What We ",
+    titleAccent: "Stand For",
+    subtext: "The beliefs that shape how we engineer high-stakes systems.",
     viewAllLabel: "VIEW ALL PRINCIPLES",
     viewAllTo: ROUTES.services,
   },

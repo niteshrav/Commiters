@@ -117,8 +117,8 @@ export const SITEMAP_PAGE_COPY = {
       icon: "about",
       links: [
         { label: "Vision", to: buildAboutSectionHref("vision") },
-        { label: "Operating Principles", to: buildAboutSectionHref("principles") },
-        { label: "How We Work", to: buildAboutSectionHref("how-we-work") },
+        { label: "What We Stand For", to: buildAboutSectionHref("principles") },
+        { label: "From Idea to Production", to: buildAboutSectionHref("how-we-work") },
       ],
     },
     {

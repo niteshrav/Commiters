@@ -27,29 +27,31 @@ export default function ServicesCoreCapabilities() {
       className={`${SERVICES_OVERVIEW_CAPABILITIES_SECTION_CLASS} reveal-on-scroll`}
       aria-labelledby="services-capabilities-title"
     >
-      <h2 id="services-capabilities-title">{SERVICES_OVERVIEW_CAPABILITIES_TITLE}</h2>
-      <p className="services-overview-capabilities-subtext">{SERVICES_OVERVIEW_CAPABILITIES_SUBTEXT}</p>
-      <div className={SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS} data-testid="services-core-capabilities">
-        {SERVICES_OVERVIEW_CAPABILITIES.map((capability) => {
-          const Icon = CAPABILITY_ICONS[capability.icon];
-          return (
-            <article
-              key={capability.id}
-              id={capability.id}
-              className={`${SERVICES_OVERVIEW_CAPABILITY_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}
-              data-testid="services-capability-card"
-            >
-              <span className="services-overview-offering-tag">{capability.badge}</span>
-              <span className="services-overview-capability-icon" aria-hidden>
-                <Icon />
-              </span>
-              <h3>
-                <Link to={capability.to}>{capability.title}</Link>
-              </h3>
-              <p>{capability.subtext}</p>
-            </article>
-          );
-        })}
+      <div className="services-overview-inner">
+        <h2 id="services-capabilities-title">{SERVICES_OVERVIEW_CAPABILITIES_TITLE}</h2>
+        <p className="services-overview-capabilities-subtext">{SERVICES_OVERVIEW_CAPABILITIES_SUBTEXT}</p>
+        <div className={SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS} data-testid="services-core-capabilities">
+          {SERVICES_OVERVIEW_CAPABILITIES.map((capability) => {
+            const Icon = CAPABILITY_ICONS[capability.icon];
+            return (
+              <article
+                key={capability.id}
+                id={capability.id}
+                className={`${SERVICES_OVERVIEW_CAPABILITY_CARD_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}
+                data-testid="services-capability-card"
+              >
+                <span className="services-overview-card-icon" aria-hidden>
+                  <Icon />
+                </span>
+                <span className="services-overview-offering-tag">{capability.badge}</span>
+                <h3>
+                  <Link to={capability.to}>{capability.title}</Link>
+                </h3>
+                <p>{capability.subtext}</p>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

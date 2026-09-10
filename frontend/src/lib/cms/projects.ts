@@ -1,4 +1,4 @@
-import { CASE_STUDY_PROJECTS, isHiddenFromWorkPage, type CaseStudyProject } from "../caseStudiesPageContent";
+import { CASE_STUDY_PROJECTS, CASE_STUDY_PORTFOLIO_EXTRAS, isHiddenFromWorkPage, type CaseStudyProject } from "../caseStudiesPageContent";
 import {
   applyWorkPageCaseStudyLayout,
   isWorkPagePortfolioProjectId,
@@ -154,7 +154,9 @@ function isSameCaseStudy(left: CaseStudyProject, right: CaseStudyProject): boole
 
 export function resolveCaseStudyProjects(cmsProjects: Record<string, unknown>[] | null | undefined): CaseStudyProject[] {
   if (!hasCmsItems(cmsProjects)) {
-    return CASE_STUDY_PROJECTS.filter((project) => !isHiddenFromWorkPage(project)).map(applyWorkPageCaseStudyLayout);
+    return [...CASE_STUDY_PROJECTS, ...CASE_STUDY_PORTFOLIO_EXTRAS]
+      .filter((project) => !isHiddenFromWorkPage(project))
+      .map(applyWorkPageCaseStudyLayout);
   }
 
   const mapped = cmsProjects
@@ -166,7 +168,7 @@ export function resolveCaseStudyProjects(cmsProjects: Record<string, unknown>[] 
     })
     .map((project, index) => mapCmsProjectToCaseStudy(project, index));
 
-  const extras = CASE_STUDY_PROJECTS.filter(
+  const extras = [...CASE_STUDY_PROJECTS, ...CASE_STUDY_PORTFOLIO_EXTRAS].filter(
     (entry) => !mapped.some((project) => isSameCaseStudy(project, entry)),
   ).map(applyWorkPageCaseStudyLayout);
 

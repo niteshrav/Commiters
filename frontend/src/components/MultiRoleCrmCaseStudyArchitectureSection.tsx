@@ -1,38 +1,34 @@
-import type { MultiRoleCrmArchitectureIndicator, MultiRoleCrmCaseStudyFeature } from "../lib/multiRoleCrmCaseStudyContent";
+import type { MultiRoleCrmCaseStudyFeature } from "../lib/multiRoleCrmCaseStudyContent";
 import { MULTI_ROLE_CRM_CASE_STUDY_COPY } from "../lib/multiRoleCrmCaseStudyContent";
 import {
   MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_BODY_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_COPY_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_HEADING_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_HEADER_CLASS,
-  MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_INDICATOR_CLASS,
-  MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_INDICATORS_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_SECTION_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_FEATURE_BODY_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_FEATURE_GRID_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_GOLD_CLASS,
+  MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_GREEN_CLASS,
+  MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_PURPLE_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ITEM_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_FEATURE_TITLE_CLASS,
 } from "../lib/multiRoleCrmCaseStudyLayout";
-import { IconBolt, IconChartLine, IconGauge, IconRobot, IconShieldCheck } from "./icons";
-
-function ArchitectureIndicatorIcon({ icon }: { icon: MultiRoleCrmArchitectureIndicator["icon"] }) {
-  if (icon === "shield") return <IconShieldCheck width={24} height={24} />;
-  return <IconGauge width={24} height={24} />;
-}
+import { IconBolt, IconChartLine, IconDatabase, IconShieldCheck } from "./icons";
 
 function FeatureIcon({ icon }: { icon: MultiRoleCrmCaseStudyFeature["icon"] }) {
-  if (icon === "rbac") return <IconShieldCheck width={28} height={28} />;
-  if (icon === "rag") return <IconRobot width={28} height={28} />;
-  if (icon === "sync") return <IconBolt width={28} height={28} />;
-  return <IconChartLine width={28} height={28} />;
+  if (icon === "rbac") return <IconShieldCheck width={18} height={18} />;
+  if (icon === "rag") return <IconDatabase width={18} height={18} />;
+  if (icon === "sync") return <IconBolt width={18} height={18} />;
+  return <IconChartLine width={18} height={18} />;
 }
 
 function featureIconClassName(tone: MultiRoleCrmCaseStudyFeature["iconTone"]): string {
-  return tone === "gold"
-    ? `${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_CLASS} ${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_GOLD_CLASS}`
-    : MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_CLASS;
+  if (tone === "gold") return `${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_CLASS} ${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_GOLD_CLASS}`;
+  if (tone === "purple") return `${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_CLASS} ${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_PURPLE_CLASS}`;
+  if (tone === "green") return `${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_CLASS} ${MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_GREEN_CLASS}`;
+  return MULTI_ROLE_CRM_CASE_STUDY_FEATURE_ICON_CLASS;
 }
 
 export default function MultiRoleCrmCaseStudyArchitectureSection() {
@@ -50,20 +46,6 @@ export default function MultiRoleCrmCaseStudyArchitectureSection() {
             {architecture.heading}
           </h2>
           <p className={MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_BODY_CLASS}>{architecture.description}</p>
-        </div>
-        <div className={MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_INDICATORS_CLASS}>
-          {architecture.indicators.map((indicator) => (
-            <div
-              key={indicator.id}
-              className={MULTI_ROLE_CRM_CASE_STUDY_ARCHITECTURE_INDICATOR_CLASS}
-              aria-label={indicator.label}
-              title={indicator.label}
-            >
-              <span aria-hidden>
-                <ArchitectureIndicatorIcon icon={indicator.icon} />
-              </span>
-            </div>
-          ))}
         </div>
       </div>
       <div className={MULTI_ROLE_CRM_CASE_STUDY_FEATURE_GRID_CLASS} data-testid="multi-role-crm-case-study-features">

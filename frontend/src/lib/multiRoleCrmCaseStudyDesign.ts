@@ -38,6 +38,6 @@ export const MULTI_ROLE_CRM_CASE_STUDY_DESIGN = {
     challengeGridColumns: "repeat(2, minmax(0, 1fr))",
     architectureFeatureColumns: "repeat(4, minmax(0, 1fr))",
     stackGap: "clamp(24px, 4vw, 48px)",
-    roundEight: "8px",
+    cardRadius: "16px",
   },
 } as const;

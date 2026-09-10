@@ -17,6 +17,7 @@ import "./styles/seoLanding.css";
 import "./styles/testimonialsPage.css";
 import "./styles/siteTypeScale.css";
 import "./styles/homeLeadMagnet.css";
+import "./styles/workPage.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -12,3 +12,7 @@ export const AUDIT_TIMELINE_CLASS = "audit-timeline" as const;
 export const AUDIT_GOVERNANCE_CLASS = "audit-governance" as const;
 export const AUDIT_FORM_CLASS = "audit-form" as const;
 export const AUDIT_FIELD_CLASS = "audit-field" as const;
+export const AUDIT_HERO_COPY_CLASS = "audit-hero-copy" as const;
+export const AUDIT_HERO_VISUAL_CLASS = "audit-hero-visual" as const;
+export const AUDIT_HERO_CHIPS_CLASS = "audit-hero-chips" as const;
+export const AUDIT_ENGAGE_CLASS = "audit-engage" as const;

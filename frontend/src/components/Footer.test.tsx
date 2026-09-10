@@ -102,7 +102,7 @@ describe("Footer", () => {
       "href",
       ROUTES.utilities,
     );
-    expect(within(flagshipNav).queryByRole("link", { name: /^TrustTap$/i })).not.toBeInTheDocument();
+    expect(within(flagshipNav).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
     expect(within(flagshipNav).queryByRole("link", { name: /^Custom AI Pipelines$/i })).not.toBeInTheDocument();
     expect(within(engineeringNav).getByRole("link", { name: /^B2B Web Applications$/i })).toHaveAttribute(
       "href",
@@ -110,6 +110,10 @@ describe("Footer", () => {
     );
     expect(within(companyNav).getByRole("link", { name: /^About Us$/i })).toHaveAttribute("href", ROUTES.about);
     expect(within(companyNav).getByRole("link", { name: /^Client Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(within(companyNav).getByRole("link", { name: /^Services$/i })).toHaveAttribute("href", ROUTES.services);
+    expect(within(companyNav).getByRole("link", { name: /Jobs/i })).toHaveAttribute("href", ROUTES.openPositions);
+    expect(within(companyNav).getByRole("link", { name: /^FAQ$/i })).toHaveAttribute("href", ROUTES.faq);
+    expect(within(companyNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
     expect(within(companyNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
     expect(within(companyNav).queryByRole("link", { name: /^Privacy$/i })).not.toBeInTheDocument();
     expect(within(companyNav).queryByRole("link", { name: /^Terms$/i })).not.toBeInTheDocument();

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CASE_STUDY_PROJECTS, isHiddenFromWorkPage } from "../caseStudiesPageContent";
+import { CASE_STUDY_PROJECTS, allStaticWorkPageProjects, isHiddenFromWorkPage } from "../caseStudiesPageContent";
 import { ROUTES } from "../routes";
 import { TESTIMONIALS_PAGE_ITEMS } from "../testimonialsPageContent";
 import { mapCmsProjectToCaseStudy, resolveCaseStudyProjects } from "./projects";
@@ -7,9 +7,9 @@ import { mapCmsTestimonial, resolveTestimonialsPageItems } from "./projects";
 
 describe("cms projects", () => {
   it("falls back to static case studies when CMS projects are empty", () => {
-    const expectedIds = CASE_STUDY_PROJECTS.filter((project) => !isHiddenFromWorkPage(project)).map(
-      (project) => project.id,
-    );
+    const expectedIds = allStaticWorkPageProjects()
+      .filter((project) => !isHiddenFromWorkPage(project))
+      .map((project) => project.id);
     const projects = resolveCaseStudyProjects(null);
     expect(projects.map((project) => project.id)).toEqual(expectedIds);
     expect(projects.find((project) => project.id === "commiters")?.gridSpan).toBe("wide");

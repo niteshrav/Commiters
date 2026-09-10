@@ -11,7 +11,7 @@
 }
 
 .home-lead-magnet {
-  background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 42%, #ffffff 100%);
+  background: #ffffff;
   padding: clamp(48px, 5vw, 64px) 0;
   color: #0f172a;
   display: flex;
@@ -21,8 +21,8 @@
 }
 
 .home-lead-magnet.band-breakout {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100cqw;
+  max-width: 100cqw;
 }
 
 .home-lead-magnet-inner {
@@ -293,7 +293,8 @@
 }
 
 .home-lead-magnet-card {
-  width: min(var(--max-width, 1360px), 96vw);
+  width: 100%;
+  max-width: 100%;
   margin: clamp(28px, 4vw, 40px) auto 0;
   padding: 28px 32px;
   background: #fff;
@@ -396,7 +397,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 620px) {
   .home-lead-magnet-doc-pill {
     font-size: 0.65rem;
     padding: 4px 8px;

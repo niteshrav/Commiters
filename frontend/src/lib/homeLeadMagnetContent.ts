@@ -14,8 +14,8 @@ export type HomeLeadMagnetFeature = {
 
 export const HOME_LEAD_MAGNET_COPY = {
   badge: "PROPRIETARY AI PRODUCT",
-  titleLead: "Turn PDFs into ",
-  titleAccent: "Data",
+  titleLead: "OpsFlow ",
+  titleAccent: "AI",
   description: "Extract clean, structured data from any business document.",
   features: [
     {

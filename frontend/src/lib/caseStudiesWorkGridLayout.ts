@@ -15,6 +15,7 @@ export const WORK_PAGE_CASE_STUDY_LAYOUT: Record<string, WorkPageCaseStudyLayout
   "neardrop-mvp": { gridSpan: "wide", layout: "horizontal" },
   "prospectiq-ai": { gridSpan: "wide", layout: "horizontal" },
   "ecoroute-intelligence": { gridSpan: "wide", layout: "horizontal" },
+  "governed-ai": { gridSpan: "narrow", layout: "stacked" },
 };
 
 const WORK_PAGE_CASE_STUDY_ID_BY_HREF: Record<string, string> = {
@@ -63,4 +64,26 @@ export function applyWorkPageCaseStudyLayout<T extends { id: string; gridSpan: C
     gridSpan: workLayout.gridSpan,
     layout: workLayout.layout,
   };
+}
+
+export const WORK_PAGE_FEATURED_IDS = ["commiters", "ai-summarizer"] as const;
+
+export function splitWorkPageCaseStudies<T extends { id: string }>(projects: readonly T[]): {
+  featured: T[];
+  compact: T[];
+} {
+  const featured = WORK_PAGE_FEATURED_IDS.map((id) => projects.find((project) => project.id === id)).filter(
+    (project): project is T => Boolean(project),
+  );
+  const featuredIds = new Set(featured.map((project) => project.id));
+  const compact = projects.filter((project) => !featuredIds.has(project.id));
+  return { featured, compact };
+}
+
+export function asFeaturedWorkCard<T extends { gridSpan: CaseStudyGridSpan; layout: CaseStudyLayout }>(project: T): T {
+  return { ...project, gridSpan: "wide", layout: "horizontal" };
+}
+
+export function asCompactWorkCard<T extends { gridSpan: CaseStudyGridSpan; layout: CaseStudyLayout }>(project: T): T {
+  return { ...project, gridSpan: "narrow", layout: "stacked" };
 }

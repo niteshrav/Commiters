@@ -10,3 +10,7 @@ export const WEBAPP_CARD_CLASS = "webapp-card" as const;
 export const WEBAPP_STACK_CLASS = "webapp-stack" as const;
 export const WEBAPP_FORM_CLASS = "webapp-form" as const;
 export const WEBAPP_FIELD_CLASS = "webapp-field" as const;
+export const WEBAPP_HERO_COPY_CLASS = "webapp-hero-copy" as const;
+export const WEBAPP_HERO_VISUAL_CLASS = "webapp-hero-visual" as const;
+export const WEBAPP_HERO_CHIPS_CLASS = "webapp-hero-chips" as const;
+export const WEBAPP_ENGAGE_CLASS = "webapp-engage" as const;

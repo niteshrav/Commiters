@@ -1,6 +1,6 @@
 import { ROUTES } from "./routes";
 
-export type AiSummarizerArchitectureIcon = "layers" | "list" | "gauge";
+export type AiSummarizerArchitectureIcon = "layers" | "shield" | "gauge";
 export type AiSummarizerBadgeVariant = "dark" | "light";
 
 export type AiSummarizerArchitectureCard = {
@@ -29,47 +29,48 @@ export type AiSummarizerExecutionItem = {
 
 export const AI_SUMMARIZER_CASE_STUDY_COPY = {
   documentTitle: "AI Summarizer Case Study",
-  kicker: "CASE STUDY: GOVERNED AI & WORKFLOW SYSTEMS",
+  kicker: "CASE STUDY",
   title: "Enterprise Document Ingestion & Governed LLM Pipeline",
-  description:
-    "High-speed document parsing engine built with strict Model Context Protocol (MCP) sockets and zero ambient authority.",
+  description: "High-speed document parsing with MCP sockets and zero ambient authority.",
+  tags: ["Document AI", "MCP", "Google Cloud"] as const,
   metadata: {
-    timeline: { label: "TIMELINE", value: "4 Weeks Development" },
-    coreStack: { label: "CORE STACK", value: "Python 3.11, MCP Protocol, Pydantic / FastAPI, Google Cloud Run / Vertex AI" },
+    timeline: { label: "DURATION", value: "4 Weeks" },
+    coreStack: { label: "STACK", value: "Python, MCP, Vertex AI" },
+    industry: { label: "INDUSTRY", value: "Enterprise AI" },
   },
   heroImage: {
     src: "/assets/case-studies/ai-summarizer-hero.png",
     srcSet: "/assets/case-studies/ai-summarizer-hero@2x.png 2x",
-    alt: "High-tech microchip processor visual representing the AI Summarizer inference pipeline",
+    alt: "Document invoices flowing into a governed AI summarizer dashboard",
   },
   architecture: {
     heading: "Core Architecture",
     cards: [
       {
         id: "multi-page",
-        title: "Multi-Page Processing",
-        body: "Streaming context-window ingestion for multi-page invoices, receipts, and GST records, ensuring no loss of nuance across chapter boundaries.",
+        title: "Ingestion & Processing",
+        body: "Streaming multi-page invoices, receipts, and GST records without losing context.",
         icon: "layers",
         badge: { text: "OPTIMIZED", variant: "dark" },
       },
       {
         id: "synthesis",
         title: "Governance & Security",
-        body: "Policy-gated execution via two-tier API gateways and human-in-the-loop (\"Vibe Diff\") approval, eliminating unmonitored model access.",
-        icon: "list",
+        body: "Policy-gated MCP sockets with two-tier gateways and zero ambient authority.",
+        icon: "shield",
         badge: { text: "LOGIC ENGINE", variant: "light" },
       },
       {
         id: "latency",
-        title: "Latency & Schema Optimization",
-        body: "Parallel thread execution delivering structured JSON outputs with guaranteed schema validation and deterministic Pydantic contracts.",
+        title: "Optimization",
+        body: "Parallel execution with deterministic Pydantic schemas and low-latency JSON output.",
         icon: "gauge",
         badge: { text: "HIGH-SPEED", variant: "dark" },
       },
     ] satisfies AiSummarizerArchitectureCard[],
   },
   techStack: {
-    heading: "The Tech Stack",
+    heading: "Tech Stack",
     description:
       "Our selection of tools prioritized governed Model Context Protocol (MCP) sockets, schema validation, and scalable LLM pipelines.",
     items: [
@@ -77,25 +78,25 @@ export const AI_SUMMARIZER_CASE_STUDY_COPY = {
         id: "language",
         label: "LANGUAGE",
         title: "Python 3.11",
-        body: "Leveraging Pydantic for strict data validation and FastAPI for high-performance interface endpoints.",
+        body: "",
       },
       {
         id: "ai-framework",
         label: "GOVERNANCE",
         title: "MCP Protocol",
-        body: "Model Context Protocol sockets connect models without unmonitored database access or ambient authority.",
+        body: "",
       },
       {
         id: "cloud",
         label: "CLOUD INFRA",
         title: "Google Cloud Run / Vertex AI",
-        body: "Vertex AI pipelines paired with Cloud Run for serverless scaling of intensive LLM workloads.",
+        body: "",
       },
       {
         id: "delivery",
         label: "VALIDATION",
         title: "Pydantic / FastAPI",
-        body: "Guaranteed schema output for seamless integration into enterprise ERP and reporting systems.",
+        body: "",
       },
     ] satisfies AiSummarizerStackItem[],
   },
@@ -120,9 +121,9 @@ export const AI_SUMMARIZER_CASE_STUDY_COPY = {
     ] satisfies AiSummarizerExecutionItem[],
   },
   bottomCta: {
-    title: "Need a governed ingestion pipeline?",
+    title: "Turning documents into trusted intelligence",
     subtext: "We design MCP-socketed LLM systems with two-tier policy gateways and zero ambient authority.",
-    primaryLabel: "Scope Your Governed AI Pipeline",
+    primaryLabel: "View Full Case Study",
     primaryTo: ROUTES.aiSolutions,
   },
 } as const;

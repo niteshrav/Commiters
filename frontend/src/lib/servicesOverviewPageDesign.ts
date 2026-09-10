@@ -1,0 +1,26 @@
+export const SERVICES_OVERVIEW_DISPLAY = {
+  headlineLead: "Enterprise AI Products &",
+  headlineAccent: "Cloud-Native Web Systems",
+  offeringsLead: "Ready-to-use tools and services to streamline your business operations.",
+  capabilitiesLead: "From idea to production — end-to-end engineering support.",
+  formKicker: "Let's build together",
+  formLead: "Tell us about your needs and we'll suggest the right approach for your team.",
+  formAside: "Turn your ideas into impact.",
+  privacyNote: "We respect your privacy. No spam, ever.",
+  ctaArrow: "→",
+  chips: [
+    { id: "scale", title: "Scalable", body: "Architecture" },
+    { id: "zero", title: "Zero-Code", body: "Operations" },
+    { id: "built", title: "Built for", body: "Enterprise" },
+  ] as const,
+  checks: ["Free consultation", "Custom recommendations", "No obligation"] as const,
+  floats: [
+    { id: "ai", title: "AI Products" },
+    { id: "web", title: "Web Applications" },
+    { id: "saas", title: "SaaS Platforms" },
+    { id: "cloud", title: "Cloud-Native" },
+    { id: "secure", title: "Secure & Compliant" },
+    { id: "note", title: "From specs to scale — together." },
+  ] as const,
+  layers: ["Build", "Integrate", "Scale"] as const,
+} as const;

@@ -27,9 +27,9 @@ describe("prospectIqCaseStudyContent", () => {
       "100% Policy-Gated MCP Execution",
     ]);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.architecture.sections.map((section) => section.title)).toEqual([
-      "Multi-Agent Lead Enrichment Engine",
-      "Model Context Protocol (MCP) & Policy Gateways",
-      "Deterministic Output & Human-in-the-Loop (\"Vibe Diff\")",
+      "Multi-Agent Lead Enrichment",
+      "Policy-Gated MCP",
+      "Human-in-the-Loop",
     ]);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.architecture.sections[1].body).toMatch(/scoped MCP sockets/i);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.architecture.sections[2].body).toMatch(/human confirmation/i);

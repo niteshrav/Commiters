@@ -54,14 +54,14 @@ describe("multiRoleCrmCaseStudyDesign", () => {
       `.${MULTI_ROLE_CRM_CASE_STUDY_INTRO_SECTION_CLASS} {`,
       `.${MULTI_ROLE_CRM_CASE_STUDY_INTRO_INNER_CLASS} {`,
     );
-    expect(intro).toContain(`background-color: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.colors.introSurface}`);
-    expect(intro).toContain(`background-size: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.layout.introGridSize}`);
-    expect(intro).toContain(`padding: clamp(48px, 6vw, 72px) clamp(20px, 5vw, 40px) ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.layout.introSectionPaddingBottom}`);
     expect(intro).toContain("text-align: center");
+    expect(intro).toContain(`background-color: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.colors.introSurface}`);
+    expect(intro).toContain(`background-size: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.layout.introGridSize} ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.layout.introGridSize}`);
 
     const kicker = ruleBlock(`.${MULTI_ROLE_CRM_CASE_STUDY_KICKER_CLASS} {`, `.${MULTI_ROLE_CRM_CASE_STUDY_TITLE_CLASS} {`);
     expect(kicker).toContain(`font-weight: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.typography.kickerWeight}`);
     expect(kicker).toContain(`color: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.colors.goldLabel}`);
+    expect(kicker).toContain(`background: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.colors.goldBadgeBackground}`);
 
     const titleLead = ruleBlock(
       `.${MULTI_ROLE_CRM_CASE_STUDY_TITLE_LEAD_CLASS} {`,

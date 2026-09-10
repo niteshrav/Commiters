@@ -52,12 +52,13 @@ describe("CommitersCaseStudyPage", () => {
     expect(screen.queryByRole("img", { name: /Commiters engineering stack/i })).not.toBeInTheDocument();
 
     const architecture = screen.getByTestId("commiters-case-study-architecture");
+    expect(within(architecture).getByText("TECHNICAL ARCHITECTURE")).toBeInTheDocument();
     expect(within(architecture).getByRole("heading", { name: "Technical Architecture" })).toBeInTheDocument();
     expect(within(architecture).getByRole("heading", { name: "Frontend Engineering" })).toBeInTheDocument();
     expect(within(architecture).getByRole("heading", { name: "Cloud Architecture" })).toBeInTheDocument();
     expect(within(architecture).getByRole("heading", { name: "Security & Governance" })).toBeInTheDocument();
-    expect(within(architecture).getByText(/zero-runtime CSS footprint/i)).toBeInTheDocument();
-    expect(within(architecture).getByText(/<150ms TTFB/i)).toBeInTheDocument();
+    expect(within(architecture).getByText(/Atomic components with Tailwind CSS/i)).toBeInTheDocument();
+    expect(within(architecture).getByText(/PostgreSQL \(RLS\) on edge nodes/i)).toBeInTheDocument();
     expect(within(architecture).getByText(/zero ambient authority/i)).toBeInTheDocument();
 
     const bottomCta = screen.getByTestId("commiters-case-study-bottom-cta");

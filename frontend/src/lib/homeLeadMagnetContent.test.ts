@@ -7,8 +7,8 @@ describe("homeLeadMagnetContent", () => {
   it("defines the OpsFlow AI mockup showcase and capture fields", () => {
     expect(HOME_LEAD_MAGNET_SECTION_ID).toBe(HOME_OPS_FLOW_SECTION_ID);
     expect(HOME_LEAD_MAGNET_COPY.badge).toBe("PROPRIETARY AI PRODUCT");
-    expect(HOME_LEAD_MAGNET_COPY.titleLead).toBe("Turn PDFs into ");
-    expect(HOME_LEAD_MAGNET_COPY.titleAccent).toBe("Data");
+    expect(HOME_LEAD_MAGNET_COPY.titleLead).toBe("OpsFlow ");
+    expect(HOME_LEAD_MAGNET_COPY.titleAccent).toBe("AI");
     expect(HOME_LEAD_MAGNET_COPY.description).toBe(
       "Extract clean, structured data from any business document.",
     );

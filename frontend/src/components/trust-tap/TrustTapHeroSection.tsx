@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { IconChartLine, IconCloud, IconLock, IconShieldCheck } from "../icons";
 import TrustTapHeroShowcase from "./TrustTapHeroShowcase";
+import { TRUSTTAP_DISPLAY } from "../../lib/trustTapPageDesign";
 import { TRUSTTAP_HERO } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_HERO_ACTIONS_CLASS,
+  TRUSTTAP_HERO_CHIPS_CLASS,
   TRUSTTAP_HERO_CLASS,
   TRUSTTAP_HERO_COPY_CLASS,
   TRUSTTAP_HERO_FOOTNOTE_CLASS,
@@ -13,6 +16,13 @@ import {
   TRUSTTAP_HERO_TITLE_CLASS,
   TRUSTTAP_KICKER_CLASS,
 } from "../../lib/trustTapPageLayout";
+
+const CHIP_ICONS = {
+  tamper: IconShieldCheck,
+  offline: IconCloud,
+  live: IconChartLine,
+  secure: IconLock,
+} as const;
 
 export default function TrustTapHeroSection() {
   const copy = TRUSTTAP_HERO;
@@ -25,8 +35,15 @@ export default function TrustTapHeroSection() {
           <div className={TRUSTTAP_HERO_COPY_CLASS}>
             <p className={`${TRUSTTAP_KICKER_CLASS} trusttap-hero-kicker`}>{copy.kicker}</p>
             <h1 id="trusttap-hero-title" className={TRUSTTAP_HERO_TITLE_CLASS}>
-              {copy.titleLead}{" "}
-              <span className={TRUSTTAP_HERO_TITLE_ACCENT_CLASS}>{copy.titleAccent}</span>
+              <span className="trusttap-sr">
+                {copy.titleLead} {copy.titleAccent}
+              </span>
+              <span className="trusttap-hero-title-brand" aria-hidden="true">
+                {TRUSTTAP_DISPLAY.headlineBrand}
+              </span>
+              <span className={`${TRUSTTAP_HERO_TITLE_ACCENT_CLASS} trusttap-hero-title-tag`} aria-hidden="true">
+                {TRUSTTAP_DISPLAY.headlineTag}
+              </span>
             </h1>
             <p className={TRUSTTAP_HERO_TAGLINE_CLASS}>{copy.tagline}</p>
             <div className={TRUSTTAP_HERO_ACTIONS_CLASS}>
@@ -37,11 +54,11 @@ export default function TrustTapHeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {copy.primaryLabel}
+                  {copy.primaryLabel} <span aria-hidden="true">{TRUSTTAP_DISPLAY.ctaArrow}</span>
                 </a>
               ) : (
                 <Link className="btn btn-primary trusttap-hero-btn-primary" to={copy.primaryHref}>
-                  {copy.primaryLabel}
+                  {copy.primaryLabel} <span aria-hidden="true">{TRUSTTAP_DISPLAY.ctaArrow}</span>
                 </Link>
               )}
               {secondaryIsHash ? (
@@ -54,7 +71,20 @@ export default function TrustTapHeroSection() {
                 </Link>
               )}
             </div>
-            <p className={TRUSTTAP_HERO_FOOTNOTE_CLASS}>{copy.footnote}</p>
+            <ul className={TRUSTTAP_HERO_CHIPS_CLASS}>
+              {TRUSTTAP_DISPLAY.chips.map((chip) => {
+                const Icon = CHIP_ICONS[chip.id];
+                return (
+                  <li key={chip.id}>
+                    <Icon />
+                    <span>
+                      <strong>{chip.title}</strong> {chip.body}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className={`${TRUSTTAP_HERO_FOOTNOTE_CLASS} trusttap-sr`}>{copy.footnote}</p>
           </div>
           <TrustTapHeroShowcase />
         </div>

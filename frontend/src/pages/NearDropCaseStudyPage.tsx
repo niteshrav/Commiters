@@ -1,3 +1,4 @@
+import NearDropCaseStudyArchitectureSection from "../components/NearDropCaseStudyArchitectureSection";
 import NearDropCaseStudyBottomCta from "../components/NearDropCaseStudyBottomCta";
 import NearDropCaseStudyExecutionSection from "../components/NearDropCaseStudyExecutionSection";
 import NearDropCaseStudyFunctionalExcellenceSection from "../components/NearDropCaseStudyFunctionalExcellenceSection";
@@ -12,6 +13,7 @@ export default function NearDropCaseStudyPage() {
   return (
     <div className={NEARDROP_CASE_STUDY_PAGE_CLASS} data-testid="neardrop-case-study-page">
       <NearDropCaseStudyIntroSection />
+      <NearDropCaseStudyArchitectureSection />
       <NearDropCaseStudyFunctionalExcellenceSection />
       <NearDropCaseStudyExecutionSection />
       <NearDropCaseStudyBottomCta />

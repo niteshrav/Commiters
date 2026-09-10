@@ -1,13 +1,13 @@
 import type { TechLogoDef } from "./homeTechStack";
 import { ROUTES } from "./routes";
+import { SITE_GITHUB_URL } from "./siteLinks";
 
 export type NearDropCaseStudyFeature = {
   id: string;
   title: string;
   body: string;
   icon: "shield" | "tracking" | "schema" | "coordination";
-  iconTone: "blue" | "gold" | "highlight";
-  highlight?: boolean;
+  iconTone: "blue" | "gold" | "green" | "purple";
 };
 
 export type NearDropCaseStudyExecutionItem = {
@@ -15,62 +15,81 @@ export type NearDropCaseStudyExecutionItem = {
   number: string;
   title: string;
   body: string;
+  icon: "lock" | "database" | "gear";
 };
 
-export type NearDropCaseStudyStackItem = TechLogoDef & {
-  role: string;
-  label: string;
-  icon: "terminal" | "database" | "code" | "sync";
+export type NearDropCaseStudyArchitectureItem = {
+  id: string;
+  title: string;
+  body: string;
+  icon: "frontend" | "backend" | "storage" | "sync";
 };
 
 export const NEARDROP_CASE_STUDY_COPY = {
   documentTitle: "NearDrop MVP Case Study",
-  kicker: "CASE STUDY: CLOUD LOGISTICS PLATFORM",
-  titleLead: "NearDrop: ",
+  kicker: "CASE STUDY",
+  titleLead: "NearDrop ",
   titleAccent: "Field Operations",
-  titleTrail: "& Real-Time Coordination System",
-  description:
-    "Cloud-native operational portal engineered for seamless merchant-driver coordination and real-time field tracking.",
+  titleTrail: " & Real-Time Coordination",
+  description: "Real-time coordination for modern field teams.",
+  heroImage: {
+    src: "/assets/case-studies/neardrop-hero-devices.png",
+    alt: "Laptop and phone mockups showing the NearDrop field operations dashboard and live delivery map",
+  },
+  heroActions: {
+    primaryLabel: "View Project",
+    primaryTo: ROUTES.contact,
+    sourceLabel: "Source Code",
+    sourceHref: SITE_GITHUB_URL,
+  },
   introStack: {
     items: [
+      { slug: "react", alt: "React" },
+      { slug: "nodedotjs", alt: "Node.js" },
+      { slug: "postgresql", alt: "PostgreSQL" },
+      { slug: "socketdotio", alt: "WebSockets" },
+    ] satisfies TechLogoDef[],
+  },
+  architecture: {
+    kicker: "TECHNICAL ARCHITECTURE",
+    heading: "Engineering for Scalability",
+    description:
+      "A robust, cloud-native architecture designed to handle high-frequency data exchanges and concurrent user sessions.",
+    items: [
       {
-        slug: "nextdotjs",
-        alt: "Next.js",
-        role: "FRONTEND",
-        label: "React / Next.js",
-        icon: "terminal",
+        id: "frontend",
+        title: "Modern Frontend",
+        body: "React-based UI for high performance and responsiveness.",
+        icon: "frontend",
       },
       {
-        slug: "nodedotjs",
-        alt: "Node.js",
-        role: "BACKEND",
-        label: "Node.js",
-        icon: "code",
+        id: "backend",
+        title: "Scalable Backend",
+        body: "Node.js microservices for efficient request handling.",
+        icon: "backend",
       },
       {
-        slug: "postgresql",
-        alt: "PostgreSQL",
-        role: "DATABASE",
-        label: "PostgreSQL",
-        icon: "database",
+        id: "storage",
+        title: "Reliable Storage",
+        body: "PostgreSQL for robust data integrity and complex queries.",
+        icon: "storage",
       },
       {
-        slug: "websockets",
-        alt: "WebSockets",
-        role: "REALTIME",
-        label: "WebSockets",
+        id: "sync",
+        title: "Real-time Sync",
+        body: "WebSockets for instant updates across the ecosystem.",
         icon: "sync",
       },
-    ] satisfies NearDropCaseStudyStackItem[],
+    ] satisfies NearDropCaseStudyArchitectureItem[],
   },
   functionalExcellence: {
-    heading: "Functional Excellence",
+    heading: "KEY FEATURES",
     description: "Strategic features designed for operational scalability, role isolation, and real-time field visibility.",
     countLabel: "FEATURES [04]",
     items: [
       {
         id: "rbac",
-        title: "Role-Isolated Portals",
+        title: "Role-based Access",
         body: "Multi-tenant dashboards for Vendors, Drivers, and Customers. Each portal is tuned for specific operational needs with session-scoped permissions.",
         icon: "shield",
         iconTone: "blue",
@@ -87,48 +106,50 @@ export const NEARDROP_CASE_STUDY_COPY = {
         title: "Normalized Schema",
         body: "A PostgreSQL structure built for high-concurrency real-time location writes and complex relationship queries.",
         icon: "schema",
-        iconTone: "blue",
+        iconTone: "green",
       },
       {
         id: "coordination",
         title: "Driver-Merchant Coordination",
         body: "Automated matching algorithms that connect local vendors with available delivery affiliates in real-time, reducing latency in the last-mile delivery chain.",
         icon: "coordination",
-        iconTone: "highlight",
-        highlight: true,
+        iconTone: "purple",
       },
     ] satisfies NearDropCaseStudyFeature[],
   },
   execution: {
     kicker: "PROCESS",
-    heading: "The Precision Execution.",
-    description: "How we translated complex logistics requirements into a performant cloud-native ecosystem.",
+    heading: "Built for Impact",
+    description: "Secure, scalable, and reliable field operations.",
     items: [
       {
         id: "architectural",
         number: "01",
-        title: "Architectural Integrity",
-        body: "Normalized schema capable of high-concurrency real-time location writes without compromising system stability.",
+        title: "Secure Access",
+        body: "Controlled and safe system usage.",
+        icon: "lock",
       },
       {
         id: "precision",
         number: "02",
-        title: "Dedicated Portal Surfaces",
-        body: "Multi-tenant dashboards for Vendors, Drivers, and Customers, keeping each workflow isolated with spec-driven access paths.",
+        title: "Scalable Data",
+        body: "Structured for growth.",
+        icon: "database",
       },
       {
         id: "security",
         number: "03",
-        title: "Security First",
-        body: "JWT session scoping and multi-factor authentication for field data protection between the merchant and the delivery partner.",
+        title: "Reliable Operations",
+        body: "Consistent and efficient performance.",
+        icon: "gear",
       },
     ] satisfies NearDropCaseStudyExecutionItem[],
   },
   bottomCta: {
-    title: "Need a cloud operations platform?",
-    subtext:
-      "We specialize in high-performance cloud-native systems for modern field operations. Let's discuss your next platform.",
-    primaryLabel: "Discuss Your Cloud Platform",
+    kicker: "LET'S WORK TOGETHER",
+    title: "Let's Build What's Next",
+    subtext: "Better systems for better field operations.",
+    primaryLabel: "Discuss Your Project",
     primaryTo: ROUTES.contact,
     secondaryLabel: "View Portfolio",
     secondaryTo: ROUTES.caseStudies,

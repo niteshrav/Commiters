@@ -1,3 +1,4 @@
+import { TRUSTTAP_DISPLAY } from "../../lib/trustTapPageDesign";
 import { TRUSTTAP_FEATURES, trustTapFeatureIcon } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_FEATURE_CARD_CLASS,
@@ -23,6 +24,12 @@ export default function TrustTapFeaturesSection() {
           title={copy.title}
           titleId="trusttap-features-title"
           subtext={copy.subtext}
+          action={
+            <a className="trusttap-text-link" href="#trusttap-how-it-works">
+              {TRUSTTAP_DISPLAY.howItWorksLink}{" "}
+              <span aria-hidden="true">{TRUSTTAP_DISPLAY.ctaArrow}</span>
+            </a>
+          }
         />
         <div className={TRUSTTAP_FEATURES_GRID_CLASS}>
           {copy.items.map((feature) => {
@@ -37,6 +44,9 @@ export default function TrustTapFeaturesSection() {
                 </span>
                 <h3 className="trusttap-feature-title">{feature.title}</h3>
                 <p className="trusttap-feature-body">{feature.body}</p>
+                <span className="trusttap-card-arrow" aria-hidden="true">
+                  {TRUSTTAP_DISPLAY.ctaArrow}
+                </span>
               </article>
             );
           })}

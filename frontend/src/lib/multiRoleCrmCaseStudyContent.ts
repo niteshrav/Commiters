@@ -13,7 +13,13 @@ export type MultiRoleCrmCaseStudyFeature = {
   title: string;
   body: string;
   icon: "rbac" | "rag" | "sync" | "analytics";
-  iconTone: "blue" | "gold";
+  iconTone: "blue" | "gold" | "purple" | "green";
+};
+
+export type MultiRoleCrmImpactItem = {
+  id: string;
+  label: string;
+  icon: "lock" | "clock" | "spark" | "users";
 };
 
 export type MultiRoleCrmArchitectureIndicator = {
@@ -24,10 +30,15 @@ export type MultiRoleCrmArchitectureIndicator = {
 
 export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
   documentTitle: "Multi-Role CRM Case Study",
-  kicker: "CASE STUDY: SPEC-DRIVEN B2B PLATFORM",
-  titleLead: "Governed AI CRM &",
-  titleAccent: "Multi-Role Operational Portal",
-  subheadline: "Intelligent enterprise operations platform combining RAG-enhanced query engines with Row-Level Security (RLS).",
+  kicker: "CASE STUDY: ENTERPRISE AI",
+  titleLead: "AI-Powered",
+  titleAccent: "Multi-Role CRM",
+  subheadline: "Intelligent Operations with RAG & LLMs.",
+  breadcrumb: {
+    parent: "CASE STUDIES",
+    parentTo: ROUTES.caseStudies,
+    current: "MULTI-ROLE CRM",
+  },
   heroImage: {
     src: "/assets/case-studies/multi-role-crm-hero.png",
     srcSet: "/assets/case-studies/multi-role-crm-hero@2x.png 2x",
@@ -35,17 +46,19 @@ export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
   },
   vision: {
     heading: "The Vision",
-    body: "A spec-driven multi-role CRM featuring a policy-gated chatbot powered by LLM and RAG (Retrieval-Augmented Generation). Row-Level Security (RLS) and MCP sockets keep every query inside authorized user context—bridging static customer data and governed intelligent interaction.",
+    body: "A policy-gated, multi-role CRM powered by LLM and RAG, with Row-Level Security (RLS) for secure, intelligent customer interactions.",
     challenge: {
       label: "Challenge",
-      text: "Fragmented data access and slow manual query resolution for enterprise support teams without leaking unauthorized records.",
+      text: "Fragmented data and slow support queries.",
     },
     solution: {
       label: "Solution",
-      text: "Centralized RAG-enhanced AI grounded in institutional knowledge, scoped by RLS and two-tier policy gateways.",
+      text: "RAG-powered answers with RLS and policy gateways.",
     },
   },
   techStack: {
+    heading: "TECH STACK",
+    caption: "FRONTEND + BACKEND + AI",
     items: [
       { slug: "react", alt: "React", role: "Frontend", icon: "code", layout: "wide" },
       { slug: "postgresql", alt: "PostgreSQL (RLS)", role: "Storage", icon: "database", layout: "compact" },
@@ -62,7 +75,7 @@ export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
   },
   architecture: {
     heading: "Architectural Excellence",
-    description: "Modular, scalable, and secure. Designed for high-density enterprise environments with zero ambient authority.",
+    description: "Modular, scalable, and secure. Designed for enterprise environments with zero ambient authority.",
     indicators: [
       { id: "security", label: "Enterprise Security", icon: "shield" },
       { id: "scale", label: "Cloud-Native Scale", icon: "gauge" },
@@ -87,21 +100,32 @@ export const MULTI_ROLE_CRM_CASE_STUDY_COPY = {
         title: "Real-Time WebSockets",
         body: "Zero-latency sync across Admin, Manager, and Field Agent dashboards with JIT permission scoping.",
         icon: "sync",
-        iconTone: "blue",
+        iconTone: "purple",
       },
       {
         id: "analytics",
         title: "Smart Analytics",
         body: "Automated reporting on user sentiment and query frequency to optimize support flows without ambient data access.",
         icon: "analytics",
-        iconTone: "gold",
+        iconTone: "green",
       },
     ] satisfies MultiRoleCrmCaseStudyFeature[],
   },
+  impact: {
+    heading: "Delivered Impact",
+    body: "Governed access, live updates, and role-aware AI across every CRM surface.",
+    items: [
+      { id: "access", label: "Secure Access", icon: "lock" },
+      { id: "realtime", label: "Real-Time", icon: "clock" },
+      { id: "ai", label: "AI-Powered", icon: "spark" },
+      { id: "roles", label: "Role-Based", icon: "users" },
+    ] satisfies MultiRoleCrmImpactItem[],
+  },
   bottomCta: {
-    title: "Ready to build your B2B platform?",
-    subtext: "Transform operations with spec-driven web systems, RLS, and governed AI. Let's discuss your roadmap today.",
-    primaryLabel: "Build Your B2B Web Platform",
+    kicker: "MULTI-ROLE CRM",
+    title: "Smarter Support. Stronger Security.",
+    subtext: "Empowering teams with AI-driven insights and governed access.",
+    primaryLabel: "View Full Case Study",
     primaryTo: ROUTES.webApplications,
   },
 } as const;

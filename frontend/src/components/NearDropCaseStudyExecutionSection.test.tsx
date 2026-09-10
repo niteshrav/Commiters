@@ -24,10 +24,10 @@ describe("NearDropCaseStudyExecutionSection", () => {
     expect(list.querySelectorAll(".neardrop-case-study-execution-item")).toHaveLength(3);
     expect(within(list).getByText("01")).toBeInTheDocument();
     expect(within(list).getByText("03")).toBeInTheDocument();
-    expect(within(list).getByRole("heading", { name: "Architectural Integrity" })).toBeInTheDocument();
-    expect(within(list).getByRole("heading", { name: "Dedicated Portal Surfaces" })).toBeInTheDocument();
-    expect(within(list).getByRole("heading", { name: "Security First" })).toBeInTheDocument();
-    expect(within(list).getByText(/high-concurrency real-time location writes/i)).toBeInTheDocument();
-    expect(within(list).getByText(/Multi-factor authentication/i)).toBeInTheDocument();
+    expect(within(list).getByRole("heading", { name: "Secure Access" })).toBeInTheDocument();
+    expect(within(list).getByRole("heading", { name: "Scalable Data" })).toBeInTheDocument();
+    expect(within(list).getByRole("heading", { name: "Reliable Operations" })).toBeInTheDocument();
+    expect(within(list).getByText(/Controlled and safe system usage/i)).toBeInTheDocument();
+    expect(within(list).getByText(/Consistent and efficient performance/i)).toBeInTheDocument();
   });
 });

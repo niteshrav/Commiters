@@ -3,63 +3,254 @@
 .services-overview-page {
   display: flex;
   flex-direction: column;
+  margin: 0 calc(-1 * var(--site-gutter));
+  width: calc(100% + 2 * var(--site-gutter));
+  max-width: none;
+  overflow-x: clip;
+  box-sizing: border-box;
+  --svo-blue: #0066ff;
+  --svo-navy: #0b1b33;
+  --svo-muted: #475569;
+}
+
+.services-overview-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.services-overview-hero,
+.services-overview-offerings,
+.services-overview-standards,
+.services-overview-capabilities,
+.services-overview-products,
+.services-overview-inquiry {
+  padding: clamp(40px, 5vw, 72px) var(--site-gutter) clamp(56px, 7vw, 96px);
+  background: #ffffff;
 }
 
 .services-overview-hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(36px, 5vw, 64px) 0 0;
-  background: var(--surface);
 }
 
 .services-overview-hero-inner {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
   padding-inline: 0;
   text-align: left;
+}
+
+.services-overview-hero-copy {
+  min-width: 0;
+}
+
+.services-overview-hero .services-expertise-kicker {
+  display: inline-flex;
+  margin: 0 0 14px;
+  color: var(--svo-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.services-overview-hero .services-expertise-title {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 4.6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--svo-navy);
+}
+
+.services-overview-headline-lead,
+.services-overview-headline-accent {
+  display: block;
+}
+
+.services-overview-headline-accent {
+  color: var(--svo-blue);
+}
+
+.services-overview-hero .services-expertise-body {
+  margin: 0 0 24px;
+  max-width: 38rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--svo-muted);
 }
 
 .services-overview-hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 0;
 }
 
 .services-overview-hero-cta {
   margin-top: 0;
+  border-radius: 999px;
+  min-height: 48px;
+  padding-inline: 22px;
+}
+
+.services-overview-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--svo-navy);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.services-overview-hero-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.services-overview-hero-chips svg {
+  width: 18px;
+  height: 18px;
+  color: var(--svo-blue);
+}
+
+.services-overview-hero-visual {
+  position: relative;
+  min-height: 380px;
+}
+
+.services-overview-hero-visual::before {
+  content: none;
+}
+
+.services-overview-stack {
+  position: absolute;
+  left: 22%;
+  top: 18%;
+  display: grid;
+  gap: 10px;
+  width: min(68%, 280px);
+  z-index: 2;
+}
+
+.services-overview-stack span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  border-radius: 18px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+}
+
+.services-overview-stack span:nth-child(1) {
+  background: linear-gradient(180deg, #7dd3fc 0%, #38bdf8 100%);
+  transform: translateX(18px);
+}
+
+.services-overview-stack span:nth-child(2) {
+  background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+  transform: translateX(8px);
+}
+
+.services-overview-stack span:nth-child(3) {
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.services-overview-float {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+  color: var(--svo-navy);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.services-overview-float--ai {
+  left: 6%;
+  top: 18%;
+}
+
+.services-overview-float--web {
+  left: 0;
+  top: 46%;
+}
+
+.services-overview-float--saas {
+  right: 2%;
+  top: 28%;
+}
+
+.services-overview-float--cloud {
+  right: 8%;
+  top: 6%;
+}
+
+.services-overview-float--secure {
+  right: 4%;
+  bottom: 14%;
+}
+
+.services-overview-float--note {
+  left: 18%;
+  bottom: 6%;
+  max-width: 10rem;
+  background: transparent;
+  box-shadow: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--svo-blue);
+}
+
+.services-overview-hero .services-expertise-separator {
+  display: none;
 }
 
 .services-overview-products {
   scroll-margin-top: 96px;
 }
 
-.services-overview-offerings,
-.services-overview-standards,
-.services-overview-capabilities,
-.services-overview-products,
-.services-overview-inquiry {
-  padding: clamp(32px, 5vw, 56px) 0;
-}
-
-.services-overview-offerings > h2,
-.services-overview-standards > h2,
-.services-overview-capabilities > h2,
-.services-overview-products > h2 {
+.services-overview-offerings > .services-overview-inner > h2,
+.services-overview-standards > .services-overview-inner > h2,
+.services-overview-capabilities > .services-overview-inner > h2,
+.services-overview-products > .services-overview-inner > h2,
+.services-overview-engage-copy h2 {
   margin: 0 0 12px;
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  font-weight: 700;
-  color: var(--text);
+  font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--svo-navy);
 }
 
+.services-overview-section-lead,
 .services-overview-capabilities-subtext,
-.services-overview-standards-subtext {
+.services-overview-standards-subtext,
+.services-overview-engage-copy p {
   margin: 0 0 24px;
   max-width: 42rem;
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--svo-muted);
 }
 
 .services-overview-offerings-grid,
@@ -85,6 +276,25 @@
   .services-overview-offerings-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .services-overview-standards-grid,
+  .services-overview-capabilities-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.services-overview-offering-card,
+.services-overview-standard-card,
+.services-overview-standards-banner,
+.services-overview-capability-card,
+.services-overview-product-card,
+.services-overview-inquiry-form,
+.services-overview-page .services-overview-offering-card.bg-white\/80,
+.services-overview-page .services-overview-standard-card.bg-white\/80,
+.services-overview-page .services-overview-capability-card.bg-white\/80,
+.services-overview-page .services-overview-product-card.bg-white\/80,
+.services-overview-page .services-overview-inquiry-form.bg-white\/80 {
+  background: #ffffff;
 }
 
 .services-overview-offering-card,
@@ -98,7 +308,9 @@
   align-items: flex-start;
   gap: 12px;
   padding: clamp(22px, 3vw, 32px);
-  border-radius: 16px;
+  border-radius: 24px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
 }
 
 .services-overview-offering-card--featured {
@@ -108,25 +320,31 @@
 .services-overview-offering-tag {
   display: inline-flex;
   padding: 5px 10px;
-  border: 1px solid rgba(var(--primary-rgb), 0.22);
-  background: rgba(var(--primary-rgb), 0.1);
-  color: var(--primary);
+  border: 1px solid rgba(0, 102, 255, 0.22);
+  background: rgba(0, 102, 255, 0.1);
+  color: var(--svo-blue);
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
+.services-overview-card-icon,
 .services-overview-capability-icon {
   display: inline-flex;
-  width: 36px;
-  height: 36px;
-  color: var(--primary);
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(0, 102, 255, 0.1);
+  color: var(--svo-blue);
 }
 
+.services-overview-card-icon svg,
 .services-overview-capability-icon svg {
-  width: 100%;
-  height: 100%;
+  width: 22px;
+  height: 22px;
 }
 
 .services-overview-offering-card h3,
@@ -139,7 +357,7 @@
   font-size: clamp(1.15rem, 2vw, 1.35rem);
   font-weight: 700;
   line-height: 1.25;
-  color: var(--text);
+  color: var(--svo-navy);
 }
 
 .services-overview-capability-card h3 a {
@@ -148,7 +366,7 @@
 }
 
 .services-overview-capability-card h3 a:hover {
-  color: var(--primary);
+  color: var(--svo-blue);
 }
 
 .services-overview-offering-card p,
@@ -160,26 +378,93 @@
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--svo-muted);
 }
 
 .services-overview-capability-card ul {
   margin: 0;
   padding-left: 1.1rem;
-  color: var(--muted);
+  color: var(--svo-muted);
   font-size: 0.9rem;
   line-height: 1.55;
 }
 
 .services-overview-offering-card .btn,
-.services-overview-product-card .btn,
-.services-overview-inquiry-form .btn {
-  margin-top: 8px;
+.services-overview-product-card .btn {
+  margin-top: auto;
+  padding: 0;
+  min-height: 0;
+  border: 0;
+  background: transparent;
+  color: var(--svo-blue);
+  box-shadow: none;
+}
+
+.services-overview-offering-card .btn:hover,
+.services-overview-product-card .btn:hover {
+  background: transparent;
+  color: #0047b3;
+}
+
+.services-overview-engage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: stretch;
+  padding: clamp(28px, 4vw, 40px);
+  border-radius: 32px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.services-overview-engage-copy {
+  min-width: 0;
+}
+
+.services-overview-form-kicker {
+  display: inline-flex;
+  margin: 0 0 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0, 102, 255, 0.1);
+  color: var(--svo-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.services-overview-checks {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+  color: var(--svo-navy);
+  font-weight: 600;
+}
+
+.services-overview-checks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+}
+
+.services-overview-checks svg {
+  width: 18px;
+  height: 18px;
+  color: var(--svo-blue);
+}
+
+.services-overview-form-aside {
+  margin: 8px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: var(--svo-blue);
 }
 
 .services-overview-inquiry-form {
   width: 100%;
-  max-width: 40rem;
+  max-width: none;
 }
 
 .services-overview-inquiry-form h2 {
@@ -187,6 +472,27 @@
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.4vw, 1.75rem);
   color: var(--text);
+}
+
+.services-overview-inquiry-form .btn {
+  width: 100%;
+  justify-content: center;
+  border-radius: 999px;
+  min-height: 48px;
+}
+
+.services-overview-privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 0;
+  color: var(--svo-muted);
+  font-size: 0.82rem;
+}
+
+.services-overview-privacy svg {
+  width: 14px;
+  height: 14px;
 }
 
 .services-overview-field {
@@ -199,7 +505,7 @@
 .services-overview-field label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--svo-navy);
 }
 
 .services-overview-field input,
@@ -209,7 +515,7 @@
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
+  background: #ffffff;
   color: var(--text);
   font: inherit;
 }
@@ -228,6 +534,23 @@
 [data-theme="dark"] .services-overview-field textarea {
   background: rgba(15, 23, 42, 0.55);
   border-color: rgba(30, 41, 59, 0.7);
+}
+
+@media (max-width: 1090px) {
+  .services-overview-hero-inner,
+  .services-overview-engage {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-overview-hero-visual {
+    display: none;
+  }
+
+  .services-overview-hero-chips {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 620px) {

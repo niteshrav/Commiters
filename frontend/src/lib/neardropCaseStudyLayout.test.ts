@@ -8,6 +8,11 @@ import {
   NEARDROP_CASE_STUDY_BOTTOM_CTA_PANEL_CLASS,
   NEARDROP_CASE_STUDY_BOTTOM_CTA_PRIMARY_CLASS,
   NEARDROP_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_ITEM_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_KICKER_CLASS,
+  NEARDROP_CASE_STUDY_ARCHITECTURE_SECTION_CLASS,
   NEARDROP_CASE_STUDY_DESCRIPTION_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_LAYOUT_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_LIST_CLASS,
@@ -15,7 +20,6 @@ import {
   NEARDROP_CASE_STUDY_FEATURE_GRID_CLASS,
   NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_SECTION_CLASS,
   NEARDROP_CASE_STUDY_INTRO_SECTION_CLASS,
-  NEARDROP_CASE_STUDY_INTRO_STACK_CLASS,
   NEARDROP_CASE_STUDY_KICKER_CLASS,
   NEARDROP_CASE_STUDY_PAGE_CLASS,
   NEARDROP_CASE_STUDY_TITLE_CLASS,
@@ -39,9 +43,9 @@ describe("neardropCaseStudyLayout", () => {
       `.${NEARDROP_CASE_STUDY_INTRO_SECTION_CLASS} {`,
       `.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`,
     );
-    expect(intro).toContain("text-align: center");
+    expect(intro).toContain("text-align: left");
 
-    const kicker = ruleBlock(`.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`, `.neardrop-case-study-kicker-dot {`);
+    const kicker = ruleBlock(`.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`, `.${NEARDROP_CASE_STUDY_TITLE_CLASS} {`);
     expect(kicker).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
 
     const title = ruleBlock(`.${NEARDROP_CASE_STUDY_TITLE_CLASS} {`, `.neardrop-case-study-title-lead {`);
@@ -49,15 +53,21 @@ describe("neardropCaseStudyLayout", () => {
 
     const description = ruleBlock(
       `.${NEARDROP_CASE_STUDY_DESCRIPTION_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_INTRO_STACK_CLASS} {`,
+      `.neardrop-case-study-intro-stack {`,
     );
     expect(description).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.body}`);
 
-    const stackGrid = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_INTRO_STACK_CLASS} {`,
-      `.neardrop-case-study-intro-stack-item {`,
+    const architectureKicker = ruleBlock(
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_KICKER_CLASS} {`,
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS} {`,
     );
-    expect(stackGrid).toContain(`grid-template-columns: ${NEARDROP_CASE_STUDY_DESIGN.layout.introStackColumns}`);
+    expect(architectureKicker).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.goldLabel}`);
+
+    const architectureGrid = ruleBlock(
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS} {`,
+      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_ITEM_CLASS} {`,
+    );
+    expect(architectureGrid).toContain(`grid-template-columns: ${NEARDROP_CASE_STUDY_DESIGN.layout.architectureColumns}`);
 
     const functionalExcellence = ruleBlock(
       `.${NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_SECTION_CLASS} {`,

@@ -34,6 +34,7 @@ export const SITE_FOOTER_TAGLINE = SITE_FOOTER_BRAND_TAGLINE;
 
 export const SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS = [
   "OpsFlow AI",
+  "TrustTap",
   "Spec-Driven Full-Stack Platforms",
   "AI Operational Audits",
   "Governed AI & Workflow Systems",
@@ -55,6 +56,7 @@ export const SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS = [
   "Mobile Application Development",
   "Rapid SaaS MVP Development",
   "Automation & Integration Tools",
+  "Workflow & Process Automation",
 ] as const;
 
 /** @deprecated Use SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS */
@@ -63,6 +65,10 @@ export const SITE_FOOTER_RESOURCES_LINK_LABELS = SITE_FOOTER_ENGINEERING_NAV_LIN
 export const SITE_FOOTER_COMPANY_NAV_LINK_LABELS = [
   "About Us",
   "Client Work",
+  "Services",
+  "Jobs",
+  "FAQ",
+  "Blog",
   "Contact",
 ] as const;
 
@@ -80,6 +86,7 @@ export const SITE_FOOTER_NAV_LINK_LABELS = [
 
 const SITE_FOOTER_FLAGSHIP_NAV_LINKS = [
   { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowPlayground },
+  { kind: "internal", label: "TrustTap", to: ROUTES.trustTap },
   { kind: "internal", label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplications },
   { kind: "internal", label: "AI Operational Audits", to: ROUTES.aiOperationalAudit },
   { kind: "internal", label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutions },
@@ -92,11 +99,16 @@ const SITE_FOOTER_ENGINEERING_NAV_LINKS = [
   { kind: "internal", label: "Mobile Application Development", to: buildServiceDetailMenuHref("mobile-app-development") },
   { kind: "internal", label: "Rapid SaaS MVP Development", to: buildServiceDetailMenuHref("mvp-development") },
   { kind: "internal", label: "Automation & Integration Tools", to: buildServiceDetailMenuHref("automation-tools") },
+  { kind: "internal", label: "Workflow & Process Automation", to: ROUTES.workflowAutomation },
 ] as const satisfies readonly FooterLinkCell[];
 
 const SITE_FOOTER_COMPANY_NAV_LINKS = [
   { kind: "internal", label: "About Us", to: ROUTES.about },
   { kind: "internal", label: "Client Work", to: ROUTES.caseStudies },
+  { kind: "internal", label: "Services", to: ROUTES.services },
+  { kind: "internal", label: "Jobs", to: ROUTES.openPositions, badge: SITE_FOOTER_CAREERS_HIRING_BADGE },
+  { kind: "internal", label: "FAQ", to: ROUTES.faq },
+  { kind: "internal", label: "Blog", to: ROUTES.technicalLedger },
   { kind: "internal", label: "Contact", to: ROUTES.contact },
 ] as const satisfies readonly FooterLinkCell[];
 
@@ -180,7 +192,7 @@ export const SITE_FOOTER_COPY = {
     },
     {
       id: "company",
-      heading: "Company & Legal",
+      heading: "Company",
       links: SITE_FOOTER_COMPANY_NAV_LINKS,
     },
   ] as const satisfies readonly FooterNavColumn[],

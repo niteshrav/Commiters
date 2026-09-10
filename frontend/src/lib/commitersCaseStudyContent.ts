@@ -16,10 +16,10 @@ export type CommitersCaseStudyStackItem = TechLogoDef & {
 
 export const COMMITERS_CASE_STUDY_COPY = {
   documentTitle: "Commiters Case Study",
-  kicker: "TECHNICAL CASE STUDY: SPEC-DRIVEN CLOUD PLATFORM",
+  kicker: "TECHNICAL CASE STUDY",
   title: "Commiters.com — Spec-Driven Cloud Platform",
   subtitle:
-    "Engineered a zero-latency cloud web ecosystem featuring rigid component isolation, micro-optimized performance, and strict design system adherence.",
+    "A zero-latency cloud web platform built with strict component isolation and optimized performance.",
   overview: {
     heading: "Project Overview",
     body: "The challenge was to engineer a spec-driven cloud web platform that mirrors Commiters governance standards. We eschewed template-based solutions in favor of a custom-built React ecosystem with rigid component isolation, type-safe persistence, and zero ambient authority across every surface.",
@@ -42,22 +42,23 @@ export const COMMITERS_CASE_STUDY_COPY = {
     ] satisfies CommitersCaseStudyStackItem[],
   },
   architecture: {
+    kicker: "TECHNICAL ARCHITECTURE",
     heading: "Technical Architecture",
     sections: [
       {
         id: "frontend",
         title: "Frontend Engineering",
-        body: "Atomic component design, zero-runtime CSS footprint, and micro-optimized asset delivery. Tailwind CSS powers the styling layer while Vite and Next.js handle hydration and isolated component boundaries.",
+        body: "Atomic components with Tailwind CSS, powered by Vite and Next.js.",
       },
       {
         id: "infrastructure",
         title: "Cloud Architecture",
-        body: "Normalized schema with a type-safe persistence layer deployed across edge nodes for <150ms TTFB. PostgreSQL Row-Level Security (RLS) keeps every query scoped to authorized context.",
+        body: "Type-safe persistence with PostgreSQL (RLS) on edge nodes.",
       },
       {
         id: "seo",
         title: "Security & Governance",
-        body: "Fully compliant with Commiters Governance Standards, featuring zero ambient authority and automated audit trails across CI/CD guardrails and spec-driven releases.",
+        body: "Compliant with Commiters standards, with zero ambient authority.",
       },
     ],
   },

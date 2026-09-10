@@ -13,10 +13,10 @@ const publicRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "pu
 
 describe("multiRoleCrmCaseStudyContent", () => {
   it("matches the governed B2B portal intro copy and hero asset", () => {
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.kicker).toBe("CASE STUDY: SPEC-DRIVEN B2B PLATFORM");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleLead).toBe("Governed AI CRM &");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleAccent).toBe("Multi-Role Operational Portal");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline).toMatch(/Row-Level Security/);
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.kicker).toBe("CASE STUDY: ENTERPRISE AI");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleLead).toBe("AI-Powered");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleAccent).toBe("Multi-Role CRM");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline).toBe("Intelligent Operations with RAG & LLMs.");
     expect("title" in MULTI_ROLE_CRM_CASE_STUDY_COPY).toBe(false);
     expect("heroActions" in MULTI_ROLE_CRM_CASE_STUDY_COPY).toBe(false);
     expect(MULTI_ROLE_CRM_CASE_STUDY_HERO_IMAGE_WIDTH).toBe(512);
@@ -33,9 +33,9 @@ describe("multiRoleCrmCaseStudyContent", () => {
 
   it("matches the vision and tech stack mosaic copy", () => {
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.heading).toBe("The Vision");
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.body).toMatch(/Retrieval-Augmented Generation/i);
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.body).toMatch(/LLM and RAG/i);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.vision.body).toMatch(/Row-Level Security/);
-    expect("heading" in MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack).toBe(false);
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack.heading).toBe("TECH STACK");
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack.items).toHaveLength(4);
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.techStack.items.map((item) => item.alt)).toEqual([
       "React",
@@ -67,7 +67,7 @@ describe("multiRoleCrmCaseStudyContent", () => {
       "Real-Time WebSockets",
       "Smart Analytics",
     ]);
-    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("Build Your B2B Web Platform");
+    expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("View Full Case Study");
     expect("socialProof" in MULTI_ROLE_CRM_CASE_STUDY_COPY.bottomCta).toBe(false);
   });
 

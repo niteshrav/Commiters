@@ -201,7 +201,7 @@ export function neardropCaseStudyPageSeo(): PageSeoInput {
 export function multiRoleCrmCaseStudyPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(MULTI_ROLE_CRM_CASE_STUDY_COPY.documentTitle),
-    description: `${MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline}. Enterprise SaaS development case study by Commiters.`,
+    description: `${MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline} Enterprise SaaS development case study by Commiters.`,
     path: ROUTES.multiRoleCrmCaseStudy,
   });
 }

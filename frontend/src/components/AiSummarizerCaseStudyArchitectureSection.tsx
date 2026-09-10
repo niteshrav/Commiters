@@ -1,9 +1,6 @@
-import type { AiSummarizerArchitectureIcon, AiSummarizerBadgeVariant } from "../lib/aiSummarizerCaseStudyContent";
+import type { AiSummarizerArchitectureIcon } from "../lib/aiSummarizerCaseStudyContent";
 import { AI_SUMMARIZER_CASE_STUDY_COPY } from "../lib/aiSummarizerCaseStudyContent";
 import {
-  AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_BADGE_CLASS,
-  AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_BADGE_DARK_CLASS,
-  AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_BADGE_LIGHT_CLASS,
   AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_CARD_BODY_CLASS,
   AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_CARD_CLASS,
   AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_CARD_TITLE_CLASS,
@@ -12,26 +9,19 @@ import {
   AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_ICON_CLASS,
   AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_SECTION_CLASS,
 } from "../lib/aiSummarizerCaseStudyLayout";
-import { IconGauge, IconLayers, IconList } from "./icons";
+import { IconGauge, IconLayers, IconShieldCheck } from "./icons";
 
 function ArchitectureIcon({ icon }: { icon: AiSummarizerArchitectureIcon }) {
-  const props = { width: 24, height: 24, "aria-hidden": true as const };
+  const props = { width: 18, height: 18, "aria-hidden": true as const };
 
   switch (icon) {
     case "layers":
       return <IconLayers {...props} />;
-    case "list":
-      return <IconList {...props} />;
+    case "shield":
+      return <IconShieldCheck {...props} />;
     case "gauge":
       return <IconGauge {...props} />;
   }
-}
-
-function badgeClassName(variant: AiSummarizerBadgeVariant): string {
-  const base = AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_BADGE_CLASS;
-  return variant === "dark"
-    ? `${base} ${AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_BADGE_DARK_CLASS}`
-    : `${base} ${AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_BADGE_LIGHT_CLASS}`;
 }
 
 export default function AiSummarizerCaseStudyArchitectureSection() {
@@ -54,7 +44,6 @@ export default function AiSummarizerCaseStudyArchitectureSection() {
             </span>
             <h3 className={AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_CARD_TITLE_CLASS}>{card.title}</h3>
             <p className={AI_SUMMARIZER_CASE_STUDY_ARCHITECTURE_CARD_BODY_CLASS}>{card.body}</p>
-            <span className={badgeClassName(card.badge.variant)}>{card.badge.text}</span>
           </article>
         ))}
       </div>

@@ -1,9 +1,11 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { IconCheckCircle, IconLock } from "./icons";
 import { createLead } from "../lib/api";
 import { sanitizeNameInput } from "../lib/contactValidation";
 import { FROSTED_GLASS_CLASS_NAME } from "../lib/frostedGlass";
 import { ROUTES } from "../lib/routes";
+import { SERVICES_OVERVIEW_DISPLAY } from "../lib/servicesOverviewPageDesign";
 import { validateServicesOverviewLead } from "../lib/servicesOverviewLeadGate";
 import {
   SERVICES_OVERVIEW_INQUIRY,
@@ -12,6 +14,7 @@ import {
   type ServicesOverviewInquiryInterest,
 } from "../lib/servicesOverviewPageContent";
 import {
+  SERVICES_OVERVIEW_ENGAGE_CLASS,
   SERVICES_OVERVIEW_FIELD_CLASS,
   SERVICES_OVERVIEW_INQUIRY_FORM_CLASS,
   SERVICES_OVERVIEW_INQUIRY_SECTION_CLASS,
@@ -60,80 +63,99 @@ export default function ServicesOverviewInquiry() {
       className={`${SERVICES_OVERVIEW_INQUIRY_SECTION_CLASS} reveal-on-scroll`}
       aria-labelledby="services-overview-inquiry-title"
     >
-      <form
-        id={SERVICES_OVERVIEW_INQUIRY_ANCHOR}
-        className={`${SERVICES_OVERVIEW_INQUIRY_FORM_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}
-        onSubmit={onSubmit}
-        data-testid="services-overview-inquiry"
-        aria-label={SERVICES_OVERVIEW_INQUIRY.title}
-      >
-        <h2 id="services-overview-inquiry-title">{SERVICES_OVERVIEW_INQUIRY.title}</h2>
-        <p>{SERVICES_OVERVIEW_INQUIRY.subtext}</p>
-        <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
-          <label htmlFor="services-overview-name">{SERVICES_OVERVIEW_INQUIRY.nameLabel}</label>
-          <input
-            id="services-overview-name"
-            value={name}
-            onChange={(event) => setName(sanitizeNameInput(event.target.value))}
-            placeholder={SERVICES_OVERVIEW_INQUIRY.namePlaceholder}
-            autoComplete="name"
-            required
-          />
-        </div>
-        <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
-          <label htmlFor="services-overview-email">{SERVICES_OVERVIEW_INQUIRY.emailLabel}</label>
-          <input
-            id="services-overview-email"
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder={SERVICES_OVERVIEW_INQUIRY.emailPlaceholder}
-            autoComplete="email"
-            required
-          />
-        </div>
-        <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
-          <label htmlFor="services-overview-company">{SERVICES_OVERVIEW_INQUIRY.companyLabel}</label>
-          <input
-            id="services-overview-company"
-            value={company}
-            onChange={(event) => setCompany(event.target.value)}
-            placeholder={SERVICES_OVERVIEW_INQUIRY.companyPlaceholder}
-            autoComplete="organization"
-            required
-          />
-        </div>
-        <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
-          <label htmlFor="services-overview-interest">{SERVICES_OVERVIEW_INQUIRY.interestLabel}</label>
-          <select
-            id="services-overview-interest"
-            value={interest}
-            onChange={(event) => setInterest(event.target.value as ServicesOverviewInquiryInterest)}
-            required
-          >
-            {SERVICES_OVERVIEW_INQUIRY_INTERESTS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
+      <div className={`services-overview-inner ${SERVICES_OVERVIEW_ENGAGE_CLASS}`}>
+        <div className="services-overview-engage-copy">
+          <p className="services-overview-form-kicker">{SERVICES_OVERVIEW_DISPLAY.formKicker}</p>
+          <h2 id="services-overview-inquiry-title">{SERVICES_OVERVIEW_INQUIRY.title}</h2>
+          <p>{SERVICES_OVERVIEW_INQUIRY.subtext}</p>
+          <ul className="services-overview-checks">
+            {SERVICES_OVERVIEW_DISPLAY.checks.map((item) => (
+              <li key={item}>
+                <IconCheckCircle />
+                {item}
+              </li>
             ))}
-          </select>
+          </ul>
+          <p className="services-overview-form-aside">{SERVICES_OVERVIEW_DISPLAY.formAside}</p>
         </div>
-        <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
-          <label htmlFor="services-overview-details">{SERVICES_OVERVIEW_INQUIRY.detailsLabel}</label>
-          <textarea
-            id="services-overview-details"
-            value={details}
-            onChange={(event) => setDetails(event.target.value)}
-            placeholder={SERVICES_OVERVIEW_INQUIRY.detailsPlaceholder}
-            rows={4}
-            required
-          />
-        </div>
-        {error ? <p role="alert">{error}</p> : null}
-        <button className="btn btn-primary" type="submit" disabled={submitting}>
-          {SERVICES_OVERVIEW_INQUIRY.submitLabel}
-        </button>
-      </form>
+        <form
+          id={SERVICES_OVERVIEW_INQUIRY_ANCHOR}
+          className={`${SERVICES_OVERVIEW_INQUIRY_FORM_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}
+          onSubmit={onSubmit}
+          data-testid="services-overview-inquiry"
+          aria-label={SERVICES_OVERVIEW_INQUIRY.title}
+        >
+          <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
+            <label htmlFor="services-overview-interest">{SERVICES_OVERVIEW_INQUIRY.interestLabel}</label>
+            <select
+              id="services-overview-interest"
+              value={interest}
+              onChange={(event) => setInterest(event.target.value as ServicesOverviewInquiryInterest)}
+              required
+            >
+              {SERVICES_OVERVIEW_INQUIRY_INTERESTS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
+            <label htmlFor="services-overview-name">{SERVICES_OVERVIEW_INQUIRY.nameLabel}</label>
+            <input
+              id="services-overview-name"
+              value={name}
+              onChange={(event) => setName(sanitizeNameInput(event.target.value))}
+              placeholder={SERVICES_OVERVIEW_INQUIRY.namePlaceholder}
+              autoComplete="name"
+              required
+            />
+          </div>
+          <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
+            <label htmlFor="services-overview-email">{SERVICES_OVERVIEW_INQUIRY.emailLabel}</label>
+            <input
+              id="services-overview-email"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder={SERVICES_OVERVIEW_INQUIRY.emailPlaceholder}
+              autoComplete="email"
+              required
+            />
+          </div>
+          <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
+            <label htmlFor="services-overview-company">{SERVICES_OVERVIEW_INQUIRY.companyLabel}</label>
+            <input
+              id="services-overview-company"
+              value={company}
+              onChange={(event) => setCompany(event.target.value)}
+              placeholder={SERVICES_OVERVIEW_INQUIRY.companyPlaceholder}
+              autoComplete="organization"
+              required
+            />
+          </div>
+          <div className={SERVICES_OVERVIEW_FIELD_CLASS}>
+            <label htmlFor="services-overview-details">{SERVICES_OVERVIEW_INQUIRY.detailsLabel}</label>
+            <textarea
+              id="services-overview-details"
+              value={details}
+              onChange={(event) => setDetails(event.target.value)}
+              placeholder={SERVICES_OVERVIEW_INQUIRY.detailsPlaceholder}
+              rows={4}
+              required
+            />
+          </div>
+          {error ? <p role="alert">{error}</p> : null}
+          <button className="btn btn-primary" type="submit" disabled={submitting}>
+            {SERVICES_OVERVIEW_INQUIRY.submitLabel}{" "}
+            <span aria-hidden="true">{SERVICES_OVERVIEW_DISPLAY.ctaArrow}</span>
+          </button>
+          <p className="services-overview-privacy">
+            <IconLock />
+            {SERVICES_OVERVIEW_DISPLAY.privacyNote}
+          </p>
+        </form>
+      </div>
     </section>
   );
 }

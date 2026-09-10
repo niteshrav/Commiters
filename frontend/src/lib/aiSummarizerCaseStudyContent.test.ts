@@ -15,9 +15,12 @@ const publicRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "pu
 describe("aiSummarizerCaseStudyContent", () => {
   it("matches the governed ingestion introduction copy and hero asset", () => {
     expect(AI_SUMMARIZER_CASE_STUDY_COPY.documentTitle).toBe("AI Summarizer Case Study");
-    expect(AI_SUMMARIZER_CASE_STUDY_COPY.kicker).toBe("CASE STUDY: GOVERNED AI & WORKFLOW SYSTEMS");
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.kicker).toBe("CASE STUDY");
     expect(AI_SUMMARIZER_CASE_STUDY_COPY.title).toBe("Enterprise Document Ingestion & Governed LLM Pipeline");
-    expect(AI_SUMMARIZER_CASE_STUDY_COPY.description).toMatch(/Model Context Protocol/);
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.description).toMatch(/MCP sockets/);
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.tags).toEqual(["Document AI", "MCP", "Google Cloud"]);
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.metadata.timeline.value).toBe("4 Weeks");
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.metadata.industry.value).toBe("Enterprise AI");
     expect(AI_SUMMARIZER_CASE_STUDY_HERO_IMAGE_WIDTH).toBe(1024);
     expect(AI_SUMMARIZER_CASE_STUDY_HERO_IMAGE_HEIGHT).toBe(438);
 
@@ -33,11 +36,11 @@ describe("aiSummarizerCaseStudyContent", () => {
   it("matches the bordered core architecture and tech stack copy", () => {
     expect(AI_SUMMARIZER_CASE_STUDY_COPY.architecture.heading).toBe("Core Architecture");
     expect(AI_SUMMARIZER_CASE_STUDY_COPY.architecture.cards.map((card) => card.title)).toEqual([
-      "Multi-Page Processing",
+      "Ingestion & Processing",
       "Governance & Security",
-      "Latency & Schema Optimization",
+      "Optimization",
     ]);
-    expect(AI_SUMMARIZER_CASE_STUDY_COPY.techStack.heading).toBe("The Tech Stack");
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.techStack.heading).toBe("Tech Stack");
     expect(AI_SUMMARIZER_CASE_STUDY_COPY.techStack.items).toHaveLength(4);
     expect(AI_SUMMARIZER_CASE_STUDY_COPY.techStack.items.map((item) => item.title)).toEqual([
       "Python 3.11",
@@ -59,7 +62,8 @@ describe("aiSummarizerCaseStudyContent", () => {
       "Policy-Gated Invocation",
       "Schema Validation",
     ]);
-    expect(AI_SUMMARIZER_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("Scope Your Governed AI Pipeline");
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("View Full Case Study");
+    expect(AI_SUMMARIZER_CASE_STUDY_COPY.bottomCta.title).toBe("Turning documents into trusted intelligence");
     expect(AI_SUMMARIZER_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.aiSolutions);
   });
 });

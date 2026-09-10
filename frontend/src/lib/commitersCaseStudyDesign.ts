@@ -27,5 +27,6 @@ export const COMMITERS_CASE_STUDY_DESIGN = {
     architectureColumnRatio: "minmax(0, 1fr) minmax(0, 2fr)",
     featureColumns: "repeat(3, minmax(0, 1fr))",
     highlightCardPadding: "24px",
+    highlightCardRadius: "16px",
   },
 } as const;

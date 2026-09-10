@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import {
   IconArrowRight,
-  IconBolt,
-  IconDatabase,
+  IconLock,
   IconShieldCheck,
+  IconLayers,
   IconWorkflow,
 } from "./icons";
 import {
@@ -13,7 +13,7 @@ import {
 } from "../lib/aboutPageContent";
 
 function PrincipleIcon({ icon }: { icon: AboutPrincipleIcon }) {
-  const props = { width: 20, height: 20 };
+  const props = { width: 16, height: 16 };
 
   switch (icon) {
     case "mcp":
@@ -21,9 +21,9 @@ function PrincipleIcon({ icon }: { icon: AboutPrincipleIcon }) {
     case "authority":
       return <IconShieldCheck {...props} />;
     case "spec":
-      return <IconDatabase {...props} />;
+      return <IconLayers {...props} />;
     case "async":
-      return <IconBolt {...props} />;
+      return <IconLock {...props} />;
     default:
       return <IconWorkflow {...props} />;
   }
@@ -35,16 +35,10 @@ export default function AboutOperatingPrinciplesSection() {
   return (
     <section
       id="principles"
-      className="about-principles-section about-principles-section--mockup reveal-on-scroll"
+      className="about-principles-section about-principles-section--values reveal-on-scroll"
       data-testid="about-principles-section"
       aria-labelledby="about-principles-title"
     >
-      <div className="about-principles-bg" aria-hidden="true">
-        <span className="about-principles-glow about-principles-glow--top" />
-        <span className="about-principles-glow about-principles-glow--bottom" />
-        <span className="about-principles-dots" />
-      </div>
-
       <div className="about-principles-inner">
         <div className="about-principles-intro">
           <header className="about-principles-header">
@@ -69,12 +63,9 @@ export default function AboutOperatingPrinciplesSection() {
               className={`about-principle-card about-principle-card--${principle.tone}`}
               data-testid="about-principle-card"
             >
-              <div className="about-principle-card-top">
-                <span className={`about-principle-icon about-principle-icon--${principle.tone}`} aria-hidden>
-                  <PrincipleIcon icon={principle.icon} />
-                </span>
-                <span className={`about-principle-index about-principle-index--${principle.tone}`}>{principle.index}</span>
-              </div>
+              <span className={`about-principle-icon about-principle-icon--${principle.tone}`} aria-hidden>
+                <PrincipleIcon icon={principle.icon} />
+              </span>
               <h3 className="about-principle-card-title">{principle.title}</h3>
               <p className="about-principle-card-body">{principle.body}</p>
             </article>

@@ -8,3 +8,6 @@ export const UTILITIES_SUBHEAD_CLASS = "utilities-subhead" as const;
 export const UTILITIES_TOOLS_GRID_CLASS = "utilities-tools-grid" as const;
 export const UTILITIES_TOOL_CARD_CLASS = "utilities-tool-card" as const;
 export const UTILITIES_BANNER_CLASS = "utilities-banner" as const;
+export const UTILITIES_HERO_COPY_CLASS = "utilities-hero-copy" as const;
+export const UTILITIES_HERO_VISUAL_CLASS = "utilities-hero-visual" as const;
+export const UTILITIES_HERO_CHIPS_CLASS = "utilities-hero-chips" as const;

@@ -33,12 +33,13 @@ describe("ProspectIqCaseStudyPage", () => {
     expect(within(overview).getByText("100% Policy-Gated MCP Execution")).toBeInTheDocument();
 
     const architecture = screen.getByTestId("prospectiq-case-study-architecture");
-    expect(within(architecture).getByRole("heading", { name: "Multi-Agent Lead Enrichment Engine" })).toBeInTheDocument();
-    expect(within(architecture).getByRole("heading", { name: /Model Context Protocol/ })).toBeInTheDocument();
+    expect(within(architecture).getByRole("heading", { name: "Multi-Agent Lead Enrichment" })).toBeInTheDocument();
+    expect(within(architecture).getByRole("heading", { name: "Policy-Gated MCP" })).toBeInTheDocument();
+    expect(within(architecture).getByRole("heading", { name: "Human-in-the-Loop" })).toBeInTheDocument();
 
-    const primary = screen.getByRole("link", { name: "Scope Your Custom AI Pipeline" });
-    expect(primary).toHaveAttribute("href", ROUTES.aiSolutions);
-    expect(primary).toHaveClass("technical-case-study-cta--cyan-glow");
-    expect(screen.getByRole("link", { name: /View All Work/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    const primary = screen.getAllByRole("link", { name: "Scope Your Custom AI Pipeline" });
+    expect(primary[0]).toHaveAttribute("href", ROUTES.aiSolutions);
+    expect(primary.some((link) => link.classList.contains("technical-case-study-cta--cyan-glow"))).toBe(true);
+    expect(screen.getAllByRole("link", { name: /View All Work/i })[0]).toHaveAttribute("href", ROUTES.caseStudies);
   });
 });

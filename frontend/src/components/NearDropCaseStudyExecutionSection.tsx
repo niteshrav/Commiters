@@ -1,3 +1,4 @@
+import type { NearDropCaseStudyExecutionItem } from "../lib/neardropCaseStudyContent";
 import { NEARDROP_CASE_STUDY_COPY } from "../lib/neardropCaseStudyContent";
 import {
   NEARDROP_CASE_STUDY_EXECUTION_COPY_CLASS,
@@ -5,6 +6,7 @@ import {
   NEARDROP_CASE_STUDY_EXECUTION_HEADING_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_ITEM_BODY_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_ITEM_CLASS,
+  NEARDROP_CASE_STUDY_EXECUTION_ITEM_ICON_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_ITEM_TITLE_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_KICKER_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_LAYOUT_CLASS,
@@ -12,6 +14,13 @@ import {
   NEARDROP_CASE_STUDY_EXECUTION_NUMBER_CLASS,
   NEARDROP_CASE_STUDY_EXECUTION_SECTION_CLASS,
 } from "../lib/neardropCaseStudyLayout";
+import { IconDatabase, IconGauge, IconLock } from "./icons";
+
+function ExecutionIcon({ icon }: { icon: NearDropCaseStudyExecutionItem["icon"] }) {
+  if (icon === "lock") return <IconLock width={22} height={22} />;
+  if (icon === "database") return <IconDatabase width={22} height={22} />;
+  return <IconGauge width={22} height={22} />;
+}
 
 export default function NearDropCaseStudyExecutionSection() {
   const { execution } = NEARDROP_CASE_STUDY_COPY;
@@ -33,13 +42,12 @@ export default function NearDropCaseStudyExecutionSection() {
         <ol className={NEARDROP_CASE_STUDY_EXECUTION_LIST_CLASS} data-testid="neardrop-case-study-execution-list">
           {execution.items.map((item) => (
             <li key={item.id} className={NEARDROP_CASE_STUDY_EXECUTION_ITEM_CLASS}>
-              <span className={NEARDROP_CASE_STUDY_EXECUTION_NUMBER_CLASS} aria-hidden>
-                {item.number}
+              <span className={NEARDROP_CASE_STUDY_EXECUTION_NUMBER_CLASS}>{item.number}</span>
+              <span className={NEARDROP_CASE_STUDY_EXECUTION_ITEM_ICON_CLASS} aria-hidden>
+                <ExecutionIcon icon={item.icon} />
               </span>
-              <div>
-                <h3 className={NEARDROP_CASE_STUDY_EXECUTION_ITEM_TITLE_CLASS}>{item.title}</h3>
-                <p className={NEARDROP_CASE_STUDY_EXECUTION_ITEM_BODY_CLASS}>{item.body}</p>
-              </div>
+              <h3 className={NEARDROP_CASE_STUDY_EXECUTION_ITEM_TITLE_CLASS}>{item.title}</h3>
+              <p className={NEARDROP_CASE_STUDY_EXECUTION_ITEM_BODY_CLASS}>{item.body}</p>
             </li>
           ))}
         </ol>

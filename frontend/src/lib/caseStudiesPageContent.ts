@@ -24,15 +24,17 @@ export type CaseStudyProject = {
 
 export const CASE_STUDIES_PAGE_COPY = {
   intro: {
-    kicker: "PROVEN ENTERPRISE ARCHITECTURE",
+    kicker: "CASE STUDIES",
+    titleLead: "Governed AI & Cloud Engineering ",
+    titleAccent: "in Action",
     title: "Governed AI & Cloud Engineering in Action",
-    subtext:
-      "Explore how we engineer production-grade cloud web platforms, governed AI pipelines, and high-stakes operational products—backed by strict policy guardrails and zero ambient authority.",
+    subtext: "Real-world solutions built with AI, cloud, and secure engineering.",
   },
   bottomCta: {
-    title: "Ready for the next level?",
-    primaryLabel: "Book Operational Audit",
-    primaryTo: ROUTES.aiOperationalAudit,
+    title: "Have a project in mind?",
+    subtext: "Let's build something impactful together.",
+    primaryLabel: "Start a Conversation",
+    primaryTo: ROUTES.contact,
     secondaryLabel: "View Services & Products",
     secondaryTo: ROUTES.services,
   },
@@ -121,3 +123,50 @@ export const CASE_STUDY_PROJECTS: CaseStudyProject[] = [
     detailsHref: ROUTES.ecoRouteCaseStudy,
   },
 ];
+
+/** Additional Work-page case studies kept off the original five-item contract. */
+export const CASE_STUDY_PORTFOLIO_EXTRAS: CaseStudyProject[] = [
+  {
+    id: "ai-summarizer",
+    title: "AI Summarizer",
+    tags: ["Python", "OpenAI", "Document AI", "MCP"],
+    tagVariant: "cyan",
+    problem: "Long operational documents slow review and bury decisions in unstructured text.",
+    solution: "Governed document ingestion that turns packets into clear, actionable summaries.",
+    impact: ["Enterprise Document Security", "Actionable Executive Briefs"],
+    gridSpan: "wide",
+    layout: "horizontal",
+    detailsLabel: "View Project Details",
+    detailsHref: ROUTES.aiSummarizerCaseStudy,
+  },
+  {
+    id: "multi-role-crm",
+    title: "Multi-Role CRM & AI Chatbot",
+    tags: ["React", "RAG", "WebSockets", "RLS"],
+    tagVariant: "cyan",
+    problem: "Support and sales teams lacked a shared, permissioned view of customer work.",
+    solution: "AI-powered CRM assistance with role-aware workflows and real-time updates.",
+    impact: ["Role-Aware Access", "Live Operator Assist"],
+    gridSpan: "narrow",
+    layout: "stacked",
+    detailsLabel: "View Project Details",
+    detailsHref: ROUTES.multiRoleCrmCaseStudy,
+  },
+  {
+    id: "browse-my-vacation",
+    title: "BrowseMyVacation",
+    tags: ["React", "Next.js", "Node.js", "PostgreSQL"],
+    tagVariant: "cyan",
+    problem: "Travel operators needed a curated storefront with reliable quote capture.",
+    solution: "A B2C/B2B travel platform with packages, search, and custom quote workflows.",
+    impact: ["Curated Inventory", "Quote Workflow"],
+    gridSpan: "narrow",
+    layout: "stacked",
+    detailsLabel: "View Project Details",
+    detailsHref: ROUTES.browseMyVacationCaseStudy,
+  },
+];
+
+export function allStaticWorkPageProjects(): CaseStudyProject[] {
+  return [...CASE_STUDY_PROJECTS, ...CASE_STUDY_PORTFOLIO_EXTRAS];
+}

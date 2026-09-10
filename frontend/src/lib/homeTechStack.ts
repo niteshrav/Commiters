@@ -1,6 +1,6 @@
 /**
  * Simple Icons SVGs via jsDelivr (npm/simple-icons). Brand marks belong to their owners.
- * Cursor and Visual Studio use bundled SVGs (no reliable Simple Icons slug for VS on CDN).
+ * Cursor, Visual Studio, and MCP use bundled SVGs when the CDN slug is missing or too new.
  */
 export type TechLogoDef = {
   slug: string;
@@ -12,6 +12,7 @@ export type TechLogoDef = {
 export const TECH_LOCAL_ICONS = {
   cursor: "/assets/tech/cursor.svg",
   visualStudio: "/assets/tech/visual-studio.svg",
+  mcp: "/assets/tech/mcp.svg",
 } as const;
 
 export const HOME_TECH_STACK_ROWS: TechLogoDef[][] = [

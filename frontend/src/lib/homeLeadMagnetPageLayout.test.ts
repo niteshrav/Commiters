@@ -9,9 +9,9 @@ const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "st
 
 describe("homeLeadMagnet layout", () => {
   it("breaks out full-width with an aligned two-column inner grid and white capture card", () => {
-    expect(css).toMatch(/\.home-lead-magnet\s*\{[^}]*background:\s*linear-gradient/i);
+    expect(css).toMatch(/\.home-lead-magnet\s*\{[^}]*background:\s*#ffffff/i);
     expect(css).toMatch(/\.home-lead-magnet\s*\{[^}]*padding:\s*clamp\(48px, 5vw, 64px\)/i);
-    expect(css).toMatch(/\.home-lead-magnet\.band-breakout\s*\{[^}]*width:\s*100vw/i);
+    expect(css).toMatch(/\.home-lead-magnet\.band-breakout\s*\{[^}]*width:\s*100cqw/i);
     expect(css).toMatch(/\.home-lead-magnet-inner\s*\{[^}]*max-width:\s*var\(--max-width,\s*1360px\)/i);
     expect(css).toMatch(/\.home-lead-magnet-inner\s*\{[^}]*margin-inline:\s*auto/i);
     expect(css).toMatch(/\.home-lead-magnet-inner\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(0,\s*1fr\)/i);

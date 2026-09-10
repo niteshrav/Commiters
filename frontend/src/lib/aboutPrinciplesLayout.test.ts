@@ -32,7 +32,7 @@ describe("aboutPrinciplesLayout", () => {
     expect(grid).toContain(`gap: ${ABOUT_PRINCIPLES_GRID_GAP}`);
 
     const card = ruleBlock(`.${ABOUT_PRINCIPLE_CARD_CLASS} {`, `.${ABOUT_PRINCIPLE_CARD_CLASS}:hover {`);
-    expect(card).toContain("border-radius: 20px");
-    expect(card).toContain("box-shadow:");
+    expect(card).toContain("border-radius: 16px");
+    expect(card).not.toContain("min-height: 204px");
   });
 });

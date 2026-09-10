@@ -28,6 +28,7 @@ export const PAGE_STYLE_FILES = [
 
 /** Full-bleed page wrappers — must not use 100vw, which causes horizontal scroll. */
 export const FULL_BLEED_PAGE_SELECTORS = [
+  ".services-overview-page",
   ".utilities-page",
   ".aisol-page",
   ".webapp-page",
@@ -83,15 +84,17 @@ export const RESPONSIVE_STACK_GRID_SELECTORS = [
   ".stitch-join-us-grid",
   ".stitch-services-grid",
   ".about-principles-grid",
+  ".about-journey-track",
   ".home-built-for-scale-grid",
   ".footer-columns--mockup.footer-mockup-grid",
-  ".case-studies-grid",
+  ".work-hero-grid",
 ] as const;
 
 /** Selectors that use a two-column tablet layout before stacking. */
 export const RESPONSIVE_TABLET_GRID_SELECTORS = [
   ".stitch-services-grid",
   ".about-principles-grid",
+  ".about-journey-track",
   ".case-studies-grid",
 ] as const;
 

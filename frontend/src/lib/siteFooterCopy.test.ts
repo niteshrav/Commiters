@@ -22,11 +22,11 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_COPY.copyrightLine1).toBe("© Commiters Softwares. All rights reserved.");
   });
 
-  it("lists three footer navigation columns for flagship AI, engineering, and company legal", () => {
+  it("lists three footer navigation columns for flagship AI, engineering, and company", () => {
     expect(SITE_FOOTER_COPY.navColumns.map((column) => column.heading)).toEqual([
       "Flagship Solutions & Products",
       "Full-Lifecycle Engineering Services",
-      "Company & Legal",
+      "Company",
     ]);
     expect(SITE_FOOTER_COPY.navColumns.map((column) => column.id)).toEqual(["flagship", "engineering", "company"]);
     expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toEqual([
@@ -52,9 +52,11 @@ describe("siteFooterCopy", () => {
     expect(platforms?.kind === "internal" ? platforms.to : undefined).toBe(ROUTES.webApplications);
     const opsFlow = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "OpsFlow AI");
     expect(opsFlow?.kind === "internal" ? opsFlow.to : undefined).toBe(ROUTES.opsFlowPlayground);
+    const trustTap = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "TrustTap");
+    expect(trustTap?.kind === "internal" ? trustTap.to : undefined).toBe(ROUTES.trustTap);
     const utilities = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Free Business Utilities");
     expect(utilities?.kind === "internal" ? utilities.to : undefined).toBe(ROUTES.utilities);
-    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).not.toContain("TrustTap");
+    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toContain("TrustTap");
     expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).not.toContain("Custom AI Pipelines");
 
     const ecommerce = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Automated E-commerce Systems");
@@ -69,16 +71,32 @@ describe("siteFooterCopy", () => {
       (link) => link.label === "Automation & Integration Tools",
     );
     expect(automation?.kind === "internal" ? automation.to : undefined).toBe("/services/automation-tools");
+    const workflow = SITE_FOOTER_COPY.navColumns[1].links.find(
+      (link) => link.label === "Workflow & Process Automation",
+    );
+    expect(workflow?.kind === "internal" ? workflow.to : undefined).toBe(ROUTES.workflowAutomation);
 
     const aboutUs = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "About Us");
     expect(aboutUs?.kind === "internal" ? aboutUs.to : undefined).toBe(ROUTES.about);
     const clientWork = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Client Work");
     expect(clientWork?.kind === "internal" ? clientWork.to : undefined).toBe(ROUTES.caseStudies);
+    const services = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Services");
+    expect(services?.kind === "internal" ? services.to : undefined).toBe(ROUTES.services);
+    const jobs = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Jobs");
+    expect(jobs?.kind === "internal" ? jobs.to : undefined).toBe(ROUTES.openPositions);
+    const faq = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "FAQ");
+    expect(faq?.kind === "internal" ? faq.to : undefined).toBe(ROUTES.faq);
+    const blog = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Blog");
+    expect(blog?.kind === "internal" ? blog.to : undefined).toBe(ROUTES.technicalLedger);
     const contact = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Contact");
     expect(contact?.kind === "internal" ? contact.to : undefined).toBe(ROUTES.contact);
     expect(SITE_FOOTER_COPY.navColumns[2].links.map((link) => link.label)).toEqual([
       "About Us",
       "Client Work",
+      "Services",
+      "Jobs",
+      "FAQ",
+      "Blog",
       "Contact",
     ]);
 

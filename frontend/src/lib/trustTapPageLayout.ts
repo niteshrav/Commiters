@@ -19,6 +19,7 @@ export const TRUSTTAP_HERO_INNER_CLASS = "trusttap-hero-inner" as const;
 export const TRUSTTAP_HERO_TITLE_CLASS = "trusttap-hero-title" as const;
 export const TRUSTTAP_HERO_TAGLINE_CLASS = "trusttap-hero-tagline" as const;
 export const TRUSTTAP_HERO_ACTIONS_CLASS = "trusttap-hero-actions" as const;
+export const TRUSTTAP_HERO_CHIPS_CLASS = "trusttap-hero-chips" as const;
 
 export const TRUSTTAP_FEATURES_GRID_CLASS = "trusttap-features-grid" as const;
 export const TRUSTTAP_FEATURE_CARD_CLASS = "trusttap-feature-card" as const;

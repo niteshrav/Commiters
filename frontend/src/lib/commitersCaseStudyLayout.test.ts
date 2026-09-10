@@ -55,7 +55,7 @@ describe("commitersCaseStudyLayout", () => {
       `.${COMMITERS_CASE_STUDY_CORE_STACK_CLASS} {`,
     );
     expect(highlightCard).toContain("border: 1px solid #e5e7eb");
-    expect(highlightCard).toContain("border-radius: 0");
+    expect(highlightCard).toContain("border-radius: 16px");
     expect(highlightCard).toContain("padding: 24px");
 
     const stack = ruleBlock(`.${COMMITERS_CASE_STUDY_CORE_STACK_CLASS} {`, `.${COMMITERS_CASE_STUDY_CORE_STACK_HEADING_CLASS} {`);
@@ -79,7 +79,9 @@ describe("commitersCaseStudyLayout", () => {
       `.${COMMITERS_CASE_STUDY_ARCHITECTURE_ITEM_CLASS} {`,
       `.${COMMITERS_CASE_STUDY_FEATURE_GRID_CLASS} {`,
     );
+    expect(architectureItem).toContain("display: flex");
     expect(architectureItem).toContain("border-top: 1px solid #e5e7eb");
+    expect(architectureItem).toContain("border-radius: 999px");
 
     const features = ruleBlock(
       `.${COMMITERS_CASE_STUDY_FEATURE_GRID_CLASS} {`,

@@ -12,7 +12,6 @@ export default function AiSummarizerCaseStudyBottomCta() {
       aria-labelledby="ai-summarizer-case-study-bottom-cta-title"
     >
       <h2 id="ai-summarizer-case-study-bottom-cta-title">{bottomCta.title}</h2>
-      <p>{bottomCta.subtext}</p>
       <Link className="btn btn-primary" to={bottomCta.primaryTo}>
         {bottomCta.primaryLabel}
       </Link>

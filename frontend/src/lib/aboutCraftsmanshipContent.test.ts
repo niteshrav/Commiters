@@ -57,9 +57,9 @@ function ruleBlock(selector: string, nextSelector: string): string {
 }
 
 describe("aboutCraftsmanshipContent", () => {
-  it("exposes a single 13+ Years stat (no ships block)", () => {
+  it("exposes a single 15+ Years stat (no ships block)", () => {
     expect(ABOUT_CRAFTSMANSHIP_STAT_COUNT).toBe(1);
-    expect(ABOUT_CRAFTSMANSHIP_YEARS_STAT.value).toBe("13+ Years");
+    expect(ABOUT_CRAFTSMANSHIP_YEARS_STAT.value).toBe("15+ Years");
     expect(ABOUT_CRAFTSMANSHIP_YEARS_STAT.label).toBe("INDUSTRY EXCELLENCE");
   });
 

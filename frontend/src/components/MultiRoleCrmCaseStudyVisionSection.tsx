@@ -3,12 +3,16 @@ import { MULTI_ROLE_CRM_CASE_STUDY_COPY } from "../lib/multiRoleCrmCaseStudyCont
 import { resolveTechIconUrl } from "../lib/homeTechStack";
 import {
   MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_GRID_CLASS,
+  MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_ICON_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_ITEM_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_LABEL_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_LABEL_SOLUTION_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_TEXT_CLASS,
+  MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_CAPTION_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_COPY_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_GRID_CLASS,
+  MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_HEADER_CLASS,
+  MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_HEADING_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ICON_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_HIGHLIGHT_CLASS,
@@ -22,7 +26,7 @@ import {
   MULTI_ROLE_CRM_CASE_STUDY_VISION_LAYOUT_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_VISION_SECTION_CLASS,
 } from "../lib/multiRoleCrmCaseStudyLayout";
-import { IconAutomationSpark, IconCodeBracket, IconDatabase, IconGlobe } from "./icons";
+import { IconAutomationSpark, IconCodeBracket, IconDatabase, IconGlobe, IconTarget } from "./icons";
 
 function StackIcon({ item }: { item: MultiRoleCrmCaseStudyStackItem }) {
   if (item.icon === "code") return <IconCodeBracket width={28} height={28} />;
@@ -55,10 +59,19 @@ export default function MultiRoleCrmCaseStudyVisionSection() {
           <p className={MULTI_ROLE_CRM_CASE_STUDY_VISION_BODY_CLASS}>{vision.body}</p>
           <div className={MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_GRID_CLASS}>
             <article className={MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_ITEM_CLASS}>
+              <span className={MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_ICON_CLASS} aria-hidden>
+                <IconTarget width={18} height={18} />
+              </span>
               <p className={MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_LABEL_CLASS}>{vision.challenge.label}</p>
               <p className={MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_TEXT_CLASS}>{vision.challenge.text}</p>
             </article>
             <article className={MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_ITEM_CLASS}>
+              <span
+                className={`${MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_ICON_CLASS} ${MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_LABEL_SOLUTION_CLASS}`}
+                aria-hidden
+              >
+                <IconAutomationSpark width={18} height={18} />
+              </span>
               <p
                 className={`${MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_LABEL_CLASS} ${MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_LABEL_SOLUTION_CLASS}`}
               >
@@ -69,16 +82,20 @@ export default function MultiRoleCrmCaseStudyVisionSection() {
           </div>
         </div>
         <aside className={MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_PANEL_CLASS} data-testid="multi-role-crm-case-study-tech-stack">
+          <div className={MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_HEADER_CLASS}>
+            <p className={MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_HEADING_CLASS}>{techStack.heading}</p>
+            <p className={MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_CAPTION_CLASS}>{techStack.caption}</p>
+          </div>
           <ul className={MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_GRID_CLASS}>
             {techStack.items.map((item) => (
               <li key={item.slug} className={stackItemClassName(item)}>
                 <span className={MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ICON_CLASS} aria-hidden>
-                  {item.highlight ? (
+                  {item.icon === "ai" ? (
                     <StackIcon item={item} />
                   ) : (
                     <img
                       src={resolveTechIconUrl(item)}
-                      alt={`${item.alt} technology logo`}
+                      alt=""
                       width={28}
                       height={28}
                       loading="lazy"

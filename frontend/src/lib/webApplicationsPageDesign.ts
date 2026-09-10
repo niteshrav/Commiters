@@ -1,0 +1,37 @@
+export const WEB_APPLICATIONS_DISPLAY = {
+  headlineLead: "Spec-Driven",
+  headlineAccent: "Full-Stack Cloud Platforms",
+  deliverKicker: "What we deliver",
+  deliverHeading: "From Idea to Impact",
+  deliverLead: "We turn complex requirements into reliable, production-ready cloud platforms.",
+  stackHeading: "Modern. Proven. Flexible.",
+  stackNote: "The tools we use to build spec-driven platforms.",
+  formKicker: "Let's build together",
+  formLead: "Share a few details and we'll suggest the right approach, timeline, and cost.",
+  formAside: "Turn your specs into a scalable product",
+  privacyNote: "We respect your privacy. No spam, ever.",
+  sampleWorkLabel: "View Sample Work",
+  ctaArrow: "→",
+  chips: [
+    { id: "spec", title: "Spec to Production", body: "Faster delivery" },
+    { id: "debt", title: "Zero Technical Debt", body: "Built to scale" },
+    { id: "stack", title: "Modern Stack", body: "Future ready" },
+  ] as const,
+  checks: [
+    "Scalable",
+    "Secure",
+    "Spec-Driven",
+    "Production Ready",
+  ] as const,
+  tower: ["React", "Vite", "Node.js", "MongoDB"] as const,
+  floats: [
+    { id: "spec", title: "From specifications to scale" },
+    { id: "deploy", title: "Deploy with Confidence" },
+  ] as const,
+  formChecks: [
+    "Review Requirements",
+    "Plan Architecture",
+    "Estimate & Timeline",
+    "Get Started",
+  ] as const,
+} as const;

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { TRUSTTAP_DISPLAY } from "../../lib/trustTapPageDesign";
 import { TRUSTTAP_BOTTOM_CTA } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_BOTTOM_CTA_ACTIONS_CLASS,
@@ -18,20 +19,27 @@ export default function TrustTapBottomCtaSection() {
       aria-labelledby="trusttap-bottom-cta-title"
     >
       <div className={TRUSTTAP_BOTTOM_CTA_INNER_CLASS}>
-        <h2 id="trusttap-bottom-cta-title" className={TRUSTTAP_SECTION_TITLE_CLASS}>
+        <p className="trusttap-bottom-kicker">{TRUSTTAP_DISPLAY.bottomKicker}</p>
+        <h2 id="trusttap-bottom-cta-title" className={`${TRUSTTAP_SECTION_TITLE_CLASS} trusttap-sr`}>
           {copy.title}
         </h2>
+        <p className="trusttap-bottom-headline" aria-hidden="true">
+          {TRUSTTAP_DISPLAY.bottomHeadline}
+        </p>
         <p className={TRUSTTAP_SECTION_SUBTEXT_CLASS}>{copy.subtext}</p>
         <div className={TRUSTTAP_BOTTOM_CTA_ACTIONS_CLASS}>
-          <Link className="btn btn-primary trusttap-hero-btn-primary" to={copy.primaryHref}>
-            {copy.primaryLabel}
-          </Link>
           {copy.secondaryHref ? (
-            <Link className="btn btn-secondary trusttap-hero-btn-secondary" to={copy.secondaryHref}>
+            <Link className="btn btn-secondary trusttap-bottom-cta-secondary" to={copy.secondaryHref}>
               {copy.secondaryLabel}
             </Link>
           ) : null}
+          <Link className="btn btn-primary trusttap-hero-btn-primary" to={copy.primaryHref}>
+            {copy.primaryLabel} <span aria-hidden="true">{TRUSTTAP_DISPLAY.ctaArrow}</span>
+          </Link>
         </div>
+        <p className="trusttap-bottom-note" aria-hidden="true">
+          Trusted in the field.
+        </p>
       </div>
     </section>
   );

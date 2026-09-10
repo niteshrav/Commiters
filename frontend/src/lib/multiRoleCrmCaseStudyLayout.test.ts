@@ -56,19 +56,19 @@ describe("multiRoleCrmCaseStudyLayout", () => {
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_CLASS} {`,
     );
     expect(stackGrid).toContain(`grid-template-columns: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.layout.techStackColumns}`);
-    expect(stackGrid).toContain(`border: 1px solid ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.colors.cardBorder}`);
+    expect(stackGrid).toContain("gap: 12px");
 
     const wideItem = ruleBlock(
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_WIDE_CLASS} {`,
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_HIGHLIGHT_CLASS} {`,
     );
-    expect(wideItem).toContain("grid-column: 1 / -1");
+    expect(wideItem).toContain("flex-direction: column");
 
     const highlightItem = ruleBlock(
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_HIGHLIGHT_CLASS} {`,
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ICON_CLASS} {`,
     );
-    expect(highlightItem).toContain(`background: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.colors.primary}`);
+    expect(highlightItem).toContain("background: #ffffff");
 
     const challengeGrid = ruleBlock(
       `.${MULTI_ROLE_CRM_CASE_STUDY_CHALLENGE_GRID_CLASS} {`,

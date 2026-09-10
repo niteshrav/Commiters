@@ -14,7 +14,7 @@ describe("EcoRouteCaseStudyPage", () => {
     );
 
     const page = screen.getByTestId("ecoroute-case-study-page");
-    expect(page).toHaveClass("commiters-case-study-page", "technical-case-study-page");
+    expect(page).toHaveClass("commiters-case-study-page", "technical-case-study-page", "ecoroute-case-study-page");
     expect(screen.getByText(ECO_ROUTE_CASE_STUDY_COPY.kicker)).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1, name: ECO_ROUTE_CASE_STUDY_COPY.title })).toBeInTheDocument();
     expect(screen.getByText(ECO_ROUTE_CASE_STUDY_COPY.subtitle)).toBeInTheDocument();
@@ -36,9 +36,9 @@ describe("EcoRouteCaseStudyPage", () => {
     expect(within(architecture).getByRole("heading", { name: "High-Performance Geo-Spatial Engine" })).toBeInTheDocument();
     expect(within(architecture).getByText(/Row-Level Security/i)).toBeInTheDocument();
 
-    const primary = screen.getByRole("link", { name: "Build Your Cloud Platform" });
-    expect(primary).toHaveAttribute("href", ROUTES.webApplications);
-    expect(primary).toHaveClass("technical-case-study-cta--gold-blue");
-    expect(screen.getByRole("link", { name: /View All Work/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    const primary = screen.getAllByRole("link", { name: "Build Your Cloud Platform" });
+    expect(primary[0]).toHaveAttribute("href", ROUTES.webApplications);
+    expect(primary.some((link) => link.classList.contains("technical-case-study-cta--gold-blue"))).toBe(true);
+    expect(screen.getAllByRole("link", { name: /View All Work/i })[0]).toHaveAttribute("href", ROUTES.caseStudies);
   });
 });

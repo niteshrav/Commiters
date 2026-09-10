@@ -6,7 +6,7 @@ import { ROUTES } from "../lib/routes";
 import NearDropCaseStudyBottomCta from "./NearDropCaseStudyBottomCta";
 
 describe("NearDropCaseStudyBottomCta", () => {
-  it("renders the enterprise-grade gradient CTA banner", () => {
+  it("renders the light CTA banner", () => {
     render(
       <MemoryRouter>
         <NearDropCaseStudyBottomCta />
@@ -23,7 +23,7 @@ describe("NearDropCaseStudyBottomCta", () => {
     expect(within(cta).getByText(NEARDROP_CASE_STUDY_COPY.bottomCta.subtext)).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Need Precision Software?" })).not.toBeInTheDocument();
 
-    expect(screen.getByRole("link", { name: "Discuss Your Cloud Platform" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /Discuss Your Project/i })).toHaveAttribute(
       "href",
       ROUTES.contact,
     );
