@@ -12,25 +12,26 @@ const indexHtml = readFileSync(join(root, "index.html"), "utf8");
 const css = readFileSync(join(root, "src", "styles.css"), "utf8");
 
 describe("precisionMinimalistDesign", () => {
-  it("defines void-first white canvas, vibrant blue accent, and refined body gray", () => {
-    expect(PRECISION_MINIMALIST_DESIGN.colors.background).toBe("#ffffff");
-    expect(PRECISION_MINIMALIST_DESIGN.colors.primary).toBe("#0066ff");
-    expect(PRECISION_MINIMALIST_DESIGN.colors.body).toBe("#4b5563");
-    expect(PRECISION_MINIMALIST_DESIGN.colors.surfaceContainerLow).toBe("#f8f9fa");
-    expect(PRECISION_MINIMALIST_DESIGN.colors.borderSubtle).toBe("#f1f5f9");
+  it("uses Prussian headings, Azure accents, and Chalk White canvas from the Brand Book", () => {
+    expect(PRECISION_MINIMALIST_DESIGN.colors.background).toBe("#F5F7F9");
+    expect(PRECISION_MINIMALIST_DESIGN.colors.primary).toBe("#1E88E5");
+    expect(PRECISION_MINIMALIST_DESIGN.colors.heading).toBe("#0A2E50");
+    expect(PRECISION_MINIMALIST_DESIGN.colors.body).toBe("#3D5470");
+    expect(PRECISION_MINIMALIST_DESIGN.colors.surfaceContainerLow).toBe("#F5F7F9");
+    expect(PRECISION_MINIMALIST_DESIGN.radius.card).toBe("16px");
 
     expect(STITCH_LIGHT_PALETTE.stitchBlue).toBe(PRECISION_MINIMALIST_DESIGN.colors.primary);
-    expect(LOGO_CSS_VARIABLES["--primary"]).toBe("#0066ff");
-    expect(LOGO_CSS_VARIABLES["--page-background"]).toBe("#ffffff");
-    expect(LOGO_CSS_VARIABLES["--body-text"]).toBe("#4b5563");
-    expect(LOGO_CSS_VARIABLES["--surface-container-low"]).toBe("#f8f9fa");
+    expect(LOGO_CSS_VARIABLES["--primary"]).toBe("#1E88E5");
+    expect(LOGO_CSS_VARIABLES["--page-background"]).toBe("#F5F7F9");
+    expect(LOGO_CSS_VARIABLES["--body-text"]).toBe("#3D5470");
+    expect(LOGO_CSS_VARIABLES["--surface-container-low"]).toBe("#F5F7F9");
   });
 
-  it("uses Plus Jakarta Sans for display and body typography site-wide", () => {
-    expect(PRECISION_MINIMALIST_DESIGN.typography.fontFamily).toContain("Plus Jakarta Sans");
-    expect(SITE_TYPOGRAPHY.fontFamily).toContain("Plus Jakarta Sans");
-    expect(indexHtml).toContain("Plus+Jakarta+Sans");
-    expect(css).toContain("Plus Jakarta Sans");
+  it("uses Inter for display and body typography site-wide", () => {
+    expect(PRECISION_MINIMALIST_DESIGN.typography.fontFamily).toContain("Inter");
+    expect(SITE_TYPOGRAPHY.fontFamily).toContain("Inter");
+    expect(indexHtml).toContain("family=Inter");
+    expect(css).toContain('"Inter"');
     expect(css).toContain('--font-display:');
     expect(css).toContain('--font-body:');
   });

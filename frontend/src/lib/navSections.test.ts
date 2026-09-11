@@ -74,13 +74,13 @@ describe("navSections", () => {
         to: ROUTES.utilities,
       },
     ]);
-    expect(NAV_DROPDOWN_CONFIGS).toHaveLength(1);
-    expect(NAV_DROPDOWN_CONFIGS[0]?.layout).toBe("mega");
-    expect(NAV_DROPDOWN_CONFIGS[0]?.headline).toBe(NAV_HEADER_BADGE);
+    expect(NAV_DROPDOWN_CONFIGS).toHaveLength(5);
+    expect(NAV_DROPDOWN_CONFIGS.every((config) => config.layout === "mega")).toBe(true);
+    expect(NAV_DROPDOWN_CONFIGS.every((config) => config.headline === NAV_HEADER_BADGE)).toBe(true);
     expect(NAV_DROPDOWN_CONFIGS.every((config) => flattenNavDropdownLinks(config).every((link) => Boolean(link.description)))).toBe(
       true,
     );
-    expect(flattenNavDropdownLinks(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services")!)).toHaveLength(4);
+    expect(NAV_DROPDOWN_CONFIGS.every((config) => flattenNavDropdownLinks(config).length === 4)).toBe(true);
   });
 
   it("builds stable service section URLs for Services page anchors", () => {
@@ -96,19 +96,37 @@ describe("navSections", () => {
     ]);
   });
 
-  it("lists dropdown section links from the Services mega-menu only", () => {
+  it("lists dropdown section links from every header mega-menu", () => {
     expect(MENU_SECTION_LINKS.map((link) => link.label)).toEqual([
       "AI Operational Audits",
       "Governed AI & Workflow Systems",
       "Spec-Driven Full-Stack Platforms",
       "Free Business Utilities",
+      "The Studio",
+      "Vision",
+      "What We Stand For",
+      "From Idea to Production",
+      "Featured Case Studies",
+      "Commiters.com",
+      "AI Summarizer",
+      "Multi-Role CRM",
+      "Product Overview",
+      "Field Capabilities",
+      "How It Works",
+      "FAQ",
+      "Product Overview",
+      "Try Free Sandbox",
+      "How It Works",
+      "PDF → Excel Preview",
     ]);
-    expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("principles"))).toBe(false);
+    expect(MENU_SECTION_LINKS.some((link) => link.to === buildAboutSectionHref("principles"))).toBe(true);
   });
 
   it("builds desktop dropdown configs from primary nav items", () => {
     const configs = resolveNavDropdownConfigs();
-    expect(configs.map((config) => config.label)).toEqual(["Services"]);
+    expect(configs.map((config) => config.label)).toEqual(["Services", "About", "Work", "TrustTap", "OpsFlow AI"]);
+    expect(configs.find((config) => config.id === "trusttap")?.emphasis).toBe("flagship");
+    expect(configs.find((config) => config.id === "opsflow")?.emphasis).toBe("lead-magnet");
     expect(configs.find((config) => config.id === "services")?.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
       { label: "AI Operational Audits", to: ROUTES.aiOperationalAudit },
       { label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutions },
@@ -117,7 +135,7 @@ describe("navSections", () => {
     ]);
   });
 
-  it("keeps a Services dropdown with About, Work, TrustTap, and OpsFlow AI as plain links", () => {
+  it("uses a mega-menu dropdown for every desktop header item", () => {
     const entries = resolveDesktopHeaderNav();
     expect(entries.map((entry) => (entry.kind === "link" ? entry.item.label : entry.config.label))).toEqual([
       "Services",
@@ -126,9 +144,14 @@ describe("navSections", () => {
       "TrustTap",
       "OpsFlow AI",
     ]);
-    expect(entries.filter((entry) => entry.kind === "dropdown")).toHaveLength(1);
-    expect(entries[0]).toMatchObject({ kind: "dropdown", config: { id: "services" } });
-    expect(entries.slice(1).every((entry) => entry.kind === "link")).toBe(true);
+    expect(entries.every((entry) => entry.kind === "dropdown")).toBe(true);
+    expect(entries.map((entry) => (entry.kind === "dropdown" ? entry.config.id : ""))).toEqual([
+      "services",
+      "about",
+      "work",
+      "trusttap",
+      "opsflow",
+    ]);
   });
 
   it("exposes frosted-glass utility classes for the mega-menu panel", () => {

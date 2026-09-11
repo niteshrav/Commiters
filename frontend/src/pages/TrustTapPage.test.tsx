@@ -54,7 +54,7 @@ describe("TrustTapPage", () => {
       expect(link).toHaveAttribute("href", TRUSTTAP_HERO.secondaryHref);
     }
 
-    expect(screen.getByTestId("trusttap-faq")).toBeInTheDocument();
+    expect(screen.getByTestId("trusttap-faq")).toHaveAttribute("id", "trusttap-faq");
     expect(screen.getByText(TRUSTTAP_FAQ.subtext)).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Launch admin" })).not.toBeInTheDocument();
   });

@@ -42,6 +42,7 @@ describe("browseMyVacationCaseStudyContent", () => {
       BROWSE_MY_VACATION_CASE_STUDY_COPY.introHeroImage.src.replace(/^\//, ""),
       BROWSE_MY_VACATION_CASE_STUDY_COPY.introHeroImage.srcSet.split(",")[1].trim().split(" ")[0].replace(/^\//, ""),
       BROWSE_MY_VACATION_CASE_STUDY_COPY.visualBreak.image.src.replace(/^\//, ""),
+      ...BROWSE_MY_VACATION_CASE_STUDY_COPY.collageTiles.map((tile) => tile.src.replace(/^\//, "")),
     ]) {
       expect(existsSync(join(publicRoot, relativePath))).toBe(true);
     }

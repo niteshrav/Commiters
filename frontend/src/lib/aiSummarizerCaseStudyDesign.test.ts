@@ -32,9 +32,9 @@ describe("aiSummarizerCaseStudyDesign", () => {
     );
     expect(AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.pageBackground).toBe("#ffffff");
     expect(AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.primary).toBe("#0f3d91");
-    expect(AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.sectionHeading).toBe("#111827");
+    expect(AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.sectionHeading).toBe("#0A2E50");
     expect(AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.sectionBody).toBe("#6b7280");
-    expect(AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.accentBlue).toBe("#0066ff");
+    expect(AI_SUMMARIZER_CASE_STUDY_DESIGN.colors.accentBlue).toBe("#1E88E5");
   });
 
   it("extends the pure white canvas through the route shell on the detail page", () => {

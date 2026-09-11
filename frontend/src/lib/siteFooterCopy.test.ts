@@ -80,8 +80,7 @@ describe("siteFooterCopy", () => {
     expect(aboutUs?.kind === "internal" ? aboutUs.to : undefined).toBe(ROUTES.about);
     const clientWork = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Client Work");
     expect(clientWork?.kind === "internal" ? clientWork.to : undefined).toBe(ROUTES.caseStudies);
-    const services = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Services");
-    expect(services?.kind === "internal" ? services.to : undefined).toBe(ROUTES.services);
+    expect(SITE_FOOTER_COPY.navColumns[2].links.map((link) => link.label)).not.toContain("Services");
     const jobs = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "Jobs");
     expect(jobs?.kind === "internal" ? jobs.to : undefined).toBe(ROUTES.openPositions);
     const faq = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "FAQ");
@@ -93,7 +92,6 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_COPY.navColumns[2].links.map((link) => link.label)).toEqual([
       "About Us",
       "Client Work",
-      "Services",
       "Jobs",
       "FAQ",
       "Blog",

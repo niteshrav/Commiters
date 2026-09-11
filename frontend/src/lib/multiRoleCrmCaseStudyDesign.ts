@@ -18,7 +18,7 @@ export const MULTI_ROLE_CRM_CASE_STUDY_DESIGN = {
     cardBorder: "#e5e7eb",
     divider: "#e5e7eb",
     introHeroGlow: "rgba(15, 23, 42, 0.22)",
-    introHeroGlowSoft: "rgba(37, 99, 235, 0.14)",
+    introHeroGlowSoft: "rgba(15, 23, 42, 0.06)",
   },
   typography: {
     kickerWeight: 600,

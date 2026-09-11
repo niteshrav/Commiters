@@ -30,7 +30,7 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
 export const DESKTOP_HEADER_BAR_IDS = ["services", "about", "work", "trusttap", "opsflow"] as const;
 
 /** Header items that navigate directly without a dropdown panel. */
-export const DESKTOP_HEADER_PLAIN_LINK_IDS = ["about", "work", "trusttap", "opsflow"] as const;
+export const DESKTOP_HEADER_PLAIN_LINK_IDS = [] as const;
 
 /** @deprecated More menu removed; secondary links live in the footer. */
 export const DESKTOP_HEADER_MORE_IDS = [] as const;
@@ -86,6 +86,7 @@ export type NavDropdownConfig = {
   headline: string;
   end?: boolean;
   layout?: NavDropdownLayout;
+  emphasis?: PrimaryNavEmphasis;
   links: NavDropdownLink[];
   groups?: NavDropdownGroup[];
 };
@@ -175,7 +176,119 @@ export const NAV_MEGA_FROST_CLASSES = [
   "dark:border-slate-800/50",
 ] as const;
 
-/** Hover mega-menu content for desktop dropdown parents. */
+export const ABOUT_MEGA_CARDS: NavDropdownLink[] = [
+  {
+    id: "about-studio",
+    label: "The Studio",
+    to: ROUTES.about,
+    description: "Founder-led engineering studio for high-stakes AI and cloud systems.",
+    featured: true,
+  },
+  {
+    id: "vision",
+    label: "Vision",
+    to: buildAboutSectionHref("vision"),
+    description: "How we think about craftsmanship, governance, and production software.",
+  },
+  {
+    id: "principles",
+    label: "What We Stand For",
+    to: buildAboutSectionHref("principles"),
+    description: "Guardrails, security-by-default, specs, and transparent delivery.",
+  },
+  {
+    id: "how-we-work",
+    label: "From Idea to Production",
+    to: buildAboutSectionHref("how-we-work"),
+    description: "Discover, architect, build, and launch with a connected delivery path.",
+  },
+];
+
+export const WORK_MEGA_CARDS: NavDropdownLink[] = [
+  {
+    id: "featured-case-studies",
+    label: "Featured Case Studies",
+    to: `${ROUTES.caseStudies}#featured-case-studies`,
+    description: "Selected AI, cloud, and workflow systems engineered for real operations.",
+    featured: true,
+  },
+  {
+    id: "commiters",
+    label: "Commiters.com",
+    to: ROUTES.commitersCaseStudy,
+    description: "A high-performance cloud platform built for growth, speed, and clean UX.",
+  },
+  {
+    id: "ai-summarizer",
+    label: "AI Summarizer",
+    to: ROUTES.aiSummarizerCaseStudy,
+    description: "Document ingestion with governed LLM pipelines and enterprise security.",
+  },
+  {
+    id: "multi-role-crm",
+    label: "Multi-Role CRM",
+    to: ROUTES.multiRoleCrmCaseStudy,
+    description: "AI-powered CRM assistance with real-time, policy-gated workflows.",
+  },
+];
+
+export const TRUSTTAP_MEGA_CARDS: NavDropdownLink[] = [
+  {
+    id: "trusttap-overview",
+    label: "Product Overview",
+    to: ROUTES.trustTap,
+    description: "NFC and QR ground verification for logistics and field inspections.",
+    featured: true,
+  },
+  {
+    id: "hospitality",
+    label: "Field Capabilities",
+    to: buildTrustTapSectionHref("hospitality"),
+    description: "Tamper-proof scans, offline sync, and live ops visibility.",
+  },
+  {
+    id: "trusttap-how-it-works",
+    label: "How It Works",
+    to: buildTrustTapSectionHref("trusttap-how-it-works"),
+    description: "From a physical tap to a verified inspection event.",
+  },
+  {
+    id: "trusttap-faq",
+    label: "FAQ",
+    to: buildTrustTapSectionHref("trusttap-faq"),
+    description: "Common questions on cards, admin, and field rollout.",
+  },
+];
+
+export const OPSFLOW_MEGA_CARDS: NavDropdownLink[] = [
+  {
+    id: "opsflow-overview",
+    label: "Product Overview",
+    to: ROUTES.opsFlow,
+    description: "Zero-code PDF-to-Excel extraction for invoices and GST records.",
+    featured: true,
+  },
+  {
+    id: "opsflow-sandbox",
+    label: "Try Free Sandbox",
+    to: `${ROUTES.opsFlow}#opsflow-sandbox`,
+    description: "Upload a sample invoice and download structured Excel in seconds.",
+  },
+  {
+    id: "opsflow-how-it-works",
+    label: "How It Works",
+    to: `${ROUTES.opsFlow}#opsflow-how-it-works`,
+    description: "Upload, extract GST fields, and export a production-ready spreadsheet.",
+  },
+  {
+    id: "opsflow-preview",
+    label: "PDF → Excel Preview",
+    to: `${ROUTES.opsFlow}#opsflow-preview`,
+    description: "See how scanned documents become validated Excel rows.",
+  },
+];
+
+/** Hover mega-menu content for every desktop header item. */
 export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
   {
     id: "services",
@@ -185,6 +298,40 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
     layout: "mega",
     links: SERVICE_MEGA_CARDS,
   },
+  {
+    id: "about",
+    label: "About",
+    overviewTo: ROUTES.about,
+    headline: "COMMITERS — Enterprise AI & Cloud Systems",
+    layout: "mega",
+    links: ABOUT_MEGA_CARDS,
+  },
+  {
+    id: "work",
+    label: "Work",
+    overviewTo: ROUTES.caseStudies,
+    headline: "COMMITERS — Enterprise AI & Cloud Systems",
+    layout: "mega",
+    links: WORK_MEGA_CARDS,
+  },
+  {
+    id: "trusttap",
+    label: "TrustTap",
+    overviewTo: ROUTES.trustTap,
+    headline: "COMMITERS — Enterprise AI & Cloud Systems",
+    layout: "mega",
+    emphasis: "flagship",
+    links: TRUSTTAP_MEGA_CARDS,
+  },
+  {
+    id: "opsflow",
+    label: "OpsFlow AI",
+    overviewTo: ROUTES.opsFlow,
+    headline: "COMMITERS — Enterprise AI & Cloud Systems",
+    layout: "mega",
+    emphasis: "lead-magnet",
+    links: OPSFLOW_MEGA_CARDS,
+  },
 ];
 
 export type MenuSectionLink = NavDropdownLink;
@@ -193,7 +340,7 @@ export type MenuSectionLink = NavDropdownLink;
 export const MENU_SECTION_LINKS: MenuSectionLink[] = NAV_DROPDOWN_CONFIGS.flatMap(flattenNavDropdownLinks);
 
 export function resolveNavDropdownConfigs(
-  navItems: ReadonlyArray<{ id: string; label: string; to: string; end?: boolean }> = PRIMARY_NAV_ITEMS,
+  navItems: ReadonlyArray<Pick<PrimaryNavItem, "id" | "label" | "to" | "end" | "emphasis">> = PRIMARY_NAV_ITEMS,
 ): NavDropdownConfig[] {
   const configById = new Map(NAV_DROPDOWN_CONFIGS.map((config) => [config.id, config]));
   const navById = new Map(navItems.map((item) => [item.id, item]));
@@ -209,6 +356,7 @@ export function resolveNavDropdownConfigs(
       ...config,
       label: navItem?.label ?? config.label,
       overviewTo: navItem?.to ?? config.overviewTo,
+      emphasis: navItem?.emphasis ?? config.emphasis,
     };
     if (end !== undefined) resolved.end = end;
     return [resolved];

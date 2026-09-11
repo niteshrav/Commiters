@@ -110,7 +110,7 @@ describe("Footer", () => {
     );
     expect(within(companyNav).getByRole("link", { name: /^About Us$/i })).toHaveAttribute("href", ROUTES.about);
     expect(within(companyNav).getByRole("link", { name: /^Client Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
-    expect(within(companyNav).getByRole("link", { name: /^Services$/i })).toHaveAttribute("href", ROUTES.services);
+    expect(within(companyNav).queryByRole("link", { name: /^Services$/i })).not.toBeInTheDocument();
     expect(within(companyNav).getByRole("link", { name: /Jobs/i })).toHaveAttribute("href", ROUTES.openPositions);
     expect(within(companyNav).getByRole("link", { name: /^FAQ$/i })).toHaveAttribute("href", ROUTES.faq);
     expect(within(companyNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);

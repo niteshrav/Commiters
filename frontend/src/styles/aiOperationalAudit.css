@@ -266,7 +266,7 @@
   height: 42px;
   margin-bottom: 12px;
   border-radius: 999px;
-  background: rgba(0, 102, 255, 0.08);
+  background: #f1f5f9;
   color: var(--audit-blue);
 }
 
@@ -313,7 +313,7 @@
   height: 42px;
   margin: 0 auto 14px;
   border-radius: 999px;
-  background: var(--audit-blue);
+  background: #0f172a;
   color: #ffffff;
   font-weight: 800;
   font-size: 0.95rem;
@@ -364,7 +364,7 @@
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  background: rgba(0, 102, 255, 0.1);
+  background: #f1f5f9;
   color: var(--audit-blue);
 }
 
@@ -416,7 +416,7 @@
   margin: 0 0 12px;
   padding: 10px 16px;
   border-radius: 14px;
-  background: rgba(0, 102, 255, 0.08);
+  background: #f1f5f9;
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2.4vw, 1.55rem);
   font-weight: 800;
@@ -589,7 +589,7 @@
     left: 12%;
     right: 12%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.35), transparent);
+    background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
   }
 }
 

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { IconBolt, IconCheckCircle } from "./icons";
-import { HOME_PAGE_ASSETS } from "../lib/homePageContent";
 import { JOIN_US_PAGE_ASSETS, JOIN_US_PAGE_COPY } from "../lib/joinUsPageContent";
 import {
   JOIN_US_SIDEBAR_CARD_CLASS,
@@ -13,7 +12,7 @@ const HIGHLIGHT_ICONS = [IconCheckCircle, IconBolt] as const;
 export default function JoinUsVisualPanel() {
   const { sidebar } = JOIN_US_PAGE_COPY;
   const { officePhoto } = JOIN_US_PAGE_ASSETS;
-  const [imageSrc, setImageSrc] = useState<string>(officePhoto.src);
+  const [showPhoto, setShowPhoto] = useState(true);
 
   return (
     <aside className={JOIN_US_VISUAL_PANEL_CLASS} data-testid="join-us-sidebar-panel">
@@ -36,16 +35,18 @@ export default function JoinUsVisualPanel() {
         </ul>
         <p className="join-us-sidebar-email-note">{sidebar.applicationsEmailNote}</p>
       </div>
-      <div className={JOIN_US_SIDEBAR_IMAGE_CLASS}>
-        <img
-          src={imageSrc}
-          alt={officePhoto.alt}
-          data-testid="join-us-visual-panel-image"
-          loading="lazy"
-          decoding="async"
-          onError={() => setImageSrc(HOME_PAGE_ASSETS.serverRacks)}
-        />
-      </div>
+      {showPhoto ? (
+        <div className={JOIN_US_SIDEBAR_IMAGE_CLASS}>
+          <img
+            src={officePhoto.src}
+            alt={officePhoto.alt}
+            data-testid="join-us-visual-panel-image"
+            loading="lazy"
+            decoding="async"
+            onError={() => setShowPhoto(false)}
+          />
+        </div>
+      ) : null}
     </aside>
   );
 }

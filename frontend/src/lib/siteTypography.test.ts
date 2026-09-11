@@ -10,11 +10,11 @@ const indexHtml = readFileSync(join(root, "index.html"), "utf8");
 const css = readFileSync(join(root, "src", "styles.css"), "utf8");
 
 describe("siteTypography", () => {
-  it("uses Plus Jakarta Sans as the primary site font per Precision Minimalist design", () => {
-    expect(SITE_TYPOGRAPHY.fontFamily).toContain("Plus Jakarta Sans");
-    expect(PRECISION_MINIMALIST_DESIGN.typography.fontFamily).toContain("Plus Jakarta Sans");
-    expect(indexHtml).toContain("Plus+Jakarta+Sans");
-    expect(css).toContain("Plus Jakarta Sans");
+  it("uses Inter as the primary site font from the Brand Book", () => {
+    expect(SITE_TYPOGRAPHY.fontFamily).toContain("Inter");
+    expect(PRECISION_MINIMALIST_DESIGN.typography.fontFamily).toContain("Inter");
+    expect(indexHtml).toContain("family=Inter");
+    expect(css).toContain('"Inter"');
   });
 
   it("defines shared heading and body scale for marketing pages", () => {

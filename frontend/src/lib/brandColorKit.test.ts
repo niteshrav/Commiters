@@ -14,15 +14,15 @@ const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "st
 
 describe("brandColorKit", () => {
   it("pins the Commiters Brand Asset Kit", () => {
-    expect(BRAND_COLOR_KIT.electricBlue).toBe("#0066ff");
-    expect(BRAND_COLOR_KIT.electricBlueBright).toBe("#0088ff");
-    expect(BRAND_COLOR_KIT.cyan).toBe("#00c2ff");
+    expect(BRAND_COLOR_KIT.electricBlue).toBe("#1E88E5");
+    expect(BRAND_COLOR_KIT.electricBlueBright).toBe("#42A5F5");
+    expect(BRAND_COLOR_KIT.cyan).toBe("#00E676");
     expect(BRAND_COLOR_KIT.gold).toBe("#d4a017");
     expect(BRAND_COLOR_KIT.goldBright).toBe("#e5b82a");
-    expect(BRAND_COLOR_KIT.navy).toBe("#0a0e17");
-    expect(BRAND_COLOR_KIT.slate).toBe("#0f172a");
-    expect(BRAND_COLOR_KIT.offWhite).toBe("#f8fafc");
-    expect(BRAND_COLOR_KIT.lightGray).toBe("#f1f5f9");
+    expect(BRAND_COLOR_KIT.navy).toBe("#0A2E50");
+    expect(BRAND_COLOR_KIT.slate).toBe("#0A2E50");
+    expect(BRAND_COLOR_KIT.offWhite).toBe("#F5F7F9");
+    expect(BRAND_COLOR_KIT.lightGray).toBe("#e8eef3");
   });
 
   it("keeps primary electric blue and gold tokens wired into the theme", () => {

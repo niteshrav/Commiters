@@ -1,17 +1,19 @@
-/** Commiters Brand Asset Kit — electric blue, cyan, gold, navy, and light surfaces. */
+import { COMMITERS_BRANDBOOK } from "./commitersBrandbook";
+
+/** Commiters Brand Asset Kit — Pomelli Azure / Prussian / Chalk surfaces. */
 export const BRAND_COLOR_KIT = {
-  electricBlue: "#0066ff",
-  electricBlueBright: "#0088ff",
-  cyan: "#00c2ff",
-  cyanRgb: "0, 194, 255",
+  electricBlue: COMMITERS_BRANDBOOK.azureBlue,
+  electricBlueBright: "#42A5F5",
+  cyan: COMMITERS_BRANDBOOK.caribbeanGreen,
+  cyanRgb: "0, 230, 118",
   gold: "#d4a017",
   goldBright: "#e5b82a",
   goldDeep: "#b38612",
   goldSoft: "#f4e4b5",
-  navy: "#0a0e17",
-  slate: "#0f172a",
-  offWhite: "#f8fafc",
-  lightGray: "#f1f5f9",
+  navy: COMMITERS_BRANDBOOK.prussianBlue,
+  slate: COMMITERS_BRANDBOOK.prussianBlue,
+  offWhite: COMMITERS_BRANDBOOK.chalkWhite,
+  lightGray: "#e8eef3",
 } as const;
 
 export const BRAND_COLOR_KIT_CSS_VARIABLES = {

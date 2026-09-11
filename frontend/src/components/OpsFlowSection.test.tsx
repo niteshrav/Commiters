@@ -63,9 +63,9 @@ describe("OpsFlowSection", () => {
     }
     expect(screen.getByRole("button", { name: OPSFLOW_SUBMIT_LABEL })).toBeInTheDocument();
     expect(screen.getByText(OPSFLOW_SECURITY_FOOTER)).toBeInTheDocument();
-    expect(screen.getByTestId("opsflow-how-it-works")).toBeInTheDocument();
+    expect(screen.getByTestId("opsflow-how-it-works")).toHaveAttribute("id", "opsflow-how-it-works");
     expect(screen.getByRole("heading", { name: OPSFLOW_HOW_IT_WORKS.title, level: 2 })).toBeInTheDocument();
-    expect(screen.getByTestId("opsflow-preview")).toBeInTheDocument();
+    expect(screen.getByTestId("opsflow-preview")).toHaveAttribute("id", "opsflow-preview");
     expect(screen.getByText(OPSFLOW_PREVIEW.title)).toBeInTheDocument();
     expect(screen.getByTestId("opsflow-panel")).toBeInTheDocument();
     expect(screen.getByTestId("opsflow-panel-card")).toBeInTheDocument();

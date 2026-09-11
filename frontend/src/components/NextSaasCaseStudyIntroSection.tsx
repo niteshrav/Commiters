@@ -30,7 +30,7 @@ import { IconAirplane, IconGlobe } from "./icons";
 import { NextSaasCaseStudyMetadataPanel } from "./NextSaasCaseStudyOutcomesSection";
 
 export default function NextSaasCaseStudyIntroSection() {
-  const { kicker, title, description, introHeroImage, scope, pipelines } = NEXTSAAS_CASE_STUDY_COPY;
+  const { kicker, title, description, introHeroImage, collageTiles, scope, pipelines } = NEXTSAAS_CASE_STUDY_COPY;
 
   return (
     <section
@@ -89,22 +89,17 @@ export default function NextSaasCaseStudyIntroSection() {
                     loading="eager"
                     decoding="async"
                   />
-                  <img
-                    className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS}
-                    src="/assets/case-studies/work-browse-my-vacation.png"
-                    srcSet="/assets/case-studies/work-browse-my-vacation.png 1x, /assets/case-studies/work-browse-my-vacation@2x.png 2x"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <img
-                    className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS}
-                    src="/assets/case-studies/browse-my-vacation-hero.png"
-                    srcSet="/assets/case-studies/browse-my-vacation-hero.png 1x, /assets/case-studies/browse-my-vacation-hero@2x.png 2x"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  {collageTiles.map((tile) => (
+                    <img
+                      key={tile.src}
+                      className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS}
+                      src={tile.src}
+                      srcSet={tile.srcSet}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ))}
                 </div>
               </div>
             </div>

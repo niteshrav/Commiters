@@ -1,6 +1,13 @@
 import { ROUTES } from "./routes";
 import { SITE_FOOTER_CONNECT_LINKS } from "./siteFooterCopy";
-import { SERVICE_MEGA_CARDS } from "./navSections";
+import {
+  ABOUT_MEGA_CARDS,
+  OPSFLOW_MEGA_CARDS,
+  SERVICE_MEGA_CARDS,
+  TRUSTTAP_MEGA_CARDS,
+  WORK_MEGA_CARDS,
+  type NavDropdownLink,
+} from "./navSections";
 
 export const MOBILE_NAV_DRAWER_TESTID = "nav-mobile-drawer" as const;
 export const HEADER_MENU_BTN_TESTID = "header-menu-btn" as const;
@@ -38,19 +45,27 @@ export type MobileNavDrawerItem =
       children: readonly MobileNavDrawerChildLink[];
     };
 
-export const MOBILE_NAV_SERVICE_LINKS: readonly MobileNavDrawerChildLink[] = SERVICE_MEGA_CARDS.map((card) => ({
-  id: card.id,
-  label: card.label,
-  to: card.to,
-  description: card.description,
-}));
+function toMobileNavChildren(cards: readonly NavDropdownLink[]): MobileNavDrawerChildLink[] {
+  return cards.map((card) => ({
+    id: card.id,
+    label: card.label,
+    to: card.to,
+    description: card.description,
+  }));
+}
+
+export const MOBILE_NAV_SERVICE_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(SERVICE_MEGA_CARDS);
+export const MOBILE_NAV_ABOUT_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(ABOUT_MEGA_CARDS);
+export const MOBILE_NAV_WORK_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(WORK_MEGA_CARDS);
+export const MOBILE_NAV_TRUSTTAP_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(TRUSTTAP_MEGA_CARDS);
+export const MOBILE_NAV_OPSFLOW_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(OPSFLOW_MEGA_CARDS);
 
 export const MOBILE_NAV_DRAWER_ITEMS: readonly MobileNavDrawerItem[] = [
   { id: "services", label: "Services", expandable: true, children: MOBILE_NAV_SERVICE_LINKS },
-  { id: "about", label: "About", to: ROUTES.about },
-  { id: "work", label: "Work", to: ROUTES.caseStudies },
-  { id: "trusttap", label: "TrustTap", to: ROUTES.trustTap },
-  { id: "opsflow", label: "OpsFlow AI", to: ROUTES.opsFlow },
+  { id: "about", label: "About", expandable: true, children: MOBILE_NAV_ABOUT_LINKS },
+  { id: "work", label: "Work", expandable: true, children: MOBILE_NAV_WORK_LINKS },
+  { id: "trusttap", label: "TrustTap", expandable: true, children: MOBILE_NAV_TRUSTTAP_LINKS },
+  { id: "opsflow", label: "OpsFlow AI", expandable: true, children: MOBILE_NAV_OPSFLOW_LINKS },
   { id: "contact", label: "Contact", to: ROUTES.contact },
   { id: "careers", label: "Careers", to: ROUTES.openPositions },
 ];

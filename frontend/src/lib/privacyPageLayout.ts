@@ -46,7 +46,7 @@ export const PRIVACY_DPO_DESCRIPTION_CLASS = "privacy-policy-dpo-description" as
 export const PRIVACY_DPO_BUTTON_CLASS = "privacy-policy-dpo-button" as const;
 
 export const PRIVACY_PROSE_MAX_WIDTH = "56rem" as const;
-export const PRIVACY_SECTION_NUMBER_COLOR = "#0066ff" as const;
+export const PRIVACY_SECTION_NUMBER_COLOR = "#1E88E5" as const;
 export const PRIVACY_ACCENT_COLOR = "#d4a017" as const;
 export const PRIVACY_DIVIDER_COLOR = "var(--border)" as const;
 export const PRIVACY_DIVIDER_BORDER_CSS = SITE_HORIZONTAL_RULE_BORDER_CSS;

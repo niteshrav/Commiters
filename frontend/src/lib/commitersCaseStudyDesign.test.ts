@@ -40,7 +40,7 @@ describe("commitersCaseStudyDesign", () => {
     );
     expect(COMMITERS_CASE_STUDY_DESIGN.colors.goldLabel).toBe("#9a7b4f");
     expect(COMMITERS_CASE_STUDY_DESIGN.colors.cardLabel).toBe(PRECISION_MINIMALIST_DESIGN.colors.primary);
-    expect(COMMITERS_CASE_STUDY_DESIGN.colors.featureIconSurface).toBe("rgba(0, 102, 255, 0.08)");
+    expect(COMMITERS_CASE_STUDY_DESIGN.colors.featureIconSurface).toBe("#f1f5f9");
   });
 
   it("extends the void-first canvas through the route shell on the detail page", () => {

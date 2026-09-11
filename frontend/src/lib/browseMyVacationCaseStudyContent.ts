@@ -62,6 +62,18 @@ export const BROWSE_MY_VACATION_CASE_STUDY_COPY = {
     sizes: "(min-width: 960px) 560px, 100vw",
     alt: "Browse My Vacations curated Rajasthan package listings with city search and transparent pricing",
   },
+  collageTiles: [
+    {
+      src: "/assets/case-studies/browse-my-vacation-visual.png",
+      srcSet:
+        "/assets/case-studies/browse-my-vacation-visual.png 1x, /assets/case-studies/browse-my-vacation-visual@2x.png 2x",
+    },
+    {
+      src: "/assets/case-studies/browse-my-vacation-hero.png",
+      srcSet:
+        "/assets/case-studies/browse-my-vacation-hero.png 1x, /assets/case-studies/browse-my-vacation-hero@2x.png 2x",
+    },
+  ] as const,
   scope: {
     heading: "Product scope",
     description:

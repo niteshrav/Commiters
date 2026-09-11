@@ -67,11 +67,17 @@ describe("Navbar", () => {
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     expect(primaryNavLabels(primaryNav)).toEqual(["Services", "About", "Work", "TrustTap", "OpsFlow AI"]);
-    expect(desktopNavTriggers(primaryNav).map((link) => link.textContent?.replace(/\s+/g, " ").trim())).toEqual(["Services"]);
+    expect(desktopNavTriggers(primaryNav).map((link) => link.textContent?.replace(/\s+/g, " ").trim())).toEqual([
+      "Services",
+      "About",
+      "Work",
+      "TrustTap",
+      "OpsFlow AI",
+    ]);
     expect(desktopNavTriggers(primaryNav)[0]).toHaveAttribute("href", ROUTES.services);
 
-    expect(within(primaryNav).getByTestId("nav-item-trusttap")).toHaveAttribute("data-nav-emphasis", "flagship");
-    expect(within(primaryNav).getByTestId("nav-item-opsflow")).toHaveAttribute("data-nav-emphasis", "lead-magnet");
+    expect(within(primaryNav).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("data-nav-emphasis", "flagship");
+    expect(within(primaryNav).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("data-nav-emphasis", "lead-magnet");
     expect(within(primaryNav).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
     expect(within(primaryNav).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("href", ROUTES.opsFlow);
 
@@ -102,7 +108,7 @@ describe("Navbar", () => {
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     const configs = resolveNavDropdownConfigs();
-    expect(configs).toHaveLength(1);
+    expect(configs).toHaveLength(5);
 
     for (const config of configs) {
       const trigger = within(primaryNav).getByRole("link", { name: new RegExp(`^${config.label}$`, "i") });
@@ -196,7 +202,7 @@ describe("Navbar", () => {
     expect(servicesStyle.backgroundColor).toBe(aboutStyle.backgroundColor);
   });
 
-  it("keeps Work as a plain link without a dropdown panel", async () => {
+  it("opens the Work mega-menu on hover", async () => {
     const user = userEvent.setup();
     render(
       <MemoryRouter initialEntries={[ROUTES.caseStudies]}>
@@ -207,10 +213,10 @@ describe("Navbar", () => {
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     const workLink = within(primaryNav).getByRole("link", { name: /^Work$/i });
 
-    await user.hover(workLink);
-    expect(workLink).not.toHaveClass("nav-dropdown-trigger");
-    expect(workLink).not.toHaveClass("nav-primary-link--hover");
     expect(screen.queryByTestId("nav-mega-panel-work")).not.toBeInTheDocument();
+    await user.hover(workLink);
+    expect(workLink).toHaveClass("nav-dropdown-trigger", "nav-dropdown-trigger--open");
+    expect(screen.getByTestId("nav-mega-panel-work")).toBeInTheDocument();
   });
 
   it("opens a header-locked sheet with accordion Services menu, CTA, socials, and copyright", async () => {
@@ -248,10 +254,14 @@ describe("Navbar", () => {
     expect(within(drawer).queryByRole("button", { name: HEADER_MENU_CLOSE_LABEL })).not.toBeInTheDocument();
 
     expect(within(drawer).getByRole("button", { name: /^Services$/i })).toBeInTheDocument();
-    expect(within(drawer).getByRole("link", { name: /^About$/i })).toHaveAttribute("href", ROUTES.about);
-    expect(within(drawer).getByRole("link", { name: /^Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
-    expect(within(drawer).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
-    expect(within(drawer).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("href", ROUTES.opsFlow);
+    expect(within(drawer).getByRole("button", { name: /^About$/i })).toBeInTheDocument();
+    expect(within(drawer).getByRole("button", { name: /^Work$/i })).toBeInTheDocument();
+    expect(within(drawer).getByRole("button", { name: /^TrustTap$/i })).toBeInTheDocument();
+    expect(within(drawer).getByRole("button", { name: /^OpsFlow AI$/i })).toBeInTheDocument();
+    expect(within(drawer).queryByRole("link", { name: /^About$/i })).not.toBeInTheDocument();
+    expect(within(drawer).queryByRole("link", { name: /^Work$/i })).not.toBeInTheDocument();
+    expect(within(drawer).queryByRole("link", { name: /^TrustTap$/i })).not.toBeInTheDocument();
+    expect(within(drawer).queryByRole("link", { name: /^OpsFlow AI$/i })).not.toBeInTheDocument();
     expect(within(drawer).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
     expect(within(drawer).getByRole("link", { name: /^Careers$/i })).toHaveAttribute("href", ROUTES.openPositions);
     expect(within(drawer).queryByRole("link", { name: /^Home$/i })).not.toBeInTheDocument();
@@ -285,7 +295,7 @@ describe("Navbar", () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<div data-testid="home-outlet">Home</div>} />
-            <Route path={ROUTES.about} element={<div data-testid="about-outlet">About</div>} />
+            <Route path={ROUTES.contact} element={<div data-testid="contact-outlet">Contact</div>} />
           </Routes>
         </>
       </MemoryRouter>,
@@ -307,8 +317,8 @@ describe("Navbar", () => {
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();
 
     await user.click(menuButton);
-    await user.click(within(screen.getByTestId(MOBILE_NAV_DRAWER_TESTID)).getByRole("link", { name: /^About$/i }));
-    expect(await screen.findByTestId("about-outlet")).toBeInTheDocument();
+    await user.click(within(screen.getByTestId(MOBILE_NAV_DRAWER_TESTID)).getByRole("link", { name: /^Contact$/i }));
+    expect(await screen.findByTestId("contact-outlet")).toBeInTheDocument();
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();
   });
 
@@ -342,8 +352,7 @@ describe("Navbar", () => {
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
     const workLink = within(primaryNav).getByRole("link", { name: /^Work$/i });
-    expect(workLink).toHaveClass("nav-primary-link");
-    expect(workLink).not.toHaveClass("nav-dropdown-trigger");
+    expect(workLink).toHaveClass("nav-primary-link", "nav-dropdown-trigger");
     expect(workLink).not.toHaveClass("nav-primary-link--hover");
     expect(workLink).not.toHaveClass("nav-dropdown-trigger--open");
   });
@@ -362,8 +371,14 @@ describe("Navbar", () => {
     expect(screen.queryByTestId("nav-mega-panel-more")).not.toBeInTheDocument();
   });
 
-  it("defines a Services-only dropdown config for the desktop bar", () => {
-    expect(NAV_DROPDOWN_CONFIGS.map((config) => config.id)).toEqual(["services"]);
+  it("defines mega-menu dropdowns for every desktop bar item", () => {
+    expect(NAV_DROPDOWN_CONFIGS.map((config) => config.id)).toEqual([
+      "services",
+      "about",
+      "work",
+      "trusttap",
+      "opsflow",
+    ]);
     expect(NAV_DROPDOWN_CONFIGS[0]?.links.map((link) => link.label)).toEqual(SERVICE_MEGA_CARDS.map((card) => card.label));
     expect(PRIMARY_NAV_ITEMS.some((item) => item.label === "Join Us")).toBe(false);
   });

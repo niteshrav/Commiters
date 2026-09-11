@@ -37,7 +37,7 @@
   position: absolute;
   inset: 12% 8% 8% 18%;
   opacity: 0.35;
-  background-image: radial-gradient(circle, #93c5fd 1.4px, transparent 1.5px);
+  background-image: radial-gradient(circle, #cbd5e1 1.4px, transparent 1.5px);
   background-size: 16px 16px;
   pointer-events: none;
 }
@@ -208,7 +208,7 @@
 .work-filter:hover {
   border-color: #0066ff;
   color: #0066ff;
-  background: rgba(0, 102, 255, 0.06);
+  background: #ffffff;
 }
 
 .case-studies-page .work-project-card {
@@ -273,21 +273,15 @@
   position: relative;
   overflow: hidden;
   padding: clamp(36px, 5vw, 48px) clamp(24px, 4vw, 40px);
-  border: 0;
+  border: 1px solid #e5eaf2;
   border-radius: 20px;
-  background: #0b1b33;
-  color: #f8fafc;
+  background: #ffffff;
+  color: #0f172a;
   text-align: left;
 }
 
 .work-final-cta-inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.18;
-  background-image: radial-gradient(circle, #93c5fd 1.2px, transparent 1.3px);
-  background-size: 22px 22px;
-  pointer-events: none;
+  content: none;
 }
 
 .work-final-cta-kicker,
@@ -300,19 +294,19 @@
 
 .work-final-cta-kicker {
   margin: 0 0 10px;
-  color: #93c5fd;
+  color: #0066ff;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
 }
 
 .work-final-cta .case-studies-bottom-cta-title {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .work-final-cta .case-studies-bottom-cta-subtext {
   max-width: 34rem;
-  color: #cbd5e1;
+  color: #64748b;
 }
 
 @media (max-width: 1090px) {

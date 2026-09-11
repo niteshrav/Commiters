@@ -315,7 +315,7 @@
   height: 42px;
   margin-bottom: 12px;
   border-radius: 14px;
-  background: rgba(0, 102, 255, 0.08);
+  background: #f1f5f9;
   color: var(--webapp-blue);
 }
 

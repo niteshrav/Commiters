@@ -65,7 +65,6 @@ export const SITE_FOOTER_RESOURCES_LINK_LABELS = SITE_FOOTER_ENGINEERING_NAV_LIN
 export const SITE_FOOTER_COMPANY_NAV_LINK_LABELS = [
   "About Us",
   "Client Work",
-  "Services",
   "Jobs",
   "FAQ",
   "Blog",
@@ -105,7 +104,6 @@ const SITE_FOOTER_ENGINEERING_NAV_LINKS = [
 const SITE_FOOTER_COMPANY_NAV_LINKS = [
   { kind: "internal", label: "About Us", to: ROUTES.about },
   { kind: "internal", label: "Client Work", to: ROUTES.caseStudies },
-  { kind: "internal", label: "Services", to: ROUTES.services },
   { kind: "internal", label: "Jobs", to: ROUTES.openPositions, badge: SITE_FOOTER_CAREERS_HIRING_BADGE },
   { kind: "internal", label: "FAQ", to: ROUTES.faq },
   { kind: "internal", label: "Blog", to: ROUTES.technicalLedger },

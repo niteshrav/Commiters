@@ -32,7 +32,7 @@ function ruleBlock(selector: string, nextSelector: string): string {
 describe("nextsaasCaseStudyDesign", () => {
   it("documents the precision minimalist palette and grid layout", () => {
     expect(NEXTSAAS_CASE_STUDY_DESIGN.colors.pageBackground).toBe("#ffffff");
-    expect(NEXTSAAS_CASE_STUDY_DESIGN.colors.primary).toBe("#0066ff");
+    expect(NEXTSAAS_CASE_STUDY_DESIGN.colors.primary).toBe("#1E88E5");
     expect(NEXTSAAS_CASE_STUDY_DESIGN.colors.kicker).toBe("#9b8a5d");
     expect(NEXTSAAS_CASE_STUDY_DESIGN.colors.title).toBe("#121317");
     expect(NEXTSAAS_CASE_STUDY_DESIGN.colors.body).toBe("#4b5563");

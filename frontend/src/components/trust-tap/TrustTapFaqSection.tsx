@@ -19,6 +19,7 @@ export default function TrustTapFaqSection() {
     <section
       className={`${TRUSTTAP_SECTION_CLASS} trusttap-faq reveal-on-scroll`}
       data-testid="trusttap-faq"
+      id="trusttap-faq"
       aria-labelledby="trusttap-faq-title"
     >
       <div className={TRUSTTAP_SECTION_INNER_CLASS}>

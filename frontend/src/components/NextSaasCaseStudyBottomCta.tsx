@@ -5,7 +5,6 @@ import {
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_BTN_CLASS,
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_DESCRIPTION_CLASS,
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_INNER_CLASS,
-  NEXTSAAS_CASE_STUDY_BOTTOM_CTA_MEDIA_CLASS,
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_PRIMARY_CLASS,
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS,
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS,
@@ -14,7 +13,7 @@ import {
 import { IconArrowRight } from "./icons";
 
 export default function NextSaasCaseStudyBottomCta() {
-  const { bottomCta, visualBreak } = NEXTSAAS_CASE_STUDY_COPY;
+  const { bottomCta } = NEXTSAAS_CASE_STUDY_COPY;
 
   return (
     <section
@@ -22,9 +21,6 @@ export default function NextSaasCaseStudyBottomCta() {
       data-testid="nextsaas-case-study-bottom-cta"
       aria-labelledby="nextsaas-case-study-bottom-cta-title"
     >
-      <div className={NEXTSAAS_CASE_STUDY_BOTTOM_CTA_MEDIA_CLASS} aria-hidden>
-        <img src={visualBreak.image.src} srcSet={visualBreak.image.srcSet} alt="" loading="lazy" decoding="async" />
-      </div>
       <div className={NEXTSAAS_CASE_STUDY_BOTTOM_CTA_INNER_CLASS}>
         <h2 id="nextsaas-case-study-bottom-cta-title" className={NEXTSAAS_CASE_STUDY_BOTTOM_CTA_TITLE_CLASS}>
           {bottomCta.title}

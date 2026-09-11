@@ -226,6 +226,7 @@ function NavDesktopDropdownItem({
             .filter(Boolean)
             .join(" ")
         }
+        data-nav-emphasis={config.emphasis}
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-controls={`nav-mega-panel-${config.id}`}

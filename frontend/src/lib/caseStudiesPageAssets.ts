@@ -20,8 +20,8 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
   {
     id: "opsflow",
-    src: "/assets/case-studies/ai-summarizer-execution-visual.png",
-    srcSet: "/assets/case-studies/ai-summarizer-execution-visual@2x.png 2x",
+    src: "/assets/case-studies/ai-summarizer.png",
+    srcSet: "/assets/case-studies/ai-summarizer.png 1x, /assets/case-studies/ai-summarizer@2x.png 2x",
     alt: "OpsFlow AI PDF ingestion engine converting unstructured documents into structured datasets",
   },
   {

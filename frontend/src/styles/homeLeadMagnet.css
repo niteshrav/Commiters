@@ -44,7 +44,7 @@
   padding: 6px 14px;
   border-radius: 999px;
   border: 1px solid rgba(37, 99, 235, 0.18);
-  background: rgba(37, 99, 235, 0.08);
+  background: #f1f5f9;
   color: #2563eb;
   font-size: 0.72rem;
   font-weight: 700;
@@ -102,7 +102,7 @@
 
 .home-lead-magnet-feature-card-icon--blue {
   color: #2563eb;
-  background: rgba(37, 99, 235, 0.12);
+  background: #f1f5f9;
 }
 
 .home-lead-magnet-feature-card-icon--green {
@@ -227,7 +227,7 @@
   margin-bottom: 14px;
   border-radius: 999px;
   color: #2563eb;
-  background: rgba(37, 99, 235, 0.1);
+  background: #f1f5f9;
 }
 
 .home-lead-magnet-upload-title {

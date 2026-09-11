@@ -17,7 +17,7 @@ import {
 } from "./mobileNavDrawer";
 
 describe("mobileNavDrawer", () => {
-  it("lists primary drawer links with an expandable Services accordion", () => {
+  it("lists primary drawer links with expandable mega-menu accordions", () => {
     expect(MOBILE_NAV_DRAWER_PRIMARY_LABELS).toEqual([
       "Services",
       "About",
@@ -55,10 +55,22 @@ describe("mobileNavDrawer", () => {
     const opsflow = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "opsflow");
     const contact = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "contact");
     const careers = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "careers");
-    expect(about && "to" in about ? about.to : undefined).toBe(ROUTES.about);
-    expect(work && "to" in work ? work.to : undefined).toBe(ROUTES.caseStudies);
-    expect(trusttap && "to" in trusttap ? trusttap.to : undefined).toBe(ROUTES.trustTap);
-    expect(opsflow && "to" in opsflow ? opsflow.to : undefined).toBe(ROUTES.opsFlow);
+    expect(about && "expandable" in about ? about.expandable : false).toBe(true);
+    expect(work && "expandable" in work ? work.expandable : false).toBe(true);
+    expect(trusttap && "expandable" in trusttap ? trusttap.expandable : false).toBe(true);
+    expect(opsflow && "expandable" in opsflow ? opsflow.expandable : false).toBe(true);
+    expect(about && "children" in about ? about.children.map((child) => child.label) : []).toEqual([
+      "The Studio",
+      "Vision",
+      "What We Stand For",
+      "From Idea to Production",
+    ]);
+    expect(work && "children" in work ? work.children.map((child) => child.to) : []).toEqual([
+      `${ROUTES.caseStudies}#featured-case-studies`,
+      ROUTES.commitersCaseStudy,
+      ROUTES.aiSummarizerCaseStudy,
+      ROUTES.multiRoleCrmCaseStudy,
+    ]);
     expect(contact && "to" in contact ? contact.to : undefined).toBe(ROUTES.contact);
     expect(careers && "to" in careers ? careers.to : undefined).toBe(ROUTES.openPositions);
   });

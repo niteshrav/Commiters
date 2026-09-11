@@ -31,7 +31,7 @@ export const TERMS_ENTERPRISE_DESCRIPTION_CLASS = "terms-enterprise-description"
 export const TERMS_ENTERPRISE_BUTTON_CLASS = "terms-enterprise-button" as const;
 
 export const TERMS_PROSE_MAX_WIDTH = "56rem" as const;
-export const TERMS_BLUE_ACCENT_COLOR = "#0066ff" as const;
+export const TERMS_BLUE_ACCENT_COLOR = "#1E88E5" as const;
 export const TERMS_CYAN_ACCENT_COLOR = "#00c2ff" as const;
 export const TERMS_GOLD_ACCENT_COLOR = "#d4a017" as const;
 export const TERMS_DIVIDER_BORDER_CSS = SITE_HORIZONTAL_RULE_BORDER_CSS;

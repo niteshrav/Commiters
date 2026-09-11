@@ -296,7 +296,7 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
             ))}
           </ul>
 
-          <div className={OPSFLOW_STEPS_CLASS} data-testid="opsflow-how-it-works">
+          <div className={OPSFLOW_STEPS_CLASS} data-testid="opsflow-how-it-works" id="opsflow-how-it-works">
             <h2 className="opsflow-steps-title">{OPSFLOW_HOW_IT_WORKS.title}</h2>
             <ol className="opsflow-steps-list">
               {OPSFLOW_HOW_IT_WORKS.steps.map((step) => (
@@ -311,7 +311,7 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
             </ol>
           </div>
 
-          <div className={OPSFLOW_PREVIEW_CLASS} data-testid="opsflow-preview">
+          <div className={OPSFLOW_PREVIEW_CLASS} data-testid="opsflow-preview" id="opsflow-preview">
             <h2 className="opsflow-preview-title">{OPSFLOW_PREVIEW.title}</h2>
             <div className="opsflow-preview-grid">
               <div className="opsflow-preview-pane opsflow-preview-pane--pdf">

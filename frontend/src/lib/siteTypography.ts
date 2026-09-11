@@ -1,6 +1,6 @@
 import { PRECISION_MINIMALIST_DESIGN } from "./precisionMinimalistDesign";
 
-/** Site-wide typography — Plus Jakarta Sans Precision Minimalist scale. */
+/** Site-wide typography — Inter from the Commiters Brand Book. */
 export const SITE_TYPOGRAPHY = {
   fontFamily: PRECISION_MINIMALIST_DESIGN.typography.fontFamily,
   sectionTitleWeight: PRECISION_MINIMALIST_DESIGN.typography.sectionTitleWeight,

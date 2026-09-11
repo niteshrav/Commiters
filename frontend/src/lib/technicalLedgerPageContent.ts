@@ -1,5 +1,3 @@
-import { HOME_PAGE_ASSETS } from "./homePageContent";
-
 export type TechnicalLedgerArticle = {
   id: string;
   category: string;
@@ -33,9 +31,9 @@ export const TECHNICAL_LEDGER_CONTEXT_TRAP_ARTICLE: TechnicalLedgerArticle = {
     "Shifting the engineering paradigm from isolated AI automation to human-centric architectural orchestration.",
   href: TECHNICAL_LEDGER_CONTEXT_TRAP_MEDIUM_URL,
   image: {
-    src: HOME_PAGE_ASSETS.heroMonitor,
-    srcSet: `${HOME_PAGE_ASSETS.heroMonitor2x} 2x`,
-    alt: "Engineering workstation showing AI-augmented software development workflows",
+    src: "/assets/case-studies/commiters.png",
+    srcSet: "/assets/case-studies/commiters@2x.png 2x",
+    alt: "Spec-driven engineering console used as the Technical Ledger cover",
   },
 };
 

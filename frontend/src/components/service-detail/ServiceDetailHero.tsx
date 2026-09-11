@@ -4,14 +4,11 @@ import Reveal from "../motion/Reveal";
 import type { ServiceDetail } from "../../lib/services/types";
 import { NAV_CTA_LABEL, NAV_CTA_TO } from "../../lib/navSections";
 import { ROUTES } from "../../lib/routes";
-import { serviceCardImageForDetail } from "../../lib/serviceCardImages";
 import { pageTitle } from "../../lib/siteMeta";
 
 type Props = { service: ServiceDetail };
 
 export default function ServiceDetailHero({ service }: Props) {
-  const image = serviceCardImageForDetail(service.slug);
-
   return (
     <section className="svc-detail-hero" data-testid="service-detail-hero" aria-labelledby="service-detail-hero-title">
       <BrandWatermark />
@@ -32,15 +29,7 @@ export default function ServiceDetailHero({ service }: Props) {
             </Link>
           </div>
         </div>
-        <div className={`svc-detail-hero-visual svc-detail-hero-visual--${service.heroVisual}`}>
-          <img
-            className="svc-detail-hero-image"
-            src={image.src}
-            alt={image.alt}
-            decoding="async"
-            fetchPriority="high"
-          />
-        </div>
+        <div className={`svc-detail-hero-visual svc-detail-hero-visual--${service.heroVisual}`} aria-hidden />
       </Reveal>
     </section>
   );

@@ -191,7 +191,14 @@ export const TRUSTTAP_ABOUT = {
   kicker: "ABOUT",
   title: "Built for the field, not a slide deck.",
   body: "TrustTap gives operations teams NFC and QR ground verification: tamper-proof scans, offline inspection logs, and a live ops dashboard scoped by policy.",
-  illustration: TRUSTTAP_HERO_SHOWCASE.image,
+  illustration: {
+    src: "/assets/trusttap/trusttap-hero-showcase.png",
+    srcSet:
+      "/assets/trusttap/trusttap-hero-showcase.png 1x, /assets/trusttap/trusttap-hero-showcase@2x.png 2x",
+    alt: "TrustTap product console with QR stand, mobile scan flow, and operations dashboard",
+    width: 1024,
+    height: 682,
+  },
 } as const;
 
 export const TRUSTTAP_PREVIEW = {

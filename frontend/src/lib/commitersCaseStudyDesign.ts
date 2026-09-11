@@ -15,7 +15,7 @@ export const COMMITERS_CASE_STUDY_DESIGN = {
     cardBorder: "#e5e7eb",
     sidebarBackground: "#f3f4f6",
     divider: "#e5e7eb",
-    featureIconSurface: "rgba(0, 102, 255, 0.08)",
+    featureIconSurface: "#f1f5f9",
   },
   typography: {
     kickerWeight: 500,
