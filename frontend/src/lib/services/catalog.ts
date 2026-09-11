@@ -175,7 +175,7 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
         href: ROUTES.browseMyVacationCaseStudy,
       },
       {
-        title: "TrustTap",
+        title: "trustTap",
         tag: "SaaS Product",
         description: "QR-powered review collection with admin tooling and ungated Google review paths.",
         href: ROUTES.trustTap,

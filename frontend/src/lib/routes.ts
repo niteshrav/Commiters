@@ -24,7 +24,7 @@ export const ROUTES = {
   multiRoleCrmCaseStudyLegacy: "/case-studies/multi-role-crm",
   browseMyVacationCaseStudyLegacy: "/case-studies/browse-my-vacation",
   trustTap: "/products/trusttap",
-  /** Short URL — redirect to TrustTap product page */
+  /** Short URL — redirect to trustTap product page */
   trustTapShort: "/trusttap",
   opsFlow: "/products/opsflow",
   opsFlowPlayground: "/opsflow",

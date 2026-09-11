@@ -52,11 +52,11 @@ describe("siteFooterCopy", () => {
     expect(platforms?.kind === "internal" ? platforms.to : undefined).toBe(ROUTES.webApplications);
     const opsFlow = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "OpsFlow AI");
     expect(opsFlow?.kind === "internal" ? opsFlow.to : undefined).toBe(ROUTES.opsFlowPlayground);
-    const trustTap = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "TrustTap");
+    const trustTap = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "trustTap");
     expect(trustTap?.kind === "internal" ? trustTap.to : undefined).toBe(ROUTES.trustTap);
     const utilities = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Free Business Utilities");
     expect(utilities?.kind === "internal" ? utilities.to : undefined).toBe(ROUTES.utilities);
-    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toContain("TrustTap");
+    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toContain("trustTap");
     expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).not.toContain("Custom AI Pipelines");
 
     const ecommerce = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Automated E-commerce Systems");

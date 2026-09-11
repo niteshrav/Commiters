@@ -372,7 +372,7 @@ export function trustTapPageSeo(): PageSeoInput {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      name: "TrustTap",
+      name: "trustTap",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description: TRUSTTAP_SEO.description,

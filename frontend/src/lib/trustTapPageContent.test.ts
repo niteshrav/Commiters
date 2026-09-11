@@ -12,7 +12,7 @@ describe("trustTapPageContent", () => {
   it("defines SEO metadata and product route", () => {
     expect(TRUSTTAP_SEO.path).toBe(ROUTES.trustTap);
     expect(TRUSTTAP_SEO.description).toMatch(/ground verification/i);
-    expect(TRUSTTAP_SEO.title).toBe("TrustTap");
+    expect(TRUSTTAP_SEO.title).toBe("trustTap");
     expect(TRUSTTAP_LIVE_URL).toBe("https://trusttap.commiters.com/");
   });
 

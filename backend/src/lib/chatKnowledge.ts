@@ -69,7 +69,7 @@ export const CHAT_KNOWLEDGE_BASE: readonly ChatKnowledgeEntry[] = [
     id: "portfolio",
     question: "What projects has Commiters worked on?",
     answer:
-      `Commiters has shipped custom web platforms, e-commerce solutions, local business automation, hospitality tools such as TrustTap, and MVPs. Explore case studies on ${CHAT_PORTFOLIO_PATH}.`,
+      `Commiters has shipped custom web platforms, e-commerce solutions, local business automation, hospitality tools such as trustTap, and MVPs. Explore case studies on ${CHAT_PORTFOLIO_PATH}.`,
     keywords: ["portfolio", "project", "projects", "work", "case", "study", "hospitality", "mvp"],
   },
   {

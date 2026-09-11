@@ -29,7 +29,7 @@ describe("navSections", () => {
       "Services",
       "About",
       "Work",
-      "TrustTap",
+      "trustTap",
       "OpsFlow AI",
     ]);
     expect(PRIMARY_NAV_ITEMS.map((item) => item.to)).toEqual([
@@ -124,7 +124,7 @@ describe("navSections", () => {
 
   it("builds desktop dropdown configs from primary nav items", () => {
     const configs = resolveNavDropdownConfigs();
-    expect(configs.map((config) => config.label)).toEqual(["Services", "About", "Work", "TrustTap", "OpsFlow AI"]);
+    expect(configs.map((config) => config.label)).toEqual(["Services", "About", "Work", "trustTap", "OpsFlow AI"]);
     expect(configs.find((config) => config.id === "trusttap")?.emphasis).toBe("flagship");
     expect(configs.find((config) => config.id === "opsflow")?.emphasis).toBe("lead-magnet");
     expect(configs.find((config) => config.id === "services")?.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
@@ -141,7 +141,7 @@ describe("navSections", () => {
       "Services",
       "About",
       "Work",
-      "TrustTap",
+      "trustTap",
       "OpsFlow AI",
     ]);
     expect(entries.every((entry) => entry.kind === "dropdown")).toBe(true);
@@ -189,7 +189,7 @@ describe("navSections", () => {
   it("partitions desktop header links into the conversion bar", () => {
     const groups = partitionHeaderNavItems(PRIMARY_NAV_ITEMS);
 
-    expect(groups.bar.map((item) => item.label)).toEqual(["Services", "About", "Work", "TrustTap", "OpsFlow AI"]);
+    expect(groups.bar.map((item) => item.label)).toEqual(["Services", "About", "Work", "trustTap", "OpsFlow AI"]);
     expect(groups.more.map((item) => item.label)).toEqual([]);
     expect(groups.mobile.map((item) => item.label)).toEqual(PRIMARY_NAV_ITEMS.map((item) => item.label));
   });

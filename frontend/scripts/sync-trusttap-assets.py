@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build TrustTap marketing images from live-site screenshots."""
+"""Build trustTap marketing images from live-site screenshots."""
 from __future__ import annotations
 
 import tempfile
@@ -27,7 +27,7 @@ def latest_screenshot() -> Path:
             matches.extend(directory.glob("page-*.png"))
     matches.sort(key=lambda path: path.stat().st_mtime, reverse=True)
     if not matches:
-        raise FileNotFoundError("No TrustTap browser screenshot found")
+        raise FileNotFoundError("No trustTap browser screenshot found")
     return matches[0]
 
 

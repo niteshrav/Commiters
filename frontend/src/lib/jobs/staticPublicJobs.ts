@@ -31,7 +31,7 @@ const STATIC_JOBS: JobDetail[] = [
     aboutCompany:
       "Commiters is a founder-led engineering studio in Udaipur helping startups ship production-ready web, mobile, and AI products. We work with founders who need reliable delivery—not slide decks—and we publish case studies, blogs, and product updates that reflect how we actually build.",
     roleOverview:
-      "Support demand generation, content, and campaign execution for Commiters services and products—including TrustTap and client success stories. You will help turn technical delivery into clear messaging that attracts founders and product teams evaluating a build partner.",
+      "Support demand generation, content, and campaign execution for Commiters services and products—including trustTap and client success stories. You will help turn technical delivery into clear messaging that attracts founders and product teams evaluating a build partner.",
     description:
       "You will help plan and run marketing programs that attract founders and product teams, from SEO and landing pages to email nurture and social proof. Day to day, you will draft content, coordinate launches with engineering, and track what messaging drives qualified conversations.",
     responsibilities: [

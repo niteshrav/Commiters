@@ -22,7 +22,7 @@ describe("mobileNavDrawer", () => {
       "Services",
       "About",
       "Work",
-      "TrustTap",
+      "trustTap",
       "OpsFlow AI",
       "Contact",
       "Careers",

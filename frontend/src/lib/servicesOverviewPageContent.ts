@@ -9,7 +9,7 @@ export const SERVICES_OVERVIEW_SEO = {
   description:
     "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
   keywords:
-    "enterprise AI products, cloud-native web systems, AI operational audit, governed AI, spec-driven platforms, MCP, OpsFlow AI, TrustTap, Commiters services",
+    "enterprise AI products, cloud-native web systems, AI operational audit, governed AI, spec-driven platforms, MCP, OpsFlow AI, trustTap, Commiters services",
   path: ROUTES.services,
 } as const;
 
@@ -187,10 +187,10 @@ export const SERVICES_OVERVIEW_PRODUCTS: readonly ServicesOverviewProduct[] = [
   },
   {
     id: "trusttap",
-    title: "TrustTap",
+    title: "trustTap",
     description: "NFC/QR ground verification and field inspection tracking.",
     to: ROUTES.trustTap,
-    ctaLabel: "Open TrustTap",
+    ctaLabel: "Open trustTap",
   },
 ] as const;
 

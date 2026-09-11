@@ -8,13 +8,13 @@ import {
 import { ROUTES } from "./routes";
 
 export const TRUSTTAP_LIVE_URL = "https://trusttap.commiters.com/" as const;
-export const TRUSTTAP_DOCUMENT_TITLE = "TrustTap";
+export const TRUSTTAP_DOCUMENT_TITLE = "trustTap";
 export const TRUSTTAP_SEO = {
   title: TRUSTTAP_DOCUMENT_TITLE,
   description:
     "NFC and QR-based ground verification for logistics, field personnel tracking, and facility inspection auditing.",
   keywords:
-    "TrustTap, ground verification, NFC, QR inspection, field tracking, logistics auditing, Commiters product",
+    "trustTap, ground verification, NFC, QR inspection, field tracking, logistics auditing, Commiters product",
   path: ROUTES.trustTap,
 } as const;
 
@@ -22,7 +22,7 @@ export const TRUSTTAP_ADMIN_DASHBOARD_URL = "https://trusttap.commiters.com/admi
 
 export const TRUSTTAP_HERO = {
   kicker: "PROPRIETARY CLOUD PRODUCT",
-  titleLead: "TrustTap:",
+  titleLead: "trustTap:",
   titleAccent: "Ground Verification & Physical Inspection Tracking",
   tagline:
     "NFC and QR-based ground verification system for logistics, field personnel tracking, and facility inspection auditing.",
@@ -33,14 +33,14 @@ export const TRUSTTAP_HERO = {
   secondaryHref: ROUTES.opsFlow,
 } as const;
 
-/** Hero right column — TrustTap product marketing visual. */
+/** Hero right column — trustTap product marketing visual. */
 export const TRUSTTAP_HERO_SHOWCASE = {
-  ariaLabel: "TrustTap marketing visual with QR stand, mobile feedback flow, analytics dashboard, and updated brand logo",
+  ariaLabel: "trustTap marketing visual with QR stand, mobile feedback flow, analytics dashboard, and updated brand logo",
   image: {
     src: "/assets/trusttap/trusttap-hero-marketing.png",
     srcSet:
       "/assets/trusttap/trusttap-hero-marketing.png 1x, /assets/trusttap/trusttap-hero-marketing@2x.png 2x",
-    alt: "TrustTap — Tap. Trust. Thrive. QR feedback, Google review path, live dashboard, and private customer notes for local businesses",
+    alt: "trustTap — Tap. Trust. Thrive. QR feedback, Google review path, live dashboard, and private customer notes for local businesses",
     width: 1024,
     height: 682,
   },
@@ -155,7 +155,7 @@ export const TRUSTTAP_FAQ = {
   items: [
     {
       id: "gate",
-      question: "Does TrustTap gate Google reviews by rating?",
+      question: "Does trustTap gate Google reviews by rating?",
       answer:
         "No. Every customer always sees the same Google review option. Private feedback is separate.",
     },
@@ -190,12 +190,12 @@ export const TRUSTTAP_BOTTOM_CTA = {
 export const TRUSTTAP_ABOUT = {
   kicker: "ABOUT",
   title: "Built for the field, not a slide deck.",
-  body: "TrustTap gives operations teams NFC and QR ground verification: tamper-proof scans, offline inspection logs, and a live ops dashboard scoped by policy.",
+  body: "trustTap gives operations teams NFC and QR ground verification: tamper-proof scans, offline inspection logs, and a live ops dashboard scoped by policy.",
   illustration: {
     src: "/assets/trusttap/trusttap-hero-showcase.png",
     srcSet:
       "/assets/trusttap/trusttap-hero-showcase.png 1x, /assets/trusttap/trusttap-hero-showcase@2x.png 2x",
-    alt: "TrustTap product console with QR stand, mobile scan flow, and operations dashboard",
+    alt: "trustTap product console with QR stand, mobile scan flow, and operations dashboard",
     width: 1024,
     height: 682,
   },
@@ -209,19 +209,19 @@ export const TRUSTTAP_PREVIEW = {
     {
       id: "qr",
       src: "/assets/trusttap/trusttap-qr-preview.svg",
-      alt: "TrustTap QR stand for in-store feedback",
+      alt: "trustTap QR stand for in-store feedback",
       caption: "QR stand",
     },
     {
       id: "dashboard",
       src: "/assets/trusttap/trusttap-dashboard-preview.svg",
-      alt: "TrustTap owner dashboard preview",
+      alt: "trustTap owner dashboard preview",
       caption: "Live dashboard",
     },
     {
       id: "locations",
       src: "/assets/trusttap/trusttap-locations-preview.svg",
-      alt: "TrustTap multi-location coverage preview",
+      alt: "trustTap multi-location coverage preview",
       caption: "Locations",
     },
   ],

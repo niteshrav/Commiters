@@ -1,12 +1,12 @@
 export const TRUSTTAP_DISPLAY = {
-  headlineBrand: "TrustTap",
+  headlineBrand: "trustTap",
   headlineTag: "Tap. Trust. Verify.",
   ctaArrow: "→",
   howItWorksLink: "See how it works",
   howItWorksNote: "Simple setup. Lasting impact.",
   faqAllLabel: "View All FAQs",
   bottomKicker: "Ready to verify?",
-  bottomHeadline: "Let's bring TrustTap to your operations.",
+  bottomHeadline: "Let's bring trustTap to your operations.",
   chips: [
     { id: "tamper", title: "Tamper-Proof", body: "Verification" },
     { id: "offline", title: "Offline-First", body: "Sync" },

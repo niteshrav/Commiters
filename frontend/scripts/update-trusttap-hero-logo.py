@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replace the legacy green-shield TrustTap mark on hero showcase PNGs."""
+"""Replace the legacy green-shield trustTap mark on hero showcase PNGs."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -55,9 +55,9 @@ def patch_image(path: Path) -> None:
     font = load_font(font_size)
     text_x = round(58 * scale)
     text_y = round(16 * scale)
-    draw.text((text_x, text_y), "Trust", fill=NAVY, font=font)
+    draw.text((text_x, text_y), "trust", fill=NAVY, font=font)
 
-    trust_w = draw.textlength("Trust", font=font) if hasattr(draw, "textlength") else font_size * 2.4
+    trust_w = draw.textlength("trust", font=font) if hasattr(draw, "textlength") else font_size * 2.4
     draw.text((text_x + int(trust_w), text_y), "Tap", fill=AZURE, font=font)
 
     merged = Image.alpha_composite(image, overlay).convert("RGB")

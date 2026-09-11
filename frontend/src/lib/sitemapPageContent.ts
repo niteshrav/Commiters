@@ -48,7 +48,7 @@ export const SITEMAP_PAGE_COPY = {
         { label: "About", to: ROUTES.about, description: "Vision, craftsmanship, and operating principles." },
         { label: "Services", to: ROUTES.services, description: "AI operational engineering and custom web systems." },
         { label: "Work", to: ROUTES.caseStudies, description: "Case studies and shipped products." },
-        { label: "TrustTap", to: ROUTES.trustTap, description: "Our trust and verification product." },
+        { label: "trustTap", to: ROUTES.trustTap, description: "Our trust and verification product." },
         { label: "OpsFlow AI", to: ROUTES.opsFlow, description: "Free invoice-to-Excel sandbox for operations teams." },
         { label: "Free Business Utilities", to: ROUTES.utilities, description: "Zero-code operational tools including OpsFlow AI." },
         { label: "Blog", to: ROUTES.technicalLedger, description: "Technical notes and engineering insights." },

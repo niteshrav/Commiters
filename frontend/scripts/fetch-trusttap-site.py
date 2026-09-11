@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch TrustTap homepage metadata and image URLs."""
+"""Fetch trustTap homepage metadata and image URLs."""
 from __future__ import annotations
 
 import json

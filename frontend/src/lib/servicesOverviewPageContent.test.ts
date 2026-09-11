@@ -128,7 +128,7 @@ describe("servicesOverviewPageContent", () => {
     expect(SERVICES_OVERVIEW_CAPABILITIES[0]?.subtext).toMatch(/GST invoice pipelines/);
   });
 
-  it("showcases OpsFlow AI and TrustTap as live products", () => {
+  it("showcases OpsFlow AI and trustTap as live products", () => {
     expect(SERVICES_OVERVIEW_PRODUCTS_TITLE).toBe("Live Product Showcases");
     expect(SERVICES_OVERVIEW_PRODUCTS).toEqual([
       {
@@ -140,10 +140,10 @@ describe("servicesOverviewPageContent", () => {
       },
       {
         id: "trusttap",
-        title: "TrustTap",
+        title: "trustTap",
         description: "NFC/QR ground verification and field inspection tracking.",
         to: ROUTES.trustTap,
-        ctaLabel: "Open TrustTap",
+        ctaLabel: "Open trustTap",
       },
     ]);
   });

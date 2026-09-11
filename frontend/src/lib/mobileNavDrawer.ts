@@ -64,7 +64,7 @@ export const MOBILE_NAV_DRAWER_ITEMS: readonly MobileNavDrawerItem[] = [
   { id: "services", label: "Services", expandable: true, children: MOBILE_NAV_SERVICE_LINKS },
   { id: "about", label: "About", expandable: true, children: MOBILE_NAV_ABOUT_LINKS },
   { id: "work", label: "Work", expandable: true, children: MOBILE_NAV_WORK_LINKS },
-  { id: "trusttap", label: "TrustTap", expandable: true, children: MOBILE_NAV_TRUSTTAP_LINKS },
+  { id: "trusttap", label: "trustTap", expandable: true, children: MOBILE_NAV_TRUSTTAP_LINKS },
   { id: "opsflow", label: "OpsFlow AI", expandable: true, children: MOBILE_NAV_OPSFLOW_LINKS },
   { id: "contact", label: "Contact", to: ROUTES.contact },
   { id: "careers", label: "Careers", to: ROUTES.openPositions },

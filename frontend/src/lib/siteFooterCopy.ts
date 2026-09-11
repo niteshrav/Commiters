@@ -34,7 +34,7 @@ export const SITE_FOOTER_TAGLINE = SITE_FOOTER_BRAND_TAGLINE;
 
 export const SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS = [
   "OpsFlow AI",
-  "TrustTap",
+  "trustTap",
   "Spec-Driven Full-Stack Platforms",
   "AI Operational Audits",
   "Governed AI & Workflow Systems",
@@ -85,7 +85,7 @@ export const SITE_FOOTER_NAV_LINK_LABELS = [
 
 const SITE_FOOTER_FLAGSHIP_NAV_LINKS = [
   { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowPlayground },
-  { kind: "internal", label: "TrustTap", to: ROUTES.trustTap },
+  { kind: "internal", label: "trustTap", to: ROUTES.trustTap },
   { kind: "internal", label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplications },
   { kind: "internal", label: "AI Operational Audits", to: ROUTES.aiOperationalAudit },
   { kind: "internal", label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutions },

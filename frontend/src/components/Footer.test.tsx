@@ -102,7 +102,7 @@ describe("Footer", () => {
       "href",
       ROUTES.utilities,
     );
-    expect(within(flagshipNav).getByRole("link", { name: /^TrustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(within(flagshipNav).getByRole("link", { name: /^trustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
     expect(within(flagshipNav).queryByRole("link", { name: /^Custom AI Pipelines$/i })).not.toBeInTheDocument();
     expect(within(engineeringNav).getByRole("link", { name: /^B2B Web Applications$/i })).toHaveAttribute(
       "href",

@@ -27,7 +27,7 @@ describe("App service landing redirects", () => {
     expect(screen.getByTestId("privacy-page")).toBeInTheDocument();
   });
 
-  it("redirects /trusttap to the TrustTap product page", () => {
+  it("redirects /trusttap to the trustTap product page", () => {
     render(
       <MemoryRouter initialEntries={[ROUTES.trustTapShort]}>
         <App />
