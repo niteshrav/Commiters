@@ -12560,17 +12560,17 @@ html[data-a11y-reduce-motion="true"] *::after {
 
 .footer--nock .footer-nock-shell {
   position: relative;
-  max-width: 80rem;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 48px 3cm;
   overflow: hidden;
 }
 
 @media (min-width: 1024px) {
   .footer--nock .footer-nock-shell {
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 3cm;
+    padding-right: 3cm;
   }
 }
 
@@ -13507,6 +13507,10 @@ html[data-a11y-reduce-motion="true"] *::after {
   :root {
     --site-header-height: 72px;
     --site-gutter: 16px;
+  }
+
+  .footer--nock .footer-nock-shell {
+    padding: 48px 16px;
   }
 
   .header.header-light {

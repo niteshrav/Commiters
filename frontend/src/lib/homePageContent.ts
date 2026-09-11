@@ -37,7 +37,7 @@ export const HOME_HERO_OPS_FLOW_HREF = `/#${HOME_OPS_FLOW_SECTION_ID}` as const;
 export const HOME_PAGE_COPY = {
   hero: {
     badge: "AN AI & CLOUD PRODUCT & ENGINEERING FIRM",
-    title: "Enterprise AI Products & Cloud-Native Web Systems",
+    title: "Code Your Success",
     subtext:
       "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
     ctaPrimary: "Try OpsFlow AI",
