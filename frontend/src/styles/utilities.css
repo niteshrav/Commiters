@@ -393,7 +393,7 @@
 
 .utilities-tool-card .btn {
   justify-self: start;
-  border-radius: 999px;
+  border-radius: var(--site-btn-radius);
 }
 
 .utilities-why {
@@ -495,7 +495,7 @@
 }
 
 .utilities-banner-actions .btn {
-  border-radius: 999px;
+  border-radius: var(--site-btn-radius);
 }
 
 .utilities-banner-visual {

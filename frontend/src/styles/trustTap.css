@@ -161,8 +161,8 @@
 }
 
 .trusttap-hero-btn-primary.btn-primary {
-  border-radius: 999px;
-  min-height: 48px;
+  border-radius: var(--site-btn-radius);
+  min-height: var(--site-btn-min-height-lg);
   padding-inline: 22px;
   background: var(--trusttap-blue);
   border-color: var(--trusttap-blue);
@@ -174,8 +174,8 @@
 }
 
 .trusttap-hero-btn-secondary {
-  border-radius: 999px;
-  min-height: 48px;
+  border-radius: var(--site-btn-radius);
+  min-height: var(--site-btn-min-height-lg);
   padding-inline: 22px;
 }
 
@@ -470,7 +470,7 @@
 }
 
 .trusttap-faq-all {
-  border-radius: 999px;
+  border-radius: var(--site-btn-radius);
   min-height: 42px;
 }
 
@@ -523,8 +523,8 @@
 }
 
 .trusttap-bottom-cta-secondary.btn-secondary {
-  border-radius: 999px;
-  min-height: 48px;
+  border-radius: var(--site-btn-radius);
+  min-height: var(--site-btn-min-height-lg);
 }
 
 .trusttap-bottom-cta .trusttap-hero-btn-primary.btn-primary {

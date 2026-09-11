@@ -10,6 +10,6 @@ export const COMMITERS_BRANDBOOK = {
   body: "#3D5470",
   muted: "#6B8196",
   cardRadius: "16px",
-  buttonRadius: "12px",
+  buttonRadius: "5px",
   fontFamily: '"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
 } as const;

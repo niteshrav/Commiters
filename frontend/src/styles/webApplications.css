@@ -87,8 +87,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border-radius: 999px;
-  min-height: 48px;
+  border-radius: var(--site-btn-radius);
+  min-height: var(--site-btn-min-height-lg);
   padding-inline: 22px;
   max-width: 100%;
   white-space: normal;

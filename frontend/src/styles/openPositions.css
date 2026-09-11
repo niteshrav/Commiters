@@ -315,7 +315,7 @@
 .open-positions-pagination button {
   padding: 10px 16px;
   border: 1px solid var(--border, rgba(17, 24, 39, 0.12));
-  border-radius: 999px;
+  border-radius: var(--site-btn-radius);
   background: var(--surface);
   color: var(--text);
   cursor: pointer;

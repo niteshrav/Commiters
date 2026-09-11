@@ -49,10 +49,32 @@ describe("siteButtonLayout", () => {
     expect(btn).toContain(`min-height: var(--site-btn-min-height)`);
     expect(btn).toContain(`padding: var(--site-btn-padding-y) var(--site-btn-padding-x)`);
     expect(btn).toContain(`font-size: var(--site-btn-font-size)`);
-    expect(SITE_BUTTON_DESIGN.radius).toBe("0");
+    expect(SITE_BUTTON_DESIGN.radius).toBe("5px");
     expect(SITE_BUTTON_DESIGN.minHeight).toBe("40px");
+    expect(SITE_BUTTON_DESIGN.largeMinHeight).toBe("48px");
+    expect(SITE_BUTTON_DESIGN.compactMinHeight).toBe("36px");
     expect(SITE_BUTTON_DESIGN.paddingInline).toBe("18px");
     expect(SITE_BUTTON_DESIGN.paddingBlock).toBe("10px");
+  });
+
+  it("does not use pill radius on shared CTA button classes", () => {
+    const btn = ruleBlock(".btn {", ".btn-compact {");
+    expect(btn).not.toContain("border-radius: 999px");
+    expect(btn).not.toContain("border-radius: 50%");
+
+    for (const selector of [
+      ".btn-minimal {",
+      ".case-studies-bottom-cta-btn {",
+      ".commiters-case-study-bottom-cta-btn {",
+      ".neardrop-case-study-bottom-cta-btn {",
+      ".cookie-policy-manage-button {",
+    ]) {
+      expect(css).toContain(selector);
+      const start = css.indexOf(selector);
+      const radiusSlice = css.slice(start, start + 420);
+      expect(radiusSlice).toContain("border-radius: var(--site-btn-radius)");
+      expect(radiusSlice).not.toContain("border-radius: 999px");
+    }
   });
 
   it("keeps the Our Work band CTAs on the black/gray pairing", () => {

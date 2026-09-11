@@ -17,7 +17,8 @@ export const FOOTER_BACK_TO_TOP_CLASS = "footer-back-to-top" as const;
 export const FOOTER_NOCK_SHELL_MAX_WIDTH = "80rem";
 export const FOOTER_NOCK_SHELL_PADDING = "48px 24px";
 export const FOOTER_NOCK_SHELL_PADDING_LG = "48px";
-export const FOOTER_NOCK_MAIN_GAP = "clamp(28px, 4vw, 48px)";
+export const FOOTER_NOCK_MAIN_GAP = "clamp(32px, 5vw, 64px)";
+export const FOOTER_NOCK_NAV_COLUMN_GAP = "clamp(20px, 3vw, 48px)";
 export const FOOTER_NOCK_LINK_GAP = "8px";
 
 export const FOOTER_LOGO_CELL_CLASS = "footer-mockup-logo-cell" as const;

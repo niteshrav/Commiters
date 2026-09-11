@@ -97,8 +97,8 @@
 
 .services-overview-hero-cta {
   margin-top: 0;
-  border-radius: 999px;
-  min-height: 48px;
+  border-radius: var(--site-btn-radius);
+  min-height: var(--site-btn-min-height-lg);
   padding-inline: 22px;
 }
 
@@ -477,8 +477,8 @@
 .services-overview-inquiry-form .btn {
   width: 100%;
   justify-content: center;
-  border-radius: 999px;
-  min-height: 48px;
+  border-radius: var(--site-btn-radius);
+  min-height: var(--site-btn-min-height-lg);
 }
 
 .services-overview-privacy {

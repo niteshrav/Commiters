@@ -17,8 +17,8 @@ export const MOBILE_NAV_BODY_LOCK_CLASS = "nav-mobile-drawer-open" as const;
 export const HEADER_DRAWER_OPEN_CLASS = "header--drawer-open" as const;
 export const HEADER_MENU_OPEN_LABEL = "Open menu" as const;
 export const HEADER_MENU_CLOSE_LABEL = "Close menu" as const;
-export const SITE_HEADER_HEIGHT = "84px" as const;
-export const SITE_HEADER_HEIGHT_MOBILE = "64px" as const;
+export const SITE_HEADER_HEIGHT = "96px" as const;
+export const SITE_HEADER_HEIGHT_MOBILE = "72px" as const;
 export const MOBILE_NAV_SHEET_TOP = "var(--site-header-height)" as const;
 export const MOBILE_NAV_DRAWER_WIDTH = "100%" as const;
 

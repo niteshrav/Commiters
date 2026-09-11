@@ -7,7 +7,7 @@ const css = readFileSync(join(__dirname, "..", "styles.css"), "utf8");
 
 describe("stickyHeaderScroll (hash / in-page navigation)", () => {
   it("defines a shared offset token for the sticky header", () => {
-    expect(css).toMatch(/--sticky-header-offset:\s*90px/);
+    expect(css).toMatch(/--sticky-header-offset:\s*108px/);
   });
 
   it("applies scroll-padding-top on html so hash targets clear the sticky navbar", () => {

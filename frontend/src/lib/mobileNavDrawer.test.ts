@@ -94,8 +94,8 @@ describe("mobileNavDrawer", () => {
   });
 
   it("pins a full-width sheet below the sticky header instead of a side drawer", () => {
-    expect(SITE_HEADER_HEIGHT).toBe("84px");
-    expect(SITE_HEADER_HEIGHT_MOBILE).toBe("64px");
+    expect(SITE_HEADER_HEIGHT).toBe("96px");
+    expect(SITE_HEADER_HEIGHT_MOBILE).toBe("72px");
     expect(MOBILE_NAV_SHEET_TOP).toBe("var(--site-header-height)");
     expect(MOBILE_NAV_DRAWER_WIDTH).toBe("100%");
     expect(HEADER_MENU_OPEN_LABEL).toBe("Open menu");

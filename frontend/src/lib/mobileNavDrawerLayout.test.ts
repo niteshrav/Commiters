@@ -45,7 +45,7 @@ function mediaBlocks(maxWidthPx: number): string {
 
 describe("mobileNavDrawerLayout", () => {
   it("styles a header-locked full-width sheet so the sticky bar stays visible", () => {
-    expect(css).toMatch(/:root\s*\{[^}]*--site-header-height:\s*84px/s);
+    expect(css).toMatch(/:root\s*\{[^}]*--site-header-height:\s*96px/s);
     expect(css).toMatch(new RegExp(`\\.${MOBILE_NAV_OVERLAY_CLASS}\\s*\\{[^}]*position:\\s*fixed`));
     expect(css).toMatch(
       new RegExp(`\\.${MOBILE_NAV_OVERLAY_CLASS}\\s*\\{[^}]*top:\\s*${MOBILE_NAV_SHEET_TOP.replace(/[()]/g, "\\$&")}`),
@@ -94,15 +94,15 @@ describe("mobileNavDrawerLayout", () => {
     expect(css).toMatch(/body\.nav-mobile-drawer-open \.accessibility-widget[\s\S]*visibility:\s*hidden/);
   });
 
-  it("uses a 64px white mobile header bar with hamburger chrome below 768px", () => {
+  it("uses a 72px white mobile header bar with hamburger chrome below 768px", () => {
     const mobile = mediaBlocks(BREAKPOINT_MOBILE_PX);
-    expect(mobile).toMatch(/:root\s*\{[\s\S]*--site-header-height:\s*64px/);
-    expect(mobile).toMatch(/\.header-inner\s*\{[\s\S]*min-height:\s*64px/);
-    expect(mobile).toMatch(/\.header-inner\s*\{[\s\S]*height:\s*64px/);
+    expect(mobile).toMatch(/:root\s*\{[\s\S]*--site-header-height:\s*72px/);
+    expect(mobile).toMatch(/\.header-inner\s*\{[\s\S]*min-height:\s*72px/);
+    expect(mobile).toMatch(/\.header-inner\s*\{[\s\S]*height:\s*72px/);
     expect(mobile).toMatch(/\.header(?:\.header-light)?\s*\{[\s\S]*background:\s*#ffffff/);
     expect(mobile).toMatch(/\.header(?:\.header-light)?\s*\{[\s\S]*border-bottom:\s*1px solid #e2e8f0/);
-    expect(SITE_HEADER_HEIGHT).toBe("84px");
-    expect(SITE_HEADER_HEIGHT_MOBILE).toBe("64px");
+    expect(SITE_HEADER_HEIGHT).toBe("96px");
+    expect(SITE_HEADER_HEIGHT_MOBILE).toBe("72px");
   });
 
   it("reveals the hamburger and hides inline nav at the nav breakpoint", () => {
@@ -129,7 +129,7 @@ describe("mobileNavDrawerLayout", () => {
     expect(css).toMatch(/\.nav-mobile-drawer-footer\s*\{[\s\S]*padding-top:\s*16px/);
     expect(css).toMatch(/\.nav-mobile-drawer-footer\s*\{[\s\S]*border-top:\s*1px solid #e2e8f0/);
     expect(css).toMatch(/\.btn\.nav-mobile-cta\s*\{[\s\S]*height:\s*48px/);
-    expect(css).toMatch(/\.btn\.nav-mobile-cta\s*\{[\s\S]*border-radius:\s*8px/);
+    expect(css).toMatch(/\.btn\.nav-mobile-cta\s*\{[\s\S]*border-radius:\s*var\(--site-btn-radius\)/);
     expect(css).toMatch(/\.btn\.nav-mobile-cta\s*\{[\s\S]*margin-bottom:\s*4px/);
     expect(css).toMatch(/\.btn\.nav-mobile-cta\s*\{[\s\S]*width:\s*100%/);
     expect(css).toMatch(/\.nav-mobile-socials\s*\{[\s\S]*gap:\s*12px/);

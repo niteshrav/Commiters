@@ -7,6 +7,8 @@ import {
   FOOTER_NOCK_CLASS,
   FOOTER_NOCK_LINK_GAP,
   FOOTER_NOCK_MAIN_CLASS,
+  FOOTER_NOCK_MAIN_GAP,
+  FOOTER_NOCK_NAV_COLUMN_GAP,
   FOOTER_NOCK_SHELL_CLASS,
   FOOTER_NOCK_SHELL_MAX_WIDTH,
   FOOTER_NOCK_SHELL_PADDING,
@@ -25,6 +27,8 @@ describe("footerLayout", () => {
     expect(css).toContain(FOOTER_NOCK_SHELL_PADDING);
     expect(css).toContain(`max-width: ${FOOTER_NOCK_SHELL_MAX_WIDTH}`);
     expect(css).toContain(`gap: ${FOOTER_NOCK_LINK_GAP}`);
+    expect(css).toContain(`gap: ${FOOTER_NOCK_MAIN_GAP}`);
+    expect(css).toContain(`margin-left: ${FOOTER_NOCK_NAV_COLUMN_GAP}`);
     expect(css).toContain("grid-template-columns: minmax(14rem, 1.15fr) repeat(3, minmax(0, 1fr))");
     expect(css).toMatch(/\.footer--nock\.footer--home-mockup[\s\S]*background:\s*#ffffff/);
     expect(css).toMatch(
