@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { NAV_SECTION_ALIAS_CLASS } from "../lib/navSections";
 import { SERVICES_HOW_WE_WORK } from "../lib/servicesPageBottomContent";
 import {
   SERVICES_HOW_WE_WORK_CARD_CLASS,
@@ -40,6 +41,7 @@ export default function ServicesHowWeWorkSection() {
       data-testid="services-how-we-work-section"
       aria-labelledby="services-how-we-work-title"
     >
+      <span id="workflow" className={NAV_SECTION_ALIAS_CLASS} />
       <div className={SERVICES_HOW_WE_WORK_INNER_CLASS} data-testid="services-how-we-work-inner">
         <header className={SERVICES_HOW_WE_WORK_HEADER_CLASS}>
           <p className={SERVICES_HOW_WE_WORK_KICKER_CLASS}>{SERVICES_HOW_WE_WORK.kicker}</p>

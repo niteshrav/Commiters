@@ -12,6 +12,7 @@ import {
   WEB_APPLICATIONS_STACK,
 } from "../lib/webApplicationsPageContent";
 import { ROUTES } from "../lib/routes";
+import { WEB_APPLICATIONS_DISPLAY } from "../lib/webApplicationsPageDesign";
 
 const createLead = vi.fn();
 const navigate = vi.fn();
@@ -47,6 +48,9 @@ describe("WebApplicationsSection", () => {
     expect(screen.getByRole("heading", { name: WEB_APPLICATIONS_HERO.headline, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(WEB_APPLICATIONS_HERO.subheadline)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: WEB_APPLICATIONS_CTA_LABEL })).toHaveAttribute("href", "#webapp-project");
+    expect(screen.getByText(WEB_APPLICATIONS_DISPLAY.floats[0].title)).toBeInTheDocument();
+    expect(screen.getByText(WEB_APPLICATIONS_DISPLAY.floats[1].title)).toBeInTheDocument();
+    expect(screen.queryByRole("img", { name: /Spec-Driven Full-Stack Cloud Platforms/i })).not.toBeInTheDocument();
 
     const capabilities = screen.getByTestId("web-applications-capabilities");
     expect(capabilities).toHaveClass("webapp-cards");
@@ -112,6 +116,7 @@ describe("WebApplicationsSection", () => {
       name: "Nitesh Rav",
       email: "hello@commiters.com",
       serviceNeeded: "Spec-Driven Full-Stack Platforms",
+      timeline: WEB_APPLICATIONS_FORM.timeline,
       message: expect.stringContaining("Role-based operations platform for field teams."),
     });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });

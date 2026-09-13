@@ -128,5 +128,5 @@ export function workPageTags(project: Pick<CaseStudyProject, "id" | "tags">, lim
 
 export function workPageMatchesFilter(projectId: string, filter: WorkPageFilterId): boolean {
   if (filter === "all") return true;
-  return WORK_PAGE_PROJECT_PRESENTATION[projectId]?.filters.includes(filter) ?? filter === "all";
+  return WORK_PAGE_PROJECT_PRESENTATION[projectId]?.filters.includes(filter) ?? false;
 }

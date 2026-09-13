@@ -12,6 +12,7 @@ import {
   WORKFLOW_AUTOMATION_SOLUTIONS,
 } from "../lib/workflowAutomationPageContent";
 import { ROUTES } from "../lib/routes";
+import { serviceCardImageForGridId } from "../lib/serviceCardImages";
 
 const createLead = vi.fn();
 const navigate = vi.fn();
@@ -47,6 +48,11 @@ describe("WorkflowAutomationSection", () => {
     expect(screen.getByRole("heading", { name: WORKFLOW_AUTOMATION_HERO.headline, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(WORKFLOW_AUTOMATION_HERO.subheadline)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: WORKFLOW_AUTOMATION_CTA_LABEL })).toHaveAttribute("href", "#workflow-audit");
+
+    const heroPhoto = serviceCardImageForGridId("automation-tools", WORKFLOW_AUTOMATION_HERO.headline);
+    const photo = screen.getByRole("img", { name: heroPhoto.alt });
+    expect(photo).toHaveAttribute("src", heroPhoto.src);
+    expect(photo).toHaveClass("wflow-hero-image");
 
     const solutions = screen.getByTestId("workflow-automation-solutions");
     expect(solutions).toHaveClass("wflow-solutions");
@@ -116,9 +122,9 @@ describe("WorkflowAutomationSection", () => {
     expect(createLead).toHaveBeenCalledWith({
       name: "Nitesh Rav",
       email: "hello@commiters.com",
-      serviceNeeded: "AI Operational Audit (2-Week Blueprint)",
+      serviceNeeded: WORKFLOW_AUTOMATION_FORM.serviceNeeded,
       budgetRange: WORKFLOW_AUTOMATION_FORM.budgetRange,
-      timeline: "2-week diagnostic",
+      timeline: WORKFLOW_AUTOMATION_FORM.timeline,
       message: expect.stringContaining("WhatsApp order updates are sent by hand every evening."),
     });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });

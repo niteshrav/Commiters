@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { HOME_HERO_OPS_FLOW_HREF, HOME_OPS_FLOW_SECTION_ID, HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "./homePageContent";
-import { ROUTES } from "./routes";
+import { HOME_HERO_OPS_FLOW_HREF, HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "./homePageContent";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, OPSFLOW_HERO_PAGE_HREF, ROUTES } from "./routes";
 
 describe("homePageContent", () => {
   it("exposes cropped home photography paths", () => {
@@ -10,20 +10,25 @@ describe("homePageContent", () => {
     expect(HOME_PAGE_ASSETS.serverRacks2x).toBe("/assets/home/server-racks@2x.png");
   });
 
-  it("positions the hero on enterprise AI products and the two-week audit", () => {
-    expect(HOME_PAGE_COPY.hero.badge).toBe("AN AI & CLOUD PRODUCT & ENGINEERING FIRM");
+  it("positions the hero on enterprise AI products and the 48-hour audit", () => {
+    expect(HOME_PAGE_COPY.hero.badge).toBe("ENTERPRISE AI & CLOUD SYSTEMS");
     expect(HOME_PAGE_COPY.hero.title).toBe("Code Your Success");
+    expect(HOME_PAGE_COPY.hero.titleLead).toBe("Code Your ");
+    expect(HOME_PAGE_COPY.hero.titleAccent).toBe("Success");
     expect(HOME_PAGE_COPY.hero.subtext).toMatch(/governed Model Context Protocol \(MCP\)/);
     expect(HOME_PAGE_COPY.hero.ctaPrimary).toBe("Try OpsFlow AI");
     expect(HOME_PAGE_COPY.hero.ctaPrimaryTo).toBe(HOME_HERO_OPS_FLOW_HREF);
-    expect(HOME_HERO_OPS_FLOW_HREF).toBe(`/#${HOME_OPS_FLOW_SECTION_ID}`);
+    expect(HOME_HERO_OPS_FLOW_HREF).toBe(OPSFLOW_HERO_PAGE_HREF);
+    expect(HOME_HERO_OPS_FLOW_HREF).toBe(ROUTES.opsFlow);
     expect(HOME_PAGE_COPY.hero.ctaSecondary).toBe("Book Operational Audit");
-    expect(HOME_PAGE_COPY.hero.ctaSecondaryTo).toBe(ROUTES.aiOperationalAudit);
+    expect(HOME_PAGE_COPY.hero.ctaSecondaryTo).toBe(AI_OPERATIONAL_AUDIT_BOOKING_HREF);
   });
 
   it("defines the four Commiters governance pillars", () => {
     expect(HOME_PAGE_COPY.corePillars.kicker).toBe("BUILT ON TRUST");
     expect(HOME_PAGE_COPY.corePillars.title).toBe("The Commiters Governance Standard");
+    expect(HOME_PAGE_COPY.corePillars.titleLead).toBe("The Commiters Governance ");
+    expect(HOME_PAGE_COPY.corePillars.titleAccent).toBe("Standard");
     expect(HOME_PAGE_COPY.corePillars.items).toHaveLength(4);
     expect(HOME_PAGE_COPY.corePillars.items.map((item) => item.label)).toEqual([
       "MCP Connect",

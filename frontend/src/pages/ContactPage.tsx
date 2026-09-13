@@ -4,6 +4,7 @@ import ContactIntroSection from "../components/ContactIntroSection";
 import ContactSidebarCards from "../components/ContactSidebarCards";
 import { createLead, LeadInput } from "../lib/api";
 import { usePageSeo } from "../hooks/usePageSeo";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { ROUTES } from "../lib/routes";
 import { STITCH_COPY } from "../lib/stitchDesign";
 import { STITCH_PROJECT_TYPE_DEFAULT } from "../lib/stitchPageContent";
@@ -64,7 +65,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="contact-page" data-testid="contact-page">
+    <div className={withSiteCloudTheme("contact-page")} data-testid="contact-page">
       <ContactIntroSection />
 
       <section className="section stitch-contact-section" data-testid="contact-layout">
@@ -128,7 +129,7 @@ export default function ContactPage() {
             </div>
             <div className="form-actions form-actions--start">
               <button className="btn btn-primary stitch-contact-submit" type="submit" disabled={submitting}>
-                {submitting ? "Sending…" : `${STITCH_COPY.contact.submitButton} →`}
+                {submitting ? "Sending…" : STITCH_COPY.contact.submitButton}
               </button>
             </div>
             {error ? (

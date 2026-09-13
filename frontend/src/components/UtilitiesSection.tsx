@@ -153,7 +153,6 @@ export default function UtilitiesSection() {
                   to={tool.to}
                 >
                   {tool.ctaLabel}
-                  <span aria-hidden="true"> {UTILITIES_DISPLAY.ctaArrow}</span>
                 </Link>
               </li>
             ))}
@@ -183,7 +182,6 @@ export default function UtilitiesSection() {
             <div className="utilities-banner-actions">
               <Link className="btn btn-primary" to={UTILITIES_BANNER.ctaTo}>
                 {UTILITIES_BANNER.ctaLabel}
-                <span aria-hidden="true"> {UTILITIES_DISPLAY.ctaArrow}</span>
               </Link>
               <Link className="btn btn-secondary" to={ROUTES.caseStudies}>
                 {UTILITIES_DISPLAY.workLabel}

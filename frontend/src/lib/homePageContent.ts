@@ -1,4 +1,4 @@
-import { ROUTES } from "./routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, OPSFLOW_HERO_PAGE_HREF, ROUTES } from "./routes";
 
 export type HomeMetric = {
   value: string;
@@ -32,24 +32,28 @@ export const HOME_PAGE_ASSETS = {
 } as const;
 
 export const HOME_OPS_FLOW_SECTION_ID = "opsflow-ai" as const;
-export const HOME_HERO_OPS_FLOW_HREF = `/#${HOME_OPS_FLOW_SECTION_ID}` as const;
+export const HOME_HERO_OPS_FLOW_HREF = OPSFLOW_HERO_PAGE_HREF;
 
 export const HOME_PAGE_COPY = {
   hero: {
-    badge: "AN AI & CLOUD PRODUCT & ENGINEERING FIRM",
+    badge: "ENTERPRISE AI & CLOUD SYSTEMS",
     title: "Code Your Success",
+    titleLead: "Code Your ",
+    titleAccent: "Success",
     subtext:
       "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
     ctaPrimary: "Try OpsFlow AI",
     ctaPrimaryTo: HOME_HERO_OPS_FLOW_HREF,
     ctaSecondary: "Book Operational Audit",
-    ctaSecondaryTo: ROUTES.aiOperationalAudit,
+    ctaSecondaryTo: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
     sprintLabel: "CURRENT SPRINT",
     sprintValue: "v2.4.0 Engine",
   },
   corePillars: {
     kicker: "BUILT ON TRUST",
     title: "The Commiters Governance Standard",
+    titleLead: "The Commiters Governance ",
+    titleAccent: "Standard",
     items: [
       {
         label: "MCP Connect",

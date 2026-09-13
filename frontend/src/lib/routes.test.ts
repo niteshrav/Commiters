@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { APP_ROUTE_PATHS, ROUTES, buildJoinUsApplyHref } from "./routes";
+import {
+  AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR,
+  AI_OPERATIONAL_AUDIT_BOOKING_HREF,
+  APP_ROUTE_PATHS,
+  OPSFLOW_HERO_PAGE_HREF,
+  ROUTES,
+  buildJoinUsApplyHref,
+} from "./routes";
 
 describe("routes", () => {
   it("defines paths aligned with App.tsx routing", () => {
@@ -22,12 +29,19 @@ describe("routes", () => {
     expect(ROUTES.opsFlow).toBe("/products/opsflow");
     expect(ROUTES.opsFlowPlayground).toBe("/opsflow");
     expect(ROUTES.opsFlowAi).toBe("/opsflow-ai");
+    expect(OPSFLOW_HERO_PAGE_HREF).toBe("/products/opsflow");
     expect(ROUTES.utilities).toBe("/utilities");
+    expect(ROUTES.audit).toBe("/audit");
     expect(ROUTES.aiOperationalAudit).toBe("/services/ai-operational-audit");
+    expect(AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR).toBe("audit-booking");
+    expect(AI_OPERATIONAL_AUDIT_BOOKING_HREF).toBe("/services/ai-operational-audit#audit-booking");
+    expect(ROUTES.jobs).toBe("/jobs");
     expect(ROUTES.aiSolutions).toBe("/services/governed-ai-workflow-systems");
+    expect(ROUTES.aiSolutionsShort).toBe("/services/governed-ai");
     expect(ROUTES.aiSolutionsLegacy).toBe("/services/ai-solutions");
     expect(ROUTES.aiSolutionsPipelineLegacy).toBe("/services/ai-pipeline-engineering");
     expect(ROUTES.webApplications).toBe("/services/spec-driven-full-stack-platforms");
+    expect(ROUTES.webApplicationsShort).toBe("/services/spec-driven");
     expect(ROUTES.webApplicationsLegacy).toBe("/services/web-applications");
     expect(ROUTES.webApplicationsB2bLegacy).toBe("/services/b2b-web-applications");
     expect(ROUTES.workflowAutomation).toBe("/services/workflow-automation");

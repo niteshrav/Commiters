@@ -1,10 +1,11 @@
-import { TRUSTTAP_DISPLAY } from "../../lib/trustTapPageDesign";
+import { NAV_SECTION_ALIAS_CLASS } from "../../lib/navSections";
 import { TRUSTTAP_FEATURES, trustTapFeatureIcon } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_FEATURE_CARD_CLASS,
   TRUSTTAP_FEATURES_GRID_CLASS,
   TRUSTTAP_SECTION_CLASS,
   TRUSTTAP_SECTION_INNER_CLASS,
+  TRUSTTAP_SECTION_SHELL_CLASS,
 } from "../../lib/trustTapPageLayout";
 import TrustTapSectionHeader from "./TrustTapSectionHeader";
 
@@ -13,24 +14,15 @@ export default function TrustTapFeaturesSection() {
 
   return (
     <section
-      id="hospitality"
-      className={`${TRUSTTAP_SECTION_CLASS} reveal-on-scroll`}
+      id="core-pillars"
+      className={`${TRUSTTAP_SECTION_CLASS} ${TRUSTTAP_SECTION_SHELL_CLASS} reveal-on-scroll`}
       data-testid="trusttap-features"
       aria-labelledby="trusttap-features-title"
     >
+      <span id="hospitality" className={NAV_SECTION_ALIAS_CLASS} />
+      <span id="features" className={NAV_SECTION_ALIAS_CLASS} />
       <div className={TRUSTTAP_SECTION_INNER_CLASS}>
-        <TrustTapSectionHeader
-          kicker={copy.kicker}
-          title={copy.title}
-          titleId="trusttap-features-title"
-          subtext={copy.subtext}
-          action={
-            <a className="trusttap-text-link" href="#trusttap-how-it-works">
-              {TRUSTTAP_DISPLAY.howItWorksLink}{" "}
-              <span aria-hidden="true">{TRUSTTAP_DISPLAY.ctaArrow}</span>
-            </a>
-          }
-        />
+        <TrustTapSectionHeader kicker={copy.kicker} title={copy.title} titleId="trusttap-features-title" />
         <div className={TRUSTTAP_FEATURES_GRID_CLASS}>
           {copy.items.map((feature) => {
             const Icon = trustTapFeatureIcon(feature.id);
@@ -44,9 +36,6 @@ export default function TrustTapFeaturesSection() {
                 </span>
                 <h3 className="trusttap-feature-title">{feature.title}</h3>
                 <p className="trusttap-feature-body">{feature.body}</p>
-                <span className="trusttap-card-arrow" aria-hidden="true">
-                  {TRUSTTAP_DISPLAY.ctaArrow}
-                </span>
               </article>
             );
           })}

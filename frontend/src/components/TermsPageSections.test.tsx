@@ -27,7 +27,7 @@ describe("TermsPageSections", () => {
     expect(document.querySelector(`.${TERMS_SECTION_CONTENT_CLASS}`)).toBeTruthy();
     expect(screen.getByText(/By accessing or using the services provided by Commiters/i)).toBeInTheDocument();
     expect(screen.getByText(/enterprise AI products, cloud-native web platforms/i)).toBeInTheDocument();
-    expect(screen.getByText("2-week AI Operational Audits")).toBeInTheDocument();
+    expect(screen.getByText("48-hour AI Operational Audits")).toBeInTheDocument();
     expect(document.querySelector(`.${TERMS_CHECKLIST_CLASS}`)).toBeTruthy();
     expect(document.querySelectorAll(`.${TERMS_CHECKLIST_ICON_CLASS}`)).toHaveLength(3);
     expect(document.querySelector(`.${TERMS_HIGHLIGHT_CLASS}`)).toHaveTextContent(

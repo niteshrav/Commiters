@@ -6,31 +6,36 @@ import {
   IconShieldCheck,
 } from "../components/icons";
 import { ROUTES } from "./routes";
+import { BRAND_HERO_EYEBROW_TEXT } from "./siteBrandChrome";
 
 export const TRUSTTAP_LIVE_URL = "https://trusttap.commiters.com/" as const;
 export const TRUSTTAP_DOCUMENT_TITLE = "trustTap";
 export const TRUSTTAP_SEO = {
   title: TRUSTTAP_DOCUMENT_TITLE,
   description:
-    "NFC and QR-based ground verification for logistics, field personnel tracking, and facility inspection auditing.",
+    "Smart NFC/QR touchpoints that scale 5-star Google reviews while intercepting customer complaints privately.",
   keywords:
-    "trustTap, ground verification, NFC, QR inspection, field tracking, logistics auditing, Commiters product",
+    "trustTap, NFC, QR, Google reviews, merchant reputation, sentiment routing, merchant intelligence, Commiters product",
   path: ROUTES.trustTap,
 } as const;
 
 export const TRUSTTAP_ADMIN_DASHBOARD_URL = "https://trusttap.commiters.com/admin" as const;
 
 export const TRUSTTAP_HERO = {
-  kicker: "PROPRIETARY CLOUD PRODUCT",
-  titleLead: "trustTap:",
-  titleAccent: "Ground Verification & Physical Inspection Tracking",
+  kicker: BRAND_HERO_EYEBROW_TEXT,
+  title: "Engineering Public Trust at the Point of Service.",
   tagline:
-    "NFC and QR-based ground verification system for logistics, field personnel tracking, and facility inspection auditing.",
-  footnote: "Built for field operations — tamper-proof scans, offline sync, and live ops visibility.",
-  primaryLabel: "Request Field Demo",
+    "Smart NFC/QR touchpoints that scale 5-star Google reviews while intercepting customer complaints privately.",
+  footnote: "NFC hardware. Private grievance interception. Weekly merchant intelligence.",
+  primaryLabel: "Deploy trustTap",
   primaryHref: ROUTES.contact,
-  secondaryLabel: "Explore OpsFlow AI",
-  secondaryHref: ROUTES.opsFlow,
+  secondaryLabel: "Launch Merchant Portal",
+  secondaryHref: TRUSTTAP_LIVE_URL,
+  chips: [
+    { id: "nfc", label: "NFC Touchpoint Hardware" },
+    { id: "routing", label: "Private Grievance Interception" },
+    { id: "digests", label: "Weekly Merchant Intelligence" },
+  ],
 } as const;
 
 /** Hero right column — trustTap product marketing visual. */
@@ -63,27 +68,26 @@ export type TrustTapFeature = {
 };
 
 export const TRUSTTAP_FEATURES = {
-  kicker: "CAPABILITIES",
-  title: "Built for the field",
-  subtext: "Core capabilities for logistics, facility inspection, and personnel verification — with zero ambient authority.",
+  kicker: "CORE PILLARS",
+  title: "Built for Modern Merchants",
   items: [
     {
-      id: "qr",
-      index: "01",
-      title: "Tamper-Proof Verification",
-      body: "NFC tag scanning and geo-fenced QR verification for ground-truth inspection events.",
-    },
-    {
       id: "private-feedback",
-      index: "02",
-      title: "Offline-First Mobile Sync",
-      body: "Field teams log inspections seamlessly without active cellular coverage, then sync under policy.",
+      index: "01",
+      title: "Automated Sentiment Routing",
+      body: "Routes positive taps directly to Google Reviews and private feedback straight to management.",
     },
     {
-      id: "google-reviews",
+      id: "qr",
+      index: "02",
+      title: "On-Premise Tap Hardware",
+      body: "Architectural-grade NFC & QR counter stands for billing desks and tables.",
+    },
+    {
+      id: "owner-alerts",
       index: "03",
-      title: "Live Ops Dashboard",
-      body: "Real-time ground status feeds for operations managers with session-scoped access.",
+      title: "Merchant Intelligence Digests",
+      body: "Weekly and monthly email reports with clear staff performance action items.",
     },
   ] satisfies TrustTapFeature[],
 } as const;
@@ -100,44 +104,49 @@ export type TrustTapBenefit = {
 
 export const TRUSTTAP_BENEFITS = {
   kicker: "BENEFITS",
-  title: "Why operations teams choose it",
+  title: "The trustTap Advantage",
   items: [
     {
-      id: "reputation",
-      title: "Prove presence",
-      body: "Tamper-proof NFC and geo-fenced QR scans create an auditable ground-truth trail.",
+      id: "google-proof",
+      title: "Scale Authentic Google Proof",
+      body: "Transform physical customer volume into a self-sustaining engine of 5-star public ratings.",
     },
     {
-      id: "professional",
-      title: "Work offline",
-      body: "Field teams keep logging inspections when coverage drops, then sync under policy.",
+      id: "friction",
+      title: "Private Friction Interception",
+      body: "Resolve service failures internally on-site before they become public search liabilities.",
     },
     {
-      id: "simple",
-      title: "See live status",
-      body: "Operations managers get real-time ground feeds without ambient data access.",
+      id: "benchmarks",
+      title: "Data-Driven Staff Benchmarks",
+      body: "Turn recurring customer feedback into clear weekly action items for team leadership.",
+    },
+    {
+      id: "nfc-touchpoint",
+      title: "Zero-Friction NFC Touchpoint",
+      body: "Instant tap interaction powered natively by iOS & Android with zero app downloads required.",
     },
   ] satisfies TrustTapBenefit[],
 } as const;
 
 export const TRUSTTAP_HOW_IT_WORKS = {
   kicker: "HOW IT WORKS",
-  title: "Three steps to go live",
+  title: "How It Works",
   steps: [
     {
       index: "01",
-      title: "Create a business",
-      body: "Add your Google review link and owner contacts in admin.",
+      title: "Connect",
+      body: "Link your Google Business profile.",
     },
     {
       index: "02",
-      title: "Print the QR",
-      body: "Download a high-quality PNG and place it at the counter.",
+      title: "Anchor",
+      body: "Place NFC hardware at customer touchpoints.",
     },
     {
       index: "03",
-      title: "Collect & improve",
-      body: "Review private feedback and grow your public reputation.",
+      title: "Scale",
+      body: "Watch 5-star reviews grow while acting on weekly reports.",
     },
   ],
 } as const;
@@ -151,46 +160,43 @@ export type TrustTapFaqItem = {
 export const TRUSTTAP_FAQ = {
   kicker: "FAQ",
   title: "Frequently asked questions",
-  subtext: "Quick answers about compliance, customer flow, and QR setup.",
+  subtext: "Answers on reputation routing, executive digests, and merchant hardware.",
   items: [
     {
-      id: "gate",
-      question: "Does trustTap gate Google reviews by rating?",
+      id: "reputation",
+      question: "How does trustTap protect merchant reputation?",
       answer:
-        "No. Every customer always sees the same Google review option. Private feedback is separate.",
+        "trustTap provides a dual-action experience: satisfied customers are guided straight to public rating platforms, while private channels allow management to handle grievances internally.",
     },
     {
-      id: "account",
-      question: "Do customers need to create an account?",
-      answer: "No. The customer flow is anonymous and mobile-first — scan, rate, done.",
-    },
-    {
-      id: "download",
-      question: "Can I download QR codes?",
-      answer: "Yes. Each business card in admin includes a one-click PNG download for print.",
-    },
-    {
-      id: "audience",
-      question: "Who is this for?",
-      answer: "Local businesses that want cleaner feedback loops and easier Google review collection.",
+      id: "digest",
+      question: "What is included in the Weekly & Monthly Executive Digest?",
+      answer:
+        "Merchants receive structured reports summarizing total touchpoint scans, public conversion metrics, private issue resolution logs, and prioritized operational action items.",
     },
   ] satisfies TrustTapFaqItem[],
 } as const;
 
+export const TRUSTTAP_PORTAL_BANNER = {
+  title: "Need deep platform specs & live dashboard previews?",
+  subtext: "Explore our dedicated merchant portal for hardware options, enterprise tiers, and live demo access.",
+  ctaLabel: "Explore Dedicated Platform",
+  href: TRUSTTAP_LIVE_URL,
+} as const;
+
 export const TRUSTTAP_BOTTOM_CTA = {
-  title: "Ready to verify the ground truth?",
-  subtext:
-    "Request a field demo for logistics, facility inspection, or personnel tracking — or explore OpsFlow AI for document ingestion.",
-  primaryLabel: "Request Field Demo",
+  title: "Ready to protect and grow your on-premise reputation?",
+  subtext: "Deploy trustTap hardware today or access our live merchant suite.",
+  primaryLabel: "Deploy trustTap",
   primaryHref: ROUTES.contact,
-  secondaryLabel: "Explore OpsFlow AI",
-  secondaryHref: ROUTES.opsFlow,
+  secondaryLabel: "Access Merchant Hub",
+  secondaryHref: TRUSTTAP_LIVE_URL,
 } as const;
 
 export const TRUSTTAP_ABOUT = {
   kicker: "ABOUT",
-  title: "Built for the field, not a slide deck.",
-  body: "trustTap gives operations teams NFC and QR ground verification: tamper-proof scans, offline inspection logs, and a live ops dashboard scoped by policy.",
+  title: "Built for the point of service, not a slide deck.",
+  body: "trustTap is an enterprise on-premise sentiment system: NFC and QR touchpoints intercept friction privately while converting peak satisfaction into verified Google proof.",
   illustration: {
     src: "/assets/trusttap/trusttap-hero-showcase.png",
     srcSet:

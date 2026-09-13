@@ -12,7 +12,7 @@ const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "st
 
 describe("homeCorePillarsSurface", () => {
   it("declares the light surface token for core pillars", () => {
-    expect(HOME_CORE_PILLARS_SURFACE_HEX).toBe("#f8fafc");
+    expect(HOME_CORE_PILLARS_SURFACE_HEX).toBe("#ffffff");
     expect(css).toContain(`${HOME_CORE_PILLARS_SURFACE_CSS_VAR}: ${HOME_CORE_PILLARS_SURFACE_HEX}`);
     expect(css).toMatch(
       new RegExp(

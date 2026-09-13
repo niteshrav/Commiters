@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type MouseEvent } from "react";
 import {
-  IconArrowRight,
   IconChartLine,
   IconChevronDown,
   IconCodeBracket,
@@ -100,12 +99,6 @@ export default function FaqContentSection() {
                     onClick={handleSidebarClick(group.id, group.anchor)}
                   >
                     <span>{group.label}</span>
-                    <IconArrowRight
-                      className="faq-sidebar-link-icon"
-                      width={18}
-                      height={18}
-                      aria-hidden
-                    />
                   </a>
                 );
               })}

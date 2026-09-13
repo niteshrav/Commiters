@@ -117,6 +117,7 @@ export default function WebApplicationsSection() {
         name: result.payload.name,
         email: result.payload.email,
         serviceNeeded: WEB_APPLICATIONS_FORM.serviceNeeded,
+        timeline: WEB_APPLICATIONS_FORM.timeline,
         message: `Company: ${result.payload.company}\n\nProject:\n${result.payload.project}`,
       });
       navigate(ROUTES.thankYou, { state: { submissionView: "client" } });
@@ -141,7 +142,6 @@ export default function WebApplicationsSection() {
             <div className="webapp-hero-actions">
               <a className="btn btn-primary webapp-hero-cta" href="#webapp-project">
                 {WEB_APPLICATIONS_CTA_LABEL}
-                <span aria-hidden="true"> {WEB_APPLICATIONS_DISPLAY.ctaArrow}</span>
               </a>
               <Link className="btn btn-secondary webapp-hero-secondary" to={ROUTES.caseStudies}>
                 {WEB_APPLICATIONS_DISPLAY.sampleWorkLabel}
@@ -274,7 +274,6 @@ export default function WebApplicationsSection() {
             </div>
             <button className="btn btn-primary" type="submit" disabled={submitting}>
               {submitting ? "Sending…" : WEB_APPLICATIONS_FORM.submitLabel}
-              {submitting ? null : <span aria-hidden="true"> {WEB_APPLICATIONS_DISPLAY.ctaArrow}</span>}
             </button>
             <p className="webapp-privacy">
               <IconLock width={14} height={14} aria-hidden />

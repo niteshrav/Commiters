@@ -8,7 +8,7 @@ export default function MidPageCtaBanner() {
         <h2 className="mid-page-cta__title">Not sure which service fits?</h2>
         <p className="mid-page-cta__copy">Tell us what you&apos;re building — we&apos;ll recommend the right scope.</p>
         <Link className="btn btn-primary" to={ROUTES.contact}>
-          Let&apos;s Talk →
+          Let&apos;s Talk
         </Link>
       </div>
     </section>

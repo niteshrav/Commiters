@@ -40,12 +40,12 @@ export const TERMS_PAGE_SECTIONS: readonly TermsPageSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "Commiters provides enterprise AI products, cloud-native web platforms, and governed software engineering services. Engagement models include 2-week AI Operational Audits, spec-driven platform development, and enterprise SaaS solutions.",
+        text: "Commiters provides enterprise AI products, cloud-native web platforms, and governed software engineering services. Engagement models include 48-hour AI Operational Audits, spec-driven platform development, and enterprise SaaS solutions.",
       },
       {
         kind: "checklist",
         items: [
-          "2-week AI Operational Audits",
+          "48-hour AI Operational Audits",
           "Spec-driven platform development",
           "Enterprise SaaS solutions",
         ],

@@ -5,5 +5,6 @@ export const LEAD_BUDGET_RANGE_VALUES = [
   "$5,000 – $15,000",
   "$15,000 – $50,000",
   "$50,000+",
+  "₹4,999 / $499",
   "Not sure yet",
 ] as const;

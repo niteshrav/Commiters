@@ -1,6 +1,6 @@
-/** Canonical CTA button tokens — rectangular enterprise geometry with role-based colors. */
+/** Canonical CTA button tokens — curved capsule geometry with role-based colors. */
 export const SITE_BUTTON_DESIGN = {
-  radius: "5px",
+  radius: "999px",
   minHeight: "40px",
   largeMinHeight: "48px",
   compactMinHeight: "36px",

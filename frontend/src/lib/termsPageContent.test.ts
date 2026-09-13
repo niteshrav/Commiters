@@ -47,7 +47,7 @@ describe("termsPageContent", () => {
       text: expect.stringContaining("enterprise AI products, cloud-native web platforms"),
     });
     expect(services.items).toEqual([
-      "2-week AI Operational Audits",
+      "48-hour AI Operational Audits",
       "Spec-driven platform development",
       "Enterprise SaaS solutions",
     ]);

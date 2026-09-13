@@ -2,7 +2,10 @@ import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { BROWSE_MY_VACATION_CASE_STUDY_COPY } from "./browseMyVacationCaseStudyContent";
+import {
+  BROWSE_MY_VACATION_CASE_STUDY_COPY,
+  uniqueBrowseMyVacationGallery,
+} from "./browseMyVacationCaseStudyContent";
 import { NEXTSAAS_CASE_STUDY_COPY } from "./nextsaasCaseStudyContent";
 import { ROUTES } from "./routes";
 
@@ -35,6 +38,19 @@ describe("browseMyVacationCaseStudyContent", () => {
     expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.caseStudies);
     expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.bottomCta.secondaryHref).toBe("https://browsemyvacations.com/");
     expect(BROWSE_MY_VACATION_CASE_STUDY_COPY.bottomCta.tertiaryTo).toBe(ROUTES.contact);
+  });
+
+  it("maps each gallery asset URL once and drops the duplicate mountain landscape", () => {
+    const gallery = uniqueBrowseMyVacationGallery();
+    const srcs = gallery.map((item) => item.src);
+
+    expect(srcs).toEqual([...new Set(srcs)]);
+    expect(srcs).toContain(BROWSE_MY_VACATION_CASE_STUDY_COPY.introHeroImage.src);
+    expect(srcs).toContain("/assets/case-studies/browse-my-vacation-visual.png");
+    expect(srcs).not.toContain("/assets/case-studies/browse-my-vacation-hero.png");
+    expect(srcs.filter((src) => src.includes("browse-my-vacation-hero"))).toEqual([]);
+    expect(gallery).toHaveLength(2);
+    expect(new Set(gallery.map((item) => item.alt)).size).toBe(gallery.length);
   });
 
   it("references on-disk imagery for the intro hero and visual break", () => {

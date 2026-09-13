@@ -94,7 +94,7 @@ describe("JoinUsApplicationSection", () => {
     );
     expect(screen.getByText(JOIN_US_PAGE_COPY.privacyDisclaimer)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Submit Application/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Submit Application/i }).querySelector("svg")).toBeTruthy();
+    expect(screen.getByRole("button", { name: /Submit Application/i }).querySelector("svg")).toBeNull();
   });
 
   it("submits the application with Stitch form fields, resume PDF, and cover letter", async () => {

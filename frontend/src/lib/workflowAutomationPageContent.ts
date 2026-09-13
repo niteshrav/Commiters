@@ -47,7 +47,7 @@ export const WORKFLOW_AUTOMATION_PIPELINE = [
 
 export const WORKFLOW_AUTOMATION_FORM = {
   title: "Book an AI Operational Audit",
-  intro: "Start with a 2-week diagnostic that maps copy-paste work into an automated pipeline.",
+  intro: "Start with a 48-hour diagnostic that maps copy-paste work into an automated pipeline.",
   nameLabel: AI_OPERATIONAL_AUDIT_FORM.nameLabel,
   namePlaceholder: AI_OPERATIONAL_AUDIT_FORM.namePlaceholder,
   emailLabel: AI_OPERATIONAL_AUDIT_FORM.emailLabel,
@@ -57,7 +57,7 @@ export const WORKFLOW_AUTOMATION_FORM = {
   bottleneckLabel: AI_OPERATIONAL_AUDIT_FORM.bottleneckLabel,
   bottleneckPlaceholder: AI_OPERATIONAL_AUDIT_FORM.bottleneckPlaceholder,
   submitLabel: "Book an AI Operational Audit",
-  auditLinkLabel: "View the 2-week diagnostic",
+  auditLinkLabel: "View the 48-hour diagnostic",
   auditTo: ROUTES.aiOperationalAudit,
   serviceNeeded: AI_OPERATIONAL_AUDIT_FORM.serviceNeeded,
   budgetRange: AI_OPERATIONAL_AUDIT_FORM.budgetRange,

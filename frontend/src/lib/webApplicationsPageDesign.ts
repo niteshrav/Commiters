@@ -11,7 +11,7 @@ export const WEB_APPLICATIONS_DISPLAY = {
   formAside: "Turn your specs into a scalable product",
   privacyNote: "We respect your privacy. No spam, ever.",
   sampleWorkLabel: "View Sample Work",
-  ctaArrow: "→",
+  ctaArrow: "",
   chips: [
     { id: "spec", title: "Spec to Production", body: "Faster delivery" },
     { id: "debt", title: "Zero Technical Debt", body: "Built to scale" },

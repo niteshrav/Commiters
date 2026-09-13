@@ -1,23 +1,52 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useNavbarContent } from "../lib/cms/hooks";
 import {
   NAV_CTA_LABEL,
   NAV_CTA_TO,
-  NAV_HEADER_BADGE,
+  NAV_DROPDOWN_ITEM_ACCENT_CLASS,
+  NAV_DROPDOWN_ITEM_BADGE_CLASS,
+  NAV_DROPDOWN_ITEM_CLASS,
+  NAV_DROPDOWN_ITEM_DESC_CLASS,
+  NAV_DROPDOWN_ITEM_TITLE_CLASS,
   NAV_DROPDOWN_LINK_CLASS,
-  NAV_DROPDOWN_PANEL_GLASS_CLASS,
-  NAV_MEGA_FROST_CLASSES,
+  isExternalNavHref,
+  navDropdownPanelClassName,
+  resolveNavDropdownPanelPosition,
+  resolveNavDropdownPanelSize,
   type DesktopHeaderNavEntry,
   type NavDropdownConfig,
+  type NavDropdownIconId,
   type NavDropdownLink,
   type PrimaryNavItem,
   resolveDesktopHeaderNav,
 } from "../lib/navSections";
+import { HEADER_BRAND_CLASS, HEADER_SHELL_CLASS } from "../lib/siteBrandChrome";
 import BrandLogo from "./BrandLogo";
 import MobileNavDrawer from "./MobileNavDrawer";
-import { IconClose, IconMenu } from "./icons";
+import {
+  IconAutomationSpark,
+  IconBolt,
+  IconChartLine,
+  IconCheckCircle,
+  IconClose,
+  IconCloud,
+  IconDatabase,
+  IconExternalLink,
+  IconGlobe,
+  IconDocument,
+  IconLayers,
+  IconList,
+  IconLock,
+  IconMenu,
+  IconRocket,
+  IconShieldCheck,
+  IconTarget,
+  IconUsers,
+  IconWorkflow,
+} from "./icons";
+import { handleInPageProductHashClick } from "../lib/inPageProductHashNav";
 import {
   HEADER_DRAWER_OPEN_CLASS,
   HEADER_MENU_BTN_TESTID,
@@ -30,13 +59,31 @@ const MEGA_CLOSE_DELAY_MS = 140;
 
 type DropdownPanelPosition = {
   top: number;
-  left?: number;
-  right?: number;
+  left: number;
+};
+
+const NAV_DROPDOWN_ICONS: Record<NavDropdownIconId, typeof IconShieldCheck> = {
+  shield: IconShieldCheck,
+  layers: IconLayers,
+  rocket: IconRocket,
+  workflow: IconWorkflow,
+  document: IconDocument,
+  users: IconUsers,
+  target: IconTarget,
+  bolt: IconBolt,
+  check: IconCheckCircle,
+  list: IconList,
+  lock: IconLock,
+  database: IconDatabase,
+  cloud: IconCloud,
+  globe: IconGlobe,
+  external: IconExternalLink,
+  chart: IconChartLine,
+  sparkles: IconAutomationSpark,
 };
 
 type NavItemDropdownPanelProps = {
   config: NavDropdownConfig;
-  alignEnd: boolean;
   anchorRef: React.RefObject<HTMLElement | null>;
   onNavigate: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   onPointerEnter: () => void;
@@ -52,33 +99,63 @@ function NavDropdownItemLink({
   onNavigate: (event: React.MouseEvent<HTMLAnchorElement>) => void;
   role?: "menuitem";
 }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const Icon = NAV_DROPDOWN_ICONS[link.icon];
+  const itemClass = `${NAV_DROPDOWN_LINK_CLASS} nav-dropdown-link--stacked ${
+    link.accent === "blue" ? NAV_DROPDOWN_ITEM_ACCENT_CLASS : NAV_DROPDOWN_ITEM_CLASS
+  }`;
+  const content = (
+    <>
+      <span className={`nav-dropdown-link-heading ${NAV_DROPDOWN_ITEM_TITLE_CLASS}`}>
+        <Icon width={16} height={16} aria-hidden className="nav-dropdown-link-icon" />
+        <span className={`nav-dropdown-link-label ${NAV_DROPDOWN_ITEM_TITLE_CLASS}`}>{link.label}</span>
+      </span>
+      <span className={`nav-dropdown-link-description ${NAV_DROPDOWN_ITEM_DESC_CLASS}`}>{link.description}</span>
+      {link.badge ? <span className={`nav-dropdown-link-badge ${NAV_DROPDOWN_ITEM_BADGE_CLASS}`}>{link.badge}</span> : null}
+    </>
+  );
+
+  if (isExternalNavHref(link.to, link.external)) {
+    return (
+      <a
+        href={link.to}
+        role={role}
+        className={itemClass}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onNavigate}
+      >
+        {content}
+      </a>
+    );
+  }
+
   return (
-    <NavLink
+    <Link
       to={link.to}
       role={role}
-      className={() =>
-        [NAV_DROPDOWN_LINK_CLASS, "nav-dropdown-link--stacked", link.featured ? "nav-dropdown-link--featured" : ""]
-          .filter(Boolean)
-          .join(" ")
-      }
-      onClick={onNavigate}
+      className={itemClass}
+      onClick={(event) => {
+        onNavigate(event);
+        handleInPageProductHashClick(event, link.to, location.pathname, navigate);
+      }}
     >
-      <span className="nav-dropdown-link-label">{link.label}</span>
-      <span className="nav-dropdown-link-description">{link.description}</span>
-    </NavLink>
+      {content}
+    </Link>
   );
 }
 
 function NavItemDropdownPanel({
   config,
-  alignEnd,
   anchorRef,
   onNavigate,
   onPointerEnter,
   onPointerLeave,
 }: NavItemDropdownPanelProps) {
   const [position, setPosition] = useState<DropdownPanelPosition | null>(null);
-  const mega = config.layout === "mega";
+  const columns = config.columns === 2 ? 2 : 1;
+  const panelSize = resolveNavDropdownPanelSize(config);
 
   useLayoutEffect(() => {
     const anchor = anchorRef.current;
@@ -86,15 +163,7 @@ function NavItemDropdownPanel({
 
     const updatePosition = () => {
       const rect = anchor.getBoundingClientRect();
-      if (mega) {
-        setPosition({ top: rect.bottom, left: 16, right: 16 });
-        return;
-      }
-      setPosition(
-        alignEnd
-          ? { top: rect.bottom, right: Math.max(16, window.innerWidth - rect.right) }
-          : { top: rect.bottom, left: rect.left },
-      );
+      setPosition(resolveNavDropdownPanelPosition(rect, columns, window.innerWidth, panelSize));
     };
 
     updatePosition();
@@ -104,17 +173,17 @@ function NavItemDropdownPanel({
       window.removeEventListener("resize", updatePosition);
       window.removeEventListener("scroll", updatePosition, true);
     };
-  }, [alignEnd, anchorRef, config.id, mega]);
+  }, [anchorRef, columns, config.id, panelSize]);
 
   if (!position) return null;
 
   return createPortal(
     <div
-      className={`nav-item-dropdown-panel nav-item-dropdown-panel--fixed ${NAV_DROPDOWN_PANEL_GLASS_CLASS} ${NAV_MEGA_FROST_CLASSES.join(" ")} ${mega ? "nav-item-dropdown-panel--mega-cards" : "nav-item-dropdown-panel--cards"}`.trim()}
+      className={navDropdownPanelClassName(config)}
       id={`nav-mega-panel-${config.id}`}
       data-testid={`nav-mega-panel-${config.id}`}
       role="menu"
-      style={{ top: position.top, left: position.left, right: position.right }}
+      style={{ top: position.top, left: position.left }}
       onMouseEnter={onPointerEnter}
       onMouseLeave={onPointerLeave}
     >
@@ -239,7 +308,6 @@ function NavDesktopDropdownItem({
       {isOpen ? (
         <NavItemDropdownPanel
           config={config}
-          alignEnd={alignEnd}
           anchorRef={triggerRef}
           onNavigate={onNavigate}
           onPointerEnter={onCancelClose}
@@ -261,7 +329,7 @@ export default function Navbar() {
   useEffect(() => {
     setOpenDropdownId(null);
     setMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [location.hash, location.pathname]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -299,24 +367,13 @@ export default function Navbar() {
 
   return (
     <header
-      className={[
-        "header",
-        "header-light",
-        "backdrop-blur-md",
-        "bg-background/80",
-        "border-b",
-        "border-border/40",
-        mobileMenuOpen ? HEADER_DRAWER_OPEN_CLASS : "",
-      ]
+      className={["header", "header-light", HEADER_SHELL_CLASS, mobileMenuOpen ? HEADER_DRAWER_OPEN_CLASS : ""]
         .filter(Boolean)
         .join(" ")}
     >
       <div className="container header-inner">
-        <div className="header-brand">
+        <div className={HEADER_BRAND_CLASS}>
           <BrandLogo onNavigate={handleNavigate} logoSrc={logo} logoAlt={logoAlt} />
-          <p className="nav-header-badge" data-testid="nav-header-badge">
-            {NAV_HEADER_BADGE}
-          </p>
         </div>
 
         <nav className="nav" aria-label="Primary navigation">

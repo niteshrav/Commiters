@@ -47,5 +47,6 @@ describe("webApplicationsPageContent", () => {
     expect(WEB_APPLICATIONS_FORM.title).toBe("Request a project estimate");
     expect(WEB_APPLICATIONS_FORM.submitLabel).toBe(WEB_APPLICATIONS_CTA_LABEL);
     expect(WEB_APPLICATIONS_FORM.serviceNeeded).toBe("Spec-Driven Full-Stack Platforms");
+    expect(WEB_APPLICATIONS_FORM.timeline).toBe("To be scoped");
   });
 });

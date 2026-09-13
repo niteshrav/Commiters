@@ -1,16 +1,26 @@
-import { Link } from "react-router-dom";
 import {
-  IconArrowRight,
   IconLock,
   IconShieldCheck,
   IconLayers,
   IconWorkflow,
 } from "./icons";
+import { NAV_SECTION_ALIAS_CLASS } from "../lib/navSections";
 import {
   ABOUT_OPERATING_PRINCIPLES,
   ABOUT_PAGE_COPY,
+  ABOUT_SECTION_SCROLL_SHELL_CLASS,
+  ABOUT_VALUES_HEADING_WRAP_CLASS,
+  ABOUT_VALUES_ID,
+  ABOUT_VALUES_KICKER_UTIL_CLASS,
+  ABOUT_VALUES_TITLE_UTIL_CLASS,
   type AboutPrincipleIcon,
 } from "../lib/aboutPageContent";
+import {
+  HOME_CLOUD_KICKER_CLASS,
+  HOME_CLOUD_LEAD_CLASS,
+  HOME_CLOUD_TITLE_ACCENT_CLASS,
+  HOME_CLOUD_TITLE_CLASS,
+} from "../lib/homeCloudTheme";
 
 function PrincipleIcon({ icon }: { icon: AboutPrincipleIcon }) {
   const props = { width: 16, height: 16 };
@@ -34,26 +44,26 @@ export default function AboutOperatingPrinciplesSection() {
 
   return (
     <section
-      id="principles"
-      className="about-principles-section about-principles-section--values reveal-on-scroll"
+      id={ABOUT_VALUES_ID}
+      className={`about-principles-section about-principles-section--values reveal-on-scroll ${ABOUT_SECTION_SCROLL_SHELL_CLASS}`}
       data-testid="about-principles-section"
       aria-labelledby="about-principles-title"
     >
+      <span id="principles" className={NAV_SECTION_ALIAS_CLASS} />
       <div className="about-principles-inner">
-        <div className="about-principles-intro">
+        <div className={`${ABOUT_VALUES_HEADING_WRAP_CLASS} about-principles-intro`}>
           <header className="about-principles-header">
-            <p className="about-principles-kicker">{principles.kicker}</p>
-            <h2 id="about-principles-title" className="about-principles-title">
+            <span className={`about-principles-kicker ${HOME_CLOUD_KICKER_CLASS} ${ABOUT_VALUES_KICKER_UTIL_CLASS}`}>
+              {principles.kicker}
+            </span>
+            <h2 id="about-principles-title" className={`about-principles-title ${HOME_CLOUD_TITLE_CLASS} ${ABOUT_VALUES_TITLE_UTIL_CLASS}`}>
               {principles.titleLead}
-              <span className="about-principles-title-accent">{principles.titleAccent}</span>
+              <span className={`about-principles-title-accent ${HOME_CLOUD_TITLE_ACCENT_CLASS}`}>
+                {principles.titleAccent}
+              </span>
             </h2>
-            <p className="about-principles-subtext">{principles.subtext}</p>
+            <p className={`about-principles-subtext ${HOME_CLOUD_LEAD_CLASS}`}>{principles.subtext}</p>
           </header>
-
-          <Link className="about-principles-view-all" to={principles.viewAllTo}>
-            {principles.viewAllLabel}
-            <IconArrowRight width={14} height={14} aria-hidden />
-          </Link>
         </div>
 
         <div className="about-principles-grid">

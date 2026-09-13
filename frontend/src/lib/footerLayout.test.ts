@@ -12,6 +12,8 @@ import {
   FOOTER_NOCK_SHELL_CLASS,
   FOOTER_NOCK_SHELL_MAX_WIDTH,
   FOOTER_NOCK_SHELL_PADDING,
+  FOOTER_NOCK_SHELL_PADDING_LG,
+  FOOTER_NOCK_SHELL_PADDING_MOBILE,
   FOOTER_HOME_MOCKUP_MARGIN_TOP,
   FOOTER_HOME_MOCKUP_RICH_PADDING,
 } from "./footerLayout";
@@ -24,7 +26,12 @@ describe("footerLayout", () => {
     expect(css).toContain(`.${FOOTER_NOCK_SHELL_CLASS}`);
     expect(css).toContain(`.${FOOTER_NOCK_MAIN_CLASS}`);
     expect(css).toContain(`.${FOOTER_BLACKBOOK_BAR_CLASS}`);
+    expect(FOOTER_NOCK_SHELL_PADDING).toBe("48px var(--site-gutter)");
+    expect(FOOTER_NOCK_SHELL_PADDING_LG).toBe("var(--site-gutter)");
+    expect(FOOTER_NOCK_SHELL_PADDING_MOBILE).toBe("48px var(--site-gutter)");
     expect(css).toContain(FOOTER_NOCK_SHELL_PADDING);
+    expect(css).toContain(`padding-left: ${FOOTER_NOCK_SHELL_PADDING_LG}`);
+    expect(css).toContain(`padding-right: ${FOOTER_NOCK_SHELL_PADDING_LG}`);
     expect(css).toContain(`max-width: ${FOOTER_NOCK_SHELL_MAX_WIDTH}`);
     expect(css).toContain(`gap: ${FOOTER_NOCK_LINK_GAP}`);
     expect(css).toContain(`gap: ${FOOTER_NOCK_MAIN_GAP}`);

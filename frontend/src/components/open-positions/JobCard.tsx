@@ -54,7 +54,7 @@ export default function JobCard({ job, delay = 0 }: Props) {
             Apply
           </Link>
           <Link className="open-positions-card-link" to={buildOpenPositionPath(job.slug)}>
-            View details →
+            View details
           </Link>
         </div>
       </article>

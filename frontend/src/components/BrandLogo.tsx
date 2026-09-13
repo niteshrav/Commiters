@@ -14,6 +14,7 @@ import {
   COMMITERS_LOGO_STACKED_SRC,
 } from "../lib/siteBrand";
 import { ROUTES } from "../lib/routes";
+import { FOOTER_LOGO_IMG_CLASS, HEADER_LOGO_IMG_CLASS, HEADER_LOGO_LINK_CLASS } from "../lib/siteBrandChrome";
 
 type Props = {
   variant?: "header" | "footer" | "mobile";
@@ -50,7 +51,10 @@ export default function BrandLogo({
           "brand-logo",
           BRAND_LOGO_DISPLAY_CLASS,
           isFooter ? "brand-logo--footer" : isMobile ? "brand-logo--mobile" : "brand-logo--header",
-        ].join(" ")}
+          isFooter ? FOOTER_LOGO_IMG_CLASS : isMobile ? "" : HEADER_LOGO_IMG_CLASS,
+        ]
+          .filter(Boolean)
+          .join(" ")}
         src={resolvedSrc}
         alt={logoAlt}
         width={width}
@@ -80,7 +84,7 @@ export default function BrandLogo({
   return (
     <Link
       to={ROUTES.home}
-      className="brand brand-logo-link typography-brand opacity-90 transition-opacity"
+      className={`brand brand-logo-link typography-brand opacity-90 transition-opacity ${HEADER_LOGO_LINK_CLASS}`}
       onClick={onNavigate}
       aria-label={logoAlt}
     >

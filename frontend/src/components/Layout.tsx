@@ -10,7 +10,9 @@ import SkipToMainLink from "./SkipToMainLink";
 import CmsSiteMeta from "./CmsSiteMeta";
 import SiteOrganizationSchema from "./SiteOrganizationSchema";
 import Navbar from "./Navbar";
+import ScrollToHashElement from "./ScrollToHashElement";
 import Footer from "./Footer";
+import BackToTopButton from "./BackToTopButton";
 import WhatsAppFloatingButton from "./WhatsAppFloatingButton";
 import SiteChatWidget from "./SiteChatWidget";
 import { ACCESSIBILITY_MAIN_CONTENT_ID } from "../lib/accessibilityContent";
@@ -20,28 +22,17 @@ export default function Layout({ children }: PropsWithChildren) {
   const location = useLocation();
 
   useEffect(() => {
-    const hash = location.hash.replace(/^#/, "");
-
-    const runScroll = () => {
-      if (hash) {
-        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
-      if (navigator.userAgent.toLowerCase().includes("jsdom")) {
-        return;
-      }
-      try {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } catch {
-        window.scrollTo(0, 0);
-      }
-    };
-
-    if (hash) {
-      const id = window.setTimeout(runScroll, 80);
-      return () => clearTimeout(id);
+    if (location.hash) {
+      return undefined;
     }
-    runScroll();
+    if (navigator.userAgent.toLowerCase().includes("jsdom")) {
+      return undefined;
+    }
+    try {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      window.scrollTo(0, 0);
+    }
     return undefined;
   }, [location.pathname, location.hash]);
 
@@ -82,6 +73,7 @@ export default function Layout({ children }: PropsWithChildren) {
           <SkipToMainLink />
           <CircuitBackdrop />
           <Navbar />
+          <ScrollToHashElement />
           <main id={ACCESSIBILITY_MAIN_CONTENT_ID} className="container" tabIndex={-1}>
             <div
               key={location.pathname}
@@ -93,6 +85,7 @@ export default function Layout({ children }: PropsWithChildren) {
             </div>
           </main>
           <Footer />
+          <BackToTopButton />
           <AccessibilityWidget />
           <SiteChatWidget />
           <WhatsAppFloatingButton />

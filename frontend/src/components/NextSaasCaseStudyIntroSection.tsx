@@ -1,11 +1,16 @@
+import { uniqueBrowseMyVacationGallery } from "../lib/browseMyVacationCaseStudyContent";
 import { NEXTSAAS_CASE_STUDY_COPY } from "../lib/nextsaasCaseStudyContent";
 import {
+  BROWSE_MY_VACATION_CARD_CLASS,
+  BROWSE_MY_VACATION_GALLERY_GRID_CLASS,
+  BROWSE_MY_VACATION_GALLERY_IMAGE_CLASS,
+  BROWSE_MY_VACATION_GALLERY_TESTID,
+  BROWSE_MY_VACATION_GALLERY_TILE_CLASS,
+  BROWSE_MY_VACATION_GALLERY_TILE_TESTID,
+  BROWSE_MY_VACATION_SCOPE_PIPELINES_GRID_CLASS,
   NEXTSAAS_CASE_STUDY_DESCRIPTION_CLASS,
-  NEXTSAAS_CASE_STUDY_HERO_COLLAGE_CLASS,
-  NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_COPY_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_DECOR_CLASS,
-  NEXTSAAS_CASE_STUDY_INTRO_HERO_IMAGE_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_SCOPE_PIPELINES_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_SECTION_CLASS,
   NEXTSAAS_CASE_STUDY_INTRO_SHELL_CLASS,
@@ -30,7 +35,8 @@ import { IconAirplane, IconGlobe } from "./icons";
 import { NextSaasCaseStudyMetadataPanel } from "./NextSaasCaseStudyOutcomesSection";
 
 export default function NextSaasCaseStudyIntroSection() {
-  const { kicker, title, description, introHeroImage, collageTiles, scope, pipelines } = NEXTSAAS_CASE_STUDY_COPY;
+  const { kicker, title, description, scope, pipelines } = NEXTSAAS_CASE_STUDY_COPY;
+  const gallery = uniqueBrowseMyVacationGallery();
 
   return (
     <section
@@ -52,8 +58,8 @@ export default function NextSaasCaseStudyIntroSection() {
         <NextSaasCaseStudyMetadataPanel />
       </div>
       <div className={NEXTSAAS_CASE_STUDY_INTRO_SCOPE_PIPELINES_CLASS} data-testid="nextsaas-case-study-intro-scope-pipelines">
-        <div className={NEXTSAAS_CASE_STUDY_SCOPE_PIPELINES_GRID_CLASS}>
-          <article className={NEXTSAAS_CASE_STUDY_SCOPE_CARD_CLASS}>
+        <div className={`${NEXTSAAS_CASE_STUDY_SCOPE_PIPELINES_GRID_CLASS} ${BROWSE_MY_VACATION_SCOPE_PIPELINES_GRID_CLASS}`}>
+          <article className={`${NEXTSAAS_CASE_STUDY_SCOPE_CARD_CLASS} ${BROWSE_MY_VACATION_CARD_CLASS}`}>
             <span className={NEXTSAAS_CASE_STUDY_SCOPE_ICON_CLASS} aria-hidden>
               <IconGlobe width={24} height={24} />
             </span>
@@ -70,7 +76,10 @@ export default function NextSaasCaseStudyIntroSection() {
               ))}
             </ul>
           </article>
-          <article className={NEXTSAAS_CASE_STUDY_PIPELINES_CARD_CLASS} aria-labelledby="nextsaas-case-study-pipelines-title">
+          <article
+            className={`${NEXTSAAS_CASE_STUDY_PIPELINES_CARD_CLASS} ${BROWSE_MY_VACATION_CARD_CLASS}`}
+            aria-labelledby="nextsaas-case-study-pipelines-title"
+          >
             <div className={NEXTSAAS_CASE_STUDY_PIPELINES_LAYOUT_CLASS}>
               <div className={NEXTSAAS_CASE_STUDY_PIPELINES_COPY_CLASS}>
                 <h2 id="nextsaas-case-study-pipelines-title" className={NEXTSAAS_CASE_STUDY_PIPELINES_HEADING_CLASS}>
@@ -79,26 +88,26 @@ export default function NextSaasCaseStudyIntroSection() {
                 <p className={NEXTSAAS_CASE_STUDY_PIPELINES_SUBHEADING_CLASS}>{pipelines.subheading}</p>
               </div>
               <div className={NEXTSAAS_CASE_STUDY_PIPELINES_MEDIA_CLASS}>
-                <div className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_CLASS}>
-                  <img
-                    className={NEXTSAAS_CASE_STUDY_INTRO_HERO_IMAGE_CLASS}
-                    src={introHeroImage.src}
-                    srcSet={introHeroImage.srcSet}
-                    sizes={introHeroImage.sizes}
-                    alt={introHeroImage.alt}
-                    loading="eager"
-                    decoding="async"
-                  />
-                  {collageTiles.map((tile) => (
-                    <img
-                      key={tile.src}
-                      className={NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS}
-                      src={tile.src}
-                      srcSet={tile.srcSet}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                    />
+                <div
+                  className={BROWSE_MY_VACATION_GALLERY_GRID_CLASS}
+                  data-testid={BROWSE_MY_VACATION_GALLERY_TESTID}
+                >
+                  {gallery.map((item, index) => (
+                    <div
+                      key={item.src}
+                      className={BROWSE_MY_VACATION_GALLERY_TILE_CLASS}
+                      data-testid={BROWSE_MY_VACATION_GALLERY_TILE_TESTID}
+                    >
+                      <img
+                        className={BROWSE_MY_VACATION_GALLERY_IMAGE_CLASS}
+                        src={item.src}
+                        srcSet={item.srcSet}
+                        sizes={item.sizes}
+                        alt={item.alt}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>

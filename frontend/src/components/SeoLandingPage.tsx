@@ -4,6 +4,7 @@ import Reveal from "./motion/Reveal";
 import { usePageSeo, SITE_ORIGIN } from "../hooks/usePageSeo";
 import type { SeoLandingPageContent } from "../lib/seoLandingUdaipurContent";
 import { seoLandingServiceSchema } from "../lib/seoLandingUdaipurContent";
+import { SITE_CLOUD_THEME_CLASS } from "../lib/homeCloudTheme";
 
 type Props = {
   content: SeoLandingPageContent;
@@ -19,7 +20,7 @@ export default function SeoLandingPage({ content }: Props) {
   });
 
   return (
-    <div className="seo-landing-page" data-testid={content.testId}>
+    <div className={`${SITE_CLOUD_THEME_CLASS} seo-landing-page`} data-testid={content.testId}>
       <section className="seo-landing-hero">
         <Reveal>
           <p className="seo-landing-kicker">{content.hero.kicker}</p>

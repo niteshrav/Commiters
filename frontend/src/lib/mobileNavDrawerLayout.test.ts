@@ -92,6 +92,7 @@ describe("mobileNavDrawerLayout", () => {
     );
     expect(css).toMatch(/body\.nav-mobile-drawer-open \.site-chat-widget[\s\S]*visibility:\s*hidden/);
     expect(css).toMatch(/body\.nav-mobile-drawer-open \.accessibility-widget[\s\S]*visibility:\s*hidden/);
+    expect(css).toMatch(/body\.nav-mobile-drawer-open \.back-to-top[\s\S]*visibility:\s*hidden/);
   });
 
   it("uses a 72px white mobile header bar with hamburger chrome below 768px", () => {

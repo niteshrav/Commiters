@@ -147,8 +147,7 @@ export default function ServicesOverviewInquiry() {
           </div>
           {error ? <p role="alert">{error}</p> : null}
           <button className="btn btn-primary" type="submit" disabled={submitting}>
-            {SERVICES_OVERVIEW_INQUIRY.submitLabel}{" "}
-            <span aria-hidden="true">{SERVICES_OVERVIEW_DISPLAY.ctaArrow}</span>
+            {SERVICES_OVERVIEW_INQUIRY.submitLabel}
           </button>
           <p className="services-overview-privacy">
             <IconLock />

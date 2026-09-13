@@ -3,12 +3,12 @@ export const AI_OPERATIONAL_AUDIT_DISPLAY = {
   headlineAccent: "Cloud Diagnostics",
   tagline: "Find bottlenecks. Unlock automation. Build with confidence.",
   diagnoseLead: "We dig into your operations, data flows, and tools to find what's holding you back.",
-  processLead: "A focused engagement. Real outcomes.",
+  processLead: "A 48-hour start. A credited path to production.",
   governanceNote: "Responsible AI. Real Business Impact.",
   formKicker: "Let's get started",
   formLead: "Tell us a bit about your needs and we'll tailor the right audit plan for you.",
   formAside: "Smarter Operations Ahead",
-  ctaArrow: "→",
+  ctaArrow: "",
   chips: [
     { id: "discover", label: "Discover Hidden Bottlenecks" },
     { id: "prioritize", label: "Prioritize Automation" },
@@ -23,9 +23,9 @@ export const AI_OPERATIONAL_AUDIT_DISPLAY = {
     { id: "note", title: "Audit today. Automate tomorrow." },
   ] as const,
   processNotes: {
-    "days-1-3": "Deep-dive into your workflows, tools, and data sources.",
-    "days-4-8": "Working automation prototype for your highest-value use case.",
-    "days-9-14": "Complete architecture, tool stack, and implementation roadmap.",
+    "days-1-2": "Deep dive into operational bottlenecks, tech stack, and data flow gaps.",
+    "days-3-5": "Architecture breakdown, tool selection, and fixed-scope build roadmap.",
+    "days-6-plus": "100% of your diagnostic fee is applied directly toward production code implementation.",
   } as const,
   formChecks: ["Analyze", "Identify", "Automate", "Scale"] as const,
 } as const;

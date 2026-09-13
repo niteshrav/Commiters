@@ -7,7 +7,6 @@ import {
   CASE_STUDIES_BOTTOM_CTA_SUBTEXT_CLASS,
   CASE_STUDIES_BOTTOM_CTA_TITLE_CLASS,
 } from "../lib/caseStudiesPageLayout";
-import { IconArrowRight } from "./icons";
 
 export default function CaseStudiesBottomCta() {
   const { cta } = CASE_STUDIES_PAGE_DESIGN;
@@ -30,7 +29,6 @@ export default function CaseStudiesBottomCta() {
             to={cta.primaryTo}
           >
             {cta.primaryLabel}
-            <IconArrowRight width={18} height={18} aria-hidden />
           </Link>
         </div>
       </div>

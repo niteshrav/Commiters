@@ -5,6 +5,7 @@ import HomeHeroStitch from "../components/HomeHeroStitch";
 import HomeLeadMagnetSection from "../components/HomeLeadMagnetSection";
 import HomeSectionSeparator from "../components/HomeSectionSeparator";
 import { usePageSeo } from "../hooks/usePageSeo";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { HOME_SECTION_SEPARATOR_IDS } from "../lib/homeSectionLayout";
 import { homePageSeo } from "../lib/sitePageSeo";
 
@@ -12,7 +13,7 @@ export default function HomePage() {
   usePageSeo(homePageSeo());
 
   return (
-    <div className="home-page" data-testid="home-page">
+    <div className={withSiteCloudTheme("home-page")} data-testid="home-page">
       <HomeHeroStitch />
       <HomeSectionSeparator testId={HOME_SECTION_SEPARATOR_IDS.afterHero} />
       <HomeCorePillars />

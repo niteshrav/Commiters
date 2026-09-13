@@ -12,12 +12,11 @@ export const FOOTER_BRAND_SUBTEXT_CLASS = "footer-brand-subtext" as const;
 /** Blackbook-style bottom bar tokens (social icons, copyright). */
 export const FOOTER_BLACKBOOK_BAR_CLASS = "footer-blackbook-bar" as const;
 export const FOOTER_BLACKBOOK_SOCIAL_CLASS = "footer-blackbook-social" as const;
-export const FOOTER_BACK_TO_TOP_CLASS = "footer-back-to-top" as const;
 
 export const FOOTER_NOCK_SHELL_MAX_WIDTH = "100%";
-export const FOOTER_NOCK_SHELL_PADDING = "48px 3cm";
-export const FOOTER_NOCK_SHELL_PADDING_LG = "3cm";
-export const FOOTER_NOCK_SHELL_PADDING_MOBILE = "48px 16px";
+export const FOOTER_NOCK_SHELL_PADDING = "48px var(--site-gutter)";
+export const FOOTER_NOCK_SHELL_PADDING_LG = "var(--site-gutter)";
+export const FOOTER_NOCK_SHELL_PADDING_MOBILE = "48px var(--site-gutter)";
 export const FOOTER_NOCK_MAIN_GAP = "clamp(32px, 5vw, 64px)";
 export const FOOTER_NOCK_NAV_COLUMN_GAP = "clamp(20px, 3vw, 48px)";
 export const FOOTER_NOCK_LINK_GAP = "8px";

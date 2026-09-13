@@ -9,7 +9,6 @@ import {
   MULTI_ROLE_CRM_CASE_STUDY_BOTTOM_CTA_SUBTEXT_CLASS,
   MULTI_ROLE_CRM_CASE_STUDY_BOTTOM_CTA_TITLE_CLASS,
 } from "../lib/multiRoleCrmCaseStudyLayout";
-import { IconArrowRight } from "./icons";
 
 export default function MultiRoleCrmCaseStudyBottomCta() {
   const { bottomCta } = MULTI_ROLE_CRM_CASE_STUDY_COPY;
@@ -33,7 +32,6 @@ export default function MultiRoleCrmCaseStudyBottomCta() {
           to={bottomCta.primaryTo}
         >
           {bottomCta.primaryLabel}
-          <IconArrowRight width={16} height={16} />
         </Link>
       </div>
     </section>

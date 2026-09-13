@@ -17,24 +17,50 @@ vi.mock("../models/OpsFlowUsage", () => ({
   },
 }));
 
-import { getOpsFlowDailyCount, recordOpsFlowExtraction } from "./opsFlowUsageStore";
+import {
+  getOpsFlowDailyCount,
+  recordOpsFlowExtraction,
+  resetOpsFlowInMemoryUsage,
+} from "./opsFlowUsageStore";
 
 describe("opsFlowUsageStore", () => {
   beforeEach(() => {
     storeMocks.isMongoConnected.mockReset();
     storeMocks.findOne.mockReset();
     storeMocks.findOneAndUpdate.mockReset();
+    resetOpsFlowInMemoryUsage();
   });
 
-  it("throws when Mongo is disconnected so quota cannot be bypassed", async () => {
+  it("enforces the daily quota in memory when Mongo is disconnected", async () => {
     storeMocks.isMongoConnected.mockReturnValue(false);
 
-    await expect(getOpsFlowDailyCount("hello@commiters.com")).rejects.toThrow(/mongo/i);
+    await expect(getOpsFlowDailyCount("hello@commiters.com", "2026-09-04")).resolves.toBe(0);
     await expect(
-      recordOpsFlowExtraction({ workEmail: "hello@commiters.com", category: "GST Invoices" }),
-    ).rejects.toThrow(/mongo/i);
+      recordOpsFlowExtraction({
+        workEmail: "Hello@Commiters.com",
+        category: "GST Invoices",
+        utcDate: "2026-09-04",
+      }),
+    ).resolves.toEqual({ count: 1, remaining: 9, utcDate: "2026-09-04" });
+    await expect(getOpsFlowDailyCount("hello@commiters.com", "2026-09-04")).resolves.toBe(1);
     expect(storeMocks.findOne).not.toHaveBeenCalled();
     expect(storeMocks.findOneAndUpdate).not.toHaveBeenCalled();
+  });
+
+  it("reaches the daily limit in memory so the next extract is blocked", async () => {
+    storeMocks.isMongoConnected.mockReturnValue(false);
+
+    for (let i = 0; i < 10; i += 1) {
+      await recordOpsFlowExtraction({
+        workEmail: "ops@acme.com",
+        category: "GST Invoices",
+        utcDate: "2026-09-04",
+      });
+    }
+
+    await expect(getOpsFlowDailyCount("ops@acme.com", "2026-09-04")).resolves.toBe(10);
+    await expect(getOpsFlowDailyCount("ops@acme.com", "2026-09-05")).resolves.toBe(0);
+    await expect(getOpsFlowDailyCount("hello@commiters.com", "2026-09-04")).resolves.toBe(0);
   });
 
   it("returns the stored count for the UTC day", async () => {

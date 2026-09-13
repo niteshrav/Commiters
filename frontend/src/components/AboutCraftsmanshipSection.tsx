@@ -27,7 +27,10 @@ import {
   ABOUT_FOUNDER_QUOTE_CLASS,
   ABOUT_FOUNDER_QUOTE_TEXT_CLASS,
 } from "../lib/aboutCraftsmanshipContent";
+import { ABOUT_SECTION_SCROLL_SHELL_CLASS, ABOUT_VISION_ID } from "../lib/aboutPageContent";
 import { useAboutContent } from "../lib/cms/hooks";
+import { HOME_CLOUD_LEAD_CLASS, HOME_CLOUD_TITLE_CLASS } from "../lib/homeCloudTheme";
+import { NAV_SECTION_ALIAS_CLASS } from "../lib/navSections";
 
 function FounderPhotoPlaceholder({ photoSrc }: { photoSrc?: string }) {
   const [useFallback, setUseFallback] = useState(false);
@@ -71,11 +74,12 @@ export default function AboutCraftsmanshipSection() {
 
   return (
     <section
-      id="vision"
-      className={`${ABOUT_CRAFTSMANSHIP_SECTION_CLASS} reveal-on-scroll`}
+      id={ABOUT_VISION_ID}
+      className={`${ABOUT_CRAFTSMANSHIP_SECTION_CLASS} reveal-on-scroll ${ABOUT_SECTION_SCROLL_SHELL_CLASS}`}
       data-testid="about-craftsmanship-section"
       aria-labelledby="about-craftsmanship-title"
     >
+      <span id="vision" className={NAV_SECTION_ALIAS_CLASS} />
       <hr className={ABOUT_CRAFTSMANSHIP_RULE_CLASS} data-testid={ABOUT_CRAFTSMANSHIP_RULE_TEST_IDS.top} />
       <div className={ABOUT_CRAFTSMANSHIP_INNER_CLASS} data-testid="about-craftsmanship-inner">
         <div className={ABOUT_CRAFTSMANSHIP_GRID_CLASS}>
@@ -84,10 +88,10 @@ export default function AboutCraftsmanshipSection() {
               className={ABOUT_CRAFTSMANSHIP_COPY_START_CLASS}
               data-testid={ABOUT_CRAFTSMANSHIP_COPY_START_TEST_ID}
             >
-              <h2 id="about-craftsmanship-title" className={ABOUT_CRAFTSMANSHIP_HEADING_CLASS}>
+              <h2 id="about-craftsmanship-title" className={`${ABOUT_CRAFTSMANSHIP_HEADING_CLASS} ${HOME_CLOUD_TITLE_CLASS}`}>
                 {about.visionTitle}
               </h2>
-              <p className={ABOUT_CRAFTSMANSHIP_BODY_CLASS}>{about.visionBody}</p>
+              <p className={`${ABOUT_CRAFTSMANSHIP_BODY_CLASS} ${HOME_CLOUD_LEAD_CLASS}`}>{about.visionBody}</p>
               <div className="about-craftsmanship-stats" data-testid="about-craftsmanship-stats">
                 {stats.map((stat) => (
                   <div key={stat.label} className={ABOUT_CRAFTSMANSHIP_STAT_CLASS} data-testid="about-craftsmanship-stat">

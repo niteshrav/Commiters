@@ -25,6 +25,16 @@ export const NEXTSAAS_CASE_STUDY_PIPELINES_MEDIA_CLASS = "nextsaas-case-study-pi
 export const NEXTSAAS_CASE_STUDY_INTRO_HERO_IMAGE_CLASS = "nextsaas-case-study-intro-hero-image" as const;
 export const NEXTSAAS_CASE_STUDY_HERO_COLLAGE_CLASS = "nextsaas-case-study-hero-collage" as const;
 export const NEXTSAAS_CASE_STUDY_HERO_COLLAGE_TILE_CLASS = "nextsaas-case-study-hero-collage-tile" as const;
+export const BROWSE_MY_VACATION_GALLERY_TESTID = "browse-my-vacation-gallery" as const;
+export const BROWSE_MY_VACATION_GALLERY_TILE_TESTID = "browse-my-vacation-gallery-tile" as const;
+export const BROWSE_MY_VACATION_SCOPE_PIPELINES_GRID_CLASS =
+  "grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch" as const;
+export const BROWSE_MY_VACATION_CARD_CLASS =
+  "bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full" as const;
+export const BROWSE_MY_VACATION_GALLERY_GRID_CLASS = "grid grid-cols-2 gap-4 mt-4" as const;
+export const BROWSE_MY_VACATION_GALLERY_TILE_CLASS = "min-w-0 overflow-hidden" as const;
+export const BROWSE_MY_VACATION_GALLERY_IMAGE_CLASS =
+  "w-full h-48 object-cover rounded-lg shadow-sm hover:shadow-md transition-shadow" as const;
 export const NEXTSAAS_CASE_STUDY_INTRO_DECOR_CLASS = "nextsaas-case-study-intro-decor" as const;
 export const NEXTSAAS_CASE_STUDY_PIPELINES_HEADING_CLASS = "nextsaas-case-study-pipelines-heading" as const;
 export const NEXTSAAS_CASE_STUDY_PIPELINES_SUBHEADING_CLASS = "nextsaas-case-study-pipelines-subheading" as const;

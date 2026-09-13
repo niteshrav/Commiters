@@ -10,6 +10,7 @@ import { PROSPECT_IQ_CASE_STUDY_COPY } from "./prospectIqCaseStudyContent";
 import { ECO_ROUTE_CASE_STUDY_COPY } from "./ecoRouteCaseStudyContent";
 import { PRIVACY_PAGE_COPY } from "./privacyPageContent";
 import { ROUTES } from "./routes";
+import { DEFAULT_META_DESCRIPTION } from "./siteBrandChrome";
 import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./siteMeta";
 import { SITE_SEO_KEYWORDS, buildWebSiteSchema } from "./siteSeo";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
@@ -35,8 +36,7 @@ function page(input: PageSeoInput): PageSeoInput {
 export function homePageSeo(): PageSeoInput {
   return page({
     title: DEFAULT_DOCUMENT_TITLE,
-    description:
-      "Commiters is a software development company for web development, mobile app development, and SaaS development—building premium products for startups and growing businesses worldwide.",
+    description: DEFAULT_META_DESCRIPTION,
     path: ROUTES.home,
     structuredData: buildWebSiteSchema(),
   });
@@ -81,7 +81,7 @@ export function contactPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Contact Commiters"),
     description:
-      "Contact Committers for web development, mobile app development, and SaaS development projects. Talk with our software development company team.",
+      "Contact Commiters for web development, mobile app development, and SaaS development projects. Talk with our software development company team.",
     path: ROUTES.contact,
   });
 }
@@ -106,7 +106,7 @@ export function testimonialsPageSeo(): PageSeoInput {
 
 export function joinUsPageSeo(): PageSeoInput {
   return page({
-    title: pageTitle("Apply — Careers at Committers"),
+    title: pageTitle("Apply — Careers at Commiters"),
     description:
       "Apply to join Commiters. We're hiring engineers who care about web development, mobile apps, and SaaS product quality.",
     path: ROUTES.joinUs,
@@ -126,7 +126,7 @@ export function privacyPolicyPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(PRIVACY_PAGE_COPY.title),
     description:
-      "Privacy Policy for Committers Softwares websites and software development services.",
+      "Privacy Policy for Commiters Softwares websites and software development services.",
     path: ROUTES.privacyPolicy,
   });
 }
@@ -135,7 +135,7 @@ export function cookiePolicyPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(COOKIE_PAGE_COPY.title),
     description:
-      "Cookie Policy for Committers Softwares—how we use cookies on our web development company site.",
+      "Cookie Policy for Commiters Softwares—how we use cookies on our web development company site.",
     path: ROUTES.cookiePolicy,
   });
 }
@@ -143,7 +143,7 @@ export function cookiePolicyPageSeo(): PageSeoInput {
 export function termsPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Terms of Service"),
-    description: "Terms of Service for Committers Softwares products and software development services.",
+    description: "Terms of Service for Commiters Softwares products and software development services.",
     path: ROUTES.terms,
   });
 }
@@ -312,7 +312,7 @@ export function aiOperationalAuditPageSeo(): PageSeoInput {
       offers: {
         "@type": "Offer",
         priceCurrency: "USD",
-        price: "3000",
+        price: "499",
       },
       url: `${SITE_ORIGIN}${AI_OPERATIONAL_AUDIT_SEO.path}`,
     },

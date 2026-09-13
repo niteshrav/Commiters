@@ -1,67 +1,77 @@
 import { Link } from "react-router-dom";
-import { IconChartLine, IconCloud, IconLock, IconShieldCheck } from "../icons";
+import BrandHeroEyebrow from "../BrandHeroEyebrow";
+import { IconBolt, IconChartLine, IconDevicePhone, IconShieldCheck } from "../icons";
 import TrustTapHeroShowcase from "./TrustTapHeroShowcase";
-import { TRUSTTAP_DISPLAY } from "../../lib/trustTapPageDesign";
 import { TRUSTTAP_HERO } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_HERO_ACTIONS_CLASS,
   TRUSTTAP_HERO_CHIPS_CLASS,
   TRUSTTAP_HERO_CLASS,
+  TRUSTTAP_OVERVIEW_ID,
   TRUSTTAP_HERO_COPY_CLASS,
   TRUSTTAP_HERO_FOOTNOTE_CLASS,
   TRUSTTAP_HERO_GRID_CLASS,
   TRUSTTAP_HERO_INNER_CLASS,
   TRUSTTAP_HERO_TAGLINE_CLASS,
-  TRUSTTAP_HERO_TITLE_ACCENT_CLASS,
   TRUSTTAP_HERO_TITLE_CLASS,
-  TRUSTTAP_KICKER_CLASS,
 } from "../../lib/trustTapPageLayout";
 
 const CHIP_ICONS = {
-  tamper: IconShieldCheck,
-  offline: IconCloud,
-  live: IconChartLine,
-  secure: IconLock,
+  nfc: IconDevicePhone,
+  routing: IconShieldCheck,
+  digests: IconChartLine,
+  tap: IconBolt,
 } as const;
+
+function isExternalHref(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
 
 export default function TrustTapHeroSection() {
   const copy = TRUSTTAP_HERO;
   const secondaryIsHash = copy.secondaryHref.startsWith("#");
+  const secondaryIsExternal = isExternalHref(copy.secondaryHref);
 
   return (
-    <section className={TRUSTTAP_HERO_CLASS} data-testid="trusttap-hero" aria-labelledby="trusttap-hero-title">
+    <section
+      id={TRUSTTAP_OVERVIEW_ID}
+      className={TRUSTTAP_HERO_CLASS}
+      data-testid="trusttap-hero"
+      aria-labelledby="trusttap-hero-title"
+    >
       <div className={TRUSTTAP_HERO_INNER_CLASS}>
         <div className={TRUSTTAP_HERO_GRID_CLASS}>
           <div className={TRUSTTAP_HERO_COPY_CLASS}>
-            <p className={`${TRUSTTAP_KICKER_CLASS} trusttap-hero-kicker`}>{copy.kicker}</p>
+            <BrandHeroEyebrow text={copy.kicker} />
             <h1 id="trusttap-hero-title" className={TRUSTTAP_HERO_TITLE_CLASS}>
-              <span className="trusttap-sr">
-                {copy.titleLead} {copy.titleAccent}
-              </span>
-              <span className="trusttap-hero-title-brand" aria-hidden="true">
-                {TRUSTTAP_DISPLAY.headlineBrand}
-              </span>
-              <span className={`${TRUSTTAP_HERO_TITLE_ACCENT_CLASS} trusttap-hero-title-tag`} aria-hidden="true">
-                {TRUSTTAP_DISPLAY.headlineTag}
-              </span>
+              {copy.title}
             </h1>
             <p className={TRUSTTAP_HERO_TAGLINE_CLASS}>{copy.tagline}</p>
             <div className={TRUSTTAP_HERO_ACTIONS_CLASS}>
-              {copy.primaryHref.startsWith("http") ? (
+              {isExternalHref(copy.primaryHref) ? (
                 <a
                   className="btn btn-primary trusttap-hero-btn-primary"
                   href={copy.primaryHref}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {copy.primaryLabel} <span aria-hidden="true">{TRUSTTAP_DISPLAY.ctaArrow}</span>
+                  {copy.primaryLabel}
                 </a>
               ) : (
                 <Link className="btn btn-primary trusttap-hero-btn-primary" to={copy.primaryHref}>
-                  {copy.primaryLabel} <span aria-hidden="true">{TRUSTTAP_DISPLAY.ctaArrow}</span>
+                  {copy.primaryLabel}
                 </Link>
               )}
-              {secondaryIsHash ? (
+              {secondaryIsExternal ? (
+                <a
+                  className="btn btn-secondary trusttap-hero-btn-secondary"
+                  href={copy.secondaryHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {copy.secondaryLabel}
+                </a>
+              ) : secondaryIsHash ? (
                 <a className="btn btn-secondary trusttap-hero-btn-secondary" href={copy.secondaryHref}>
                   {copy.secondaryLabel}
                 </a>
@@ -72,14 +82,12 @@ export default function TrustTapHeroSection() {
               )}
             </div>
             <ul className={TRUSTTAP_HERO_CHIPS_CLASS}>
-              {TRUSTTAP_DISPLAY.chips.map((chip) => {
+              {copy.chips.map((chip) => {
                 const Icon = CHIP_ICONS[chip.id];
                 return (
                   <li key={chip.id}>
                     <Icon />
-                    <span>
-                      <strong>{chip.title}</strong> {chip.body}
-                    </span>
+                    <span>{chip.label}</span>
                   </li>
                 );
               })}

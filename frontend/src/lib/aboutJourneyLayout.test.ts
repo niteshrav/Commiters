@@ -8,6 +8,7 @@ import {
   ABOUT_JOURNEY_TRACK_CLASS,
   ABOUT_JOURNEY_TRACK_COLUMNS,
 } from "./aboutJourneyLayout";
+import { ABOUT_SECTION_SCROLL_SHELL_CLASS } from "./aboutPageContent";
 
 const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "styles.css"), "utf8");
 
@@ -25,5 +26,9 @@ describe("aboutJourneyLayout", () => {
 
     expect(css).toContain(".about-journey-dot");
     expect(css.indexOf(`.${ABOUT_JOURNEY_STAGE_CLASS} {`)).toBeGreaterThan(-1);
+    expect(ABOUT_SECTION_SCROLL_SHELL_CLASS).toBe("pt-16 pb-16 w-full");
+    expect(ABOUT_SECTION_SCROLL_SHELL_CLASS).not.toMatch(/scroll-mt-/);
+    expect(css).toContain(".pt-16 {\n  padding-top: 4rem;");
+    expect(css).toContain(".pb-16 {\n  padding-bottom: 4rem;");
   });
 });

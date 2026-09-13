@@ -4,7 +4,8 @@ import { homePageSeo } from "./sitePageSeo";
 
 describe("siteSeo", () => {
   it("includes target keyword phrases", () => {
-    expect(SITE_SEO_KEYWORDS).toMatch(/Committers Softwares/);
+    expect(SITE_SEO_KEYWORDS).toMatch(/Commiters Softwares/);
+    expect(SITE_SEO_KEYWORDS).not.toMatch(/Committers/);
     expect(SITE_SEO_KEYWORDS).toMatch(/Software Development Company/);
     expect(SITE_SEO_KEYWORDS).toMatch(/Web Development/);
     expect(SITE_SEO_KEYWORDS).toMatch(/Mobile App Development/);
@@ -15,6 +16,7 @@ describe("siteSeo", () => {
     const org = buildOrganizationSchema();
     expect(org["@type"]).toBe("Organization");
     expect(org.name).toBe("Commiters");
+    expect(org.alternateName).toEqual(["Commiters Softwares"]);
     expect(org.url).toBe("https://www.commiters.com");
     expect(org.email).toBe("hello@commiters.com");
   });
@@ -23,6 +25,7 @@ describe("siteSeo", () => {
     const seo = homePageSeo();
     expect(seo.path).toBe("/");
     expect(seo.keywords).toBe(SITE_SEO_KEYWORDS);
-    expect(seo.description).toMatch(/software development company/i);
+    expect(seo.description).toMatch(/Enterprise AI & Cloud Systems/);
+    expect(seo.description).toMatch(/Spec-driven engineering/);
   });
 });

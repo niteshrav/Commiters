@@ -9,6 +9,7 @@ import {
   BUILT_FOR_SCALE_IMAGE_WIDTH,
 } from "../lib/homeBuiltForScaleLayout";
 import { HOME_IMAGE_FULL_COLOR_CLASS } from "../lib/homeImagePresentation";
+import { HOME_CLOUD_KICKER_CLASS, HOME_CLOUD_LEAD_CLASS, HOME_CLOUD_THEME_CLASS, HOME_CLOUD_TITLE_CLASS } from "../lib/homeCloudTheme";
 import { HOME_PRIMARY_SURFACE_CLASS } from "../lib/homePrimarySurface";
 import { HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "../lib/homePageContent";
 import { ROUTES } from "../lib/routes";
@@ -22,7 +23,12 @@ describe("HomeBuiltForScale", () => {
     );
 
     const section = screen.getByTestId("home-built-for-scale");
-    expect(section).toHaveClass("home-built-for-scale", "home-built-for-scale--cloud", HOME_PRIMARY_SURFACE_CLASS);
+    expect(section).toHaveClass(
+      "home-built-for-scale",
+      "home-built-for-scale--cloud",
+      HOME_PRIMARY_SURFACE_CLASS,
+      HOME_CLOUD_THEME_CLASS,
+    );
 
     const grid = within(section).getByTestId("home-built-for-scale-grid");
     expect(grid).toHaveClass(BUILT_FOR_SCALE_GRID_CLASS);
@@ -41,9 +47,12 @@ describe("HomeBuiltForScale", () => {
     expect(within(media).getByText(HOME_PAGE_COPY.builtForScale.imageUptimeLabel)).toBeInTheDocument();
 
     const { builtForScale } = HOME_PAGE_COPY;
-    expect(screen.getByText(builtForScale.kicker)).toHaveClass("home-built-for-scale-kicker");
-    expect(screen.getByRole("heading", { name: /Cloud, Built Right/i })).toHaveClass("home-built-for-scale-title");
-    expect(screen.getByText(builtForScale.body)).toHaveClass("home-built-for-scale-lead");
+    expect(screen.getByText(builtForScale.kicker)).toHaveClass("home-built-for-scale-kicker", HOME_CLOUD_KICKER_CLASS);
+    expect(screen.getByRole("heading", { name: /Cloud, Built Right/i })).toHaveClass(
+      "home-built-for-scale-title",
+      HOME_CLOUD_TITLE_CLASS,
+    );
+    expect(screen.getByText(builtForScale.body)).toHaveClass("home-built-for-scale-lead", HOME_CLOUD_LEAD_CLASS);
 
     const cards = within(copy).getAllByTestId("home-scale-feature");
     expect(cards).toHaveLength(BUILT_FOR_SCALE_FEATURE_COUNT);

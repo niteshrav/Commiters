@@ -1,27 +1,38 @@
 import { Link } from "react-router-dom";
 import { HOME_IMAGE_FULL_COLOR_CLASS } from "../lib/homeImagePresentation";
+import {
+  HOME_CLOUD_LEAD_CLASS,
+  HOME_CLOUD_THEME_CLASS,
+  HOME_CLOUD_TITLE_ACCENT_CLASS,
+  HOME_CLOUD_TITLE_CLASS,
+} from "../lib/homeCloudTheme";
 import { HOME_PRIMARY_SURFACE_CLASS } from "../lib/homePrimarySurface";
+import { HOME_PAGE_COPY } from "../lib/homePageContent";
 import { useHeroContent } from "../lib/cms/hooks";
+import BrandHeroEyebrow from "./BrandHeroEyebrow";
 
 export default function HomeHeroStitch() {
   const hero = useHeroContent();
+  const useCloudTitle = hero.title === HOME_PAGE_COPY.hero.title;
 
   return (
     <section
-      className={`stitch-home-hero ${HOME_PRIMARY_SURFACE_CLASS} reveal-on-scroll`}
+      className={`stitch-home-hero ${HOME_CLOUD_THEME_CLASS} ${HOME_PRIMARY_SURFACE_CLASS} reveal-on-scroll`}
       data-testid="stitch-home-hero"
     >
       <div className="stitch-home-hero-grid">
         <div className="stitch-home-hero-copy">
-          <span className="stitch-precision-badge engineering-precision-badge" data-testid="engineering-precision-badge">
-            <span className="stitch-precision-badge-dot" aria-hidden />
-            {hero.badgeText}
-          </span>
-          <h1 className="stitch-home-title typography-display">{hero.title}</h1>
-          <p className="stitch-home-subtext typography-body">{hero.subtext}</p>
+          <BrandHeroEyebrow text={hero.badgeText} />
+          <h1 className={`stitch-home-title ${HOME_CLOUD_TITLE_CLASS} typography-display`}>
+            {useCloudTitle ? HOME_PAGE_COPY.hero.titleLead : hero.title}
+            {useCloudTitle ? (
+              <span className={HOME_CLOUD_TITLE_ACCENT_CLASS}>{HOME_PAGE_COPY.hero.titleAccent}</span>
+            ) : null}
+          </h1>
+          <p className={`stitch-home-subtext ${HOME_CLOUD_LEAD_CLASS} typography-body`}>{hero.subtext}</p>
           <div className="stitch-home-actions" data-testid="hero-actions">
             <Link className="btn btn-primary stitch-btn-primary" to={hero.ctaPrimaryTo}>
-              {hero.ctaPrimary} →
+              {hero.ctaPrimary}
             </Link>
             <Link className="btn btn-secondary stitch-btn-outline" to={hero.ctaSecondaryTo}>
               {hero.ctaSecondary}

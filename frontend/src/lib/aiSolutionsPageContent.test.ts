@@ -49,5 +49,6 @@ describe("aiSolutionsPageContent", () => {
     expect(AI_SOLUTIONS_FORM.scopeLabel).toBe("What should we scope?");
     expect(AI_SOLUTIONS_FORM.submitLabel).toBe(AI_SOLUTIONS_CTA_LABEL);
     expect(AI_SOLUTIONS_FORM.serviceNeeded).toBe("Governed AI & Workflow Systems");
+    expect(AI_SOLUTIONS_FORM.timeline).toBe("To be scoped");
   });
 });

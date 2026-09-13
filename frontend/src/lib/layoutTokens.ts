@@ -1,7 +1,7 @@
-/** Site content spans the viewport with a fixed 5cm side gutter. */
+/** Site content spans the viewport with a fixed 3cm side gutter. */
 export const SITE_CONTENT_MAX_WIDTH_PX = 1360;
 export const SITE_CONTAINER_WIDTH_CSS = "100%";
-export const SITE_SIDE_GUTTER_CSS = "5cm";
+export const SITE_SIDE_GUTTER_CSS = "3cm";
 
 export {
   BREAKPOINT_COMPACT_PX,

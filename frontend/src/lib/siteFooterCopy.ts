@@ -1,6 +1,6 @@
 import { buildServiceDetailMenuHref } from "./navSections";
 import { ROUTES } from "./routes";
-import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "./siteLinks";
+import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from "./siteLinks";
 
 export type FooterInternalLink = {
   kind: "internal";
@@ -26,18 +26,17 @@ export type FooterNavColumn = {
 
 export const SITE_FOOTER_MAX_LINKS_PER_COLUMN = 7 as const;
 
-export const SITE_FOOTER_BRAND_TAGLINE = "Commiters — Enterprise AI & Cloud Systems" as const;
-export const SITE_FOOTER_BRAND_SUBTEXT = "Commit. Code. Connect." as const;
+export const SITE_FOOTER_BRAND_TAGLINE = "Enterprise AI & Cloud Systems" as const;
+export const SITE_FOOTER_BRAND_SUBTEXT =
+  "Spec-driven engineering, custom AI pipelines, and cloud systems." as const;
 
 /** @deprecated Use SITE_FOOTER_BRAND_TAGLINE */
 export const SITE_FOOTER_TAGLINE = SITE_FOOTER_BRAND_TAGLINE;
 
 export const SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS = [
-  "OpsFlow AI",
-  "trustTap",
-  "Spec-Driven Full-Stack Platforms",
   "AI Operational Audits",
-  "Governed AI & Workflow Systems",
+  "trustTap",
+  "OpsFlow AI",
   "Free Business Utilities",
 ] as const;
 
@@ -51,9 +50,10 @@ export const SITE_FOOTER_PRIMARY_NAV_LINK_LABELS = SITE_FOOTER_FLAGSHIP_NAV_LINK
 export const SITE_FOOTER_SERVICES_NAV_LINK_LABELS = SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS;
 
 export const SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS = [
-  "Automated E-commerce Systems",
+  "Governed AI & Workflow Systems",
+  "Spec-Driven Full-Stack Platforms",
   "B2B Web Applications",
-  "Mobile Application Development",
+  "Automated E-commerce Systems",
   "Rapid SaaS MVP Development",
   "Automation & Integration Tools",
   "Workflow & Process Automation",
@@ -65,6 +65,7 @@ export const SITE_FOOTER_RESOURCES_LINK_LABELS = SITE_FOOTER_ENGINEERING_NAV_LIN
 export const SITE_FOOTER_COMPANY_NAV_LINK_LABELS = [
   "About Us",
   "Client Work",
+  "Testimonials",
   "Jobs",
   "FAQ",
   "Blog",
@@ -75,7 +76,7 @@ export const SITE_FOOTER_OPSFLOW_PARSER_BADGE = "PARSER" as const;
 export const SITE_FOOTER_TRUSTTAP_PRODUCT_BADGE = "PRODUCT" as const;
 export const SITE_FOOTER_CAREERS_HIRING_BADGE = "WE'RE HIRING" as const;
 
-export const SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS = ["Privacy", "Terms"] as const;
+export const SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS = ["Privacy", "Terms", "Sitemap"] as const;
 
 export const SITE_FOOTER_NAV_LINK_LABELS = [
   ...SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS,
@@ -84,18 +85,17 @@ export const SITE_FOOTER_NAV_LINK_LABELS = [
 ] as const;
 
 const SITE_FOOTER_FLAGSHIP_NAV_LINKS = [
-  { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowPlayground },
-  { kind: "internal", label: "trustTap", to: ROUTES.trustTap },
-  { kind: "internal", label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplications },
-  { kind: "internal", label: "AI Operational Audits", to: ROUTES.aiOperationalAudit },
-  { kind: "internal", label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutions },
+  { kind: "internal", label: "AI Operational Audits", to: ROUTES.audit },
+  { kind: "internal", label: "trustTap", to: ROUTES.trustTapShort },
+  { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowAi },
   { kind: "internal", label: "Free Business Utilities", to: ROUTES.utilities },
 ] as const satisfies readonly FooterLinkCell[];
 
 const SITE_FOOTER_ENGINEERING_NAV_LINKS = [
+  { kind: "internal", label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutions },
+  { kind: "internal", label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplications },
+  { kind: "internal", label: "B2B Web Applications", to: buildServiceDetailMenuHref("web-applications") },
   { kind: "internal", label: "Automated E-commerce Systems", to: buildServiceDetailMenuHref("e-commerce-development") },
-  { kind: "internal", label: "B2B Web Applications", to: ROUTES.webApplications },
-  { kind: "internal", label: "Mobile Application Development", to: buildServiceDetailMenuHref("mobile-app-development") },
   { kind: "internal", label: "Rapid SaaS MVP Development", to: buildServiceDetailMenuHref("mvp-development") },
   { kind: "internal", label: "Automation & Integration Tools", to: buildServiceDetailMenuHref("automation-tools") },
   { kind: "internal", label: "Workflow & Process Automation", to: ROUTES.workflowAutomation },
@@ -104,7 +104,8 @@ const SITE_FOOTER_ENGINEERING_NAV_LINKS = [
 const SITE_FOOTER_COMPANY_NAV_LINKS = [
   { kind: "internal", label: "About Us", to: ROUTES.about },
   { kind: "internal", label: "Client Work", to: ROUTES.caseStudies },
-  { kind: "internal", label: "Jobs", to: ROUTES.openPositions, badge: SITE_FOOTER_CAREERS_HIRING_BADGE },
+  { kind: "internal", label: "Testimonials", to: ROUTES.testimonials },
+  { kind: "internal", label: "Jobs", to: ROUTES.jobs, badge: SITE_FOOTER_CAREERS_HIRING_BADGE },
   { kind: "internal", label: "FAQ", to: ROUTES.faq },
   { kind: "internal", label: "Blog", to: ROUTES.technicalLedger },
   { kind: "internal", label: "Contact", to: ROUTES.contact },
@@ -113,15 +114,15 @@ const SITE_FOOTER_COMPANY_NAV_LINKS = [
 const SITE_FOOTER_BOTTOM_LEGAL_LINKS = [
   { kind: "internal", label: "Privacy", to: ROUTES.privacy },
   { kind: "internal", label: "Terms", to: ROUTES.terms },
+  { kind: "internal", label: "Sitemap", to: ROUTES.sitemap },
 ] as const satisfies readonly FooterLinkCell[];
 
-export const SITE_FOOTER_SOCIAL_LINK_LABELS = ["LinkedIn", "Instagram", "Medium", "GitHub"] as const;
+export const SITE_FOOTER_SOCIAL_LINK_LABELS = ["LinkedIn", "Instagram", "GitHub"] as const;
 export const SITE_FOOTER_CONNECT_LINK_LABELS = SITE_FOOTER_SOCIAL_LINK_LABELS;
 
 export const SITE_FOOTER_CONNECT_LINKS = [
   { kind: "external", label: "LinkedIn", href: SITE_LINKEDIN_URL, external: true },
   { kind: "external", label: "Instagram", href: SITE_INSTAGRAM_URL, external: true },
-  { kind: "external", label: "Medium", href: SITE_MEDIUM_URL, external: true },
   { kind: "external", label: "GitHub", href: SITE_GITHUB_URL, external: true },
 ] as const satisfies readonly FooterLinkCell[];
 
@@ -169,7 +170,7 @@ export const SITE_FOOTER_DEFAULT_LEGAL_LINKS: readonly FooterNavLinkRecord[] = S
 export const SITE_FOOTER_COPY = {
   brandTagline: SITE_FOOTER_BRAND_TAGLINE,
   brandSubtext: SITE_FOOTER_BRAND_SUBTEXT,
-  copyrightLine1: "© Commiters Softwares. All rights reserved.",
+  copyrightLine1: "© 2026 Commiters Softwares. All rights reserved.",
   socialLinks: SITE_FOOTER_CONNECT_LINKS,
   bottomLegalLinks: SITE_FOOTER_BOTTOM_LEGAL_LINKS,
   navLinks: [

@@ -1,4 +1,23 @@
-import { ROUTES } from "./routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, OPSFLOW_HERO_PAGE_HREF, ROUTES } from "./routes";
+
+export const ABOUT_STUDIO_ID = "the-studio" as const;
+export const ABOUT_VALUES_ID = "our-values" as const;
+export const ABOUT_VISION_ID = "governed-engineering" as const;
+export const ABOUT_JOURNEY_ID = "delivery-journey" as const;
+export const ABOUT_SECTION_SCROLL_SHELL_CLASS = "pt-16 pb-16 w-full" as const;
+export const ABOUT_VALUES_HEADING_WRAP_CLASS = "text-center mb-10" as const;
+export const ABOUT_VALUES_KICKER_UTIL_CLASS = "text-xs font-bold tracking-widest text-blue-600 uppercase" as const;
+export const ABOUT_VALUES_TITLE_UTIL_CLASS = "text-3xl font-bold text-slate-900 mt-2" as const;
+export const ABOUT_SECTION_HASH_IDS = [
+  ABOUT_STUDIO_ID,
+  ABOUT_VALUES_ID,
+  ABOUT_VISION_ID,
+  ABOUT_JOURNEY_ID,
+  "principles",
+  "vision",
+  "process",
+  "how-we-work",
+] as const;
 
 export const ABOUT_REJECTED_CTA_SUBTEXT =
   "We are currently accepting new projects for Q3 2024." as const;
@@ -94,15 +113,13 @@ export const ABOUT_PAGE_COPY = {
     titleLead: "What We ",
     titleAccent: "Stand For",
     subtext: "The beliefs that shape how we engineer high-stakes systems.",
-    viewAllLabel: "VIEW ALL PRINCIPLES",
-    viewAllTo: ROUTES.services,
   },
   bottomCta: {
     title: "Ready to build something monumental?",
     subtext: "Let's discuss your technical roadmap.",
     primaryLabel: "Book Operational Audit",
-    primaryTo: ROUTES.aiOperationalAudit,
+    primaryTo: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
     secondaryLabel: "Try OpsFlow AI",
-    secondaryTo: "/#opsflow-ai",
+    secondaryTo: OPSFLOW_HERO_PAGE_HREF,
   },
 } as const;

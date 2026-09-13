@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BrandHeroEyebrow from "./BrandHeroEyebrow";
 import BrandWatermark from "./BrandWatermark";
 import { IconBolt, IconCloud, IconShieldCheck } from "./icons";
 import { SERVICES_OVERVIEW_DISPLAY } from "../lib/servicesOverviewPageDesign";
@@ -14,7 +15,6 @@ import {
 } from "../lib/servicesOverviewPageLayout";
 import {
   SERVICES_EXPERTISE_BODY_CLASS,
-  SERVICES_EXPERTISE_KICKER_CLASS,
   SERVICES_EXPERTISE_SEPARATOR_CLASS,
   SERVICES_EXPERTISE_SEPARATOR_TEST_ID,
   SERVICES_EXPERTISE_TITLE_CLASS,
@@ -26,15 +26,6 @@ const CHIP_ICONS = {
   built: IconCloud,
 } as const;
 
-function scrollToHash(event: { preventDefault: () => void }, to: string) {
-  const id = to.split("#")[1];
-  const target = id ? document.getElementById(id) : null;
-  if (!target) return;
-  event.preventDefault();
-  window.history.replaceState(null, "", to);
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
 export default function ServicesOverviewHero() {
   return (
     <section
@@ -45,7 +36,7 @@ export default function ServicesOverviewHero() {
       <BrandWatermark />
       <div className={SERVICES_OVERVIEW_HERO_INNER_CLASS}>
         <div className={SERVICES_OVERVIEW_HERO_COPY_CLASS}>
-          <p className={`${SERVICES_EXPERTISE_KICKER_CLASS} typography-kicker`}>{SERVICES_OVERVIEW_HERO.kicker}</p>
+          <BrandHeroEyebrow text={SERVICES_OVERVIEW_HERO.kicker} />
           <h1 id="services-overview-title" className={`${SERVICES_EXPERTISE_TITLE_CLASS} typography-display`}>
             <span className="services-overview-headline-lead">{SERVICES_OVERVIEW_DISPLAY.headlineLead}</span>{" "}
             <span className="services-overview-headline-accent">{SERVICES_OVERVIEW_DISPLAY.headlineAccent}</span>
@@ -55,15 +46,12 @@ export default function ServicesOverviewHero() {
             <Link
               className={`btn btn-primary ${SERVICES_OVERVIEW_HERO_CTA_CLASS}`}
               to={SERVICES_OVERVIEW_HERO.productsCtaTo}
-              onClick={(event) => scrollToHash(event, SERVICES_OVERVIEW_HERO.productsCtaTo)}
             >
-              {SERVICES_OVERVIEW_HERO.productsCtaLabel}{" "}
-              <span aria-hidden="true">{SERVICES_OVERVIEW_DISPLAY.ctaArrow}</span>
+              {SERVICES_OVERVIEW_HERO.productsCtaLabel}
             </Link>
             <Link
               className={`btn btn-secondary ${SERVICES_OVERVIEW_HERO_CTA_CLASS}`}
               to={SERVICES_OVERVIEW_HERO.auditCtaTo}
-              onClick={(event) => scrollToHash(event, SERVICES_OVERVIEW_HERO.auditCtaTo)}
             >
               {SERVICES_OVERVIEW_HERO.auditCtaLabel}
             </Link>

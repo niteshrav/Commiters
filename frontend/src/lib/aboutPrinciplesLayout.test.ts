@@ -35,4 +35,8 @@ describe("aboutPrinciplesLayout", () => {
     expect(card).toContain("border-radius: 16px");
     expect(card).not.toContain("min-height: 204px");
   });
+
+  it("does not style a View all Principles link", () => {
+    expect(css).not.toContain(".about-principles-view-all");
+  });
 });

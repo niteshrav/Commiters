@@ -13,4 +13,8 @@ describe("stickyHeaderScroll (hash / in-page navigation)", () => {
   it("applies scroll-padding-top on html so hash targets clear the sticky navbar", () => {
     expect(css).toMatch(/html\s*\{[\s\S]*?scroll-padding-top:\s*var\(--sticky-header-offset\)/);
   });
+
+  it("enables smooth hash scrolling on the document", () => {
+    expect(css).toMatch(/html\s*\{[\s\S]*?scroll-behavior:\s*smooth/);
+  });
 });

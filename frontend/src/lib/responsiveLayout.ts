@@ -41,7 +41,6 @@ export const FULL_BLEED_PAGE_SELECTORS = [
 /** Two-column from the mobile/tablet min-width. */
 export const RESPONSIVE_LANDING_TWO_COL_SELECTORS = [
   ".services-overview-standards-grid",
-  ".services-overview-capabilities-grid",
   ".services-overview-products-grid",
   ".utilities-tools-grid",
   ".aisol-arch-grid",

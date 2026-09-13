@@ -27,4 +27,21 @@ describe("serviceCardImages", () => {
       "/assets/services/mobile-applications.jpg",
     );
   });
+
+  it("maps Full-Lifecycle Engineering Services pages to the shared service photos", () => {
+    expect(serviceCardImageForDetail("e-commerce-development").src).toBe(
+      "/assets/services/e-commerce-development.jpg",
+    );
+    expect(serviceCardImageForDetail("mobile-app-development").src).toBe(
+      "/assets/services/mobile-applications.jpg",
+    );
+    expect(serviceCardImageForDetail("mvp-development").src).toBe("/assets/services/mvp-development.jpg");
+    expect(serviceCardImageForDetail("automation-tools").src).toBe("/assets/services/automation-tools.jpg");
+    expect(serviceCardImageForDetail("web-application-development").src).toBe(
+      "/assets/services/web-applications.jpg",
+    );
+    expect(serviceCardImageForGridId("automation-tools", "Connect Your Tools & Automate Repetitive Back-Office Tasks").src).toBe(
+      "/assets/services/automation-tools.jpg",
+    );
+  });
 });

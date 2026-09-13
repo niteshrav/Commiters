@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { SITEMAP_BOTTOM_BOX_CLASS, SITEMAP_BOTTOM_SECTION_CLASS } from "../lib/sitemapPageLayout";
 import { SITEMAP_PAGE_COPY } from "../lib/sitemapPageContent";
-import { IconArrowRight } from "./icons";
 
 export default function SitemapBottomSection() {
   return (
@@ -19,7 +18,6 @@ export default function SitemapBottomSection() {
         </div>
         <Link to={SITEMAP_PAGE_COPY.bottomCtaTo} className="btn btn-primary sitemap-bottom-cta">
           {SITEMAP_PAGE_COPY.bottomCtaLabel}
-          <IconArrowRight width={18} height={18} aria-hidden />
         </Link>
       </div>
     </section>

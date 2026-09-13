@@ -66,4 +66,5 @@ export const WEB_APPLICATIONS_FORM = {
   projectPlaceholder: "What operational system or support portal should we estimate?",
   submitLabel: WEB_APPLICATIONS_CTA_LABEL,
   serviceNeeded: "Spec-Driven Full-Stack Platforms",
+  timeline: "To be scoped",
 } as const;

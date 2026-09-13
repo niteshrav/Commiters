@@ -29,6 +29,9 @@ export type MobileNavDrawerChildLink = {
   label: string;
   to: string;
   description: string;
+  badge?: string;
+  external?: boolean;
+  accent?: "blue";
 };
 
 export type MobileNavDrawerItem =
@@ -51,6 +54,9 @@ function toMobileNavChildren(cards: readonly NavDropdownLink[]): MobileNavDrawer
     label: card.label,
     to: card.to,
     description: card.description,
+    ...(card.badge ? { badge: card.badge } : {}),
+    ...(card.external ? { external: true } : {}),
+    ...(card.accent ? { accent: card.accent } : {}),
   }));
 }
 
@@ -62,8 +68,8 @@ export const MOBILE_NAV_OPSFLOW_LINKS: readonly MobileNavDrawerChildLink[] = toM
 
 export const MOBILE_NAV_DRAWER_ITEMS: readonly MobileNavDrawerItem[] = [
   { id: "services", label: "Services", expandable: true, children: MOBILE_NAV_SERVICE_LINKS },
-  { id: "about", label: "About", expandable: true, children: MOBILE_NAV_ABOUT_LINKS },
   { id: "work", label: "Work", expandable: true, children: MOBILE_NAV_WORK_LINKS },
+  { id: "about", label: "About", expandable: true, children: MOBILE_NAV_ABOUT_LINKS },
   { id: "trusttap", label: "trustTap", expandable: true, children: MOBILE_NAV_TRUSTTAP_LINKS },
   { id: "opsflow", label: "OpsFlow AI", expandable: true, children: MOBILE_NAV_OPSFLOW_LINKS },
   { id: "contact", label: "Contact", to: ROUTES.contact },

@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import ServiceDetailPage, { serviceDetailTitleForTests } from "./ServiceDetailPage";
-import { ROUTES } from "../lib/routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "../lib/routes";
+import { serviceCardImageForDetail } from "../lib/serviceCardImages";
 import { buildServiceDetailPath } from "../lib/services";
 
 describe("ServiceDetailPage", () => {
@@ -26,9 +27,33 @@ describe("ServiceDetailPage", () => {
     expect(screen.queryByTestId("service-detail-testimonials")).not.toBeInTheDocument();
     expect(screen.queryByTestId("service-detail-faqs")).not.toBeInTheDocument();
     expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveTextContent("Book Operational Audit");
-    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveAttribute("href", ROUTES.aiOperationalAudit);
+    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveAttribute(
+      "href",
+      AI_OPERATIONAL_AUDIT_BOOKING_HREF,
+    );
     expect(screen.getByRole("link", { name: /Request Quote/i })).toHaveAttribute("href", ROUTES.contact);
     expect(screen.getByRole("link", { name: /Browse our FAQ/i })).toHaveAttribute("href", ROUTES.faq);
+  });
+
+  it.each([
+    "e-commerce-development",
+    "web-application-development",
+    "mobile-app-development",
+    "mvp-development",
+    "automation-tools",
+  ] as const)("shows the catalog service photo on %s", (slug) => {
+    const image = serviceCardImageForDetail(slug);
+    render(
+      <MemoryRouter initialEntries={[buildServiceDetailPath(slug)]}>
+        <Routes>
+          <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    const photo = screen.getByRole("img", { name: image.alt });
+    expect(photo).toHaveAttribute("src", image.src);
+    expect(photo).toHaveClass("svc-detail-hero-image");
   });
 
   it("renders e-commerce service detail page", () => {

@@ -13,7 +13,7 @@ describe("theme CSS tokens", () => {
     expect(css).toContain(`--page-background: ${LOGO_THEME.pageBackground}`);
     expect(css).toContain(`--stitch-blue: ${LOGO_THEME.stitchBlue}`);
     expect(css).toContain("--max-width: 100%");
-    expect(css).toContain("--site-gutter: 5cm");
+    expect(css).toContain("--site-gutter: 3cm");
     expect(LOGO_THEME.pageBackground).toBe("#ffffff");
   });
 

@@ -14,7 +14,8 @@ describe("navDropdownLink (styles contract)", () => {
       ),
     )?.[0];
     expect(activeRule).toBeTruthy();
-    expect(activeRule).toContain("rgba(var(--primary-rgb), 0.1)");
+    expect(activeRule).toContain("#f8fafc");
     expect(activeRule).toContain("var(--primary)");
+    expect(css).toMatch(/\.nav-item-dropdown-panel \.nav-dropdown-link:hover\s*\{[^}]*background:\s*#f8fafc/s);
   });
 });

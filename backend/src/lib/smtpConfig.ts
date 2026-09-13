@@ -34,6 +34,17 @@ export function resolveSmtpConfig(env: NodeJS.ProcessEnv = process.env): SmtpCon
   };
 }
 
+export function resolveSmtpConfigOrNull(env: NodeJS.ProcessEnv = process.env): SmtpConfig | null {
+  if (!isSmtpEnabled(env)) return null;
+
+  const host = env.SMTP_HOST?.trim();
+  const user = env.SMTP_USER?.trim();
+  const pass = env.SMTP_PASS?.trim();
+  if (!host || !user || !pass) return null;
+
+  return resolveSmtpConfig(env);
+}
+
 export function assertProductionEmailDeliveryReady(env: NodeJS.ProcessEnv = process.env): void {
   if (env.NODE_ENV !== "production") return;
 

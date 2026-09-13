@@ -1,6 +1,8 @@
 import { useRef, useState, type DragEvent, type FormEvent } from "react";
 import { Link } from "react-router-dom";
+import BrandHeroEyebrow from "./BrandHeroEyebrow";
 import { IconChartLine, IconCheckCircle, IconClock, IconCloudUpload, IconWorkflow } from "./icons";
+import { NAV_SECTION_ALIAS_CLASS } from "../lib/navSections";
 import { OPSFLOW_FILE_ACCEPT, validateOpsFlowLead, type OpsFlowExtractPayload } from "../lib/opsFlowLeadGate";
 import { parseOpsFlowDocument, OpsFlowQuotaError, type OpsFlowParseResult } from "../lib/opsFlowParse";
 import {
@@ -13,6 +15,7 @@ import {
   OPSFLOW_DROPZONE_HELP,
   OPSFLOW_DROPZONE_LABEL,
   OPSFLOW_ENGINEER_CTA_LABEL,
+  OPSFLOW_FEATURES_HEADING,
   OPSFLOW_HERO,
   OPSFLOW_HOW_IT_WORKS,
   OPSFLOW_SANDBOX_ANCHOR,
@@ -29,13 +32,14 @@ import {
   OPSFLOW_WORK_EMAIL_PLACEHOLDER,
 } from "../lib/opsFlowPageContent";
 import {
+  OPSFLOW_BOTTOM_CTA_ACTIONS_CLASS,
   OPSFLOW_BOTTOM_CTA_CLASS,
+  OPSFLOW_BOTTOM_CTA_PRIMARY_CLASS,
   OPSFLOW_CARD_CLASS,
   OPSFLOW_CARD_ICON_CLASS,
   OPSFLOW_CARDS_CLASS,
   OPSFLOW_DROPZONE_ACTIVE_CLASS,
   OPSFLOW_DROPZONE_CLASS,
-  OPSFLOW_EYEBROW_CLASS,
   OPSFLOW_FIELD_CLASS,
   OPSFLOW_FORM_CLASS,
   OPSFLOW_HEADLINE_CLASS,
@@ -47,8 +51,14 @@ import {
   OPSFLOW_PANEL_HEADER_CLASS,
   OPSFLOW_PREVIEW_CLASS,
   OPSFLOW_PROGRESS_CLASS,
+  OPSFLOW_FEATURES_ID,
+  OPSFLOW_HOW_IT_WORKS_ID,
+  OPSFLOW_INGESTION_ID,
   OPSFLOW_QUOTA_CLASS,
   OPSFLOW_REMAINING_CLASS,
+  OPSFLOW_SANDBOX_ID,
+  OPSFLOW_SECTION_HEADING_CLASS,
+  OPSFLOW_SECTION_SHELL_CLASS,
   OPSFLOW_SECTION_CLASS,
   OPSFLOW_STEP_CLASS,
   OPSFLOW_STEPS_CLASS,
@@ -253,8 +263,8 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
       <section className={OPSFLOW_SECTION_CLASS} data-testid="opsflow-section" aria-labelledby="opsflow-headline">
         <div className={OPSFLOW_INNER_CLASS}>
           <div className={OPSFLOW_TOP_GRID_CLASS}>
-            <div className={OPSFLOW_HERO_CLASS}>
-              <p className={OPSFLOW_EYEBROW_CLASS}>{OPSFLOW_HERO.eyebrow}</p>
+            <div id={OPSFLOW_INGESTION_ID} className={OPSFLOW_HERO_CLASS}>
+              <BrandHeroEyebrow text={OPSFLOW_HERO.eyebrow} />
               <h1 id="opsflow-headline" className={OPSFLOW_HEADLINE_CLASS}>
                 {OPSFLOW_HERO.headline}
               </h1>
@@ -269,47 +279,71 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
               </div>
             </div>
 
-            <aside className={OPSFLOW_PANEL_CLASS} id={OPSFLOW_SANDBOX_ANCHOR} data-testid="opsflow-panel">
-              <div className={OPSFLOW_PANEL_CARD_CLASS} data-testid="opsflow-panel-card">
-                <div className={OPSFLOW_PANEL_BODY_CLASS}>
-                  <p className={OPSFLOW_REMAINING_CLASS} data-testid="opsflow-remaining">
-                    {formatOpsFlowRemainingLabel(remaining, dailyLimit)}
-                  </p>
-                  {formPanel}
-                </div>
-                <p className={OPSFLOW_TRUST_CLASS}>{OPSFLOW_SECURITY_FOOTER}</p>
-              </div>
-            </aside>
-          </div>
-
-          <ul className={OPSFLOW_CARDS_CLASS}>
-            {OPSFLOW_VALUE_CARDS.map((card) => (
-              <li key={card.id} className={OPSFLOW_CARD_CLASS}>
-                <span className={OPSFLOW_CARD_ICON_CLASS} aria-hidden>
-                  <ValueCardIcon icon={card.icon} />
-                </span>
-                <div>
-                  <h2>{card.title}</h2>
-                  <p>{card.body}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <div className={OPSFLOW_STEPS_CLASS} data-testid="opsflow-how-it-works" id="opsflow-how-it-works">
-            <h2 className="opsflow-steps-title">{OPSFLOW_HOW_IT_WORKS.title}</h2>
-            <ol className="opsflow-steps-list">
-              {OPSFLOW_HOW_IT_WORKS.steps.map((step) => (
-                <li key={step.id} className={OPSFLOW_STEP_CLASS}>
-                  <span className="opsflow-step-index">{step.step}</span>
-                  <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.body}</p>
+            <section
+              id={OPSFLOW_SANDBOX_ID}
+              className={`${OPSFLOW_PANEL_CLASS} ${OPSFLOW_SECTION_SHELL_CLASS}`}
+              data-testid="opsflow-panel"
+            >
+                <span id={OPSFLOW_SANDBOX_ANCHOR} className={NAV_SECTION_ALIAS_CLASS} />
+                <div className={OPSFLOW_PANEL_CARD_CLASS} data-testid="opsflow-panel-card">
+                  <div className={OPSFLOW_PANEL_BODY_CLASS}>
+                    <p className={OPSFLOW_REMAINING_CLASS} data-testid="opsflow-remaining">
+                      {formatOpsFlowRemainingLabel(remaining, dailyLimit)}
+                    </p>
+                    {formPanel}
                   </div>
-                </li>
-              ))}
-            </ol>
+                  <p className={OPSFLOW_TRUST_CLASS}>{OPSFLOW_SECURITY_FOOTER}</p>
+                </div>
+            </section>
           </div>
+
+          <section
+            id={OPSFLOW_FEATURES_ID}
+            className={OPSFLOW_SECTION_SHELL_CLASS}
+            data-testid="opsflow-features"
+            aria-labelledby="opsflow-features-title"
+          >
+              <h2 id="opsflow-features-title" className={OPSFLOW_SECTION_HEADING_CLASS}>
+                {OPSFLOW_FEATURES_HEADING}
+              </h2>
+              <ul className={OPSFLOW_CARDS_CLASS}>
+                {OPSFLOW_VALUE_CARDS.map((card) => (
+                  <li key={card.id} className={OPSFLOW_CARD_CLASS}>
+                    <span className={OPSFLOW_CARD_ICON_CLASS} aria-hidden>
+                      <ValueCardIcon icon={card.icon} />
+                    </span>
+                    <div>
+                      <h2>{card.title}</h2>
+                      <p>{card.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+          </section>
+
+          <section
+            id={OPSFLOW_HOW_IT_WORKS_ID}
+            className={`${OPSFLOW_STEPS_CLASS} ${OPSFLOW_SECTION_SHELL_CLASS}`}
+            data-testid="opsflow-how-it-works"
+            aria-labelledby="opsflow-how-it-works-title"
+          >
+              <span id="opsflow-how-it-works" className={NAV_SECTION_ALIAS_CLASS} />
+              <span id="architecture" className={NAV_SECTION_ALIAS_CLASS} />
+              <h2 id="opsflow-how-it-works-title" className={OPSFLOW_SECTION_HEADING_CLASS}>
+                {OPSFLOW_HOW_IT_WORKS.title}
+              </h2>
+              <ol className="opsflow-steps-list">
+                {OPSFLOW_HOW_IT_WORKS.steps.map((step) => (
+                  <li key={step.id} className={OPSFLOW_STEP_CLASS}>
+                    <span className="opsflow-step-index">{step.step}</span>
+                    <div>
+                      <h3>{step.title}</h3>
+                      <p>{step.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+          </section>
 
           <div className={OPSFLOW_PREVIEW_CLASS} data-testid="opsflow-preview" id="opsflow-preview">
             <h2 className="opsflow-preview-title">{OPSFLOW_PREVIEW.title}</h2>
@@ -369,8 +403,11 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
             {OPSFLOW_BOTTOM_CTA.title}
           </h2>
           <p className="opsflow-bottom-cta-subtext">{OPSFLOW_BOTTOM_CTA.subtext}</p>
-          <div className="opsflow-bottom-cta-actions">
-            <Link className="btn btn-primary" to={OPSFLOW_BOTTOM_CTA.primaryTo}>
+          <div className={OPSFLOW_BOTTOM_CTA_ACTIONS_CLASS}>
+            <Link
+              className={`btn btn-primary ${OPSFLOW_BOTTOM_CTA_PRIMARY_CLASS}`}
+              to={OPSFLOW_BOTTOM_CTA.primaryTo}
+            >
               {OPSFLOW_BOTTOM_CTA.primaryLabel}
             </Link>
             <Link className="btn btn-secondary" to={OPSFLOW_BOTTOM_CTA.secondaryTo}>

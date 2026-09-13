@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import HomePage from "./HomePage";
 import { HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "../lib/homePageContent";
-import { ROUTES } from "../lib/routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, OPSFLOW_HERO_PAGE_HREF } from "../lib/routes";
 import { HOME_CORE_PILLARS_SURFACE_CLASS } from "../lib/homeCorePillarsSurface";
 import { HOME_SECTION_SEPARATOR_CLASS, HOME_SECTION_SEPARATOR_IDS } from "../lib/homeSectionLayout";
 
@@ -45,9 +45,7 @@ describe("HomePage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByTestId("engineering-precision-badge")).toHaveTextContent(
-      /AN AI & CLOUD PRODUCT & ENGINEERING FIRM/i,
-    );
+    expect(screen.getByTestId("brand-hero-eyebrow")).toHaveTextContent(/Enterprise AI & Cloud Systems/i);
     expect(screen.getByRole("heading", { name: HOME_PAGE_COPY.hero.title })).toBeInTheDocument();
     expect(screen.getByText(HOME_PAGE_COPY.hero.subtext)).toBeInTheDocument();
     expect(screen.getByTestId("home-hero-visual")).toHaveAttribute("src", HOME_PAGE_ASSETS.heroMonitor);
@@ -71,7 +69,7 @@ describe("HomePage", () => {
     expect(within(scale).getByTestId("home-built-for-scale-image")).toHaveAttribute("src", HOME_PAGE_ASSETS.serverRacks);
   });
 
-  it("links the hero to OpsFlow and the two-week audit without a tech stack link", () => {
+  it("links the hero to OpsFlow and the 48-hour audit without a tech stack link", () => {
     render(
       <MemoryRouter>
         <HomePage />
@@ -83,11 +81,11 @@ describe("HomePage", () => {
     const heroActions = screen.getByTestId("hero-actions");
     expect(within(heroActions).getByRole("link", { name: /Try OpsFlow AI/i })).toHaveAttribute(
       "href",
-      HOME_PAGE_COPY.hero.ctaPrimaryTo,
+      OPSFLOW_HERO_PAGE_HREF,
     );
     expect(within(heroActions).getByRole("link", { name: /Book Operational Audit/i })).toHaveAttribute(
       "href",
-      ROUTES.aiOperationalAudit,
+      AI_OPERATIONAL_AUDIT_BOOKING_HREF,
     );
   });
 

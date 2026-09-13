@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  IconArrowRight,
   IconBolt,
   IconChartLine,
   IconCloudUpload,
@@ -12,6 +11,13 @@ import {
   BUILT_FOR_SCALE_IMAGE_SIZES,
   BUILT_FOR_SCALE_IMAGE_WIDTH,
 } from "../lib/homeBuiltForScaleLayout";
+import {
+  HOME_CLOUD_KICKER_CLASS,
+  HOME_CLOUD_LEAD_CLASS,
+  HOME_CLOUD_THEME_CLASS,
+  HOME_CLOUD_TITLE_ACCENT_CLASS,
+  HOME_CLOUD_TITLE_CLASS,
+} from "../lib/homeCloudTheme";
 import { HOME_PRIMARY_SURFACE_CLASS } from "../lib/homePrimarySurface";
 import { HOME_PAGE_ASSETS, HOME_PAGE_COPY, type HomeBuiltForScaleFeatureTone } from "../lib/homePageContent";
 
@@ -26,7 +32,7 @@ export default function HomeBuiltForScale() {
 
   return (
     <section
-      className={`home-built-for-scale home-built-for-scale--cloud ${HOME_PRIMARY_SURFACE_CLASS} band-breakout reveal-on-scroll`}
+      className={`home-built-for-scale home-built-for-scale--cloud ${HOME_CLOUD_THEME_CLASS} ${HOME_PRIMARY_SURFACE_CLASS} band-breakout reveal-on-scroll`}
       data-testid="home-built-for-scale"
       id="built-for-scale"
       aria-labelledby="home-built-for-scale-title"
@@ -69,12 +75,17 @@ export default function HomeBuiltForScale() {
           </figure>
 
           <div className="home-built-for-scale-copy" data-testid="home-built-for-scale-copy">
-            <p className="home-built-for-scale-kicker">{builtForScale.kicker}</p>
-            <h2 id="home-built-for-scale-title" className="home-built-for-scale-title typography-section-title">
+            <p className={`home-built-for-scale-kicker ${HOME_CLOUD_KICKER_CLASS}`}>{builtForScale.kicker}</p>
+            <h2
+              id="home-built-for-scale-title"
+              className={`home-built-for-scale-title ${HOME_CLOUD_TITLE_CLASS} typography-section-title`}
+            >
               {builtForScale.titleLead}
-              <span className="home-built-for-scale-title-accent">{builtForScale.titleAccent}</span>
+              <span className={`home-built-for-scale-title-accent ${HOME_CLOUD_TITLE_ACCENT_CLASS}`}>
+                {builtForScale.titleAccent}
+              </span>
             </h2>
-            <p className="home-built-for-scale-lead typography-body">{builtForScale.body}</p>
+            <p className={`home-built-for-scale-lead ${HOME_CLOUD_LEAD_CLASS} typography-body`}>{builtForScale.body}</p>
 
             <div className="home-scale-feature-cards" data-testid="home-scale-feature-cards">
               {builtForScale.features.map((feature) => {
@@ -100,7 +111,6 @@ export default function HomeBuiltForScale() {
             <div className="home-built-for-scale-actions" data-testid="home-built-for-scale-actions">
               <Link className="btn btn-primary home-built-for-scale-primary" to={builtForScale.ctaPrimaryTo}>
                 {builtForScale.ctaPrimary}
-                <IconArrowRight width={18} height={18} aria-hidden />
               </Link>
               <Link className="home-built-for-scale-secondary" to={builtForScale.ctaSecondaryTo}>
                 {builtForScale.ctaSecondary}

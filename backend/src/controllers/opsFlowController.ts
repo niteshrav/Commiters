@@ -1,5 +1,4 @@
 import type { Request, Response } from "express";
-import { isMongoConnected } from "../cms/config/database";
 import { dispatchInquiryNotifications } from "../lib/inquiryNotifications";
 import { createSubmissionRef } from "../lib/inquirySubmissionRef";
 import { saveInternalLead } from "../lib/internalLeads";
@@ -53,9 +52,6 @@ export async function parseOpsFlowDocument(req: Request, res: Response) {
     return res.status(400).json({ error: "Please attach a PDF, PNG, or JPG (max 10MB)." });
   }
   if (!isOpsFlowGeminiConfigured()) {
-    return res.status(503).json({ error: "Document extraction is temporarily unavailable." });
-  }
-  if (!isMongoConnected()) {
     return res.status(503).json({ error: "Document extraction is temporarily unavailable." });
   }
 

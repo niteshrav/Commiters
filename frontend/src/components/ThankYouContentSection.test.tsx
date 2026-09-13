@@ -29,6 +29,7 @@ describe("ThankYouContentSection", () => {
     expect(screen.queryByRole("button", { name: /Client View/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Candidate View/i })).not.toBeInTheDocument();
     expect(screen.queryByTestId("thank-you-view-toggle")).not.toBeInTheDocument();
+    expect(within(section).queryByRole("img")).not.toBeInTheDocument();
   });
 
   it("shows the client message when a contact submission redirects here", () => {

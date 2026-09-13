@@ -66,7 +66,7 @@ export const SITEMAP_PAGE_COPY = {
         {
           label: "AI Operational Audits",
           to: ROUTES.aiOperationalAudit,
-          description: "2-week diagnostic that maps bottlenecks and ships a working AI prototype.",
+          description: "48-hour diagnostic that maps bottlenecks and ships a working AI prototype.",
         },
         {
           label: "Governed AI & Workflow Systems",
@@ -116,9 +116,9 @@ export const SITEMAP_PAGE_COPY = {
       description: "Deep links into the About page.",
       icon: "about",
       links: [
-        { label: "Vision", to: buildAboutSectionHref("vision") },
-        { label: "What We Stand For", to: buildAboutSectionHref("principles") },
-        { label: "From Idea to Production", to: buildAboutSectionHref("how-we-work") },
+        { label: "Vision", to: buildAboutSectionHref("governed-engineering") },
+        { label: "What We Stand For", to: buildAboutSectionHref("our-values") },
+        { label: "From Idea to Production", to: buildAboutSectionHref("delivery-journey") },
       ],
     },
     {

@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import { IconCodeBracket, IconDocument, IconLayers } from "./icons";
 import { FROSTED_GLASS_CLASS_NAME } from "../lib/frostedGlass";
 import { SERVICES_OVERVIEW_DISPLAY } from "../lib/servicesOverviewPageDesign";
-import { SERVICES_OVERVIEW_OFFERINGS, SERVICES_OVERVIEW_OFFERINGS_TITLE } from "../lib/servicesOverviewPageContent";
+import { NAV_SECTION_ALIAS_CLASS } from "../lib/navSections";
 import {
+  SERVICES_OVERVIEW_OFFERINGS,
+  SERVICES_OVERVIEW_OFFERINGS_ANCHOR,
+  SERVICES_OVERVIEW_OFFERINGS_TITLE,
+} from "../lib/servicesOverviewPageContent";
+import {
+  SERVICES_OVERVIEW_ANCHOR_CLASS,
+  SERVICES_OVERVIEW_EQUAL_CARD_CLASS,
   SERVICES_OVERVIEW_OFFERING_CARD_CLASS,
   SERVICES_OVERVIEW_OFFERING_FEATURED_CLASS,
   SERVICES_OVERVIEW_OFFERING_TAG_CLASS,
@@ -18,10 +25,16 @@ const OFFERING_ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   "spec-driven-full-stack-platforms": IconCodeBracket,
 };
 
+const OFFERING_NAV_ALIASES: Partial<Record<string, string>> = {
+  "governed-ai-workflow-systems": "governed-ai",
+  "spec-driven-full-stack-platforms": "spec-driven",
+};
+
 export default function ServicesStrategicOfferings() {
   return (
     <section
-      className={`${SERVICES_OVERVIEW_OFFERINGS_SECTION_CLASS} reveal-on-scroll`}
+      id={SERVICES_OVERVIEW_OFFERINGS_ANCHOR}
+      className={`${SERVICES_OVERVIEW_OFFERINGS_SECTION_CLASS} ${SERVICES_OVERVIEW_ANCHOR_CLASS} reveal-on-scroll`}
       aria-labelledby="services-strategic-offerings-title"
     >
       <div className="services-overview-inner">
@@ -32,6 +45,8 @@ export default function ServicesStrategicOfferings() {
             const Icon = OFFERING_ICONS[offering.id];
             const className = [
               SERVICES_OVERVIEW_OFFERING_CARD_CLASS,
+              SERVICES_OVERVIEW_EQUAL_CARD_CLASS,
+              SERVICES_OVERVIEW_ANCHOR_CLASS,
               FROSTED_GLASS_CLASS_NAME,
               offering.featured ? SERVICES_OVERVIEW_OFFERING_FEATURED_CLASS : "",
             ]
@@ -40,6 +55,12 @@ export default function ServicesStrategicOfferings() {
 
             return (
               <article key={offering.id} id={offering.id} className={className} data-testid="services-offering-card">
+                {OFFERING_NAV_ALIASES[offering.id] ? (
+                  <span
+                    id={OFFERING_NAV_ALIASES[offering.id]}
+                    className={`${NAV_SECTION_ALIAS_CLASS} ${SERVICES_OVERVIEW_ANCHOR_CLASS}`}
+                  />
+                ) : null}
                 <span className={SERVICES_OVERVIEW_OFFERING_TAG_CLASS}>{offering.tag}</span>
                 {Icon ? (
                   <span className="services-overview-card-icon" aria-hidden="true">
@@ -49,8 +70,7 @@ export default function ServicesStrategicOfferings() {
                 <h3>{offering.title}</h3>
                 <p>{offering.description}</p>
                 <Link className="btn btn-primary" to={offering.to}>
-                  {offering.ctaLabel}{" "}
-                  <span aria-hidden="true">{SERVICES_OVERVIEW_DISPLAY.ctaArrow}</span>
+                  {offering.ctaLabel}
                 </Link>
               </article>
             );

@@ -1,11 +1,19 @@
 import { describe, expect, it } from "vitest";
 import { HOME_OPS_FLOW_SECTION_ID } from "./homePageContent";
-import { HOME_LEAD_MAGNET_COPY, HOME_LEAD_MAGNET_LAYOUT, HOME_LEAD_MAGNET_SECTION_ID } from "./homeLeadMagnetContent";
-import { ROUTES } from "./routes";
+import {
+  HOME_LEAD_MAGNET_COPY,
+  HOME_LEAD_MAGNET_FORM_HREF,
+  HOME_LEAD_MAGNET_FORM_ID,
+  HOME_LEAD_MAGNET_LAYOUT,
+  HOME_LEAD_MAGNET_SECTION_ID,
+} from "./homeLeadMagnetContent";
+import { OPSFLOW_HERO_PAGE_HREF } from "./routes";
 
 describe("homeLeadMagnetContent", () => {
   it("defines the OpsFlow AI mockup showcase and capture fields", () => {
     expect(HOME_LEAD_MAGNET_SECTION_ID).toBe(HOME_OPS_FLOW_SECTION_ID);
+    expect(HOME_LEAD_MAGNET_FORM_ID).toBe("home-lead-magnet-card");
+    expect(HOME_LEAD_MAGNET_FORM_HREF).toBe("/#home-lead-magnet-card");
     expect(HOME_LEAD_MAGNET_COPY.badge).toBe("PROPRIETARY AI PRODUCT");
     expect(HOME_LEAD_MAGNET_COPY.titleLead).toBe("OpsFlow ");
     expect(HOME_LEAD_MAGNET_COPY.titleAccent).toBe("AI");
@@ -30,7 +38,7 @@ describe("homeLeadMagnetContent", () => {
       },
     ]);
     expect(HOME_LEAD_MAGNET_COPY.ctaPrimary).toBe("Try OpsFlow AI");
-    expect(HOME_LEAD_MAGNET_COPY.ctaPrimaryTo).toBe(ROUTES.opsFlowPlayground);
+    expect(HOME_LEAD_MAGNET_COPY.ctaPrimaryTo).toBe(OPSFLOW_HERO_PAGE_HREF);
     expect(HOME_LEAD_MAGNET_COPY.ctaDemo).toBe("Request Enterprise Demo");
     expect(HOME_LEAD_MAGNET_COPY.submitLabel).toBe("Send Benchmark Request");
     expect(HOME_LEAD_MAGNET_COPY.formTitle).toBe("Request an Enterprise Demo");

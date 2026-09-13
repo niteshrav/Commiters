@@ -3,8 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import CommitersCaseStudyPage from "./CommitersCaseStudyPage";
 import { COMMITERS_CASE_STUDY_COPY } from "../lib/commitersCaseStudyContent";
-import { HOME_HERO_OPS_FLOW_HREF } from "../lib/homePageContent";
-import { ROUTES } from "../lib/routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, OPSFLOW_HERO_PAGE_HREF } from "../lib/routes";
 
 describe("CommitersCaseStudyPage", () => {
   it("renders the spec-driven cloud platform case study sections", () => {
@@ -76,11 +75,11 @@ describe("CommitersCaseStudyPage", () => {
 
     expect(screen.getByRole("link", { name: COMMITERS_CASE_STUDY_COPY.bottomCta.primaryLabel })).toHaveAttribute(
       "href",
-      ROUTES.aiOperationalAudit,
+      AI_OPERATIONAL_AUDIT_BOOKING_HREF,
     );
     expect(screen.getByRole("link", { name: COMMITERS_CASE_STUDY_COPY.bottomCta.secondaryLabel })).toHaveAttribute(
       "href",
-      HOME_HERO_OPS_FLOW_HREF,
+      OPSFLOW_HERO_PAGE_HREF,
     );
   });
 });

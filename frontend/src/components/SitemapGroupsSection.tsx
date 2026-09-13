@@ -21,7 +21,6 @@ import {
   IconMapPin,
   IconShieldCheck,
   IconTarget,
-  IconArrowRight,
 } from "./icons";
 
 function SitemapGroupIcon({ icon }: { icon: SitemapPageIcon }) {
@@ -80,7 +79,6 @@ export default function SitemapGroupsSection() {
                         <span className={SITEMAP_LINK_DESCRIPTION_CLASS}>{link.description}</span>
                       ) : null}
                     </span>
-                    <IconArrowRight width={16} height={16} aria-hidden className="sitemap-link-arrow" />
                   </NavLink>
                 </li>
               ))}

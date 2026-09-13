@@ -27,6 +27,11 @@ describe("AboutCraftsmanshipSection", () => {
     render(<AboutCraftsmanshipSection />);
 
     expect(screen.getByTestId("about-craftsmanship-section")).toHaveClass(ABOUT_CRAFTSMANSHIP_SECTION_CLASS);
+    expect(screen.getByTestId("about-craftsmanship-section")).toHaveAttribute("id", "governed-engineering");
+    expect(screen.getByTestId("about-craftsmanship-section")).toHaveClass("pt-16", "pb-16", "w-full");
+    expect(screen.getByTestId("about-craftsmanship-section").className).not.toMatch(/scroll-mt-/);
+    expect(screen.getByTestId(ABOUT_CRAFTSMANSHIP_COPY_START_TEST_ID)).not.toHaveAttribute("id", "governed-engineering");
+    expect(document.getElementById("vision")).toBeTruthy();
     expect(screen.getByTestId(ABOUT_CRAFTSMANSHIP_RULE_TEST_IDS.top)).toHaveClass(ABOUT_CRAFTSMANSHIP_RULE_CLASS);
 
     const copyStart = screen.getByTestId(ABOUT_CRAFTSMANSHIP_COPY_START_TEST_ID);

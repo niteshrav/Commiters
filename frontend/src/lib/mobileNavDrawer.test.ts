@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ROUTES } from "./routes";
 import { SITE_FOOTER_CONNECT_LINKS } from "./siteFooterCopy";
-import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "./siteLinks";
+import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from "./siteLinks";
 import {
   HEADER_MENU_CLOSE_LABEL,
   HEADER_MENU_OPEN_LABEL,
@@ -20,8 +20,8 @@ describe("mobileNavDrawer", () => {
   it("lists primary drawer links with expandable mega-menu accordions", () => {
     expect(MOBILE_NAV_DRAWER_PRIMARY_LABELS).toEqual([
       "Services",
-      "About",
       "Work",
+      "About",
       "trustTap",
       "OpsFlow AI",
       "Contact",
@@ -30,25 +30,31 @@ describe("mobileNavDrawer", () => {
     expect(MOBILE_NAV_SERVICE_LINKS.map((link) => ({ label: link.label, to: link.to, description: link.description }))).toEqual([
       {
         label: "AI Operational Audits",
-        to: ROUTES.aiOperationalAudit,
-        description: "2-week workflow diagnostics & spec-driven cloud blueprints.",
+        to: ROUTES.audit,
+        description: "48-hour workflow diagnostics, bottleneck elimination, and live automation blueprints.",
       },
       {
         label: "Governed AI & Workflow Systems",
-        to: ROUTES.aiSolutions,
-        description: "Enterprise document parsing, LLM integrations & automated workflows.",
+        to: ROUTES.aiSolutionsShort,
+        description: "Custom pipelines, policy gateways, and enterprise AI workflows.",
       },
       {
         label: "Spec-Driven Full-Stack Platforms",
-        to: ROUTES.webApplications,
-        description: "Scalable B2B web portals, SaaS platforms, & cloud web applications.",
+        to: ROUTES.webApplicationsShort,
+        description: "Scalable web apps, cloud portals, and spec-driven SaaS architecture.",
       },
       {
-        label: "Free Business Utilities",
-        to: ROUTES.utilities,
-        description: "Zero-code operational tools including OpsFlow AI PDF-to-Excel extraction.",
+        label: "High-Performance Web & Mobile Apps",
+        to: `${ROUTES.services}#engineering-capabilities`,
+        description: "Custom B2B web applications, mobile platforms, and SaaS MVPs.",
+      },
+      {
+        label: "Automation & Integration Tools",
+        to: `${ROUTES.services}#engineering-capabilities`,
+        description: "API integrations, document processing, and operational workflow tools.",
       },
     ]);
+    expect(MOBILE_NAV_SERVICE_LINKS.some((link) => /trusttap|opsflow/i.test(link.label) || /trusttap|opsflow/i.test(link.to))).toBe(false);
     const about = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "about");
     const work = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "work");
     const trusttap = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "trusttap");
@@ -58,18 +64,42 @@ describe("mobileNavDrawer", () => {
     expect(about && "expandable" in about ? about.expandable : false).toBe(true);
     expect(work && "expandable" in work ? work.expandable : false).toBe(true);
     expect(trusttap && "expandable" in trusttap ? trusttap.expandable : false).toBe(true);
+    expect(trusttap && "children" in trusttap ? trusttap.children.map((child) => child.label) : []).toEqual([
+      "Product Overview",
+      "Merchant Intelligence",
+      "How It Works",
+    ]);
+    expect(trusttap && "children" in trusttap ? trusttap.children.map((child) => child.to) : []).toEqual([
+      `${ROUTES.trustTap}#product-overview`,
+      `${ROUTES.trustTap}#core-pillars`,
+      `${ROUTES.trustTap}#how-it-works`,
+    ]);
     expect(opsflow && "expandable" in opsflow ? opsflow.expandable : false).toBe(true);
+    expect(opsflow && "children" in opsflow ? opsflow.children.map((child) => child.label) : []).toEqual([
+      "Try Free Sandbox",
+      "Extraction Capabilities",
+      "How It Works & Integration",
+    ]);
+    expect(opsflow && "children" in opsflow ? opsflow.children.map((child) => child.to) : []).toEqual([
+      `${ROUTES.opsFlow}#sandbox`,
+      `${ROUTES.opsFlow}#features`,
+      `${ROUTES.opsFlow}#how-it-works`,
+    ]);
     expect(about && "children" in about ? about.children.map((child) => child.label) : []).toEqual([
       "The Studio",
-      "Vision",
+      "Vision & Philosophy",
       "What We Stand For",
       "From Idea to Production",
     ]);
+    expect(about && "children" in about ? about.children.map((child) => child.to) : []).toEqual([
+      `${ROUTES.about}#the-studio`,
+      `${ROUTES.about}#governed-engineering`,
+      `${ROUTES.about}#our-values`,
+      `${ROUTES.about}#delivery-journey`,
+    ]);
     expect(work && "children" in work ? work.children.map((child) => child.to) : []).toEqual([
-      `${ROUTES.caseStudies}#featured-case-studies`,
-      ROUTES.commitersCaseStudy,
-      ROUTES.aiSummarizerCaseStudy,
-      ROUTES.multiRoleCrmCaseStudy,
+      ROUTES.caseStudies,
+      ROUTES.testimonials,
     ]);
     expect(contact && "to" in contact ? contact.to : undefined).toBe(ROUTES.contact);
     expect(careers && "to" in careers ? careers.to : undefined).toBe(ROUTES.openPositions);
@@ -80,13 +110,11 @@ describe("mobileNavDrawer", () => {
     expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS.map((link) => link.label)).toEqual([
       "LinkedIn",
       "Instagram",
-      "Medium",
       "GitHub",
     ]);
     expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[0].href).toBe(SITE_LINKEDIN_URL);
     expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[1].href).toBe(SITE_INSTAGRAM_URL);
-    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[2].href).toBe(SITE_MEDIUM_URL);
-    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[3].href).toBe(SITE_GITHUB_URL);
+    expect(MOBILE_NAV_DRAWER_SOCIAL_LINKS[2].href).toBe(SITE_GITHUB_URL);
   });
 
   it("uses the short legal copyright line in the drawer footer", () => {

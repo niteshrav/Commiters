@@ -2,8 +2,8 @@ import nodemailer from "nodemailer";
 import { buildB2bLeadCard, type LeadSource } from "./b2bLeadCard";
 import type { InquiryNotificationInput } from "./inquiryNotificationTypes";
 import { inquiryPdfFilename } from "./inquiryPdf";
-import { resolveSmtpConfig } from "./smtpConfig";
-import { teamInboxRecipients } from "./teamInboxes";
+import { resolveSmtpConfigOrNull } from "./smtpConfig";
+import { TEAM_INBOX_PRIMARY, teamInboxRecipients } from "./teamInboxes";
 
 function leadSourceForInquiry(kind: InquiryNotificationInput["kind"]): LeadSource | undefined {
   if (kind === "opsflow_extract") return "opsflow";
@@ -57,9 +57,40 @@ function buildTextBody(input: InquiryNotificationInput): string {
   return lines.join("\n");
 }
 
+export function formSubmitInquiryEndpoint(inbox = TEAM_INBOX_PRIMARY): string {
+  return `https://formsubmit.co/ajax/${encodeURIComponent(inbox)}`;
+}
+
+async function sendInquiryViaFormSubmit(input: InquiryNotificationInput): Promise<void> {
+  const res = await fetch(formSubmitInquiryEndpoint(), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      _subject: buildSubject(input),
+      _template: "table",
+      _captcha: "false",
+      _replyto: input.email,
+      name: input.name,
+      email: input.email,
+      serviceNeeded: input.serviceOrPosition,
+      budgetRange: input.budgetRange ?? "",
+      timeline: input.timeline ?? "",
+      message: buildTextBody(input),
+    }),
+  });
+
+  const payload = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
+  if (!res.ok || payload.success === false) {
+    throw new Error(payload.message ?? "Could not deliver inquiry email.");
+  }
+}
+
 export async function sendInquiryEmail(input: InquiryNotificationInput, pdf: Buffer): Promise<void> {
-  const smtp = resolveSmtpConfig();
-  if (!smtp) return;
+  const smtp = resolveSmtpConfigOrNull();
+  if (!smtp) {
+    await sendInquiryViaFormSubmit(input);
+    return;
+  }
 
   const transport = nodemailer.createTransport({
     host: smtp.host,

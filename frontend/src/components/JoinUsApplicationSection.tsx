@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { IconArrowRight, IconCloudUpload } from "./icons";
+import { IconCloudUpload } from "./icons";
 import { createJobApplication } from "../lib/api";
 import { useJoinUsPositions } from "../lib/cms/hooks";
 import { JOIN_US_PAGE_COPY } from "../lib/joinUsPageContent";
@@ -307,7 +307,6 @@ export default function JoinUsApplicationSection() {
         <div className="form-actions form-actions--start">
           <button className="btn btn-primary stitch-join-us-submit" type="submit" disabled={submitting}>
             <span>{submitting ? "Sending…" : submitButton}</span>
-            {!submitting ? <IconArrowRight width={18} height={18} aria-hidden /> : null}
           </button>
         </div>
       </div>

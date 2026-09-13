@@ -7,7 +7,7 @@ import {
   CASE_STUDIES_INTRO_TITLE_ACCENT_CLASS,
   CASE_STUDIES_INTRO_TITLE_CLASS,
 } from "../lib/caseStudiesPageLayout";
-import { IconArrowRight, IconCloud, IconLayers, IconRocket, IconWorkflow } from "./icons";
+import { IconCloud, IconLayers, IconRocket, IconWorkflow } from "./icons";
 
 const HERO_ICONS = [IconWorkflow, IconCloud, IconLayers, IconRocket] as const;
 
@@ -31,7 +31,6 @@ export default function CaseStudiesIntroSection() {
           <p className={CASE_STUDIES_INTRO_SUBTEXT_CLASS}>{hero.subtext}</p>
           <a className="btn btn-primary work-hero-cta" href={hero.ctaHref}>
             {hero.ctaLabel}
-            <IconArrowRight width={16} height={16} aria-hidden />
           </a>
         </div>
 

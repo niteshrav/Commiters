@@ -4,6 +4,7 @@ import JobCard from "../components/open-positions/JobCard";
 import JobFiltersBar, { JobListSkeleton } from "../components/open-positions/JobFiltersBar";
 import Reveal from "../components/motion/Reveal";
 import { usePageSeo } from "../hooks/usePageSeo";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { JOIN_US_PAGE_CLASS } from "../lib/joinUsPageLayout";
 import {
   fetchJobFilters,
@@ -54,7 +55,7 @@ export default function OpenPositionsPage() {
   }, [query]);
 
   return (
-    <div className={`${JOIN_US_PAGE_CLASS} open-positions-page`} data-testid="open-positions-page">
+    <div className={withSiteCloudTheme(JOIN_US_PAGE_CLASS, "open-positions-page")} data-testid="open-positions-page">
       <section className="open-positions-hero-band" aria-labelledby="open-positions-list-title">
         <Reveal className="open-positions-hero-inner">
           <p className="open-positions-kicker">Open Positions</p>

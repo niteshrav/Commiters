@@ -1,4 +1,5 @@
 export const TRUSTTAP_PAGE_CLASS = "trusttap-page" as const;
+export const TRUSTTAP_SECTION_SHELL_CLASS = "pt-16 pb-16 w-full" as const;
 
 export const TRUSTTAP_SECTION_CLASS = "trusttap-section" as const;
 export const TRUSTTAP_SECTION_INNER_CLASS = "trusttap-section-inner" as const;
@@ -14,6 +15,7 @@ export const TRUSTTAP_HERO_MEDIA_CLASS = "trusttap-hero-media" as const;
 export const TRUSTTAP_HERO_TITLE_ACCENT_CLASS = "trusttap-hero-title-accent" as const;
 export const TRUSTTAP_HERO_FOOTNOTE_CLASS = "trusttap-hero-footnote" as const;
 
+export const TRUSTTAP_OVERVIEW_ID = "product-overview" as const;
 export const TRUSTTAP_HERO_CLASS = "trusttap-hero" as const;
 export const TRUSTTAP_HERO_INNER_CLASS = "trusttap-hero-inner" as const;
 export const TRUSTTAP_HERO_TITLE_CLASS = "trusttap-hero-title" as const;
@@ -34,6 +36,10 @@ export const TRUSTTAP_PREVIEW_GRID_CLASS = "trusttap-preview-grid" as const;
 export const TRUSTTAP_PREVIEW_FRAME_CLASS = "trusttap-preview-frame" as const;
 
 export const TRUSTTAP_FAQ_LIST_CLASS = "trusttap-faq-list" as const;
+
+export const TRUSTTAP_PORTAL_BANNER_TESTID = "trusttap-portal-banner" as const;
+export const TRUSTTAP_PORTAL_BANNER_CLASS =
+  "bg-slate-900 text-white rounded-2xl p-8 flex flex-col md:flex-row justify-between items-center gap-6" as const;
 
 export const TRUSTTAP_BOTTOM_CTA_CLASS = "trusttap-bottom-cta" as const;
 export const TRUSTTAP_BOTTOM_CTA_INNER_CLASS = "trusttap-bottom-cta-inner" as const;

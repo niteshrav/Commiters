@@ -14,6 +14,12 @@ describe("AboutDeliveryJourneySection", () => {
     );
 
     expect(screen.getByTestId("about-journey-section")).toHaveClass(ABOUT_JOURNEY_SECTION_CLASS);
+    expect(screen.getByTestId("about-journey-section")).toHaveAttribute("id", "delivery-journey");
+    expect(screen.getByTestId("about-journey-section")).toHaveClass("pt-16", "pb-16", "w-full");
+    expect(screen.getByTestId("about-journey-section").className).not.toMatch(/scroll-mt-/);
+    expect(screen.getByTestId("about-journey-section")).not.toHaveAttribute("id", "how-we-work");
+    expect(document.getElementById("how-we-work")).toBeTruthy();
+    expect(document.getElementById("process")).toBeTruthy();
     expect(screen.getByRole("heading", { name: /From Idea to Production/i })).toBeInTheDocument();
     expect(screen.getByText(ABOUT_DELIVERY_JOURNEY.subtext)).toBeInTheDocument();
 

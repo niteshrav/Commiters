@@ -12,6 +12,7 @@ describe("siteMeta", () => {
   });
 
   it("uses a stable default document title for the home page", () => {
+    expect(DEFAULT_DOCUMENT_TITLE).toBe("Commiters — Enterprise AI & Cloud Systems");
     expect(DEFAULT_DOCUMENT_TITLE).toContain(SITE_NAME);
     expect(DEFAULT_DOCUMENT_TITLE.length).toBeGreaterThan(SITE_NAME.length);
   });

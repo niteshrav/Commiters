@@ -1,3 +1,4 @@
+import { HOME_LEAD_MAGNET_FORM_HREF } from "./homeLeadMagnetContent";
 import { ROUTES } from "./routes";
 
 export const OPSFLOW_DOCUMENT_TITLE = "OpsFlow AI: Automated Document Ingestion | Commiters" as const;
@@ -13,15 +14,17 @@ export const OPSFLOW_SEO = {
 } as const;
 
 export const OPSFLOW_HERO = {
-  eyebrow: "PROPRIETARY CLOUD PRODUCT",
+  eyebrow: "ENTERPRISE AI & CLOUD SYSTEMS",
   headline: "OpsFlow AI: Automated Document Ingestion",
   subheadline:
     "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and operational records.",
   tryFreeLabel: "Try Free Version",
   tryFreeHref: `#${OPSFLOW_SANDBOX_ANCHOR}`,
   demoLabel: "Request Enterprise Demo",
-  demoTo: ROUTES.contact,
+  demoTo: HOME_LEAD_MAGNET_FORM_HREF,
 } as const;
+
+export const OPSFLOW_FEATURES_HEADING = "Core Capabilities" as const;
 
 export const OPSFLOW_VALUE_CARDS = [
   {

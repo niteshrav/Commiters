@@ -17,7 +17,7 @@ import {
   NEARDROP_CASE_STUDY_TITLE_LEAD_CLASS,
   NEARDROP_CASE_STUDY_TITLE_TRAIL_CLASS,
 } from "../lib/neardropCaseStudyLayout";
-import { IconArrowRight, IconGitHub } from "./icons";
+import { IconGitHub } from "./icons";
 
 export default function NearDropCaseStudyIntroSection() {
   const { kicker, titleLead, titleAccent, titleTrail, description, heroImage, heroActions, introStack } =
@@ -53,7 +53,6 @@ export default function NearDropCaseStudyIntroSection() {
           <div className={NEARDROP_CASE_STUDY_INTRO_ACTIONS_CLASS}>
             <Link className="neardrop-case-study-intro-primary" to={heroActions.primaryTo}>
               {heroActions.primaryLabel}
-              <IconArrowRight width={16} height={16} />
             </Link>
             <a
               className="neardrop-case-study-intro-source"

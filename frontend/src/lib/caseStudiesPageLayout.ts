@@ -98,6 +98,7 @@ export const CASE_STUDIES_BOTTOM_CTA_SECTION_CLASS = "case-studies-bottom-cta" a
 export const CASE_STUDIES_BOTTOM_CTA_TITLE_CLASS = "case-studies-bottom-cta-title" as const;
 export const CASE_STUDIES_BOTTOM_CTA_SUBTEXT_CLASS = "case-studies-bottom-cta-subtext" as const;
 export const CASE_STUDIES_BOTTOM_CTA_ACTIONS_CLASS = "case-studies-bottom-cta-actions" as const;
+export const CASE_STUDIES_WORK_FINAL_CTA_ACTIONS_JUSTIFY = "flex-start" as const;
 export const CASE_STUDIES_BOTTOM_CTA_PRIMARY_CLASS = "case-studies-bottom-cta-btn--primary" as const;
 export const CASE_STUDIES_BOTTOM_CTA_SECONDARY_CLASS = "case-studies-bottom-cta-btn--secondary" as const;
 export const CASE_STUDIES_GRID_COLUMNS = "repeat(3, minmax(0, 1fr))";

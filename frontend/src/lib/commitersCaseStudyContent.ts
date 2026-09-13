@@ -1,6 +1,6 @@
 import type { TechLogoDef } from "./homeTechStack";
 import { HOME_HERO_OPS_FLOW_HREF } from "./homePageContent";
-import { ROUTES } from "./routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF } from "./routes";
 
 export type CommitersCaseStudyHighlight = {
   id: string;
@@ -84,9 +84,9 @@ export const COMMITERS_CASE_STUDY_COPY = {
   ] satisfies CommitersCaseStudyHighlight[],
   bottomCta: {
     title: "Ready to build your next breakthrough?",
-    subtext: "Book a 2-week AI Operational Audit to map bottlenecks and leave with a spec-driven architecture blueprint.",
+    subtext: "Book a 48-hour AI Operational Audit to map bottlenecks and leave with a spec-driven architecture blueprint.",
     primaryLabel: "Book Operational Audit",
-    primaryTo: ROUTES.aiOperationalAudit,
+    primaryTo: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
     secondaryLabel: "Try OpsFlow AI",
     secondaryTo: HOME_HERO_OPS_FLOW_HREF,
   },

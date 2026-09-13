@@ -38,17 +38,61 @@ describe("NextSaasCaseStudyPage", () => {
     );
 
     const introScopePipelines = within(intro).getByTestId("nextsaas-case-study-intro-scope-pipelines");
-    expect(introScopePipelines.querySelector(".nextsaas-case-study-scope-pipelines-grid")).toBeTruthy();
+    const cardsGrid = introScopePipelines.querySelector(".nextsaas-case-study-scope-pipelines-grid");
+    expect(cardsGrid).toBeTruthy();
+    expect(cardsGrid).toHaveClass("grid", "grid-cols-1", "md:grid-cols-2", "gap-6", "items-stretch");
     expect(within(introScopePipelines).getByRole("heading", { name: "Product scope" })).toBeInTheDocument();
     expect(within(introScopePipelines).getByText(NEXTSAAS_CASE_STUDY_COPY.scope.description)).toBeInTheDocument();
     expect(within(introScopePipelines).getByText("City-based package discovery")).toBeInTheDocument();
     expect(within(introScopePipelines).getByText("Customise & Quote journeys")).toBeInTheDocument();
     expect(within(introScopePipelines).getByText("Vacation Meter, MICE & admin")).toBeInTheDocument();
-    expect(introScopePipelines.querySelector(".nextsaas-case-study-scope-card")).toBeTruthy();
+    const scopeCard = introScopePipelines.querySelector(".nextsaas-case-study-scope-card");
+    const pipelinesCard = introScopePipelines.querySelector(".nextsaas-case-study-pipelines-card");
+    expect(scopeCard).toBeTruthy();
+    expect(pipelinesCard).toBeTruthy();
+    for (const card of [scopeCard, pipelinesCard]) {
+      expect(card).toHaveClass(
+        "bg-white",
+        "border",
+        "border-slate-200/80",
+        "rounded-2xl",
+        "p-6",
+        "shadow-sm",
+        "flex",
+        "flex-col",
+        "justify-between",
+        "h-full",
+      );
+    }
     expect(introScopePipelines.querySelector(".nextsaas-case-study-scope-icon")).toBeTruthy();
     expect(introScopePipelines.querySelectorAll(".nextsaas-case-study-scope-indicator")).toHaveLength(3);
     expect(within(introScopePipelines).getByRole("heading", { name: "Built for Rajasthan travelers" })).toBeInTheDocument();
     expect(within(introScopePipelines).getByText(/Curated experiences, no dates needed/i)).toBeInTheDocument();
+    const gallery = within(introScopePipelines).getByTestId("browse-my-vacation-gallery");
+    expect(gallery).toHaveClass("grid", "grid-cols-2", "gap-4", "mt-4");
+    const galleryTiles = within(gallery).getAllByTestId("browse-my-vacation-gallery-tile");
+    const galleryImages = within(gallery).getAllByRole("img");
+    const gallerySrcs = galleryImages.map((image) => image.getAttribute("src"));
+    expect(gallerySrcs).toEqual([...new Set(gallerySrcs)]);
+    expect(gallerySrcs).not.toContain("/assets/case-studies/browse-my-vacation-hero.png");
+    expect(galleryTiles).toHaveLength(2);
+    expect(galleryImages).toHaveLength(2);
+    expect(galleryTiles).toHaveLength(galleryImages.length);
+    for (const tile of galleryTiles) {
+      expect(tile).toHaveClass("min-w-0", "overflow-hidden");
+    }
+    for (const image of galleryImages) {
+      expect(image).toHaveClass(
+        "w-full",
+        "h-48",
+        "object-cover",
+        "rounded-lg",
+        "shadow-sm",
+        "hover:shadow-md",
+        "transition-shadow",
+      );
+      expect(image).not.toHaveClass("h-64");
+    }
     expect(within(introScopePipelines).getByRole("img", { name: NEXTSAAS_CASE_STUDY_COPY.introHeroImage.alt })).toHaveAttribute(
       "src",
       NEXTSAAS_CASE_STUDY_COPY.introHeroImage.src,

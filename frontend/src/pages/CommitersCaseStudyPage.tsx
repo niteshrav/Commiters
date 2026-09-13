@@ -5,13 +5,14 @@ import CommitersCaseStudyIntroSection from "../components/CommitersCaseStudyIntr
 import CommitersCaseStudyOverviewSection from "../components/CommitersCaseStudyOverviewSection";
 import { usePageSeo } from "../hooks/usePageSeo";
 import { COMMITERS_CASE_STUDY_PAGE_CLASS } from "../lib/commitersCaseStudyLayout";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { commitersCaseStudyPageSeo } from "../lib/sitePageSeo";
 
 export default function CommitersCaseStudyPage() {
   usePageSeo(commitersCaseStudyPageSeo());
 
   return (
-    <div className={COMMITERS_CASE_STUDY_PAGE_CLASS} data-testid="commiters-case-study-page">
+    <div className={withSiteCloudTheme(COMMITERS_CASE_STUDY_PAGE_CLASS)} data-testid="commiters-case-study-page">
       <CommitersCaseStudyIntroSection />
       <CommitersCaseStudyOverviewSection />
       <CommitersCaseStudyArchitectureSection />

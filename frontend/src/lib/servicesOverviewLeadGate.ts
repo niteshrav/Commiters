@@ -1,3 +1,4 @@
+import { AI_OPERATIONAL_AUDIT_FORM } from "./aiOperationalAuditPageContent";
 import { validateAiOperationalAuditEmail } from "./aiOperationalAuditLeadGate";
 import { sanitizeNameInput, validateName } from "./contactValidation";
 import {
@@ -51,7 +52,10 @@ export function validateServicesOverviewLead(input: {
       interest: input.interest,
       details,
       serviceNeeded: input.interest,
-      timeline: input.interest === "AI Operational Audit (2-Week Blueprint)" ? "2-week diagnostic" : "To be scoped",
+      timeline:
+        input.interest === SERVICES_OVERVIEW_INQUIRY_INTERESTS[0]
+          ? AI_OPERATIONAL_AUDIT_FORM.timeline
+          : "To be scoped",
     },
   };
 }

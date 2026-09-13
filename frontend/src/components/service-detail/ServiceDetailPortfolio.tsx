@@ -20,7 +20,7 @@ export default function ServiceDetailPortfolio({ service }: Props) {
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <span className="svc-detail-portfolio-link">
-                  View project {project.external ? <IconExternalLink width={16} height={16} aria-hidden /> : "→"}
+                  View project {project.external ? <IconExternalLink width={16} height={16} aria-hidden /> : null}
                 </span>
               </>
             );

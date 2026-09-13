@@ -1,7 +1,8 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./components/Layout";
 import { ROUTES } from "./lib/routes";
+import { buildServiceDetailPath } from "./lib/services";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
@@ -37,19 +38,30 @@ import WebApplicationsPage from "./pages/WebApplicationsPage";
 import WorkflowAutomationPage from "./pages/WorkflowAutomationPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
+function RedirectPreserveHash({ to }: { to: string }) {
+  const location = useLocation();
+  return <Navigate to={{ pathname: to, search: location.search, hash: location.hash }} replace />;
+}
+
 export default function App() {
   return (
     <Layout>
       <Routes>
         <Route path={ROUTES.home} element={<HomePage />} />
         <Route path={ROUTES.services} element={<ServicesPage />} />
+        <Route path={ROUTES.audit} element={<Navigate to={ROUTES.aiOperationalAudit} replace />} />
         <Route path={ROUTES.aiOperationalAudit} element={<AiOperationalAuditPage />} />
         <Route path={ROUTES.aiSolutions} element={<AiSolutionsPage />} />
         <Route path={ROUTES.webApplications} element={<WebApplicationsPage />} />
+        <Route path={ROUTES.aiSolutionsShort} element={<Navigate to={ROUTES.aiSolutions} replace />} />
+        <Route path={ROUTES.webApplicationsShort} element={<Navigate to={ROUTES.webApplications} replace />} />
         <Route path={ROUTES.aiSolutionsLegacy} element={<Navigate to={ROUTES.aiSolutions} replace />} />
         <Route path={ROUTES.aiSolutionsPipelineLegacy} element={<Navigate to={ROUTES.aiSolutions} replace />} />
         <Route path={ROUTES.webApplicationsLegacy} element={<Navigate to={ROUTES.webApplications} replace />} />
-        <Route path={ROUTES.webApplicationsB2bLegacy} element={<Navigate to={ROUTES.webApplications} replace />} />
+        <Route
+          path={ROUTES.webApplicationsB2bLegacy}
+          element={<Navigate to={buildServiceDetailPath("web-application-development")} replace />}
+        />
         <Route path={ROUTES.workflowAutomation} element={<WorkflowAutomationPage />} />
         <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
         <Route path={ROUTES.caseStudies} element={<CaseStudiesPage />} />
@@ -70,10 +82,10 @@ export default function App() {
         <Route path={ROUTES.browseMyVacationCaseStudyLegacy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.nextsaasCaseStudy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.trustTap} element={<TrustTapPage />} />
-        <Route path={ROUTES.trustTapShort} element={<Navigate to={ROUTES.trustTap} replace />} />
+        <Route path={ROUTES.trustTapShort} element={<RedirectPreserveHash to={ROUTES.trustTap} />} />
         <Route path={ROUTES.opsFlow} element={<OpsFlowPage />} />
         <Route path={ROUTES.opsFlowPlayground} element={<OpsFlowPage />} />
-        <Route path={ROUTES.opsFlowAi} element={<Navigate to={ROUTES.opsFlowPlayground} replace />} />
+        <Route path={ROUTES.opsFlowAi} element={<RedirectPreserveHash to={ROUTES.opsFlowPlayground} />} />
         <Route path={ROUTES.utilities} element={<UtilitiesPage />} />
         <Route path={ROUTES.websiteDevelopmentUdaipur} element={<WebsiteDevelopmentUdaipurPage />} />
         <Route path={ROUTES.whatsappAutomationUdaipur} element={<WhatsAppAutomationUdaipurPage />} />
@@ -81,6 +93,7 @@ export default function App() {
         <Route path={ROUTES.faq} element={<FaqPage />} />
         <Route path={ROUTES.testimonials} element={<TestimonialsPage />} />
         <Route path={ROUTES.joinUs} element={<JoinUsPage />} />
+        <Route path={ROUTES.jobs} element={<Navigate to={ROUTES.openPositions} replace />} />
         <Route path={ROUTES.openPositions} element={<OpenPositionsPage />} />
         <Route path={ROUTES.openPositionDetail} element={<JobDetailPage />} />
         <Route path={ROUTES.openPositionsLegacy} element={<Navigate to={ROUTES.openPositions} replace />} />

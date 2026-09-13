@@ -10,7 +10,6 @@ import {
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS,
   NEXTSAAS_CASE_STUDY_BOTTOM_CTA_TITLE_CLASS,
 } from "../lib/nextsaasCaseStudyLayout";
-import { IconArrowRight } from "./icons";
 
 export default function NextSaasCaseStudyBottomCta() {
   const { bottomCta } = NEXTSAAS_CASE_STUDY_COPY;
@@ -32,7 +31,6 @@ export default function NextSaasCaseStudyBottomCta() {
             to={bottomCta.primaryTo}
           >
             {bottomCta.primaryLabel}
-            <IconArrowRight width={18} height={18} />
           </Link>
           {"secondaryHref" in bottomCta && bottomCta.secondaryHref ? (
             <a

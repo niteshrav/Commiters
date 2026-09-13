@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { createLead } from "../lib/api";
 import {
   HOME_LEAD_MAGNET_COPY,
+  HOME_LEAD_MAGNET_FORM_ID,
   HOME_LEAD_MAGNET_LAYOUT,
   HOME_LEAD_MAGNET_SECTION_ID,
   HOME_LEAD_MAGNET_TEST_ID,
@@ -10,7 +11,6 @@ import {
 } from "../lib/homeLeadMagnetContent";
 import { validateHomeLeadMagnetEmail } from "../lib/homeLeadMagnetLeadGate";
 import {
-  IconArrowRight,
   IconBolt,
   IconChartLine,
   IconClock,
@@ -100,9 +100,8 @@ export default function HomeLeadMagnetSection() {
           <div className="home-lead-magnet-actions" data-testid="home-lead-magnet-actions">
             <Link className="btn btn-primary home-lead-magnet-primary" to={HOME_LEAD_MAGNET_COPY.ctaPrimaryTo}>
               {HOME_LEAD_MAGNET_COPY.ctaPrimary}
-              <IconArrowRight width={18} height={18} aria-hidden />
             </Link>
-            <a className="btn btn-secondary home-lead-magnet-secondary" href="#home-lead-magnet-card">
+            <a className="btn btn-secondary home-lead-magnet-secondary" href={`#${HOME_LEAD_MAGNET_FORM_ID}`}>
               {HOME_LEAD_MAGNET_COPY.ctaDemo}
             </a>
           </div>
@@ -128,7 +127,6 @@ export default function HomeLeadMagnetSection() {
             <p className="home-lead-magnet-upload-subtitle">{visual.uploadSubtitle}</p>
             <Link className="btn btn-primary home-lead-magnet-upload-cta" to={HOME_LEAD_MAGNET_COPY.ctaPrimaryTo}>
               {visual.uploadCta}
-              <IconArrowRight width={16} height={16} aria-hidden />
             </Link>
             <p className="home-lead-magnet-upload-note">{visual.uploadNote}</p>
           </div>
@@ -144,8 +142,8 @@ export default function HomeLeadMagnetSection() {
 
       <div
         className={HOME_LEAD_MAGNET_LAYOUT.formCardClass}
-        id="home-lead-magnet-card"
-        data-testid="home-lead-magnet-card"
+        id={HOME_LEAD_MAGNET_FORM_ID}
+        data-testid={HOME_LEAD_MAGNET_FORM_ID}
       >
         {submitted ? (
           <div className="home-lead-magnet-success" role="status">

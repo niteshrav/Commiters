@@ -4,6 +4,7 @@ import MultiRoleCrmCaseStudyImpactSection from "../components/MultiRoleCrmCaseSt
 import MultiRoleCrmCaseStudyIntroSection from "../components/MultiRoleCrmCaseStudyIntroSection";
 import MultiRoleCrmCaseStudyVisionSection from "../components/MultiRoleCrmCaseStudyVisionSection";
 import { usePageSeo } from "../hooks/usePageSeo";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { MULTI_ROLE_CRM_CASE_STUDY_PAGE_CLASS } from "../lib/multiRoleCrmCaseStudyLayout";
 import { multiRoleCrmCaseStudyPageSeo } from "../lib/sitePageSeo";
 
@@ -11,7 +12,7 @@ export default function MultiRoleCrmCaseStudyPage() {
   usePageSeo(multiRoleCrmCaseStudyPageSeo());
 
   return (
-    <div className={MULTI_ROLE_CRM_CASE_STUDY_PAGE_CLASS} data-testid="multi-role-crm-case-study-page">
+    <div className={withSiteCloudTheme(MULTI_ROLE_CRM_CASE_STUDY_PAGE_CLASS)} data-testid="multi-role-crm-case-study-page">
       <MultiRoleCrmCaseStudyIntroSection />
       <MultiRoleCrmCaseStudyVisionSection />
       <MultiRoleCrmCaseStudyArchitectureSection />

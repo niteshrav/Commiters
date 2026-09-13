@@ -3,10 +3,10 @@ import {
   COMMITERS_HEADER_LOGO_INTRINSIC_WIDTH_PX,
 } from "./siteBrand";
 
-/** Header logo — 48px so the sticky bar reads a bit taller. */
+/** Header logo — 48px (h-12) so the lockup stays sharp in the sticky bar. */
 export const BRAND_LOGO_HEADER_HEIGHT_PX = 48;
-/** Footer / primary mark — slightly taller than the header lockup. */
-export const BRAND_LOGO_FOOTER_HEIGHT_PX = 56;
+/** Footer lockup matches the header at 48px (h-12). */
+export const BRAND_LOGO_FOOTER_HEIGHT_PX = 48;
 export const BRAND_LOGO_HEADER_MAX_HEIGHT_PX = 48;
 
 export function brandLogoWidthPx(heightPx: number): number {

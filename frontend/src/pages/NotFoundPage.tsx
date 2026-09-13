@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PageHeroImmersive from "../components/PageHeroImmersive";
 import SectionFigure from "../components/SectionFigure";
 import { usePageSeo } from "../hooks/usePageSeo";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { ROUTES } from "../lib/routes";
 import { notFoundPageSeo } from "../lib/sitePageSeo";
 
@@ -10,7 +11,7 @@ export default function NotFoundPage() {
   usePageSeo(notFoundPageSeo());
 
   return (
-    <>
+    <div className={withSiteCloudTheme("not-found-page")} data-testid="not-found-page">
       <PageHeroImmersive centered>
         <h1 className="hero-title typography-display">Page Not Found</h1>
         <p className="muted hero-subtext--premium">
@@ -25,6 +26,6 @@ export default function NotFoundPage() {
       <div className="section-figure-host section-figure-host--tight not-found-circuit">
         <SectionFigure pattern="constellation" />
       </div>
-    </>
+    </div>
   );
 }

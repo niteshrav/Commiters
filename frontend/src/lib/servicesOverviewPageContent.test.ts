@@ -6,8 +6,7 @@ import {
   SERVICES_OVERVIEW_CAPABILITIES_TITLE,
   SERVICES_OVERVIEW_HERO,
   SERVICES_OVERVIEW_INQUIRY,
-  SERVICES_OVERVIEW_INQUIRY_ANCHOR,
-  SERVICES_OVERVIEW_PRODUCTS_ANCHOR,
+  SERVICES_OVERVIEW_OFFERINGS_ANCHOR,
   SERVICES_OVERVIEW_INQUIRY_INTERESTS,
   SERVICES_OVERVIEW_LEGACY_TITLES,
   SERVICES_OVERVIEW_OFFERINGS,
@@ -23,15 +22,15 @@ import {
 
 describe("servicesOverviewPageContent", () => {
   it("positions the services hero around enterprise AI products and cloud-native systems", () => {
-    expect(SERVICES_OVERVIEW_HERO.kicker).toBe("AN AI & CLOUD PRODUCT & ENGINEERING FIRM");
+    expect(SERVICES_OVERVIEW_HERO.kicker).toBe("ENTERPRISE AI & CLOUD SYSTEMS");
     expect(SERVICES_OVERVIEW_HERO.title).toBe("Enterprise AI Products & Cloud-Native Web Systems");
     expect(SERVICES_OVERVIEW_HERO.subtitle).toBe(
       "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
     );
     expect(SERVICES_OVERVIEW_HERO.productsCtaLabel).toBe("Explore AI Products");
-    expect(SERVICES_OVERVIEW_HERO.productsCtaTo).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_PRODUCTS_ANCHOR}`);
+    expect(SERVICES_OVERVIEW_HERO.productsCtaTo).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_OFFERINGS_ANCHOR}`);
     expect(SERVICES_OVERVIEW_HERO.auditCtaLabel).toBe("Book Operational Audit");
-    expect(SERVICES_OVERVIEW_HERO.auditCtaTo).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`);
+    expect(SERVICES_OVERVIEW_HERO.auditCtaTo).toBe(ROUTES.audit);
     expect(SERVICES_OVERVIEW_SEO.path).toBe(ROUTES.services);
     expect(SERVICES_OVERVIEW_SEO.description).toMatch(/enterprise AI products/i);
   });
@@ -43,7 +42,7 @@ describe("servicesOverviewPageContent", () => {
       {
         title: "AI Operational Audits",
         description:
-          "2-week workflow diagnostics, spreadsheet bottleneck elimination, and live working cloud automation blueprints.",
+          "48-hour workflow diagnostics, spreadsheet bottleneck elimination, and live working cloud automation blueprints.",
         ctaLabel: "View Audit Details",
       },
       {
@@ -55,20 +54,21 @@ describe("servicesOverviewPageContent", () => {
       {
         title: "Spec-Driven Full-Stack Platforms",
         description:
-          "Scalable operational portals, SaaS systems, and custom web apps built on Vite, Express, React, and MongoDB.",
+          "Scalable operational portals, SaaS systems, and custom web apps built on Vite, Express, React, and PostgreSQL/MongoDB.",
         ctaLabel: "View Platform Services",
       },
     ]);
     expect(SERVICES_OVERVIEW_OFFERINGS[0]?.featured).toBe(true);
+    expect(SERVICES_OVERVIEW_OFFERINGS[0]?.tag).toBe("48-HOUR ENGAGEMENT");
     expect(SERVICES_OVERVIEW_OFFERINGS.map((card) => card.to)).toEqual([
-      ROUTES.aiOperationalAudit,
-      ROUTES.aiSolutions,
-      ROUTES.webApplications,
+      ROUTES.audit,
+      ROUTES.aiSolutionsShort,
+      ROUTES.webApplicationsShort,
     ]);
   });
 
-  it("defines the Committers Way engineering and governance standards grid", () => {
-    expect(SERVICES_OVERVIEW_STANDARDS_TITLE).toBe("THE COMMITTERS WAY: ENGINEERING & GOVERNANCE STANDARDS");
+  it("defines the Commiters Way engineering and governance standards grid", () => {
+    expect(SERVICES_OVERVIEW_STANDARDS_TITLE).toBe("THE COMMITERS WAY: ENGINEERING & GOVERNANCE STANDARDS");
     expect(SERVICES_OVERVIEW_STANDARDS_SUBTITLE).toBe(
       "Every application and AI pipeline we deliver is built on a secure, policy-gated architecture.",
     );
@@ -103,29 +103,35 @@ describe("servicesOverviewPageContent", () => {
     expect(SERVICES_OVERVIEW_CAPABILITIES_SUBTEXT).toBe(
       "Comprehensive software development backed by automated workflows and cloud-native architecture.",
     );
-    expect(SERVICES_OVERVIEW_CAPABILITIES.map((card) => ({ title: card.title, badge: card.badge, to: card.to }))).toEqual([
-      {
-        title: "Automated E-commerce Systems",
-        badge: "E-Commerce & Portals",
-        to: "/services/e-commerce-development",
-      },
+    expect(SERVICES_OVERVIEW_CAPABILITIES.map((card) => ({ title: card.title, badge: card.badge, to: card.to, id: card.id }))).toEqual([
       {
         title: "High-Performance Web Platforms",
         badge: "Web Engineering",
         to: "/services/website-development",
+        id: "web-engineering",
       },
       {
-        title: "Cross-Platform Mobile Applications",
-        badge: "Mobile Engineering",
-        to: "/services/mobile-app-development",
+        title: "Automated E-commerce Systems",
+        badge: "E-Commerce & Portals",
+        to: "/services/e-commerce-development",
+        id: "ecommerce",
       },
       {
         title: "Rapid SaaS MVP Development",
         badge: "SaaS & MVPs",
         to: "/services/mvp-development",
+        id: "saas-mvp",
+      },
+      {
+        title: "Cross-Platform Mobile Applications",
+        badge: "Mobile Engineering",
+        to: "/services/mobile-app-development",
+        id: "mobile",
       },
     ]);
-    expect(SERVICES_OVERVIEW_CAPABILITIES[0]?.subtext).toMatch(/GST invoice pipelines/);
+    expect(SERVICES_OVERVIEW_CAPABILITIES[0]?.subtext).toMatch(/Tailwind CSS/);
+    expect(SERVICES_OVERVIEW_CAPABILITIES[1]?.subtext).toMatch(/GST invoice pipelines/);
+    expect(SERVICES_OVERVIEW_CAPABILITIES.some((card) => /trusttap|opsflow/i.test(card.title))).toBe(false);
   });
 
   it("showcases OpsFlow AI and trustTap as live products", () => {
@@ -135,24 +141,26 @@ describe("servicesOverviewPageContent", () => {
         id: "opsflow-ai",
         title: "OpsFlow AI",
         description: "PDF-to-Excel document extraction for invoices, receipts, and operational PDFs.",
-        to: ROUTES.opsFlowPlayground,
+        to: ROUTES.opsFlowAi,
         ctaLabel: "Open OpsFlow AI",
       },
       {
         id: "trusttap",
         title: "trustTap",
-        description: "NFC/QR ground verification and field inspection tracking.",
-        to: ROUTES.trustTap,
+        description:
+          "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
+        to: ROUTES.trustTapShort,
         ctaLabel: "Open trustTap",
       },
     ]);
   });
 
-  it("offers a four-track inquiry defaulting to the 2-week AI operational audit", () => {
+  it("offers a four-track inquiry defaulting to the 48-hour AI operational audit", () => {
     expect(SERVICES_OVERVIEW_INQUIRY.title).toMatch(/scoping/i);
+    expect(SERVICES_OVERVIEW_INQUIRY.subtext).toMatch(/48-hour AI Operational Audit/);
     expect(SERVICES_OVERVIEW_INQUIRY.interestLabel).toBe("What should we scope?");
     expect([...SERVICES_OVERVIEW_INQUIRY_INTERESTS]).toEqual([
-      "AI Operational Audit (2-Week Blueprint)",
+      "AI Operational Audit (48-Hour Blueprint)",
       "Governed AI & Workflow Systems",
       "Spec-Driven Full-Stack Platforms",
       "Custom Cloud Enterprise Software / Utilities",

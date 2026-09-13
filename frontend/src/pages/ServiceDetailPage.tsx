@@ -9,6 +9,7 @@ import {
   ServiceDetailTechnologies,
 } from "../components/service-detail/ServiceDetailSections";
 import { usePageSeo, SITE_ORIGIN } from "../hooks/usePageSeo";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { buildServiceDetailPath, getServiceBySlug } from "../lib/services";
 import { ROUTES } from "../lib/routes";
 import { SITE_SEO_KEYWORDS } from "../lib/siteSeo";
@@ -48,7 +49,7 @@ export default function ServiceDetailPage() {
   }
 
   return (
-    <div className="service-detail-page" data-testid="service-detail-page" data-service-slug={service.slug}>
+    <div className={withSiteCloudTheme("service-detail-page")} data-testid="service-detail-page" data-service-slug={service.slug}>
       <ServiceDetailHero service={service} />
       <ServiceDetailAbout service={service} />
       <ServiceDetailFeatures service={service} />

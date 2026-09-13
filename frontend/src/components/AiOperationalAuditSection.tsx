@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import BrandHeroEyebrow from "./BrandHeroEyebrow";
 import { createLead } from "../lib/api";
 import { validateAiOperationalAuditLead } from "../lib/aiOperationalAuditLeadGate";
 import { AI_OPERATIONAL_AUDIT_DISPLAY } from "../lib/aiOperationalAuditPageDesign";
@@ -18,7 +19,6 @@ import {
   AUDIT_CARD_CLASS,
   AUDIT_CARDS_CLASS,
   AUDIT_ENGAGE_CLASS,
-  AUDIT_EYEBROW_CLASS,
   AUDIT_FIELD_CLASS,
   AUDIT_FORM_CLASS,
   AUDIT_GOVERNANCE_CLASS,
@@ -35,7 +35,7 @@ import {
 } from "../lib/aiOperationalAuditPageLayout";
 import { sanitizeNameInput } from "../lib/contactValidation";
 import { FROSTED_GLASS_CLASS_NAME } from "../lib/frostedGlass";
-import { ROUTES } from "../lib/routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR, ROUTES } from "../lib/routes";
 import {
   IconBolt,
   IconChartLine,
@@ -137,16 +137,15 @@ export default function AiOperationalAuditSection() {
       <div className={AUDIT_INNER_CLASS}>
         <div className={AUDIT_HERO_CLASS}>
           <div className={AUDIT_HERO_COPY_CLASS}>
-            <p className={AUDIT_EYEBROW_CLASS}>{AI_OPERATIONAL_AUDIT_HERO.eyebrow}</p>
+            <BrandHeroEyebrow text={AI_OPERATIONAL_AUDIT_HERO.eyebrow} />
             <h1 className={AUDIT_HEADLINE_CLASS}>
               {AI_OPERATIONAL_AUDIT_DISPLAY.headlineLead}{" "}
               <span className="audit-headline-accent">{AI_OPERATIONAL_AUDIT_DISPLAY.headlineAccent}</span>
             </h1>
             <p className="audit-tagline">{AI_OPERATIONAL_AUDIT_DISPLAY.tagline}</p>
             <p className={AUDIT_SUBHEAD_CLASS}>{AI_OPERATIONAL_AUDIT_HERO.subheadline}</p>
-            <a className="btn btn-primary audit-hero-cta" href="#audit-booking">
+            <a className="btn btn-primary audit-hero-cta" href={`#${AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR}`}>
               {AI_OPERATIONAL_AUDIT_CTA_LABEL}
-              <span aria-hidden="true"> {AI_OPERATIONAL_AUDIT_DISPLAY.ctaArrow}</span>
             </a>
             <ul className={AUDIT_HERO_CHIPS_CLASS}>
               {AI_OPERATIONAL_AUDIT_DISPLAY.chips.map((chip) => (
@@ -183,8 +182,8 @@ export default function AiOperationalAuditSection() {
             {AI_OPERATIONAL_AUDIT_PROCESS.map((step) => (
               <li key={step.id} className={`audit-timeline-step ${FROSTED_GLASS_CLASS_NAME}`}>
                 <span className="audit-timeline-week">{step.week}</span>
-                <p>{step.body}</p>
-                <span className="audit-timeline-note">{AI_OPERATIONAL_AUDIT_DISPLAY.processNotes[step.id]}</span>
+                <h3>{step.title}</h3>
+                <p className="audit-timeline-note">{step.body}</p>
               </li>
             ))}
           </ol>
@@ -205,12 +204,28 @@ export default function AiOperationalAuditSection() {
 
         <aside className={`${AUDIT_PRICING_CLASS} ${FROSTED_GLASS_CLASS_NAME}`} data-testid="audit-pricing">
           <h2>{AI_OPERATIONAL_AUDIT_PRICING.title}</h2>
-          <p className="audit-pricing-engagement">{AI_OPERATIONAL_AUDIT_PRICING.engagement}</p>
-          <p className="audit-pricing-range">
+          <div className="audit-pricing-markets">
+            <p className="audit-pricing-market">
+              <span className="audit-pricing-market-label">{AI_OPERATIONAL_AUDIT_PRICING.indiaLabel}</span>
+              <strong className="audit-pricing-market-price">{AI_OPERATIONAL_AUDIT_PRICING.indiaPrice}</strong>
+            </p>
+            <p className="audit-pricing-market">
+              <span className="audit-pricing-market-label">{AI_OPERATIONAL_AUDIT_PRICING.internationalLabel}</span>
+              <strong className="audit-pricing-market-price">{AI_OPERATIONAL_AUDIT_PRICING.internationalPrice}</strong>
+            </p>
+          </div>
+          <p className="audit-pricing-badge">
             <IconLock width={18} height={18} aria-hidden />
-            {AI_OPERATIONAL_AUDIT_PRICING.range}
+            {AI_OPERATIONAL_AUDIT_PRICING.badge}
           </p>
-          <p>{AI_OPERATIONAL_AUDIT_PRICING.summary}</p>
+          <ul className="audit-pricing-features">
+            {AI_OPERATIONAL_AUDIT_PRICING.features.map((feature) => (
+              <li key={feature}>
+                <IconCheckCircle width={16} height={16} aria-hidden />
+                {feature}
+              </li>
+            ))}
+          </ul>
         </aside>
 
         <div className={AUDIT_ENGAGE_CLASS}>
@@ -232,7 +247,7 @@ export default function AiOperationalAuditSection() {
             </div>
           </div>
           <form
-            id="audit-booking"
+            id={AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR}
             className={`${AUDIT_FORM_CLASS} ${FROSTED_GLASS_CLASS_NAME}`}
             onSubmit={onSubmit}
             aria-label="AI Operational Audit booking"
@@ -240,7 +255,13 @@ export default function AiOperationalAuditSection() {
           >
             <div className={AUDIT_FIELD_CLASS}>
               <label htmlFor="audit-scope">{AI_OPERATIONAL_AUDIT_FORM.scopeLabel}</label>
-              <input id="audit-scope" value={AI_OPERATIONAL_AUDIT_FORM.serviceNeeded} readOnly />
+              <select id="audit-scope" defaultValue={AI_OPERATIONAL_AUDIT_FORM.serviceNeeded} required>
+                {AI_OPERATIONAL_AUDIT_FORM.scopeOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className={AUDIT_FIELD_CLASS}>
               <label htmlFor="audit-name">{AI_OPERATIONAL_AUDIT_FORM.nameLabel}</label>

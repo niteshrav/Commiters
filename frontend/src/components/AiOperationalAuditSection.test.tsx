@@ -16,7 +16,7 @@ import {
   AI_OPERATIONAL_AUDIT_PROCESS_TITLE,
 } from "../lib/aiOperationalAuditPageContent";
 import { FROSTED_GLASS_CLASSES } from "../lib/frostedGlass";
-import { ROUTES } from "../lib/routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR, ROUTES } from "../lib/routes";
 
 const createLead = vi.fn();
 const navigate = vi.fn();
@@ -40,7 +40,7 @@ describe("AiOperationalAuditSection", () => {
     navigate.mockReset();
   });
 
-  it("renders hero, diagnose grid, 14-day timeline, governance banner, and booking form", () => {
+  it("renders hero, diagnose grid, 48-hour timeline, deductible pricing, and booking form", () => {
     render(
       <MemoryRouter>
         <AiOperationalAuditSection />
@@ -51,13 +51,24 @@ describe("AiOperationalAuditSection", () => {
     expect(screen.getByText(AI_OPERATIONAL_AUDIT_HERO.eyebrow)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_HERO.headline, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(AI_OPERATIONAL_AUDIT_HERO.subheadline)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: AI_OPERATIONAL_AUDIT_CTA_LABEL })).toHaveAttribute("href", "#audit-booking");
+    expect(screen.getByRole("link", { name: AI_OPERATIONAL_AUDIT_CTA_LABEL })).toHaveAttribute(
+      "href",
+      `#${AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR}`,
+    );
+    expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_FORM.title, level: 2 })).toBeInTheDocument();
+    expect(document.getElementById(AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR)).toBeTruthy();
 
     const pricing = screen.getByTestId("audit-pricing");
     expect(pricing).toHaveClass(...FROSTED_GLASS_CLASSES);
     expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_PRICING.title, level: 2 })).toBeInTheDocument();
-    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.range);
-    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.summary);
+    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.indiaLabel);
+    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.indiaPrice);
+    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.internationalLabel);
+    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.internationalPrice);
+    expect(pricing).toHaveTextContent(AI_OPERATIONAL_AUDIT_PRICING.badge);
+    for (const feature of AI_OPERATIONAL_AUDIT_PRICING.features) {
+      expect(pricing).toHaveTextContent(feature);
+    }
 
     expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_DIAGNOSE_TITLE, level: 2 })).toBeInTheDocument();
     for (const card of AI_OPERATIONAL_AUDIT_DIAGNOSE) {
@@ -69,6 +80,7 @@ describe("AiOperationalAuditSection", () => {
     expect(screen.getByRole("heading", { name: AI_OPERATIONAL_AUDIT_PROCESS_TITLE, level: 2 })).toBeInTheDocument();
     for (const step of AI_OPERATIONAL_AUDIT_PROCESS) {
       expect(screen.getByText(step.week)).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: step.title, level: 3 })).toBeInTheDocument();
       expect(screen.getByText(step.body)).toBeInTheDocument();
     }
 
@@ -79,7 +91,8 @@ describe("AiOperationalAuditSection", () => {
 
     const scope = screen.getByLabelText(AI_OPERATIONAL_AUDIT_FORM.scopeLabel);
     expect(scope).toHaveValue(AI_OPERATIONAL_AUDIT_FORM.serviceNeeded);
-    expect(scope).toHaveAttribute("readonly");
+    expect(scope.tagName).toBe("SELECT");
+    expect(screen.getByRole("option", { name: AI_OPERATIONAL_AUDIT_FORM.serviceNeeded, selected: true })).toBeInTheDocument();
     expect(screen.getByLabelText(AI_OPERATIONAL_AUDIT_FORM.nameLabel)).toBeRequired();
     expect(screen.getByLabelText(AI_OPERATIONAL_AUDIT_FORM.emailLabel)).toHaveAttribute(
       "placeholder",
@@ -128,9 +141,9 @@ describe("AiOperationalAuditSection", () => {
     expect(createLead).toHaveBeenCalledWith({
       name: "Nitesh Rav",
       email: "hello@commiters.com",
-      serviceNeeded: "AI Operational Audit (2-Week Blueprint)",
+      serviceNeeded: AI_OPERATIONAL_AUDIT_FORM.serviceNeeded,
       budgetRange: AI_OPERATIONAL_AUDIT_FORM.budgetRange,
-      timeline: "2-week diagnostic",
+      timeline: AI_OPERATIONAL_AUDIT_FORM.timeline,
       message: expect.stringContaining("GST invoice matching across three spreadsheets."),
     });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });

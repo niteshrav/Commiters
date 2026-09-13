@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createLead } from "../lib/api";
 import { sanitizeNameInput } from "../lib/contactValidation";
 import { ROUTES } from "../lib/routes";
+import { serviceCardImageForGridId } from "../lib/serviceCardImages";
 import { validateWorkflowAutomationLead } from "../lib/workflowAutomationLeadGate";
 import {
   WORKFLOW_AUTOMATION_CTA_LABEL,
@@ -18,6 +19,9 @@ import {
   WFLOW_FORM_CLASS,
   WFLOW_HEADLINE_CLASS,
   WFLOW_HERO_CLASS,
+  WFLOW_HERO_COPY_CLASS,
+  WFLOW_HERO_IMAGE_CLASS,
+  WFLOW_HERO_VISUAL_CLASS,
   WFLOW_INNER_CLASS,
   WFLOW_PIPELINE_CLASS,
   WFLOW_SECTION_CLASS,
@@ -63,16 +67,29 @@ export default function WorkflowAutomationSection() {
     }
   }
 
+  const heroImage = serviceCardImageForGridId("automation-tools", WORKFLOW_AUTOMATION_HERO.headline);
+
   return (
     <section className={WFLOW_SECTION_CLASS} data-testid="workflow-automation-section">
       <div className={WFLOW_INNER_CLASS}>
         <div className={WFLOW_HERO_CLASS}>
-          <p className={WFLOW_EYEBROW_CLASS}>{WORKFLOW_AUTOMATION_HERO.eyebrow}</p>
-          <h1 className={WFLOW_HEADLINE_CLASS}>{WORKFLOW_AUTOMATION_HERO.headline}</h1>
-          <p className={WFLOW_SUBHEAD_CLASS}>{WORKFLOW_AUTOMATION_HERO.subheadline}</p>
-          <a className="btn btn-primary wflow-hero-cta" href="#workflow-audit">
-            {WORKFLOW_AUTOMATION_CTA_LABEL}
-          </a>
+          <div className={WFLOW_HERO_COPY_CLASS}>
+            <p className={WFLOW_EYEBROW_CLASS}>{WORKFLOW_AUTOMATION_HERO.eyebrow}</p>
+            <h1 className={WFLOW_HEADLINE_CLASS}>{WORKFLOW_AUTOMATION_HERO.headline}</h1>
+            <p className={WFLOW_SUBHEAD_CLASS}>{WORKFLOW_AUTOMATION_HERO.subheadline}</p>
+            <a className="btn btn-primary wflow-hero-cta" href="#workflow-audit">
+              {WORKFLOW_AUTOMATION_CTA_LABEL}
+            </a>
+          </div>
+          <div className={WFLOW_HERO_VISUAL_CLASS}>
+            <img
+              className={WFLOW_HERO_IMAGE_CLASS}
+              src={heroImage.src}
+              alt={heroImage.alt}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
         </div>
 
         <ul className={WFLOW_SOLUTIONS_CLASS} data-testid="workflow-automation-solutions">

@@ -329,7 +329,7 @@
   color: var(--audit-blue);
 }
 
-.audit-timeline-step p {
+.audit-timeline-step h3 {
   margin: 0 0 8px;
   font-size: 1.05rem;
   font-weight: 800;
@@ -339,7 +339,9 @@
 
 .audit-timeline-note {
   display: block;
+  margin: 0;
   font-size: 0.9rem;
+  font-weight: 400;
   line-height: 1.55;
   color: var(--audit-muted);
 }
@@ -402,37 +404,89 @@
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
 }
 
-.audit-pricing-engagement {
-  margin: 0 0 14px;
-  font-size: 0.95rem;
-  font-weight: 600;
+.audit-pricing-markets {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+.audit-pricing-market {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: #f1f5f9;
+}
+
+.audit-pricing-market-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--audit-muted);
 }
 
-.audit-pricing-range {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 12px;
-  padding: 10px 16px;
-  border-radius: 14px;
-  background: #f1f5f9;
+.audit-pricing-market-price {
+  display: block;
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
   font-weight: 800;
   color: var(--audit-blue);
 }
 
-.audit-pricing-range svg {
+.audit-pricing-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(0, 102, 255, 0.08);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--audit-blue);
+}
+
+.audit-pricing-badge svg {
   flex: 0 0 auto;
 }
 
-.audit-pricing p:last-child {
-  margin: 0 auto;
-  max-width: 32rem;
+.audit-pricing-features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.audit-pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 10px;
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--audit-muted);
+}
+
+.audit-pricing-features li:last-child {
+  margin-bottom: 0;
+}
+
+.audit-pricing-features svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--audit-blue);
+}
+
+@media (min-width: 640px) {
+  .audit-pricing-markets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .audit-engage {
@@ -551,6 +605,7 @@
 }
 
 .audit-field input,
+.audit-field select,
 .audit-field textarea {
   width: 100%;
   padding: 12px 14px;

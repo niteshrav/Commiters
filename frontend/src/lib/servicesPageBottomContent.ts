@@ -1,4 +1,4 @@
-import { ROUTES } from "./routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "./routes";
 
 export type ServicesProcessStepTone = "blue" | "green" | "gold" | "purple";
 
@@ -47,9 +47,9 @@ export const SERVICES_HOW_WE_WORK = {
 export const SERVICES_BOTTOM_CTA = {
   title: "Ready to start building?",
   subtext:
-    "Book a 2-week AI Operational Audit to map spreadsheet bottlenecks and leave with a working automation prototype.",
+    "Book a 48-hour AI Operational Audit to map spreadsheet bottlenecks and leave with a working automation prototype.",
   primaryLabel: "Book Operational Audit",
-  primaryHref: ROUTES.aiOperationalAudit,
+  primaryHref: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
   secondaryLabel: "View Our Stack",
   secondaryHref: ROUTES.about,
 } as const;

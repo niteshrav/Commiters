@@ -1,11 +1,8 @@
 import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { vi } from "vitest";
 import Footer from "./Footer";
 import { BRAND_LOGO_FOOTER_HEIGHT_PX } from "../lib/brandDisplay";
 import {
-  FOOTER_BACK_TO_TOP_CLASS,
   FOOTER_BLACKBOOK_BAR_CLASS,
   FOOTER_BRAND_TAGLINE_CLASS,
   FOOTER_COPYRIGHT_CELL_CLASS,
@@ -25,7 +22,7 @@ import {
   SITE_FOOTER_SOCIAL_LINK_LABELS,
   SITE_FOOTER_TAGLINE,
 } from "../lib/siteFooterCopy";
-import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "../lib/siteLinks";
+import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from "../lib/siteLinks";
 
 function columnLabels(nav: HTMLElement) {
   return within(nav)
@@ -68,13 +65,35 @@ describe("Footer", () => {
     expect(screen.queryByTestId("footer-contact-block")).not.toBeInTheDocument();
     expect(screen.queryByTestId("footer-status-pill")).not.toBeInTheDocument();
 
-    expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass(FOOTER_BRAND_TAGLINE_CLASS);
+    expect(screen.getByText(SITE_FOOTER_TAGLINE)).toHaveClass(
+      FOOTER_BRAND_TAGLINE_CLASS,
+      "text-sm",
+      "font-semibold",
+      "text-slate-300",
+      "tracking-wide",
+      "mt-1",
+    );
+    expect(screen.getByText(SITE_FOOTER_COPY.brandSubtext)).toHaveClass(
+      "text-xs",
+      "text-slate-400",
+      "max-w-xs",
+      "font-normal",
+    );
     expect(screen.queryByText(COMMITERS_TAGLINE)).not.toBeInTheDocument();
+    expect(screen.getByTestId("footer-logo-cell").parentElement).toHaveClass(
+      "flex",
+      "flex-col",
+      "items-start",
+      "text-left",
+      "space-y-3",
+    );
     expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);
     expect(within(legalCell).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacy);
     expect(within(legalCell).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
     expect(within(legalCell).queryByRole("link", { name: /^Site Map$/i })).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /back to top/i })).toHaveClass(FOOTER_BACK_TO_TOP_CLASS);
+    expect(within(legalCell).queryByRole("button", { name: /back to top/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /back to top/i })).not.toBeInTheDocument();
+    expect(legalCell).toHaveTextContent("Privacy | Terms | Sitemap");
 
     const logoLink = within(logoCell).getByRole("link", { name: /Commiters/i });
     expect(logoLink).toHaveAttribute("href", ROUTES.home);
@@ -84,34 +103,42 @@ describe("Footer", () => {
 
     expect(within(flagshipNav).getByRole("link", { name: /^AI Operational Audits$/i })).toHaveAttribute(
       "href",
-      ROUTES.aiOperationalAudit,
+      ROUTES.audit,
     );
-    expect(within(flagshipNav).getByRole("link", { name: /^Governed AI & Workflow Systems$/i })).toHaveAttribute(
-      "href",
-      ROUTES.aiSolutions,
-    );
-    expect(within(flagshipNav).getByRole("link", { name: /^Spec-Driven Full-Stack Platforms$/i })).toHaveAttribute(
-      "href",
-      ROUTES.webApplications,
-    );
+    expect(within(flagshipNav).queryByRole("link", { name: /^Governed AI & Workflow Systems$/i })).not.toBeInTheDocument();
+    expect(within(flagshipNav).queryByRole("link", { name: /^Spec-Driven Full-Stack Platforms$/i })).not.toBeInTheDocument();
     expect(within(flagshipNav).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute(
       "href",
-      ROUTES.opsFlowPlayground,
+      ROUTES.opsFlowAi,
     );
     expect(within(flagshipNav).getByRole("link", { name: /^Free Business Utilities$/i })).toHaveAttribute(
       "href",
       ROUTES.utilities,
     );
-    expect(within(flagshipNav).getByRole("link", { name: /^trustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(within(flagshipNav).getByRole("link", { name: /^trustTap$/i })).toHaveAttribute("href", ROUTES.trustTapShort);
     expect(within(flagshipNav).queryByRole("link", { name: /^Custom AI Pipelines$/i })).not.toBeInTheDocument();
-    expect(within(engineeringNav).getByRole("link", { name: /^B2B Web Applications$/i })).toHaveAttribute(
+    expect(within(engineeringNav).getByRole("link", { name: /^Governed AI & Workflow Systems$/i })).toHaveAttribute(
+      "href",
+      ROUTES.aiSolutions,
+    );
+    expect(within(engineeringNav).getByRole("link", { name: /^Spec-Driven Full-Stack Platforms$/i })).toHaveAttribute(
       "href",
       ROUTES.webApplications,
     );
+    expect(within(engineeringNav).getByRole("link", { name: /^B2B Web Applications$/i })).toHaveAttribute(
+      "href",
+      "/services/web-application-development",
+    );
+    expect(within(engineeringNav).getByRole("link", { name: /^B2B Web Applications$/i })).not.toHaveAttribute(
+      "href",
+      ROUTES.webApplications,
+    );
+    expect(within(engineeringNav).queryByRole("link", { name: /^Mobile Application Development$/i })).not.toBeInTheDocument();
     expect(within(companyNav).getByRole("link", { name: /^About Us$/i })).toHaveAttribute("href", ROUTES.about);
     expect(within(companyNav).getByRole("link", { name: /^Client Work$/i })).toHaveAttribute("href", ROUTES.caseStudies);
+    expect(within(companyNav).getByRole("link", { name: /^Testimonials$/i })).toHaveAttribute("href", ROUTES.testimonials);
     expect(within(companyNav).queryByRole("link", { name: /^Services$/i })).not.toBeInTheDocument();
-    expect(within(companyNav).getByRole("link", { name: /Jobs/i })).toHaveAttribute("href", ROUTES.openPositions);
+    expect(within(companyNav).getByRole("link", { name: /Jobs/i })).toHaveAttribute("href", ROUTES.jobs);
     expect(within(companyNav).getByRole("link", { name: /^FAQ$/i })).toHaveAttribute("href", ROUTES.faq);
     expect(within(companyNav).getByRole("link", { name: /^Blog$/i })).toHaveAttribute("href", ROUTES.technicalLedger);
     expect(within(companyNav).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
@@ -126,12 +153,13 @@ describe("Footer", () => {
     }
     expect(within(socialIcons).getByRole("link", { name: /^LinkedIn$/i })).toHaveAttribute("href", SITE_LINKEDIN_URL);
     expect(within(socialIcons).getByRole("link", { name: /^Instagram$/i })).toHaveAttribute("href", SITE_INSTAGRAM_URL);
-    expect(within(socialIcons).getByRole("link", { name: /^Medium$/i })).toHaveAttribute("href", SITE_MEDIUM_URL);
+    expect(within(socialIcons).queryByRole("link", { name: /^YouTube$/i })).not.toBeInTheDocument();
     expect(within(socialIcons).getByRole("link", { name: /^GitHub$/i })).toHaveAttribute("href", SITE_GITHUB_URL);
     expect(within(socialIcons).queryByRole("link", { name: /^Twitter$/i })).not.toBeInTheDocument();
     expect(within(legalCell).getAllByRole("link").map((link) => link.textContent)).toEqual([
       ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
     ]);
+    expect(within(legalCell).getByRole("link", { name: /^Sitemap$/i })).toHaveAttribute("href", ROUTES.sitemap);
   });
 
   it("highlights the active route in the navigation columns", () => {
@@ -144,19 +172,4 @@ describe("Footer", () => {
     expect(screen.getByTestId("footer-nav-column-company").querySelector("a.active")).toHaveTextContent("Client Work");
   });
 
-  it("scrolls to the top when Back to Top is clicked", async () => {
-    const user = userEvent.setup();
-    const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => undefined);
-
-    render(
-      <MemoryRouter>
-        <Footer />
-      </MemoryRouter>,
-    );
-
-    await user.click(screen.getByRole("button", { name: /back to top/i }));
-    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
-
-    scrollTo.mockRestore();
-  });
 });

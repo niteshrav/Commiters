@@ -31,13 +31,19 @@ export const ROUTES = {
   /** Marketing URL — redirect to OpsFlow playground */
   opsFlowAi: "/opsflow-ai",
   utilities: "/utilities",
+  /** Short URL — redirect to AI Operational Audit */
+  audit: "/audit",
   aiOperationalAudit: "/services/ai-operational-audit",
   aiSolutions: "/services/governed-ai-workflow-systems",
+  /** Short URL — redirect to governed AI */
+  aiSolutionsShort: "/services/governed-ai",
   /** Legacy URL — redirect to governed AI */
   aiSolutionsLegacy: "/services/ai-solutions",
   /** Legacy URL — redirect to governed AI */
   aiSolutionsPipelineLegacy: "/services/ai-pipeline-engineering",
   webApplications: "/services/spec-driven-full-stack-platforms",
+  /** Short URL — redirect to spec-driven platforms */
+  webApplicationsShort: "/services/spec-driven",
   /** Legacy URL — redirect to spec-driven platforms */
   webApplicationsLegacy: "/services/web-applications",
   /** Legacy URL — redirect to spec-driven platforms */
@@ -45,6 +51,8 @@ export const ROUTES = {
   workflowAutomation: "/services/workflow-automation",
   contact: "/contact",
   joinUs: "/join-us",
+  /** Short URL — redirect to Open Positions */
+  jobs: "/jobs",
   openPositions: "/open-positions",
   openPositionDetail: "/open-positions/:slug",
   /** Legacy CMS/admin URLs — redirect to openPositions */
@@ -66,6 +74,14 @@ export const ROUTES = {
 } as const;
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
+
+/** Booking form on AI Operational Audits & Cloud Diagnostics. */
+export const AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR = "audit-booking" as const;
+export const AI_OPERATIONAL_AUDIT_BOOKING_HREF =
+  `${ROUTES.aiOperationalAudit}#${AI_OPERATIONAL_AUDIT_BOOKING_ANCHOR}` as const;
+
+/** OpsFlow AI product hero page. */
+export const OPSFLOW_HERO_PAGE_HREF = ROUTES.opsFlow;
 
 /** Application form URL — optionally pre-select a role from Open Positions. */
 export function buildJoinUsApplyHref(position?: string): string {

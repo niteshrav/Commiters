@@ -124,7 +124,7 @@ export default function CookiePolicyDocument() {
                   {COOKIE_MANAGE_CTA.buttonLabel}
                 </button>
                 <Link className={COOKIE_MANAGE_PRIVACY_LINK_CLASS} to={COOKIE_MANAGE_CTA.privacyHref}>
-                  {COOKIE_MANAGE_CTA.privacyLinkLabel} →
+                  {COOKIE_MANAGE_CTA.privacyLinkLabel}
                 </Link>
               </div>
             </div>

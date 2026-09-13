@@ -42,7 +42,7 @@ export default function ThankYouContentSection() {
           ← {THANK_YOU_PAGE_COPY.backToHomeLabel}
         </Link>
         <Link className={THANK_YOU_LEDGER_LINK_CLASS} to={THANK_YOU_PAGE_COPY.projectLedgerTo}>
-          {THANK_YOU_PAGE_COPY.projectLedgerLabel} →
+          {THANK_YOU_PAGE_COPY.projectLedgerLabel}
         </Link>
       </div>
     </section>

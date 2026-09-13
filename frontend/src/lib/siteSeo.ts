@@ -8,7 +8,7 @@ import {
 } from "./siteLinks";
 
 export const SITE_SEO_KEYWORDS =
-  "Committers, Committers Softwares, Software Development Company, Web Development, Mobile App Development, SaaS Development" as const;
+  "Commiters, Commiters Softwares, Software Development Company, Web Development, Mobile App Development, SaaS Development" as const;
 
 export const DEFAULT_OG_IMAGE_PATH = COMMITERS_HEADER_LOGO_SRC;
 
@@ -22,7 +22,7 @@ export function buildOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Commiters",
-    alternateName: ["Committers", "Committers Softwares"],
+    alternateName: ["Commiters Softwares"],
     url: SITE_ORIGIN,
     logo: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
     email: COMMITERS_EMAIL_PRIMARY,
@@ -45,11 +45,11 @@ export function buildWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Commiters",
-    alternateName: "Committers Softwares",
+    alternateName: "Commiters Softwares",
     url: SITE_ORIGIN,
     publisher: {
       "@type": "Organization",
-      name: "Committers Softwares",
+      name: "Commiters Softwares",
       url: SITE_ORIGIN,
     },
   } as const;

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ABOUT_PAGE_COPY } from "../lib/aboutPageContent";
+import { HOME_CLOUD_LEAD_CLASS, HOME_CLOUD_TITLE_CLASS } from "../lib/homeCloudTheme";
 
 export default function AboutBottomCta() {
   const { bottomCta } = ABOUT_PAGE_COPY;
@@ -11,10 +12,10 @@ export default function AboutBottomCta() {
       aria-labelledby="about-bottom-cta-title"
     >
       <div className="about-bottom-cta-inner">
-        <h2 id="about-bottom-cta-title" className="about-bottom-cta-title">
+        <h2 id="about-bottom-cta-title" className={`about-bottom-cta-title ${HOME_CLOUD_TITLE_CLASS}`}>
           {bottomCta.title}
         </h2>
-        <p className="about-bottom-cta-subtext">{bottomCta.subtext}</p>
+        <p className={`about-bottom-cta-subtext ${HOME_CLOUD_LEAD_CLASS}`}>{bottomCta.subtext}</p>
         <div className="about-bottom-cta-actions">
           <Link className="btn btn-primary about-bottom-cta-btn" to={bottomCta.primaryTo}>
             {bottomCta.primaryLabel}

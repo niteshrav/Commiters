@@ -1,5 +1,5 @@
 import { PRIMARY_NAV_ITEMS } from "../navSections";
-import { ROUTES } from "../routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "../routes";
 import { resolveServiceDetailHref } from "../services";
 import { STITCH_COPY } from "../stitchDesign";
 import { STITCH_SERVICES_GRID, type StitchServiceCard } from "../stitchPageContent";
@@ -94,7 +94,7 @@ export function resolveNavbar(cmsNavbar: Record<string, unknown> | null | undefi
       logoAlt: COMMITERS_HEADER_LOGO_ALT,
       navItems: fallbackNav,
       ctaLabel: STITCH_COPY.navCta,
-      ctaUrl: ROUTES.aiOperationalAudit,
+      ctaUrl: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
     };
   }
 
@@ -125,7 +125,7 @@ export function resolveNavbar(cmsNavbar: Record<string, unknown> | null | undefi
     logoAlt: asString(cmsNavbar.logoAlt, COMMITERS_HEADER_LOGO_ALT),
     navItems,
     ctaLabel: asString(cmsNavbar.ctaLabel, STITCH_COPY.navCta),
-    ctaUrl: asString(cmsNavbar.ctaUrl, ROUTES.aiOperationalAudit),
+    ctaUrl: asString(cmsNavbar.ctaUrl, AI_OPERATIONAL_AUDIT_BOOKING_HREF),
   };
 }
 
@@ -269,7 +269,7 @@ export function resolveFooter(
   if (!hasCmsDoc(cmsFooter)) {
     return {
       brandTagline: fallback.brandTagline,
-      brandSubtext: "",
+      brandSubtext: fallback.brandSubtext,
       copyrightLine1: fallback.copyrightLine1,
       socialLinks: fallback.socialLinks,
       bottomLegalLinks: stripAdminLinks(fallback.bottomLegalLinks),
@@ -336,7 +336,7 @@ export function resolveFooter(
 
   return {
     brandTagline,
-    brandSubtext: "",
+    brandSubtext: fallback.brandSubtext,
     copyrightLine1: asString(cmsFooter.copyright, fallback.copyrightLine1),
     socialLinks: mergeSocialLinks(socialLinks),
     bottomLegalLinks: stripAdminLinks(mergeLegalLinks(legalLinks)),

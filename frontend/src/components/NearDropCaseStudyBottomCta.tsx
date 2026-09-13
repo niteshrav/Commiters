@@ -14,7 +14,7 @@ import {
   NEARDROP_CASE_STUDY_BOTTOM_CTA_TITLE_CLASS,
   NEARDROP_CASE_STUDY_BOTTOM_CTA_VISUAL_CLASS,
 } from "../lib/neardropCaseStudyLayout";
-import { IconArrowRight, IconMapPin } from "./icons";
+import { IconMapPin } from "./icons";
 
 export default function NearDropCaseStudyBottomCta() {
   const { bottomCta } = NEARDROP_CASE_STUDY_COPY;
@@ -39,7 +39,6 @@ export default function NearDropCaseStudyBottomCta() {
                 to={bottomCta.primaryTo}
               >
                 {bottomCta.primaryLabel}
-                <IconArrowRight width={16} height={16} />
               </Link>
               <Link
                 className={`${NEARDROP_CASE_STUDY_BOTTOM_CTA_BTN_CLASS} ${NEARDROP_CASE_STUDY_BOTTOM_CTA_SECONDARY_CLASS}`}

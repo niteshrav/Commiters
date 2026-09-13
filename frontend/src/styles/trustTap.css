@@ -101,6 +101,15 @@
   background: #ffffff;
 }
 
+.trusttap-section.pt-16 {
+  padding-top: 4rem;
+}
+
+.trusttap-section.pb-16 {
+  padding-bottom: 4rem;
+}
+
+
 .trusttap-section-inner {
   max-width: 1180px;
   margin: 0 auto;
@@ -133,10 +142,11 @@
 .trusttap-hero-title {
   position: relative;
   margin: 0 0 16px;
+  max-width: 18ch;
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.75rem);
+  font-size: clamp(2.1rem, 4.4vw, 3.25rem);
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.04em;
   color: var(--trusttap-navy);
 }
@@ -472,6 +482,36 @@
 .trusttap-faq-all {
   border-radius: var(--site-btn-radius);
   min-height: 42px;
+}
+
+.trusttap-portal-banner {
+  width: 100%;
+}
+
+.trusttap-portal-banner-copy {
+  max-width: 36rem;
+}
+
+.trusttap-portal-banner-title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.trusttap-portal-banner-subtext {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgb(226 232 240);
+}
+
+.trusttap-portal-banner-cta {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .trusttap-bottom-cta {

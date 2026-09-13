@@ -4,6 +4,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BREAKPOINT_DESKTOP_MIN_MQ, BREAKPOINT_TABLET_MIN_MQ } from "./responsiveLayout";
 import {
+  WFLOW_HERO_IMAGE_CLASS,
   WFLOW_PAGE_CLASS,
   WFLOW_PIPELINE_CLASS,
   WFLOW_SOLUTIONS_CLASS,
@@ -16,6 +17,11 @@ describe("workflowAutomationPageLayout", () => {
     expect(WFLOW_PAGE_CLASS).toBe("wflow-page");
     expect(WFLOW_SOLUTIONS_CLASS).toBe("wflow-solutions");
     expect(WFLOW_PIPELINE_CLASS).toBe("wflow-pipeline");
+    expect(WFLOW_HERO_IMAGE_CLASS).toBe("wflow-hero-image");
+  });
+
+  it("covers the workflow automation hero photo", () => {
+    expect(css).toMatch(/\.wflow-hero-image\s*\{[^}]*object-fit:\s*cover/s);
   });
 
   it("defines responsive grids for mobile, tablet, and desktop", () => {

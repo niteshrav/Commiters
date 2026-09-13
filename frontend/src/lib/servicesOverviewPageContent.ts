@@ -3,6 +3,7 @@ import { buildServiceDetailPath } from "./services";
 
 export const SERVICES_OVERVIEW_INQUIRY_ANCHOR = "services-overview-inquiry" as const;
 export const SERVICES_OVERVIEW_PRODUCTS_ANCHOR = "services-overview-products" as const;
+export const SERVICES_OVERVIEW_OFFERINGS_ANCHOR = "flagship-solutions" as const;
 
 export const SERVICES_OVERVIEW_SEO = {
   title: "Enterprise AI Products & Cloud-Native Web Systems",
@@ -14,14 +15,14 @@ export const SERVICES_OVERVIEW_SEO = {
 } as const;
 
 export const SERVICES_OVERVIEW_HERO = {
-  kicker: "AN AI & CLOUD PRODUCT & ENGINEERING FIRM",
+  kicker: "ENTERPRISE AI & CLOUD SYSTEMS",
   title: "Enterprise AI Products & Cloud-Native Web Systems",
   subtitle:
     "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
   productsCtaLabel: "Explore AI Products",
-  productsCtaTo: `${ROUTES.services}#${SERVICES_OVERVIEW_PRODUCTS_ANCHOR}`,
+  productsCtaTo: `${ROUTES.services}#${SERVICES_OVERVIEW_OFFERINGS_ANCHOR}`,
   auditCtaLabel: "Book Operational Audit",
-  auditCtaTo: `${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`,
+  auditCtaTo: ROUTES.audit,
 } as const;
 
 export type ServicesOverviewOffering = {
@@ -41,10 +42,10 @@ export const SERVICES_OVERVIEW_OFFERINGS: readonly ServicesOverviewOffering[] = 
     id: "ai-operational-audits",
     title: "AI Operational Audits",
     description:
-      "2-week workflow diagnostics, spreadsheet bottleneck elimination, and live working cloud automation blueprints.",
-    tag: "2-Week Engagement",
+      "48-hour workflow diagnostics, spreadsheet bottleneck elimination, and live working cloud automation blueprints.",
+    tag: "48-HOUR ENGAGEMENT",
     ctaLabel: "View Audit Details",
-    to: ROUTES.aiOperationalAudit,
+    to: ROUTES.audit,
     featured: true,
   },
   {
@@ -52,18 +53,18 @@ export const SERVICES_OVERVIEW_OFFERINGS: readonly ServicesOverviewOffering[] = 
     title: "Governed AI & Workflow Systems",
     description:
       "Enterprise-grade document parsing, GST/PAN bills, LLM integrations, and zero-vendor-lockin automated workflows.",
-    tag: "Custom Build",
+    tag: "CUSTOM BUILD",
     ctaLabel: "View System Services",
-    to: ROUTES.aiSolutions,
+    to: ROUTES.aiSolutionsShort,
   },
   {
     id: "spec-driven-full-stack-platforms",
     title: "Spec-Driven Full-Stack Platforms",
     description:
-      "Scalable operational portals, SaaS systems, and custom web apps built on Vite, Express, React, and MongoDB.",
-    tag: "Engineering",
+      "Scalable operational portals, SaaS systems, and custom web apps built on Vite, Express, React, and PostgreSQL/MongoDB.",
+    tag: "ENGINEERING PILLAR",
     ctaLabel: "View Platform Services",
-    to: ROUTES.webApplications,
+    to: ROUTES.webApplicationsShort,
   },
 ] as const;
 
@@ -74,7 +75,7 @@ export type ServicesOverviewStandard = {
 };
 
 export const SERVICES_OVERVIEW_STANDARDS_TITLE =
-  "THE COMMITTERS WAY: ENGINEERING & GOVERNANCE STANDARDS" as const;
+  "THE COMMITERS WAY: ENGINEERING & GOVERNANCE STANDARDS" as const;
 export const SERVICES_OVERVIEW_STANDARDS_SUBTITLE =
   "Every application and AI pipeline we deliver is built on a secure, policy-gated architecture." as const;
 
@@ -113,57 +114,64 @@ export type ServicesOverviewCapability = {
   bullets: readonly string[];
   icon: ServicesOverviewCapabilityIcon;
   to: string;
+  aliasIds?: readonly string[];
 };
 
+export const SERVICES_OVERVIEW_CAPABILITIES_ANCHOR = "engineering-capabilities" as const;
 export const SERVICES_OVERVIEW_CAPABILITIES_TITLE = "Full-Lifecycle Software Engineering Capabilities" as const;
 export const SERVICES_OVERVIEW_CAPABILITIES_SUBTEXT =
   "Comprehensive software development backed by automated workflows and cloud-native architecture." as const;
 
 export const SERVICES_OVERVIEW_CAPABILITIES: readonly ServicesOverviewCapability[] = [
   {
-    id: "automated-ecommerce-systems",
+    id: "web-engineering",
+    title: "High-Performance Web Platforms",
+    badge: "Web Engineering",
+    subtext:
+      "Modern web portals, custom dashboards, and high-converting marketing sites built on Vite, React, Node, and Tailwind CSS.",
+    bullets: ["Modern web portals", "Custom dashboards", "High-converting marketing sites on Vite, React, Node, and Tailwind CSS"],
+    icon: "web",
+    to: buildServiceDetailPath("website-development"),
+    aliasIds: ["high-performance-web-platforms"],
+  },
+  {
+    id: "ecommerce",
     title: "Automated E-commerce Systems",
     badge: "E-Commerce & Portals",
-    subtext: "Custom storefronts, automated inventory management, GST invoice pipelines, and payment gateway integration.",
+    subtext: "Custom storefronts, automated inventory sync, GST invoice pipelines, and secure payment gateway integrations.",
     bullets: [
       "Custom storefronts",
-      "Automated inventory management",
+      "Automated inventory sync",
       "GST invoice pipelines",
-      "Payment gateway integration",
+      "Secure payment gateway integrations",
     ],
     icon: "cart",
     to: buildServiceDetailPath("e-commerce-development"),
+    aliasIds: ["automated-ecommerce-systems"],
   },
   {
-    id: "high-performance-web-platforms",
-    title: "High-Performance Web Platforms",
-    badge: "Web Engineering",
-    subtext: "Modern marketing sites, fast web portals, and content platforms built on Vite, React, and Express.",
-    bullets: ["Modern marketing sites", "Fast web portals", "Content platforms on Vite, React, and Express"],
-    icon: "web",
-    to: buildServiceDetailPath("website-development"),
-  },
-  {
-    id: "cross-platform-mobile-applications",
-    title: "Cross-Platform Mobile Applications",
-    badge: "Mobile Engineering",
-    subtext: "Field workforce tracking apps, customer loyalty portals, and offline-first mobile tools.",
-    bullets: ["Field workforce tracking apps", "Customer loyalty portals", "Offline-first mobile tools"],
-    icon: "mobile",
-    to: buildServiceDetailPath("mobile-app-development"),
-  },
-  {
-    id: "rapid-saas-mvp-development",
+    id: "saas-mvp",
     title: "Rapid SaaS MVP Development",
     badge: "SaaS & MVPs",
-    subtext: "Fast 4-week founder-led MVP launches with production-ready database architecture and authentication.",
+    subtext: "Fast 4-week founder-led MVP launches with production-ready database architecture, auth, and automated billing.",
     bullets: [
       "4-week founder-led MVP launches",
       "Production-ready database architecture",
-      "Authentication built in",
+      "Authentication and automated billing",
     ],
     icon: "mvp",
     to: buildServiceDetailPath("mvp-development"),
+    aliasIds: ["rapid-saas-mvp-development"],
+  },
+  {
+    id: "mobile",
+    title: "Cross-Platform Mobile Applications",
+    badge: "Mobile Engineering",
+    subtext: "Field workforce tracking apps, customer loyalty portals, and offline-first mobile tools built for iOS and Android.",
+    bullets: ["Field workforce tracking apps", "Customer loyalty portals", "Offline-first mobile tools for iOS and Android"],
+    icon: "mobile",
+    to: buildServiceDetailPath("mobile-app-development"),
+    aliasIds: ["cross-platform-mobile-applications"],
   },
 ] as const;
 
@@ -182,20 +190,21 @@ export const SERVICES_OVERVIEW_PRODUCTS: readonly ServicesOverviewProduct[] = [
     id: "opsflow-ai",
     title: "OpsFlow AI",
     description: "PDF-to-Excel document extraction for invoices, receipts, and operational PDFs.",
-    to: ROUTES.opsFlowPlayground,
+    to: ROUTES.opsFlowAi,
     ctaLabel: "Open OpsFlow AI",
   },
   {
     id: "trusttap",
     title: "trustTap",
-    description: "NFC/QR ground verification and field inspection tracking.",
-    to: ROUTES.trustTap,
+    description:
+      "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
+    to: ROUTES.trustTapShort,
     ctaLabel: "Open trustTap",
   },
 ] as const;
 
 export const SERVICES_OVERVIEW_INQUIRY_INTERESTS = [
-  "AI Operational Audit (2-Week Blueprint)",
+  "AI Operational Audit (48-Hour Blueprint)",
   "Governed AI & Workflow Systems",
   "Spec-Driven Full-Stack Platforms",
   "Custom Cloud Enterprise Software / Utilities",
@@ -205,7 +214,7 @@ export type ServicesOverviewInquiryInterest = (typeof SERVICES_OVERVIEW_INQUIRY_
 
 export const SERVICES_OVERVIEW_INQUIRY = {
   title: "Request a scoping conversation",
-  subtext: "Tell us whether you need a 2-week AI Operational Audit, governed AI workflows, or a spec-driven platform.",
+  subtext: "Tell us whether you need a 48-hour AI Operational Audit, governed AI workflows, or a spec-driven platform.",
   nameLabel: "Name",
   namePlaceholder: "Your name",
   emailLabel: "Work Email",

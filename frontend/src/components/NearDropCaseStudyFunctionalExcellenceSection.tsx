@@ -1,7 +1,6 @@
 import type { NearDropCaseStudyFeature } from "../lib/neardropCaseStudyContent";
 import { NEARDROP_CASE_STUDY_COPY } from "../lib/neardropCaseStudyContent";
 import {
-  NEARDROP_CASE_STUDY_FEATURE_ARROW_CLASS,
   NEARDROP_CASE_STUDY_FEATURE_BODY_CLASS,
   NEARDROP_CASE_STUDY_FEATURE_CARD_BLUE_CLASS,
   NEARDROP_CASE_STUDY_FEATURE_CARD_CLASS,
@@ -20,7 +19,7 @@ import {
   NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_HEADING_CLASS,
   NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_SECTION_CLASS,
 } from "../lib/neardropCaseStudyLayout";
-import { IconArrowRight, IconClock, IconDatabase, IconHandshake, IconUsers } from "./icons";
+import { IconClock, IconDatabase, IconHandshake, IconUsers } from "./icons";
 
 function FeatureIcon({ icon }: { icon: NearDropCaseStudyFeature["icon"] }) {
   if (icon === "shield") return <IconUsers width={22} height={22} />;
@@ -85,9 +84,6 @@ export default function NearDropCaseStudyFunctionalExcellenceSection() {
             </span>
             <h3 className={NEARDROP_CASE_STUDY_FEATURE_TITLE_CLASS}>{feature.title}</h3>
             <p className={NEARDROP_CASE_STUDY_FEATURE_BODY_CLASS}>{feature.body}</p>
-            <span className={NEARDROP_CASE_STUDY_FEATURE_ARROW_CLASS} aria-hidden>
-              <IconArrowRight width={14} height={14} />
-            </span>
           </article>
         ))}
       </div>

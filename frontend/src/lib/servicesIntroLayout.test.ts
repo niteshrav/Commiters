@@ -77,7 +77,7 @@ describe("servicesIntroLayout", () => {
     expect(body).toContain(`font-size: ${SERVICES_EXPERTISE_BODY_SIZE}`);
     expect(body).toContain(`line-height: ${SERVICES_EXPERTISE_BODY_LINE_HEIGHT}`);
     expect(body).toContain(`max-width: ${SERVICES_EXPERTISE_BODY_MAX_WIDTH}`);
-    expect(body).toContain("color: var(--muted)");
+    expect(body).toContain("color: #64748b");
 
     const separator = ruleBlock(
       `.${SERVICES_EXPERTISE_SEPARATOR_CLASS} {`,

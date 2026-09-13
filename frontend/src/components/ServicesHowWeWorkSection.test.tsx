@@ -19,6 +19,8 @@ describe("ServicesHowWeWorkSection", () => {
     );
 
     expect(screen.getByTestId("services-how-we-work-section")).toHaveClass(SERVICES_HOW_WE_WORK_SECTION_CLASS);
+    expect(screen.getByTestId("services-how-we-work-section")).toHaveAttribute("id", "how-we-work");
+    expect(document.getElementById("workflow")).toBeTruthy();
     expect(screen.getByText(SERVICES_HOW_WE_WORK.kicker)).toHaveClass(SERVICES_HOW_WE_WORK_KICKER_CLASS);
     expect(screen.getByRole("heading", { name: /How We Work/i })).toHaveClass(SERVICES_HOW_WE_WORK_TITLE_CLASS);
     expect(screen.getByText(SERVICES_HOW_WE_WORK.subtext)).toBeInTheDocument();

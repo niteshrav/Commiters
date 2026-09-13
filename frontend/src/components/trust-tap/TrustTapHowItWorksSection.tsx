@@ -1,8 +1,9 @@
-import { TRUSTTAP_DISPLAY } from "../../lib/trustTapPageDesign";
+import { NAV_SECTION_ALIAS_CLASS } from "../../lib/navSections";
 import { TRUSTTAP_HOW_IT_WORKS } from "../../lib/trustTapPageContent";
 import {
   TRUSTTAP_SECTION_CLASS,
   TRUSTTAP_SECTION_INNER_CLASS,
+  TRUSTTAP_SECTION_SHELL_CLASS,
   TRUSTTAP_STEP_CLASS,
   TRUSTTAP_STEPS_GRID_CLASS,
 } from "../../lib/trustTapPageLayout";
@@ -13,18 +14,14 @@ export default function TrustTapHowItWorksSection() {
 
   return (
     <section
-      className={`${TRUSTTAP_SECTION_CLASS} reveal-on-scroll`}
+      id="how-it-works"
+      className={`${TRUSTTAP_SECTION_CLASS} ${TRUSTTAP_SECTION_SHELL_CLASS} reveal-on-scroll`}
       data-testid="trusttap-how-it-works"
-      id="trusttap-how-it-works"
       aria-labelledby="trusttap-how-title"
     >
+      <span id="trusttap-how-it-works" className={NAV_SECTION_ALIAS_CLASS} />
       <div className={TRUSTTAP_SECTION_INNER_CLASS}>
-        <TrustTapSectionHeader
-          kicker={copy.kicker}
-          title={copy.title}
-          titleId="trusttap-how-title"
-          action={<p className="trusttap-how-note">{TRUSTTAP_DISPLAY.howItWorksNote}</p>}
-        />
+        <TrustTapSectionHeader kicker={copy.kicker} title={copy.title} titleId="trusttap-how-title" />
         <div className={TRUSTTAP_STEPS_GRID_CLASS}>
           {copy.steps.map((step, index) => (
             <article key={step.index} className={TRUSTTAP_STEP_CLASS}>

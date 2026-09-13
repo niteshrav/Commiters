@@ -18,11 +18,15 @@ const leadSchema = z.object({
     z.literal(""),
     z.enum(LEAD_BUDGET_RANGE_VALUES as unknown as [string, ...string[]]),
   ]),
-  timeline: z
-    .string()
-    .min(1)
-    .max(80)
-    .regex(/^[a-zA-Z0-9\s-]+$/, "Timeline contains invalid characters."),
+  timeline: z.union([
+    z.undefined(),
+    z.literal(""),
+    z
+      .string()
+      .min(1)
+      .max(80)
+      .regex(/^[a-zA-Z0-9\s-]+$/, "Timeline contains invalid characters."),
+  ]),
   referenceLinks: z.string().max(500).optional().or(z.literal("")),
   message: z.string().min(1).max(6000),
 });

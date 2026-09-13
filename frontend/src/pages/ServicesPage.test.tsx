@@ -11,6 +11,7 @@ import {
   SERVICES_OVERVIEW_HERO,
   SERVICES_OVERVIEW_INQUIRY,
   SERVICES_OVERVIEW_INQUIRY_ANCHOR,
+  SERVICES_OVERVIEW_OFFERINGS_ANCHOR,
   SERVICES_OVERVIEW_PRODUCTS_ANCHOR,
   SERVICES_OVERVIEW_INQUIRY_INTERESTS,
   SERVICES_OVERVIEW_LEGACY_TITLES,
@@ -24,8 +25,11 @@ import {
   SERVICES_OVERVIEW_STANDARDS_TITLE,
 } from "../lib/servicesOverviewPageContent";
 import {
+  SERVICES_OVERVIEW_ANCHOR_CLASS,
   SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS,
+  SERVICES_OVERVIEW_CAPABILITY_CARD_CHROME_CLASS,
   SERVICES_OVERVIEW_CAPABILITY_CARD_CLASS,
+  SERVICES_OVERVIEW_EQUAL_CARD_CLASS,
   SERVICES_OVERVIEW_OFFERING_CARD_CLASS,
   SERVICES_OVERVIEW_OFFERING_FEATURED_CLASS,
   SERVICES_OVERVIEW_OFFERINGS_GRID_CLASS,
@@ -49,16 +53,17 @@ describe("ServicesPage", () => {
     expect(screen.getByTestId("services-page")).toBeInTheDocument();
     expect(screen.getByTestId("services-overview-hero")).toBeInTheDocument();
     expect(within(screen.getByTestId("services-overview-hero")).getByTestId(BRAND_WATERMARK_TESTID)).toBeInTheDocument();
+    expect(screen.getByTestId("brand-hero-eyebrow")).toHaveTextContent(SERVICES_OVERVIEW_HERO.kicker);
     expect(screen.getByRole("heading", { name: SERVICES_OVERVIEW_HERO.title, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(SERVICES_OVERVIEW_HERO.subtitle)).toBeInTheDocument();
     const hero = within(screen.getByTestId("services-overview-hero"));
     expect(hero.getByRole("link", { name: SERVICES_OVERVIEW_HERO.productsCtaLabel })).toHaveAttribute(
       "href",
-      `${ROUTES.services}#${SERVICES_OVERVIEW_PRODUCTS_ANCHOR}`,
+      `${ROUTES.services}#${SERVICES_OVERVIEW_OFFERINGS_ANCHOR}`,
     );
     expect(hero.getByRole("link", { name: SERVICES_OVERVIEW_HERO.auditCtaLabel })).toHaveAttribute(
       "href",
-      `${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`,
+      ROUTES.audit,
     );
     expect(screen.queryByTestId("stitch-page-hero")).not.toBeInTheDocument();
   });
@@ -73,6 +78,8 @@ describe("ServicesPage", () => {
     expect(cards).toHaveLength(3);
     expect(cards[0]).toHaveClass(SERVICES_OVERVIEW_OFFERING_CARD_CLASS);
     expect(cards[0]).toHaveClass(SERVICES_OVERVIEW_OFFERING_FEATURED_CLASS);
+    expect(cards[0]).toHaveClass(...SERVICES_OVERVIEW_EQUAL_CARD_CLASS.split(" "));
+    expect(cards[0]).toHaveClass(SERVICES_OVERVIEW_ANCHOR_CLASS);
 
     for (const offering of SERVICES_OVERVIEW_OFFERINGS) {
       expect(within(grid).getByRole("heading", { name: offering.title, level: 3 })).toBeInTheDocument();
@@ -80,6 +87,11 @@ describe("ServicesPage", () => {
       expect(within(grid).getByText(offering.tag)).toBeInTheDocument();
       expect(within(grid).getByRole("link", { name: offering.ctaLabel })).toHaveAttribute("href", offering.to);
     }
+    expect(document.getElementById(SERVICES_OVERVIEW_OFFERINGS_ANCHOR)).toBeTruthy();
+    expect(document.getElementById("governed-ai-workflow-systems")).toBeTruthy();
+    expect(document.getElementById("governed-ai")).toBeTruthy();
+    expect(document.getElementById("spec-driven-full-stack-platforms")).toBeTruthy();
+    expect(document.getElementById("spec-driven")).toBeTruthy();
 
     expect(screen.getByRole("heading", { name: SERVICES_OVERVIEW_STANDARDS_TITLE, level: 2 })).toBeInTheDocument();
     expect(screen.getByText(SERVICES_OVERVIEW_STANDARDS_SUBTITLE)).toBeInTheDocument();
@@ -108,22 +120,42 @@ describe("ServicesPage", () => {
     expect(screen.getByText(SERVICES_OVERVIEW_CAPABILITIES_SUBTEXT)).toBeInTheDocument();
 
     const grid = screen.getByTestId("services-core-capabilities");
-    expect(grid).toHaveClass(SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS);
+    expect(grid).toHaveClass(...SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS.split(" "));
+    expect(grid.className).not.toMatch(/col-span-|ml-auto|translate-x-/);
     const cards = within(grid).getAllByTestId("services-capability-card");
     expect(cards).toHaveLength(4);
+    expect([...grid.children].map((node) => node.getAttribute("data-testid"))).toEqual([
+      "services-capability-card",
+      "services-capability-card",
+      "services-capability-card",
+      "services-capability-card",
+    ]);
+    expect(cards.map((card) => card.id)).toEqual(SERVICES_OVERVIEW_CAPABILITIES.map((capability) => capability.id));
+    expect(cards.map((card) => card.id)).toEqual(["web-engineering", "ecommerce", "saas-mvp", "mobile"]);
 
     for (const capability of SERVICES_OVERVIEW_CAPABILITIES) {
       const card = cards.find((node) => node.id === capability.id);
       expect(card).toBeTruthy();
       expect(card).toHaveClass(SERVICES_OVERVIEW_CAPABILITY_CARD_CLASS);
-      for (const frostClass of FROSTED_GLASS_CLASSES) {
-        expect(card).toHaveClass(frostClass);
-      }
+      expect(card).toHaveClass(...SERVICES_OVERVIEW_CAPABILITY_CARD_CHROME_CLASS.split(" "));
+      expect(card).toHaveClass(SERVICES_OVERVIEW_ANCHOR_CLASS);
+      expect(card!.className).not.toMatch(/col-span-|ml-auto|translate-x-/);
       expect(within(card!).getByText(capability.badge)).toBeInTheDocument();
       expect(within(card!).getByRole("heading", { name: capability.title })).toBeInTheDocument();
       expect(within(card!).getByText(capability.subtext)).toBeInTheDocument();
       expect(within(card!).getByRole("link", { name: capability.title })).toHaveAttribute("href", capability.to);
     }
+    expect(document.getElementById("web-engineering")).toBeTruthy();
+    expect(document.getElementById("ecommerce")).toBeTruthy();
+    expect(document.getElementById("saas-mvp")).toBeTruthy();
+    expect(document.getElementById("mobile")).toBeTruthy();
+    const capabilitiesAnchor = document.getElementById("engineering-capabilities");
+    expect(capabilitiesAnchor?.tagName).toBe("SECTION");
+    expect(capabilitiesAnchor).toHaveClass("pt-16", "pb-16", "w-full");
+    expect(capabilitiesAnchor?.className).not.toMatch(/scroll-mt-/);
+    expect(document.getElementById("web-mobile")).toBeTruthy();
+    expect(document.getElementById("automation")).toBeTruthy();
+    expect(document.getElementById("rapid-saas-mvp-development")).toBeTruthy();
   });
 
   it("uses frosted-glass cards for offerings and the two-column product showcase", () => {
@@ -136,7 +168,10 @@ describe("ServicesPage", () => {
     const products = within(productsGrid).getAllByTestId("services-product-card");
     expect(products).toHaveLength(2);
 
-    for (const card of [...offerings, ...products]) {
+    for (const card of offerings) {
+      expect(card).toHaveClass(...SERVICES_OVERVIEW_EQUAL_CARD_CLASS.split(" "));
+    }
+    for (const card of products) {
       for (const frostClass of FROSTED_GLASS_CLASSES) {
         expect(card).toHaveClass(frostClass);
       }
@@ -161,7 +196,7 @@ describe("ServicesPage", () => {
     }
   });
 
-  it("includes a four-track inquiry form defaulting to the 2-week audit", () => {
+  it("includes a four-track inquiry form defaulting to the 48-hour audit", () => {
     renderPage();
 
     const form = screen.getByTestId("services-overview-inquiry");

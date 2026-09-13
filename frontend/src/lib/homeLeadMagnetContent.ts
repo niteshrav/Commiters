@@ -1,8 +1,10 @@
 import { HOME_OPS_FLOW_SECTION_ID } from "./homePageContent";
-import { ROUTES } from "./routes";
+import { OPSFLOW_HERO_PAGE_HREF } from "./routes";
 
 export const HOME_LEAD_MAGNET_TEST_ID = "home-lead-magnet" as const;
 export const HOME_LEAD_MAGNET_SECTION_ID = HOME_OPS_FLOW_SECTION_ID;
+export const HOME_LEAD_MAGNET_FORM_ID = "home-lead-magnet-card" as const;
+export const HOME_LEAD_MAGNET_FORM_HREF = `/#${HOME_LEAD_MAGNET_FORM_ID}` as const;
 
 export type HomeLeadMagnetFeatureTone = "blue" | "green" | "purple";
 
@@ -43,7 +45,7 @@ export const HOME_LEAD_MAGNET_COPY = {
     outputLabel: "Structured Excel Output",
   },
   ctaPrimary: "Try OpsFlow AI",
-  ctaPrimaryTo: ROUTES.opsFlowPlayground,
+  ctaPrimaryTo: OPSFLOW_HERO_PAGE_HREF,
   ctaDemo: "Request Enterprise Demo",
   formTitle: "Request an Enterprise Demo",
   formSubtitle: "Submit a sample layout to receive your benchmark Excel conversion.",

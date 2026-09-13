@@ -37,7 +37,6 @@ export default function ServiceOfferCard({ service }: Props) {
         <p className={`muted ${SERVICE_CARD_COPY_CLASS}`}>{service.description}</p>
         <span className={SERVICE_CARD_ACTION_CLASS}>
           {label}
-          <span aria-hidden> →</span>
         </span>
       </div>
     </>

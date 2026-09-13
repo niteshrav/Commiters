@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { IconArrowRight } from "./icons";
 import {
   PRIVACY_DPO_BUTTON_CLASS,
   PRIVACY_DPO_CTA_CLASS,
@@ -19,7 +18,6 @@ export default function PrivacyPolicyDpoCta() {
         <p className={PRIVACY_DPO_DESCRIPTION_CLASS}>{PRIVACY_DPO_CTA.description}</p>
         <Link to={PRIVACY_DPO_CTA.href} className={PRIVACY_DPO_BUTTON_CLASS}>
           <span>{PRIVACY_DPO_CTA.buttonLabel}</span>
-          <IconArrowRight width={18} height={18} />
         </Link>
       </div>
     </section>

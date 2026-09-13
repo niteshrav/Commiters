@@ -10,6 +10,7 @@ import {
   type JobDetail,
   type PublicJob,
 } from "../lib/jobs";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { ROUTES, buildJoinUsApplyHref } from "../lib/routes";
 import { pageTitle } from "../lib/siteMeta";
 import { SITE_SEO_KEYWORDS } from "../lib/siteSeo";
@@ -133,7 +134,7 @@ export default function JobDetailPage() {
   if (notFound) return <Navigate to={ROUTES.notFound} replace />;
   if (loading) {
     return (
-      <div className="open-positions-page" data-testid="job-detail-loading">
+      <div className={withSiteCloudTheme("open-positions-page")} data-testid="job-detail-loading">
         <JobListSkeletonPlaceholder />
       </div>
     );
@@ -157,7 +158,7 @@ export default function JobDetailPage() {
   }
 
   return (
-    <div className="open-positions-detail-page" data-testid="job-detail-page">
+    <div className={withSiteCloudTheme("open-positions-detail-page")} data-testid="job-detail-page">
       <JobDetailHero job={job} />
       <JobRoleFacts job={job} />
 

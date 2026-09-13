@@ -10,7 +10,7 @@ describe("validateServicesOverviewLead", () => {
       name: "Nitesh",
       email: "ops@gmail.com",
       company: "Commiters",
-      interest: "AI Operational Audit (2-Week Blueprint)",
+      interest: "AI Operational Audit (48-Hour Blueprint)",
       details: "Spreadsheet bottleneck in finance close.",
     });
     expect(blocked).toEqual({ ok: false, error: AI_OPERATIONAL_AUDIT_PERSONAL_EMAIL_ERROR });
@@ -21,7 +21,7 @@ describe("validateServicesOverviewLead", () => {
       name: "Nitesh Rav",
       email: "hello@commiters.com",
       company: "Commiters Softwares",
-      interest: "AI Operational Audit (2-Week Blueprint)",
+      interest: "AI Operational Audit (48-Hour Blueprint)",
       details: "Manual GST invoice entry across three spreadsheets.",
     });
     expect(result).toEqual({
@@ -30,10 +30,10 @@ describe("validateServicesOverviewLead", () => {
         name: "Nitesh Rav",
         email: "hello@commiters.com",
         company: "Commiters Softwares",
-        interest: "AI Operational Audit (2-Week Blueprint)",
+        interest: "AI Operational Audit (48-Hour Blueprint)",
         details: "Manual GST invoice entry across three spreadsheets.",
-        serviceNeeded: "AI Operational Audit (2-Week Blueprint)",
-        timeline: "2-week diagnostic",
+        serviceNeeded: "AI Operational Audit (48-Hour Blueprint)",
+        timeline: "48-hour diagnostic",
       },
     });
   });

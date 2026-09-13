@@ -60,7 +60,7 @@ function CaseStudyTags({ project, limit }: Props & { limit: number }) {
 }
 
 function CaseStudyDetailsLink({ project }: Pick<Props, "project">) {
-  const label = `${CASE_STUDIES_PAGE_DESIGN.detailsCta} →`;
+  const label = CASE_STUDIES_PAGE_DESIGN.detailsCta;
 
   if (project.external) {
     return (

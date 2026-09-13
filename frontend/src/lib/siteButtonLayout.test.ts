@@ -49,7 +49,7 @@ describe("siteButtonLayout", () => {
     expect(btn).toContain(`min-height: var(--site-btn-min-height)`);
     expect(btn).toContain(`padding: var(--site-btn-padding-y) var(--site-btn-padding-x)`);
     expect(btn).toContain(`font-size: var(--site-btn-font-size)`);
-    expect(SITE_BUTTON_DESIGN.radius).toBe("5px");
+    expect(SITE_BUTTON_DESIGN.radius).toBe("999px");
     expect(SITE_BUTTON_DESIGN.minHeight).toBe("40px");
     expect(SITE_BUTTON_DESIGN.largeMinHeight).toBe("48px");
     expect(SITE_BUTTON_DESIGN.compactMinHeight).toBe("36px");
@@ -57,9 +57,14 @@ describe("siteButtonLayout", () => {
     expect(SITE_BUTTON_DESIGN.paddingBlock).toBe("10px");
   });
 
-  it("does not use pill radius on shared CTA button classes", () => {
+  it("uses a curve (pill) radius on shared CTA button classes", () => {
+    expect(SITE_BUTTON_DESIGN.radius).toBe("999px");
+    expect(SITE_BUTTON_CSS_VARIABLES["--site-btn-radius"]).toBe("999px");
+    expect(css).toContain("--site-btn-radius: 999px;");
+
     const btn = ruleBlock(".btn {", ".btn-compact {");
-    expect(btn).not.toContain("border-radius: 999px");
+    expect(btn).toContain("border-radius: var(--site-btn-radius)");
+    expect(btn).not.toContain("border-radius: 5px");
     expect(btn).not.toContain("border-radius: 50%");
 
     for (const selector of [
@@ -73,7 +78,7 @@ describe("siteButtonLayout", () => {
       const start = css.indexOf(selector);
       const radiusSlice = css.slice(start, start + 420);
       expect(radiusSlice).toContain("border-radius: var(--site-btn-radius)");
-      expect(radiusSlice).not.toContain("border-radius: 999px");
+      expect(radiusSlice).not.toContain("border-radius: 5px");
     }
   });
 

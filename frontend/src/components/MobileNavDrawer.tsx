@@ -1,6 +1,7 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { handleInPageProductHashClick } from "../lib/inPageProductHashNav";
 import { SocialBrandIcon } from "./icons";
 import {
   MOBILE_NAV_BODY_LOCK_CLASS,
@@ -11,6 +12,14 @@ import {
   MOBILE_NAV_DRAWER_TESTID,
   MOBILE_NAV_OVERLAY_CLASS,
 } from "../lib/mobileNavDrawer";
+import {
+  NAV_DROPDOWN_ITEM_ACCENT_CLASS,
+  NAV_DROPDOWN_ITEM_BADGE_CLASS,
+  NAV_DROPDOWN_ITEM_CLASS,
+  NAV_DROPDOWN_ITEM_DESC_CLASS,
+  NAV_DROPDOWN_ITEM_TITLE_CLASS,
+  isExternalNavHref,
+} from "../lib/navSections";
 
 function DrawerSocialIcon({ label }: { label: string }) {
   return <SocialBrandIcon label={label} width={16} height={16} aria-hidden />;
@@ -23,6 +32,8 @@ type Props = {
 };
 
 export default function MobileNavDrawer({ ctaLabel, ctaUrl, onNavigate }: Props) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -68,17 +79,46 @@ export default function MobileNavDrawer({ ctaLabel, ctaUrl, onNavigate }: Props)
                   </button>
                   {isOpen ? (
                     <div id={panelId} className="nav-mobile-drawer-subnav">
-                      {item.children.map((child) => (
-                        <NavLink
-                          key={child.id}
-                          to={child.to}
-                          className="nav-mobile-drawer-sublink nav-dropdown-link--stacked"
-                          onClick={onNavigate}
-                        >
-                          <span className="nav-dropdown-link-label">{child.label}</span>
-                          <span className="nav-dropdown-link-description">{child.description}</span>
-                        </NavLink>
-                      ))}
+                      {item.children.map((child) => {
+                        const itemClass = `nav-mobile-drawer-sublink nav-dropdown-link--stacked ${
+                          child.accent === "blue" ? NAV_DROPDOWN_ITEM_ACCENT_CLASS : NAV_DROPDOWN_ITEM_CLASS
+                        }`;
+                        const copy = (
+                          <>
+                            <span className={`nav-dropdown-link-label ${NAV_DROPDOWN_ITEM_TITLE_CLASS}`}>{child.label}</span>
+                            <span className={`nav-dropdown-link-description ${NAV_DROPDOWN_ITEM_DESC_CLASS}`}>
+                              {child.description}
+                            </span>
+                            {child.badge ? (
+                              <span className={`nav-dropdown-link-badge ${NAV_DROPDOWN_ITEM_BADGE_CLASS}`}>{child.badge}</span>
+                            ) : null}
+                          </>
+                        );
+                        return isExternalNavHref(child.to, child.external) ? (
+                          <a
+                            key={child.id}
+                            href={child.to}
+                            className={itemClass}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={onNavigate}
+                          >
+                            {copy}
+                          </a>
+                        ) : (
+                          <NavLink
+                            key={child.id}
+                            to={child.to}
+                            className={itemClass}
+                            onClick={(event) => {
+                              onNavigate(event);
+                              handleInPageProductHashClick(event, child.to, location.pathname, navigate);
+                            }}
+                          >
+                            {copy}
+                          </NavLink>
+                        );
+                      })}
                     </div>
                   ) : null}
                 </div>

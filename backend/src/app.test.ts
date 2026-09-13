@@ -291,6 +291,101 @@ describe("API", () => {
     expect(mocks.notifyMock).not.toHaveBeenCalled();
   });
 
+  it("accepts the AI diagnostic deductible budget and notifies the team inbox", async () => {
+    const app = createApp();
+    const payload = {
+      name: "Nitesh Rav",
+      email: "ops@commiters.com",
+      serviceNeeded: "AI & Workflow Diagnostic (₹4,999 / $499)",
+      budgetRange: "₹4,999 / $499",
+      timeline: "48-hour diagnostic",
+      message: "Company: Commiters\n\nBottleneck:\nManual invoice matching",
+    };
+
+    const res = await request(app).post("/api/leads").set("Content-Type", "application/json").send(payload);
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ ok: true, id: "lead_123" });
+    expect(mocks.notifyMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        kind: "project_inquiry",
+        email: "ops@commiters.com",
+        serviceOrPosition: "AI & Workflow Diagnostic (₹4,999 / $499)",
+        budgetRange: "₹4,999 / $499",
+        timeline: "48-hour diagnostic",
+      }),
+    );
+  });
+
+  it("accepts spec-driven platform and governed AI inquiries without a timeline", async () => {
+    const app = createApp();
+
+    const platform = await request(app)
+      .post("/api/leads")
+      .set("Content-Type", "application/json")
+      .send({
+        name: "Nitesh Rav",
+        email: "ops@commiters.com",
+        serviceNeeded: "Spec-Driven Full-Stack Platforms",
+        message: "Company: Commiters\n\nProject:\nNeed a portal",
+      });
+
+    expect(platform.status).toBe(201);
+    expect(mocks.notifyMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        kind: "project_inquiry",
+        serviceOrPosition: "Spec-Driven Full-Stack Platforms",
+        email: "ops@commiters.com",
+      }),
+    );
+
+    const governedAi = await request(app)
+      .post("/api/leads")
+      .set("Content-Type", "application/json")
+      .send({
+        name: "Nitesh Rav",
+        email: "ops@commiters.com",
+        serviceNeeded: "Governed AI & Workflow Systems",
+        timeline: "To be scoped",
+        message: "Company: Commiters\n\nScope:\nGST invoices",
+      });
+
+    expect(governedAi.status).toBe(201);
+    expect(mocks.notifyMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        kind: "project_inquiry",
+        serviceOrPosition: "Governed AI & Workflow Systems",
+        timeline: "To be scoped",
+      }),
+    );
+  });
+
+  it("accepts a home OpsFlow benchmark request and notifies the team", async () => {
+    const app = createApp();
+    const payload = {
+      name: "Website Visitor",
+      email: "founder@acme.io",
+      serviceNeeded: "AI Integration",
+      timeline: "Immediate",
+      message: "Requested OpsFlow AI sample PDF-to-Excel extraction",
+    };
+
+    const res = await request(app).post("/api/leads").set("Content-Type", "application/json").send(payload);
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ ok: true, id: "lead_123" });
+    expect(mocks.notifyMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        kind: "project_inquiry",
+        name: "Website Visitor",
+        email: "founder@acme.io",
+        serviceOrPosition: "AI Integration",
+        timeline: "Immediate",
+        message: "Requested OpsFlow AI sample PDF-to-Excel extraction",
+      }),
+    );
+  });
+
   it("rejects lead when budget contains letters", async () => {
     const app = createApp();
     const payload = {

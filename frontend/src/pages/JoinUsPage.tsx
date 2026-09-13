@@ -7,13 +7,14 @@ import {
   STITCH_JOIN_US_GRID_CLASS,
   STITCH_JOIN_US_SECTION_CLASS,
 } from "../lib/joinUsPageLayout";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { joinUsPageSeo } from "../lib/sitePageSeo";
 
 export default function JoinUsPage() {
   usePageSeo(joinUsPageSeo());
 
   return (
-    <div className={JOIN_US_PAGE_CLASS} data-testid="join-us-page">
+    <div className={withSiteCloudTheme(JOIN_US_PAGE_CLASS)} data-testid="join-us-page">
       <JoinUsIntroSection />
       <section className={`section ${STITCH_JOIN_US_SECTION_CLASS}`} data-testid="join-us-layout">
         <div className={STITCH_JOIN_US_GRID_CLASS}>

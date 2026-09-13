@@ -24,12 +24,12 @@ describe("BrandLogo", () => {
 
     const link = screen.getByRole("link", { name: COMMITERS_HEADER_LOGO_ALT });
     expect(link).toHaveAttribute("href", "/");
-    expect(link).toHaveClass("brand-logo-link", "opacity-90", "transition-opacity");
+    expect(link).toHaveClass("brand-logo-link", "opacity-90", "transition-opacity", "flex", "items-center", "gap-3", "shrink-0", "overflow-visible");
     expect(screen.queryByTestId("brand-tagline")).not.toBeInTheDocument();
 
     const img = screen.getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT });
     expect(img).toHaveAttribute("src", COMMITERS_HEADER_LOGO_SRC);
-    expect(img).toHaveClass("brand-logo", BRAND_LOGO_DISPLAY_CLASS, "brand-logo--header");
+    expect(img).toHaveClass("brand-logo", BRAND_LOGO_DISPLAY_CLASS, "brand-logo--header", "h-12", "max-h-12");
     expect(img).toHaveAttribute("height", String(BRAND_LOGO_HEADER_HEIGHT_PX));
     expect(img).toHaveAttribute("width", String(brandLogoWidthPx(BRAND_LOGO_HEADER_HEIGHT_PX)));
     expect(link.querySelector(`.${BRAND_LOGO_WRAP_CLASS}`)).toBeTruthy();
@@ -45,7 +45,7 @@ describe("BrandLogo", () => {
     expect(link).toHaveAttribute("href", "/");
     const img = screen.getByRole("img", { name: COMMITERS_HEADER_LOGO_ALT });
     expect(img).toHaveAttribute("src", COMMITERS_FOOTER_LOGO_SRC);
-    expect(img).toHaveClass("brand-logo", BRAND_LOGO_DISPLAY_CLASS, "brand-logo--footer");
+    expect(img).toHaveClass("brand-logo", BRAND_LOGO_DISPLAY_CLASS, "brand-logo--footer", "h-12");
     expect(img).toHaveAttribute("height", String(BRAND_LOGO_FOOTER_HEIGHT_PX));
     expect(img).toHaveAttribute("width", String(brandLogoWidthPx(BRAND_LOGO_FOOTER_HEIGHT_PX)));
     expect(screen.queryByTestId("brand-tagline")).not.toBeInTheDocument();

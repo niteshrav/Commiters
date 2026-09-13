@@ -6,6 +6,7 @@ import {
   BROWSE_MY_VACATION_CASE_STUDY_PAGE_CLASS,
   NEXTSAAS_CASE_STUDY_PAGE_CLASS,
 } from "../lib/nextsaasCaseStudyLayout";
+import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { nextsaasCaseStudyPageSeo } from "../lib/sitePageSeo";
 
 export default function NextSaasCaseStudyPage() {
@@ -13,7 +14,7 @@ export default function NextSaasCaseStudyPage() {
 
   return (
     <div
-      className={`${NEXTSAAS_CASE_STUDY_PAGE_CLASS} ${BROWSE_MY_VACATION_CASE_STUDY_PAGE_CLASS}`}
+      className={withSiteCloudTheme(NEXTSAAS_CASE_STUDY_PAGE_CLASS, BROWSE_MY_VACATION_CASE_STUDY_PAGE_CLASS)}
       data-testid="nextsaas-case-study-page"
     >
       <NextSaasCaseStudyIntroSection />

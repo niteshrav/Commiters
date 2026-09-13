@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { FROSTED_GLASS_CLASS_NAME } from "../lib/frostedGlass";
-import { SERVICES_OVERVIEW_DISPLAY } from "../lib/servicesOverviewPageDesign";
 import {
   SERVICES_OVERVIEW_PRODUCTS,
   SERVICES_OVERVIEW_PRODUCTS_ANCHOR,
@@ -31,8 +30,7 @@ export default function ServicesProductsShowcase() {
               <h3>{product.title}</h3>
               <p>{product.description}</p>
               <Link className="btn btn-secondary" to={product.to}>
-                {product.ctaLabel}{" "}
-                <span aria-hidden="true">{SERVICES_OVERVIEW_DISPLAY.ctaArrow}</span>
+                {product.ctaLabel}
               </Link>
             </article>
           ))}

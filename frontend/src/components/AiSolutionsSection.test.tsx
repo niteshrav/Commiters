@@ -110,6 +110,7 @@ describe("AiSolutionsSection", () => {
       name: "Nitesh Rav",
       email: "hello@commiters.com",
       serviceNeeded: "Governed AI & Workflow Systems",
+      timeline: AI_SOLUTIONS_FORM.timeline,
       message: expect.stringContaining("PAN and GST invoice parsing into Mongo."),
     });
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });

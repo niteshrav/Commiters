@@ -47,6 +47,7 @@ describe("sendInquiryEmail", () => {
 
   afterEach(() => {
     process.env = originalEnv;
+    vi.unstubAllGlobals();
   });
 
   it("sends the PDF to both team inboxes when SMTP is enabled", async () => {
@@ -121,13 +122,66 @@ describe("sendInquiryEmail", () => {
     );
   });
 
-  it("skips delivery when SMTP is disabled", async () => {
+  it("delivers an OpsFlow benchmark inquiry to hello@commiters.com", async () => {
+    const benchmark: InquiryNotificationInput = {
+      ...inquiry,
+      serviceOrPosition: "AI Integration",
+      timeline: "Immediate",
+      message: "Requested OpsFlow AI sample PDF-to-Excel extraction",
+    };
+
+    await sendInquiryEmail(benchmark, Buffer.from("%PDF-test"));
+
+    const sendArgs = emailMocks.sendMail.mock.calls[0]?.[0] as { to: string[]; text: string };
+    expect(sendArgs.to[0]).toBe("hello@commiters.com");
+    expect(sendArgs.to).toContain("hello@commiters.com");
+    expect(sendArgs.text).toContain("Requested OpsFlow AI sample PDF-to-Excel extraction");
+    expect(sendArgs.text).toContain("AI Integration");
+  });
+
+  it("delivers to hello@commiters.com through FormSubmit when SMTP is off", async () => {
     process.env.SMTP_ENABLED = "false";
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
 
     await sendInquiryEmail(inquiry, Buffer.from("%PDF"));
 
     expect(emailMocks.createTransport).not.toHaveBeenCalled();
-    expect(emailMocks.sendMail).not.toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledWith(
+      "https://formsubmit.co/ajax/hello%40commiters.com",
+      expect.objectContaining({
+        method: "POST",
+        headers: expect.objectContaining({ Accept: "application/json" }),
+      }),
+    );
+    const body = JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body)) as {
+      email: string;
+      _replyto: string;
+      serviceNeeded: string;
+    };
+    expect(body.email).toBe("jane@company.com");
+    expect(body._replyto).toBe("jane@company.com");
+    expect(body.serviceNeeded).toBe("Website Development");
+  });
+
+  it("falls back to FormSubmit when SMTP is flagged on without credentials", async () => {
+    process.env.SMTP_ENABLED = "true";
+    process.env.SMTP_HOST = "smtp.gmail.com";
+    process.env.SMTP_USER = "commitersudaipur@gmail.com";
+    process.env.SMTP_PASS = "";
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ success: true }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    await sendInquiryEmail(inquiry, Buffer.from("%PDF"));
+
+    expect(emailMocks.createTransport).not.toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalled();
   });
 
   it("uses the OpsFlow lead subject and body for document extractions", async () => {

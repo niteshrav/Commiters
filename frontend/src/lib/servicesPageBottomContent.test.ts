@@ -7,7 +7,7 @@ import {
   SERVICES_HOW_WE_WORK,
   SERVICES_REJECTED_BOTTOM_CTA_SUBTEXT,
 } from "./servicesPageBottomContent";
-import { ROUTES } from "./routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "./routes";
 import {
   SERVICES_BOTTOM_CTA_SECTION_CLASS,
   SERVICES_HOW_WE_WORK_CARD_CLASS,
@@ -29,14 +29,14 @@ function ruleBlock(selector: string, nextSelector: string): string {
 describe("servicesPageBottomContent", () => {
   it("uses the services CTA copy from the Stitch screenshot", () => {
     expect(SERVICES_BOTTOM_CTA.subtext).toBe(
-      "Book a 2-week AI Operational Audit to map spreadsheet bottlenecks and leave with a working automation prototype.",
+      "Book a 48-hour AI Operational Audit to map spreadsheet bottlenecks and leave with a working automation prototype.",
     );
     expect(SERVICES_BOTTOM_CTA.subtext).not.toBe(SERVICES_REJECTED_BOTTOM_CTA_SUBTEXT);
   });
 
   it("exposes the booking action and View Our Stack secondary link", () => {
     expect(SERVICES_BOTTOM_CTA.primaryLabel).toBe("Book Operational Audit");
-    expect(SERVICES_BOTTOM_CTA.primaryHref).toBe(ROUTES.aiOperationalAudit);
+    expect(SERVICES_BOTTOM_CTA.primaryHref).toBe(AI_OPERATIONAL_AUDIT_BOOKING_HREF);
     expect(SERVICES_BOTTOM_CTA.primaryHref).not.toContain("calendly.com");
     expect(SERVICES_BOTTOM_CTA.secondaryLabel).toBe("View Our Stack");
     expect(SERVICES_BOTTOM_CTA.secondaryHref).toBe(ROUTES.about);

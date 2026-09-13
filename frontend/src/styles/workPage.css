@@ -10,7 +10,7 @@
 }
 
 .work-hero-copy .case-studies-intro-kicker {
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .work-hero-copy .case-studies-intro-title {
@@ -286,10 +286,15 @@
 
 .work-final-cta-kicker,
 .work-final-cta .case-studies-bottom-cta-title,
-.work-final-cta .case-studies-bottom-cta-subtext,
+.work-final-cta .case-studies-bottom-cta-subtext {
+  position: relative;
+  z-index: 1;
+}
+
 .work-final-cta .case-studies-bottom-cta-actions {
   position: relative;
   z-index: 1;
+  justify-content: flex-start;
 }
 
 .work-final-cta-kicker {

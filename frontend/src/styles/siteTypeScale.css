@@ -44,7 +44,6 @@
 }
 
 /* Section H2s (same as home core pillars / built for scale) */
-.home-built-for-scale-title,
 .home-ready-cta-title,
 .services-how-we-work-title,
 .about-principles-title,
@@ -117,7 +116,6 @@
 .svc-detail-hero-tagline,
 .svc-detail-hero-description,
 .svc-detail-about-prose p,
-.home-built-for-scale-lead,
 .seo-landing-subtext,
 .seo-landing-section p,
 .open-positions-hero-lead,
@@ -146,4 +144,80 @@
   font-weight: 400;
   line-height: var(--type-body-line);
   color: var(--type-body-color);
+}
+
+/* Cloud, Built Right theme — shared by home hero, governance, and scale bands */
+.home-cloud-kicker,
+.home-built-for-scale-kicker,
+.home-core-pillars-kicker,
+.stitch-home-hero .home-cloud-kicker,
+.about-intro-kicker,
+.about-principles-kicker,
+.about-journey-kicker,
+.services-expertise-kicker,
+.case-studies-intro-kicker,
+.faq-intro-kicker,
+.legal-intro-kicker,
+.stitch-page-kicker,
+.svc-detail-kicker,
+.seo-landing-kicker,
+.trusttap-kicker {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stitch-blue, var(--primary));
+}
+
+.home-cloud-title,
+.home-built-for-scale-title,
+.home-core-pillars-title,
+.stitch-home-title.home-cloud-title,
+.about-intro-title,
+.about-principles-title,
+.about-journey-title,
+.about-craftsmanship-heading,
+.about-bottom-cta-title,
+.services-expertise-title,
+.case-studies-intro-title,
+.faq-intro-title,
+.contact-intro-title,
+.join-us-intro-title,
+.legal-intro-title,
+.technical-ledger-title,
+.testimonials-intro-title,
+.trusttap-hero-title,
+.svc-detail-hero-title,
+.stitch-page-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.home-cloud-lead,
+.home-built-for-scale-lead,
+.stitch-home-subtext.home-cloud-lead,
+.about-intro-body,
+.about-principles-subtext,
+.about-journey-subtext,
+.about-craftsmanship-body,
+.about-bottom-cta-subtext,
+.services-expertise-body,
+.case-studies-intro-subtext,
+.faq-intro-body,
+.contact-intro-body,
+.join-us-intro-body,
+.legal-intro-paragraph,
+.technical-ledger-subtext,
+.testimonials-intro-body,
+.seo-landing-subtext {
+  font-family: var(--font-body);
+  font-size: var(--type-body-size);
+  font-weight: 400;
+  line-height: var(--type-body-line);
+  color: #64748b;
 }

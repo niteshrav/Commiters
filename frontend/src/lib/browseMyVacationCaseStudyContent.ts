@@ -38,6 +38,13 @@ export type BrowseMyVacationCaseStudyMetadataItem = {
   href?: string;
 };
 
+export type BrowseMyVacationGalleryImage = {
+  src: string;
+  srcSet: string;
+  sizes?: string;
+  alt: string;
+};
+
 /** Case study copy for the BrowseMyVacation travel platform (reuses NextSaas page layout). */
 export const BROWSE_MY_VACATION_CASE_STUDY_COPY = {
   documentTitle: "BrowseMyVacation Case Study",
@@ -67,13 +74,9 @@ export const BROWSE_MY_VACATION_CASE_STUDY_COPY = {
       src: "/assets/case-studies/browse-my-vacation-visual.png",
       srcSet:
         "/assets/case-studies/browse-my-vacation-visual.png 1x, /assets/case-studies/browse-my-vacation-visual@2x.png 2x",
+      alt: "Hikers following a snowy mountain trail on a BrowseMyVacation destination experience",
     },
-    {
-      src: "/assets/case-studies/browse-my-vacation-hero.png",
-      srcSet:
-        "/assets/case-studies/browse-my-vacation-hero.png 1x, /assets/case-studies/browse-my-vacation-hero@2x.png 2x",
-    },
-  ] as const,
+  ] as const satisfies readonly BrowseMyVacationGalleryImage[],
   scope: {
     heading: "Product scope",
     description:
@@ -225,3 +228,24 @@ export const BROWSE_MY_VACATION_CASE_STUDY_COPY = {
     tertiaryTo: ROUTES.contact,
   },
 } as const;
+
+export function uniqueBrowseMyVacationGallery(
+  copy: typeof BROWSE_MY_VACATION_CASE_STUDY_COPY = BROWSE_MY_VACATION_CASE_STUDY_COPY,
+): BrowseMyVacationGalleryImage[] {
+  const items: BrowseMyVacationGalleryImage[] = [
+    {
+      src: copy.introHeroImage.src,
+      srcSet: copy.introHeroImage.srcSet,
+      sizes: copy.introHeroImage.sizes,
+      alt: copy.introHeroImage.alt,
+    },
+    ...copy.collageTiles,
+  ];
+
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    if (seen.has(item.src)) return false;
+    seen.add(item.src);
+    return true;
+  });
+}

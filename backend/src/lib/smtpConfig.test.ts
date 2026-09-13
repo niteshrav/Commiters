@@ -3,6 +3,7 @@ import {
   assertProductionEmailDeliveryReady,
   isSmtpEnabled,
   resolveSmtpConfig,
+  resolveSmtpConfigOrNull,
 } from "./smtpConfig";
 
 const productionSmtpEnv = {
@@ -53,6 +54,17 @@ describe("smtpConfig", () => {
         SMTP_PASS: "secret",
       }),
     ).toThrow(/SMTP_HOST, SMTP_USER, or SMTP_PASS is missing/i);
+  });
+
+  it("treats an enabled but incomplete SMTP config as unusable", () => {
+    expect(
+      resolveSmtpConfigOrNull({
+        SMTP_ENABLED: "true",
+        SMTP_HOST: "smtp.gmail.com",
+        SMTP_USER: "commitersudaipur@gmail.com",
+        SMTP_PASS: "",
+      }),
+    ).toBeNull();
   });
 
   it("requires SMTP in production so forms can deliver to both team inboxes", () => {

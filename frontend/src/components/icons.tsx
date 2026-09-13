@@ -548,6 +548,14 @@ export function IconMedium(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconYouTube(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden {...props}>
+      <path d="M23.5 6.2a3.02 3.02 0 00-2.13-2.14C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.37.46A3.02 3.02 0 00.5 6.2 31.6 31.6 0 000 12a31.6 31.6 0 00.5 5.8 3.02 3.02 0 002.13 2.14C4.5 20.4 12 20.4 12 20.4s7.5 0 9.37-.46a3.02 3.02 0 002.13-2.14A31.6 31.6 0 0024 12a31.6 31.6 0 00-.5-5.8ZM9.75 15.57V8.43L15.84 12l-6.09 3.57Z" />
+    </svg>
+  );
+}
+
 export function SocialBrandIcon({
   label,
   ...props
@@ -559,6 +567,8 @@ export function SocialBrandIcon({
       return <IconInstagram {...props} />;
     case "Medium":
       return <IconMedium {...props} />;
+    case "YouTube":
+      return <IconYouTube {...props} />;
     case "GitHub":
       return <IconGitHub {...props} />;
     case "WhatsApp":

@@ -5,8 +5,10 @@ import { describe, expect, it } from "vitest";
 import {
   CASE_STUDIES_PAGE_CLASS,
   CASE_STUDIES_PAGE_MAX_WIDTH,
+  CASE_STUDIES_BOTTOM_CTA_ACTIONS_CLASS,
   CASE_STUDIES_BOTTOM_CTA_PRIMARY_CLASS,
   CASE_STUDIES_BOTTOM_CTA_SECONDARY_CLASS,
+  CASE_STUDIES_WORK_FINAL_CTA_ACTIONS_JUSTIFY,
   CASE_STUDIES_FEATURED_CLASS,
   CASE_STUDIES_GRID_CLASS,
   CASE_STUDIES_GRID_COLUMNS,
@@ -24,6 +26,10 @@ import {
 } from "./caseStudiesPageLayout";
 
 const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "styles.css"), "utf8").replace(/\r\n/g, "\n");
+const workCss = readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "styles", "workPage.css"),
+  "utf8",
+).replace(/\r\n/g, "\n");
 
 function ruleBlock(selector: string, nextSelector: string): string {
   const start = css.indexOf(selector);
@@ -112,5 +118,14 @@ describe("caseStudiesPageLayout", () => {
   it("uses one shared one-line gap between problem and solution on every project card", () => {
     expect(CASE_STUDY_PROBLEM_SOLUTION_GAP).toBe("1lh");
     expect(CASE_STUDY_HORIZONTAL_IMAGE_ASPECT_RATIO).toBe("16 / 10");
+  });
+
+  it("left-aligns the Start a Conversation button on the Work page CTA", () => {
+    const selector = `.work-final-cta .${CASE_STUDIES_BOTTOM_CTA_ACTIONS_CLASS} {`;
+    const start = workCss.indexOf(selector);
+    expect(start).toBeGreaterThan(-1);
+    const actions = workCss.slice(start, start + 280);
+    expect(actions).toContain(`justify-content: ${CASE_STUDIES_WORK_FINAL_CTA_ACTIONS_JUSTIFY}`);
+    expect(actions).not.toContain("justify-content: center");
   });
 });

@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { HOME_LEAD_MAGNET_FORM_HREF } from "./homeLeadMagnetContent";
 import { ROUTES } from "./routes";
 import {
   formatOpsFlowRemainingLabel,
   OPSFLOW_BOTTOM_CTA,
   OPSFLOW_DAILY_LIMIT,
   OPSFLOW_DOCUMENT_CATEGORIES,
+  OPSFLOW_FEATURES_HEADING,
   OPSFLOW_HERO,
   OPSFLOW_HOW_IT_WORKS,
   OPSFLOW_PREVIEW,
@@ -26,7 +28,7 @@ describe("opsFlowPageContent", () => {
   });
 
   it("uses the live product showcase hero copy and dual CTAs", () => {
-    expect(OPSFLOW_HERO.eyebrow).toBe("PROPRIETARY CLOUD PRODUCT");
+    expect(OPSFLOW_HERO.eyebrow).toBe("ENTERPRISE AI & CLOUD SYSTEMS");
     expect(OPSFLOW_HERO.headline).toBe("OpsFlow AI: Automated Document Ingestion");
     expect(OPSFLOW_HERO.subheadline).toBe(
       "Zero-code PDF-to-Excel data extraction for invoices, receipts, GST bills, and operational records.",
@@ -34,10 +36,13 @@ describe("opsFlowPageContent", () => {
     expect(OPSFLOW_HERO.tryFreeLabel).toBe("Try Free Version");
     expect(OPSFLOW_HERO.tryFreeHref).toBe("#opsflow-sandbox");
     expect(OPSFLOW_HERO.demoLabel).toBe("Request Enterprise Demo");
-    expect(OPSFLOW_HERO.demoTo).toBe(ROUTES.contact);
+    expect(OPSFLOW_HERO.demoTo).toBe(HOME_LEAD_MAGNET_FORM_HREF);
+    expect(OPSFLOW_HERO.demoTo).toBe("/#home-lead-magnet-card");
   });
 
   it("lists three product features", () => {
+    expect(OPSFLOW_FEATURES_HEADING).toBe("Core Capabilities");
+
     expect(OPSFLOW_VALUE_CARDS.map((card) => card.title)).toEqual([
       "Instant PDF Ingestion",
       "Deterministic Schema Checking",

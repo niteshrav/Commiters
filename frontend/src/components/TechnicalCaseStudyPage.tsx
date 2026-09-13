@@ -68,6 +68,7 @@ import {
   PROSPECTIQ_HERO_VISUAL_CLASS,
   PROSPECTIQ_METRIC_ICON_CLASS,
 } from "../lib/commitersCaseStudyLayout";
+import { SITE_CLOUD_THEME_CLASS } from "../lib/homeCloudTheme";
 import { ArchitectureItemIcon } from "./ArchitectureItemIcon";
 import { IconBolt, IconCloud, IconGauge, IconGlobe, IconLayers, IconSearch, IconShieldCheck } from "./icons";
 
@@ -104,6 +105,7 @@ export default function TechnicalCaseStudyPage({ copy }: Props) {
   const isEcoRoute = pageId === "ecoroute";
   const isSplitHero = isProspectIq || isEcoRoute;
   const pageClassName = [
+    SITE_CLOUD_THEME_CLASS,
     COMMITERS_CASE_STUDY_PAGE_CLASS,
     "technical-case-study-page",
     isProspectIq ? PROSPECTIQ_CASE_STUDY_PAGE_CLASS : "",

@@ -41,11 +41,27 @@ describe("OpsFlowSection", () => {
 
     expect(screen.getByTestId("opsflow-section")).toBeInTheDocument();
     expect(screen.getByText(OPSFLOW_HERO.eyebrow)).toBeInTheDocument();
+    expect(document.getElementById("document-ingestion")).toHaveTextContent(OPSFLOW_HERO.headline);
+    expect(document.getElementById("document-ingestion")?.className).not.toMatch(/scroll-mt-/);
     expect(screen.getByRole("heading", { name: OPSFLOW_HERO.headline, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(OPSFLOW_HERO.subheadline)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: OPSFLOW_HERO.tryFreeLabel })).toHaveAttribute("href", OPSFLOW_HERO.tryFreeHref);
     expect(screen.getByRole("link", { name: OPSFLOW_HERO.demoLabel })).toHaveAttribute("href", OPSFLOW_HERO.demoTo);
-    expect(screen.getByTestId("opsflow-panel")).toHaveAttribute("id", "opsflow-sandbox");
+    expect(screen.getByTestId("opsflow-panel").tagName).toBe("SECTION");
+    expect(screen.getByTestId("opsflow-panel")).toHaveClass("pt-16", "pb-16", "w-full");
+    expect(screen.getByTestId("opsflow-panel")).toHaveAttribute("id", "sandbox");
+    expect(screen.getByTestId("opsflow-panel").className).not.toMatch(/scroll-mt-/);
+    expect(document.getElementById("opsflow-sandbox")).toBeTruthy();
+    expect(screen.getByTestId("opsflow-features")).toHaveAttribute("id", "features");
+    expect(screen.getByTestId("opsflow-features")).toHaveClass("pt-16", "pb-16", "w-full");
+    expect(screen.getByTestId("opsflow-features").className).not.toMatch(/scroll-mt-/);
+    expect(screen.getByRole("heading", { name: "Core Capabilities", level: 2 })).toHaveClass(
+      "text-2xl",
+      "font-bold",
+      "text-center",
+      "mb-6",
+    );
+    expect(screen.getByRole("heading", { name: "Core Capabilities", level: 2 })).toBeInTheDocument();
 
     for (const card of OPSFLOW_VALUE_CARDS) {
       expect(screen.getByRole("heading", { name: card.title, level: 2 })).toBeInTheDocument();
@@ -63,7 +79,12 @@ describe("OpsFlowSection", () => {
     }
     expect(screen.getByRole("button", { name: OPSFLOW_SUBMIT_LABEL })).toBeInTheDocument();
     expect(screen.getByText(OPSFLOW_SECURITY_FOOTER)).toBeInTheDocument();
-    expect(screen.getByTestId("opsflow-how-it-works")).toHaveAttribute("id", "opsflow-how-it-works");
+    expect(screen.getByTestId("opsflow-how-it-works")).toHaveAttribute("id", "how-it-works");
+    expect(screen.getByTestId("opsflow-how-it-works").tagName).toBe("SECTION");
+    expect(screen.getByTestId("opsflow-how-it-works")).toHaveClass("pt-16", "pb-16", "w-full");
+    expect(screen.getByTestId("opsflow-how-it-works").className).not.toMatch(/scroll-mt-/);
+    expect(document.getElementById("opsflow-how-it-works")).toBeTruthy();
+    expect(document.getElementById("architecture")).toBeTruthy();
     expect(screen.getByRole("heading", { name: OPSFLOW_HOW_IT_WORKS.title, level: 2 })).toBeInTheDocument();
     expect(screen.getByTestId("opsflow-preview")).toHaveAttribute("id", "opsflow-preview");
     expect(screen.getByText(OPSFLOW_PREVIEW.title)).toBeInTheDocument();

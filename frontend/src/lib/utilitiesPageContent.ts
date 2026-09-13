@@ -1,4 +1,4 @@
-import { ROUTES } from "./routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "./routes";
 import { SERVICES_OVERVIEW_INQUIRY_ANCHOR } from "./servicesOverviewPageContent";
 
 export const UTILITIES_DOCUMENT_TITLE = "Free Operational Business Utilities | Commiters" as const;
@@ -6,7 +6,7 @@ export const UTILITIES_DOCUMENT_TITLE = "Free Operational Business Utilities | C
 export const UTILITIES_SEO = {
   title: UTILITIES_DOCUMENT_TITLE,
   description:
-    "Lightweight, zero-code tools engineered by Committers to streamline daily document extraction, verification, and business operations.",
+    "Lightweight, zero-code tools engineered by Commiters to streamline daily document extraction, verification, and business operations.",
   keywords:
     "free business utilities, OpsFlow AI, PDF to Excel, GST verification, Commiters tools",
   path: ROUTES.utilities,
@@ -16,7 +16,7 @@ export const UTILITIES_HERO = {
   eyebrow: "ZERO-CODE CLOUD UTILITIES",
   title: "Free Operational Business Utilities",
   subtitle:
-    "Lightweight, zero-code tools engineered by Committers to streamline daily document extraction, verification, and business operations.",
+    "Lightweight, zero-code tools engineered by Commiters to streamline daily document extraction, verification, and business operations.",
 } as const;
 
 export type UtilitiesTool = {
@@ -52,5 +52,5 @@ export const UTILITIES_TOOLS: readonly UtilitiesTool[] = [
 export const UTILITIES_BANNER = {
   title: "Need a custom tool or automated cloud workflow for your team?",
   ctaLabel: "Book Operational Audit",
-  ctaTo: ROUTES.aiOperationalAudit,
+  ctaTo: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
 } as const;

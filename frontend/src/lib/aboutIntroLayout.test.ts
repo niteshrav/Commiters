@@ -10,6 +10,7 @@ import {
   ABOUT_INTRO_INNER_CLASS,
   ABOUT_INTRO_INNER_PADDING_INLINE,
   ABOUT_INTRO_KICKER_CLASS,
+  ABOUT_INTRO_KICKER_COLOR,
   ABOUT_INTRO_KICKER_LETTER_SPACING,
   ABOUT_INTRO_KICKER_MARGIN_BOTTOM,
   ABOUT_INTRO_KICKER_SIZE,
@@ -49,7 +50,7 @@ describe("aboutIntroLayout", () => {
     expect(kicker).toContain(`font-size: ${ABOUT_INTRO_KICKER_SIZE}`);
     expect(kicker).toContain(`letter-spacing: ${ABOUT_INTRO_KICKER_LETTER_SPACING}`);
     expect(kicker).toContain(`margin: 0 0 ${ABOUT_INTRO_KICKER_MARGIN_BOTTOM}`);
-    expect(kicker).toContain("color: var(--brand-gold)");
+    expect(kicker).toContain(ABOUT_INTRO_KICKER_COLOR);
 
     const title = ruleBlock(`.${ABOUT_INTRO_TITLE_CLASS} {`, `.${ABOUT_INTRO_BODY_CLASS} {`);
     expect(title).toContain(`font-size: ${ABOUT_INTRO_TITLE_SIZE}`);

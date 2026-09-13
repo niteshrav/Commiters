@@ -152,7 +152,7 @@ describe("POST /api/opsflow/parse", () => {
     expect(mocks.dispatchInquiryNotifications).not.toHaveBeenCalled();
   });
 
-  it("returns 503 when Mongo is disconnected so quota cannot be bypassed", async () => {
+  it("still extracts when Mongo is disconnected and keeps quota enforcement", async () => {
     stubSuccessfulExtract();
     mocks.isMongoConnected.mockReturnValue(false);
     const app = createApp();
@@ -162,9 +162,30 @@ describe("POST /api/opsflow/parse", () => {
       .field("category", "GST Invoices")
       .attach("file", Buffer.from("%PDF-1.4"), { filename: "invoice.pdf", contentType: "application/pdf" });
 
-    expect(res.status).toBe(503);
-    expect(res.body.error).toMatch(/temporarily unavailable/i);
+    expect(res.status).toBe(200);
+    expect(res.headers["content-type"]).toMatch(/spreadsheetml/);
+    expect(mocks.extractDocumentFields).toHaveBeenCalledTimes(1);
+    expect(mocks.getOpsFlowDailyCount).toHaveBeenCalledTimes(1);
+  });
+
+  it("returns 429 when Mongo is disconnected and the in-memory daily quota is exhausted", async () => {
+    stubSuccessfulExtract();
+    mocks.isMongoConnected.mockReturnValue(false);
+    mocks.getOpsFlowDailyCount.mockResolvedValue(10);
+    const app = createApp();
+    const res = await request(app)
+      .post("/api/opsflow/parse")
+      .field("workEmail", "hello@commiters.com")
+      .field("category", "GST Invoices")
+      .attach("file", Buffer.from("%PDF-1.4"), { filename: "invoice.pdf", contentType: "application/pdf" });
+
+    expect(res.status).toBe(429);
+    expect(res.body).toEqual({
+      success: false,
+      error: OPSFLOW_QUOTA_ERROR,
+    });
     expect(mocks.extractDocumentFields).not.toHaveBeenCalled();
+    expect(mocks.recordOpsFlowExtraction).not.toHaveBeenCalled();
   });
 
   it("still returns the xlsx when lead notification fails after a successful extract", async () => {

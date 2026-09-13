@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { COMMITERS_CASE_STUDY_COPY } from "./commitersCaseStudyContent";
-import { HOME_HERO_OPS_FLOW_HREF } from "./homePageContent";
-import { ROUTES } from "./routes";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, OPSFLOW_HERO_PAGE_HREF } from "./routes";
 
 describe("commitersCaseStudyContent", () => {
   it("matches the spec-driven cloud platform case study copy", () => {
@@ -40,7 +39,7 @@ describe("commitersCaseStudyContent", () => {
   });
 
   it("wires CTAs to the operational audit and AI products", () => {
-    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.aiOperationalAudit);
-    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.secondaryTo).toBe(HOME_HERO_OPS_FLOW_HREF);
+    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(AI_OPERATIONAL_AUDIT_BOOKING_HREF);
+    expect(COMMITERS_CASE_STUDY_COPY.bottomCta.secondaryTo).toBe(OPSFLOW_HERO_PAGE_HREF);
   });
 });

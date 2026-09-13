@@ -84,4 +84,5 @@ export const AI_SOLUTIONS_FORM = {
   projectPlaceholder: "Which GST, PAN, or operational documents should the pipeline handle?",
   submitLabel: AI_SOLUTIONS_CTA_LABEL,
   serviceNeeded: "Governed AI & Workflow Systems",
+  timeline: "To be scoped",
 } as const;

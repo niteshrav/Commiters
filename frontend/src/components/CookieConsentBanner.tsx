@@ -33,7 +33,7 @@ export default function CookieConsentBanner() {
           </h2>
           <p className={COOKIE_CONSENT_BANNER_BODY_CLASS}>{COOKIE_CONSENT_BANNER_COPY.description}</p>
           <Link className={COOKIE_CONSENT_BANNER_POLICY_LINK_CLASS} to={COOKIE_CONSENT_BANNER_COPY.policyHref}>
-            {COOKIE_CONSENT_BANNER_COPY.policyLinkLabel} →
+            {COOKIE_CONSENT_BANNER_COPY.policyLinkLabel}
           </Link>
         </div>
         <div className={COOKIE_CONSENT_BANNER_ACTIONS_CLASS}>

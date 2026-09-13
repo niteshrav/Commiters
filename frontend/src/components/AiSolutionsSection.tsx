@@ -152,6 +152,7 @@ export default function AiSolutionsSection() {
         name: result.payload.name,
         email: result.payload.email,
         serviceNeeded: AI_SOLUTIONS_FORM.serviceNeeded,
+        timeline: AI_SOLUTIONS_FORM.timeline,
         message: `Company: ${result.payload.company}\n\nScope:\n${result.payload.project}`,
       });
       navigate(ROUTES.thankYou, { state: { submissionView: "client" } });

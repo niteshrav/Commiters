@@ -7,7 +7,7 @@ export const SERVICES_OVERVIEW_DISPLAY = {
   formLead: "Tell us about your needs and we'll suggest the right approach for your team.",
   formAside: "Turn your ideas into impact.",
   privacyNote: "We respect your privacy. No spam, ever.",
-  ctaArrow: "→",
+  ctaArrow: "",
   chips: [
     { id: "scale", title: "Scalable", body: "Architecture" },
     { id: "zero", title: "Zero-Code", body: "Operations" },
