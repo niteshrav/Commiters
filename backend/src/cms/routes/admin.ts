@@ -38,6 +38,7 @@ import { deleteMedia, listMedia, uploadMedia } from "../controllers/mediaControl
 import { authenticate, requireAdmin, requireMongo } from "../middleware/auth";
 import { requireJson } from "../../middleware/requireJson";
 import { uploadImage } from "../middleware/upload";
+import { crawlAdminRouter } from "../../crawler/routes";
 
 export const adminRouter = Router();
 
@@ -123,3 +124,5 @@ adminRouter.delete("/contact-queries/:id", deleteContactQuery);
 adminRouter.get("/media", listMedia);
 adminRouter.post("/media/upload", uploadImage.single("file"), uploadMedia);
 adminRouter.delete("/media/:id", deleteMedia);
+
+adminRouter.use(crawlAdminRouter);

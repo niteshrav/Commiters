@@ -1997,6 +1997,63 @@ code {
   gap: 6px;
 }
 
+.crawler-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--on-surface);
+}
+
+.crawler-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+.crawler-stats div {
+  background: #fff;
+  border: 1px solid var(--outline-variant);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.crawler-stats span {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.crawler-config {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 0 0 24px;
+}
+
+.crawler-config dt {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.crawler-current,
+.crawler-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.studio-link {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .admin-job-form-grid {
     grid-template-columns: 1fr;

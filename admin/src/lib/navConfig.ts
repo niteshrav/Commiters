@@ -29,6 +29,7 @@ export const NAV_SECTIONS: NavSection[] = [
       { label: "FAQs", to: "/faqs", icon: "quiz" },
       { label: "Footer", to: "/footer", icon: "vertical_align_bottom" },
       { label: "Media Library", to: "/media", icon: "perm_media" },
+      { label: "Crawler", to: "/crawler", icon: "travel_explore" },
     ],
   },
   {

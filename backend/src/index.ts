@@ -4,6 +4,7 @@ import { assertProductionEmailDeliveryReady } from "./lib/smtpConfig";
 import { getServerHost } from "./serverBind";
 import { connectMongo } from "./cms/config/database";
 import { ensureMissingCmsProjects } from "./cms/seedProjects";
+import { failInterruptedJobs } from "./crawler/service";
 
 assertProductionEmailDeliveryReady();
 
@@ -12,6 +13,14 @@ const host = getServerHost();
 
 async function start() {
   await connectMongo();
+  try {
+    const interrupted = await failInterruptedJobs();
+    if (interrupted) {
+      console.log(`Crawler: marked ${interrupted} interrupted crawl job(s) as failed.`);
+    }
+  } catch (error) {
+    console.error("Crawler job recovery failed:", error);
+  }
   try {
     const added = await ensureMissingCmsProjects();
     if (added) {
