@@ -1,5 +1,6 @@
 import { ROUTES } from "./routes";
 import { buildServiceDetailPath } from "./services";
+import { buildFaqPageSchema, buildLocalBusinessSchema } from "./siteSeo";
 
 export type SeoLandingSection = {
   title: string;
@@ -199,4 +200,11 @@ export function seoLandingServiceSchema(content: SeoLandingPageContent, origin: 
     },
     url: `${origin}${content.path}`,
   };
+}
+
+export function seoLandingStructuredData(
+  content: SeoLandingPageContent,
+  origin: string,
+): Record<string, unknown>[] {
+  return [seoLandingServiceSchema(content, origin), buildLocalBusinessSchema(), buildFaqPageSchema(content.faqs)];
 }

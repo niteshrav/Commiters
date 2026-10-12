@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Reveal from "./motion/Reveal";
 import { usePageSeo, SITE_ORIGIN } from "../hooks/usePageSeo";
 import type { SeoLandingPageContent } from "../lib/seoLandingUdaipurContent";
-import { seoLandingServiceSchema } from "../lib/seoLandingUdaipurContent";
+import { seoLandingStructuredData } from "../lib/seoLandingUdaipurContent";
 import { SITE_CLOUD_THEME_CLASS } from "../lib/homeCloudTheme";
 
 type Props = {
@@ -16,7 +16,7 @@ export default function SeoLandingPage({ content }: Props) {
     description: content.seo.description,
     keywords: content.seo.keywords,
     path: content.path,
-    structuredData: seoLandingServiceSchema(content, SITE_ORIGIN),
+    structuredData: seoLandingStructuredData(content, SITE_ORIGIN),
   });
 
   return (

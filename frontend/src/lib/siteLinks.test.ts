@@ -3,9 +3,7 @@ import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_MEDIUM_URL
 
 describe("siteLinks", () => {
   it("uses the canonical LinkedIn company page URL", () => {
-    expect(SITE_LINKEDIN_URL).toBe(
-      "https://www.linkedin.com/company/commiters-softwares/?viewAsMember=true",
-    );
+    expect(SITE_LINKEDIN_URL).toBe("https://www.linkedin.com/company/commiters-softwares/");
   });
 
   it("keeps GitHub profile URL stable", () => {

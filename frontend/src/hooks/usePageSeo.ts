@@ -63,11 +63,14 @@ export function usePageSeo(input: PageSeoInput | null): void {
     upsertMeta("property", "og:type", input.ogType ?? "website");
     upsertMeta("property", "og:url", canonicalUrl);
     upsertMeta("property", "og:site_name", "Commiters");
+    upsertMeta("property", "og:locale", "en_IN");
     upsertMeta("property", "og:image", ogImage);
+    upsertMeta("property", "og:image:alt", input.title);
     upsertMeta("name", "twitter:card", "summary_large_image");
     upsertMeta("name", "twitter:title", input.title);
     upsertMeta("name", "twitter:description", input.description);
     upsertMeta("name", "twitter:image", ogImage);
+    upsertMeta("name", "twitter:image:alt", input.title);
     upsertLink("canonical", canonicalUrl);
 
     removePageStructuredData();

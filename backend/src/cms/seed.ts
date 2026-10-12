@@ -348,7 +348,7 @@ async function seed() {
       description: "Commiters — Enterprise AI & Cloud Systems",
       copyright: "© Commiters. All rights reserved.",
       socialLinks: [
-        { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/?viewAsMember=true" },
+        { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/" },
         { platform: "WhatsApp", url: "https://wa.me/919024882899" },
         { platform: "GitHub", url: "https://github.com/niteshrav" },
       ],
@@ -372,7 +372,7 @@ async function seed() {
     const footerDoc = await Footer.findOne().sort({ updatedAt: -1 });
     if (footerDoc) {
       const requiredSocial = [
-        { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/?viewAsMember=true" },
+        { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/" },
         { platform: "WhatsApp", url: "https://wa.me/919024882899" },
         { platform: "GitHub", url: "https://github.com/niteshrav" },
       ];
@@ -436,8 +436,9 @@ async function seed() {
   if ((await WebsiteSettings.countDocuments()) === 0) {
     await WebsiteSettings.create({
       websiteName: "Commiters",
-      seoTitle: "Commiters | Founder-Led Engineering Studio",
-      metaDescription: "Commiters builds scalable web, mobile, AI, and MVP products with founder-led delivery.",
+      seoTitle: "Commiters — Enterprise AI & Cloud Systems",
+      metaDescription:
+        "Commiters — Enterprise AI & Cloud Systems. Spec-driven engineering, custom AI pipelines, and enterprise software architectures.",
       favicon: "/assets/icons/favicon.svg",
       openGraphImage: "",
     });

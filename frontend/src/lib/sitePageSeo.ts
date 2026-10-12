@@ -12,7 +12,8 @@ import { PRIVACY_PAGE_COPY } from "./privacyPageContent";
 import { ROUTES } from "./routes";
 import { DEFAULT_META_DESCRIPTION } from "./siteBrandChrome";
 import { DEFAULT_DOCUMENT_TITLE, pageTitle } from "./siteMeta";
-import { SITE_SEO_KEYWORDS, buildWebSiteSchema } from "./siteSeo";
+import { FALLBACK_FAQ_ITEMS } from "./faqPageContent";
+import { SITE_SEO_KEYWORDS, buildFaqPageSchema, buildLocalBusinessSchema, buildWebSiteSchema } from "./siteSeo";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { TRUSTTAP_SEO } from "./trustTapPageContent";
 import { OPSFLOW_SEO } from "./opsFlowPageContent";
@@ -38,7 +39,7 @@ export function homePageSeo(): PageSeoInput {
     title: DEFAULT_DOCUMENT_TITLE,
     description: DEFAULT_META_DESCRIPTION,
     path: ROUTES.home,
-    structuredData: buildWebSiteSchema(),
+    structuredData: [buildWebSiteSchema()],
   });
 }
 
@@ -81,8 +82,9 @@ export function contactPageSeo(): PageSeoInput {
   return page({
     title: pageTitle("Contact Commiters"),
     description:
-      "Contact Commiters for web development, mobile app development, and SaaS development projects. Talk with our software development company team.",
+      "Contact Commiters in Udaipur for enterprise AI, cloud systems, web development, and SaaS projects. Talk with our engineering studio team.",
     path: ROUTES.contact,
+    structuredData: buildLocalBusinessSchema(),
   });
 }
 
@@ -90,8 +92,9 @@ export function faqPageSeo(): PageSeoInput {
   return page({
     title: pageTitle(FAQ_PAGE_COPY.title),
     description:
-      "Frequently asked questions about working with Commiters on web development, mobile app development, and SaaS development engagements.",
+      "Frequently asked questions about working with Commiters on enterprise AI, cloud systems, web development, and SaaS engagements.",
     path: ROUTES.faq,
+    structuredData: buildFaqPageSchema(FALLBACK_FAQ_ITEMS),
   });
 }
 

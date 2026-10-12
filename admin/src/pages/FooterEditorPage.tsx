@@ -8,7 +8,7 @@ type SocialLink = { platform: string; url: string };
 type FooterLink = { label: string; url: string; order: number };
 
 const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
-  { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/?viewAsMember=true" },
+  { platform: "LinkedIn", url: "https://www.linkedin.com/company/commiters-softwares/" },
   { platform: "WhatsApp", url: "https://wa.me/919024882899" },
   { platform: "Instagram", url: "https://www.instagram.com/commitersconnect/" },
   { platform: "Medium", url: "https://medium.com/@erniteshrav" },
