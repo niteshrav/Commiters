@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { CASE_STUDIES_PAGE_DESIGN } from "../lib/caseStudiesPageDesign";
+import { caseStudyHasImage, caseStudyImageSrc } from "../lib/caseStudiesPageAssets";
 import {
   CASE_STUDIES_INTRO_INNER_CLASS,
   CASE_STUDIES_INTRO_KICKER_CLASS,
@@ -16,7 +18,7 @@ export default function CaseStudiesIntroSection() {
 
   return (
     <section
-      className={`${CASE_STUDIES_INTRO_SECTION_CLASS} work-hero reveal-on-scroll`}
+      className={`${CASE_STUDIES_INTRO_SECTION_CLASS} work-hero`}
       data-testid="case-studies-intro-section"
       aria-labelledby="case-studies-intro-title"
     >
@@ -24,18 +26,29 @@ export default function CaseStudiesIntroSection() {
         <div className="work-hero-copy">
           <p className={CASE_STUDIES_INTRO_KICKER_CLASS}>{hero.kicker}</p>
           <h1 id="case-studies-intro-title" className={CASE_STUDIES_INTRO_TITLE_CLASS}>
-            <span className="work-hero-title-lead">{hero.titleLead}</span>
-            {" "}
+            <span className="work-hero-title-lead">{hero.titleLead}</span>{" "}
             <span className={CASE_STUDIES_INTRO_TITLE_ACCENT_CLASS}>{hero.titleAccent}</span>
           </h1>
           <p className={CASE_STUDIES_INTRO_SUBTEXT_CLASS}>{hero.subtext}</p>
-          <a className="btn btn-primary work-hero-cta" href={hero.ctaHref}>
-            {hero.ctaLabel}
-          </a>
+          <div className="work-hero-actions">
+            <a className="btn btn-primary work-hero-cta" href={hero.ctaHref}>
+              {hero.ctaLabel}
+            </a>
+            <Link className="btn btn-secondary work-hero-cta-secondary" to={hero.secondaryTo}>
+              {hero.secondaryLabel}
+            </Link>
+          </div>
         </div>
 
         <div className="work-hero-visual" aria-hidden="true">
           <span className="work-hero-dots" />
+          <div className="work-hero-mockups">
+            {hero.mockups.map((id) =>
+              caseStudyHasImage(id) ? (
+                <img key={id} className={`work-hero-mockup work-hero-mockup--${id}`} src={caseStudyImageSrc(id)} alt="" />
+              ) : null,
+            )}
+          </div>
           <div className="work-hero-stack">
             {hero.visual.map((item, index) => {
               const Icon = HERO_ICONS[index] ?? IconLayers;

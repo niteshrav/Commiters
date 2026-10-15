@@ -66,7 +66,7 @@ export function applyWorkPageCaseStudyLayout<T extends { id: string; gridSpan: C
   };
 }
 
-export const WORK_PAGE_FEATURED_IDS = ["commiters", "ai-summarizer"] as const;
+export const WORK_PAGE_FEATURED_IDS = ["commiters", "ai-summarizer", "browse-my-vacation"] as const;
 
 export function splitWorkPageCaseStudies<T extends { id: string }>(projects: readonly T[]): {
   featured: T[];

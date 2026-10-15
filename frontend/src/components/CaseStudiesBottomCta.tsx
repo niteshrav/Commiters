@@ -3,6 +3,7 @@ import { CASE_STUDIES_PAGE_DESIGN } from "../lib/caseStudiesPageDesign";
 import {
   CASE_STUDIES_BOTTOM_CTA_ACTIONS_CLASS,
   CASE_STUDIES_BOTTOM_CTA_PRIMARY_CLASS,
+  CASE_STUDIES_BOTTOM_CTA_SECONDARY_CLASS,
   CASE_STUDIES_BOTTOM_CTA_SECTION_CLASS,
   CASE_STUDIES_BOTTOM_CTA_SUBTEXT_CLASS,
   CASE_STUDIES_BOTTOM_CTA_TITLE_CLASS,
@@ -13,7 +14,7 @@ export default function CaseStudiesBottomCta() {
 
   return (
     <section
-      className={`${CASE_STUDIES_BOTTOM_CTA_SECTION_CLASS} work-final-cta reveal-on-scroll`}
+      className={`${CASE_STUDIES_BOTTOM_CTA_SECTION_CLASS} work-final-cta`}
       data-testid="case-studies-bottom-cta"
       aria-labelledby="case-studies-bottom-cta-title"
     >
@@ -29,6 +30,12 @@ export default function CaseStudiesBottomCta() {
             to={cta.primaryTo}
           >
             {cta.primaryLabel}
+          </Link>
+          <Link
+            className={`case-studies-bottom-cta-btn ${CASE_STUDIES_BOTTOM_CTA_SECONDARY_CLASS} btn btn-secondary`}
+            to={cta.secondaryTo}
+          >
+            {cta.secondaryLabel}
           </Link>
         </div>
       </div>

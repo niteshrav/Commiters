@@ -41,14 +41,14 @@ function ruleBlock(selector: string, nextSelector: string): string {
 describe("caseStudiesPageLayout", () => {
   it("keeps the case studies route canvas on a centered light surface", () => {
     const page = ruleBlock(`.${CASE_STUDIES_PAGE_CLASS} {`, ".technical-ledger-page {");
-    expect(page).toContain("background: var(--surface-container-low)");
+    expect(page).toContain("background: #F7F9FC");
     expect(page).toContain("width: 100%");
     expect(page).toContain(`max-width: ${CASE_STUDIES_PAGE_MAX_WIDTH}`);
     expect(page).toContain("padding-left: var(--site-gutter)");
     expect(page).toContain("padding-right: var(--site-gutter)");
     const routeShell = ruleBlock('.route-shell[data-route="/work"] {', ".route-transition {");
-    expect(routeShell).toContain("background: var(--surface-container-low)");
-    expect(routeShell).toContain("box-shadow: 0 0 0 100vmax var(--surface-container-low)");
+    expect(routeShell).toContain("background: #F7F9FC");
+    expect(routeShell).toContain("box-shadow: 0 0 0 100vmax #F7F9FC");
     expect(routeShell).toContain("clip-path: inset(0 -100vmax)");
   });
 
@@ -120,7 +120,7 @@ describe("caseStudiesPageLayout", () => {
     expect(CASE_STUDY_HORIZONTAL_IMAGE_ASPECT_RATIO).toBe("16 / 10");
   });
 
-  it("left-aligns the Start a Conversation button on the Work page CTA", () => {
+  it("left-aligns the Work page CTA actions", () => {
     const selector = `.work-final-cta .${CASE_STUDIES_BOTTOM_CTA_ACTIONS_CLASS} {`;
     const start = workCss.indexOf(selector);
     expect(start).toBeGreaterThan(-1);

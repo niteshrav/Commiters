@@ -9,11 +9,24 @@ import { ROUTES } from "./routes";
 
 describe("caseStudiesPageDesign", () => {
   it("keeps Work page display copy short and outcome-focused", () => {
-    expect(CASE_STUDIES_PAGE_DESIGN.hero.kicker).toBe("SELECTED WORK");
-    expect(CASE_STUDIES_PAGE_DESIGN.hero.titleAccent).toBe("real operations.");
+    expect(CASE_STUDIES_PAGE_DESIGN.hero.kicker).toBe("OUR WORK");
+    expect(CASE_STUDIES_PAGE_DESIGN.hero.titleAccent).toBe("Real Impact.");
     expect(CASE_STUDIES_PAGE_DESIGN.detailsCta).toBe("View Case Study");
     expect(CASE_STUDIES_PAGE_DESIGN.cta.primaryTo).toBe(ROUTES.contact);
-    expect(CASE_STUDIES_PAGE_DESIGN.filters.map((item) => item.id)).toEqual(["all", "ai", "cloud", "saas", "web"]);
+    expect(CASE_STUDIES_PAGE_DESIGN.filters.map((item) => item.id)).toEqual([
+      "all",
+      "ai",
+      "cloud",
+      "saas",
+      "web",
+      "ecommerce",
+      "business",
+      "travel",
+      "restaurant",
+    ]);
+    expect(CASE_STUDIES_PAGE_DESIGN.cta.primaryLabel).toBe("Start a Project");
+    expect(CASE_STUDIES_PAGE_DESIGN.cta.secondaryLabel).toBe("Book Operational Audit");
+    expect(CASE_STUDIES_PAGE_DESIGN.hero.secondaryTo).toBe(`${ROUTES.about}#delivery-journey`);
   });
 
   it("limits compact technology tags and matches project filters", () => {
@@ -23,5 +36,8 @@ describe("caseStudiesPageDesign", () => {
     expect(workPageMatchesFilter("commiters", "cloud")).toBe(true);
     expect(workPageMatchesFilter("neardrop-mvp", "ai")).toBe(false);
     expect(workPageMatchesFilter("governed-ai", "all")).toBe(true);
+    expect(workPageMatchesFilter("browse-my-vacation", "travel")).toBe(true);
+    expect(workPageMatchesFilter("commiters", "ecommerce")).toBe(false);
+    expect(workPageMatchesFilter("commiters", "restaurant")).toBe(false);
   });
 });

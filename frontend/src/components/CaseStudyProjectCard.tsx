@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import type { CaseStudyProject, CaseStudyTagVariant } from "../lib/caseStudiesPageContent";
-import { CASE_STUDIES_PAGE_DESIGN, workPageBadge, workPageBlurb, workPageTags } from "../lib/caseStudiesPageDesign";
+import {
+  CASE_STUDIES_PAGE_DESIGN,
+  workPageBadge,
+  workPageBlurb,
+  workPageLiveHref,
+  workPageTags,
+} from "../lib/caseStudiesPageDesign";
 import { BRAND_CARD_HOVER_CLASSES, BRAND_TECH_BADGE_CLASSES } from "../lib/brandColorKit";
 import {
   caseStudyHasImage,
@@ -33,6 +39,7 @@ type Props = {
   project: CaseStudyProject;
   presentation?: "featured" | "compact";
   reverse?: boolean;
+  priority?: boolean;
 };
 
 function tagClass(variant: CaseStudyTagVariant = "pill"): string {
@@ -77,7 +84,26 @@ function CaseStudyDetailsLink({ project }: Pick<Props, "project">) {
   );
 }
 
-function CaseStudyMedia({ project, layout }: { project: CaseStudyProject; layout: CaseStudyProject["layout"] }) {
+function CaseStudyLiveLink({ projectId }: { projectId: string }) {
+  const href = workPageLiveHref(projectId);
+  if (!href) return null;
+
+  return (
+    <a className="work-card-live-link" href={href} target="_blank" rel="noopener noreferrer">
+      {CASE_STUDIES_PAGE_DESIGN.liveDemoCta}
+    </a>
+  );
+}
+
+function CaseStudyMedia({
+  project,
+  layout,
+  priority = false,
+}: {
+  project: CaseStudyProject;
+  layout: CaseStudyProject["layout"];
+  priority?: boolean;
+}) {
   if (!caseStudyHasImage(project.id)) return null;
 
   const srcSet = caseStudyImageSrcSet(project.id);
@@ -90,8 +116,9 @@ function CaseStudyMedia({ project, layout }: { project: CaseStudyProject; layout
         srcSet={srcSet}
         sizes={caseStudyImageSizes(project.id, layout)}
         alt={caseStudyImageAlt(project.id)}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
         decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
       />
     </div>
   );
@@ -104,12 +131,20 @@ function CaseStudyCopy({ project, tagLimit }: { project: CaseStudyProject; tagLi
       <h3 className={CASE_STUDY_TITLE_CLASS}>{project.title}</h3>
       <p className="work-card-blurb">{workPageBlurb(project)}</p>
       <CaseStudyTags project={project} limit={tagLimit} />
-      <CaseStudyDetailsLink project={project} />
+      <div className="work-card-actions">
+        <CaseStudyDetailsLink project={project} />
+        <CaseStudyLiveLink projectId={project.id} />
+      </div>
     </div>
   );
 }
 
-export default function CaseStudyProjectCard({ project, presentation = "compact", reverse = false }: Props) {
+export default function CaseStudyProjectCard({
+  project,
+  presentation = "compact",
+  reverse = false,
+  priority = false,
+}: Props) {
   const isFeatured = presentation === "featured";
   const gridClass = isFeatured ? CASE_STUDY_CARD_GRID_WIDE_CLASS : CASE_STUDY_CARD_GRID_NARROW_CLASS;
   const layoutClass = isFeatured ? CASE_STUDY_CARD_HORIZONTAL_CLASS : CASE_STUDY_CARD_STACKED_CLASS;
@@ -131,16 +166,16 @@ export default function CaseStudyProjectCard({ project, presentation = "compact"
       {isFeatured && reverse ? (
         <>
           <CaseStudyCopy project={project} tagLimit={4} />
-          <CaseStudyMedia project={project} layout="horizontal" />
+          <CaseStudyMedia project={project} layout="horizontal" priority={priority} />
         </>
       ) : isFeatured ? (
         <>
-          <CaseStudyMedia project={project} layout="horizontal" />
+          <CaseStudyMedia project={project} layout="horizontal" priority={priority} />
           <CaseStudyCopy project={project} tagLimit={4} />
         </>
       ) : (
         <>
-          <CaseStudyMedia project={project} layout="stacked" />
+          <CaseStudyMedia project={project} layout="stacked" priority={priority} />
           <CaseStudyCopy project={project} tagLimit={3} />
         </>
       )}

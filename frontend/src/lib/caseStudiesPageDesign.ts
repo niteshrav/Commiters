@@ -1,47 +1,76 @@
+import { BROWSE_MY_VACATION_LIVE_URL } from "./browseMyVacationCaseStudyContent";
 import type { CaseStudyProject } from "./caseStudiesPageContent";
-import { ROUTES } from "./routes";
+import { SITE_ORIGIN } from "../hooks/usePageSeo";
+import { buildAboutSectionHref } from "./navSections";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "./routes";
 
-export type WorkPageFilterId = "all" | "ai" | "cloud" | "saas" | "web";
+export type WorkPageFilterId =
+  | "all"
+  | "ai"
+  | "cloud"
+  | "saas"
+  | "web"
+  | "ecommerce"
+  | "business"
+  | "travel"
+  | "restaurant";
 
 export const CASE_STUDIES_PAGE_DESIGN = {
   hero: {
-    kicker: "SELECTED WORK",
-    titleLead: "Systems built for",
-    titleAccent: "real operations.",
-    subtext: "AI products, cloud platforms, and workflow systems engineered for measurable outcomes.",
+    kicker: "OUR WORK",
+    titleLead: "Ideas to",
+    titleAccent: "Real Impact.",
+    subtext: "Explore the digital products, platforms and systems we've built for businesses across industries.",
     ctaLabel: "Explore Case Studies",
     ctaHref: "#featured-case-studies",
+    secondaryLabel: "Our Approach",
+    secondaryTo: buildAboutSectionHref("delivery-journey"),
     visual: [
       { id: "ai", label: "AI & Automation" },
       { id: "cloud", label: "Cloud Platforms" },
       { id: "saas", label: "SaaS Products" },
       { id: "web", label: "Web Applications" },
     ],
+    mockups: ["commiters", "ai-summarizer", "neardrop-mvp"] as const,
   },
   featured: {
-    heading: "Featured Case Studies",
+    heading: "Projects That Make a Difference",
+    subtext: "Selected platforms and operational systems we have shipped with clients.",
   },
-  metrics: [
-    { value: "8+", label: "Projects Delivered" },
-    { value: "AI + Cloud", label: "Across Industries" },
-    { value: "Production Ready", label: "Real-World Impact" },
-    { value: "Spec-Driven", label: "Built for Operations" },
-  ],
+  grid: {
+    heading: "Explore Our Work",
+    empty: "No projects in this category yet.",
+  },
+  flagship: {
+    heading: "Featured Case Study",
+    projectId: "commiters",
+  },
+  testimonials: {
+    kicker: "CLIENT FEEDBACK",
+    heading: "What partners say",
+  },
   filters: [
-    { id: "all", label: "All" },
+    { id: "all", label: "All Projects" },
     { id: "ai", label: "AI & Automation" },
     { id: "cloud", label: "Cloud Platforms" },
-    { id: "saas", label: "SaaS" },
-    { id: "web", label: "Web Apps" },
+    { id: "saas", label: "SaaS Products" },
+    { id: "web", label: "Web Applications" },
+    { id: "ecommerce", label: "E-commerce" },
+    { id: "business", label: "Business Software" },
+    { id: "travel", label: "Travel & Booking" },
+    { id: "restaurant", label: "Restaurant Technology" },
   ] as const satisfies readonly { id: WorkPageFilterId; label: string }[],
   cta: {
     kicker: "LET'S BUILD TOGETHER",
-    title: "Have a system to build?",
-    subtext: "Let's turn the requirement into a production-ready product.",
-    primaryLabel: "Start a Conversation",
+    title: "Have a Project in Mind?",
+    subtext: "From concept to deployment, we help businesses build powerful digital products.",
+    primaryLabel: "Start a Project",
     primaryTo: ROUTES.contact,
+    secondaryLabel: "Book Operational Audit",
+    secondaryTo: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
   },
   detailsCta: "View Case Study",
+  liveDemoCta: "Live Demo",
 } as const;
 
 export const WORK_PAGE_PROJECT_PRESENTATION: Record<
@@ -51,6 +80,7 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
     badge: string;
     filters: WorkPageFilterId[];
     tags?: string[];
+    liveHref?: string;
   }
 > = {
   commiters: {
@@ -58,6 +88,7 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
     badge: "Cloud Platforms",
     filters: ["cloud", "web"],
     tags: ["React", "Vite", "Tailwind CSS", "Cloud"],
+    liveHref: `${SITE_ORIGIN}/`,
   },
   "ai-summarizer": {
     blurb: "Transform long documents into clear, actionable summaries with enterprise-grade security.",
@@ -67,32 +98,33 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
   },
   "multi-role-crm": {
     blurb: "AI-powered CRM assistance with real-time workflows.",
-    badge: "SaaS",
-    filters: ["saas", "ai"],
+    badge: "SaaS Products",
+    filters: ["saas", "ai", "business"],
     tags: ["React", "RAG", "WebSockets"],
   },
   "neardrop-mvp": {
     blurb: "Real-time fleet tracking and smarter field operations.",
-    badge: "SaaS",
-    filters: ["saas"],
+    badge: "SaaS Products",
+    filters: ["saas", "business"],
     tags: ["Node.js", "React", "WebSockets"],
   },
   "browse-my-vacation": {
     blurb: "A curated travel platform with custom quote workflows.",
-    badge: "Web Apps",
-    filters: ["web", "saas"],
+    badge: "Travel & Booking",
+    filters: ["web", "saas", "travel"],
     tags: ["React", "Next.js", "Node.js"],
+    liveHref: BROWSE_MY_VACATION_LIVE_URL,
   },
   "prospectiq-ai": {
     blurb: "Automated lead discovery and intelligence for B2B sales.",
     badge: "AI & Automation",
-    filters: ["ai"],
+    filters: ["ai", "business"],
     tags: ["Python", "FastAPI", "PostgreSQL"],
   },
   "ecoroute-intelligence": {
     blurb: "Cloud-native fleet and route optimization.",
     badge: "Cloud Platforms",
-    filters: ["cloud"],
+    filters: ["cloud", "business"],
     tags: ["React", "Node.js", "PostgreSQL"],
   },
   "governed-ai": {
@@ -106,7 +138,6 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
 export const WORK_PAGE_GRID_ORDER = [
   "multi-role-crm",
   "neardrop-mvp",
-  "browse-my-vacation",
   "prospectiq-ai",
   "ecoroute-intelligence",
   "governed-ai",
@@ -129,4 +160,8 @@ export function workPageTags(project: Pick<CaseStudyProject, "id" | "tags">, lim
 export function workPageMatchesFilter(projectId: string, filter: WorkPageFilterId): boolean {
   if (filter === "all") return true;
   return WORK_PAGE_PROJECT_PRESENTATION[projectId]?.filters.includes(filter) ?? false;
+}
+
+export function workPageLiveHref(projectId: string): string | undefined {
+  return WORK_PAGE_PROJECT_PRESENTATION[projectId]?.liveHref;
 }

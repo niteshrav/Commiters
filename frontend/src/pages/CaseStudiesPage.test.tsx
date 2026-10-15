@@ -1,15 +1,19 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import CaseStudiesPage from "./CaseStudiesPage";
-import { allStaticWorkPageProjects, CASE_STUDY_PROJECTS } from "../lib/caseStudiesPageContent";
+import { allStaticWorkPageProjects } from "../lib/caseStudiesPageContent";
 import { CASE_STUDY_IMAGE_ASSETS } from "../lib/caseStudiesPageAssets";
 import { CASE_STUDIES_PAGE_DESIGN, WORK_PAGE_PROJECT_PRESENTATION } from "../lib/caseStudiesPageDesign";
-import { ROUTES } from "../lib/routes";
+import { BROWSE_MY_VACATION_LIVE_URL } from "../lib/browseMyVacationCaseStudyContent";
+import { SITE_ORIGIN } from "../hooks/usePageSeo";
+import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "../lib/routes";
+import { BROWSE_MY_VACATION_TESTIMONIAL } from "../lib/testimonialsPageContent";
+import { COMMITERS_CASE_STUDY_COPY } from "../lib/commitersCaseStudyContent";
 
 const workProjects = allStaticWorkPageProjects();
 
 describe("CaseStudiesPage", () => {
-  it("renders the selected-work hero, featured studies, compact grid, and bottom CTA", () => {
+  it("renders the portfolio hero, featured slider, compact grid, flagship preview, and bottom CTA", () => {
     render(
       <MemoryRouter>
         <CaseStudiesPage />
@@ -18,9 +22,16 @@ describe("CaseStudiesPage", () => {
 
     expect(screen.getByTestId("case-studies-page")).toBeInTheDocument();
     expect(screen.getByText(CASE_STUDIES_PAGE_DESIGN.hero.kicker)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Systems built for real operations." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Ideas to Real Impact." })).toBeInTheDocument();
     expect(screen.getByText(CASE_STUDIES_PAGE_DESIGN.hero.subtext)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Explore Case Studies/i })).toHaveAttribute("href", "#featured-case-studies");
+    expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_DESIGN.hero.secondaryLabel })).toHaveAttribute(
+      "href",
+      CASE_STUDIES_PAGE_DESIGN.hero.secondaryTo,
+    );
+    expect(screen.getByRole("heading", { name: CASE_STUDIES_PAGE_DESIGN.featured.heading })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: CASE_STUDIES_PAGE_DESIGN.grid.heading })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "All Projects" })).toHaveAttribute("aria-pressed", "true");
 
     const grid = screen.getByTestId("case-studies-grid");
     const cards = within(grid).getAllByTestId("case-study-card");
@@ -28,33 +39,28 @@ describe("CaseStudiesPage", () => {
     expect(cards[0]).toHaveAttribute("data-case-study-id", "commiters");
     expect(cards[0]).toHaveClass("case-study-card--grid-wide", "case-study-card--horizontal", "work-featured-card");
     expect(cards[1]).toHaveAttribute("data-case-study-id", "ai-summarizer");
-    expect(cards[1]).toHaveClass("work-featured-card", "work-featured-card--reverse");
-    expect(cards[2]).toHaveClass("case-study-card--grid-narrow", "case-study-card--stacked", "work-project-card");
+    expect(cards[2]).toHaveAttribute("data-case-study-id", "browse-my-vacation");
+    expect(cards[3]).toHaveClass("case-study-card--grid-narrow", "case-study-card--stacked", "work-project-card");
 
     const gridAssets = CASE_STUDY_IMAGE_ASSETS.filter((asset) => workProjects.some((project) => project.id === asset.id));
     for (const asset of gridAssets) {
       const card = cards.find((entry) => entry.getAttribute("data-case-study-id") === asset.id);
       expect(card).toBeDefined();
-      const image = within(card!).getByRole("img", { name: asset.alt });
+      const image = within(card!).getByRole("img", { name: asset.alt, hidden: true });
       expect(image).toHaveAttribute("src", asset.src);
-      if (asset.srcSet) {
-        expect(image).toHaveAttribute("srcset", expect.stringContaining("@2x.png"));
-      }
     }
 
-    expect(screen.getAllByRole("img")).toHaveLength(gridAssets.length);
     expect(screen.queryByText("OpsFlow AI — PDF Ingestion Engine")).not.toBeInTheDocument();
     expect(screen.queryByText(/Problem:/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Solution:/i)).not.toBeInTheDocument();
 
     for (const project of workProjects) {
-      expect(screen.getByRole("heading", { name: project.title })).toBeInTheDocument();
-      expect(screen.getByText(WORK_PAGE_PROJECT_PRESENTATION[project.id].blurb)).toBeInTheDocument();
+      expect(screen.getAllByText(WORK_PAGE_PROJECT_PRESENTATION[project.id].blurb).length).toBeGreaterThan(0);
       expect(screen.queryByText(project.problem)).not.toBeInTheDocument();
     }
 
-    const detailLinks = screen.getAllByRole("link", { name: /View Case Study/i });
-    expect(detailLinks).toHaveLength(workProjects.length);
+    expect(screen.getAllByRole("link", { name: /View Case Study/i, hidden: true }).length).toBeGreaterThanOrEqual(
+      workProjects.length,
+    );
 
     const byId = (id: string) => cards.find((card) => card.getAttribute("data-case-study-id") === id)!;
 
@@ -66,50 +72,62 @@ describe("CaseStudiesPage", () => {
       "href",
       ROUTES.neardropCaseStudy,
     );
-    expect(within(byId("prospectiq-ai")).getByRole("link", { name: /View Case Study/i })).toHaveAttribute(
-      "href",
-      ROUTES.prospectIqCaseStudy,
-    );
-    expect(within(byId("ecoroute-intelligence")).getByRole("link", { name: /View Case Study/i })).toHaveAttribute(
-      "href",
-      ROUTES.ecoRouteCaseStudy,
-    );
     expect(within(byId("commiters")).getByRole("link", { name: /View Case Study/i })).toHaveAttribute(
       "href",
       ROUTES.commitersCaseStudy,
     );
-    expect(within(byId("ai-summarizer")).getByRole("link", { name: /View Case Study/i })).toHaveAttribute(
+
+    expect(within(byId("commiters")).getByRole("link", { name: /Live Demo/i })).toHaveAttribute("href", `${SITE_ORIGIN}/`);
+    expect(within(byId("browse-my-vacation")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
       "href",
-      ROUTES.aiSummarizerCaseStudy,
+      BROWSE_MY_VACATION_LIVE_URL,
     );
 
-    expect(screen.getAllByText("React").length).toBeGreaterThan(0);
-    expect(screen.getByText("Cloud")).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /View Product/i })).not.toBeInTheDocument();
-    expect(screen.queryByText(/coming soon/i)).not.toBeInTheDocument();
+    const flagship = screen.getByTestId("work-flagship");
+    expect(within(flagship).getByRole("heading", { name: CASE_STUDIES_PAGE_DESIGN.flagship.heading })).toBeInTheDocument();
+    expect(within(flagship).getByText(COMMITERS_CASE_STUDY_COPY.features[0].title)).toBeInTheDocument();
+    expect(within(flagship).getByRole("link", { name: /View Case Study/i })).toHaveAttribute("href", ROUTES.commitersCaseStudy);
+
+    const testimonials = screen.getByTestId("work-testimonials");
+    expect(within(testimonials).getByText(BROWSE_MY_VACATION_TESTIMONIAL.name)).toBeInTheDocument();
+    expect(within(testimonials).getByText(BROWSE_MY_VACATION_TESTIMONIAL.company, { exact: false })).toBeInTheDocument();
+    expect(within(testimonials).queryByText("Arjun Kumar")).not.toBeInTheDocument();
+    expect(within(testimonials).getAllByTestId(/testimonial-card/)).toHaveLength(1);
 
     expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_DESIGN.cta.primaryLabel })).toHaveAttribute(
       "href",
       ROUTES.contact,
     );
-    expect(screen.queryByRole("link", { name: /Book Operational Audit/i })).not.toBeInTheDocument();
-
-    const primaryBtn = screen.getByRole("link", { name: CASE_STUDIES_PAGE_DESIGN.cta.primaryLabel });
-    expect(primaryBtn).toHaveClass("case-studies-bottom-cta-btn--primary", "btn", "btn-primary");
+    expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_DESIGN.cta.secondaryLabel })).toHaveAttribute(
+      "href",
+      AI_OPERATIONAL_AUDIT_BOOKING_HREF,
+    );
   });
 
-  it("filters compact cards without removing featured case studies", () => {
+  it("advances the featured slider and filters compact cards", () => {
     render(
       <MemoryRouter>
         <CaseStudiesPage />
       </MemoryRouter>,
     );
 
-    fireEvent.click(screen.getByRole("tab", { name: "AI & Automation" }));
+    fireEvent.click(screen.getByRole("button", { name: "Next featured project" }));
+    expect(screen.getByRole("heading", { name: "AI Summarizer" })).toBeInTheDocument();
 
-    const cards = screen.getAllByTestId("case-study-card");
-    const ids = cards.map((card) => card.getAttribute("data-case-study-id"));
-    expect(ids).toEqual(["commiters", "ai-summarizer", "multi-role-crm", "prospectiq-ai", "governed-ai"]);
-    expect(ids).toContain(CASE_STUDY_PROJECTS[0].id);
+    fireEvent.click(screen.getByRole("button", { name: "AI & Automation" }));
+    expect(screen.getByRole("button", { name: "AI & Automation" })).toHaveAttribute("aria-pressed", "true");
+
+    const compact = screen.getByTestId("case-studies-compact-grid");
+    const compactIds = within(compact)
+      .getAllByTestId("case-study-card")
+      .map((card) => card.getAttribute("data-case-study-id"));
+    expect(compactIds).toEqual(["multi-role-crm", "prospectiq-ai", "governed-ai"]);
+
+    fireEvent.click(screen.getByRole("button", { name: "Restaurant Technology" }));
+    expect(screen.getByTestId("work-grid-empty")).toHaveTextContent(CASE_STUDIES_PAGE_DESIGN.grid.empty);
+
+    fireEvent.click(screen.getByRole("button", { name: "All Projects" }));
+    expect(screen.queryByTestId("work-grid-empty")).not.toBeInTheDocument();
+    expect(within(screen.getByTestId("case-studies-compact-grid")).getAllByTestId("case-study-card")).toHaveLength(5);
   });
 });

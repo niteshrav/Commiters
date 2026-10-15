@@ -220,8 +220,8 @@ select:focus-visible {
 .route-shell[data-route="/work"] {
   width: 100%;
   min-width: 0;
-  background: var(--surface-container-low);
-  box-shadow: 0 0 0 100vmax var(--surface-container-low);
+  background: #F7F9FC;
+  box-shadow: 0 0 0 100vmax #F7F9FC;
   clip-path: inset(0 -100vmax);
 }
 
@@ -4500,7 +4500,7 @@ textarea {
   padding-left: var(--site-gutter);
   padding-right: var(--site-gutter);
   box-sizing: border-box;
-  background: var(--surface-container-low);
+  background: #F7F9FC;
 }
 
 .technical-ledger-page {
@@ -4681,13 +4681,13 @@ textarea {
 }
 
 .case-studies-grid-section {
-  padding: 44px 0 clamp(48px, 6vw, 72px);
+  padding: 12px 0 clamp(48px, 6vw, 72px);
 }
 
 .case-studies-portfolio {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 40px;
   min-width: 0;
 }
 
