@@ -110,8 +110,21 @@ describe("ContactPage", () => {
         name: "Jane Doe",
         email: "jane@company.com",
         serviceNeeded: "Website Development",
+        website: "",
       }),
     );
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });
+  });
+
+  it("keeps the company website honeypot off the accessibility tree", () => {
+    render(
+      <MemoryRouter>
+        <ContactPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("contact-honeypot")).toHaveAttribute("name", "website");
+    expect(screen.getByTestId("contact-honeypot")).toHaveAttribute("tabIndex", "-1");
+    expect(screen.queryByRole("textbox", { name: /Company website/i })).not.toBeInTheDocument();
   });
 });

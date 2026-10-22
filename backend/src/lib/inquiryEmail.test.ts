@@ -167,6 +167,19 @@ describe("sendInquiryEmail", () => {
     expect(body.serviceNeeded).toBe("Website Development");
   });
 
+  it("does not fail local submissions when FormSubmit TLS fails", async () => {
+    process.env.SMTP_ENABLED = "false";
+    delete process.env.NODE_ENV;
+    const fetchMock = vi.fn().mockRejectedValue(new Error("unable to verify the first certificate"));
+    vi.stubGlobal("fetch", fetchMock);
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+
+    await expect(sendInquiryEmail(inquiry, Buffer.from("%PDF"))).resolves.toBeUndefined();
+    expect(fetchMock).toHaveBeenCalled();
+    expect(warn).toHaveBeenCalled();
+    warn.mockRestore();
+  });
+
   it("falls back to FormSubmit when SMTP is flagged on without credentials", async () => {
     process.env.SMTP_ENABLED = "true";
     process.env.SMTP_HOST = "smtp.gmail.com";

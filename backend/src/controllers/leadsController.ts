@@ -4,8 +4,10 @@ import { dispatchInquiryNotifications } from "../lib/inquiryNotifications";
 import { createSubmissionRef } from "../lib/inquirySubmissionRef";
 import { saveInternalLead } from "../lib/internalLeads";
 import { LEAD_BUDGET_RANGE_VALUES } from "../lib/budgetRanges";
+import { isHoneypotTriggered, LEAD_HONEYPOT_FIELD } from "../lib/formHoneypot";
 
 const leadSchema = z.object({
+  [LEAD_HONEYPOT_FIELD]: z.string().max(500).optional().or(z.literal("")),
   name: z
     .string()
     .min(1)
@@ -39,6 +41,11 @@ export async function createLead(req: Request, res: Response) {
 
   const data = parsed.data;
   const submission = createSubmissionRef();
+
+  if (isHoneypotTriggered(data[LEAD_HONEYPOT_FIELD])) {
+    req.log?.info({ submissionId: submission.id }, "Lead honeypot triggered; dropping bot submission");
+    return res.status(201).json({ ok: true, id: submission.id });
+  }
 
   try {
     try {

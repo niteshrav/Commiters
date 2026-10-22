@@ -67,6 +67,14 @@ function submitLeadViaMailto(input: LeadInput) {
   return { ok: true, via: "mailto" as const };
 }
 
+function isLeadHoneypotTriggered(input: LeadInput): boolean {
+  return typeof input.website === "string" && input.website.trim().length > 0;
+}
+
+function dropHoneypotLead() {
+  return { ok: true, via: "honeypot" as const };
+}
+
 export async function createJobApplication(input: JobApplicationInput) {
   const apiBase = getApiBaseUrl();
   if (!apiBase) {
@@ -108,11 +116,16 @@ export type LeadInput = {
   timeline?: string;
   referenceLinks?: string;
   message: string;
+  /** Honeypot — must stay empty. */
+  website?: string;
 };
 
 export async function createLead(input: LeadInput) {
   const apiBase = getApiBaseUrl();
   if (!apiBase) {
+    if (isLeadHoneypotTriggered(input)) {
+      return dropHoneypotLead();
+    }
     try {
       await sendLeadToOwner(input);
       return { ok: true, via: "email" as const };
@@ -137,6 +150,9 @@ export async function createLead(input: LeadInput) {
     return res.json();
   } catch (error) {
     if (isFetchNetworkFailure(error)) {
+      if (isLeadHoneypotTriggered(input)) {
+        return dropHoneypotLead();
+      }
       return submitLeadViaMailto(input);
     }
     throw error;

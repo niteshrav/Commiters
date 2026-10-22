@@ -12311,8 +12311,18 @@ html[data-a11y-reduce-motion="true"] *::after {
 }
 
 .stitch-contact-form {
+  position: relative;
   border: 1px solid var(--border);
   padding: 28px;
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .stitch-contact-form-title {

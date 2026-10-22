@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactIntroSection from "../components/ContactIntroSection";
 import ContactSidebarCards from "../components/ContactSidebarCards";
-import { createLead, LeadInput } from "../lib/api";
+import { createLead } from "../lib/api";
 import { usePageSeo } from "../hooks/usePageSeo";
 import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { ROUTES } from "../lib/routes";
@@ -29,6 +29,7 @@ export default function ContactPage() {
     email: "",
     projectType: STITCH_PROJECT_TYPE_DEFAULT as string,
     message: "",
+    website: "",
   });
 
   async function onSubmit(e: React.FormEvent) {
@@ -54,6 +55,7 @@ export default function ContactPage() {
         serviceNeeded,
         message: form.message.trim(),
         timeline: "Not specified",
+        website: form.website,
       });
       navigate(ROUTES.thankYou, { state: { submissionView: "client" } });
     } catch (err) {
@@ -116,6 +118,19 @@ export default function ContactPage() {
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="form-honeypot" aria-hidden="true">
+              <label htmlFor="contact-company-website">Company website</label>
+              <input
+                id="contact-company-website"
+                name="website"
+                type="text"
+                value={form.website}
+                onChange={(e) => setForm((s) => ({ ...s, website: e.target.value }))}
+                tabIndex={-1}
+                autoComplete="off"
+                data-testid="contact-honeypot"
+              />
             </div>
             <div className="form-field form-field--full">
               <label htmlFor="message">{STITCH_COPY.contact.messageLabel}</label>

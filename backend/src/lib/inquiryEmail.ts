@@ -88,7 +88,13 @@ async function sendInquiryViaFormSubmit(input: InquiryNotificationInput): Promis
 export async function sendInquiryEmail(input: InquiryNotificationInput, pdf: Buffer): Promise<void> {
   const smtp = resolveSmtpConfigOrNull();
   if (!smtp) {
-    await sendInquiryViaFormSubmit(input);
+    try {
+      await sendInquiryViaFormSubmit(input);
+    } catch (error) {
+      // Production always uses SMTP. Local/dev should still accept the lead if FormSubmit TLS fails.
+      if (process.env.NODE_ENV === "production") throw error;
+      console.warn("FormSubmit inquiry email skipped in local/dev:", error);
+    }
     return;
   }
 

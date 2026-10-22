@@ -142,6 +142,24 @@ describe("API", () => {
     );
   });
 
+  it("accepts a filled honeypot without storing or notifying", async () => {
+    const app = createApp();
+    const payload = {
+      name: "Bot",
+      email: "bot@example.com",
+      serviceNeeded: "Website Development",
+      message: "Cheap SEO.",
+      website: "https://spam.example",
+    };
+
+    const res = await request(app).post("/api/leads").set("Content-Type", "application/json").send(payload);
+
+    expect(res.status).toBe(201);
+    expect(res.body).toEqual({ ok: true, id: "lead_123" });
+    expect(mocks.notifyMock).not.toHaveBeenCalled();
+    expect(mocks.saveInternalLead).not.toHaveBeenCalled();
+  });
+
   it("accepts a project inquiry when service is Automation Tools", async () => {
     const app = createApp();
     const payload = {
