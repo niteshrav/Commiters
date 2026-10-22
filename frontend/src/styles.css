@@ -12325,6 +12325,18 @@ html[data-a11y-reduce-motion="true"] *::after {
   overflow: hidden;
 }
 
+.form-recaptcha-note {
+  margin: 12px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.form-recaptcha-note a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .stitch-contact-form-title {
   margin: 0 0 20px;
   font-size: 1.35rem;

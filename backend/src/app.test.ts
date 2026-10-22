@@ -6,6 +6,7 @@ const mocks = vi.hoisted(() => ({
   notifyMock: vi.fn(),
   submissionRefMock: vi.fn(),
   saveInternalLead: vi.fn(),
+  verifyRecaptchaToken: vi.fn(),
 }));
 
 vi.mock("./lib/inquirySubmissionRef", () => ({
@@ -19,6 +20,10 @@ vi.mock("./lib/inquiryNotifications", () => ({
 vi.mock("./lib/internalLeads", () => ({
   saveInternalLead: mocks.saveInternalLead,
   listInternalLeads: vi.fn(),
+}));
+
+vi.mock("./lib/recaptcha", () => ({
+  verifyRecaptchaToken: mocks.verifyRecaptchaToken,
 }));
 
 describe("API", () => {
@@ -35,6 +40,8 @@ describe("API", () => {
     mocks.notifyMock.mockResolvedValue(undefined);
     mocks.saveInternalLead.mockReset();
     mocks.saveInternalLead.mockResolvedValue({ status: "NEW" });
+    mocks.verifyRecaptchaToken.mockReset();
+    mocks.verifyRecaptchaToken.mockResolvedValue({ ok: true });
   });
 
   afterAll(() => {
@@ -156,6 +163,26 @@ describe("API", () => {
 
     expect(res.status).toBe(201);
     expect(res.body).toEqual({ ok: true, id: "lead_123" });
+    expect(mocks.notifyMock).not.toHaveBeenCalled();
+    expect(mocks.saveInternalLead).not.toHaveBeenCalled();
+    expect(mocks.verifyRecaptchaToken).not.toHaveBeenCalled();
+  });
+
+  it("rejects a project inquiry when reCAPTCHA verification fails", async () => {
+    mocks.verifyRecaptchaToken.mockResolvedValue({ ok: false, error: "reCAPTCHA verification failed." });
+    const app = createApp();
+    const payload = {
+      name: "Nitesh",
+      email: "hello@example.com",
+      serviceNeeded: "Website Development",
+      message: "Need a modern business website.",
+      recaptchaToken: "bad-token",
+    };
+
+    const res = await request(app).post("/api/leads").set("Content-Type", "application/json").send(payload);
+
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({ error: "reCAPTCHA verification failed." });
     expect(mocks.notifyMock).not.toHaveBeenCalled();
     expect(mocks.saveInternalLead).not.toHaveBeenCalled();
   });

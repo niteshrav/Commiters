@@ -12,9 +12,18 @@ import { ROUTES } from "../lib/routes";
 
 const createLead = vi.fn();
 const navigate = vi.fn();
+const getRecaptchaSiteKey = vi.fn();
+const getRecaptchaToken = vi.fn();
+const loadRecaptcha = vi.fn();
 
 vi.mock("../lib/api", () => ({
   createLead: (...args: unknown[]) => createLead(...args),
+}));
+
+vi.mock("../lib/recaptcha", () => ({
+  getRecaptchaSiteKey: (...args: unknown[]) => getRecaptchaSiteKey(...args),
+  getRecaptchaToken: (...args: unknown[]) => getRecaptchaToken(...args),
+  loadRecaptcha: (...args: unknown[]) => loadRecaptcha(...args),
 }));
 
 vi.mock("react-router-dom", async () => {
@@ -30,6 +39,12 @@ describe("ContactPage", () => {
     createLead.mockReset();
     createLead.mockResolvedValue({ ok: true });
     navigate.mockReset();
+    getRecaptchaSiteKey.mockReset();
+    getRecaptchaSiteKey.mockReturnValue(null);
+    getRecaptchaToken.mockReset();
+    getRecaptchaToken.mockResolvedValue(undefined);
+    loadRecaptcha.mockReset();
+    loadRecaptcha.mockResolvedValue(undefined);
   });
 
   it("renders the Stitch contact hero and direct inquiry layout", () => {
@@ -111,9 +126,35 @@ describe("ContactPage", () => {
         email: "jane@company.com",
         serviceNeeded: "Website Development",
         website: "",
+        recaptchaToken: undefined,
       }),
     );
     expect(navigate).toHaveBeenCalledWith(ROUTES.thankYou, { state: { submissionView: "client" } });
+  });
+
+  it("sends a reCAPTCHA token and shows the Google notice when a site key is set", async () => {
+    getRecaptchaSiteKey.mockReturnValue("site-key-test");
+    getRecaptchaToken.mockResolvedValue("token-abc");
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter>
+        <ContactPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("contact-recaptcha-note")).toBeInTheDocument();
+    expect(loadRecaptcha).toHaveBeenCalled();
+
+    await user.type(screen.getByLabelText(STITCH_COPY.contact.nameLabel), "Jane Doe");
+    await user.type(screen.getByLabelText(STITCH_COPY.contact.emailLabel), "jane@company.com");
+    await user.type(screen.getByLabelText(STITCH_COPY.contact.messageLabel), "We need a customer portal with dashboards.");
+    await user.click(screen.getByRole("button", { name: /Submit Inquiry/i }));
+
+    expect(createLead).toHaveBeenCalledWith(
+      expect.objectContaining({
+        recaptchaToken: "token-abc",
+      }),
+    );
   });
 
   it("keeps the company website honeypot off the accessibility tree", () => {

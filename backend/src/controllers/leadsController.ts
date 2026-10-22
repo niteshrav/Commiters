@@ -5,9 +5,11 @@ import { createSubmissionRef } from "../lib/inquirySubmissionRef";
 import { saveInternalLead } from "../lib/internalLeads";
 import { LEAD_BUDGET_RANGE_VALUES } from "../lib/budgetRanges";
 import { isHoneypotTriggered, LEAD_HONEYPOT_FIELD } from "../lib/formHoneypot";
+import { verifyRecaptchaToken } from "../lib/recaptcha";
 
 const leadSchema = z.object({
   [LEAD_HONEYPOT_FIELD]: z.string().max(500).optional().or(z.literal("")),
+  recaptchaToken: z.string().max(4000).optional().or(z.literal("")),
   name: z
     .string()
     .min(1)
@@ -45,6 +47,11 @@ export async function createLead(req: Request, res: Response) {
   if (isHoneypotTriggered(data[LEAD_HONEYPOT_FIELD])) {
     req.log?.info({ submissionId: submission.id }, "Lead honeypot triggered; dropping bot submission");
     return res.status(201).json({ ok: true, id: submission.id });
+  }
+
+  const recaptcha = await verifyRecaptchaToken(data.recaptchaToken, { remoteIp: req.ip });
+  if (!recaptcha.ok) {
+    return res.status(400).json({ error: recaptcha.error });
   }
 
   try {

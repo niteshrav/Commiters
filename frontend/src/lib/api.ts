@@ -118,6 +118,7 @@ export type LeadInput = {
   message: string;
   /** Honeypot — must stay empty. */
   website?: string;
+  recaptchaToken?: string;
 };
 
 export async function createLead(input: LeadInput) {

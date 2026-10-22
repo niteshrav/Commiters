@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactIntroSection from "../components/ContactIntroSection";
 import ContactSidebarCards from "../components/ContactSidebarCards";
@@ -15,6 +15,7 @@ import {
   validateName,
 } from "../lib/contactValidation";
 import { useLeadServiceOptions } from "../lib/cms/hooks";
+import { getRecaptchaSiteKey, getRecaptchaToken, loadRecaptcha } from "../lib/recaptcha";
 
 export default function ContactPage() {
   usePageSeo(contactPageSeo());
@@ -24,6 +25,8 @@ export default function ContactPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
+  const recaptchaEnabled = Boolean(getRecaptchaSiteKey());
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,6 +34,13 @@ export default function ContactPage() {
     message: "",
     website: "",
   });
+
+  useEffect(() => {
+    if (!recaptchaEnabled) return;
+    void loadRecaptcha().catch(() => {
+      /* Submit still attempts execute and surfaces the error. */
+    });
+  }, [recaptchaEnabled]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -49,6 +59,7 @@ export default function ContactPage() {
 
     setSubmitting(true);
     try {
+      const recaptchaToken = await getRecaptchaToken();
       await createLead({
         name: form.name.trim(),
         email: form.email.trim(),
@@ -56,6 +67,7 @@ export default function ContactPage() {
         message: form.message.trim(),
         timeline: "Not specified",
         website: form.website,
+        recaptchaToken,
       });
       navigate(ROUTES.thankYou, { state: { submissionView: "client" } });
     } catch (err) {
@@ -147,6 +159,19 @@ export default function ContactPage() {
                 {submitting ? "Sending…" : STITCH_COPY.contact.submitButton}
               </button>
             </div>
+            {recaptchaEnabled ? (
+              <p className="form-recaptcha-note" data-testid="contact-recaptcha-note">
+                This site is protected by reCAPTCHA and the Google{" "}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
+                  Privacy Policy
+                </a>{" "}
+                and{" "}
+                <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">
+                  Terms of Service
+                </a>{" "}
+                apply.
+              </p>
+            ) : null}
             {error ? (
               <div className="error" role="alert">
                 {error}
