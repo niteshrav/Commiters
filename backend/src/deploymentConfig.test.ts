@@ -49,6 +49,7 @@ describe("deployment configuration", () => {
     expect(dockerfile).toContain("FROM node:");
     expect(dockerfile).toContain("FROM nginx:");
     expect(dockerfile).toContain("ARG VITE_API_BASE_URL");
+    expect(dockerfile).toContain("ARG VITE_RECAPTCHA_SITE_KEY");
     expect(dockerfile).toContain("npm run build");
     expect(dockerfile).toContain("EXPOSE 80");
     expect(nginx).toContain("try_files $uri $uri/ /index.html");
