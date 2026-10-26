@@ -4,6 +4,7 @@ import { useCaseStudyProjects } from "../lib/cms/hooks";
 import {
   CASE_STUDIES_PAGE_DESIGN,
   WORK_PAGE_GRID_ORDER,
+  workPageFiltersWithProjects,
   workPageMatchesFilter,
   type WorkPageFilterId,
 } from "../lib/caseStudiesPageDesign";
@@ -29,10 +30,18 @@ export default function CaseStudiesGridSection() {
   const [slide, setSlide] = useState(0);
   const slideCount = featured.length;
 
-  const visibleCompact = useMemo(
-    () => sortCompact(compact).filter((project) => workPageMatchesFilter(project.id, filter)),
-    [compact, filter],
+  const visibleFilters = useMemo(
+    () => workPageFiltersWithProjects(projects.map((project) => project.id)),
+    [projects],
   );
+
+  const visibleCompact = useMemo(() => {
+    const compactMatches = sortCompact(compact).filter((project) => workPageMatchesFilter(project.id, filter));
+    if (filter === "all") return compactMatches;
+
+    const featuredMatches = featured.filter((project) => workPageMatchesFilter(project.id, filter));
+    return [...featuredMatches, ...compactMatches];
+  }, [compact, featured, filter]);
 
   const goTo = useCallback(
     (next: number) => {
@@ -114,7 +123,7 @@ export default function CaseStudiesGridSection() {
         <div className="work-grid-block">
           <h2 className="work-section-heading">{CASE_STUDIES_PAGE_DESIGN.grid.heading}</h2>
           <div className="work-filters" data-testid="work-filters" role="group" aria-label="Project filters">
-            {CASE_STUDIES_PAGE_DESIGN.filters.map((item) => (
+            {visibleFilters.map((item) => (
               <button
                 key={item.id}
                 type="button"

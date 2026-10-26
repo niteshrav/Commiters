@@ -1,41 +1,34 @@
 import { describe, expect, it } from "vitest";
-import { PROSPECT_IQ_CASE_STUDY_COPY } from "./prospectIqCaseStudyContent";
+import { PROSPECTIQ_LIVE_URL, PROSPECT_IQ_CASE_STUDY_COPY } from "./prospectIqCaseStudyContent";
 import { ROUTES } from "./routes";
 
 describe("prospectIqCaseStudyContent", () => {
-  it("matches the governed B2B prospecting case study copy", () => {
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.kicker).toBe("TECHNICAL CASE STUDY: GOVERNED AI & WORKFLOW SYSTEM");
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.title).toBe(
-      "ProspectIQ AI — Governed B2B Prospecting & Intelligence Engine",
-    );
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.subtitle).toMatch(/Model Context Protocol/);
+  it("matches the GitHub ProspectIQ loan-intelligence copy", () => {
+    expect(PROSPECT_IQ_CASE_STUDY_COPY.kicker).toBe("TECHNICAL CASE STUDY: LENDING DECISION SUPPORT");
+    expect(PROSPECT_IQ_CASE_STUDY_COPY.title).toBe("ProspectIQ AI — Loan Prospect Intelligence Platform");
+    expect(PROSPECT_IQ_CASE_STUDY_COPY.subtitle).toMatch(/Gemini sequential multi-agent/i);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.coreStack.items.map((item) => item.title)).toEqual([
-      "Python 3.11",
-      "FastAPI",
-      "MCP Protocol",
-      "OpenAI / Anthropic APIs",
-      "PostgreSQL",
-    ]);
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.metrics.map((item) => item.label)).toEqual([
-      "Lead Processing Velocity",
-      "Verification Accuracy",
-      "Governance Standard",
+      "Python",
+      "Streamlit",
+      "Google ADK",
+      "Gemini 2.5 Flash",
+      "Vertex AI / Cloud Run",
     ]);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.metrics.map((item) => item.value)).toEqual([
-      "10x Faster",
-      "99.4% Validated Email & Firmographics",
-      "100% Policy-Gated MCP Execution",
+      "5 Sequential ADK Agents",
+      "Deterministic Source of Truth",
+      "Human-in-the-Loop Underwriting",
     ]);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.architecture.sections.map((section) => section.title)).toEqual([
-      "Multi-Agent Lead Enrichment",
-      "Policy-Gated MCP",
-      "Human-in-the-Loop",
+      "Deterministic Scoring Engine",
+      "Sequential Google ADK Agents",
+      "Human-in-the-Loop Underwriting",
     ]);
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.architecture.sections[1].body).toMatch(/scoped MCP sockets/i);
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.architecture.sections[2].body).toMatch(/human confirmation/i);
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("Scope Your Custom AI Pipeline");
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.aiSolutions);
+    expect(PROSPECT_IQ_CASE_STUDY_COPY.architecture.sections[1].body).toMatch(/Decision Report/i);
+    expect(PROSPECT_IQ_CASE_STUDY_COPY.overview.body).toMatch(/does not approve or reject loans/i);
+    expect(PROSPECT_IQ_CASE_STUDY_COPY.bottomCta.primaryLabel).toBe("Start an AI Project");
+    expect(PROSPECT_IQ_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.contact);
     expect(PROSPECT_IQ_CASE_STUDY_COPY.bottomCta.secondaryTo).toBe(ROUTES.caseStudies);
-    expect(PROSPECT_IQ_CASE_STUDY_COPY.bottomCta.primaryVariant).toBe("cyan-glow");
+    expect(PROSPECTIQ_LIVE_URL).toBe("https://prospectiq-ai-rprbeonp4a-el.a.run.app");
   });
 });

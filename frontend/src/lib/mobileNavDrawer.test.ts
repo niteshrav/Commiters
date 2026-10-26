@@ -22,7 +22,7 @@ describe("mobileNavDrawer", () => {
       "Services",
       "Work",
       "About",
-      "trustTap",
+      "Prooflyn",
       "OpsFlow AI",
       "Contact",
       "Careers",
@@ -99,7 +99,6 @@ describe("mobileNavDrawer", () => {
     ]);
     expect(work && "children" in work ? work.children.map((child) => child.to) : []).toEqual([
       ROUTES.caseStudies,
-      ROUTES.testimonials,
     ]);
     expect(contact && "to" in contact ? contact.to : undefined).toBe(ROUTES.contact);
     expect(careers && "to" in careers ? careers.to : undefined).toBe(ROUTES.openPositions);

@@ -92,9 +92,9 @@ function secondaryCtaClass(): string {
 }
 
 function MetricIcon({ id }: { id: string }) {
-  if (id === "accuracy" || id === "latency") return <IconGauge width={22} height={22} />;
+  if (id === "accuracy" || id === "latency" || id === "critical" || id === "scoring") return <IconGauge width={22} height={22} />;
   if (id === "governance") return <IconShieldCheck width={22} height={22} />;
-  if (id === "emissions") return <IconGlobe width={22} height={22} />;
+  if (id === "emissions" || id === "routes") return <IconGlobe width={22} height={22} />;
   if (id === "uptime") return <IconCloud width={22} height={22} />;
   return <IconBolt width={22} height={22} />;
 }
@@ -214,7 +214,7 @@ export default function TechnicalCaseStudyPage({ copy }: Props) {
             {isProspectIq || isEcoRoute ? <p className={COMMITERS_CASE_STUDY_KICKER_CLASS}>{copy.overview.heading}</p> : null}
             <h2 className={COMMITERS_CASE_STUDY_OVERVIEW_HEADING_CLASS}>
               {isProspectIq
-                ? "Faster. Accurate. Compliant."
+                ? "Explainable Decision Support."
                 : isEcoRoute
                   ? ECOROUTE_DISPLAY.metricsHeading
                   : copy.overview.heading}

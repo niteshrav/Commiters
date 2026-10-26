@@ -76,11 +76,11 @@ export const CMS_CASE_STUDY_PROJECTS: readonly CmsCaseStudyProjectSeed[] = [
   },
   {
     name: "ProspectIQ AI",
-    category: "ENTERPRISE AI & WORKFLOW SYSTEM",
+    category: "LENDING DECISION SUPPORT",
     description:
-      "Automated B2B lead discovery and intent intelligence pipeline with governed LLM agents, schema validation, and strict API policy gateways.",
+      "AI-powered loan prospect intelligence platform using Gemini, Google ADK, Vertex AI, and Cloud Run.",
     images: [],
-    technologies: ["Python", "FastAPI", "MCP Protocol", "PostgreSQL"],
+    technologies: ["Python", "Google ADK", "Gemini 2.5 Flash", "Streamlit", "Vertex AI"],
     projectUrl: "/work/prospectiq-ai",
     slug: "prospectiq-ai",
     isFeatured: true,
@@ -89,11 +89,11 @@ export const CMS_CASE_STUDY_PROJECTS: readonly CmsCaseStudyProjectSeed[] = [
   },
   {
     name: "EcoRoute Intelligence",
-    category: "SPEC-DRIVEN CLOUD PLATFORM",
+    category: "AI DECISION INTELLIGENCE",
     description:
-      "Cloud-native green fleet and geo-routing platform with live telemetry, carbon analytics, and session-gated portal views.",
+      "AI-powered transportation decision intelligence platform built with Google ADK and Gemini 2.5 Flash.",
     images: [],
-    technologies: ["React", "Node.js", "PostgreSQL", "Express"],
+    technologies: ["Python", "Google ADK", "Gemini 2.5 Flash", "Pandas", "Matplotlib"],
     projectUrl: "/work/ecoroute-intelligence",
     slug: "ecoroute-intelligence",
     isFeatured: true,

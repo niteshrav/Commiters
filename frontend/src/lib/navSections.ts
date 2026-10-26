@@ -23,7 +23,7 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   { id: "services", to: ROUTES.services, label: "Services" },
   { id: "work", to: ROUTES.caseStudies, label: "Work" },
   { id: "about", to: ROUTES.about, label: "About" },
-  { id: "trusttap", to: ROUTES.trustTap, label: "trustTap", emphasis: "flagship" },
+  { id: "trusttap", to: ROUTES.trustTap, label: "Prooflyn", emphasis: "flagship" },
   { id: "opsflow", to: ROUTES.opsFlow, label: "OpsFlow AI", emphasis: "lead-magnet" },
 ];
 
@@ -329,13 +329,6 @@ export const WORK_MEGA_CARDS: NavDropdownLink[] = [
     description: "Explore production builds, tech stack choices, and outcomes.",
     icon: "document",
   },
-  {
-    id: "client-testimonials",
-    label: "Client Testimonials",
-    to: ROUTES.testimonials,
-    description: "See client reviews and real project feedback.",
-    icon: "users",
-  },
 ];
 
 export const TRUSTTAP_MEGA_CARDS: NavDropdownLink[] = [
@@ -416,7 +409,7 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
   },
   {
     id: "trusttap",
-    label: "trustTap",
+    label: "Prooflyn",
     overviewTo: ROUTES.trustTap,
     headline: "COMMITERS — Enterprise AI & Cloud Systems",
     columns: 1,

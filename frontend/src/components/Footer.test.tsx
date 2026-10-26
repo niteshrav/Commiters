@@ -115,7 +115,7 @@ describe("Footer", () => {
       "href",
       ROUTES.utilities,
     );
-    expect(within(flagshipNav).getByRole("link", { name: /^trustTap$/i })).toHaveAttribute("href", ROUTES.trustTapShort);
+    expect(within(flagshipNav).getByRole("link", { name: /^Prooflyn$/i })).toHaveAttribute("href", ROUTES.trustTapShort);
     expect(within(flagshipNav).queryByRole("link", { name: /^Custom AI Pipelines$/i })).not.toBeInTheDocument();
     expect(within(engineeringNav).getByRole("link", { name: /^Governed AI & Workflow Systems$/i })).toHaveAttribute(
       "href",

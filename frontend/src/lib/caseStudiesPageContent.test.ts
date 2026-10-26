@@ -31,23 +31,23 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDY_PROJECTS[2].title).toBe("NearDrop — Field & Logistics Coordination System");
     expect(CASE_STUDY_PROJECTS[2].tags).toEqual(["Node.js", "React", "Geo-Fencing", "Real-time WebSockets"]);
     expect(CASE_STUDY_PROJECTS[3]).toMatchObject({
-      title: "ProspectIQ AI — Governed B2B Prospecting & Intelligence Engine",
-      category: "ENTERPRISE AI & WORKFLOW SYSTEM",
-      tags: ["Python", "FastAPI", "MCP Protocol", "LLM Pipeline", "PostgreSQL"],
+      title: "ProspectIQ AI — Loan Prospect Intelligence Platform",
+      category: "LENDING DECISION SUPPORT",
+      tags: ["Python", "Google ADK", "Gemini 2.5 Flash", "Streamlit", "Vertex AI"],
       detailsHref: ROUTES.prospectIqCaseStudy,
     });
-    expect(CASE_STUDY_PROJECTS[3].problem).toMatch(/fragmented B2B databases/i);
-    expect(CASE_STUDY_PROJECTS[3].solution).toMatch(/governed LLM agents/i);
-    expect(CASE_STUDY_PROJECTS[3].impact).toEqual(["10x Lead Discovery Velocity", "Zero Hallucinated Contacts"]);
+    expect(CASE_STUDY_PROJECTS[3].problem).toMatch(/Retail-lending teams/i);
+    expect(CASE_STUDY_PROJECTS[3].solution).toMatch(/deterministic prospect-scoring/i);
+    expect(CASE_STUDY_PROJECTS[3].impact).toEqual(["5 Sequential Specialist Agents", "Human-in-the-Loop Underwriting"]);
     expect(CASE_STUDY_PROJECTS[4]).toMatchObject({
-      title: "EcoRoute Intelligence — Cloud-Native Green Fleet & Route Optimization",
-      category: "SPEC-DRIVEN CLOUD PLATFORM",
-      tags: ["React", "Node.js", "Geo-Spatial Algorithms", "PostgreSQL (RLS)", "Express"],
+      title: "EcoRoute Intelligence — AI Transportation Decision Platform",
+      category: "AI DECISION INTELLIGENCE",
+      tags: ["Python", "Google ADK", "Gemini 2.5 Flash", "Pandas", "Matplotlib"],
       detailsHref: ROUTES.ecoRouteCaseStudy,
     });
-    expect(CASE_STUDY_PROJECTS[4].problem).toMatch(/static, non-adaptive route planning/i);
-    expect(CASE_STUDY_PROJECTS[4].solution).toMatch(/green fleet optimization/i);
-    expect(CASE_STUDY_PROJECTS[4].impact).toEqual(["-24% Emissions Footprint", "<100ms Route Computation"]);
+    expect(CASE_STUDY_PROJECTS[4].problem).toMatch(/mobility datasets/i);
+    expect(CASE_STUDY_PROJECTS[4].solution).toMatch(/Google ADK and Gemini 2\.5 Flash/i);
+    expect(CASE_STUDY_PROJECTS[4].impact).toEqual(["15 Routes Analyzed", "6 Critical Congestion Corridors"]);
   });
 
   it("keeps OpsFlow off the Work page", () => {

@@ -45,7 +45,7 @@ describe("site photography uniqueness", () => {
       ...Object.values(SERVICE_CARD_IMAGE_BY_GRID_ID),
     ];
 
-    const hashes = displayedSrcs.map((src) => ({ src, hash: fileHash(src) }));
+    const hashes = [...new Set(displayedSrcs)].map((src) => ({ src, hash: fileHash(src) }));
     const byHash = new Map<string, string[]>();
     for (const entry of hashes) {
       const list = byHash.get(entry.hash) ?? [];

@@ -9,13 +9,13 @@ import { ROUTES } from "./routes";
 import { BRAND_HERO_EYEBROW_TEXT } from "./siteBrandChrome";
 
 export const TRUSTTAP_LIVE_URL = "https://trusttap.commiters.com/" as const;
-export const TRUSTTAP_DOCUMENT_TITLE = "trustTap";
+export const TRUSTTAP_DOCUMENT_TITLE = "Prooflyn";
 export const TRUSTTAP_SEO = {
   title: TRUSTTAP_DOCUMENT_TITLE,
   description:
     "Smart NFC/QR touchpoints that scale 5-star Google reviews while intercepting customer complaints privately.",
   keywords:
-    "trustTap, NFC, QR, Google reviews, merchant reputation, sentiment routing, merchant intelligence, Commiters product",
+    "Prooflyn, trustTap, NFC, QR, Google reviews, merchant reputation, sentiment routing, merchant intelligence, Commiters product",
   path: ROUTES.trustTap,
 } as const;
 
@@ -27,7 +27,7 @@ export const TRUSTTAP_HERO = {
   tagline:
     "Smart NFC/QR touchpoints that scale 5-star Google reviews while intercepting customer complaints privately.",
   footnote: "NFC hardware. Private grievance interception. Weekly merchant intelligence.",
-  primaryLabel: "Deploy trustTap",
+  primaryLabel: "Deploy Prooflyn",
   primaryHref: ROUTES.contact,
   secondaryLabel: "Launch Merchant Portal",
   secondaryHref: TRUSTTAP_LIVE_URL,
@@ -40,12 +40,12 @@ export const TRUSTTAP_HERO = {
 
 /** Hero right column — trustTap product marketing visual. */
 export const TRUSTTAP_HERO_SHOWCASE = {
-  ariaLabel: "trustTap marketing visual with QR stand, mobile feedback flow, analytics dashboard, and updated brand logo",
+  ariaLabel: "Prooflyn marketing visual with QR stand, mobile feedback flow, analytics dashboard, and updated brand logo",
   image: {
-    src: "/assets/trusttap/trusttap-hero-marketing.png",
+    src: "/assets/trusttap/prooflyn-hero-marketing.png",
     srcSet:
-      "/assets/trusttap/trusttap-hero-marketing.png 1x, /assets/trusttap/trusttap-hero-marketing@2x.png 2x",
-    alt: "trustTap — Tap. Trust. Thrive. QR feedback, Google review path, live dashboard, and private customer notes for local businesses",
+      "/assets/trusttap/prooflyn-hero-marketing.png 1x, /assets/trusttap/prooflyn-hero-marketing@2x.png 2x",
+    alt: "Prooflyn — Tap. Trust. Thrive. QR feedback, Google review path, live dashboard, and private customer notes for local businesses",
     width: 1024,
     height: 682,
   },
@@ -104,7 +104,7 @@ export type TrustTapBenefit = {
 
 export const TRUSTTAP_BENEFITS = {
   kicker: "BENEFITS",
-  title: "The trustTap Advantage",
+  title: "The Prooflyn Advantage",
   items: [
     {
       id: "google-proof",
@@ -164,9 +164,9 @@ export const TRUSTTAP_FAQ = {
   items: [
     {
       id: "reputation",
-      question: "How does trustTap protect merchant reputation?",
+      question: "How does Prooflyn protect merchant reputation?",
       answer:
-        "trustTap provides a dual-action experience: satisfied customers are guided straight to public rating platforms, while private channels allow management to handle grievances internally.",
+        "Prooflyn provides a dual-action experience: satisfied customers are guided straight to public rating platforms, while private channels allow management to handle grievances internally.",
     },
     {
       id: "digest",
@@ -186,8 +186,8 @@ export const TRUSTTAP_PORTAL_BANNER = {
 
 export const TRUSTTAP_BOTTOM_CTA = {
   title: "Ready to protect and grow your on-premise reputation?",
-  subtext: "Deploy trustTap hardware today or access our live merchant suite.",
-  primaryLabel: "Deploy trustTap",
+  subtext: "Deploy Prooflyn hardware today or access our live merchant suite.",
+  primaryLabel: "Deploy Prooflyn",
   primaryHref: ROUTES.contact,
   secondaryLabel: "Access Merchant Hub",
   secondaryHref: TRUSTTAP_LIVE_URL,
@@ -196,12 +196,12 @@ export const TRUSTTAP_BOTTOM_CTA = {
 export const TRUSTTAP_ABOUT = {
   kicker: "ABOUT",
   title: "Built for the point of service, not a slide deck.",
-  body: "trustTap is an enterprise on-premise sentiment system: NFC and QR touchpoints intercept friction privately while converting peak satisfaction into verified Google proof.",
+  body: "Prooflyn is an enterprise on-premise sentiment system: NFC and QR touchpoints intercept friction privately while converting peak satisfaction into verified Google proof.",
   illustration: {
     src: "/assets/trusttap/trusttap-hero-showcase.png",
     srcSet:
       "/assets/trusttap/trusttap-hero-showcase.png 1x, /assets/trusttap/trusttap-hero-showcase@2x.png 2x",
-    alt: "trustTap product console with QR stand, mobile scan flow, and operations dashboard",
+    alt: "Prooflyn product console with QR stand, mobile scan flow, and operations dashboard",
     width: 1024,
     height: 682,
   },
@@ -215,19 +215,19 @@ export const TRUSTTAP_PREVIEW = {
     {
       id: "qr",
       src: "/assets/trusttap/trusttap-qr-preview.svg",
-      alt: "trustTap QR stand for in-store feedback",
+      alt: "Prooflyn QR stand for in-store feedback",
       caption: "QR stand",
     },
     {
       id: "dashboard",
       src: "/assets/trusttap/trusttap-dashboard-preview.svg",
-      alt: "trustTap owner dashboard preview",
+      alt: "Prooflyn owner dashboard preview",
       caption: "Live dashboard",
     },
     {
       id: "locations",
       src: "/assets/trusttap/trusttap-locations-preview.svg",
-      alt: "trustTap multi-location coverage preview",
+      alt: "Prooflyn multi-location coverage preview",
       caption: "Locations",
     },
   ],

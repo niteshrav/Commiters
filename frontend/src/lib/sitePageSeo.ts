@@ -375,7 +375,7 @@ export function trustTapPageSeo(): PageSeoInput {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      name: "trustTap",
+      name: "Prooflyn",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description: TRUSTTAP_SEO.description,

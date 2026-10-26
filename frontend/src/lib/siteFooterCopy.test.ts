@@ -33,7 +33,7 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_COPY.navColumns.map((column) => column.id)).toEqual(["flagship", "engineering", "company"]);
     expect(SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS).toEqual([
       "AI Operational Audits",
-      "trustTap",
+      "Prooflyn",
       "OpsFlow AI",
       "Free Business Utilities",
     ]);
@@ -78,11 +78,11 @@ describe("siteFooterCopy", () => {
     );
     const opsFlow = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "OpsFlow AI");
     expect(opsFlow?.kind === "internal" ? opsFlow.to : undefined).toBe(ROUTES.opsFlowAi);
-    const trustTap = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "trustTap");
+    const trustTap = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Prooflyn");
     expect(trustTap?.kind === "internal" ? trustTap.to : undefined).toBe(ROUTES.trustTapShort);
     const utilities = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Free Business Utilities");
     expect(utilities?.kind === "internal" ? utilities.to : undefined).toBe(ROUTES.utilities);
-    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toContain("trustTap");
+    expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toContain("Prooflyn");
     expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).not.toContain("Custom AI Pipelines");
 
     const governed = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Governed AI & Workflow Systems");

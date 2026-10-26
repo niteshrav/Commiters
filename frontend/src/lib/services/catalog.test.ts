@@ -49,7 +49,7 @@ describe("services catalog", () => {
     expect(getServiceBySlug("web-application-development")?.portfolio.map((item) => item.title)).toEqual([
       "Multi-Role CRM & AI Chatbot",
       "BrowseMyVacation",
-      "trustTap",
+      "Prooflyn",
     ]);
     expect(getServiceBySlug("mobile-app-development")?.portfolio.map((item) => item.title)).toEqual(["NearDrop MVP"]);
     expect(getServiceBySlug("ai-integration")?.portfolio.map((item) => item.title)).toEqual([

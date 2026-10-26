@@ -46,13 +46,13 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
     id: "prospectiq-ai",
     src: "/assets/case-studies/work-prospectiq.png",
     srcSet: "/assets/case-studies/work-prospectiq.png 1x, /assets/case-studies/work-prospectiq@2x.png 2x",
-    alt: "ProspectIQ AI holographic B2B contact cards and governed lead-intelligence pipeline",
+    alt: "ProspectIQ AI loan prospect intelligence dashboard for banking teams",
   },
   {
     id: "ecoroute-intelligence",
     src: "/assets/case-studies/work-ecoroute.png",
     srcSet: "/assets/case-studies/work-ecoroute.png 1x, /assets/case-studies/work-ecoroute@2x.png 2x",
-    alt: "EcoRoute Intelligence green fleet routes with live emissions heatmap overlay",
+    alt: "EcoRoute Intelligence city mobility map with optimized green routes",
   },
   {
     id: "ai-summarizer",

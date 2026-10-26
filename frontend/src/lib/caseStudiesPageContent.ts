@@ -92,15 +92,15 @@ export const CASE_STUDY_PROJECTS: CaseStudyProject[] = [
   },
   {
     id: "prospectiq-ai",
-    title: "ProspectIQ AI — Governed B2B Prospecting & Intelligence Engine",
-    category: "ENTERPRISE AI & WORKFLOW SYSTEM",
-    tags: ["Python", "FastAPI", "MCP Protocol", "LLM Pipeline", "PostgreSQL"],
+    title: "ProspectIQ AI — Loan Prospect Intelligence Platform",
+    category: "LENDING DECISION SUPPORT",
+    tags: ["Python", "Google ADK", "Gemini 2.5 Flash", "Streamlit", "Vertex AI"],
     tagVariant: "cyan",
     problem:
-      "Sales teams lose hundreds of hours manually discovering, verifying, and enriching lead context across fragmented B2B databases and unstructured web sources.",
+      "Retail-lending teams struggle to see genuine loan intent, repayment capacity, and product fit from traditional financial and demographic signals alone.",
     solution:
-      "Built an automated lead discovery and intent intelligence pipeline powered by governed LLM agents, automated schema validation, and strict API policy gateways.",
-    impact: ["10x Lead Discovery Velocity", "Zero Hallucinated Contacts"],
+      "Built a deterministic prospect-scoring engine plus a Gemini sequential multi-agent workflow that explains capacity, product fit, and risk without approving loans.",
+    impact: ["5 Sequential Specialist Agents", "Human-in-the-Loop Underwriting"],
     gridSpan: "wide",
     layout: "horizontal",
     detailsLabel: "View Project Details",
@@ -108,15 +108,15 @@ export const CASE_STUDY_PROJECTS: CaseStudyProject[] = [
   },
   {
     id: "ecoroute-intelligence",
-    title: "EcoRoute Intelligence — Cloud-Native Green Fleet & Route Optimization",
-    category: "SPEC-DRIVEN CLOUD PLATFORM",
-    tags: ["React", "Node.js", "Geo-Spatial Algorithms", "PostgreSQL (RLS)", "Express"],
+    title: "EcoRoute Intelligence — AI Transportation Decision Platform",
+    category: "AI DECISION INTELLIGENCE",
+    tags: ["Python", "Google ADK", "Gemini 2.5 Flash", "Pandas", "Matplotlib"],
     tagVariant: "cyan",
     problem:
-      "Logistics fleets suffer high carbon footprints and cost inefficiencies due to static, non-adaptive route planning that ignores real-time traffic and emissions metrics.",
+      "Transportation planners sit on large mobility datasets but still struggle to convert congestion, speed, and emissions signals into timely, actionable decisions.",
     solution:
-      "Engineered an intelligent geo-routing and green fleet optimization engine with live telemetry processing, route carbon analytics, and session-gated portal views.",
-    impact: ["-24% Emissions Footprint", "<100ms Route Computation"],
+      "Built a multi-agent decision intelligence platform with Google ADK and Gemini 2.5 Flash that analyzes traffic routes, flags bottlenecks, and generates policy recommendations.",
+    impact: ["15 Routes Analyzed", "6 Critical Congestion Corridors"],
     gridSpan: "wide",
     layout: "horizontal",
     detailsLabel: "View Project Details",

@@ -6,7 +6,7 @@ import { PROSPECT_IQ_CASE_STUDY_COPY } from "../lib/prospectIqCaseStudyContent";
 import { ROUTES } from "../lib/routes";
 
 describe("ProspectIqCaseStudyPage", () => {
-  it("renders the governed AI case study on the Commiters technical template", () => {
+  it("renders the lending decision-support case study on the Commiters technical template", () => {
     render(
       <MemoryRouter>
         <ProspectIqCaseStudyPage />
@@ -25,20 +25,21 @@ describe("ProspectIqCaseStudyPage", () => {
 
     const stack = screen.getByTestId("prospectiq-case-study-core-stack");
     expect(stack).toHaveClass("commiters-case-study-core-stack--slate");
-    expect(within(stack).getByText("Python 3.11")).toBeInTheDocument();
-    expect(within(stack).getByText("MCP Protocol")).toBeInTheDocument();
+    expect(within(stack).getByText("Python")).toBeInTheDocument();
+    expect(within(stack).getByText("Google ADK")).toBeInTheDocument();
+    expect(within(stack).getByText("Streamlit")).toBeInTheDocument();
 
     const overview = screen.getByTestId("prospectiq-case-study-overview");
-    expect(within(overview).getByText("10x Faster")).toBeInTheDocument();
-    expect(within(overview).getByText("100% Policy-Gated MCP Execution")).toBeInTheDocument();
+    expect(within(overview).getByText("5 Sequential ADK Agents")).toBeInTheDocument();
+    expect(within(overview).getByText("Human-in-the-Loop Underwriting")).toBeInTheDocument();
 
     const architecture = screen.getByTestId("prospectiq-case-study-architecture");
-    expect(within(architecture).getByRole("heading", { name: "Multi-Agent Lead Enrichment" })).toBeInTheDocument();
-    expect(within(architecture).getByRole("heading", { name: "Policy-Gated MCP" })).toBeInTheDocument();
-    expect(within(architecture).getByRole("heading", { name: "Human-in-the-Loop" })).toBeInTheDocument();
+    expect(within(architecture).getByRole("heading", { name: "Deterministic Scoring Engine" })).toBeInTheDocument();
+    expect(within(architecture).getByRole("heading", { name: "Sequential Google ADK Agents" })).toBeInTheDocument();
+    expect(within(architecture).getByRole("heading", { name: "Human-in-the-Loop Underwriting" })).toBeInTheDocument();
 
-    const primary = screen.getAllByRole("link", { name: "Scope Your Custom AI Pipeline" });
-    expect(primary[0]).toHaveAttribute("href", ROUTES.aiSolutions);
+    const primary = screen.getAllByRole("link", { name: "Start an AI Project" });
+    expect(primary[0]).toHaveAttribute("href", ROUTES.contact);
     expect(primary.some((link) => link.classList.contains("technical-case-study-cta--cyan-glow"))).toBe(true);
     expect(screen.getAllByRole("link", { name: /View All Work/i })[0]).toHaveAttribute("href", ROUTES.caseStudies);
   });

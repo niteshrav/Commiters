@@ -1,4 +1,5 @@
 import { BROWSE_MY_VACATION_LIVE_URL } from "./browseMyVacationCaseStudyContent";
+import { PROSPECTIQ_LIVE_URL } from "./prospectIqCaseStudyContent";
 import type { CaseStudyProject } from "./caseStudiesPageContent";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { buildAboutSectionHref } from "./navSections";
@@ -10,10 +11,8 @@ export type WorkPageFilterId =
   | "cloud"
   | "saas"
   | "web"
-  | "ecommerce"
   | "business"
-  | "travel"
-  | "restaurant";
+  | "travel";
 
 export const CASE_STUDIES_PAGE_DESIGN = {
   hero: {
@@ -41,10 +40,6 @@ export const CASE_STUDIES_PAGE_DESIGN = {
     heading: "Explore Our Work",
     empty: "No projects in this category yet.",
   },
-  flagship: {
-    heading: "Featured Case Study",
-    projectId: "commiters",
-  },
   testimonials: {
     kicker: "CLIENT FEEDBACK",
     heading: "What partners say",
@@ -55,10 +50,8 @@ export const CASE_STUDIES_PAGE_DESIGN = {
     { id: "cloud", label: "Cloud Platforms" },
     { id: "saas", label: "SaaS Products" },
     { id: "web", label: "Web Applications" },
-    { id: "ecommerce", label: "E-commerce" },
     { id: "business", label: "Business Software" },
     { id: "travel", label: "Travel & Booking" },
-    { id: "restaurant", label: "Restaurant Technology" },
   ] as const satisfies readonly { id: WorkPageFilterId; label: string }[],
   cta: {
     kicker: "LET'S BUILD TOGETHER",
@@ -111,21 +104,22 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
   "browse-my-vacation": {
     blurb: "A curated travel platform with custom quote workflows.",
     badge: "Travel & Booking",
-    filters: ["web", "saas", "travel"],
+    filters: ["web", "travel"],
     tags: ["React", "Next.js", "Node.js"],
     liveHref: BROWSE_MY_VACATION_LIVE_URL,
   },
   "prospectiq-ai": {
-    blurb: "Automated lead discovery and intelligence for B2B sales.",
+    blurb: "Loan prospect scoring and explainable underwriting support for banking teams.",
     badge: "AI & Automation",
     filters: ["ai", "business"],
-    tags: ["Python", "FastAPI", "PostgreSQL"],
+    tags: ["Python", "Google ADK", "Gemini"],
+    liveHref: PROSPECTIQ_LIVE_URL,
   },
   "ecoroute-intelligence": {
-    blurb: "Cloud-native fleet and route optimization.",
-    badge: "Cloud Platforms",
-    filters: ["cloud", "business"],
-    tags: ["React", "Node.js", "PostgreSQL"],
+    blurb: "AI agents that turn mobility data into congestion and emissions decisions.",
+    badge: "AI & Automation",
+    filters: ["ai", "business"],
+    tags: ["Python", "Google ADK", "Gemini"],
   },
   "governed-ai": {
     blurb: "Policy-gated AI workflows with secure data access.",
@@ -160,6 +154,13 @@ export function workPageTags(project: Pick<CaseStudyProject, "id" | "tags">, lim
 export function workPageMatchesFilter(projectId: string, filter: WorkPageFilterId): boolean {
   if (filter === "all") return true;
   return WORK_PAGE_PROJECT_PRESENTATION[projectId]?.filters.includes(filter) ?? false;
+}
+
+export function workPageFiltersWithProjects(projectIds: readonly string[]) {
+  return CASE_STUDIES_PAGE_DESIGN.filters.filter((item) => {
+    if (item.id === "all") return true;
+    return projectIds.some((projectId) => workPageMatchesFilter(projectId, item.id));
+  });
 }
 
 export function workPageLiveHref(projectId: string): string | undefined {

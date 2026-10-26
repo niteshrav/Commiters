@@ -15,15 +15,15 @@ import {
 describe("trustTapPageContent", () => {
   it("defines SEO metadata and product route without logistics copy", () => {
     expect(TRUSTTAP_SEO.path).toBe(ROUTES.trustTap);
-    expect(TRUSTTAP_SEO.title).toBe("trustTap");
+    expect(TRUSTTAP_SEO.title).toBe("Prooflyn");
     expect(TRUSTTAP_SEO.description).toBe(TRUSTTAP_HERO.tagline);
     expect(TRUSTTAP_SEO.description).not.toMatch(/ground verification|field inspection|logistics/i);
     expect(TRUSTTAP_LIVE_URL).toBe("https://trusttap.commiters.com/");
   });
 
   it("references the live-site hero showcase image", () => {
-    expect(TRUSTTAP_HERO_SHOWCASE.image.src).toMatch(/trusttap-hero-marketing\.png$/);
-    expect(TRUSTTAP_HERO_SHOWCASE.image.srcSet).toMatch(/trusttap-hero-marketing@2x\.png/);
+    expect(TRUSTTAP_HERO_SHOWCASE.image.src).toMatch(/prooflyn-hero-marketing\.png$/);
+    expect(TRUSTTAP_HERO_SHOWCASE.image.srcSet).toMatch(/prooflyn-hero-marketing@2x\.png/);
   });
 
   it("uses punchy hero copy and a live portal secondary CTA", () => {
@@ -32,7 +32,7 @@ describe("trustTapPageContent", () => {
     expect(TRUSTTAP_HERO.tagline).toBe(
       "Smart NFC/QR touchpoints that scale 5-star Google reviews while intercepting customer complaints privately.",
     );
-    expect(TRUSTTAP_HERO.primaryLabel).toBe("Deploy trustTap");
+    expect(TRUSTTAP_HERO.primaryLabel).toBe("Deploy Prooflyn");
     expect(TRUSTTAP_HERO.primaryHref).toBe(ROUTES.contact);
     expect(TRUSTTAP_HERO.secondaryLabel).toBe("Launch Merchant Portal");
     expect(TRUSTTAP_HERO.secondaryHref).toBe(TRUSTTAP_LIVE_URL);
@@ -81,8 +81,8 @@ describe("trustTapPageContent", () => {
     expect(TRUSTTAP_PORTAL_BANNER.ctaLabel).not.toMatch(/commiters\.com/i);
 
     expect(TRUSTTAP_BOTTOM_CTA.title).toBe("Ready to protect and grow your on-premise reputation?");
-    expect(TRUSTTAP_BOTTOM_CTA.subtext).toBe("Deploy trustTap hardware today or access our live merchant suite.");
-    expect(TRUSTTAP_BOTTOM_CTA.primaryLabel).toBe("Deploy trustTap");
+    expect(TRUSTTAP_BOTTOM_CTA.subtext).toBe("Deploy Prooflyn hardware today or access our live merchant suite.");
+    expect(TRUSTTAP_BOTTOM_CTA.primaryLabel).toBe("Deploy Prooflyn");
     expect(TRUSTTAP_BOTTOM_CTA.primaryHref).toBe(ROUTES.contact);
     expect(TRUSTTAP_BOTTOM_CTA.secondaryLabel).toBe("Access Merchant Hub");
     expect(TRUSTTAP_BOTTOM_CTA.secondaryHref).toBe(TRUSTTAP_LIVE_URL);

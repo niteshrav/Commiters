@@ -35,7 +35,7 @@ export const SITE_FOOTER_TAGLINE = SITE_FOOTER_BRAND_TAGLINE;
 
 export const SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS = [
   "AI Operational Audits",
-  "trustTap",
+  "Prooflyn",
   "OpsFlow AI",
   "Free Business Utilities",
 ] as const;
@@ -86,7 +86,7 @@ export const SITE_FOOTER_NAV_LINK_LABELS = [
 
 const SITE_FOOTER_FLAGSHIP_NAV_LINKS = [
   { kind: "internal", label: "AI Operational Audits", to: ROUTES.audit },
-  { kind: "internal", label: "trustTap", to: ROUTES.trustTapShort },
+  { kind: "internal", label: "Prooflyn", to: ROUTES.trustTapShort },
   { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowAi },
   { kind: "internal", label: "Free Business Utilities", to: ROUTES.utilities },
 ] as const satisfies readonly FooterLinkCell[];

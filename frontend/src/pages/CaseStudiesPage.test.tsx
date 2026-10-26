@@ -5,15 +5,14 @@ import { allStaticWorkPageProjects } from "../lib/caseStudiesPageContent";
 import { CASE_STUDY_IMAGE_ASSETS } from "../lib/caseStudiesPageAssets";
 import { CASE_STUDIES_PAGE_DESIGN, WORK_PAGE_PROJECT_PRESENTATION } from "../lib/caseStudiesPageDesign";
 import { BROWSE_MY_VACATION_LIVE_URL } from "../lib/browseMyVacationCaseStudyContent";
+import { PROSPECTIQ_LIVE_URL } from "../lib/prospectIqCaseStudyContent";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "../lib/routes";
 import { BROWSE_MY_VACATION_TESTIMONIAL } from "../lib/testimonialsPageContent";
-import { COMMITERS_CASE_STUDY_COPY } from "../lib/commitersCaseStudyContent";
-
 const workProjects = allStaticWorkPageProjects();
 
 describe("CaseStudiesPage", () => {
-  it("renders the portfolio hero, featured slider, compact grid, flagship preview, and bottom CTA", () => {
+  it("renders the portfolio hero, featured slider, compact grid, and bottom CTA", () => {
     render(
       <MemoryRouter>
         <CaseStudiesPage />
@@ -82,11 +81,13 @@ describe("CaseStudiesPage", () => {
       "href",
       BROWSE_MY_VACATION_LIVE_URL,
     );
+    expect(within(byId("prospectiq-ai")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
+      "href",
+      PROSPECTIQ_LIVE_URL,
+    );
 
-    const flagship = screen.getByTestId("work-flagship");
-    expect(within(flagship).getByRole("heading", { name: CASE_STUDIES_PAGE_DESIGN.flagship.heading })).toBeInTheDocument();
-    expect(within(flagship).getByText(COMMITERS_CASE_STUDY_COPY.features[0].title)).toBeInTheDocument();
-    expect(within(flagship).getByRole("link", { name: /View Case Study/i })).toHaveAttribute("href", ROUTES.commitersCaseStudy);
+    expect(screen.queryByTestId("work-flagship")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Featured Case Study" })).not.toBeInTheDocument();
 
     const testimonials = screen.getByTestId("work-testimonials");
     expect(within(testimonials).getByText(BROWSE_MY_VACATION_TESTIMONIAL.name)).toBeInTheDocument();
@@ -121,10 +122,27 @@ describe("CaseStudiesPage", () => {
     const compactIds = within(compact)
       .getAllByTestId("case-study-card")
       .map((card) => card.getAttribute("data-case-study-id"));
-    expect(compactIds).toEqual(["multi-role-crm", "prospectiq-ai", "governed-ai"]);
+    expect(compactIds).toEqual(["ai-summarizer", "multi-role-crm", "prospectiq-ai", "ecoroute-intelligence", "governed-ai"]);
 
-    fireEvent.click(screen.getByRole("button", { name: "Restaurant Technology" }));
-    expect(screen.getByTestId("work-grid-empty")).toHaveTextContent(CASE_STUDIES_PAGE_DESIGN.grid.empty);
+    fireEvent.click(screen.getByRole("button", { name: "Travel & Booking" }));
+    expect(screen.getByRole("button", { name: "Travel & Booking" })).toHaveAttribute("aria-pressed", "true");
+    expect(
+      within(screen.getByTestId("case-studies-compact-grid"))
+        .getAllByTestId("case-study-card")
+        .map((card) => card.getAttribute("data-case-study-id")),
+    ).toEqual(["browse-my-vacation"]);
+    expect(within(screen.getByTestId("case-studies-compact-grid")).getByText("BrowseMyVacation")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "SaaS Products" }));
+    expect(
+      within(screen.getByTestId("case-studies-compact-grid"))
+        .getAllByTestId("case-study-card")
+        .map((card) => card.getAttribute("data-case-study-id")),
+    ).toEqual(["multi-role-crm", "neardrop-mvp"]);
+    expect(within(screen.getByTestId("case-studies-compact-grid")).queryByText("BrowseMyVacation")).not.toBeInTheDocument();
+
+    expect(screen.queryByRole("button", { name: "E-commerce" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Restaurant Technology" })).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "All Projects" }));
     expect(screen.queryByTestId("work-grid-empty")).not.toBeInTheDocument();

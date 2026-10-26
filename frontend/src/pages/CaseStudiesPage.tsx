@@ -1,5 +1,4 @@
 import CaseStudiesBottomCta from "../components/CaseStudiesBottomCta";
-import CaseStudiesFlagshipSection from "../components/CaseStudiesFlagshipSection";
 import CaseStudiesGridSection from "../components/CaseStudiesGridSection";
 import CaseStudiesIntroSection from "../components/CaseStudiesIntroSection";
 import CaseStudiesTestimonialsSection from "../components/CaseStudiesTestimonialsSection";
@@ -15,7 +14,6 @@ export default function CaseStudiesPage() {
     <div className={withSiteCloudTheme(CASE_STUDIES_PAGE_CLASS)} data-testid="case-studies-page">
       <CaseStudiesIntroSection />
       <CaseStudiesGridSection />
-      <CaseStudiesFlagshipSection />
       <CaseStudiesTestimonialsSection />
       <CaseStudiesBottomCta />
     </div>

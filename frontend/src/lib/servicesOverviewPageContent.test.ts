@@ -134,7 +134,7 @@ describe("servicesOverviewPageContent", () => {
     expect(SERVICES_OVERVIEW_CAPABILITIES.some((card) => /trusttap|opsflow/i.test(card.title))).toBe(false);
   });
 
-  it("showcases OpsFlow AI and trustTap as live products", () => {
+  it("showcases OpsFlow AI and Prooflyn as live products", () => {
     expect(SERVICES_OVERVIEW_PRODUCTS_TITLE).toBe("Live Product Showcases");
     expect(SERVICES_OVERVIEW_PRODUCTS).toEqual([
       {
@@ -146,11 +146,11 @@ describe("servicesOverviewPageContent", () => {
       },
       {
         id: "trusttap",
-        title: "trustTap",
+        title: "Prooflyn",
         description:
           "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
         to: ROUTES.trustTapShort,
-        ctaLabel: "Open trustTap",
+        ctaLabel: "Open Prooflyn",
       },
     ]);
   });

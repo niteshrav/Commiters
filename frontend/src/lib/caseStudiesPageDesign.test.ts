@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CASE_STUDY_PROJECTS } from "./caseStudiesPageContent";
 import {
   CASE_STUDIES_PAGE_DESIGN,
+  workPageFiltersWithProjects,
   workPageMatchesFilter,
   workPageTags,
 } from "./caseStudiesPageDesign";
@@ -19,10 +20,8 @@ describe("caseStudiesPageDesign", () => {
       "cloud",
       "saas",
       "web",
-      "ecommerce",
       "business",
       "travel",
-      "restaurant",
     ]);
     expect(CASE_STUDIES_PAGE_DESIGN.cta.primaryLabel).toBe("Start a Project");
     expect(CASE_STUDIES_PAGE_DESIGN.cta.secondaryLabel).toBe("Book Operational Audit");
@@ -37,7 +36,12 @@ describe("caseStudiesPageDesign", () => {
     expect(workPageMatchesFilter("neardrop-mvp", "ai")).toBe(false);
     expect(workPageMatchesFilter("governed-ai", "all")).toBe(true);
     expect(workPageMatchesFilter("browse-my-vacation", "travel")).toBe(true);
-    expect(workPageMatchesFilter("commiters", "ecommerce")).toBe(false);
-    expect(workPageMatchesFilter("commiters", "restaurant")).toBe(false);
+    expect(workPageMatchesFilter("browse-my-vacation", "saas")).toBe(false);
+    expect(workPageFiltersWithProjects(["commiters", "browse-my-vacation"]).map((item) => item.id)).toEqual([
+      "all",
+      "cloud",
+      "web",
+      "travel",
+    ]);
   });
 });

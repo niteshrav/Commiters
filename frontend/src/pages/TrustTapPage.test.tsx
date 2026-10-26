@@ -45,7 +45,7 @@ describe("TrustTapPage", () => {
       expect(screen.getByText(feature.body)).toBeInTheDocument();
     }
 
-    const deployLinks = screen.getAllByRole("link", { name: /Deploy trustTap/i });
+    const deployLinks = screen.getAllByRole("link", { name: /Deploy Prooflyn/i });
     expect(deployLinks.length).toBeGreaterThanOrEqual(2);
     for (const link of deployLinks) {
       expect(link).toHaveAttribute("href", TRUSTTAP_HERO.primaryHref);

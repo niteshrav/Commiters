@@ -91,19 +91,19 @@ describe("Navbar", () => {
     expect(screen.queryByText(/^Commiters$/)).not.toBeInTheDocument();
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    expect(primaryNavLabels(primaryNav)).toEqual(["Services", "Work", "About", "trustTap", "OpsFlow AI"]);
+    expect(primaryNavLabels(primaryNav)).toEqual(["Services", "Work", "About", "Prooflyn", "OpsFlow AI"]);
     expect(desktopNavTriggers(primaryNav).map((link) => link.textContent?.replace(/\s+/g, " ").trim())).toEqual([
       "Services",
       "Work",
       "About",
-      "trustTap",
+      "Prooflyn",
       "OpsFlow AI",
     ]);
     expect(desktopNavTriggers(primaryNav)[0]).toHaveAttribute("href", ROUTES.services);
 
-    expect(within(primaryNav).getByRole("link", { name: /^trustTap$/i })).toHaveAttribute("data-nav-emphasis", "flagship");
+    expect(within(primaryNav).getByRole("link", { name: /^Prooflyn$/i })).toHaveAttribute("data-nav-emphasis", "flagship");
     expect(within(primaryNav).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("data-nav-emphasis", "lead-magnet");
-    expect(within(primaryNav).getByRole("link", { name: /^trustTap$/i })).toHaveAttribute("href", ROUTES.trustTap);
+    expect(within(primaryNav).getByRole("link", { name: /^Prooflyn$/i })).toHaveAttribute("href", ROUTES.trustTap);
     expect(within(primaryNav).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute("href", ROUTES.opsFlow);
 
     expect(within(primaryNav).queryByRole("link", { name: /^Home$/i })).not.toBeInTheDocument();
@@ -194,7 +194,7 @@ describe("Navbar", () => {
     }
 
     expect(within(panel).getByRole("menuitem", { name: /AI Operational Audits/i })).toHaveAttribute("href", ROUTES.audit);
-    expect(within(panel).queryByRole("menuitem", { name: /trustTap/i })).not.toBeInTheDocument();
+    expect(within(panel).queryByRole("menuitem", { name: /Prooflyn/i })).not.toBeInTheDocument();
     expect(within(panel).queryByRole("menuitem", { name: /OpsFlow/i })).not.toBeInTheDocument();
     expect(within(panel).queryByRole("menuitem", { name: /^Website Development$/i })).not.toBeInTheDocument();
     expect(within(panel).queryByRole("link", { name: /^See overview$/i })).not.toBeInTheDocument();
@@ -209,7 +209,7 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    await user.hover(within(primaryNav).getByRole("link", { name: /^trustTap$/i }));
+    await user.hover(within(primaryNav).getByRole("link", { name: /^Prooflyn$/i }));
 
     const panel = screen.getByTestId("nav-mega-panel-trusttap");
     expect(panel).toHaveClass(
@@ -297,7 +297,7 @@ describe("Navbar", () => {
     );
 
     const primaryNav = screen.getByRole("navigation", { name: /Primary navigation/i });
-    await user.hover(within(primaryNav).getByRole("link", { name: /^trustTap$/i }));
+    await user.hover(within(primaryNav).getByRole("link", { name: /^Prooflyn$/i }));
     await user.click(within(screen.getByTestId("nav-mega-panel-trusttap")).getByRole("menuitem", { name: /How It Works/i }));
 
     expect(screen.getByTestId("trusttap-page")).toBeInTheDocument();
@@ -398,11 +398,11 @@ describe("Navbar", () => {
     expect(within(drawer).getByRole("button", { name: /^Services$/i })).toBeInTheDocument();
     expect(within(drawer).getByRole("button", { name: /^About$/i })).toBeInTheDocument();
     expect(within(drawer).getByRole("button", { name: /^Work$/i })).toBeInTheDocument();
-    expect(within(drawer).getByRole("button", { name: /^trustTap$/i })).toBeInTheDocument();
+    expect(within(drawer).getByRole("button", { name: /^Prooflyn$/i })).toBeInTheDocument();
     expect(within(drawer).getByRole("button", { name: /^OpsFlow AI$/i })).toBeInTheDocument();
     expect(within(drawer).queryByRole("link", { name: /^About$/i })).not.toBeInTheDocument();
     expect(within(drawer).queryByRole("link", { name: /^Work$/i })).not.toBeInTheDocument();
-    expect(within(drawer).queryByRole("link", { name: /^trustTap$/i })).not.toBeInTheDocument();
+    expect(within(drawer).queryByRole("link", { name: /^Prooflyn$/i })).not.toBeInTheDocument();
     expect(within(drawer).queryByRole("link", { name: /^OpsFlow AI$/i })).not.toBeInTheDocument();
     expect(within(drawer).getByRole("link", { name: /^Contact$/i })).toHaveAttribute("href", ROUTES.contact);
     expect(within(drawer).getByRole("link", { name: /^Careers$/i })).toHaveAttribute("href", ROUTES.openPositions);

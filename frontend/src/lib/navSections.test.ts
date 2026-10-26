@@ -41,7 +41,7 @@ describe("navSections", () => {
       "Services",
       "Work",
       "About",
-      "trustTap",
+      "Prooflyn",
       "OpsFlow AI",
     ]);
     expect(PRIMARY_NAV_ITEMS.map((item) => item.to)).toEqual([
@@ -127,7 +127,6 @@ describe("navSections", () => {
     expect(NAV_DROPDOWN_ITEM_DESC_CLASS).toBe("text-xs text-slate-500 mt-0.5");
     expect(WORK_MEGA_CARDS.map((card) => ({ label: card.label, to: card.to }))).toEqual([
       { label: "Client Case Studies", to: ROUTES.caseStudies },
-      { label: "Client Testimonials", to: ROUTES.testimonials },
     ]);
     expect(navDropdownPanelClassName({ columns: 2 })).toContain("max-w-xl");
     expect(navDropdownPanelClassName({ columns: 1 })).toContain("max-w-lg");
@@ -166,7 +165,6 @@ describe("navSections", () => {
       "High-Performance Web & Mobile Apps",
       "Automation & Integration Tools",
       "Client Case Studies",
-      "Client Testimonials",
       "The Studio",
       "Vision & Philosophy",
       "What We Stand For",
@@ -186,7 +184,7 @@ describe("navSections", () => {
 
   it("builds desktop dropdown configs from primary nav items", () => {
     const configs = resolveNavDropdownConfigs();
-    expect(configs.map((config) => config.label)).toEqual(["Services", "Work", "About", "trustTap", "OpsFlow AI"]);
+    expect(configs.map((config) => config.label)).toEqual(["Services", "Work", "About", "Prooflyn", "OpsFlow AI"]);
     expect(configs.find((config) => config.id === "about")?.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
       { label: "The Studio", to: `${ROUTES.about}#the-studio` },
       { label: "Vision & Philosophy", to: `${ROUTES.about}#governed-engineering` },
@@ -268,7 +266,7 @@ describe("navSections", () => {
       "Services",
       "Work",
       "About",
-      "trustTap",
+      "Prooflyn",
       "OpsFlow AI",
     ]);
     expect(entries.every((entry) => entry.kind === "dropdown")).toBe(true);
@@ -289,11 +287,11 @@ describe("navSections", () => {
     expect(isNavDropdownActive(services!, "/about")).toBe(false);
   });
 
-  it("marks the Work dropdown active for case studies and testimonials", () => {
+  it("marks the Work dropdown active for case studies", () => {
     const work = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "work");
     expect(work).toBeTruthy();
     expect(isNavDropdownActive(work!, "/work")).toBe(true);
-    expect(isNavDropdownActive(work!, "/testimonials")).toBe(true);
+    expect(isNavDropdownActive(work!, "/testimonials")).toBe(false);
     expect(isNavDropdownActive(work!, "/about")).toBe(false);
   });
 
@@ -314,7 +312,7 @@ describe("navSections", () => {
   it("partitions desktop header links into the conversion bar", () => {
     const groups = partitionHeaderNavItems(PRIMARY_NAV_ITEMS);
 
-    expect(groups.bar.map((item) => item.label)).toEqual(["Services", "Work", "About", "trustTap", "OpsFlow AI"]);
+    expect(groups.bar.map((item) => item.label)).toEqual(["Services", "Work", "About", "Prooflyn", "OpsFlow AI"]);
     expect(groups.more.map((item) => item.label)).toEqual([]);
     expect(groups.mobile.map((item) => item.label)).toEqual(PRIMARY_NAV_ITEMS.map((item) => item.label));
   });
