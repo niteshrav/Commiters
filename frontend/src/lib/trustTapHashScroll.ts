@@ -1,7 +1,12 @@
 import { ROUTES } from "./routes";
 
 export function isTrustTapPath(pathname: string) {
-  return pathname === ROUTES.trustTap || pathname === ROUTES.trustTapShort;
+  return (
+    pathname === ROUTES.trustTap ||
+    pathname === ROUTES.trustTapShort ||
+    pathname === ROUTES.trustTapLegacy ||
+    pathname === ROUTES.trustTapShortLegacy
+  );
 }
 
 export function findInPageTrustTapHashTarget(href: string, currentPathname: string) {
@@ -27,7 +32,7 @@ export function handleTrustTapInPageHashClick(
   }
   event.preventDefault();
   navigate({
-    pathname: currentPathname === ROUTES.trustTapShort ? ROUTES.trustTap : currentPathname,
+    pathname: ROUTES.trustTap,
     hash: `#${href.split("#")[1]}`,
   });
   return true;

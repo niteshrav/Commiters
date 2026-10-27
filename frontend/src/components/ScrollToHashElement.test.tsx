@@ -83,10 +83,10 @@ describe("ScrollToHashElement", () => {
     HTMLElement.prototype.scrollIntoView = scrollIntoView;
 
     render(
-      <MemoryRouter initialEntries={["/products/trusttap#how-it-works"]}>
+      <MemoryRouter initialEntries={["/products/prooflyn#how-it-works"]}>
         <ScrollToHashElement />
         <Routes>
-          <Route path="/products/trusttap" element={<section id="how-it-works">How it works</section>} />
+          <Route path="/products/prooflyn" element={<section id="how-it-works">How it works</section>} />
         </Routes>
       </MemoryRouter>,
     );

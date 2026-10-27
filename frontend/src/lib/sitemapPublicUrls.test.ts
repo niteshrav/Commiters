@@ -10,7 +10,8 @@ const publicRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "pu
 describe("sitemapPublicUrls", () => {
   it("lists every indexable marketing route", () => {
     const paths = buildSitemapPublicPaths();
-    expect(paths).toContain("/products/trusttap");
+    expect(paths).toContain("/products/prooflyn");
+    expect(paths).not.toContain("/products/trusttap");
     expect(paths).toContain("/products/opsflow");
     expect(paths).toContain("/services/ai-operational-audit");
     expect(paths).toContain("/services/governed-ai-workflow-systems");

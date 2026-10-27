@@ -27,7 +27,7 @@ describe("App service landing redirects", () => {
     expect(screen.getByTestId("privacy-page")).toBeInTheDocument();
   });
 
-  it("preserves section hashes when redirecting /trusttap", () => {
+  it("preserves section hashes when redirecting /prooflyn", () => {
     render(
       <MemoryRouter initialEntries={[`${ROUTES.trustTapShort}#how-it-works`]}>
         <App />
@@ -38,7 +38,7 @@ describe("App service landing redirects", () => {
     expect(document.getElementById("how-it-works")).toBe(screen.getByTestId("trusttap-how-it-works"));
   });
 
-  it("redirects /trusttap to the trustTap product page", () => {
+  it("redirects /prooflyn to the Prooflyn product page", () => {
     render(
       <MemoryRouter initialEntries={[ROUTES.trustTapShort]}>
         <App />
@@ -46,6 +46,36 @@ describe("App service landing redirects", () => {
     );
 
     expect(screen.getByTestId("trusttap-page")).toBeInTheDocument();
+  });
+
+  it("redirects /products/trusttap and /trusttap to /products/prooflyn", () => {
+    const { unmount } = render(
+      <MemoryRouter initialEntries={[ROUTES.trustTapLegacy]}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("trusttap-page")).toBeInTheDocument();
+    unmount();
+
+    render(
+      <MemoryRouter initialEntries={[ROUTES.trustTapShortLegacy]}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("trusttap-page")).toBeInTheDocument();
+  });
+
+  it("preserves section hashes when redirecting the legacy /trusttap URL", () => {
+    render(
+      <MemoryRouter initialEntries={[`${ROUTES.trustTapShortLegacy}#how-it-works`]}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("trusttap-page")).toBeInTheDocument();
+    expect(document.getElementById("how-it-works")).toBe(screen.getByTestId("trusttap-how-it-works"));
   });
 
   it("redirects the short governed AI URL to the dedicated landing page", () => {

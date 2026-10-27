@@ -24,8 +24,10 @@ describe("routes", () => {
     expect(ROUTES.browseMyVacationCaseStudy).toBe("/work/browse-my-vacation");
     expect(ROUTES.nextsaasCaseStudy).toBe("/case-studies/nextsaas");
     expect(ROUTES.browseMyVacationCaseStudyLegacy).toBe("/case-studies/browse-my-vacation");
-    expect(ROUTES.trustTap).toBe("/products/trusttap");
-    expect(ROUTES.trustTapShort).toBe("/trusttap");
+    expect(ROUTES.trustTap).toBe("/products/prooflyn");
+    expect(ROUTES.trustTapShort).toBe("/prooflyn");
+    expect(ROUTES.trustTapLegacy).toBe("/products/trusttap");
+    expect(ROUTES.trustTapShortLegacy).toBe("/trusttap");
     expect(ROUTES.opsFlow).toBe("/products/opsflow");
     expect(ROUTES.opsFlowPlayground).toBe("/opsflow");
     expect(ROUTES.opsFlowAi).toBe("/opsflow-ai");

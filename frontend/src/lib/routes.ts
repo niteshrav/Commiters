@@ -23,9 +23,13 @@ export const ROUTES = {
   neardropCaseStudyLegacy: "/case-studies/neardrop-mvp",
   multiRoleCrmCaseStudyLegacy: "/case-studies/multi-role-crm",
   browseMyVacationCaseStudyLegacy: "/case-studies/browse-my-vacation",
-  trustTap: "/products/trusttap",
-  /** Short URL — redirect to trustTap product page */
-  trustTapShort: "/trusttap",
+  trustTap: "/products/prooflyn",
+  /** Short URL — redirect to Prooflyn product page */
+  trustTapShort: "/prooflyn",
+  /** Legacy URL — redirect to Prooflyn product page */
+  trustTapLegacy: "/products/trusttap",
+  /** Legacy short URL — redirect to Prooflyn product page */
+  trustTapShortLegacy: "/trusttap",
   opsFlow: "/products/opsflow",
   opsFlowPlayground: "/opsflow",
   /** Marketing URL — redirect to OpsFlow playground */

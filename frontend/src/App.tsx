@@ -83,6 +83,8 @@ export default function App() {
         <Route path={ROUTES.nextsaasCaseStudy} element={<Navigate to={ROUTES.browseMyVacationCaseStudy} replace />} />
         <Route path={ROUTES.trustTap} element={<TrustTapPage />} />
         <Route path={ROUTES.trustTapShort} element={<RedirectPreserveHash to={ROUTES.trustTap} />} />
+        <Route path={ROUTES.trustTapLegacy} element={<RedirectPreserveHash to={ROUTES.trustTap} />} />
+        <Route path={ROUTES.trustTapShortLegacy} element={<RedirectPreserveHash to={ROUTES.trustTap} />} />
         <Route path={ROUTES.opsFlow} element={<OpsFlowPage />} />
         <Route path={ROUTES.opsFlowPlayground} element={<OpsFlowPage />} />
         <Route path={ROUTES.opsFlowAi} element={<RedirectPreserveHash to={ROUTES.opsFlowPlayground} />} />
