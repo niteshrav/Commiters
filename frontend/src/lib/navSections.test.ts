@@ -127,6 +127,7 @@ describe("navSections", () => {
     expect(NAV_DROPDOWN_ITEM_DESC_CLASS).toBe("text-xs text-slate-500 mt-0.5");
     expect(WORK_MEGA_CARDS.map((card) => ({ label: card.label, to: card.to }))).toEqual([
       { label: "Client Case Studies", to: ROUTES.caseStudies },
+      { label: "Client Testimonials", to: ROUTES.testimonials },
     ]);
     expect(navDropdownPanelClassName({ columns: 2 })).toContain("max-w-xl");
     expect(navDropdownPanelClassName({ columns: 1 })).toContain("max-w-lg");
@@ -165,6 +166,7 @@ describe("navSections", () => {
       "High-Performance Web & Mobile Apps",
       "Automation & Integration Tools",
       "Client Case Studies",
+      "Client Testimonials",
       "The Studio",
       "Vision & Philosophy",
       "What We Stand For",
@@ -291,7 +293,7 @@ describe("navSections", () => {
     const work = NAV_DROPDOWN_CONFIGS.find((config) => config.id === "work");
     expect(work).toBeTruthy();
     expect(isNavDropdownActive(work!, "/work")).toBe(true);
-    expect(isNavDropdownActive(work!, "/testimonials")).toBe(false);
+    expect(isNavDropdownActive(work!, "/testimonials")).toBe(true);
     expect(isNavDropdownActive(work!, "/about")).toBe(false);
   });
 

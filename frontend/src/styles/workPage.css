@@ -483,29 +483,6 @@
   display: none;
 }
 
-.work-testimonials {
-  padding: 0 0 40px;
-}
-
-.work-testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.work-testimonials-grid--single {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: 52rem;
-}
-
-.work-testimonials .testimonial-card {
-  margin: 0;
-  border: 1px solid #E2E8F0;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
-}
-
 .work-final-cta-inner::before {
   content: none;
 }
@@ -567,10 +544,6 @@
 
   .case-studies-page .work-featured-card--reverse .case-study-card-media {
     order: -1;
-  }
-
-  .work-testimonials-grid {
-    grid-template-columns: 1fr;
   }
 }
 

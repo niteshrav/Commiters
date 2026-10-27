@@ -329,6 +329,13 @@ export const WORK_MEGA_CARDS: NavDropdownLink[] = [
     description: "Explore production builds, tech stack choices, and outcomes.",
     icon: "document",
   },
+  {
+    id: "client-testimonials",
+    label: "Client Testimonials",
+    to: ROUTES.testimonials,
+    description: "Hear from founders and product leaders we have shipped with.",
+    icon: "users",
+  },
 ];
 
 export const TRUSTTAP_MEGA_CARDS: NavDropdownLink[] = [

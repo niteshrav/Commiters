@@ -8,7 +8,6 @@ import { BROWSE_MY_VACATION_LIVE_URL } from "../lib/browseMyVacationCaseStudyCon
 import { PROSPECTIQ_LIVE_URL } from "../lib/prospectIqCaseStudyContent";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "../lib/routes";
-import { BROWSE_MY_VACATION_TESTIMONIAL } from "../lib/testimonialsPageContent";
 const workProjects = allStaticWorkPageProjects();
 
 describe("CaseStudiesPage", () => {
@@ -88,12 +87,9 @@ describe("CaseStudiesPage", () => {
 
     expect(screen.queryByTestId("work-flagship")).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Featured Case Study" })).not.toBeInTheDocument();
-
-    const testimonials = screen.getByTestId("work-testimonials");
-    expect(within(testimonials).getByText(BROWSE_MY_VACATION_TESTIMONIAL.name)).toBeInTheDocument();
-    expect(within(testimonials).getByText(BROWSE_MY_VACATION_TESTIMONIAL.company, { exact: false })).toBeInTheDocument();
-    expect(within(testimonials).queryByText("Arjun Kumar")).not.toBeInTheDocument();
-    expect(within(testimonials).getAllByTestId(/testimonial-card/)).toHaveLength(1);
+    expect(screen.queryByTestId("work-testimonials")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "What partners say" })).not.toBeInTheDocument();
+    expect(screen.queryByText("Rahul Kumawat")).not.toBeInTheDocument();
 
     expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_DESIGN.cta.primaryLabel })).toHaveAttribute(
       "href",

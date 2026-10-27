@@ -40,10 +40,6 @@ export const CASE_STUDIES_PAGE_DESIGN = {
     heading: "Explore Our Work",
     empty: "No projects in this category yet.",
   },
-  testimonials: {
-    kicker: "CLIENT FEEDBACK",
-    heading: "What partners say",
-  },
   filters: [
     { id: "all", label: "All Projects" },
     { id: "ai", label: "AI & Automation" },

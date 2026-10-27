@@ -42,10 +42,10 @@ export const TRUSTTAP_HERO = {
 export const TRUSTTAP_HERO_SHOWCASE = {
   ariaLabel: "Prooflyn marketing visual with QR stand, mobile feedback flow, analytics dashboard, and updated brand logo",
   image: {
-    src: "/assets/trusttap/prooflyn-hero-marketing.png",
+    src: "/assets/trusttap/prooflyn-hero-v9.png",
     srcSet:
-      "/assets/trusttap/prooflyn-hero-marketing.png 1x, /assets/trusttap/prooflyn-hero-marketing@2x.png 2x",
-    alt: "Prooflyn — Tap. Trust. Thrive. QR feedback, Google review path, live dashboard, and private customer notes for local businesses",
+      "/assets/trusttap/prooflyn-hero-v9.png 1x, /assets/trusttap/prooflyn-hero-v9@2x.png 2x",
+    alt: "Prooflyn — Prove. Improve. Grow. QR feedback, Google review path, live dashboard, and private customer notes for local businesses",
     width: 1024,
     height: 682,
   },
