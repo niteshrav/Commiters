@@ -22,8 +22,8 @@ describe("trustTapPageContent", () => {
   });
 
   it("references the live-site hero showcase image", () => {
-    expect(TRUSTTAP_HERO_SHOWCASE.image.src).toMatch(/prooflyn-hero-v9\.png$/);
-    expect(TRUSTTAP_HERO_SHOWCASE.image.srcSet).toMatch(/prooflyn-hero-v9@2x\.png/);
+    expect(TRUSTTAP_HERO_SHOWCASE.image.src).toMatch(/prooflyn-hero-v10\.png$/);
+    expect(TRUSTTAP_HERO_SHOWCASE.image.srcSet).toMatch(/prooflyn-hero-v10@2x\.png/);
   });
 
   it("uses punchy hero copy and a live portal secondary CTA", () => {
