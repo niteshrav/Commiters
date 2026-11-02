@@ -1,13 +1,13 @@
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import HomePage from "./HomePage";
-import { HOME_PAGE_ASSETS, HOME_PAGE_COPY } from "../lib/homePageContent";
-import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, OPSFLOW_HERO_PAGE_HREF } from "../lib/routes";
-import { HOME_CORE_PILLARS_SURFACE_CLASS } from "../lib/homeCorePillarsSurface";
-import { HOME_SECTION_SEPARATOR_CLASS, HOME_SECTION_SEPARATOR_IDS } from "../lib/homeSectionLayout";
+import Layout from "../components/Layout";
+import { HOME_DEMO_COPY } from "../lib/homeDemoContent";
+import { NAV_CTA_LABEL } from "../lib/navSections";
 
 describe("HomePage", () => {
-  it("renders home sections with separators and built-for-scale before the dark CTA", () => {
+  it("renders the demo home sections without the previous OpsFlow magnet", () => {
     render(
       <MemoryRouter>
         <HomePage />
@@ -15,89 +15,92 @@ describe("HomePage", () => {
     );
 
     const page = screen.getByTestId("home-page");
-    const childTestIds = Array.from(page.children).map((node) => node.getAttribute("data-testid"));
-
-    expect(childTestIds).toEqual([
-      "stitch-home-hero",
-      HOME_SECTION_SEPARATOR_IDS.afterHero,
-      "home-core-pillars",
-      HOME_SECTION_SEPARATOR_IDS.afterPillars,
-      "home-built-for-scale",
-      "home-lead-magnet",
-      "home-ready-cta",
-    ]);
-
-    expect(screen.queryByTestId("home-sprint-card")).not.toBeInTheDocument();
-    expect(screen.getByTestId(HOME_SECTION_SEPARATOR_IDS.afterHero)).toHaveClass(
-      "home-section-separator",
-      HOME_SECTION_SEPARATOR_CLASS,
-    );
-    expect(screen.getByTestId("home-core-pillars")).toHaveClass(HOME_CORE_PILLARS_SURFACE_CLASS);
-    expect(screen.getByText(/PROPRIETARY AI PRODUCT/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Architecture & Tech Debt Audit Checklist/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Streamline Your Business Operations with OpsFlow AI/i)).not.toBeInTheDocument();
+    expect(within(page).getByTestId("home-demo-page")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: HOME_DEMO_COPY.hero.title })).toBeInTheDocument();
+    expect(screen.getByText(HOME_DEMO_COPY.problems.title)).toBeInTheDocument();
+    expect(screen.getByText(HOME_DEMO_COPY.finder.title)).toBeInTheDocument();
+    expect(screen.getByTestId("home-demo-finder")).toHaveAttribute("id", HOME_DEMO_COPY.finder.id);
+    expect(document.getElementById(HOME_DEMO_COPY.finder.legacyId)).toBeTruthy();
+    expect(screen.queryByTestId("stitch-home-hero")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("home-lead-magnet")).not.toBeInTheDocument();
+    expect(screen.queryByText("Code Your Success")).not.toBeInTheDocument();
   });
 
-  it("matches hero copy and links without the sprint overlay card", () => {
+  it("links hero actions to solutions and the work section", () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    expect(screen.getByTestId("brand-hero-eyebrow")).toHaveTextContent(/Enterprise AI & Cloud Systems/i);
-    expect(screen.getByRole("heading", { name: HOME_PAGE_COPY.hero.title })).toBeInTheDocument();
-    expect(screen.getByText(HOME_PAGE_COPY.hero.subtext)).toBeInTheDocument();
-    expect(screen.getByTestId("home-hero-visual")).toHaveAttribute("src", HOME_PAGE_ASSETS.heroMonitor);
-  });
-
-  it("matches built-for-scale mockup with surface, image, body, and three features", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    const hero = screen.getByTestId("stitch-home-hero");
-    const scale = screen.getByTestId("home-built-for-scale");
-    expect(hero).toHaveClass("home-primary-surface");
-    expect(scale).toHaveClass("home-primary-surface");
-    expect(within(scale).getByRole("heading", { name: /Cloud, Built Right/i })).toBeInTheDocument();
-    expect(within(scale).getByText(HOME_PAGE_COPY.builtForScale.body)).toBeInTheDocument();
-    expect(within(scale).getByText("Cloud Native")).toBeInTheDocument();
-    expect(within(scale).getAllByTestId("home-scale-feature")).toHaveLength(3);
-    expect(within(scale).getByTestId("home-built-for-scale-image")).toHaveAttribute("src", HOME_PAGE_ASSETS.serverRacks);
-  });
-
-  it("links the hero to OpsFlow and the 48-hour audit without a tech stack link", () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-
-    expect(screen.queryByRole("link", { name: /tech stack|our stack/i })).not.toBeInTheDocument();
-
-    const heroActions = screen.getByTestId("hero-actions");
-    expect(within(heroActions).getByRole("link", { name: /Try OpsFlow AI/i })).toHaveAttribute(
+    const actions = screen.getByTestId("home-demo-hero-actions");
+    expect(within(actions).getByRole("link", { name: /Find My Solution/i })).toHaveAttribute(
       "href",
-      OPSFLOW_HERO_PAGE_HREF,
+      HOME_DEMO_COPY.hero.primaryHref,
     );
-    expect(within(heroActions).getByRole("link", { name: /Book Operational Audit/i })).toHaveAttribute(
+    expect(within(actions).getByRole("link", { name: HOME_DEMO_COPY.hero.secondaryCta })).toHaveAttribute(
       "href",
-      AI_OPERATIONAL_AUDIT_BOOKING_HREF,
+      HOME_DEMO_COPY.hero.secondaryHref,
     );
   });
 
-  it("matches dark CTA copy without engineering in the subtext", () => {
+  it("advances the project planner after a type is selected", async () => {
+    const user = userEvent.setup();
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    const cta = screen.getByTestId("home-ready-cta");
-    expect(within(cta).getByText(HOME_PAGE_COPY.bottomCta.subtext)).toBeInTheDocument();
-    expect(within(cta).getByText(HOME_PAGE_COPY.bottomCta.subtext)).not.toHaveTextContent(/engineering/i);
+    await user.click(screen.getByRole("button", { name: /Custom software/i }));
+    await user.click(screen.getByRole("button", { name: "Continue" }));
+    expect(screen.getByRole("heading", { name: "Confirm the project details" })).toBeInTheDocument();
+  });
+
+  it("shows one homepage service at a time in the full-width carousel", async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+
+    const carousel = screen.getByTestId("home-service-carousel");
+    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent("1 of 6 Services");
+    expect(within(carousel).getByTestId("home-service-slide-websites")).toHaveAttribute("data-active", "true");
+    expect(within(carousel).getByTestId("home-service-slide-software")).toHaveAttribute("data-active", "false");
+    expect(within(carousel).getAllByTestId(/home-service-slide-/)).toHaveLength(6);
+
+    await user.click(screen.getByRole("button", { name: HOME_DEMO_COPY.servicesCarousel.nextLabel }));
+    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent("2 of 6 Services");
+    expect(within(carousel).getByTestId("home-service-slide-software")).toHaveAttribute("data-active", "true");
+    expect(within(carousel).getByTestId("home-service-slide-websites")).toHaveAttribute("data-active", "false");
+    expect(within(carousel).getByTestId("home-service-slide-software").parentElement).toHaveStyle({
+      transform: `translateX(-${(100 / 6)}%)`,
+    });
+
+    await user.click(screen.getByRole("tab", { name: "Show Mobile Applications" }));
+    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent("5 of 6 Services");
+    expect(within(carousel).getByTestId("home-service-slide-mobile")).toHaveAttribute("data-active", "true");
+  });
+
+  it("keeps the production header and footer when the demo home is shown", () => {
+    render(
+      <MemoryRouter>
+        <Layout>
+          <HomePage />
+        </Layout>
+      </MemoryRouter>,
+    );
+
+    const header = screen.getByRole("banner");
+    const footer = screen.getByRole("contentinfo");
+    expect(within(header).getByRole("navigation", { name: /Primary navigation/i })).toBeInTheDocument();
+    expect(within(header).getByRole("link", { name: /^Prooflyn$/i })).toBeInTheDocument();
+    expect(within(header).getByRole("link", { name: NAV_CTA_LABEL })).toBeInTheDocument();
+    expect(screen.queryByText(/ENGINEERING WITH PURPOSE/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Homepage concept preview/i)).not.toBeInTheDocument();
+    expect(within(footer).getByRole("link", { name: /^Prooflyn$/i })).toBeInTheDocument();
+    expect(within(footer).getByRole("link", { name: /^Testimonials$/i })).toBeInTheDocument();
   });
 });
