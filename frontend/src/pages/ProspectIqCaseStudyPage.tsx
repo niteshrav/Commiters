@@ -1,9 +1,9 @@
-import TechnicalCaseStudyPage from "../components/TechnicalCaseStudyPage";
+import WorkCaseStudyLayout from "../components/work-case-study/WorkCaseStudyLayout";
 import { usePageSeo } from "../hooks/usePageSeo";
-import { PROSPECT_IQ_CASE_STUDY_COPY } from "../lib/prospectIqCaseStudyContent";
 import { prospectIqCaseStudyPageSeo } from "../lib/sitePageSeo";
+import { getWorkCaseStudy } from "../lib/workCaseStudyProjects";
 
 export default function ProspectIqCaseStudyPage() {
   usePageSeo(prospectIqCaseStudyPageSeo());
-  return <TechnicalCaseStudyPage copy={PROSPECT_IQ_CASE_STUDY_COPY} />;
+  return <WorkCaseStudyLayout study={getWorkCaseStudy("prospectiq-ai")} />;
 }

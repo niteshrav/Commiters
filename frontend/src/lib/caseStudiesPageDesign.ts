@@ -1,4 +1,6 @@
 import { BROWSE_MY_VACATION_LIVE_URL } from "./browseMyVacationCaseStudyContent";
+import { ECOROUTE_LIVE_URL } from "./ecoRouteCaseStudyContent";
+import { MULTI_ROLE_CRM_LIVE_URL } from "./multiRoleCrmCaseStudyContent";
 import { PROSPECTIQ_LIVE_URL } from "./prospectIqCaseStudyContent";
 import type { CaseStudyProject } from "./caseStudiesPageContent";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
@@ -90,6 +92,7 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
     badge: "SaaS Products",
     filters: ["saas", "ai", "business"],
     tags: ["React", "RAG", "WebSockets"],
+    liveHref: MULTI_ROLE_CRM_LIVE_URL,
   },
   "neardrop-mvp": {
     blurb: "Real-time fleet tracking and smarter field operations.",
@@ -116,6 +119,7 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
     badge: "AI & Automation",
     filters: ["ai", "business"],
     tags: ["Python", "Google ADK", "Gemini"],
+    liveHref: ECOROUTE_LIVE_URL,
   },
   "governed-ai": {
     blurb: "Policy-gated AI workflows with secure data access.",

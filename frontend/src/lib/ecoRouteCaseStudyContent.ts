@@ -1,6 +1,9 @@
 import { ROUTES } from "./routes";
 import type { TechnicalCaseStudyCopy } from "./technicalCaseStudy";
 
+export const ECOROUTE_LIVE_URL =
+  "https://ecoroute-intelligence-909450768619.asia-south1.run.app/" as const;
+
 export const ECO_ROUTE_CASE_STUDY_COPY = {
   documentTitle: "EcoRoute Intelligence Case Study",
   pageId: "ecoroute",

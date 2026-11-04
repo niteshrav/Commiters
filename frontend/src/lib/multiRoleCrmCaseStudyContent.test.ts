@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { MULTI_ROLE_CRM_CASE_STUDY_COPY } from "./multiRoleCrmCaseStudyContent";
+import { MULTI_ROLE_CRM_CASE_STUDY_COPY, MULTI_ROLE_CRM_LIVE_URL } from "./multiRoleCrmCaseStudyContent";
 import {
   MULTI_ROLE_CRM_CASE_STUDY_HERO_IMAGE_HEIGHT,
   MULTI_ROLE_CRM_CASE_STUDY_HERO_IMAGE_WIDTH,
@@ -17,6 +17,7 @@ describe("multiRoleCrmCaseStudyContent", () => {
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleLead).toBe("AI-Powered");
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.titleAccent).toBe("Multi-Role CRM");
     expect(MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline).toBe("Intelligent Operations with RAG & LLMs.");
+    expect(MULTI_ROLE_CRM_LIVE_URL).toBe("https://customer-service-agent-peach.vercel.app/");
     expect("title" in MULTI_ROLE_CRM_CASE_STUDY_COPY).toBe(false);
     expect("heroActions" in MULTI_ROLE_CRM_CASE_STUDY_COPY).toBe(false);
     expect(MULTI_ROLE_CRM_CASE_STUDY_HERO_IMAGE_WIDTH).toBe(512);

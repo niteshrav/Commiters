@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ECO_ROUTE_CASE_STUDY_COPY } from "./ecoRouteCaseStudyContent";
+import { ECOROUTE_LIVE_URL, ECO_ROUTE_CASE_STUDY_COPY } from "./ecoRouteCaseStudyContent";
 import { ROUTES } from "./routes";
 
 describe("ecoRouteCaseStudyContent", () => {
@@ -36,5 +36,6 @@ describe("ecoRouteCaseStudyContent", () => {
     expect(ECO_ROUTE_CASE_STUDY_COPY.bottomCta.primaryTo).toBe(ROUTES.contact);
     expect(ECO_ROUTE_CASE_STUDY_COPY.bottomCta.secondaryTo).toBe(ROUTES.caseStudies);
     expect(ECO_ROUTE_CASE_STUDY_COPY.bottomCta.primaryVariant).toBe("gold-blue");
+    expect(ECOROUTE_LIVE_URL).toBe("https://ecoroute-intelligence-909450768619.asia-south1.run.app/");
   });
 });

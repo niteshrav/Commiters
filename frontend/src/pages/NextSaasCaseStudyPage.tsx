@@ -1,25 +1,9 @@
-import NextSaasCaseStudyBottomCta from "../components/NextSaasCaseStudyBottomCta";
-import NextSaasCaseStudyFeaturesSection from "../components/NextSaasCaseStudyFeaturesSection";
-import NextSaasCaseStudyIntroSection from "../components/NextSaasCaseStudyIntroSection";
+import WorkCaseStudyLayout from "../components/work-case-study/WorkCaseStudyLayout";
 import { usePageSeo } from "../hooks/usePageSeo";
-import {
-  BROWSE_MY_VACATION_CASE_STUDY_PAGE_CLASS,
-  NEXTSAAS_CASE_STUDY_PAGE_CLASS,
-} from "../lib/nextsaasCaseStudyLayout";
-import { withSiteCloudTheme } from "../lib/homeCloudTheme";
 import { nextsaasCaseStudyPageSeo } from "../lib/sitePageSeo";
+import { getWorkCaseStudy } from "../lib/workCaseStudyProjects";
 
 export default function NextSaasCaseStudyPage() {
   usePageSeo(nextsaasCaseStudyPageSeo());
-
-  return (
-    <div
-      className={withSiteCloudTheme(NEXTSAAS_CASE_STUDY_PAGE_CLASS, BROWSE_MY_VACATION_CASE_STUDY_PAGE_CLASS)}
-      data-testid="nextsaas-case-study-page"
-    >
-      <NextSaasCaseStudyIntroSection />
-      <NextSaasCaseStudyFeaturesSection />
-      <NextSaasCaseStudyBottomCta />
-    </div>
-  );
+  return <WorkCaseStudyLayout study={getWorkCaseStudy("browse-my-vacation")} />;
 }

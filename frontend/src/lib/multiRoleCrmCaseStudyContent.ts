@@ -1,6 +1,8 @@
 import type { TechLogoDef } from "./homeTechStack";
 import { ROUTES } from "./routes";
 
+export const MULTI_ROLE_CRM_LIVE_URL = "https://customer-service-agent-peach.vercel.app/" as const;
+
 export type MultiRoleCrmCaseStudyStackItem = TechLogoDef & {
   role: string;
   icon: "code" | "database" | "cloud" | "ai";

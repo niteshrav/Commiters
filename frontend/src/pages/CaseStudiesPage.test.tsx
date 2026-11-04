@@ -5,6 +5,8 @@ import { allStaticWorkPageProjects } from "../lib/caseStudiesPageContent";
 import { CASE_STUDY_IMAGE_ASSETS } from "../lib/caseStudiesPageAssets";
 import { CASE_STUDIES_PAGE_DESIGN, WORK_PAGE_PROJECT_PRESENTATION } from "../lib/caseStudiesPageDesign";
 import { BROWSE_MY_VACATION_LIVE_URL } from "../lib/browseMyVacationCaseStudyContent";
+import { ECOROUTE_LIVE_URL } from "../lib/ecoRouteCaseStudyContent";
+import { MULTI_ROLE_CRM_LIVE_URL } from "../lib/multiRoleCrmCaseStudyContent";
 import { PROSPECTIQ_LIVE_URL } from "../lib/prospectIqCaseStudyContent";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "../lib/routes";
@@ -83,6 +85,14 @@ describe("CaseStudiesPage", () => {
     expect(within(byId("prospectiq-ai")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
       "href",
       PROSPECTIQ_LIVE_URL,
+    );
+    expect(within(byId("ecoroute-intelligence")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
+      "href",
+      ECOROUTE_LIVE_URL,
+    );
+    expect(within(byId("multi-role-crm")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
+      "href",
+      MULTI_ROLE_CRM_LIVE_URL,
     );
 
     expect(screen.queryByTestId("work-flagship")).not.toBeInTheDocument();
