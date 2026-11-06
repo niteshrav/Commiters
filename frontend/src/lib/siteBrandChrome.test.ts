@@ -24,7 +24,7 @@ describe("siteBrandChrome", () => {
   it("defines the enterprise brand title, meta description, and hero eyebrow", () => {
     expect(DEFAULT_DOCUMENT_TITLE).toBe("Commiters — Enterprise AI & Cloud Systems");
     expect(DEFAULT_META_DESCRIPTION).toBe(
-      "Commiters — Enterprise AI & Cloud Systems. Spec-driven engineering, custom AI pipelines, and enterprise software architectures.",
+      "Commiters — Enterprise AI & Cloud Systems. Spec-driven engineering, custom AI pipelines, and production software architecture.",
     );
     expect(BRAND_HERO_EYEBROW_TEXT).toBe("ENTERPRISE AI & CLOUD SYSTEMS");
     expect(BRAND_HERO_EYEBROW_WRAP_CLASS).toBe("flex justify-start items-start text-left mb-4");
@@ -42,9 +42,10 @@ describe("siteBrandChrome", () => {
     expect(FOOTER_BRAND_TAGLINE_CHROME_CLASS).toBe("text-sm font-semibold text-slate-300 tracking-wide mt-1");
     expect(FOOTER_BRAND_DESCRIPTION_CLASS).toBe("text-xs text-slate-400 max-w-xs font-normal");
     expect(FOOTER_LOGO_IMG_CLASS).toBe("h-12");
-    expect(css).toContain(".sticky {\n  position: sticky;");
-    expect(css).toContain(".top-0 {\n  top: 0;");
-    expect(css).toContain(".z-50 {\n  z-index: 50;");
-    expect(css).toContain(".bg-white\\/90 {\n  background: rgb(255 255 255 / 0.9);");
+    const cssLf = css.replace(/\r\n/g, "\n");
+    expect(cssLf).toContain(".sticky {\n  position: sticky;");
+    expect(cssLf).toContain(".top-0 {\n  top: 0;");
+    expect(cssLf).toContain(".z-50 {\n  z-index: 50;");
+    expect(cssLf).toContain(".bg-white\\/90 {\n  background: rgb(255 255 255 / 0.9);");
   });
 });

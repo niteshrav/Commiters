@@ -19,7 +19,7 @@ describe("siteFooterCopy", () => {
     expect(SITE_FOOTER_COPY.brandTagline).toBe(SITE_FOOTER_TAGLINE);
     expect(SITE_FOOTER_COPY.brandTagline).toBe("Enterprise AI & Cloud Systems");
     expect(SITE_FOOTER_COPY.brandSubtext).toBe(
-      "Spec-driven engineering, custom AI pipelines, and cloud systems.",
+      "Spec-driven AI, governed pipelines, and cloud systems built for production.",
     );
     expect(SITE_FOOTER_COPY.copyrightLine1).toBe("© 2026 Commiters Softwares. All rights reserved.");
   });
@@ -35,6 +35,8 @@ describe("siteFooterCopy", () => {
       "AI Operational Audits",
       "Prooflyn",
       "OpsFlow AI",
+      "Synapse",
+      "Terminal",
       "Free Business Utilities",
     ]);
     expect(SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS).toEqual([

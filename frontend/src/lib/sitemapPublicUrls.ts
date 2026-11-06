@@ -19,6 +19,8 @@ export function buildSitemapPublicPaths(): string[] {
     ROUTES.ecoRouteCaseStudy,
     ROUTES.trustTap,
     ROUTES.opsFlow,
+    ROUTES.synapse,
+    ROUTES.terminal,
     ROUTES.utilities,
     ROUTES.aiOperationalAudit,
     ROUTES.aiSolutions,

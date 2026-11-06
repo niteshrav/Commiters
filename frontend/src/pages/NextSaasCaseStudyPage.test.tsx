@@ -11,8 +11,8 @@ describe("NextSaasCaseStudyPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { level: 1, name: "Closer to the right trip." })).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /Explore the project/i })[0]).toHaveAttribute(
+    expect(screen.getByRole("heading", { level: 1, name: "Travel discovery, built for enquiry." })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /View live product/i })[0]).toHaveAttribute(
       "href",
       "https://browsemyvacations.com/",
     );

@@ -7,7 +7,7 @@ import { EMPTY_PLANNER_STATE, focusText, resetForType, stepValid } from "./homeP
 
 describe("homeDemoContent", () => {
   it("keeps demo hero CTAs on in-page sections and production service routes", () => {
-    expect(HOME_DEMO_COPY.hero.title).toBe("Technology that solves real business problems.");
+    expect(HOME_DEMO_COPY.hero.title).toBe("Engineered systems for serious operations.");
     expect(HOME_DEMO_COPY.hero.primaryHref).toBe("#solutions");
     expect(HOME_DEMO_COPY.hero.secondaryHref).toBe("#work");
     expect(HOME_DEMO_COPY.servicesCarousel.items).toHaveLength(6);
@@ -36,6 +36,8 @@ describe("homeDemoContent", () => {
       ROUTES.trustTap,
     ]);
     expect(HOME_DEMO_COPY.work.allWorkTo).toBe(ROUTES.caseStudies);
+    expect(HOME_DEMO_COPY.products.items.map((item) => item.title)).toEqual(["Synapse", "Terminal"]);
+    expect(HOME_DEMO_COPY.products.items.map((item) => item.to)).toEqual([ROUTES.synapse, ROUTES.terminal]);
   });
 });
 

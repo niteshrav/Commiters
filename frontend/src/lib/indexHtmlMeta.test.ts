@@ -11,7 +11,7 @@ describe("index.html brand metadata", () => {
   it("sets the global title and meta description to the enterprise brand line", () => {
     expect(indexHtml).toContain(`<title>${DEFAULT_DOCUMENT_TITLE}</title>`);
     expect(indexHtml).toMatch(
-      /<meta\s+name="description"\s+content="Commiters — Enterprise AI & Cloud Systems\. Spec-driven engineering, custom AI pipelines, and enterprise software architectures\."\s*\/>/,
+      /<meta\s+name="description"\s+content="Commiters — Enterprise AI & Cloud Systems\. Spec-driven engineering, custom AI pipelines, and production software architecture\."\s*\/>/,
     );
     expect(indexHtml).toContain(DEFAULT_META_DESCRIPTION);
     expect(indexHtml).not.toMatch(/Committers/);

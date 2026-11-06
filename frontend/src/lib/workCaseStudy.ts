@@ -80,8 +80,8 @@ export const WORK_CASE_STUDY_SECTIONS = {
 } as const;
 
 export const WORK_CASE_STUDY_FINAL_CTA = {
-  title: "Let's build what's next.",
-  body: "From MVPs to scalable platforms, Commiters helps turn complex ideas into reliable digital products.",
-  primaryLabel: "Start a conversation",
-  secondaryLabel: "Explore all work",
+  title: "Commission the next system.",
+  body: "From first MVP to a durable platform, Commiters turns complex requirements into production software.",
+  primaryLabel: "Start a brief",
+  secondaryLabel: "View the portfolio",
 } as const;

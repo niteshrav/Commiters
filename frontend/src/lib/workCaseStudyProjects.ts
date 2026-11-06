@@ -19,8 +19,8 @@ function catalogProject(id: string) {
   return project;
 }
 
-const DISCUSS = { kind: "internal" as const, label: "Discuss a similar idea", to: ROUTES.contact };
-const EXPLORE_PAGE = { kind: "internal" as const, label: "Explore the project", to: "#wcs-overview" };
+const DISCUSS = { kind: "internal" as const, label: "Start a similar brief", to: ROUTES.contact };
+const EXPLORE_PAGE = { kind: "internal" as const, label: "Read the study", to: "#wcs-overview" };
 
 const BMV_GALLERY = uniqueBrowseMyVacationGallery();
 
@@ -31,9 +31,9 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     pageTestId: "neardrop-case-study-page",
     pageClass: "neardrop-case-study-page",
     name: "NearDrop MVP",
-    kicker: "Selected work — product engineering",
-    headline: "Closer to what's next.",
-    lead: "NearDrop MVP — a product concept presented through a clear, modern digital experience. Explore the thinking, experience and engineering behind the project.",
+    kicker: "Selected work",
+    headline: "A field product, presented with intent.",
+    lead: "A product concept presented as a precise digital experience—purpose, journey, and engineering, without unverified claims.",
     heroImage: {
       src: NEARDROP_CASE_STUDY_COPY.heroImage.src,
       alt: "NearDrop product preview — a simpler local experience",
@@ -98,8 +98,9 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
           caption: "neardrop · product preview",
         },
         {
-          src: NEARDROP_CASE_STUDY_COPY.heroImage.src,
-          alt: "Stay informed — next steps and relevant updates",
+          src: "/assets/case-studies/work-neardrop.png",
+          srcSet: "/assets/case-studies/work-neardrop.png 1x, /assets/case-studies/work-neardrop@2x.png 2x",
+          alt: "NearDrop field logistics van with real-time GPS geofencing and live tracking pins",
           title: "Stay informed",
           body: "Keep the next step and relevant information easy to find throughout the journey.",
         },
@@ -157,11 +158,11 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     pageClass: "nextsaas-case-study-page",
     extraPageClass: "browse-my-vacation-case-study-page",
     name: "BrowseMyVacation",
-    kicker: "Selected work — product engineering",
-    headline: "Closer to the right trip.",
+    kicker: "Selected work",
+    headline: "Travel discovery, built for enquiry.",
     lead: BROWSE_MY_VACATION_CASE_STUDY_COPY.description,
     heroImage: BROWSE_MY_VACATION_CASE_STUDY_COPY.introHeroImage,
-    exploreCta: { kind: "external", label: "Explore the project", href: BROWSE_MY_VACATION_LIVE_URL },
+    exploreCta: { kind: "external", label: "View live product", href: BROWSE_MY_VACATION_LIVE_URL },
     discussCta: DISCUSS,
     liveDemo: { kind: "external", label: "Live Demo", href: BROWSE_MY_VACATION_LIVE_URL },
     heroFacts: [
@@ -213,14 +214,23 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     journey: {
       ...WORK_CASE_STUDY_SECTIONS.journey,
       lead: "Screens from the live BrowseMyVacation platform.",
-      items: BMV_GALLERY.map((image, index) => ({
-        ...image,
-        title: index === 0 ? "Discover" : "Stay informed",
-        body:
-          index === 0
-            ? "City search and curated package grids help travelers see what is available."
-            : "Package photography and pricing keep the next enquiry step close at hand.",
-      })),
+      items: [
+        ...BMV_GALLERY.map((image, index) => ({
+          ...image,
+          title: index === 0 ? "Discover" : "Stay informed",
+          body:
+            index === 0
+              ? "City search and curated package grids help travelers see what is available."
+              : "Package photography and pricing keep the next enquiry step close at hand.",
+        })),
+        {
+          src: BROWSE_MY_VACATION_CASE_STUDY_COPY.visualBreak.image.src,
+          srcSet: BROWSE_MY_VACATION_CASE_STUDY_COPY.visualBreak.image.srcSet,
+          alt: BROWSE_MY_VACATION_CASE_STUDY_COPY.visualBreak.image.alt,
+          title: "Live destination photography",
+          body: "Founder-ready imagery from the production marketplace, not a placeholder collage.",
+        },
+      ],
     },
     details: {
       ...WORK_CASE_STUDY_SECTIONS.details,
@@ -275,15 +285,15 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     pageTestId: "commiters-case-study-page",
     pageClass: "commiters-case-study-page",
     name: "Commiters.com",
-    kicker: "Selected work — product engineering",
-    headline: "Closer to the real work.",
+    kicker: "Selected work",
+    headline: "The studio, engineered as a product.",
     lead: COMMITERS_CASE_STUDY_COPY.subtitle,
     heroImage: {
       src: "/assets/case-studies/work-commiters.png",
       srcSet: "/assets/case-studies/work-commiters.png 1x, /assets/case-studies/work-commiters@2x.png 2x",
       alt: "Commiters spec-driven cloud website on a high-performance engineering console",
     },
-    exploreCta: { kind: "internal", label: "Explore the project", to: ROUTES.home },
+    exploreCta: { kind: "internal", label: "View live product", to: ROUTES.home },
     discussCta: DISCUSS,
     liveDemo: { kind: "internal", label: "Open live site", to: ROUTES.home },
     heroFacts: [
@@ -343,6 +353,12 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
           title: "Discover",
           body: "A spec-driven marketing surface that presents services, work and products in one journey.",
         },
+        {
+          src: "/assets/case-studies/commiters.png",
+          alt: "Commiters.com engineering console for the spec-driven public site",
+          title: "Stay informed",
+          body: "Isolation, type-safe surfaces, and governed delivery on the live studio site.",
+        },
       ],
     },
     details: {
@@ -390,8 +406,8 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     pageTestId: "ai-summarizer-case-study-page",
     pageClass: "ai-summarizer-case-study-page",
     name: "AI Summarizer",
-    kicker: "Selected work — product engineering",
-    headline: "Closer to the decision.",
+    kicker: "Selected work",
+    headline: "Documents, reduced to a decision.",
     lead: AI_SUMMARIZER_CASE_STUDY_COPY.description,
     heroImage: AI_SUMMARIZER_CASE_STUDY_COPY.heroImage,
     exploreCta: EXPLORE_PAGE,
@@ -453,6 +469,13 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
           title: "Discover",
           body: "Streaming multi-page invoices, receipts and GST records without losing context.",
         },
+        {
+          src: "/assets/case-studies/work-ai-summarizer.png",
+          srcSet: "/assets/case-studies/work-ai-summarizer.png 1x, /assets/case-studies/work-ai-summarizer@2x.png 2x",
+          alt: "AI Summarizer turning document pages into a governed executive brief",
+          title: "Stay informed",
+          body: "Schema-validated briefs instead of another unread operational packet.",
+        },
       ],
     },
     details: {
@@ -499,11 +522,11 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     pageTestId: "multi-role-crm-case-study-page",
     pageClass: "multi-role-crm-case-study-page",
     name: "Multi-Role CRM",
-    kicker: "Selected work — product engineering",
-    headline: "Closer to the customer.",
+    kicker: "Selected work",
+    headline: "Customer work, gated by role.",
     lead: MULTI_ROLE_CRM_CASE_STUDY_COPY.subheadline,
     heroImage: MULTI_ROLE_CRM_CASE_STUDY_COPY.heroImage,
-    exploreCta: { kind: "external", label: "Explore the project", href: MULTI_ROLE_CRM_LIVE_URL },
+    exploreCta: { kind: "external", label: "View live product", href: MULTI_ROLE_CRM_LIVE_URL },
     discussCta: DISCUSS,
     liveDemo: { kind: "external", label: "Live Demo", href: MULTI_ROLE_CRM_LIVE_URL },
     heroFacts: [
@@ -563,6 +586,13 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
           title: "Discover",
           body: "Admins, managers and field agents share a permissioned view of customer work.",
         },
+        {
+          src: "/assets/case-studies/work-multi-role-crm.png",
+          srcSet: "/assets/case-studies/work-multi-role-crm.png 1x, /assets/case-studies/work-multi-role-crm@2x.png 2x",
+          alt: "Multi-role CRM operator screens with an AI chatbot co-pilot",
+          title: "Stay informed",
+          body: "RAG answers stay inside the role. WebSockets keep the three dashboards aligned.",
+        },
       ],
     },
     details: {
@@ -611,11 +641,11 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     pageClass: "prospectiq-case-study-page",
     extraPageClass: "commiters-case-study-page technical-case-study-page",
     name: "ProspectIQ AI",
-    kicker: "Selected work — product engineering",
-    headline: "Closer to the right lead.",
+    kicker: "Selected work",
+    headline: "Prospect scoring, explained—not decided.",
     lead: PROSPECT_IQ_CASE_STUDY_COPY.subtitle,
     heroImage: PROSPECT_IQ_CASE_STUDY_COPY.heroImage,
-    exploreCta: { kind: "external", label: "Explore the project", href: PROSPECTIQ_LIVE_URL },
+    exploreCta: { kind: "external", label: "View live product", href: PROSPECTIQ_LIVE_URL },
     discussCta: DISCUSS,
     liveDemo: { kind: "external", label: "Live Demo", href: PROSPECTIQ_LIVE_URL },
     heroFacts: [
@@ -674,6 +704,13 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
           title: "Discover",
           body: "Deterministic scoring remains the source of truth. Agents explain it for underwriters.",
         },
+        {
+          src: "/assets/case-studies/work-prospectiq.png",
+          srcSet: "/assets/case-studies/work-prospectiq.png 1x, /assets/case-studies/work-prospectiq@2x.png 2x",
+          alt: "ProspectIQ AI loan prospect intelligence dashboard for banking teams",
+          title: "Stay informed",
+          body: "Five sequential agents produce a report. A human still reviews before any lending decision.",
+        },
       ],
     },
     details: {
@@ -722,11 +759,11 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     pageClass: "ecoroute-case-study-page",
     extraPageClass: "commiters-case-study-page technical-case-study-page",
     name: "EcoRoute Intelligence",
-    kicker: "Selected work — product engineering",
-    headline: "Closer to a clearer route.",
+    kicker: "Selected work",
+    headline: "Mobility data, turned into a decision.",
     lead: ECO_ROUTE_CASE_STUDY_COPY.subtitle,
     heroImage: ECO_ROUTE_CASE_STUDY_COPY.heroImage,
-    exploreCta: { kind: "external", label: "Explore the project", href: ECOROUTE_LIVE_URL },
+    exploreCta: { kind: "external", label: "View live product", href: ECOROUTE_LIVE_URL },
     discussCta: DISCUSS,
     liveDemo: { kind: "external", label: "Live Demo", href: ECOROUTE_LIVE_URL },
     heroFacts: [
@@ -784,6 +821,14 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
           alt: ECO_ROUTE_CASE_STUDY_COPY.heroImage.alt,
           title: "Discover",
           body: "Compare congestion and emissions by route, including the recorded peak on ROUTE_9.",
+        },
+        {
+          src: "/assets/case-studies/ecoroute-intelligence.png",
+          srcSet:
+            "/assets/case-studies/ecoroute-intelligence.png 1x, /assets/case-studies/ecoroute-intelligence@2x.png 2x",
+          alt: "EcoRoute Intelligence congestion and emissions decision surface",
+          title: "Stay informed",
+          body: "Six high-risk corridors from a 15-route sample, with policy options for planners.",
         },
       ],
     },

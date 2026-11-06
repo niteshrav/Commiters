@@ -6,7 +6,7 @@ export const WEB_APPLICATIONS_DISPLAY = {
   deliverLead: "We turn complex requirements into reliable, production-ready cloud platforms.",
   stackHeading: "Modern. Proven. Flexible.",
   stackNote: "The tools we use to build spec-driven platforms.",
-  formKicker: "Let's build together",
+  formKicker: "Start a brief",
   formLead: "Share a few details and we'll suggest the right approach, timeline, and cost.",
   formAside: "Turn your specs into a scalable product",
   privacyNote: "We respect your privacy. No spam, ever.",

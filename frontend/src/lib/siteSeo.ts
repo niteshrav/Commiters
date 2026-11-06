@@ -40,7 +40,7 @@ export function buildOrganizationSchema() {
     email: COMMITERS_EMAIL_PRIMARY,
     telephone: COMMITERS_PHONE_DISPLAY,
     description:
-      "Commiters — Enterprise AI & Cloud Systems. Spec-driven engineering, custom AI pipelines, and enterprise software architectures.",
+      "Commiters — Enterprise AI & Cloud Systems. Spec-driven engineering, custom AI pipelines, and production software architecture.",
     address: SITE_POSTAL_ADDRESS,
     geo: {
       "@type": "GeoCoordinates",

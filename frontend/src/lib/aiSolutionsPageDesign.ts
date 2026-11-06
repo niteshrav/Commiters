@@ -3,7 +3,7 @@ export const AI_SOLUTIONS_DISPLAY = {
   headlineAccent: "Operational Workflow Systems",
   architectureHeading: "Built on a Secure, Modular Foundation",
   stackNote: "Works with your stack",
-  formKicker: "Let's build together",
+  formKicker: "Start a brief",
   formLead: "Tell us a bit about your needs and we'll help you design the right solution.",
   ctaPlus: "+",
   chips: [

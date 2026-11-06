@@ -8,6 +8,8 @@ import { BROWSE_MY_VACATION_LIVE_URL } from "../lib/browseMyVacationCaseStudyCon
 import { ECOROUTE_LIVE_URL } from "../lib/ecoRouteCaseStudyContent";
 import { MULTI_ROLE_CRM_LIVE_URL } from "../lib/multiRoleCrmCaseStudyContent";
 import { PROSPECTIQ_LIVE_URL } from "../lib/prospectIqCaseStudyContent";
+import { SYNAPSE_LIVE_URL, TERMINAL_LIVE_URL } from "../lib/studioProducts";
+import { TRUSTTAP_LIVE_URL } from "../lib/trustTapPageContent";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { AI_OPERATIONAL_AUDIT_BOOKING_HREF, ROUTES } from "../lib/routes";
 const workProjects = allStaticWorkPageProjects();
@@ -22,9 +24,9 @@ describe("CaseStudiesPage", () => {
 
     expect(screen.getByTestId("case-studies-page")).toBeInTheDocument();
     expect(screen.getByText(CASE_STUDIES_PAGE_DESIGN.hero.kicker)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Ideas to Real Impact." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Work, in production." })).toBeInTheDocument();
     expect(screen.getByText(CASE_STUDIES_PAGE_DESIGN.hero.subtext)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Explore Case Studies/i })).toHaveAttribute("href", "#featured-case-studies");
+    expect(screen.getByRole("link", { name: /View case studies/i })).toHaveAttribute("href", "#featured-case-studies");
     expect(screen.getByRole("link", { name: CASE_STUDIES_PAGE_DESIGN.hero.secondaryLabel })).toHaveAttribute(
       "href",
       CASE_STUDIES_PAGE_DESIGN.hero.secondaryTo,
@@ -94,6 +96,22 @@ describe("CaseStudiesPage", () => {
       "href",
       MULTI_ROLE_CRM_LIVE_URL,
     );
+    expect(within(byId("terminal")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
+      "href",
+      TERMINAL_LIVE_URL,
+    );
+    expect(within(byId("synapse")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
+      "href",
+      SYNAPSE_LIVE_URL,
+    );
+    expect(within(byId("prooflyn")).getByRole("link", { name: /View Case Study/i, hidden: true })).toHaveAttribute(
+      "href",
+      ROUTES.trustTap,
+    );
+    expect(within(byId("prooflyn")).getByRole("link", { name: /Live Demo/i, hidden: true })).toHaveAttribute(
+      "href",
+      TRUSTTAP_LIVE_URL,
+    );
 
     expect(screen.queryByTestId("work-flagship")).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Featured Case Study" })).not.toBeInTheDocument();
@@ -144,14 +162,27 @@ describe("CaseStudiesPage", () => {
       within(screen.getByTestId("case-studies-compact-grid"))
         .getAllByTestId("case-study-card")
         .map((card) => card.getAttribute("data-case-study-id")),
-    ).toEqual(["multi-role-crm", "neardrop-mvp"]);
+    ).toEqual(["prooflyn", "multi-role-crm", "neardrop-mvp"]);
+    expect(within(screen.getByTestId("case-studies-compact-grid")).getByText("Prooflyn")).toBeInTheDocument();
     expect(within(screen.getByTestId("case-studies-compact-grid")).queryByText("BrowseMyVacation")).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Enterprise & Workforce Solutions" }));
+    expect(screen.getByTestId("work-enterprise-category")).toHaveTextContent(
+      "Hiring, onboarding, and the company operating record",
+    );
+    expect(
+      within(screen.getByTestId("case-studies-compact-grid"))
+        .getAllByTestId("case-study-card")
+        .map((card) => card.getAttribute("data-case-study-id")),
+    ).toEqual(["terminal", "synapse"]);
+    expect(within(screen.getByTestId("case-studies-compact-grid")).getByText("Terminal")).toBeInTheDocument();
+    expect(within(screen.getByTestId("case-studies-compact-grid")).getByText("Synapse")).toBeInTheDocument();
 
     expect(screen.queryByRole("button", { name: "E-commerce" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Restaurant Technology" })).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "All Projects" }));
     expect(screen.queryByTestId("work-grid-empty")).not.toBeInTheDocument();
-    expect(within(screen.getByTestId("case-studies-compact-grid")).getAllByTestId("case-study-card")).toHaveLength(5);
+    expect(within(screen.getByTestId("case-studies-compact-grid")).getAllByTestId("case-study-card")).toHaveLength(8);
   });
 });

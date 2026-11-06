@@ -10,6 +10,7 @@ import {
   type WorkCaseStudyCta,
 } from "../../lib/workCaseStudy";
 import { relatedWorkCaseStudies } from "../../lib/workCaseStudyProjects";
+import WorkCaseStudyVisuals from "./WorkCaseStudyVisuals";
 import "../../styles/workCaseStudy.css";
 
 function CtaLink({ cta, className }: { cta: WorkCaseStudyCta; className: string }) {
@@ -216,6 +217,8 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
         </div>
       </section>
 
+      <WorkCaseStudyVisuals studyId={study.id} />
+
       <section className="wcs-section soft" data-testid="work-case-study-stack">
         <div className="wcs-wrap">
           <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.stack.kicker}</div>
@@ -260,7 +263,7 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
           <div className="wcs-wrap">
             <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.live.kicker}</div>
             <h2>{WORK_CASE_STUDY_SECTIONS.live.title}</h2>
-            <p className="wcs-lead">Open the public URL used by this case study.</p>
+            <p className="wcs-lead">Open the hosted product used in this study.</p>
             <div className="wcs-actions" style={{ marginTop: 22 }}>
               <CtaLink cta={study.liveDemo} className="wcs-btn primary" />
             </div>
@@ -271,7 +274,7 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
       <section className="wcs-section" data-testid="work-case-study-related">
         <div className="wcs-wrap">
           <div className="wcs-kicker">Related work</div>
-          <h2>More work in a similar direction.</h2>
+          <h2>Further work in this direction.</h2>
           <div className="wcs-related">
             {related.map((item) => (
               <Link key={item.id} to={item.route}>

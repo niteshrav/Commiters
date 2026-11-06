@@ -12,9 +12,9 @@ describe("ProspectIqCaseStudyPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { level: 1, name: "Closer to the right lead." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Prospect scoring, explained—not decided." })).toBeInTheDocument();
     expect(screen.getByText(PROSPECT_IQ_CASE_STUDY_COPY.subtitle)).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /Explore the project/i })[0]).toHaveAttribute("href", PROSPECTIQ_LIVE_URL);
+    expect(screen.getAllByRole("link", { name: /View live product/i })[0]).toHaveAttribute("href", PROSPECTIQ_LIVE_URL);
     expect(screen.getByRole("heading", { name: "Problem" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Solution" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "USP of the project" })).toBeInTheDocument();

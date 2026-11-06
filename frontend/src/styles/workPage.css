@@ -259,6 +259,33 @@
   margin-bottom: 16px;
 }
 
+.work-category-intro {
+  max-width: 720px;
+  margin: 0 auto 22px;
+  text-align: center;
+}
+
+.work-category-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.work-category-tagline {
+  margin: 0 0 8px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #0866ff;
+}
+
+.work-category-copy {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
 .work-filters {
   display: flex;
   flex-wrap: wrap;

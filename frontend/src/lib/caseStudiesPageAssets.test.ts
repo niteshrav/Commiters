@@ -39,6 +39,9 @@ describe("caseStudiesPageAssets", () => {
     expect(caseStudyHasImage("ai-summarizer")).toBe(true);
     expect(caseStudyHasImage("multi-role-crm")).toBe(true);
     expect(caseStudyHasImage("browse-my-vacation")).toBe(true);
+    expect(caseStudyHasImage("terminal")).toBe(true);
+    expect(caseStudyHasImage("synapse")).toBe(true);
+    expect(caseStudyHasImage("prooflyn")).toBe(true);
     expect(existsSync(join(publicRoot, "assets/case-studies/case-studies-row-one-mockup.png"))).toBe(true);
   });
 

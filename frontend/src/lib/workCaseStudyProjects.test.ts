@@ -30,7 +30,7 @@ describe("workCaseStudyProjects", () => {
       expect(study.headline.length).toBeGreaterThan(0);
       expect(study.relatedIds).toHaveLength(3);
       expect(relatedWorkCaseStudies(study)).toHaveLength(3);
-      expect(study.discussCta).toEqual({ kind: "internal", label: "Discuss a similar idea", to: ROUTES.contact });
+      expect(study.discussCta).toEqual({ kind: "internal", label: "Start a similar brief", to: ROUTES.contact });
       expect(study.problem.title).toBe(WORK_CASE_STUDY_SECTIONS.problem.title);
       expect(study.solution.title).toBe(WORK_CASE_STUDY_SECTIONS.solution.title);
       expect(study.usp.title).toBe(WORK_CASE_STUDY_SECTIONS.usp.title);
@@ -38,8 +38,8 @@ describe("workCaseStudyProjects", () => {
       expect(study.outcome.title).toBe(WORK_CASE_STUDY_SECTIONS.outcome.title);
     }
 
-    expect(getWorkCaseStudy("neardrop-mvp").headline).toBe("Closer to what's next.");
-    expect(WORK_CASE_STUDY_FINAL_CTA.title).toBe("Let's build what's next.");
+    expect(getWorkCaseStudy("neardrop-mvp").headline).toBe("A field product, presented with intent.");
+    expect(WORK_CASE_STUDY_FINAL_CTA.title).toBe("Commission the next system.");
   });
 
   it("keeps only verified public demo URLs", () => {

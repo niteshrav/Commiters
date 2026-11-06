@@ -3,6 +3,7 @@ import { HOME_LEAD_MAGNET_FORM_ID } from "./homeLeadMagnetContent";
 import type { PlannerTypeId } from "./homePlannerData";
 import { OPSFLOW_HERO } from "./opsFlowPageContent";
 import { ROUTES } from "./routes";
+import { STUDIO_PRODUCTS } from "./studioProducts";
 import { buildServiceDetailPath } from "./services";
 import { buildWhatsAppUrl } from "./siteContact";
 import { TRUSTTAP_HERO, TRUSTTAP_HERO_SHOWCASE } from "./trustTapPageContent";
@@ -16,23 +17,23 @@ export const HOME_DEMO_CTA_ID = "contact" as const;
 
 export const HOME_DEMO_COPY = {
   hero: {
-    eyebrow: "WEB · SOFTWARE · AI · CLOUD",
-    titleBefore: "Technology that solves ",
-    titleAccent: "real business",
-    titleAfter: " problems.",
-    title: "Technology that solves real business problems.",
-    lead: "From a new website to custom business software, AI automation, and scalable cloud platforms — Commiters helps turn your business needs into reliable digital solutions.",
-    primaryCta: "Find My Solution",
+    eyebrow: "ENTERPRISE AI · CLOUD · SOFTWARE",
+    titleBefore: "Engineered systems for ",
+    titleAccent: "serious operations.",
+    titleAfter: "",
+    title: "Engineered systems for serious operations.",
+    lead: "Commiters designs and ships enterprise AI, cloud platforms, and operational software—spec-driven, policy-aware, and built to hold in production.",
+    primaryCta: "Find your system",
     primaryHref: `#${HOME_DEMO_SOLUTIONS_ID}`,
-    secondaryCta: "Explore Our Work",
+    secondaryCta: "View selected work",
     secondaryHref: `#${HOME_DEMO_WORK_ID}`,
-    checks: ["Built around your requirements", "Clear scope & milestones", "From planning to launch"],
+    checks: ["Spec-driven delivery", "Governed AI by default", "From brief to launch"],
   },
   servicesCarousel: {
     id: "home-services",
     eyebrow: "OUR SERVICES",
-    title: "One service. One clear next step.",
-    exploreLabel: "Explore Service",
+    title: "One engagement. One precise next step.",
+    exploreLabel: "View service",
     previousLabel: "Previous service",
     nextLabel: "Next service",
     counterSuffix: "Services",
@@ -112,10 +113,10 @@ export const HOME_DEMO_COPY = {
     ],
   },
   problems: {
-    eyebrow: "BUSINESS PROBLEMS, PRACTICAL SOLUTIONS",
-    title: "Challenges we commonly address.",
-    lead: "Describe the operational challenge. We will help define the technology, scope, and next steps.",
-    cta: "Discuss a Challenge",
+    eyebrow: "OPERATIONAL GAPS",
+    title: "The problems we design against.",
+    lead: "Name the constraint. We will shape the system, the scope, and the first move.",
+    cta: "Brief a challenge",
     ctaTo: ROUTES.contact,
     items: [
       {
@@ -157,9 +158,9 @@ export const HOME_DEMO_COPY = {
   },
   needs: {
     id: HOME_DEMO_SOLUTIONS_ID,
-    eyebrow: "START WITH YOUR GOAL",
-    title: "What does your business need?",
-    lead: "Technical terminology is not required. Begin with the business outcome, and we will recommend a suitable direction.",
+    eyebrow: "BEGIN WITH THE OUTCOME",
+    title: "What should the system do?",
+    lead: "You do not need the technical vocabulary. Start with the result; we will recommend the architecture.",
     items: [
       {
         id: "web",
@@ -208,17 +209,17 @@ export const HOME_DEMO_COPY = {
   finder: {
     id: HOME_DEMO_FINDER_ID,
     legacyId: HOME_LEAD_MAGNET_FORM_ID,
-    eyebrow: "SMART PROJECT PLANNER",
-    title: "Prepare a project blueprint before the first discussion.",
-    lead: "Select a project type and answer only the questions that apply. You will receive a blueprint you can download or send with an enquiry.",
+    eyebrow: "PROJECT BRIEF",
+    title: "A blueprint, before the first conversation.",
+    lead: "Choose a project type and answer only what applies. You leave with a brief you can download or send.",
   },
   work: {
     id: HOME_DEMO_WORK_ID,
-    eyebrow: "PROOF THROUGH PROJECTS",
-    title: "Selected work from the portfolio.",
-    lead: "Live platforms and products from the Work page: travel, document automation, and merchant reviews.",
-    note: "See the full Work portfolio for more projects.",
-    allWorkCta: "See all work",
+    eyebrow: "SELECTED WORK",
+    title: "Systems already in the world.",
+    lead: "Live platforms from the studio: travel, document automation, merchant reviews, and governed product surfaces.",
+    note: "The full Work portfolio holds the remaining studies.",
+    allWorkCta: "View the portfolio",
     allWorkTo: ROUTES.caseStudies,
     items: [
       {
@@ -226,7 +227,7 @@ export const HOME_DEMO_COPY = {
         kicker: "TRAVEL PLATFORM",
         title: "BrowseMyVacation",
         body: "A B2C/B2B travel platform with packages, search, and custom quote workflows.",
-        cta: "View project details",
+        cta: "Read the study",
         to: ROUTES.browseMyVacationCaseStudy,
         image: caseStudyImageSrc("browse-my-vacation"),
         imageSrcSet: caseStudyImageSrcSet("browse-my-vacation"),
@@ -256,12 +257,27 @@ export const HOME_DEMO_COPY = {
       },
     ],
   },
+  products: {
+    eyebrow: "STUDIO PRODUCTS",
+    title: "Platforms we operate.",
+    lead: "Terminal for screens, onboarding, and curriculum. Synapse for people, work, money, and policy.",
+    items: STUDIO_PRODUCTS.map((product) => ({
+      id: product.id,
+      kicker: product.card.kicker,
+      title: product.name,
+      body: product.card.body,
+      cta: product.card.cta,
+      to: product.route,
+      image: product.card.image,
+      alt: product.card.alt,
+    })),
+  },
   faq: {
     id: HOME_DEMO_FAQ_ID,
-    eyebrow: "QUICK ANSWERS",
-    title: "Questions clients ask before getting started.",
-    lead: "These answers cover the points clients usually confirm before starting a project.",
-    contactCta: "Still have a question? Contact us",
+    eyebrow: "BEFORE WE BEGIN",
+    title: "Questions that usually come first.",
+    lead: "The points clients confirm before a brief becomes a build.",
+    contactCta: "Prefer a direct conversation? Contact us",
     contactTo: ROUTES.contact,
     items: [
       {
@@ -298,14 +314,14 @@ export const HOME_DEMO_COPY = {
   },
   cta: {
     id: HOME_DEMO_CTA_ID,
-    title: "Tell us about the problem you need to solve.",
-    body: "Share a brief overview of your business or project. We will use it to prepare the first discussion.",
-    button: "Start a Project Enquiry",
+    title: "Tell us the system you need.",
+    body: "Share a concise brief. We will use it to prepare a precise first conversation.",
+    button: "Start a project brief",
     to: ROUTES.contact,
     whatsapp: "Share on WhatsApp",
     whatsappHref: buildWhatsAppUrl(
       "Hello Commiters,\n\nI would like to enquire about a project.\n\nSent from the Commiters homepage.",
     ),
   },
-  toast: "Selection saved. Continue in the planner below.",
+  toast: "Selection saved. Continue the brief below.",
 } as const;

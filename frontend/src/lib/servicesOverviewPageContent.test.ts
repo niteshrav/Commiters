@@ -25,7 +25,7 @@ describe("servicesOverviewPageContent", () => {
     expect(SERVICES_OVERVIEW_HERO.kicker).toBe("ENTERPRISE AI & CLOUD SYSTEMS");
     expect(SERVICES_OVERVIEW_HERO.title).toBe("Enterprise AI Products & Cloud-Native Web Systems");
     expect(SERVICES_OVERVIEW_HERO.subtitle).toBe(
-      "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
+      "Enterprise AI products and cloud platforms—governed MCP integrations, zero ambient authority, and spec-driven software development.",
     );
     expect(SERVICES_OVERVIEW_HERO.productsCtaLabel).toBe("Explore AI Products");
     expect(SERVICES_OVERVIEW_HERO.productsCtaTo).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_OFFERINGS_ANCHOR}`);
@@ -136,23 +136,29 @@ describe("servicesOverviewPageContent", () => {
 
   it("showcases OpsFlow AI and Prooflyn as live products", () => {
     expect(SERVICES_OVERVIEW_PRODUCTS_TITLE).toBe("Live Product Showcases");
-    expect(SERVICES_OVERVIEW_PRODUCTS).toEqual([
-      {
-        id: "opsflow-ai",
-        title: "OpsFlow AI",
-        description: "PDF-to-Excel document extraction for invoices, receipts, and operational PDFs.",
-        to: ROUTES.opsFlowAi,
-        ctaLabel: "Open OpsFlow AI",
-      },
-      {
-        id: "trusttap",
-        title: "Prooflyn",
-        description:
-          "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
-        to: ROUTES.trustTapShort,
-        ctaLabel: "Open Prooflyn",
-      },
+    expect(SERVICES_OVERVIEW_PRODUCTS.map((product) => product.id)).toEqual([
+      "opsflow-ai",
+      "trusttap",
+      "synapse",
+      "terminal",
     ]);
+    expect(SERVICES_OVERVIEW_PRODUCTS[0]).toEqual({
+      id: "opsflow-ai",
+      title: "OpsFlow AI",
+      description: "PDF-to-Excel document extraction for invoices, receipts, and operational PDFs.",
+      to: ROUTES.opsFlowAi,
+      ctaLabel: "Open OpsFlow AI",
+    });
+    expect(SERVICES_OVERVIEW_PRODUCTS[1]).toEqual({
+      id: "trusttap",
+      title: "Prooflyn",
+      description:
+        "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
+      to: ROUTES.trustTapShort,
+      ctaLabel: "Open Prooflyn",
+    });
+    expect(SERVICES_OVERVIEW_PRODUCTS[2]?.title).toBe("Synapse");
+    expect(SERVICES_OVERVIEW_PRODUCTS[3]?.title).toBe("Terminal");
   });
 
   it("offers a four-track inquiry defaulting to the 48-hour AI operational audit", () => {

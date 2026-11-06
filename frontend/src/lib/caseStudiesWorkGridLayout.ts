@@ -16,6 +16,9 @@ export const WORK_PAGE_CASE_STUDY_LAYOUT: Record<string, WorkPageCaseStudyLayout
   "prospectiq-ai": { gridSpan: "wide", layout: "horizontal" },
   "ecoroute-intelligence": { gridSpan: "wide", layout: "horizontal" },
   "governed-ai": { gridSpan: "narrow", layout: "stacked" },
+  terminal: { gridSpan: "narrow", layout: "stacked" },
+  synapse: { gridSpan: "narrow", layout: "stacked" },
+  prooflyn: { gridSpan: "narrow", layout: "stacked" },
 };
 
 const WORK_PAGE_CASE_STUDY_ID_BY_HREF: Record<string, string> = {
@@ -26,6 +29,9 @@ const WORK_PAGE_CASE_STUDY_ID_BY_HREF: Record<string, string> = {
   [ROUTES.neardropCaseStudy]: "neardrop-mvp",
   [ROUTES.prospectIqCaseStudy]: "prospectiq-ai",
   [ROUTES.ecoRouteCaseStudy]: "ecoroute-intelligence",
+  [ROUTES.terminal]: "terminal",
+  [ROUTES.synapse]: "synapse",
+  [ROUTES.trustTap]: "prooflyn",
 };
 
 export function isWorkPagePortfolioProjectId(projectId: string): boolean {

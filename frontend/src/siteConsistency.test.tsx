@@ -55,6 +55,10 @@ function expectedTitle(path: string): string {
       return TRUSTTAP_DOCUMENT_TITLE;
     case ROUTES.opsFlow:
       return OPSFLOW_DOCUMENT_TITLE;
+    case ROUTES.synapse:
+      return pageTitle("Synapse");
+    case ROUTES.terminal:
+      return pageTitle("Terminal");
     case ROUTES.utilities:
       return UTILITIES_DOCUMENT_TITLE;
     case ROUTES.aiOperationalAudit:

@@ -28,8 +28,8 @@ describe("aboutPageContent", () => {
   });
 
   it("omits the Q3 2024 acceptance line from the about CTA subtext", () => {
-    expect(ABOUT_PAGE_COPY.bottomCta.title).toBe("Ready to build something monumental?");
-    expect(ABOUT_PAGE_COPY.bottomCta.subtext).toBe("Let's discuss your technical roadmap.");
+    expect(ABOUT_PAGE_COPY.bottomCta.title).toBe("Ready to commission a governed system?");
+    expect(ABOUT_PAGE_COPY.bottomCta.subtext).toBe("Bring the technical roadmap. We will pressure-test it.");
     expect(ABOUT_PAGE_COPY.bottomCta.subtext).not.toContain(ABOUT_REJECTED_CTA_SUBTEXT);
     expect(ABOUT_PAGE_COPY.bottomCta.primaryLabel).toBe("Book Operational Audit");
     expect(ABOUT_PAGE_COPY.bottomCta.secondaryLabel).toBe("Try OpsFlow AI");

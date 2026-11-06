@@ -29,6 +29,8 @@ describe("routes", () => {
     expect(ROUTES.trustTapLegacy).toBe("/products/trusttap");
     expect(ROUTES.trustTapShortLegacy).toBe("/trusttap");
     expect(ROUTES.opsFlow).toBe("/products/opsflow");
+    expect(ROUTES.synapse).toBe("/products/synapse");
+    expect(ROUTES.terminal).toBe("/products/terminal");
     expect(ROUTES.opsFlowPlayground).toBe("/opsflow");
     expect(ROUTES.opsFlowAi).toBe("/opsflow-ai");
     expect(OPSFLOW_HERO_PAGE_HREF).toBe("/products/opsflow");

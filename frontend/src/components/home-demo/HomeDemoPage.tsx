@@ -154,6 +154,33 @@ export default function HomeDemoPage() {
         </div>
       </section>
 
+      <section className="section soft" data-testid="home-demo-products">
+        <div className="wrap">
+          <div className="center">
+            <div className="kicker">{copy.products.eyebrow}</div>
+            <h2>{copy.products.title}</h2>
+            <p className="intro">{copy.products.lead}</p>
+          </div>
+          <div className="casegrid productgrid">
+            {copy.products.items.map((item) => (
+              <article className="case" key={item.id}>
+                <div className="casevisual">
+                  <img src={item.image} alt={item.alt} />
+                </div>
+                <div className="casebody">
+                  <span className="tag">{item.kicker}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                  <Link className="textlink" to={item.to}>
+                    {item.cta} ↗
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section soft" id={copy.faq.id} data-testid="home-demo-faq">
         <div className="wrap faqgrid">
           <div>

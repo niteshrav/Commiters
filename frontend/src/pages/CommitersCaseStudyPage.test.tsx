@@ -13,9 +13,9 @@ describe("CommitersCaseStudyPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { level: 1, name: "Closer to the real work." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "The studio, engineered as a product." })).toBeInTheDocument();
     expect(screen.getByText(COMMITERS_CASE_STUDY_COPY.subtitle)).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /Explore the project/i })[0]).toHaveAttribute("href", ROUTES.home);
+    expect(screen.getAllByRole("link", { name: /View live product/i })[0]).toHaveAttribute("href", ROUTES.home);
     expect(screen.getByRole("heading", { name: "Problem" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Solution" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "USP of the project" })).toBeInTheDocument();

@@ -34,7 +34,7 @@ describe("HomePage", () => {
     );
 
     const actions = screen.getByTestId("home-demo-hero-actions");
-    expect(within(actions).getByRole("link", { name: /Find My Solution/i })).toHaveAttribute(
+    expect(within(actions).getByRole("link", { name: /Find your system/i })).toHaveAttribute(
       "href",
       HOME_DEMO_COPY.hero.primaryHref,
     );

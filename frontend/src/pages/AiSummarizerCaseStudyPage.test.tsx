@@ -12,7 +12,7 @@ describe("AiSummarizerCaseStudyPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { level: 1, name: "Closer to the decision." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Documents, reduced to a decision." })).toBeInTheDocument();
     expect(screen.getByText(AI_SUMMARIZER_CASE_STUDY_COPY.description)).toBeInTheDocument();
     expect(screen.getAllByRole("heading", { name: "Ingestion & Processing" })[0]).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Problem" })).toBeInTheDocument();

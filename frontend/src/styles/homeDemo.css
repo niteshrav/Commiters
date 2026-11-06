@@ -87,6 +87,7 @@
 .home-demo-page .recommendation h4{margin:0 0 7px}
 .home-demo-page .recommendation p{font-size:12px;line-height:1.7;color:#5c6880;margin:0 0 12px}
 .home-demo-page .casegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.home-demo-page .productgrid{grid-template-columns:repeat(2,1fr)}
 .home-demo-page .case{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;color:var(--ink);transition:.2s}
 .home-demo-page .case:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#c9dcff}
 .home-demo-page .casevisual{height:168px;padding:0;background:#f4f7fb;position:relative;overflow:hidden}

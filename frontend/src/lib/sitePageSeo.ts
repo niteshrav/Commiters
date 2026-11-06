@@ -17,6 +17,7 @@ import { SITE_SEO_KEYWORDS, buildFaqPageSchema, buildLocalBusinessSchema, buildW
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { TRUSTTAP_SEO } from "./trustTapPageContent";
 import { OPSFLOW_SEO } from "./opsFlowPageContent";
+import { SYNAPSE_PRODUCT, TERMINAL_PRODUCT } from "./studioProducts";
 import { AI_OPERATIONAL_AUDIT_SEO } from "./aiOperationalAuditPageContent";
 import { AI_SOLUTIONS_SEO } from "./aiSolutionsPageContent";
 import { WEB_APPLICATIONS_SEO } from "./webApplicationsPageContent";
@@ -389,6 +390,52 @@ export function trustTapPageSeo(): PageSeoInput {
         url: SITE_ORIGIN,
       },
       url: `${SITE_ORIGIN}${TRUSTTAP_SEO.path}`,
+    },
+  });
+}
+
+export function synapsePageSeo(): PageSeoInput {
+  return page({
+    title: pageTitle("Synapse"),
+    description: SYNAPSE_PRODUCT.seo.description,
+    keywords: SYNAPSE_PRODUCT.seo.keywords,
+    path: SYNAPSE_PRODUCT.route,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Synapse",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: SYNAPSE_PRODUCT.seo.description,
+      provider: {
+        "@type": "Organization",
+        name: "Commiters",
+        url: SITE_ORIGIN,
+      },
+      url: `${SITE_ORIGIN}${SYNAPSE_PRODUCT.route}`,
+    },
+  });
+}
+
+export function terminalPageSeo(): PageSeoInput {
+  return page({
+    title: pageTitle("Terminal"),
+    description: TERMINAL_PRODUCT.seo.description,
+    keywords: TERMINAL_PRODUCT.seo.keywords,
+    path: TERMINAL_PRODUCT.route,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Terminal",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: TERMINAL_PRODUCT.seo.description,
+      provider: {
+        "@type": "Organization",
+        name: "Commiters",
+        url: SITE_ORIGIN,
+      },
+      url: `${SITE_ORIGIN}${TERMINAL_PRODUCT.route}`,
     },
   });
 }

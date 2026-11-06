@@ -135,6 +135,13 @@ export default function CaseStudiesGridSection() {
               </button>
             ))}
           </div>
+          {filter === "enterprise" ? (
+            <div className="work-category-intro" data-testid="work-enterprise-category">
+              <p className="work-category-title">{CASE_STUDIES_PAGE_DESIGN.enterprise.title}</p>
+              <p className="work-category-tagline">{CASE_STUDIES_PAGE_DESIGN.enterprise.tagline}</p>
+              <p className="work-category-copy">{CASE_STUDIES_PAGE_DESIGN.enterprise.description}</p>
+            </div>
+          ) : null}
 
           {visibleCompact.length ? (
             <div className={CASE_STUDIES_GRID_CLASS} data-testid="case-studies-compact-grid">

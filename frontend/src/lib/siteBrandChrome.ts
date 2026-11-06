@@ -1,5 +1,5 @@
 export const DEFAULT_META_DESCRIPTION =
-  "Commiters — Enterprise AI & Cloud Systems. Spec-driven engineering, custom AI pipelines, and enterprise software architectures." as const;
+  "Commiters — Enterprise AI & Cloud Systems. Spec-driven engineering, custom AI pipelines, and production software architecture." as const;
 
 export const BRAND_HERO_EYEBROW_TEXT = "ENTERPRISE AI & CLOUD SYSTEMS" as const;
 export const BRAND_HERO_EYEBROW_TESTID = "brand-hero-eyebrow" as const;

@@ -3,7 +3,7 @@ export const SERVICES_OVERVIEW_DISPLAY = {
   headlineAccent: "Cloud-Native Web Systems",
   offeringsLead: "Ready-to-use tools and services to streamline your business operations.",
   capabilitiesLead: "From idea to production — end-to-end engineering support.",
-  formKicker: "Let's build together",
+  formKicker: "Start a brief",
   formLead: "Tell us about your needs and we'll suggest the right approach for your team.",
   formAside: "Turn your ideas into impact.",
   privacyNote: "We respect your privacy. No spam, ever.",

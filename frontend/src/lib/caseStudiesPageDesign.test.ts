@@ -3,15 +3,18 @@ import { CASE_STUDY_PROJECTS } from "./caseStudiesPageContent";
 import {
   CASE_STUDIES_PAGE_DESIGN,
   workPageFiltersWithProjects,
+  workPageLiveHref,
   workPageMatchesFilter,
   workPageTags,
 } from "./caseStudiesPageDesign";
 import { ROUTES } from "./routes";
+import { SYNAPSE_LIVE_URL, TERMINAL_LIVE_URL } from "./studioProducts";
+import { TRUSTTAP_LIVE_URL } from "./trustTapPageContent";
 
 describe("caseStudiesPageDesign", () => {
   it("keeps Work page display copy short and outcome-focused", () => {
     expect(CASE_STUDIES_PAGE_DESIGN.hero.kicker).toBe("OUR WORK");
-    expect(CASE_STUDIES_PAGE_DESIGN.hero.titleAccent).toBe("Real Impact.");
+    expect(CASE_STUDIES_PAGE_DESIGN.hero.titleAccent).toBe("in production.");
     expect(CASE_STUDIES_PAGE_DESIGN.detailsCta).toBe("View Case Study");
     expect(CASE_STUDIES_PAGE_DESIGN.cta.primaryTo).toBe(ROUTES.contact);
     expect(CASE_STUDIES_PAGE_DESIGN.filters.map((item) => item.id)).toEqual([
@@ -22,8 +25,9 @@ describe("caseStudiesPageDesign", () => {
       "web",
       "business",
       "travel",
+      "enterprise",
     ]);
-    expect(CASE_STUDIES_PAGE_DESIGN.cta.primaryLabel).toBe("Start a Project");
+    expect(CASE_STUDIES_PAGE_DESIGN.cta.primaryLabel).toBe("Start a brief");
     expect(CASE_STUDIES_PAGE_DESIGN.cta.secondaryLabel).toBe("Book Operational Audit");
     expect(CASE_STUDIES_PAGE_DESIGN.hero.secondaryTo).toBe(`${ROUTES.about}#delivery-journey`);
   });
@@ -37,6 +41,14 @@ describe("caseStudiesPageDesign", () => {
     expect(workPageMatchesFilter("governed-ai", "all")).toBe(true);
     expect(workPageMatchesFilter("browse-my-vacation", "travel")).toBe(true);
     expect(workPageMatchesFilter("browse-my-vacation", "saas")).toBe(false);
+    expect(workPageMatchesFilter("terminal", "enterprise")).toBe(true);
+    expect(workPageMatchesFilter("synapse", "enterprise")).toBe(true);
+    expect(workPageMatchesFilter("terminal", "travel")).toBe(false);
+    expect(workPageLiveHref("terminal")).toBe(TERMINAL_LIVE_URL);
+    expect(workPageLiveHref("synapse")).toBe(SYNAPSE_LIVE_URL);
+    expect(workPageMatchesFilter("prooflyn", "saas")).toBe(true);
+    expect(workPageMatchesFilter("prooflyn", "enterprise")).toBe(false);
+    expect(workPageLiveHref("prooflyn")).toBe(TRUSTTAP_LIVE_URL);
     expect(workPageFiltersWithProjects(["commiters", "browse-my-vacation"]).map((item) => item.id)).toEqual([
       "all",
       "cloud",

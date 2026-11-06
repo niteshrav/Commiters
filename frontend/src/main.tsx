@@ -7,6 +7,7 @@ import "./styles/serviceDetail.css";
 import "./styles/openPositions.css";
 import "./styles/trustTap.css";
 import "./styles/opsFlow.css";
+import "./styles/studioProduct.css";
 import "./styles/utilities.css";
 import "./styles/aiOperationalAudit.css";
 import "./styles/servicesOverview.css";

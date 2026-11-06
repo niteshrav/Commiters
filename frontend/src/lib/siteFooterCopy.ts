@@ -28,7 +28,7 @@ export const SITE_FOOTER_MAX_LINKS_PER_COLUMN = 7 as const;
 
 export const SITE_FOOTER_BRAND_TAGLINE = "Enterprise AI & Cloud Systems" as const;
 export const SITE_FOOTER_BRAND_SUBTEXT =
-  "Spec-driven engineering, custom AI pipelines, and cloud systems." as const;
+  "Spec-driven AI, governed pipelines, and cloud systems built for production." as const;
 
 /** @deprecated Use SITE_FOOTER_BRAND_TAGLINE */
 export const SITE_FOOTER_TAGLINE = SITE_FOOTER_BRAND_TAGLINE;
@@ -37,6 +37,8 @@ export const SITE_FOOTER_FLAGSHIP_NAV_LINK_LABELS = [
   "AI Operational Audits",
   "Prooflyn",
   "OpsFlow AI",
+  "Synapse",
+  "Terminal",
   "Free Business Utilities",
 ] as const;
 
@@ -88,6 +90,8 @@ const SITE_FOOTER_FLAGSHIP_NAV_LINKS = [
   { kind: "internal", label: "AI Operational Audits", to: ROUTES.audit },
   { kind: "internal", label: "Prooflyn", to: ROUTES.trustTapShort },
   { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowAi },
+  { kind: "internal", label: "Synapse", to: ROUTES.synapse },
+  { kind: "internal", label: "Terminal", to: ROUTES.terminal },
   { kind: "internal", label: "Free Business Utilities", to: ROUTES.utilities },
 ] as const satisfies readonly FooterLinkCell[];
 

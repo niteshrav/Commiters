@@ -13,6 +13,8 @@ describe("sitemapPublicUrls", () => {
     expect(paths).toContain("/products/prooflyn");
     expect(paths).not.toContain("/products/trusttap");
     expect(paths).toContain("/products/opsflow");
+    expect(paths).toContain("/products/synapse");
+    expect(paths).toContain("/products/terminal");
     expect(paths).toContain("/services/ai-operational-audit");
     expect(paths).toContain("/services/governed-ai-workflow-systems");
     expect(paths).toContain("/services/spec-driven-full-stack-platforms");

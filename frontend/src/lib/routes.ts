@@ -31,6 +31,8 @@ export const ROUTES = {
   /** Legacy short URL — redirect to Prooflyn product page */
   trustTapShortLegacy: "/trusttap",
   opsFlow: "/products/opsflow",
+  synapse: "/products/synapse",
+  terminal: "/products/terminal",
   opsFlowPlayground: "/opsflow",
   /** Marketing URL — redirect to OpsFlow playground */
   opsFlowAi: "/opsflow-ai",
@@ -110,6 +112,8 @@ export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.ecoRouteCaseStudy,
   ROUTES.trustTap,
   ROUTES.opsFlow,
+  ROUTES.synapse,
+  ROUTES.terminal,
   ROUTES.utilities,
   ROUTES.aiOperationalAudit,
   ROUTES.aiSolutions,

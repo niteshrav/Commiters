@@ -8,9 +8,9 @@ export const SERVICES_OVERVIEW_OFFERINGS_ANCHOR = "flagship-solutions" as const;
 export const SERVICES_OVERVIEW_SEO = {
   title: "Enterprise AI Products & Cloud-Native Web Systems",
   description:
-    "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
+    "Enterprise AI products and cloud platforms—governed MCP integrations, zero ambient authority, and spec-driven software development.",
   keywords:
-    "enterprise AI products, cloud-native web systems, AI operational audit, governed AI, spec-driven platforms, MCP, OpsFlow AI, Prooflyn, Commiters services",
+    "enterprise AI products, cloud-native web systems, AI operational audit, governed AI, spec-driven platforms, MCP, OpsFlow AI, Prooflyn, Synapse, Terminal, Commiters services",
   path: ROUTES.services,
 } as const;
 
@@ -18,7 +18,7 @@ export const SERVICES_OVERVIEW_HERO = {
   kicker: "ENTERPRISE AI & CLOUD SYSTEMS",
   title: "Enterprise AI Products & Cloud-Native Web Systems",
   subtitle:
-    "We build enterprise AI products and engineer scalable cloud platforms—backed by governed Model Context Protocol (MCP) integrations, zero ambient authority, and spec-driven software development.",
+    "Enterprise AI products and cloud platforms—governed MCP integrations, zero ambient authority, and spec-driven software development.",
   productsCtaLabel: "Explore AI Products",
   productsCtaTo: `${ROUTES.services}#${SERVICES_OVERVIEW_OFFERINGS_ANCHOR}`,
   auditCtaLabel: "Book Operational Audit",
@@ -200,6 +200,20 @@ export const SERVICES_OVERVIEW_PRODUCTS: readonly ServicesOverviewProduct[] = [
       "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
     to: ROUTES.trustTapShort,
     ctaLabel: "Open Prooflyn",
+  },
+  {
+    id: "synapse",
+    title: "Synapse",
+    description: "The company's single source of truth: people, work, money, and named policy on one Person record.",
+    to: ROUTES.synapse,
+    ctaLabel: "Open Synapse",
+  },
+  {
+    id: "terminal",
+    title: "Terminal",
+    description: "Candidate screens, hiring scorecards, engineer onboarding, and the curriculum used in delivery.",
+    to: ROUTES.terminal,
+    ctaLabel: "Open Terminal",
   },
 ] as const;
 

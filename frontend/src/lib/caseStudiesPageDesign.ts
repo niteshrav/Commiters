@@ -2,6 +2,8 @@ import { BROWSE_MY_VACATION_LIVE_URL } from "./browseMyVacationCaseStudyContent"
 import { ECOROUTE_LIVE_URL } from "./ecoRouteCaseStudyContent";
 import { MULTI_ROLE_CRM_LIVE_URL } from "./multiRoleCrmCaseStudyContent";
 import { PROSPECTIQ_LIVE_URL } from "./prospectIqCaseStudyContent";
+import { SYNAPSE_LIVE_URL, TERMINAL_LIVE_URL } from "./studioProducts";
+import { TRUSTTAP_LIVE_URL } from "./trustTapPageContent";
 import type { CaseStudyProject } from "./caseStudiesPageContent";
 import { SITE_ORIGIN } from "../hooks/usePageSeo";
 import { buildAboutSectionHref } from "./navSections";
@@ -14,15 +16,16 @@ export type WorkPageFilterId =
   | "saas"
   | "web"
   | "business"
-  | "travel";
+  | "travel"
+  | "enterprise";
 
 export const CASE_STUDIES_PAGE_DESIGN = {
   hero: {
     kicker: "OUR WORK",
-    titleLead: "Ideas to",
-    titleAccent: "Real Impact.",
-    subtext: "Explore the digital products, platforms and systems we've built for businesses across industries.",
-    ctaLabel: "Explore Case Studies",
+    titleLead: "Work,",
+    titleAccent: "in production.",
+    subtext: "Selected platforms and operational systems, engineered with the same discipline we apply to client delivery.",
+    ctaLabel: "View case studies",
     ctaHref: "#featured-case-studies",
     secondaryLabel: "Our Approach",
     secondaryTo: buildAboutSectionHref("delivery-journey"),
@@ -31,15 +34,16 @@ export const CASE_STUDIES_PAGE_DESIGN = {
       { id: "cloud", label: "Cloud Platforms" },
       { id: "saas", label: "SaaS Products" },
       { id: "web", label: "Web Applications" },
+      { id: "enterprise", label: "Enterprise & Workforce" },
     ],
     mockups: ["commiters", "ai-summarizer", "neardrop-mvp"] as const,
   },
   featured: {
-    heading: "Projects That Make a Difference",
-    subtext: "Selected platforms and operational systems we have shipped with clients.",
+    heading: "Flagship platforms",
+    subtext: "A short list of systems we have shipped and still stand behind.",
   },
   grid: {
-    heading: "Explore Our Work",
+    heading: "The full portfolio",
     empty: "No projects in this category yet.",
   },
   filters: [
@@ -50,12 +54,19 @@ export const CASE_STUDIES_PAGE_DESIGN = {
     { id: "web", label: "Web Applications" },
     { id: "business", label: "Business Software" },
     { id: "travel", label: "Travel & Booking" },
+    { id: "enterprise", label: "Enterprise & Workforce Solutions" },
   ] as const satisfies readonly { id: WorkPageFilterId; label: string }[],
+  enterprise: {
+    title: "Enterprise & Workforce Solutions",
+    tagline: "Hiring, onboarding, and the company operating record — in production.",
+    description:
+      "Terminal screens candidates and onboards engineers against the curriculum we ship with. Synapse holds people, work, money, and named policy on one Person record.",
+  },
   cta: {
-    kicker: "LET'S BUILD TOGETHER",
-    title: "Have a Project in Mind?",
-    subtext: "From concept to deployment, we help businesses build powerful digital products.",
-    primaryLabel: "Start a Project",
+    kicker: "NEXT BUILD",
+    title: "Brief the next system.",
+    subtext: "From first architecture to a governed launch, we treat every product as a production surface.",
+    primaryLabel: "Start a brief",
     primaryTo: ROUTES.contact,
     secondaryLabel: "Book Operational Audit",
     secondaryTo: AI_OPERATIONAL_AUDIT_BOOKING_HREF,
@@ -75,61 +86,86 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
   }
 > = {
   commiters: {
-    blurb: "A high-performance cloud platform built for growth, speed, and clean user experience.",
+    blurb: "A spec-driven public platform, engineered for speed, isolation, and a precise user experience.",
     badge: "Cloud Platforms",
     filters: ["cloud", "web"],
     tags: ["React", "Vite", "Tailwind CSS", "Cloud"],
     liveHref: `${SITE_ORIGIN}/`,
   },
   "ai-summarizer": {
-    blurb: "Transform long documents into clear, actionable summaries with enterprise-grade security.",
+    blurb: "Long operational packets, reduced to governed briefs with enterprise-grade control.",
     badge: "AI & Automation",
     filters: ["ai"],
     tags: ["Python", "OpenAI", "Document AI"],
   },
   "multi-role-crm": {
-    blurb: "AI-powered CRM assistance with real-time workflows.",
+    blurb: "Role-aware CRM assistance, with live updates and policy-gated answers.",
     badge: "SaaS Products",
     filters: ["saas", "ai", "business"],
     tags: ["React", "RAG", "WebSockets"],
     liveHref: MULTI_ROLE_CRM_LIVE_URL,
   },
   "neardrop-mvp": {
-    blurb: "Real-time fleet tracking and smarter field operations.",
+    blurb: "A field-operations concept presented as a focused product experience.",
     badge: "SaaS Products",
     filters: ["saas", "business"],
     tags: ["Node.js", "React", "WebSockets"],
   },
   "browse-my-vacation": {
-    blurb: "A curated travel platform with custom quote workflows.",
+    blurb: "A curated travel marketplace with city-first search and custom quote paths.",
     badge: "Travel & Booking",
     filters: ["web", "travel"],
     tags: ["React", "Next.js", "Node.js"],
     liveHref: BROWSE_MY_VACATION_LIVE_URL,
   },
   "prospectiq-ai": {
-    blurb: "Loan prospect scoring and explainable underwriting support for banking teams.",
+    blurb: "Deterministic prospect scoring, explained for underwriters—never auto-approved.",
     badge: "AI & Automation",
     filters: ["ai", "business"],
     tags: ["Python", "Google ADK", "Gemini"],
     liveHref: PROSPECTIQ_LIVE_URL,
   },
   "ecoroute-intelligence": {
-    blurb: "AI agents that turn mobility data into congestion and emissions decisions.",
+    blurb: "Specialist agents that turn mobility data into congestion and emissions decisions.",
     badge: "AI & Automation",
     filters: ["ai", "business"],
     tags: ["Python", "Google ADK", "Gemini"],
     liveHref: ECOROUTE_LIVE_URL,
   },
   "governed-ai": {
-    blurb: "Policy-gated AI workflows with secure data access.",
+    blurb: "Policy-gated AI workflows, with access held at the data layer.",
     badge: "AI & Automation",
     filters: ["ai", "cloud"],
     tags: ["MCP", "RLS", "Express"],
   },
+  terminal: {
+    blurb:
+      "Candidate screens, engineer onboarding, and the curriculum used in delivery — not a marketplace, not a bootcamp.",
+    badge: "Enterprise & Workforce Solutions",
+    filters: ["enterprise"],
+    tags: ["Recruitment", "Scorecards", "Onboarding", "Curriculum"],
+    liveHref: TERMINAL_LIVE_URL,
+  },
+  synapse: {
+    blurb: "People, work, and money share one record. You sign in as a Person in the company.",
+    badge: "Enterprise & Workforce Solutions",
+    filters: ["enterprise"],
+    tags: ["People", "Work", "Money", "Policy"],
+    liveHref: SYNAPSE_LIVE_URL,
+  },
+  prooflyn: {
+    blurb: "Smart NFC/QR touchpoints that scale 5-star Google reviews while intercepting customer complaints privately.",
+    badge: "SaaS Products",
+    filters: ["saas"],
+    tags: ["NFC", "QR", "Reviews"],
+    liveHref: TRUSTTAP_LIVE_URL,
+  },
 };
 
 export const WORK_PAGE_GRID_ORDER = [
+  "terminal",
+  "synapse",
+  "prooflyn",
   "multi-role-crm",
   "neardrop-mvp",
   "prospectiq-ai",

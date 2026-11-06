@@ -28,6 +28,8 @@ import ThankYouPage from "./pages/ThankYouPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import TrustTapPage from "./pages/TrustTapPage";
 import OpsFlowPage from "./pages/OpsFlowPage";
+import SynapsePage from "./pages/SynapsePage";
+import TerminalPage from "./pages/TerminalPage";
 import UtilitiesPage from "./pages/UtilitiesPage";
 import WebsiteDevelopmentUdaipurPage from "./pages/WebsiteDevelopmentUdaipurPage";
 import WhatsAppAutomationUdaipurPage from "./pages/WhatsAppAutomationUdaipurPage";
@@ -86,6 +88,8 @@ export default function App() {
         <Route path={ROUTES.trustTapLegacy} element={<RedirectPreserveHash to={ROUTES.trustTap} />} />
         <Route path={ROUTES.trustTapShortLegacy} element={<RedirectPreserveHash to={ROUTES.trustTap} />} />
         <Route path={ROUTES.opsFlow} element={<OpsFlowPage />} />
+        <Route path={ROUTES.synapse} element={<SynapsePage />} />
+        <Route path={ROUTES.terminal} element={<TerminalPage />} />
         <Route path={ROUTES.opsFlowPlayground} element={<OpsFlowPage />} />
         <Route path={ROUTES.opsFlowAi} element={<RedirectPreserveHash to={ROUTES.opsFlowPlayground} />} />
         <Route path={ROUTES.utilities} element={<UtilitiesPage />} />

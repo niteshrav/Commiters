@@ -15,6 +15,9 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
   "ai-summarizer",
   "multi-role-crm",
   "browse-my-vacation",
+  "terminal",
+  "synapse",
+  "prooflyn",
 ] as const;
 
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
@@ -71,6 +74,24 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
     src: "/assets/case-studies/work-browse-my-vacation.png",
     srcSet: "/assets/case-studies/work-browse-my-vacation.png 1x, /assets/case-studies/work-browse-my-vacation@2x.png 2x",
     alt: "BrowseMyVacation Rajasthan travel booking experience with Lake Palace scenery",
+  },
+  {
+    id: "terminal",
+    src: "/assets/case-studies/multi-role-crm.png",
+    srcSet: "/assets/case-studies/multi-role-crm.png 1x, /assets/case-studies/multi-role-crm@2x.png 2x",
+    alt: "Terminal candidate screens, onboarding, and curriculum surface",
+  },
+  {
+    id: "synapse",
+    src: "/assets/case-studies/work-synapse.png",
+    srcSet: "/assets/case-studies/work-synapse.png 1x, /assets/case-studies/work-synapse@2x.png 2x",
+    alt: "Synapse company operating record for people, work, and money",
+  },
+  {
+    id: "prooflyn",
+    src: "/assets/case-studies/work-prooflyn.png",
+    srcSet: "/assets/case-studies/work-prooflyn.png 1x, /assets/case-studies/work-prooflyn@2x.png 2x",
+    alt: "Prooflyn NFC and QR merchant review flow with Google ratings and private customer notes",
   },
 ] as const;
 

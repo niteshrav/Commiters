@@ -7,7 +7,7 @@ describe("caseStudiesPageContent", () => {
     expect(CASE_STUDIES_PAGE_COPY.intro.kicker).toBe("CASE STUDIES");
     expect(CASE_STUDIES_PAGE_COPY.intro.title).toBe("Governed AI & Cloud Engineering in Action");
     expect(CASE_STUDIES_PAGE_COPY.intro.titleAccent).toBe("in Action");
-    expect(CASE_STUDIES_PAGE_COPY.intro.subtext).toMatch(/AI, cloud, and secure engineering/i);
+    expect(CASE_STUDIES_PAGE_COPY.intro.subtext).toMatch(/Governed AI, cloud platforms/i);
   });
 
   it("lists five enterprise case studies with problem-solution and impact framing", () => {
@@ -94,9 +94,9 @@ describe("caseStudiesPageContent", () => {
   it("uses portfolio CTAs and a bottom band linking to conversation", () => {
     const projectDetailLabels = CASE_STUDY_PROJECTS.map((project) => project.detailsLabel);
     expect(projectDetailLabels.every((label) => label === "View Project Details")).toBe(true);
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.title).toBe("Have a project in mind?");
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.subtext).toBe("Let's build something impactful together.");
-    expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryLabel).toBe("Start a Conversation");
+    expect(CASE_STUDIES_PAGE_COPY.bottomCta.title).toBe("Brief the next system.");
+    expect(CASE_STUDIES_PAGE_COPY.bottomCta.subtext).toBe("Share the constraint. We will return with a precise path to build.");
+    expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryLabel).toBe("Start a brief");
     expect(CASE_STUDIES_PAGE_COPY.bottomCta.primaryTo).toBe(ROUTES.contact);
   });
 });

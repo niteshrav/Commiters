@@ -50,6 +50,8 @@ export const SITEMAP_PAGE_COPY = {
         { label: "Work", to: ROUTES.caseStudies, description: "Case studies and shipped products." },
         { label: "Prooflyn", to: ROUTES.trustTap, description: "Our trust and verification product." },
         { label: "OpsFlow AI", to: ROUTES.opsFlow, description: "Free invoice-to-Excel sandbox for operations teams." },
+        { label: "Synapse", to: ROUTES.synapse, description: "The company's single source of truth for people, work, money, and policy." },
+        { label: "Terminal", to: ROUTES.terminal, description: "Candidate screens, engineer onboarding, and delivery curriculum." },
         { label: "Free Business Utilities", to: ROUTES.utilities, description: "Zero-code operational tools including OpsFlow AI." },
         { label: "Blog", to: ROUTES.technicalLedger, description: "Technical notes and engineering insights." },
         { label: "FAQ", to: ROUTES.faq, description: "Common questions about process, pricing, and delivery." },
