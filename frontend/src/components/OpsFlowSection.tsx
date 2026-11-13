@@ -11,6 +11,7 @@ import {
   OPSFLOW_CATEGORY_LABEL,
   OPSFLOW_CATEGORY_PLACEHOLDER,
   OPSFLOW_DAILY_LIMIT,
+  OPSFLOW_DIAGRAM,
   OPSFLOW_DOCUMENT_CATEGORIES,
   OPSFLOW_DROPZONE_HELP,
   OPSFLOW_DROPZONE_LABEL,
@@ -40,6 +41,7 @@ import {
   OPSFLOW_CARDS_CLASS,
   OPSFLOW_DROPZONE_ACTIVE_CLASS,
   OPSFLOW_DROPZONE_CLASS,
+  OPSFLOW_DIAGRAM_CLASS,
   OPSFLOW_FIELD_CLASS,
   OPSFLOW_FORM_CLASS,
   OPSFLOW_HEADLINE_CLASS,
@@ -277,6 +279,9 @@ export default function OpsFlowSection({ onExtract = parseOpsFlowDocument }: Ops
                   {OPSFLOW_HERO.demoLabel}
                 </Link>
               </div>
+              <figure className={OPSFLOW_DIAGRAM_CLASS}>
+                <img src={OPSFLOW_DIAGRAM.src} srcSet={OPSFLOW_DIAGRAM.srcSet} alt={OPSFLOW_DIAGRAM.alt} />
+              </figure>
             </div>
 
             <section

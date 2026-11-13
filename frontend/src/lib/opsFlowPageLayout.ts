@@ -25,6 +25,7 @@ export const OPSFLOW_TRUST_CLASS = "opsflow-trust" as const;
 export const OPSFLOW_MAIN_GRID_CLASS = "opsflow-main-grid" as const;
 export const OPSFLOW_CONTENT_CLASS = "opsflow-content" as const;
 export const OPSFLOW_TOP_GRID_CLASS = "opsflow-top-grid" as const;
+export const OPSFLOW_DIAGRAM_CLASS = "opsflow-diagram" as const;
 export const OPSFLOW_PANEL_CLASS = "opsflow-panel" as const;
 export const OPSFLOW_PANEL_CARD_CLASS = "opsflow-panel-card" as const;
 export const OPSFLOW_PANEL_HEADER_CLASS = "opsflow-panel-card-header" as const;

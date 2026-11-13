@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { HOME_DEMO_COPY, HOME_DEMO_PAGE_CLASS } from "../../lib/homeDemoContent";
 import type { PlannerTypeId } from "../../lib/homePlannerData";
+import HomeHeroStage from "./HomeHeroStage";
 import HomeProjectPlanner, { type HomeProjectPlannerHandle } from "./HomeProjectPlanner";
 import HomeServiceCarousel from "./HomeServiceCarousel";
 
@@ -21,31 +22,34 @@ export default function HomeDemoPage() {
   return (
     <div className={HOME_DEMO_PAGE_CLASS} data-testid="home-demo-page">
       <section className="hero" data-testid="home-demo-hero">
-        <div className="wrap">
-          <div className="eyebrow">
-            <i /> {copy.hero.eyebrow}
+        <div className="wrap hero-layout">
+          <div className="hero-copy">
+            <div className="eyebrow">
+              <i /> {copy.hero.eyebrow}
+            </div>
+            <h1>
+              {copy.hero.titleBefore}
+              <span>{copy.hero.titleAccent}</span>
+              {copy.hero.titleAfter}
+            </h1>
+            <p>{copy.hero.lead}</p>
+            <div className="heroactions" data-testid="home-demo-hero-actions">
+              <a className="btn" href={copy.hero.primaryHref}>
+                {copy.hero.primaryCta} <span>↗</span>
+              </a>
+              <a className="btn secondary" href={copy.hero.secondaryHref}>
+                {copy.hero.secondaryCta}
+              </a>
+            </div>
+            <div className="trustline">
+              {copy.hero.checks.map((check) => (
+                <span key={check}>
+                  <b className="check">✓</b> {check}
+                </span>
+              ))}
+            </div>
           </div>
-          <h1>
-            {copy.hero.titleBefore}
-            <span>{copy.hero.titleAccent}</span>
-            {copy.hero.titleAfter}
-          </h1>
-          <p>{copy.hero.lead}</p>
-          <div className="heroactions" data-testid="home-demo-hero-actions">
-            <a className="btn" href={copy.hero.primaryHref}>
-              {copy.hero.primaryCta} <span>↗</span>
-            </a>
-            <a className="btn secondary" href={copy.hero.secondaryHref}>
-              {copy.hero.secondaryCta}
-            </a>
-          </div>
-          <div className="trustline">
-            {copy.hero.checks.map((check) => (
-              <span key={check}>
-                <b className="check">✓</b> {check}
-              </span>
-            ))}
-          </div>
+          <HomeHeroStage />
         </div>
       </section>
 

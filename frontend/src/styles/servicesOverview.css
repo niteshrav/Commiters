@@ -29,6 +29,15 @@
   background: #ffffff;
 }
 
+.services-overview-offerings,
+.services-overview-standards,
+.services-overview-capabilities,
+.services-overview-products,
+.services-overview-inquiry {
+  padding-top: 32px;
+  padding-bottom: 16px;
+}
+
 .services-overview-hero {
   position: relative;
   overflow: hidden;

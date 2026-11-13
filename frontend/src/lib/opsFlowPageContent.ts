@@ -24,6 +24,12 @@ export const OPSFLOW_HERO = {
   demoTo: HOME_LEAD_MAGNET_FORM_HREF,
 } as const;
 
+export const OPSFLOW_DIAGRAM = {
+  src: "/assets/case-studies/work-opsflow.png",
+  srcSet: "/assets/case-studies/work-opsflow.png 1x, /assets/case-studies/work-opsflow@2x.png 2x",
+  alt: "OpsFlow AI turning invoices, receipts, and GST bills into extracted operational records",
+} as const;
+
 export const OPSFLOW_FEATURES_HEADING = "Core Capabilities" as const;
 
 export const OPSFLOW_VALUE_CARDS = [

@@ -15,6 +15,17 @@ export const HOME_DEMO_WORK_ID = "work" as const;
 export const HOME_DEMO_FAQ_ID = "faq" as const;
 export const HOME_DEMO_CTA_ID = "contact" as const;
 
+const HOME_STUDIO_PRODUCT_ART = {
+  synapse: {
+    image: "/assets/home/studio-synapse.png",
+    alt: "Synapse HRMS illustration for people, work, money, and policy",
+  },
+  terminal: {
+    image: "/assets/home/studio-terminal.png",
+    alt: "Terminal illustration for recruitment screens, scorecards, and curriculum",
+  },
+} as const;
+
 export const HOME_DEMO_COPY = {
   hero: {
     eyebrow: "ENTERPRISE AI · CLOUD · SOFTWARE",
@@ -124,35 +135,35 @@ export const HOME_DEMO_COPY = {
         num: "01",
         pick: "web" as PlannerTypeId,
         title: "“We need a professional website.”",
-        body: "Plan and build a responsive business website or e-commerce experience.",
+        body: "The public site does not yet explain the offer or turn a visit into an enquiry.",
       },
       {
         id: "spreadsheets",
         num: "02",
         pick: "software" as PlannerTypeId,
         title: "“Our process is spread across spreadsheets and tools.”",
-        body: "Explore a connected dashboard, portal, or custom business application.",
+        body: "The same work is split across spreadsheets, inboxes, and tools that do not share a record.",
       },
       {
         id: "manual",
         num: "03",
         pick: "ai" as PlannerTypeId,
         title: "“Our team repeats the same manual tasks every day.”",
-        body: "Identify suitable workflows for automation or AI-assisted processing.",
+        body: "Review, data entry, or routing is still done by hand on every cycle.",
       },
       {
         id: "reliable",
         num: "04",
         pick: "cloud" as PlannerTypeId,
         title: "“Our application needs a more reliable setup.”",
-        body: "Review deployment, cloud infrastructure, monitoring, and performance.",
+        body: "Releases, access, and monitoring are not yet a setup the team can trust.",
       },
       {
         id: "improve",
         num: "05",
         pick: "modernize" as PlannerTypeId,
         title: "“We already have a product, but it needs improvement.”",
-        body: "Prioritize fixes, integrations, modernization, and future enhancements.",
+        body: "A live product needs a sequence for fixes, integrations, and the next release.",
       },
     ],
   },
@@ -167,42 +178,42 @@ export const HOME_DEMO_COPY = {
         icon: "⌘",
         pick: "web" as PlannerTypeId,
         title: "Website & E-commerce",
-        body: "Business websites, landing pages, online stores, redesigns, and customer-facing web experiences.",
+        body: "Explain the offer and give every visit one clear next step.",
       },
       {
         id: "software",
         icon: "▦",
         pick: "software" as PlannerTypeId,
         title: "Custom Software & SaaS",
-        body: "Web applications, dashboards, portals, booking platforms, APIs, and software tailored to your process.",
+        body: "Put the team’s real workflow into one application.",
       },
       {
         id: "ai",
         icon: "✳",
         pick: "ai" as PlannerTypeId,
         title: "AI & Workflow Automation",
-        body: "AI integrations, document processing, assistants, and practical automation for repetitive business tasks.",
+        body: "Take a repeated task off the team, with a person still in review.",
       },
       {
         id: "systems",
         icon: "▤",
         pick: "business" as PlannerTypeId,
         title: "Business Systems",
-        body: "Role-based portals, operations dashboards, employee workflows, and connected business applications.",
+        body: "Give each role the records and handoff they actually use.",
       },
       {
         id: "cloud",
         icon: "☁",
         pick: "cloud" as PlannerTypeId,
         title: "Cloud & DevOps",
-        body: "Deployment, cloud architecture, CI/CD, monitoring, performance improvements, and infrastructure support.",
+        body: "Make release, access, and monitoring reliable as usage grows.",
       },
       {
         id: "improve",
         icon: "↗",
         pick: "modernize" as PlannerTypeId,
         title: "Improve an Existing Product",
-        body: "Modernization, integrations, bug fixing, performance reviews, and planned product improvements.",
+        body: "Decide what to fix, what to connect, and what to leave for a later release.",
       },
     ],
   },
@@ -268,8 +279,8 @@ export const HOME_DEMO_COPY = {
       body: product.card.body,
       cta: product.card.cta,
       to: product.route,
-      image: product.card.image,
-      alt: product.card.alt,
+      image: HOME_STUDIO_PRODUCT_ART[product.id].image,
+      alt: HOME_STUDIO_PRODUCT_ART[product.id].alt,
     })),
   },
   faq: {

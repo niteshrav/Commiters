@@ -23,9 +23,9 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
   {
     id: "opsflow",
-    src: "/assets/case-studies/ai-summarizer.png",
-    srcSet: "/assets/case-studies/ai-summarizer.png 1x, /assets/case-studies/ai-summarizer@2x.png 2x",
-    alt: "OpsFlow AI PDF ingestion engine converting unstructured documents into structured datasets",
+    src: "/assets/case-studies/work-opsflow.png",
+    srcSet: "/assets/case-studies/work-opsflow.png 1x, /assets/case-studies/work-opsflow@2x.png 2x",
+    alt: "OpsFlow AI turning invoices, receipts, and GST bills into extracted operational records",
   },
   {
     id: "governed-ai",
