@@ -49,7 +49,13 @@ export type WorkCaseStudy = {
   kicker: string;
   headline: string;
   lead: string;
-  heroImage: WorkCaseStudyImage;
+  heroImage?: WorkCaseStudyImage;
+  finalCta?: {
+    title: string;
+    body: string;
+    primaryLabel: string;
+    primaryTo: string;
+  };
   exploreCta: WorkCaseStudyCta;
   discussCta: WorkCaseStudyCta;
   liveDemo?: WorkCaseStudyCta;

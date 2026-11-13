@@ -148,6 +148,14 @@ describe("CaseStudiesPage", () => {
       .map((card) => card.getAttribute("data-case-study-id"));
     expect(compactIds).toEqual(["ai-summarizer", "multi-role-crm", "prospectiq-ai", "ecoroute-intelligence", "governed-ai"]);
 
+    fireEvent.click(screen.getByRole("button", { name: "WordPress Development" }));
+    expect(
+      within(screen.getByTestId("case-studies-compact-grid"))
+        .getAllByTestId("case-study-card")
+        .map((card) => card.getAttribute("data-case-study-id")),
+    ).toEqual(["newsora"]);
+    expect(within(screen.getByTestId("case-studies-compact-grid")).queryByText("Commiters.com — Spec-Driven Cloud Platform")).not.toBeInTheDocument();
+
     fireEvent.click(screen.getByRole("button", { name: "Travel & Booking" }));
     expect(screen.getByRole("button", { name: "Travel & Booking" })).toHaveAttribute("aria-pressed", "true");
     expect(
@@ -183,6 +191,6 @@ describe("CaseStudiesPage", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "All Projects" }));
     expect(screen.queryByTestId("work-grid-empty")).not.toBeInTheDocument();
-    expect(within(screen.getByTestId("case-studies-compact-grid")).getAllByTestId("case-study-card")).toHaveLength(8);
+    expect(within(screen.getByTestId("case-studies-compact-grid")).getAllByTestId("case-study-card")).toHaveLength(9);
   });
 });

@@ -49,6 +49,11 @@ describe("mobileNavDrawer", () => {
         description: "Custom B2B web applications, mobile platforms, and SaaS MVPs.",
       },
       {
+        label: "WordPress Development",
+        to: "/services/wordpress-development",
+        description: "Custom WordPress sites for business, publishing, and news portals.",
+      },
+      {
         label: "Automation & Integration Tools",
         to: `${ROUTES.services}#engineering-capabilities`,
         description: "API integrations, document processing, and operational workflow tools.",

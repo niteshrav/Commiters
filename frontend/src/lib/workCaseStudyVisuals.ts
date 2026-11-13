@@ -307,4 +307,31 @@ export const WORK_CASE_STUDY_VISUALS: Record<string, WorkStudyVisual> = {
       ],
     },
   },
+  newsora: {
+    pipeline: {
+      kicker: "Publication structure",
+      title: "From the front page to a single story.",
+      lead: "The reading path NEWSORA is built around. No audience or performance figures are attached.",
+      steps: [
+        { id: "home", label: "Homepage", detail: "Latest stories, featured pieces, and the way into each beat." },
+        { id: "category", label: "Category", detail: "National, international, business, technology, sports, and entertainment." },
+        { id: "article", label: "Article", detail: "A single story on its own page." },
+        { id: "epaper", label: "E-paper", detail: "The digital newspaper section beside the news feed." },
+      ],
+    },
+    table: {
+      kicker: "Sections",
+      title: "What each surface holds.",
+      lead: "The sections described for this WordPress publication.",
+      columns: ["Surface", "Role"],
+      rows: [
+        { id: "home", cells: ["Homepage", "Latest feed, featured, and trending stories"] },
+        { id: "national", cells: ["National & international", "Category navigation for those beats"] },
+        { id: "business", cells: ["Business & technology", "Dedicated news sections"] },
+        { id: "sports", cells: ["Sports & entertainment", "Dedicated news sections"] },
+        { id: "epaper", cells: ["E-paper", "Digital newspaper section"] },
+        { id: "search", cells: ["Search", "Find a story from the publication"] },
+      ],
+    },
+  },
 };

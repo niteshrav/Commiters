@@ -8,6 +8,7 @@ import { NEARDROP_CASE_STUDY_COPY } from "./neardropCaseStudyContent";
 import { NEXTSAAS_CASE_STUDY_COPY } from "./nextsaasCaseStudyContent";
 import { PROSPECT_IQ_CASE_STUDY_COPY } from "./prospectIqCaseStudyContent";
 import { ECO_ROUTE_CASE_STUDY_COPY } from "./ecoRouteCaseStudyContent";
+import { NEWSORA_CASE_STUDY_COPY } from "./newsoraCaseStudyContent";
 import { PRIVACY_PAGE_COPY } from "./privacyPageContent";
 import { ROUTES } from "./routes";
 import { DEFAULT_META_DESCRIPTION } from "./siteBrandChrome";
@@ -231,6 +232,14 @@ export function ecoRouteCaseStudyPageSeo(): PageSeoInput {
     title: pageTitle(ECO_ROUTE_CASE_STUDY_COPY.documentTitle),
     description: ECO_ROUTE_CASE_STUDY_COPY.subtitle,
     path: ROUTES.ecoRouteCaseStudy,
+  });
+}
+
+export function newsoraCaseStudyPageSeo(): PageSeoInput {
+  return page({
+    title: pageTitle(NEWSORA_CASE_STUDY_COPY.documentTitle),
+    description: NEWSORA_CASE_STUDY_COPY.subtitle,
+    path: ROUTES.newsoraCaseStudy,
   });
 }
 

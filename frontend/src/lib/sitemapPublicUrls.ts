@@ -17,6 +17,7 @@ export function buildSitemapPublicPaths(): string[] {
     ROUTES.browseMyVacationCaseStudy,
     ROUTES.prospectIqCaseStudy,
     ROUTES.ecoRouteCaseStudy,
+    ROUTES.newsoraCaseStudy,
     ROUTES.trustTap,
     ROUTES.opsFlow,
     ROUTES.synapse,

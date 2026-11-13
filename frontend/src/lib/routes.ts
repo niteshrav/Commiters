@@ -16,6 +16,7 @@ export const ROUTES = {
   browseMyVacationCaseStudy: "/work/browse-my-vacation",
   prospectIqCaseStudy: "/work/prospectiq-ai",
   ecoRouteCaseStudy: "/work/ecoroute-intelligence",
+  newsoraCaseStudy: "/work/newsora",
   /** Legacy URL — redirect to BrowseMyVacation case study */
   nextsaasCaseStudy: "/case-studies/nextsaas",
   commitersCaseStudyLegacy: "/case-studies/commiters",
@@ -110,6 +111,7 @@ export const APP_ROUTE_PATHS: RoutePath[] = [
   ROUTES.browseMyVacationCaseStudy,
   ROUTES.prospectIqCaseStudy,
   ROUTES.ecoRouteCaseStudy,
+  ROUTES.newsoraCaseStudy,
   ROUTES.trustTap,
   ROUTES.opsFlow,
   ROUTES.synapse,

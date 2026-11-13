@@ -70,6 +70,7 @@ export const SERVICE_NAV_ENTRIES: ServiceNavEntry[] = [
   { id: "ecommerce", label: "Automated E-commerce Systems" },
   { id: "saas-mvp", label: "Rapid SaaS MVP Development" },
   { id: "mobile", label: "Cross-Platform Mobile Applications" },
+  { id: "wordpress", label: "WordPress Development" },
   { id: "engineering-capabilities", label: "Full-Lifecycle Software Engineering Capabilities" },
 ];
 
@@ -194,6 +195,13 @@ export const SERVICE_MEGA_CARDS: NavDropdownLink[] = [
     to: buildServiceSectionHref("engineering-capabilities"),
     description: "Custom B2B web applications, mobile platforms, and SaaS MVPs.",
     icon: "rocket",
+  },
+  {
+    id: "wordpress",
+    label: "WordPress Development",
+    to: buildServiceDetailMenuHref("wordpress-development"),
+    description: "Custom WordPress sites for business, publishing, and news portals.",
+    icon: "globe",
   },
   {
     id: "automation",

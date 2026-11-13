@@ -23,6 +23,7 @@ describe("caseStudiesPageDesign", () => {
       "cloud",
       "saas",
       "web",
+      "wordpress",
       "business",
       "travel",
       "enterprise",
@@ -49,6 +50,8 @@ describe("caseStudiesPageDesign", () => {
     expect(workPageMatchesFilter("prooflyn", "saas")).toBe(true);
     expect(workPageMatchesFilter("prooflyn", "enterprise")).toBe(false);
     expect(workPageLiveHref("prooflyn")).toBe(TRUSTTAP_LIVE_URL);
+    expect(workPageMatchesFilter("newsora", "wordpress")).toBe(true);
+    expect(workPageMatchesFilter("newsora", "web")).toBe(false);
     expect(workPageFiltersWithProjects(["commiters", "browse-my-vacation"]).map((item) => item.id)).toEqual([
       "all",
       "cloud",

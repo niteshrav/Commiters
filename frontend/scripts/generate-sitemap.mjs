@@ -12,6 +12,7 @@ const SERVICE_SLUGS = [
   "ai-integration",
   "mvp-development",
   "automation-tools",
+  "wordpress-development",
 ];
 
 const paths = [
@@ -27,6 +28,7 @@ const paths = [
   "/work/browse-my-vacation",
   "/work/prospectiq-ai",
   "/work/ecoroute-intelligence",
+  "/work/newsora",
   "/products/prooflyn",
   "/products/opsflow",
   "/products/synapse",

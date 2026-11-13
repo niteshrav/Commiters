@@ -74,6 +74,15 @@ export const SERVICE_ICON_SLUGS: Record<string, string> = {
   mvp: "mvp-development",
 };
 
+const WORDPRESS_TECH = [
+  { slug: "wordpress", alt: "WordPress" },
+  { slug: "php", alt: "PHP" },
+  { slug: "mysql", alt: "MySQL" },
+  { slug: "mariadb", alt: "MariaDB" },
+  { slug: "html5", alt: "HTML5" },
+  { slug: "css", alt: "CSS" },
+];
+
 const MVP_TECH = [
   { slug: "react", alt: "React" },
   { slug: "nextdotjs", alt: "Next.js" },
@@ -399,6 +408,48 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
     ],
     pricing: SERVICE_DEFAULT_PRICING,
     portfolio: [],
+  },
+  {
+    slug: "wordpress-development",
+    gridId: "wordpress-development",
+    title: "WordPress Development",
+    tagline: "Professional WordPress websites for business, publishing, and modern online experiences.",
+    description:
+      "Professional, scalable, and visually engaging WordPress websites tailored to business needs, digital publishing, and modern online experiences.",
+    heroVisual: "website",
+    seo: {
+      title: "WordPress Development Services",
+      description:
+        "Custom WordPress websites for business, corporate, and news publishing, including theme customization, plugins, responsive design, and maintenance.",
+      keywords: "WordPress development, WordPress website, news portal, WordPress theme, WordPress maintenance",
+    },
+    about: {
+      what: "WordPress development covers custom websites, corporate sites, and news or magazine portals, with theme customization, plugin integration, and an SEO-friendly structure.",
+      why: "Publishing and business sites need a CMS editors can run, a layout that stays readable on every screen, and a structure search engines can follow.",
+      who: "Businesses, publishers, and teams that want a WordPress site they can update without rebuilding the front end.",
+    },
+    features: [
+      { title: "Custom WordPress Website Development", description: "A WordPress site shaped around the business, not a stock theme left as-is.", icon: "scale" },
+      { title: "Business & Corporate Websites", description: "Company sites with clear services, proof, and a path to contact.", icon: "maintain" },
+      { title: "News & Magazine Portals", description: "Editorial homepages, category navigation, and article pages for ongoing publishing.", icon: "seo" },
+      { title: "WordPress Theme Customization", description: "Theme and block layout adjusted for the brand and the reading experience.", icon: "responsive" },
+      { title: "Plugin Integration", description: "The plugins the site actually needs, wired into the theme and the dashboard.", icon: "automation" },
+      { title: "Responsive Website Design", description: "Layouts that hold together on desktop, tablet, and mobile.", icon: "responsive" },
+      { title: "SEO-Friendly Website Structure", description: "Semantic pages, metadata, and a crawlable content structure.", icon: "seo" },
+      { title: "WordPress Maintenance & Optimization", description: "Updates, content care, and performance checks after launch.", icon: "performance" },
+    ],
+    technologies: WORDPRESS_TECH,
+    processSteps: [...SERVICE_PROCESS_STEPS],
+    timeline: SERVICE_DEFAULT_TIMELINE,
+    pricing: SERVICE_DEFAULT_PRICING,
+    portfolio: [
+      {
+        title: "NEWSORA",
+        tag: "News & Media",
+        description: "A WordPress news and media platform. Everything happening, one destination.",
+        href: ROUTES.newsoraCaseStudy,
+      },
+    ],
   },
 ];
 

@@ -94,6 +94,13 @@ describe("navSections", () => {
         badge: undefined,
       },
       {
+        label: "WordPress Development",
+        description: "Custom WordPress sites for business, publishing, and news portals.",
+        to: "/services/wordpress-development",
+        icon: "globe",
+        badge: undefined,
+      },
+      {
         label: "Automation & Integration Tools",
         description: "API integrations, document processing, and operational workflow tools.",
         to: `${ROUTES.services}#engineering-capabilities`,
@@ -154,6 +161,7 @@ describe("navSections", () => {
       "ecommerce",
       "saas-mvp",
       "mobile",
+      "wordpress",
       "engineering-capabilities",
     ]);
   });
@@ -164,6 +172,7 @@ describe("navSections", () => {
       "Governed AI & Workflow Systems",
       "Spec-Driven Full-Stack Platforms",
       "High-Performance Web & Mobile Apps",
+      "WordPress Development",
       "Automation & Integration Tools",
       "Client Case Studies",
       "Client Testimonials",
@@ -258,6 +267,7 @@ describe("navSections", () => {
       { label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutionsShort },
       { label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplicationsShort },
       { label: "High-Performance Web & Mobile Apps", to: `${ROUTES.services}#engineering-capabilities` },
+      { label: "WordPress Development", to: "/services/wordpress-development" },
       { label: "Automation & Integration Tools", to: `${ROUTES.services}#engineering-capabilities` },
     ]);
   });

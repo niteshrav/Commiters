@@ -98,7 +98,7 @@ describe("servicesOverviewPageContent", () => {
     expect(SERVICES_OVERVIEW_STANDARDS_BANNER).toEqual(SERVICES_OVERVIEW_STANDARDS[3]);
   });
 
-  it("adds four core engineering capability cards with badges, subtext, and live routes", () => {
+  it("adds core engineering capability cards with badges, subtext, and live routes", () => {
     expect(SERVICES_OVERVIEW_CAPABILITIES_TITLE).toBe("Full-Lifecycle Software Engineering Capabilities");
     expect(SERVICES_OVERVIEW_CAPABILITIES_SUBTEXT).toBe(
       "Comprehensive software development backed by automated workflows and cloud-native architecture.",
@@ -127,6 +127,12 @@ describe("servicesOverviewPageContent", () => {
         badge: "Mobile Engineering",
         to: "/services/mobile-app-development",
         id: "mobile",
+      },
+      {
+        title: "WordPress Development",
+        badge: "Publishing & Business Sites",
+        to: "/services/wordpress-development",
+        id: "wordpress",
       },
     ]);
     expect(SERVICES_OVERVIEW_CAPABILITIES[0]?.subtext).toMatch(/Tailwind CSS/);

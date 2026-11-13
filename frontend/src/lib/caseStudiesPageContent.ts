@@ -210,6 +210,21 @@ export const CASE_STUDY_PORTFOLIO_EXTRAS: CaseStudyProject[] = [
     detailsLabel: "View Project Details",
     detailsHref: ROUTES.trustTap,
   },
+  {
+    id: "newsora",
+    title: "NEWSORA",
+    category: "WORDPRESS DEVELOPMENT",
+    tags: ["WordPress", "PHP", "MySQL", "Gutenberg"],
+    tagVariant: "cyan",
+    problem: "Several news beats and a digital newspaper are hard to browse when they live in separate places.",
+    solution:
+      "NEWSORA brings national, international, business, technology, sports, entertainment, and e-paper reading into one WordPress publication.",
+    impact: ["News homepage", "Category navigation", "E-paper section"],
+    gridSpan: "narrow",
+    layout: "stacked",
+    detailsLabel: "View Project Details",
+    detailsHref: ROUTES.newsoraCaseStudy,
+  },
 ];
 
 export function allStaticWorkPageProjects(): CaseStudyProject[] {

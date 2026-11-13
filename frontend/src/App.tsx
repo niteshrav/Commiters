@@ -13,6 +13,7 @@ import MultiRoleCrmCaseStudyPage from "./pages/MultiRoleCrmCaseStudyPage";
 import NextSaasCaseStudyPage from "./pages/NextSaasCaseStudyPage";
 import ProspectIqCaseStudyPage from "./pages/ProspectIqCaseStudyPage";
 import EcoRouteCaseStudyPage from "./pages/EcoRouteCaseStudyPage";
+import NewsoraCaseStudyPage from "./pages/NewsoraCaseStudyPage";
 import TechnicalLedgerPage from "./pages/TechnicalLedgerPage";
 import AboutPage from "./pages/AboutPage";
 import FaqPage from "./pages/FaqPage";
@@ -77,6 +78,7 @@ export default function App() {
         <Route path={ROUTES.browseMyVacationCaseStudy} element={<NextSaasCaseStudyPage />} />
         <Route path={ROUTES.prospectIqCaseStudy} element={<ProspectIqCaseStudyPage />} />
         <Route path={ROUTES.ecoRouteCaseStudy} element={<EcoRouteCaseStudyPage />} />
+        <Route path={ROUTES.newsoraCaseStudy} element={<NewsoraCaseStudyPage />} />
         <Route path={ROUTES.commitersCaseStudyLegacy} element={<Navigate to={ROUTES.commitersCaseStudy} replace />} />
         <Route path={ROUTES.aiSummarizerCaseStudyLegacy} element={<Navigate to={ROUTES.aiSummarizerCaseStudy} replace />} />
         <Route path={ROUTES.neardropCaseStudyLegacy} element={<Navigate to={ROUTES.neardropCaseStudy} replace />} />

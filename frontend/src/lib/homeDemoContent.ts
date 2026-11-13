@@ -121,6 +121,18 @@ export const HOME_DEMO_COPY = {
         image: "/assets/services/mvp-development.jpg",
         to: ROUTES.services,
       },
+      {
+        id: "wordpress",
+        num: "07",
+        kicker: "PUBLISHING & BUSINESS SITES",
+        title: "WordPress Development",
+        description:
+          "Professional, scalable, and visually engaging WordPress websites tailored to business needs, digital publishing, and modern online experiences.",
+        capabilities: ["Custom WordPress sites", "News & magazine portals", "Theme customization"],
+        alt: "WordPress website layout for a business or publication",
+        image: "/assets/services/website-development.jpg",
+        to: buildServiceDetailPath("wordpress-development"),
+      },
     ],
   },
   problems: {

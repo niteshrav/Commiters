@@ -57,7 +57,7 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
       data-testid={study.pageTestId}
     >
       <section className="wcs-hero" data-testid="work-case-study-hero">
-        <div className="wcs-wrap wcs-hero-grid">
+        <div className={`wcs-wrap wcs-hero-grid${study.heroImage ? "" : " wcs-hero-grid--copy"}`}>
           <div>
             <div className="wcs-kicker">{study.kicker}</div>
             <h1>{study.headline}</h1>
@@ -75,17 +75,19 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
               ))}
             </dl>
           </div>
-          <Reveal>
-            <BrowserFrame src={study.heroImage.src} srcSet={study.heroImage.srcSet} alt={study.heroImage.alt} />
-          </Reveal>
+          {study.heroImage ? (
+            <Reveal>
+              <BrowserFrame src={study.heroImage.src} srcSet={study.heroImage.srcSet} alt={study.heroImage.alt} />
+            </Reveal>
+          ) : null}
         </div>
       </section>
 
       <section className="wcs-section" id="wcs-overview" data-testid="work-case-study-overview">
         <div className="wcs-wrap wcs-overview">
           <div>
-            <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.overview.kicker}</div>
-            <h2>{WORK_CASE_STUDY_SECTIONS.overview.title}</h2>
+            <div className="wcs-kicker">{study.overview.kicker}</div>
+            <h2>{study.overview.title}</h2>
             <p className="wcs-lead">{study.overview.lead}</p>
           </div>
           <dl className="wcs-facts">
@@ -102,8 +104,8 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
       <section className="wcs-section soft" data-testid="work-case-study-problem">
         <div className="wcs-wrap wcs-split">
           <article>
-            <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.problem.kicker}</div>
-            <h2>{WORK_CASE_STUDY_SECTIONS.problem.title}</h2>
+            <div className="wcs-kicker">{study.problem.kicker}</div>
+            <h2>{study.problem.title}</h2>
             <p className="wcs-lead">{study.problem.lead}</p>
             {study.problem.items.length > 0 ? (
               <div className="wcs-grid one">
@@ -119,8 +121,8 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
             ) : null}
           </article>
           <article data-testid="work-case-study-solution">
-            <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.solution.kicker}</div>
-            <h2>{WORK_CASE_STUDY_SECTIONS.solution.title}</h2>
+            <div className="wcs-kicker">{study.solution.kicker}</div>
+            <h2>{study.solution.title}</h2>
             <p className="wcs-lead">{study.solution.lead}</p>
             {study.solution.items.length > 0 ? (
               <div className="wcs-grid one">
@@ -138,10 +140,11 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
         </div>
       </section>
 
+      {study.usp.items.length > 0 ? (
       <section className="wcs-section" data-testid="work-case-study-usp">
         <div className="wcs-wrap">
-          <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.usp.kicker}</div>
-          <h2>{WORK_CASE_STUDY_SECTIONS.usp.title}</h2>
+          <div className="wcs-kicker">{study.usp.kicker}</div>
+          <h2>{study.usp.title}</h2>
           <p className="wcs-lead">{study.usp.lead}</p>
           <div className="wcs-grid">
             {study.usp.items.map((item) => (
@@ -155,11 +158,13 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
           </div>
         </div>
       </section>
+      ) : null}
 
+      {study.journey.items.length > 0 ? (
       <section className="wcs-section" data-testid="work-case-study-showcase">
         <div className="wcs-wrap">
-          <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.journey.kicker}</div>
-          <h2>{WORK_CASE_STUDY_SECTIONS.journey.title}</h2>
+          <div className="wcs-kicker">{study.journey.kicker}</div>
+          <h2>{study.journey.title}</h2>
           <p className="wcs-lead">{study.journey.lead}</p>
           <div className="wcs-grid two wcs-journey">
             {study.journey.items.map((image) => (
@@ -177,11 +182,12 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
           </div>
         </div>
       </section>
+      ) : null}
 
       <section className="wcs-section soft" data-testid="work-case-study-features">
         <div className="wcs-wrap">
-          <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.details.kicker}</div>
-          <h2>{WORK_CASE_STUDY_SECTIONS.details.title}</h2>
+          <div className="wcs-kicker">{study.details.kicker}</div>
+          <h2>{study.details.title}</h2>
           <p className="wcs-lead">{study.details.lead}</p>
           <div className="wcs-grid">
             {study.details.items.map((item) => (
@@ -198,8 +204,8 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
 
       <section className="wcs-section" data-testid="work-case-study-workflow">
         <div className="wcs-wrap">
-          <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.flow.kicker}</div>
-          <h2>{WORK_CASE_STUDY_SECTIONS.flow.title}</h2>
+          <div className="wcs-kicker">{study.flow.kicker}</div>
+          <h2>{study.flow.title}</h2>
           <p className="wcs-lead">{study.flow.lead}</p>
           <div className="wcs-steps">
             {study.flow.items.map((item, index) => (
@@ -221,8 +227,8 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
 
       <section className="wcs-section soft" data-testid="work-case-study-stack">
         <div className="wcs-wrap">
-          <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.stack.kicker}</div>
-          <h2>{WORK_CASE_STUDY_SECTIONS.stack.title}</h2>
+          <div className="wcs-kicker">{study.stack.kicker}</div>
+          <h2>{study.stack.title}</h2>
           <p className="wcs-lead">{study.stack.lead}</p>
           <div className="wcs-stack">
             {study.stack.items.map((item) => (
@@ -242,8 +248,8 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
 
       <section className="wcs-section" data-testid="work-case-study-outcomes">
         <div className="wcs-wrap">
-          <div className="wcs-kicker">{WORK_CASE_STUDY_SECTIONS.outcome.kicker}</div>
-          <h2>{WORK_CASE_STUDY_SECTIONS.outcome.title}</h2>
+          <div className="wcs-kicker">{study.outcome.kicker}</div>
+          <h2>{study.outcome.title}</h2>
           <p className="wcs-lead">{study.outcome.lead}</p>
           <div className="wcs-grid">
             {study.outcome.items.map((item) => (
@@ -278,7 +284,7 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
           <div className="wcs-related">
             {related.map((item) => (
               <Link key={item.id} to={item.route}>
-                <img src={item.heroImage.src} alt="" />
+                {item.heroImage ? <img src={item.heroImage.src} alt="" /> : null}
                 <div>
                   <h3>{item.name}</h3>
                   <p>{item.lead}</p>
@@ -291,11 +297,11 @@ export default function WorkCaseStudyLayout({ study }: { study: WorkCaseStudy })
 
       <section className="wcs-section wcs-final" data-testid="work-case-study-cta">
         <div className="wcs-wrap">
-          <h2>{WORK_CASE_STUDY_FINAL_CTA.title}</h2>
-          <p className="wcs-lead">{WORK_CASE_STUDY_FINAL_CTA.body}</p>
+          <h2>{study.finalCta?.title ?? WORK_CASE_STUDY_FINAL_CTA.title}</h2>
+          <p className="wcs-lead">{study.finalCta?.body ?? WORK_CASE_STUDY_FINAL_CTA.body}</p>
           <div className="wcs-actions">
-            <Link className="wcs-btn primary" to={ROUTES.contact}>
-              {WORK_CASE_STUDY_FINAL_CTA.primaryLabel} ↗
+            <Link className="wcs-btn primary" to={study.finalCta?.primaryTo ?? ROUTES.contact}>
+              {study.finalCta?.primaryLabel ?? WORK_CASE_STUDY_FINAL_CTA.primaryLabel} ↗
             </Link>
             <Link className="wcs-btn secondary" to={ROUTES.caseStudies}>
               {WORK_CASE_STUDY_FINAL_CTA.secondaryLabel} ↗

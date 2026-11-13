@@ -17,6 +17,7 @@ describe("services catalog", () => {
       "ai-integration",
       "mvp-development",
       "automation-tools",
+      "wordpress-development",
     ]);
   });
 

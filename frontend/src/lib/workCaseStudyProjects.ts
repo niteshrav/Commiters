@@ -8,6 +8,7 @@ import { COMMITERS_CASE_STUDY_COPY } from "./commitersCaseStudyContent";
 import { ECOROUTE_LIVE_URL, ECO_ROUTE_CASE_STUDY_COPY } from "./ecoRouteCaseStudyContent";
 import { MULTI_ROLE_CRM_CASE_STUDY_COPY, MULTI_ROLE_CRM_LIVE_URL } from "./multiRoleCrmCaseStudyContent";
 import { NEARDROP_CASE_STUDY_COPY } from "./neardropCaseStudyContent";
+import { NEWSORA_WORK_CASE_STUDY } from "./newsoraCaseStudyContent";
 import { PROSPECTIQ_LIVE_URL, PROSPECT_IQ_CASE_STUDY_COPY } from "./prospectIqCaseStudyContent";
 import { allStaticWorkPageProjects } from "./caseStudiesPageContent";
 import { ROUTES } from "./routes";
@@ -871,6 +872,7 @@ export const WORK_CASE_STUDIES: WorkCaseStudy[] = [
     },
     relatedIds: ["prospectiq-ai", "ai-summarizer", "neardrop-mvp"],
   },
+  NEWSORA_WORK_CASE_STUDY,
 ];
 
 export function getWorkCaseStudy(id: string): WorkCaseStudy {

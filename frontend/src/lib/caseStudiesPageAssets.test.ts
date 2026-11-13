@@ -21,7 +21,7 @@ describe("caseStudiesPageAssets", () => {
   it("ships all grid card images for portfolio projects", () => {
     for (const asset of CASE_STUDY_IMAGE_ASSETS) {
       expect(existsSync(join(publicRoot, asset.src))).toBe(true);
-      expect(asset.src).toMatch(/^\/assets\/case-studies\/.+\.png$/);
+      expect(asset.src).toMatch(/^\/assets\/case-studies\/.+\.(png|jpe?g)$/);
       if (asset.srcSet) {
         const hiResPath = asset.srcSet.split(/\s+/)[0];
         expect(existsSync(join(publicRoot, hiResPath))).toBe(true);
@@ -42,6 +42,7 @@ describe("caseStudiesPageAssets", () => {
     expect(caseStudyHasImage("terminal")).toBe(true);
     expect(caseStudyHasImage("synapse")).toBe(true);
     expect(caseStudyHasImage("prooflyn")).toBe(true);
+    expect(caseStudyHasImage("newsora")).toBe(true);
     expect(existsSync(join(publicRoot, "assets/case-studies/case-studies-row-one-mockup.png"))).toBe(true);
   });
 

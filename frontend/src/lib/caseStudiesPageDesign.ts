@@ -1,4 +1,5 @@
 import { BROWSE_MY_VACATION_LIVE_URL } from "./browseMyVacationCaseStudyContent";
+import { NEWSORA_LIVE_URL } from "./newsoraCaseStudyContent";
 import { ECOROUTE_LIVE_URL } from "./ecoRouteCaseStudyContent";
 import { MULTI_ROLE_CRM_LIVE_URL } from "./multiRoleCrmCaseStudyContent";
 import { PROSPECTIQ_LIVE_URL } from "./prospectIqCaseStudyContent";
@@ -15,6 +16,7 @@ export type WorkPageFilterId =
   | "cloud"
   | "saas"
   | "web"
+  | "wordpress"
   | "business"
   | "travel"
   | "enterprise";
@@ -52,6 +54,7 @@ export const CASE_STUDIES_PAGE_DESIGN = {
     { id: "cloud", label: "Cloud Platforms" },
     { id: "saas", label: "SaaS Products" },
     { id: "web", label: "Web Applications" },
+    { id: "wordpress", label: "WordPress Development" },
     { id: "business", label: "Business Software" },
     { id: "travel", label: "Travel & Booking" },
     { id: "enterprise", label: "Enterprise & Workforce Solutions" },
@@ -160,6 +163,14 @@ export const WORK_PAGE_PROJECT_PRESENTATION: Record<
     tags: ["NFC", "QR", "Reviews"],
     liveHref: TRUSTTAP_LIVE_URL,
   },
+  newsora: {
+    blurb:
+      "A WordPress news and media platform for national, international, business, technology, sports, entertainment, and digital newspaper reading.",
+    badge: "WordPress Development",
+    filters: ["wordpress"],
+    tags: ["WordPress", "PHP", "MySQL", "Gutenberg"],
+    ...(NEWSORA_LIVE_URL ? { liveHref: NEWSORA_LIVE_URL } : {}),
+  },
 };
 
 export const WORK_PAGE_GRID_ORDER = [
@@ -171,6 +182,7 @@ export const WORK_PAGE_GRID_ORDER = [
   "prospectiq-ai",
   "ecoroute-intelligence",
   "governed-ai",
+  "newsora",
 ] as const;
 
 export function workPageBlurb(project: Pick<CaseStudyProject, "id" | "solution">): string {

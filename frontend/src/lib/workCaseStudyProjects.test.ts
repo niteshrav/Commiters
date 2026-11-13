@@ -20,6 +20,7 @@ describe("workCaseStudyProjects", () => {
         ROUTES.browseMyVacationCaseStudy,
         ROUTES.prospectIqCaseStudy,
         ROUTES.ecoRouteCaseStudy,
+        ROUTES.newsoraCaseStudy,
       ].sort(),
     );
 
@@ -31,6 +32,14 @@ describe("workCaseStudyProjects", () => {
       expect(study.relatedIds).toHaveLength(3);
       expect(relatedWorkCaseStudies(study)).toHaveLength(3);
       expect(study.discussCta).toEqual({ kind: "internal", label: "Start a similar brief", to: ROUTES.contact });
+      if (study.id === "newsora") {
+        expect(study.journey.items).toHaveLength(1);
+        expect(study.heroImage?.src).toBe("/assets/case-studies/work-newsora.jpg");
+        expect(study.problem.title).toBe("The challenge");
+        expect(study.solution.title).toBe("Our solution");
+        expect(study.finalCta?.primaryLabel).toBe("Start Your Project");
+        continue;
+      }
       expect(study.problem.title).toBe(WORK_CASE_STUDY_SECTIONS.problem.title);
       expect(study.solution.title).toBe(WORK_CASE_STUDY_SECTIONS.solution.title);
       expect(study.usp.title).toBe(WORK_CASE_STUDY_SECTIONS.usp.title);

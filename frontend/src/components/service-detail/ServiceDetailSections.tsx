@@ -50,7 +50,8 @@ export function ServiceDetailAbout({ service }: Props) {
 const FEATURES_ON_PAGE = 4;
 
 export function ServiceDetailFeatures({ service }: Props) {
-  const features = service.features.slice(0, FEATURES_ON_PAGE);
+  const features =
+    service.slug === "wordpress-development" ? service.features : service.features.slice(0, FEATURES_ON_PAGE);
 
   return (
     <section className="svc-detail-section svc-detail-section--muted" data-testid="service-detail-features">

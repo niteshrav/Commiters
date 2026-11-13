@@ -18,6 +18,7 @@ export const CASE_STUDY_GRID_IMAGE_PROJECT_IDS = [
   "terminal",
   "synapse",
   "prooflyn",
+  "newsora",
 ] as const;
 
 export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
@@ -92,6 +93,11 @@ export const CASE_STUDY_IMAGE_ASSETS: CaseStudyImageAsset[] = [
     src: "/assets/case-studies/work-prooflyn.png",
     srcSet: "/assets/case-studies/work-prooflyn.png 1x, /assets/case-studies/work-prooflyn@2x.png 2x",
     alt: "Prooflyn NFC and QR merchant review flow with Google ratings and private customer notes",
+  },
+  {
+    id: "newsora",
+    src: "/assets/case-studies/work-newsora.jpg",
+    alt: "NEWSORA homepage on a laptop and phone, with India, World, Business, Technology, Sports, Entertainment, and E-Paper",
   },
 ] as const;
 

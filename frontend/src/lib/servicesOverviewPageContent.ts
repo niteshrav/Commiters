@@ -173,6 +173,21 @@ export const SERVICES_OVERVIEW_CAPABILITIES: readonly ServicesOverviewCapability
     to: buildServiceDetailPath("mobile-app-development"),
     aliasIds: ["cross-platform-mobile-applications"],
   },
+  {
+    id: "wordpress",
+    title: "WordPress Development",
+    badge: "Publishing & Business Sites",
+    subtext:
+      "Professional, scalable, and visually engaging WordPress websites for business, corporate, and news publishing.",
+    bullets: [
+      "Custom WordPress website development",
+      "News and magazine portals",
+      "Theme customization, plugins, and maintenance",
+    ],
+    icon: "web",
+    to: buildServiceDetailPath("wordpress-development"),
+    aliasIds: ["wordpress-development"],
+  },
 ] as const;
 
 export type ServicesOverviewProduct = {
