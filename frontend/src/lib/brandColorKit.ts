@@ -1,19 +1,19 @@
-import { COMMITERS_BRANDBOOK } from "./commitersBrandbook";
+import { PRECISION_MINIMALIST_DESIGN } from "./precisionMinimalistDesign";
 
-/** Commiters Brand Asset Kit — Pomelli Azure / Prussian / Chalk surfaces. */
+/** Commiters Brand Asset Kit — Precision Minimalist electric blue, gold, and neutral surfaces. */
 export const BRAND_COLOR_KIT = {
-  electricBlue: COMMITERS_BRANDBOOK.azureBlue,
-  electricBlueBright: "#42A5F5",
-  cyan: COMMITERS_BRANDBOOK.caribbeanGreen,
-  cyanRgb: "0, 230, 118",
+  electricBlue: PRECISION_MINIMALIST_DESIGN.colors.primary,
+  electricBlueBright: "#0088ff",
+  cyan: "#00c2ff",
+  cyanRgb: "0, 194, 255",
   gold: "#d4a017",
   goldBright: "#e5b82a",
   goldDeep: "#b38612",
   goldSoft: "#f4e4b5",
-  navy: COMMITERS_BRANDBOOK.prussianBlue,
-  slate: COMMITERS_BRANDBOOK.prussianBlue,
-  offWhite: COMMITERS_BRANDBOOK.chalkWhite,
-  lightGray: "#e8eef3",
+  navy: "#0a0e17",
+  slate: "#0f172a",
+  offWhite: "#f8fafc",
+  lightGray: "#f1f5f9",
 } as const;
 
 export const BRAND_COLOR_KIT_CSS_VARIABLES = {

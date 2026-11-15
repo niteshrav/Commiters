@@ -43,8 +43,6 @@ export const RESPONSIVE_LANDING_TWO_COL_SELECTORS = [
   ".services-overview-standards-grid",
   ".services-overview-products-grid",
   ".utilities-tools-grid",
-  ".aisol-arch-grid",
-  ".audit-cards",
   ".webapp-cards",
   ".svc-detail-hero-grid",
   ".svc-detail-features-grid",
@@ -55,14 +53,17 @@ export const RESPONSIVE_LANDING_TWO_COL_SELECTORS = [
 /** Three-column from the desktop min-width. */
 export const RESPONSIVE_LANDING_THREE_COL_SELECTORS = [
   ".services-overview-offerings-grid",
-  ".aisol-cards",
-  ".audit-cards",
-  ".audit-timeline",
   ".wflow-solutions",
   ".svc-detail-about-grid",
   ".svc-detail-pricing-grid",
   ".svc-detail-why-grid",
 ] as const;
+
+/** AI landing grids that go three-column from the tablet min-width (768px). */
+export const RESPONSIVE_LANDING_TABLET_THREE_COL_SELECTORS = [".aisol-cards", ".audit-cards", ".audit-timeline"] as const;
+
+/** AI landing grids that go four-column from the tablet min-width (768px). */
+export const RESPONSIVE_LANDING_TABLET_FOUR_COL_SELECTORS = [".aisol-arch-grid"] as const;
 
 /** Four-column from the desktop min-width. */
 export const RESPONSIVE_LANDING_FOUR_COL_SELECTORS = [".webapp-cards"] as const;
@@ -72,7 +73,6 @@ export const COMPACT_FULL_WIDTH_CTA_SELECTORS = [
   ".services-overview-hero-actions .btn",
   ".webapp-hero-cta",
   ".wflow-hero-cta",
-  ".aisol-hero-cta",
   ".svc-detail-hero-actions .btn",
 ] as const;
 

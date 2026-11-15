@@ -58,6 +58,21 @@ describe("mobileNavDrawer", () => {
         to: `${ROUTES.services}#engineering-capabilities`,
         description: "API integrations, document processing, and operational workflow tools.",
       },
+      {
+        label: "Insurance Operations",
+        to: ROUTES.insuranceOperations,
+        description: "Back-office and AI-assisted policy admin for US P&C agencies.",
+      },
+      {
+        label: "Digital Marketing",
+        to: ROUTES.digitalMarketing,
+        description: "SEO, CRO, paid acquisition, and CRM systems for qualified pipeline.",
+      },
+      {
+        label: "Data Engineering",
+        to: ROUTES.dataEngineering,
+        description: "Pipelines, warehouses, PDF extraction, and operational dashboards.",
+      },
     ]);
     expect(MOBILE_NAV_SERVICE_LINKS.some((link) => /trusttap|opsflow/i.test(link.label) || /trusttap|opsflow/i.test(link.to))).toBe(false);
     const about = MOBILE_NAV_DRAWER_ITEMS.find((item) => item.id === "about");

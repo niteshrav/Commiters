@@ -133,6 +133,42 @@ export const HOME_DEMO_COPY = {
         image: "/assets/services/website-development.jpg",
         to: buildServiceDetailPath("wordpress-development"),
       },
+      {
+        id: "insurance-operations",
+        num: "08",
+        kicker: "AGENCY BACK-OFFICE",
+        title: "Insurance Operations",
+        description:
+          "Back-office and AI-assisted policy administration for US P&C agencies—so producers sell while we keep the desk accurate.",
+        capabilities: ["Endorsements & portal entry", "Renewals & COIs", "SOP automation"],
+        alt: "Insurance operations desk with policy workflows",
+        image: "/assets/services/automation-tools.jpg",
+        to: buildServiceDetailPath("insurance-operations"),
+      },
+      {
+        id: "digital-marketing",
+        num: "09",
+        kicker: "PIPELINE GROWTH",
+        title: "Digital Marketing",
+        description:
+          "SEO, conversion funnels, paid acquisition, and CRM automation focused on qualified leads—not vanity metrics.",
+        capabilities: ["SEO & local visibility", "CRO & paid ads", "CRM follow-up"],
+        alt: "Marketing funnel dashboard with conversion metrics",
+        image: "/assets/services/website-development.jpg",
+        to: buildServiceDetailPath("digital-marketing"),
+      },
+      {
+        id: "data-engineering",
+        num: "10",
+        kicker: "DATA SYSTEMS",
+        title: "Data Engineering",
+        description:
+          "Pipelines, warehouses, PDF extraction, and operational dashboards that replace fragmented spreadsheets.",
+        capabilities: ["ETL/ELT pipelines", "Document extraction", "Live reporting"],
+        alt: "Data pipeline and warehouse architecture diagram",
+        image: "/assets/services/ai-integration.jpg",
+        to: buildServiceDetailPath("data-engineering"),
+      },
     ],
   },
   problems: {

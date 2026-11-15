@@ -66,21 +66,32 @@ describe("HomePage", () => {
     );
 
     const carousel = screen.getByTestId("home-service-carousel");
-    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent("1 of 6 Services");
+    const serviceCount = HOME_DEMO_COPY.servicesCarousel.items.length;
+    expect(serviceCount).toBe(10);
+    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent(
+      `1 of ${serviceCount} Services`,
+    );
     expect(within(carousel).getByTestId("home-service-slide-websites")).toHaveAttribute("data-active", "true");
     expect(within(carousel).getByTestId("home-service-slide-software")).toHaveAttribute("data-active", "false");
-    expect(within(carousel).getAllByTestId(/home-service-slide-/)).toHaveLength(6);
+    expect(within(carousel).getAllByTestId(/home-service-slide-/)).toHaveLength(serviceCount);
+    expect(within(carousel).getByTestId("home-service-slide-insurance-operations")).toBeInTheDocument();
+    expect(within(carousel).getByTestId("home-service-slide-digital-marketing")).toBeInTheDocument();
+    expect(within(carousel).getByTestId("home-service-slide-data-engineering")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: HOME_DEMO_COPY.servicesCarousel.nextLabel }));
-    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent("2 of 6 Services");
+    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent(
+      `2 of ${serviceCount} Services`,
+    );
     expect(within(carousel).getByTestId("home-service-slide-software")).toHaveAttribute("data-active", "true");
     expect(within(carousel).getByTestId("home-service-slide-websites")).toHaveAttribute("data-active", "false");
     expect(within(carousel).getByTestId("home-service-slide-software").parentElement).toHaveStyle({
-      transform: `translateX(-${(100 / 6)}%)`,
+      transform: `translateX(-${100 / serviceCount}%)`,
     });
 
     await user.click(screen.getByRole("tab", { name: "Show Mobile Applications" }));
-    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent("5 of 6 Services");
+    expect(within(carousel).getByTestId("home-service-counter")).toHaveTextContent(
+      `5 of ${serviceCount} Services`,
+    );
     expect(within(carousel).getByTestId("home-service-slide-mobile")).toHaveAttribute("data-active", "true");
   });
 

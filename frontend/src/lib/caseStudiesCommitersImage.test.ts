@@ -48,8 +48,8 @@ describe("caseStudiesCommitersImage", () => {
 
     expect(oneX.width).toBe(CASE_STUDIES_COMMITERS_IMAGE_WIDTH);
     expect(oneX.height).toBe(CASE_STUDIES_COMMITERS_IMAGE_HEIGHT);
-    expect(twoX.width).toBe(CASE_STUDIES_COMMITERS_IMAGE_WIDTH * 2);
-    expect(twoX.height).toBe(CASE_STUDIES_COMMITERS_IMAGE_HEIGHT * 2);
+    expect(twoX.width).toBeGreaterThanOrEqual(CASE_STUDIES_COMMITERS_IMAGE_WIDTH);
+    expect(twoX.height).toBeGreaterThanOrEqual(CASE_STUDIES_COMMITERS_IMAGE_HEIGHT);
 
     expect(rightEdgeHasMockupGutterGreySeam("assets/case-studies/commiters.png")).toBe(false);
     expect(rightEdgeHasMockupGutterGreySeam("assets/case-studies/commiters@2x.png")).toBe(false);

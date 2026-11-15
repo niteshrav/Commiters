@@ -100,8 +100,7 @@ describe("multiRoleCrmCaseStudyDesign", () => {
     );
     expect(stage).toContain(`padding: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.layout.introStagePaddingTop} 0 0`);
     expect(stage).not.toContain("transform:");
-    expect(stage).toContain("radial-gradient");
-    expect(stage).toContain(MULTI_ROLE_CRM_CASE_STUDY_DESIGN.colors.introHeroGlow);
+    expect(stage).toContain("background: transparent");
 
     const heroImage = ruleBlock(
       `.${MULTI_ROLE_CRM_CASE_STUDY_HERO_IMAGE_CLASS} {`,

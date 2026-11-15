@@ -104,7 +104,7 @@ export const SERVICES_OVERVIEW_STANDARDS: readonly ServicesOverviewStandard[] = 
   SERVICES_OVERVIEW_STANDARDS_BANNER,
 ] as const;
 
-export type ServicesOverviewCapabilityIcon = "cart" | "web" | "mobile" | "mvp";
+export type ServicesOverviewCapabilityIcon = "cart" | "web" | "mobile" | "mvp" | "shield" | "chart" | "database";
 
 export type ServicesOverviewCapability = {
   id: string;
@@ -187,6 +187,51 @@ export const SERVICES_OVERVIEW_CAPABILITIES: readonly ServicesOverviewCapability
     icon: "web",
     to: buildServiceDetailPath("wordpress-development"),
     aliasIds: ["wordpress-development"],
+  },
+  {
+    id: "insurance-operations",
+    title: "Insurance Operations",
+    badge: "Agency Back-Office",
+    subtext:
+      "Dedicated policy administration and AI-assisted ops support so producers sell while we keep the desk accurate and on time.",
+    bullets: [
+      "Policy endorsements and carrier portal entry",
+      "Renewals, remarketing prep, and COI issuance",
+      "SOP automation for agency checklists",
+    ],
+    icon: "shield",
+    to: buildServiceDetailPath("insurance-operations"),
+    aliasIds: ["insurance-operations"],
+  },
+  {
+    id: "digital-marketing",
+    title: "Digital Marketing",
+    badge: "Pipeline Growth",
+    subtext:
+      "SEO, CRO, paid acquisition, and CRM automation built for qualified leads—not vanity metrics.",
+    bullets: [
+      "SEO and local visibility systems",
+      "Conversion funnels and paid acquisition",
+      "Marketing and CRM follow-up automation",
+    ],
+    icon: "chart",
+    to: buildServiceDetailPath("digital-marketing"),
+    aliasIds: ["digital-marketing"],
+  },
+  {
+    id: "data-engineering",
+    title: "Data Engineering",
+    badge: "Pipelines & Warehouses",
+    subtext:
+      "ETL/ELT pipelines, PDF extraction, warehousing, and operational dashboards for fragmented business data.",
+    bullets: [
+      "Automated ETL/ELT across SaaS and databases",
+      "Unstructured document extraction",
+      "Warehousing, API sync, and live reporting",
+    ],
+    icon: "database",
+    to: buildServiceDetailPath("data-engineering"),
+    aliasIds: ["data-engineering"],
   },
 ] as const;
 

@@ -22,6 +22,7 @@ import {
   caseStudiesPageSeo,
   contactPageSeo,
   joinUsPageSeo,
+  newsoraCaseStudyPageSeo,
   openPositionsPageSeo,
   servicesPageSeo,
   testimonialsPageSeo,
@@ -47,6 +48,8 @@ function expectedTitle(path: string): string {
       return pageTitle("Multi-Role CRM Case Study");
     case ROUTES.browseMyVacationCaseStudy:
       return pageTitle("BrowseMyVacation Case Study");
+    case ROUTES.newsoraCaseStudy:
+      return newsoraCaseStudyPageSeo().title;
     case ROUTES.prospectIqCaseStudy:
       return pageTitle("ProspectIQ AI Case Study");
     case ROUTES.ecoRouteCaseStudy:

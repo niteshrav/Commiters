@@ -53,7 +53,16 @@ describe("site photography uniqueness", () => {
       byHash.set(entry.hash, list);
     }
 
-    const duplicates = [...byHash.values()].filter((srcs) => srcs.length > 1);
+    // The Work portfolio card intentionally reuses the Prooflyn product hero (same product, same artwork).
+    const SAME_PRODUCT_ALLOWED_PAIRS = [
+      ["/assets/trusttap/prooflyn-hero-v10.png", "/assets/case-studies/work-prooflyn.png"],
+    ];
+    const isAllowedPair = (srcs: string[]) =>
+      SAME_PRODUCT_ALLOWED_PAIRS.some(
+        (pair) => pair.length === srcs.length && pair.every((allowed) => srcs.includes(allowed)),
+      );
+
+    const duplicates = [...byHash.values()].filter((srcs) => srcs.length > 1 && !isAllowedPair(srcs));
     expect(duplicates).toEqual([]);
   });
 });

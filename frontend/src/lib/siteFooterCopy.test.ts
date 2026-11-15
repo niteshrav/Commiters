@@ -47,6 +47,9 @@ describe("siteFooterCopy", () => {
       "Rapid SaaS MVP Development",
       "Automation & Integration Tools",
       "Workflow & Process Automation",
+      "Insurance Operations",
+      "Digital Marketing",
+      "Data Engineering",
     ]);
     expect(SITE_FOOTER_COMPANY_NAV_LINK_LABELS).toEqual([
       "About Us",
@@ -109,6 +112,12 @@ describe("siteFooterCopy", () => {
       (link) => link.label === "Workflow & Process Automation",
     );
     expect(workflow?.kind === "internal" ? workflow.to : undefined).toBe(ROUTES.workflowAutomation);
+    const insurance = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Insurance Operations");
+    expect(insurance?.kind === "internal" ? insurance.to : undefined).toBe(ROUTES.insuranceOperations);
+    const marketing = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Digital Marketing");
+    expect(marketing?.kind === "internal" ? marketing.to : undefined).toBe(ROUTES.digitalMarketing);
+    const dataEngineering = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Data Engineering");
+    expect(dataEngineering?.kind === "internal" ? dataEngineering.to : undefined).toBe(ROUTES.dataEngineering);
 
     const aboutUs = SITE_FOOTER_COPY.navColumns[2].links.find((link) => link.label === "About Us");
     expect(aboutUs?.kind === "internal" ? aboutUs.to : undefined).toBe(ROUTES.about);

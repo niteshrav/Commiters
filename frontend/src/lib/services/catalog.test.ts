@@ -18,7 +18,26 @@ describe("services catalog", () => {
       "mvp-development",
       "automation-tools",
       "wordpress-development",
+      "insurance-operations",
+      "digital-marketing",
+      "data-engineering",
     ]);
+  });
+
+  it("ships operations landing pages with problem, process, capabilities, and FAQs", () => {
+    for (const slug of ["insurance-operations", "digital-marketing", "data-engineering"] as const) {
+      const service = getServiceBySlug(slug);
+      expect(service?.showAllFeatures).toBe(true);
+      expect(service?.showProcess).toBe(true);
+      expect(service?.problem?.points.length).toBeGreaterThan(0);
+      expect(service?.features.length).toBeGreaterThanOrEqual(5);
+      expect(service?.faqs?.length).toBeGreaterThanOrEqual(3);
+      expect(service?.seo.title.length).toBeGreaterThan(0);
+      expect(service?.seo.description.length).toBeGreaterThan(40);
+    }
+    expect(getServiceBySlug("insurance-operations")?.title).toBe("Insurance Operations");
+    expect(getServiceBySlug("digital-marketing")?.title).toBe("Digital Marketing");
+    expect(getServiceBySlug("data-engineering")?.title).toBe("Data Engineering");
   });
 
   it("resolves detail hrefs from cms ids, icons, and titles", () => {

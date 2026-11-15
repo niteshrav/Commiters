@@ -1,5 +1,6 @@
 import { ROUTES } from "../routes";
 import type { ServiceDetail } from "./types";
+import { OPERATIONS_LANDING_SERVICES } from "./operationsLandings";
 import {
   SERVICE_DEFAULT_PRICING,
   SERVICE_DEFAULT_TIMELINE,
@@ -451,6 +452,7 @@ export const SERVICES_CATALOG: ServiceDetail[] = [
       },
     ],
   },
+  ...OPERATIONS_LANDING_SERVICES,
 ];
 
 export const SERVICE_SLUGS = SERVICES_CATALOG.map((service) => service.slug);

@@ -56,13 +56,13 @@ describe("multiRoleCrmCaseStudyLayout", () => {
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_CLASS} {`,
     );
     expect(stackGrid).toContain(`grid-template-columns: ${MULTI_ROLE_CRM_CASE_STUDY_DESIGN.layout.techStackColumns}`);
-    expect(stackGrid).toContain("gap: 12px");
+    expect(stackGrid).toContain("gap: 0");
 
     const wideItem = ruleBlock(
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_WIDE_CLASS} {`,
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_HIGHLIGHT_CLASS} {`,
     );
-    expect(wideItem).toContain("flex-direction: column");
+    expect(wideItem).toContain("grid-column: 1 / -1");
 
     const highlightItem = ruleBlock(
       `.${MULTI_ROLE_CRM_CASE_STUDY_TECH_STACK_ITEM_HIGHLIGHT_CLASS} {`,

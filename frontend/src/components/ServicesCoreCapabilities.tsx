@@ -1,6 +1,14 @@
 import type { ComponentType, SVGProps } from "react";
 import { Link } from "react-router-dom";
-import { IconBrowserWindow, IconDevicePhone, IconRocket, IconShoppingBag } from "./icons";
+import {
+  IconBrowserWindow,
+  IconChartLine,
+  IconDatabase,
+  IconDevicePhone,
+  IconRocket,
+  IconShieldCheck,
+  IconShoppingBag,
+} from "./icons";
 import { NAV_SECTION_ALIAS_CLASS } from "../lib/navSections";
 import {
   SERVICES_OVERVIEW_CAPABILITIES,
@@ -23,6 +31,9 @@ const CAPABILITY_ICONS: Record<ServicesOverviewCapabilityIcon, ComponentType<SVG
   web: IconBrowserWindow,
   mobile: IconDevicePhone,
   mvp: IconRocket,
+  shield: IconShieldCheck,
+  chart: IconChartLine,
+  database: IconDatabase,
 };
 
 export default function ServicesCoreCapabilities() {

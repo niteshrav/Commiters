@@ -35,7 +35,7 @@ describe("servicesOverviewPageLayout", () => {
       "bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-full",
     );
     expect(SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS).toBe(
-      "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch w-full mt-8",
+      "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch w-full mt-8",
     );
     expect(SERVICES_OVERVIEW_CAPABILITY_CARD_CHROME_CLASS).toBe(
       "bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full",
@@ -43,7 +43,7 @@ describe("servicesOverviewPageLayout", () => {
     expect(SERVICES_OVERVIEW_ANCHOR_CLASS).toBe("scroll-mt-24");
     expect(siteCss).toContain(".scroll-mt-24");
     expect(siteCss).toContain(".sm\\:grid-cols-2");
-    expect(siteCss).toContain(".lg\\:grid-cols-4");
+    expect(siteCss).toContain(".lg\\:grid-cols-3");
     expect(siteCss).toContain(".mt-8");
     expect(css).toMatch(/scroll-margin-top:\s*6rem/);
     expect(css).not.toContain(".services-overview-capabilities-grid");

@@ -113,7 +113,7 @@ describe("ServicesPage", () => {
     }
   });
 
-  it("adds a four-card core engineering capabilities grid with badges and subtext", () => {
+  it("adds a core engineering capabilities grid with badges and subtext", () => {
     renderPage();
 
     expect(screen.getByRole("heading", { name: SERVICES_OVERVIEW_CAPABILITIES_TITLE, level: 2 })).toBeInTheDocument();
@@ -123,15 +123,18 @@ describe("ServicesPage", () => {
     expect(grid).toHaveClass(...SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS.split(" "));
     expect(grid.className).not.toMatch(/col-span-|ml-auto|translate-x-/);
     const cards = within(grid).getAllByTestId("services-capability-card");
-    expect(cards).toHaveLength(4);
-    expect([...grid.children].map((node) => node.getAttribute("data-testid"))).toEqual([
-      "services-capability-card",
-      "services-capability-card",
-      "services-capability-card",
-      "services-capability-card",
-    ]);
+    expect(cards).toHaveLength(SERVICES_OVERVIEW_CAPABILITIES.length);
     expect(cards.map((card) => card.id)).toEqual(SERVICES_OVERVIEW_CAPABILITIES.map((capability) => capability.id));
-    expect(cards.map((card) => card.id)).toEqual(["web-engineering", "ecommerce", "saas-mvp", "mobile"]);
+    expect(cards.map((card) => card.id)).toEqual([
+      "web-engineering",
+      "ecommerce",
+      "saas-mvp",
+      "mobile",
+      "wordpress",
+      "insurance-operations",
+      "digital-marketing",
+      "data-engineering",
+    ]);
 
     for (const capability of SERVICES_OVERVIEW_CAPABILITIES) {
       const card = cards.find((node) => node.id === capability.id);
@@ -166,7 +169,7 @@ describe("ServicesPage", () => {
     expect(productsGrid.closest("section")).toHaveAttribute("id", SERVICES_OVERVIEW_PRODUCTS_ANCHOR);
     expect(productsGrid).toHaveClass(SERVICES_OVERVIEW_PRODUCTS_GRID_CLASS);
     const products = within(productsGrid).getAllByTestId("services-product-card");
-    expect(products).toHaveLength(2);
+    expect(products).toHaveLength(SERVICES_OVERVIEW_PRODUCTS.length);
 
     for (const card of offerings) {
       expect(card).toHaveClass(...SERVICES_OVERVIEW_EQUAL_CARD_CLASS.split(" "));

@@ -49,7 +49,7 @@ describe("neardropCaseStudyDesign", () => {
     expect(NEARDROP_CASE_STUDY_DESIGN.colors.primary).toBe("#0066ff");
     expect(NEARDROP_CASE_STUDY_DESIGN.colors.body).toBe("#4b5563");
     expect(NEARDROP_CASE_STUDY_DESIGN.layout.architectureColumns).toBe("repeat(4, minmax(0, 1fr))");
-    expect(NEARDROP_CASE_STUDY_DESIGN.layout.featureColumns).toBe("repeat(4, minmax(0, 1fr))");
+    expect(NEARDROP_CASE_STUDY_DESIGN.layout.featureColumns).toBe("repeat(2, minmax(0, 1fr))");
   });
 
   it("paints the full case study page with the pure white canvas tone", () => {
@@ -64,7 +64,7 @@ describe("neardropCaseStudyDesign", () => {
       `.${NEARDROP_CASE_STUDY_INTRO_SECTION_CLASS} {`,
       `.${NEARDROP_CASE_STUDY_INTRO_INNER_CLASS} {`,
     );
-    expect(intro).toContain("text-align: left");
+    expect(intro).toContain("text-align: center");
 
     const inner = ruleBlock(
       `.${NEARDROP_CASE_STUDY_INTRO_INNER_CLASS} {`,
@@ -93,37 +93,9 @@ describe("neardropCaseStudyDesign", () => {
     expect(description).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.body}`);
   });
 
-  it("styles the technical architecture four-pillar grid", () => {
-    const kicker = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_KICKER_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS} {`,
-    );
-    expect(kicker).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.goldLabel}`);
-
-    const heading = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_BODY_CLASS} {`,
-    );
-    expect(heading).toContain(`font-weight: ${NEARDROP_CASE_STUDY_DESIGN.typography.titleWeight}`);
-
-    const body = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_BODY_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS} {`,
-    );
-    expect(body).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.body}`);
-
-    const grid = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS} {`,
-      `.neardrop-case-study-architecture-item {`,
-    );
-    expect(grid).toContain(`grid-template-columns: ${NEARDROP_CASE_STUDY_DESIGN.layout.architectureColumns}`);
-
-    const icon = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_ITEM_ICON_CLASS} {`,
-      `.neardrop-case-study-architecture-item-title {`,
-    );
-    expect(icon).toContain("border-radius: 999px");
-    expect(icon).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
+  it("no longer ships bespoke architecture-grid CSS now that NearDrop uses the shared work case study layout", () => {
+    expect(css).not.toContain(".neardrop-case-study-architecture-grid {");
+    expect(NEARDROP_CASE_STUDY_DESIGN.layout.architectureColumns).toBe("repeat(4, minmax(0, 1fr))");
   });
 
   it("styles the functional excellence feature grid with matching white cards", () => {
@@ -137,7 +109,7 @@ describe("neardropCaseStudyDesign", () => {
       `.${NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_HEADING_CLASS} {`,
       `.neardrop-case-study-functional-excellence-description {`,
     );
-    expect(heading).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
+    expect(heading).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.title}`);
 
     const count = ruleBlock(
       `.${NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_COUNT_CLASS} {`,
@@ -155,9 +127,7 @@ describe("neardropCaseStudyDesign", () => {
       `.neardrop-case-study-feature-card {`,
       `.neardrop-case-study-feature-icon {`,
     );
-    expect(featureCard).toContain("border-radius: 22px");
-    expect(css).not.toContain(".neardrop-case-study-feature-card--highlight");
-    expect(css).not.toContain(".neardrop-case-study-feature-watermark");
+    expect(featureCard).toContain("border-radius: 0");
   });
 
   it("styles the precision execution process band with a split layout and white step cards", () => {
@@ -189,16 +159,10 @@ describe("neardropCaseStudyDesign", () => {
       `.${NEARDROP_CASE_STUDY_EXECUTION_ITEM_CLASS} {`,
       `.neardrop-case-study-execution-number {`,
     );
-    expect(item).toContain("background: transparent");
+    expect(item).toContain("background: #ffffff");
   });
 
   it("styles the light bottom CTA banner", () => {
-    const section = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_BOTTOM_CTA_PANEL_CLASS} {`,
-    );
-    expect(section).toContain("padding:");
-
     const panel = ruleBlock(
       `.${NEARDROP_CASE_STUDY_BOTTOM_CTA_PANEL_CLASS} {`,
       `.${NEARDROP_CASE_STUDY_BOTTOM_CTA_INNER_CLASS} {`,

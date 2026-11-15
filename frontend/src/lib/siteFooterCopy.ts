@@ -24,7 +24,7 @@ export type FooterNavColumn = {
   links: readonly FooterLinkCell[];
 };
 
-export const SITE_FOOTER_MAX_LINKS_PER_COLUMN = 7 as const;
+export const SITE_FOOTER_MAX_LINKS_PER_COLUMN = 10 as const;
 
 export const SITE_FOOTER_BRAND_TAGLINE = "Enterprise AI & Cloud Systems" as const;
 export const SITE_FOOTER_BRAND_SUBTEXT =
@@ -59,6 +59,9 @@ export const SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS = [
   "Rapid SaaS MVP Development",
   "Automation & Integration Tools",
   "Workflow & Process Automation",
+  "Insurance Operations",
+  "Digital Marketing",
+  "Data Engineering",
 ] as const;
 
 /** @deprecated Use SITE_FOOTER_ENGINEERING_NAV_LINK_LABELS */
@@ -103,6 +106,9 @@ const SITE_FOOTER_ENGINEERING_NAV_LINKS = [
   { kind: "internal", label: "Rapid SaaS MVP Development", to: buildServiceDetailMenuHref("mvp-development") },
   { kind: "internal", label: "Automation & Integration Tools", to: buildServiceDetailMenuHref("automation-tools") },
   { kind: "internal", label: "Workflow & Process Automation", to: ROUTES.workflowAutomation },
+  { kind: "internal", label: "Insurance Operations", to: ROUTES.insuranceOperations },
+  { kind: "internal", label: "Digital Marketing", to: ROUTES.digitalMarketing },
+  { kind: "internal", label: "Data Engineering", to: ROUTES.dataEngineering },
 ] as const satisfies readonly FooterLinkCell[];
 
 const SITE_FOOTER_COMPANY_NAV_LINKS = [

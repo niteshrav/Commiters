@@ -30,7 +30,7 @@ export default function AboutDeliveryJourneySection() {
       <span id="how-we-work" className={NAV_SECTION_ALIAS_CLASS} />
       <span id="process" className={NAV_SECTION_ALIAS_CLASS} />
       <div className={ABOUT_JOURNEY_INNER_CLASS}>
-        <header className={ABOUT_JOURNEY_HEADER_CLASS}>
+        <div className={ABOUT_JOURNEY_HEADER_CLASS}>
           <p className={`about-journey-kicker ${HOME_CLOUD_KICKER_CLASS}`}>{ABOUT_DELIVERY_JOURNEY.kicker}</p>
           <h2 id="about-journey-title" className={`about-journey-title ${HOME_CLOUD_TITLE_CLASS}`}>
             {ABOUT_DELIVERY_JOURNEY.titleLead}
@@ -39,7 +39,7 @@ export default function AboutDeliveryJourneySection() {
             </span>
           </h2>
           <p className={`about-journey-subtext ${HOME_CLOUD_LEAD_CLASS}`}>{ABOUT_DELIVERY_JOURNEY.subtext}</p>
-        </header>
+        </div>
 
         <ol className={ABOUT_JOURNEY_TRACK_CLASS} data-testid="about-journey-track">
           {ABOUT_DELIVERY_JOURNEY.stages.map((stage) => (

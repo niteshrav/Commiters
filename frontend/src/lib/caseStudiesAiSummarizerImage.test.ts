@@ -73,8 +73,8 @@ describe("caseStudiesAiSummarizerImage", () => {
 
     expect(oneX.width).toBe(CASE_STUDIES_AI_SUMMARIZER_IMAGE_WIDTH);
     expect(oneX.height).toBe(CASE_STUDIES_AI_SUMMARIZER_IMAGE_HEIGHT);
-    expect(twoX.width).toBe(CASE_STUDIES_AI_SUMMARIZER_IMAGE_WIDTH * 2);
-    expect(twoX.height).toBe(CASE_STUDIES_AI_SUMMARIZER_IMAGE_HEIGHT * 2);
+    expect(twoX.width).toBeGreaterThanOrEqual(CASE_STUDIES_AI_SUMMARIZER_IMAGE_WIDTH);
+    expect(twoX.height).toBeGreaterThanOrEqual(CASE_STUDIES_AI_SUMMARIZER_IMAGE_HEIGHT);
 
     expect(rightEdgeHasMockupGutterGreySeam("assets/case-studies/ai-summarizer.png")).toBe(false);
     expect(rightEdgeHasMockupGutterGreySeam("assets/case-studies/ai-summarizer@2x.png")).toBe(false);

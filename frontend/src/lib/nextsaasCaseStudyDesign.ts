@@ -2,7 +2,7 @@
 export const NEXTSAAS_CASE_STUDY_DESIGN = {
   colors: {
     pageBackground: "#ffffff",
-    primary: "#1E88E5",
+    primary: "#0066ff",
     kicker: "#9b8a5d",
     title: "#121317",
     body: "#4b5563",
@@ -10,7 +10,7 @@ export const NEXTSAAS_CASE_STUDY_DESIGN = {
     cardBorder: "#e5e7eb",
     checklistIndicator: "#9b8a5d",
     infrastructureSurface: "#f3f3f4",
-    scopeCardTopBorder: "#1E88E5",
+    scopeCardTopBorder: "#0066ff",
     pipelinesMediaSurface: "#ffffff",
     visualBreakFrameSurface: "#ffffff",
   },

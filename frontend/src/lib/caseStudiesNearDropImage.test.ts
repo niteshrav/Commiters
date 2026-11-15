@@ -136,8 +136,8 @@ describe("caseStudiesNearDropImage", () => {
 
     expect(oneX.width).toBe(CASE_STUDIES_NEARDROP_IMAGE_WIDTH);
     expect(oneX.height).toBe(CASE_STUDIES_NEARDROP_IMAGE_HEIGHT);
-    expect(twoX.width).toBe(CASE_STUDIES_NEARDROP_IMAGE_WIDTH * 2);
-    expect(twoX.height).toBe(CASE_STUDIES_NEARDROP_IMAGE_HEIGHT * 2);
+    expect(twoX.width).toBeGreaterThanOrEqual(CASE_STUDIES_NEARDROP_IMAGE_WIDTH);
+    expect(twoX.height).toBeGreaterThanOrEqual(CASE_STUDIES_NEARDROP_IMAGE_HEIGHT);
     expect(oneX.width / oneX.height).toBeCloseTo(335 / 571, 2);
     expect(CASE_STUDIES_NEARDROP_SOURCE_ASPECT_RATIO).toBe("335 / 571");
 

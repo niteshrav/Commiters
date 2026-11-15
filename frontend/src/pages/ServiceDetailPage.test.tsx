@@ -88,4 +88,39 @@ describe("ServiceDetailPage", () => {
       "Web Application Development Services | Commiters",
     );
   });
+
+  it.each(["insurance-operations", "digital-marketing", "data-engineering"] as const)(
+    "renders operations landing sections for %s",
+    (slug) => {
+      render(
+        <MemoryRouter initialEntries={[buildServiceDetailPath(slug)]}>
+          <Routes>
+            <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+
+      expect(screen.getByTestId("service-detail-page")).toHaveAttribute("data-service-slug", slug);
+      expect(screen.getByTestId("service-detail-hero")).toBeInTheDocument();
+      expect(screen.getByTestId("service-detail-problem")).toBeInTheDocument();
+      expect(screen.getByTestId("service-detail-features")).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: /Core Capabilities/i })).toBeInTheDocument();
+      expect(screen.getByTestId("service-detail-process")).toBeInTheDocument();
+      expect(screen.getByTestId("service-detail-faqs")).toBeInTheDocument();
+      expect(screen.getByTestId("service-detail-final-cta")).toBeInTheDocument();
+      expect(screen.queryByTestId("service-detail-testimonials")).not.toBeInTheDocument();
+    },
+  );
+
+  it("sets SEO titles for the new operations landings", () => {
+    expect(serviceDetailTitleForTests("insurance-operations")).toBe(
+      "Insurance Operations Support for Agencies | Commiters",
+    );
+    expect(serviceDetailTitleForTests("digital-marketing")).toBe(
+      "Digital Marketing & Conversion Funnels | Commiters",
+    );
+    expect(serviceDetailTitleForTests("data-engineering")).toBe(
+      "Data Engineering & Automated Extraction | Commiters",
+    );
+  });
 });

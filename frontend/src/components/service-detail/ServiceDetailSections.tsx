@@ -51,12 +51,16 @@ const FEATURES_ON_PAGE = 4;
 
 export function ServiceDetailFeatures({ service }: Props) {
   const features =
-    service.slug === "wordpress-development" ? service.features : service.features.slice(0, FEATURES_ON_PAGE);
+    service.showAllFeatures || service.slug === "wordpress-development"
+      ? service.features
+      : service.features.slice(0, FEATURES_ON_PAGE);
 
   return (
     <section className="svc-detail-section svc-detail-section--muted" data-testid="service-detail-features">
       <Reveal>
-        <h2 className="svc-detail-section-title">Features</h2>
+        <h2 className="svc-detail-section-title">
+          {service.showAllFeatures ? "Core Capabilities" : "Features"}
+        </h2>
         <div className="svc-detail-features-grid">
           {features.map((feature, index) => {
             const Icon = FEATURE_ICONS[feature.icon];

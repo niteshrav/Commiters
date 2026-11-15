@@ -52,7 +52,7 @@ export default function AboutOperatingPrinciplesSection() {
       <span id="principles" className={NAV_SECTION_ALIAS_CLASS} />
       <div className="about-principles-inner">
         <div className={`${ABOUT_VALUES_HEADING_WRAP_CLASS} about-principles-intro`}>
-          <header className="about-principles-header">
+          <div className="about-principles-header">
             <span className={`about-principles-kicker ${HOME_CLOUD_KICKER_CLASS} ${ABOUT_VALUES_KICKER_UTIL_CLASS}`}>
               {principles.kicker}
             </span>
@@ -63,7 +63,7 @@ export default function AboutOperatingPrinciplesSection() {
               </span>
             </h2>
             <p className={`about-principles-subtext ${HOME_CLOUD_LEAD_CLASS}`}>{principles.subtext}</p>
-          </header>
+          </div>
         </div>
 
         <div className="about-principles-grid">

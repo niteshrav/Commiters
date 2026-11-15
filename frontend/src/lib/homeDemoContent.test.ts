@@ -10,7 +10,7 @@ describe("homeDemoContent", () => {
     expect(HOME_DEMO_COPY.hero.title).toBe("Engineered systems for serious operations.");
     expect(HOME_DEMO_COPY.hero.primaryHref).toBe("#solutions");
     expect(HOME_DEMO_COPY.hero.secondaryHref).toBe("#work");
-    expect(HOME_DEMO_COPY.servicesCarousel.items).toHaveLength(7);
+    expect(HOME_DEMO_COPY.servicesCarousel.items).toHaveLength(10);
     expect(HOME_DEMO_COPY.servicesCarousel.items[0].to).toBe(buildServiceDetailPath("website-development"));
     expect(HOME_DEMO_COPY.servicesCarousel.items.map((item) => item.title)).toEqual([
       "Websites & E-commerce",
@@ -20,6 +20,9 @@ describe("homeDemoContent", () => {
       "Mobile Applications",
       "Enterprise & Business Solutions",
       "WordPress Development",
+      "Insurance Operations",
+      "Digital Marketing",
+      "Data Engineering",
     ]);
     expect(HOME_DEMO_COPY.cta.to).toBe(ROUTES.contact);
     expect(HOME_DEMO_COPY.finder.legacyId).toBe(HOME_LEAD_MAGNET_FORM_ID);

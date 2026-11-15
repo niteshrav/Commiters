@@ -134,6 +134,24 @@ describe("servicesOverviewPageContent", () => {
         to: "/services/wordpress-development",
         id: "wordpress",
       },
+      {
+        title: "Insurance Operations",
+        badge: "Agency Back-Office",
+        to: "/services/insurance-operations",
+        id: "insurance-operations",
+      },
+      {
+        title: "Digital Marketing",
+        badge: "Pipeline Growth",
+        to: "/services/digital-marketing",
+        id: "digital-marketing",
+      },
+      {
+        title: "Data Engineering",
+        badge: "Pipelines & Warehouses",
+        to: "/services/data-engineering",
+        id: "data-engineering",
+      },
     ]);
     expect(SERVICES_OVERVIEW_CAPABILITIES[0]?.subtext).toMatch(/Tailwind CSS/);
     expect(SERVICES_OVERVIEW_CAPABILITIES[1]?.subtext).toMatch(/GST invoice pipelines/);

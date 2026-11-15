@@ -170,7 +170,7 @@ describe("nextsaasCaseStudyLayout", () => {
       `.${NEXTSAAS_CASE_STUDY_VISUAL_BREAK_BADGE_CLASS} {`,
       `.nextsaas-case-study-visual-break-badge-label {`,
     );
-    expect(badge).toContain(`background: ${NEXTSAAS_CASE_STUDY_DESIGN.colors.primary}`);
+    expect(badge).toContain("background: #ffffff");
 
     const bottomCta = ruleBlock(
       `.${NEXTSAAS_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS} {`,

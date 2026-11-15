@@ -15,6 +15,8 @@ import {
   LEGACY_LAYOUT_MEDIA_QUERIES,
   PAGE_STYLE_FILES,
   RESPONSIVE_LANDING_FOUR_COL_SELECTORS,
+  RESPONSIVE_LANDING_TABLET_FOUR_COL_SELECTORS,
+  RESPONSIVE_LANDING_TABLET_THREE_COL_SELECTORS,
   RESPONSIVE_LANDING_THREE_COL_SELECTORS,
   RESPONSIVE_LANDING_TWO_COL_SELECTORS,
   RESPONSIVE_STACK_GRID_SELECTORS,
@@ -156,6 +158,26 @@ describe("responsiveLayout", () => {
         new RegExp(`@media ${query}[\\s\\S]*${selector.replace(/\./g, "\\.")}[\\s\\S]*repeat\\(2`),
       );
     }
+  });
+
+  it("uses a three-or-four-column tablet layout for AI landing grids", () => {
+    const query = BREAKPOINT_TABLET_MIN_MQ.replace(/[()]/g, "\\$&");
+    for (const selector of RESPONSIVE_LANDING_TABLET_THREE_COL_SELECTORS) {
+      expect(sheetContaining(selector)).toMatch(
+        new RegExp(`@media ${query}[\\s\\S]*${selector.replace(/\./g, "\\.")}[\\s\\S]*repeat\\(3`),
+      );
+    }
+    for (const selector of RESPONSIVE_LANDING_TABLET_FOUR_COL_SELECTORS) {
+      expect(sheetContaining(selector)).toMatch(
+        new RegExp(`@media ${query}[\\s\\S]*${selector.replace(/\./g, "\\.")}[\\s\\S]*repeat\\(4`),
+      );
+    }
+  });
+
+  it("stretches the AI Solutions hero CTA on mobile", () => {
+    expect(sheetContaining(".aisol-hero-cta")).toMatch(
+      new RegExp(`@media \\(max-width: ${BREAKPOINT_MOBILE_PX}px\\)[\\s\\S]*\\.aisol-hero-cta[\\s\\S]*width:\\s*100%`),
+    );
   });
 
   it("uses a three-or-four-column desktop layout for landing grids", () => {

@@ -166,7 +166,7 @@ export function stepValid(state: PlannerState, index: number): boolean {
   const id = PLANNER_STEPS[index]?.id;
   const type = plannerType(state.type);
   if (id === "type") return Boolean(state.type) && (state.type !== "custom" || Boolean(state.customName.trim()));
-  if (id === "questions") return Boolean(type) && type.questions.every((q) => state.answers[q.id]);
+  if (id === "questions") return type != null && type.questions.every((q) => state.answers[q.id]);
   if (id === "tech") return Boolean(state.tech);
   if (id === "theme") return Boolean(state.theme);
   if (id === "timeline") return Boolean(state.timeline);
@@ -339,7 +339,8 @@ function buildPdfBytes(state: PlannerState): Uint8Array {
 
 export function downloadPlannerPdf(state: PlannerState): void {
   const safe = projectLabel(state).replace(/[^A-Za-z0-9]+/g, "-");
-  const blob = new Blob([buildPdfBytes(state)], { type: "application/pdf" });
+  const pdfBytes = buildPdfBytes(state);
+  const blob = new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;

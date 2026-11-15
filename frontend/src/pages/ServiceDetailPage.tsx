@@ -2,6 +2,11 @@ import { Navigate, useParams } from "react-router-dom";
 import ServiceDetailFinalCta from "../components/service-detail/ServiceDetailFinalCta";
 import ServiceDetailHero, { serviceDocumentTitle } from "../components/service-detail/ServiceDetailHero";
 import { ServiceDetailPlan } from "../components/service-detail/ServiceDetailEngagement";
+import {
+  ServiceDetailFaqs,
+  ServiceDetailProblem,
+  ServiceDetailProcess,
+} from "../components/service-detail/ServiceDetailLandingSections";
 import ServiceDetailPortfolio from "../components/service-detail/ServiceDetailPortfolio";
 import {
   ServiceDetailAbout,
@@ -52,9 +57,12 @@ export default function ServiceDetailPage() {
     <div className={withSiteCloudTheme("service-detail-page")} data-testid="service-detail-page" data-service-slug={service.slug}>
       <ServiceDetailHero service={service} />
       <ServiceDetailAbout service={service} />
+      <ServiceDetailProblem service={service} />
       <ServiceDetailFeatures service={service} />
+      <ServiceDetailProcess service={service} />
       <ServiceDetailTechnologies service={service} />
       <ServiceDetailPlan service={service} />
+      <ServiceDetailFaqs service={service} />
       <ServiceDetailPortfolio service={service} />
       <ServiceDetailFinalCta />
     </div>

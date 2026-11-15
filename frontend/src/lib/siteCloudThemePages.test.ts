@@ -16,6 +16,9 @@ const DELEGATING_PAGES = [
   "AiSummarizerCaseStudyPage.tsx",
   "MultiRoleCrmCaseStudyPage.tsx",
   "NextSaasCaseStudyPage.tsx",
+  "NewsoraCaseStudyPage.tsx",
+  "SynapsePage.tsx",
+  "TerminalPage.tsx",
   "WebsiteDevelopmentUdaipurPage.tsx",
   "WhatsAppAutomationUdaipurPage.tsx",
 ] as const;
@@ -23,6 +26,7 @@ const DELEGATING_PAGES = [
 const SHARED_SHELLS = [
   ["TechnicalCaseStudyPage.tsx", join("components", "TechnicalCaseStudyPage.tsx")],
   ["SeoLandingPage.tsx", join("components", "SeoLandingPage.tsx")],
+  ["StudioProductPage.tsx", join("components", "StudioProductPage.tsx")],
   ["WorkCaseStudyLayout.tsx", join("components", "work-case-study", "WorkCaseStudyLayout.tsx")],
 ] as const;
 
@@ -34,7 +38,7 @@ describe("siteCloudThemePages", () => {
     for (const name of pageFiles) {
       const src = readFileSync(join(pagesDir, name), "utf8");
       if ((DELEGATING_PAGES as readonly string[]).includes(name)) {
-        expect(src).toMatch(/HomeDemoPage|WorkCaseStudyLayout|TechnicalCaseStudyPage|SeoLandingPage/);
+        expect(src).toMatch(/HomeDemoPage|WorkCaseStudyLayout|TechnicalCaseStudyPage|SeoLandingPage|StudioProductPage/);
         continue;
       }
       expect(src, name).toMatch(/SITE_CLOUD_THEME_CLASS|withSiteCloudTheme/);

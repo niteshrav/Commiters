@@ -13,6 +13,9 @@ const SERVICE_SLUGS = [
   "mvp-development",
   "automation-tools",
   "wordpress-development",
+  "insurance-operations",
+  "digital-marketing",
+  "data-engineering",
 ];
 
 const paths = [

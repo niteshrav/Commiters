@@ -43,7 +43,7 @@ describe("neardropCaseStudyLayout", () => {
       `.${NEARDROP_CASE_STUDY_INTRO_SECTION_CLASS} {`,
       `.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`,
     );
-    expect(intro).toContain("text-align: left");
+    expect(intro).toContain("text-align: center");
 
     const kicker = ruleBlock(`.${NEARDROP_CASE_STUDY_KICKER_CLASS} {`, `.${NEARDROP_CASE_STUDY_TITLE_CLASS} {`);
     expect(kicker).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.primary}`);
@@ -57,17 +57,7 @@ describe("neardropCaseStudyLayout", () => {
     );
     expect(description).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.body}`);
 
-    const architectureKicker = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_KICKER_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_HEADING_CLASS} {`,
-    );
-    expect(architectureKicker).toContain(`color: ${NEARDROP_CASE_STUDY_DESIGN.colors.goldLabel}`);
-
-    const architectureGrid = ruleBlock(
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_GRID_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_ARCHITECTURE_ITEM_CLASS} {`,
-    );
-    expect(architectureGrid).toContain(`grid-template-columns: ${NEARDROP_CASE_STUDY_DESIGN.layout.architectureColumns}`);
+    expect(css).not.toContain(".neardrop-case-study-architecture-grid {");
 
     const functionalExcellence = ruleBlock(
       `.${NEARDROP_CASE_STUDY_FUNCTIONAL_EXCELLENCE_SECTION_CLASS} {`,
@@ -95,7 +85,7 @@ describe("neardropCaseStudyLayout", () => {
 
     const execution = ruleBlock(
       `.${NEARDROP_CASE_STUDY_EXECUTION_LIST_CLASS} {`,
-      `.${NEARDROP_CASE_STUDY_BOTTOM_CTA_SECTION_CLASS} {`,
+      `.neardrop-case-study-execution-item {`,
     );
     expect(execution).toContain("display: grid");
 

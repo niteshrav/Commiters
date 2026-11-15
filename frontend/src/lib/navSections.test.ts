@@ -107,6 +107,27 @@ describe("navSections", () => {
         icon: "workflow",
         badge: undefined,
       },
+      {
+        label: "Insurance Operations",
+        description: "Back-office and AI-assisted policy admin for US P&C agencies.",
+        to: ROUTES.insuranceOperations,
+        icon: "shield",
+        badge: undefined,
+      },
+      {
+        label: "Digital Marketing",
+        description: "SEO, CRO, paid acquisition, and CRM systems for qualified pipeline.",
+        to: ROUTES.digitalMarketing,
+        icon: "chart",
+        badge: undefined,
+      },
+      {
+        label: "Data Engineering",
+        description: "Pipelines, warehouses, PDF extraction, and operational dashboards.",
+        to: ROUTES.dataEngineering,
+        icon: "database",
+        badge: undefined,
+      },
     ]);
     expect(SERVICE_MEGA_CARDS.some((card) => /trusttap|opsflow/i.test(card.label) || /trusttap|opsflow/i.test(card.to))).toBe(false);
     expect(NAV_DROPDOWN_CONFIGS).toHaveLength(5);
@@ -162,6 +183,9 @@ describe("navSections", () => {
       "saas-mvp",
       "mobile",
       "wordpress",
+      "insurance-operations",
+      "digital-marketing",
+      "data-engineering",
       "engineering-capabilities",
     ]);
   });
@@ -174,6 +198,9 @@ describe("navSections", () => {
       "High-Performance Web & Mobile Apps",
       "WordPress Development",
       "Automation & Integration Tools",
+      "Insurance Operations",
+      "Digital Marketing",
+      "Data Engineering",
       "Client Case Studies",
       "Client Testimonials",
       "The Studio",
@@ -269,6 +296,9 @@ describe("navSections", () => {
       { label: "High-Performance Web & Mobile Apps", to: `${ROUTES.services}#engineering-capabilities` },
       { label: "WordPress Development", to: "/services/wordpress-development" },
       { label: "Automation & Integration Tools", to: `${ROUTES.services}#engineering-capabilities` },
+      { label: "Insurance Operations", to: ROUTES.insuranceOperations },
+      { label: "Digital Marketing", to: ROUTES.digitalMarketing },
+      { label: "Data Engineering", to: ROUTES.dataEngineering },
     ]);
   });
 

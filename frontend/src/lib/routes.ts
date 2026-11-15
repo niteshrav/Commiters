@@ -56,6 +56,9 @@ export const ROUTES = {
   /** Legacy URL — redirect to spec-driven platforms */
   webApplicationsB2bLegacy: "/services/b2b-web-applications",
   workflowAutomation: "/services/workflow-automation",
+  insuranceOperations: "/services/insurance-operations",
+  digitalMarketing: "/services/digital-marketing",
+  dataEngineering: "/services/data-engineering",
   contact: "/contact",
   joinUs: "/join-us",
   /** Short URL — redirect to Open Positions */

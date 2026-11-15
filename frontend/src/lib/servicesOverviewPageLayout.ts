@@ -17,7 +17,7 @@ export const SERVICES_OVERVIEW_PRODUCTS_GRID_CLASS = "services-overview-products
 export const SERVICES_OVERVIEW_PRODUCT_CARD_CLASS = "services-overview-product-card" as const;
 export const SERVICES_OVERVIEW_CAPABILITIES_SECTION_CLASS = "services-overview-capabilities" as const;
 export const SERVICES_OVERVIEW_CAPABILITIES_GRID_CLASS =
-  "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch w-full mt-8" as const;
+  "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch w-full mt-8" as const;
 export const SERVICES_OVERVIEW_CAPABILITY_CARD_CLASS = "services-overview-capability-card" as const;
 export const SERVICES_OVERVIEW_CAPABILITY_CARD_CHROME_CLASS =
   "bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full" as const;
