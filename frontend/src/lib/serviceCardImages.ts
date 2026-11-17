@@ -9,6 +9,9 @@ export const SERVICE_CARD_IMAGE_BY_GRID_ID: Record<string, string> = {
   "ai-integration": "/assets/services/ai-integration.jpg",
   "automation-tools": "/assets/services/automation-tools.jpg",
   "mvp-development": "/assets/services/mvp-development.jpg",
+  "data-engineering": "/assets/services/data-engineering.jpg",
+  "digital-marketing": "/assets/services/digital-marketing.jpg",
+  insurance: "/assets/services/insurance.jpg",
 };
 
 const ICON_TO_GRID_ID: Record<string, string> = {

@@ -57,6 +57,7 @@ export const ROUTES = {
   webApplicationsB2bLegacy: "/services/b2b-web-applications",
   workflowAutomation: "/services/workflow-automation",
   insuranceOperations: "/services/insurance-operations",
+  insurance: "/services/insurance",
   digitalMarketing: "/services/digital-marketing",
   dataEngineering: "/services/data-engineering",
   contact: "/contact",

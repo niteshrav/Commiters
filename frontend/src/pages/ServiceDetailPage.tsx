@@ -1,4 +1,6 @@
 import { Navigate, useParams } from "react-router-dom";
+import DigitalMarketingExperience from "../components/service-detail/DigitalMarketingExperience";
+import InsuranceTechnologyExperience from "../components/service-detail/InsuranceTechnologyExperience";
 import ServiceDetailFinalCta from "../components/service-detail/ServiceDetailFinalCta";
 import ServiceDetailHero, { serviceDocumentTitle } from "../components/service-detail/ServiceDetailHero";
 import { ServiceDetailPlan } from "../components/service-detail/ServiceDetailEngagement";
@@ -56,15 +58,23 @@ export default function ServiceDetailPage() {
   return (
     <div className={withSiteCloudTheme("service-detail-page")} data-testid="service-detail-page" data-service-slug={service.slug}>
       <ServiceDetailHero service={service} />
-      <ServiceDetailAbout service={service} />
-      <ServiceDetailProblem service={service} />
-      <ServiceDetailFeatures service={service} />
-      <ServiceDetailProcess service={service} />
-      <ServiceDetailTechnologies service={service} />
-      <ServiceDetailPlan service={service} />
-      <ServiceDetailFaqs service={service} />
-      <ServiceDetailPortfolio service={service} />
-      <ServiceDetailFinalCta />
+      {service.slug === "digital-marketing" ? (
+        <DigitalMarketingExperience service={service} />
+      ) : service.slug === "insurance" ? (
+        <InsuranceTechnologyExperience service={service} />
+      ) : (
+        <>
+          <ServiceDetailAbout service={service} />
+          <ServiceDetailProblem service={service} />
+          <ServiceDetailFeatures service={service} />
+          <ServiceDetailProcess service={service} />
+          <ServiceDetailTechnologies service={service} />
+          <ServiceDetailPlan service={service} />
+          <ServiceDetailFaqs service={service} />
+          <ServiceDetailPortfolio service={service} />
+          <ServiceDetailFinalCta />
+        </>
+      )}
     </div>
   );
 }

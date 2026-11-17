@@ -11,6 +11,8 @@ type Props = { service: ServiceDetail };
 
 export default function ServiceDetailHero({ service }: Props) {
   const image = serviceCardImageForDetail(service.slug);
+  const primaryTo = service.primaryCtaTo ?? NAV_CTA_TO;
+  const primaryLabel = service.primaryCtaLabel ?? NAV_CTA_LABEL;
 
   return (
     <section className="svc-detail-hero" data-testid="service-detail-hero" aria-labelledby="service-detail-hero-title">
@@ -19,16 +21,22 @@ export default function ServiceDetailHero({ service }: Props) {
         <div className="svc-detail-hero-copy">
           <p className="svc-detail-kicker typography-kicker">Enterprise service</p>
           <h1 id="service-detail-hero-title" className="svc-detail-hero-title typography-display">
-            {service.title}
+            {service.heroHeadline ?? service.title}
           </h1>
           <p className="svc-detail-hero-tagline typography-body">{service.tagline}</p>
           <p className="svc-detail-hero-description typography-body">{service.description}</p>
           <div className="svc-detail-hero-actions">
-            <Link className="btn btn-primary svc-detail-btn" to={NAV_CTA_TO} data-testid="service-detail-hero-primary-cta">
-              {NAV_CTA_LABEL}
-            </Link>
+            {primaryTo.startsWith("#") ? (
+              <a className="btn btn-primary svc-detail-btn" href={primaryTo} data-testid="service-detail-hero-primary-cta">
+                {primaryLabel}
+              </a>
+            ) : (
+              <Link className="btn btn-primary svc-detail-btn" to={primaryTo} data-testid="service-detail-hero-primary-cta">
+                {primaryLabel}
+              </Link>
+            )}
             <Link className="btn btn-secondary svc-detail-btn" to={ROUTES.contact}>
-              Request Quote
+              {service.quoteCtaLabel ?? "Request Quote"}
             </Link>
           </div>
         </div>

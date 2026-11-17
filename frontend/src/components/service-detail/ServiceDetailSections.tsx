@@ -81,7 +81,7 @@ export function ServiceDetailFeatures({ service }: Props) {
 }
 
 export function ServiceDetailTechnologies({ service }: Props) {
-  const technologies = service.technologies.slice(0, 6);
+  const technologies = service.technologies;
 
   return (
     <section className="svc-detail-section" data-testid="service-detail-technologies">

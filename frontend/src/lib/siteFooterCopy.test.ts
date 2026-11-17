@@ -47,7 +47,7 @@ describe("siteFooterCopy", () => {
       "Rapid SaaS MVP Development",
       "Automation & Integration Tools",
       "Workflow & Process Automation",
-      "Insurance Operations",
+      "Insurance",
       "Digital Marketing",
       "Data Engineering",
     ]);
@@ -112,8 +112,8 @@ describe("siteFooterCopy", () => {
       (link) => link.label === "Workflow & Process Automation",
     );
     expect(workflow?.kind === "internal" ? workflow.to : undefined).toBe(ROUTES.workflowAutomation);
-    const insurance = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Insurance Operations");
-    expect(insurance?.kind === "internal" ? insurance.to : undefined).toBe(ROUTES.insuranceOperations);
+    const insurance = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Insurance");
+    expect(insurance?.kind === "internal" ? insurance.to : undefined).toBe(ROUTES.insurance);
     const marketing = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Digital Marketing");
     expect(marketing?.kind === "internal" ? marketing.to : undefined).toBe(ROUTES.digitalMarketing);
     const dataEngineering = SITE_FOOTER_COPY.navColumns[1].links.find((link) => link.label === "Data Engineering");

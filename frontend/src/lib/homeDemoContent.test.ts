@@ -20,7 +20,7 @@ describe("homeDemoContent", () => {
       "Mobile Applications",
       "Enterprise & Business Solutions",
       "WordPress Development",
-      "Insurance Operations",
+      "Insurance",
       "Digital Marketing",
       "Data Engineering",
     ]);

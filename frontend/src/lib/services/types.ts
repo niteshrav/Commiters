@@ -4,6 +4,7 @@ export type ServiceFeature = {
   title: string;
   description: string;
   icon: "responsive" | "performance" | "seo" | "secure" | "maintain" | "scale" | "ai" | "mobile" | "automation" | "mvp";
+  points?: string[];
 };
 
 export type ServiceTimelineEntry = {
@@ -46,6 +47,13 @@ export type ServiceDetail = {
   slug: string;
   gridId: string;
   title: string;
+  /** Optional hero heading when it should differ from the nav title. */
+  heroHeadline?: string;
+  /** Optional secondary hero button label. Defaults to Request Quote. */
+  quoteCtaLabel?: string;
+  /** Optional primary hero button. Defaults to Book Operational Audit. */
+  primaryCtaLabel?: string;
+  primaryCtaTo?: string;
   tagline: string;
   description: string;
   heroVisual: "website" | "ai" | "webapp" | "mobile" | "automation" | "mvp" | "ecommerce";

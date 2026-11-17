@@ -135,10 +135,10 @@ describe("servicesOverviewPageContent", () => {
         id: "wordpress",
       },
       {
-        title: "Insurance Operations",
-        badge: "Agency Back-Office",
-        to: "/services/insurance-operations",
-        id: "insurance-operations",
+        title: "Insurance",
+        badge: "Platforms & Operations",
+        to: "/services/insurance",
+        id: "insurance",
       },
       {
         title: "Digital Marketing",

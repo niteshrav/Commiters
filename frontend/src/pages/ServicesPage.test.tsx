@@ -131,7 +131,7 @@ describe("ServicesPage", () => {
       "saas-mvp",
       "mobile",
       "wordpress",
-      "insurance-operations",
+      "insurance",
       "digital-marketing",
       "data-engineering",
     ]);

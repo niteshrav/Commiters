@@ -71,7 +71,7 @@ export const SERVICE_NAV_ENTRIES: ServiceNavEntry[] = [
   { id: "saas-mvp", label: "Rapid SaaS MVP Development" },
   { id: "mobile", label: "Cross-Platform Mobile Applications" },
   { id: "wordpress", label: "WordPress Development" },
-  { id: "insurance-operations", label: "Insurance Operations" },
+  { id: "insurance", label: "Insurance" },
   { id: "digital-marketing", label: "Digital Marketing" },
   { id: "data-engineering", label: "Data Engineering" },
   { id: "engineering-capabilities", label: "Full-Lifecycle Software Engineering Capabilities" },
@@ -214,10 +214,10 @@ export const SERVICE_MEGA_CARDS: NavDropdownLink[] = [
     icon: "workflow",
   },
   {
-    id: "insurance-operations",
-    label: "Insurance Operations",
-    to: ROUTES.insuranceOperations,
-    description: "Back-office and AI-assisted policy admin for US P&C agencies.",
+    id: "insurance",
+    label: "Insurance",
+    to: ROUTES.insurance,
+    description: "Policy and claims platforms, plus agency administration for endorsements, renewals, and COIs.",
     icon: "shield",
   },
   {
@@ -231,7 +231,7 @@ export const SERVICE_MEGA_CARDS: NavDropdownLink[] = [
     id: "data-engineering",
     label: "Data Engineering",
     to: ROUTES.dataEngineering,
-    description: "Pipelines, warehouses, PDF extraction, and operational dashboards.",
+    description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
     icon: "database",
   },
 ];

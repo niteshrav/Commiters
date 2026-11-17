@@ -1,14 +1,8 @@
 import type { ServiceDetail } from "./types";
+import { DATA_ENGINEERING_FEATURES } from "./dataEngineeringPage";
+import { DIGITAL_MARKETING_FAQS, DIGITAL_MARKETING_FEATURES } from "./digitalMarketingPage";
+import { INSURANCE_TECH_FAQS, INSURANCE_TECH_FEATURES, INSURANCE_TECH_FLOW } from "./insuranceTechnologyPage";
 import { SERVICE_DEFAULT_PRICING } from "./sharedContent";
-
-const OPS_TECH = [
-  { slug: "nodedotjs", alt: "Node.js" },
-  { slug: "python", alt: "Python" },
-  { slug: "postgresql", alt: "PostgreSQL" },
-  { slug: "googlecloud", alt: "Google Cloud" },
-  { slug: "docker", alt: "Docker" },
-  { slug: "react", alt: "React" },
-];
 
 const MARKETING_TECH = [
   { slug: "react", alt: "React" },
@@ -19,133 +13,47 @@ const MARKETING_TECH = [
   { slug: "tailwindcss", alt: "Tailwind CSS" },
 ];
 
+const v11 = (slug: string) => `https://cdn.jsdelivr.net/npm/simple-icons@11/icons/${slug}.svg`;
+const v13 = (slug: string) => `https://cdn.jsdelivr.net/npm/simple-icons@13/icons/${slug}.svg`;
+const v14 = (slug: string) => `https://cdn.jsdelivr.net/npm/simple-icons@14/icons/${slug}.svg`;
+
 const DATA_TECH = [
   { slug: "python", alt: "Python" },
-  { slug: "nodedotjs", alt: "Node.js" },
+  { slug: "scala", alt: "Scala" },
+  { slug: "apachespark", alt: "Apache Spark" },
+  { slug: "apachekafka", alt: "Apache Kafka" },
+  { slug: "apacheairflow", alt: "Apache Airflow" },
+  { slug: "dbt", alt: "dbt", iconSrc: v11("dbt") },
+  { slug: "snowflake", alt: "Snowflake" },
+  { slug: "googlebigquery", alt: "BigQuery" },
+  { slug: "amazonredshift", alt: "Amazon Redshift", iconSrc: v14("amazonredshift") },
   { slug: "postgresql", alt: "PostgreSQL" },
+  { slug: "mongodb", alt: "MongoDB" },
+  { slug: "amazonaws", alt: "AWS", iconSrc: v11("amazonaws") },
+  { slug: "microsoftazure", alt: "Microsoft Azure", iconSrc: v11("microsoftazure") },
   { slug: "googlecloud", alt: "Google Cloud" },
-  { slug: "docker", alt: "Docker" },
-  { slug: "amazonaws", alt: "AWS" },
+  { slug: "powerbi", alt: "Power BI", iconSrc: v11("powerbi") },
+  { slug: "tableau", alt: "Tableau", iconSrc: v13("tableau") },
+  { slug: "looker", alt: "Looker" },
 ];
-
-export const INSURANCE_OPERATIONS_SERVICE: ServiceDetail = {
-  slug: "insurance-operations",
-  gridId: "insurance-operations",
-  title: "Insurance Operations",
-  tagline:
-    "Dedicated back-office and AI-assisted insurance operations support—so licensed producers sell while we keep policy administration accurate and on time.",
-  description:
-    "Commiters runs high-SLA policy administration, carrier portal work, renewals, and COI workflows for independent US P&C and personal lines agencies that need capacity without full-time overhead.",
-  heroVisual: "automation",
-  showAllFeatures: true,
-  showProcess: true,
-  seo: {
-    title: "Insurance Operations Support for Agencies",
-    description:
-      "Back-office and AI-assisted insurance operations for US P&C agencies—endorsements, carrier portal entry, renewals, COIs, and SOP automation.",
-    keywords:
-      "insurance operations, insurance back office, policy endorsements, COI issuance, agency management, P&C operations, Commiters",
-  },
-  about: {
-    what: "We operate as an extension of your agency desk: endorsements, quoting support, renewals prep, COIs, cancellation tracking, and SOP-driven automation.",
-    why: "Licensed producers lose revenue when they are stuck in portals and paperwork. A disciplined ops partner clears the queue without adding full-time headcount.",
-    who: "Independent US P&C and personal lines agencies and brokerages that need reliable back-office capacity and measurable turnaround.",
-  },
-  problem: {
-    title: "The bottleneck we remove",
-    lead: "Agencies stall when producers absorb admin work that should never leave the back office.",
-    points: [
-      "Endorsement and change queues pile up while producers chase carrier portals.",
-      "Renewals and remarketing prep arrive late, forcing last-minute scrambles.",
-      "COI and cancellation work is reactive instead of same-day and tracked.",
-      "Every desk invents its own checklist, so quality and SLA drift.",
-    ],
-  },
-  features: [
-    {
-      title: "Policy Endorsements & Changes",
-      description:
-        "Accurate processing of coverage updates, vehicle/driver additions, address changes, and mortgagee updates.",
-      icon: "maintain",
-    },
-    {
-      title: "Carrier Portal Entry & Quoting Support",
-      description: "Fast, error-free data entry across carrier portals and agency management systems (AMS).",
-      icon: "performance",
-    },
-    {
-      title: "Policy Renewals & Remarketing Prep",
-      description:
-        "Proactive 30/60/90-day renewal tracking, remarketing sheet preparation, and client follow-up workflows.",
-      icon: "seo",
-    },
-    {
-      title: "COI Issuance & Cancellation Tracking",
-      description:
-        "Same-day Certificate of Insurance generation and daily monitoring of pending cancellations and non-pay notices.",
-      icon: "secure",
-    },
-    {
-      title: "Workflow & SOP Automation",
-      description:
-        "Standardized agency checklists plus AI-assisted document extraction to cut manual processing time.",
-      icon: "automation",
-    },
-  ],
-  technologies: OPS_TECH,
-  processSteps: [
-    "Scope desks, SLAs, and AMS access",
-    "Stand up SOPs and quality checks",
-    "Run live endorsement and renewal queues",
-    "Automate repetitive checklist steps",
-    "Report turnaround and exception metrics",
-  ],
-  faqs: [
-    {
-      question: "Who is this for?",
-      answer:
-        "Independent US P&C and personal lines agencies that need back-office capacity without hiring a full-time admin team.",
-    },
-    {
-      question: "Do you replace licensed producers?",
-      answer:
-        "No. Producers stay on sales and client relationships. We handle policy administration and portal work under agreed SLAs.",
-    },
-    {
-      question: "How do you keep quality high?",
-      answer:
-        "Documented SOPs, dual-check paths for high-risk changes, and daily exception reporting so nothing silent-fails.",
-    },
-    {
-      question: "Can you work inside our AMS and carrier portals?",
-      answer:
-        "Yes. We operate inside the systems you already use, with least-privilege access and audit-friendly activity notes.",
-    },
-  ],
-  timeline: [
-    { label: "Desk pilot (one workflow)", duration: "1–2 Weeks" },
-    { label: "Full back-office desk", duration: "3–6 Weeks" },
-    { label: "Multi-desk + automation", duration: "2–3 Months" },
-  ],
-  pricing: SERVICE_DEFAULT_PRICING,
-  portfolio: [],
-};
 
 export const DIGITAL_MARKETING_SERVICE: ServiceDetail = {
   slug: "digital-marketing",
   gridId: "digital-marketing",
   title: "Digital Marketing",
+  heroHeadline: "Digital Marketing & Conversion Funnels",
+  quoteCtaLabel: "Request a Quote",
   tagline:
-    "Performance-driven digital marketing and conversion funnels—turning search, social, and website traffic into qualified pipeline.",
+    "Performance-driven digital marketing and conversion funnels that turn search, social and website traffic into qualified leads, customers and measurable business growth.",
   description:
-    "Commiters builds measurable acquisition systems for startups, local businesses, hospitality and wellness brands, and SMBs that need leads—not vanity metrics.",
+    "Commiters builds measurable acquisition systems for startups, local businesses, hospitality and wellness brands, and growing SMBs that need more than vanity metrics.",
   heroVisual: "website",
   showAllFeatures: true,
   showProcess: true,
   seo: {
     title: "Digital Marketing & Conversion Funnels",
     description:
-      "SEO, CRO, paid acquisition, content systems, and CRM automation that turn traffic into qualified pipeline for startups and SMBs.",
+      "Performance-driven digital marketing and conversion funnels that turn search, social, and website traffic into qualified leads and measurable growth.",
     keywords:
       "digital marketing, SEO, conversion rate optimization, Google Ads, Meta Ads, marketing automation, lead generation, Commiters",
   },
@@ -164,38 +72,7 @@ export const DIGITAL_MARKETING_SERVICE: ServiceDetail = {
       "Inbound leads go cold because CRM and SMS/email sequences are missing.",
     ],
   },
-  features: [
-    {
-      title: "SEO & Local Visibility",
-      description:
-        "Technical SEO cleanup, high-intent landing architecture, and Google Business Profile optimization for organic and local demand.",
-      icon: "seo",
-    },
-    {
-      title: "CRO & Conversion Funnels",
-      description:
-        "High-converting landing pages, automated lead capture, and booking or gifting funnels that turn visitors into customers.",
-      icon: "performance",
-    },
-    {
-      title: "Paid Acquisition & Retargeting",
-      description:
-        "Meta and Google Ads setups focused on cost-per-qualified-lead and measurable ROI—not vanity reach.",
-      icon: "mvp",
-    },
-    {
-      title: "Content & Social Growth Systems",
-      description:
-        "Structured calendars, brand positioning, and multi-channel distribution built to drive inbound inquiries.",
-      icon: "maintain",
-    },
-    {
-      title: "Marketing & CRM Automation",
-      description:
-        "Automated email/SMS follow-up and lead routing so no inbound inquiry goes cold.",
-      icon: "automation",
-    },
-  ],
+  features: DIGITAL_MARKETING_FEATURES,
   technologies: MARKETING_TECH,
   processSteps: [
     "Audit funnel, tracking, and offer clarity",
@@ -204,28 +81,7 @@ export const DIGITAL_MARKETING_SERVICE: ServiceDetail = {
     "Wire CRM follow-up and lead routing",
     "Optimize weekly against qualified pipeline",
   ],
-  faqs: [
-    {
-      question: "Do you sell vanity metrics?",
-      answer:
-        "No. We report on qualified leads, booked calls, and cost-per-qualified-lead—metrics founders and SMBs can act on.",
-    },
-    {
-      question: "Can you work with our existing website?",
-      answer:
-        "Yes. We improve conversion on what you have, or rebuild high-intent landing pages when the current site cannot convert.",
-    },
-    {
-      question: "Which channels do you run?",
-      answer:
-        "SEO, Google Ads, Meta Ads, content distribution, and CRM/email-SMS automation—scoped to the channels that match your offer.",
-    },
-    {
-      question: "How fast until we see signal?",
-      answer:
-        "Paid and CRO changes can show signal in days to weeks. SEO compounds over months; we set expectations by channel in the scope.",
-    },
-  ],
+  faqs: DIGITAL_MARKETING_FAQS,
   timeline: [
     { label: "Funnel + tracking fix", duration: "1–2 Weeks" },
     { label: "Acquisition launch", duration: "2–4 Weeks" },
@@ -239,108 +95,143 @@ export const DATA_ENGINEERING_SERVICE: ServiceDetail = {
   slug: "data-engineering",
   gridId: "data-engineering",
   title: "Data Engineering",
-  tagline:
-    "Reliable data pipelines, warehousing, and automated extraction—turning raw operational data into clean, actionable systems.",
+  tagline: "Engineering Data. Empowering Decisions.",
   description:
-    "Commiters builds ETL/ELT pipelines, document extraction, warehouses, API sync, and reporting for teams drowning in spreadsheets, PDFs, and disconnected SaaS tools.",
+    "Build intelligent, scalable and reliable data ecosystems that transform complex information into actionable business insights.",
   heroVisual: "ai",
   showAllFeatures: true,
   showProcess: true,
   seo: {
-    title: "Data Engineering & Automated Extraction",
+    title: "Data Engineering Services",
     description:
-      "ETL/ELT pipelines, PDF extraction, data warehousing, API sync, and operational dashboards for growing businesses and ops teams.",
+      "Data pipelines, warehousing, integration, governance, cloud platforms, analytics, and AI-ready infrastructure from Commiters.",
     keywords:
-      "data engineering, ETL, ELT, data warehouse, PDF extraction, BigQuery, PostgreSQL, API integration, Commiters",
+      "data engineering, ETL, ELT, data warehouse, Apache Spark, Snowflake, BigQuery, data pipeline, Commiters",
   },
   about: {
-    what: "We design pipelines that ingest, clean, and sync data across CRMs, ERPs, payments, and databases—plus AI extraction for unstructured documents and live reporting.",
-    why: "Fragmented spreadsheets and PDFs hide the truth of the business. Clean systems unlock faster decisions without weekly manual compilation.",
-    who: "Growing businesses, operations teams, and tech-enabled SMBs that need reliable data plumbing—not another one-off spreadsheet.",
+    what: "We design pipelines, warehouses, and models that turn source systems into data a team can query and govern.",
+    why: "Decisions stall when every tool holds a different extract. A maintained pipeline keeps one definition of the record.",
+    who: "Operations, product, and finance teams that need reliable data plumbing rather than another one-off export.",
   },
   problem: {
     title: "The bottleneck we remove",
-    lead: "When every tool holds a different version of the truth, teams waste hours reconciling instead of deciding.",
+    lead: "When every tool holds a different version of the truth, teams spend the week reconciling instead of deciding.",
     points: [
-      "CRMs, ERPs, and payment tools do not share a reliable record.",
-      "Invoices and PDFs stay trapped as files instead of structured data.",
-      "Weekly reporting is a manual spreadsheet rebuild.",
-      "One-off scripts break quietly and nobody owns the pipeline.",
+      "Source systems do not share a model.",
+      "Reporting is rebuilt by hand.",
+      "Pipelines fail quietly because nobody owns them.",
+      "Analytics and models wait on exports that arrive late.",
     ],
   },
-  features: [
-    {
-      title: "Automated ETL / ELT Pipelines",
-      description:
-        "Resilient pipelines that ingest, clean, and sync data across CRMs, ERPs, payment gateways, and databases (PostgreSQL, BigQuery, Neon).",
-      icon: "automation",
-    },
-    {
-      title: "Unstructured Document & PDF Extraction",
-      description:
-        "AI-powered extraction that converts invoices, forms, statements, and PDFs into structured Excel/SQL records.",
-      icon: "ai",
-    },
-    {
-      title: "Data Warehousing & Schema Architecture",
-      description:
-        "Clean, scalable relational and analytical models built for fast querying and long-term reliability.",
-      icon: "scale",
-    },
-    {
-      title: "API Integrations & Real-Time Syncing",
-      description:
-        "Custom webhooks, Python/Node workers, and cloud serverless runtimes (including Google Cloud Run) that connect isolated tools.",
-      icon: "performance",
-    },
-    {
-      title: "Operational Reporting & Decision Dashboards",
-      description:
-        "Automated executive reporting that replaces manual weekly spreadsheet compilation with live metrics.",
-      icon: "mvp",
-    },
-  ],
+  features: DATA_ENGINEERING_FEATURES,
   technologies: DATA_TECH,
   processSteps: [
-    "Map sources, owners, and decision metrics",
-    "Design schema and pipeline SLAs",
-    "Build ingestion and extraction jobs",
-    "Validate quality and backfill history",
-    "Ship dashboards and ownership runbooks",
+    "Collect the source systems and events",
+    "Ingest on a schedule or a stream",
+    "Transform into one shared model",
+    "Store in a warehouse, lake, or lakehouse",
+    "Expose the models to analytics",
+    "Monitor freshness, failures, and cost",
   ],
   faqs: [
     {
-      question: "Which systems can you connect?",
+      question: "What is Data Engineering?",
       answer:
-        "CRMs, ERPs, payment gateways, spreadsheets, and SQL warehouses—including PostgreSQL, BigQuery, and Neon—via APIs, webhooks, and scheduled workers.",
+        "Data engineering is the work of collecting, moving, transforming, and storing data so people and systems can use it reliably. It covers pipelines, models, storage, and the checks that keep that data current.",
     },
     {
-      question: "Can you extract data from PDFs and forms?",
+      question: "What is the difference between ETL and ELT?",
       answer:
-        "Yes. We build AI-assisted extraction pipelines that turn invoices, statements, and forms into structured records with human review where stakes are high.",
+        "ETL transforms data before it lands in the destination. ELT loads raw data first and transforms it inside the warehouse. We choose the pattern from the source volume, the warehouse, and who needs to change the models later.",
     },
     {
-      question: "Do you replace our analysts?",
-      answer:
-        "No. We remove the plumbing and manual compilation so operators and founders get trustworthy metrics faster.",
+      question: "Which cloud platforms do you support?",
+      answer: "AWS, Microsoft Azure, and Google Cloud. The pipeline is designed for the platform your team already operates.",
     },
     {
-      question: "How do you keep pipelines reliable?",
+      question: "Can you integrate multiple data sources?",
       answer:
-        "Explicit schemas, monitoring, retry policies, and ownership runbooks—so failures surface early instead of silently rotting.",
+        "Yes. APIs, databases, files, and third-party tools can land in one model, with a documented definition for each entity.",
+    },
+    {
+      question: "Do you provide real-time data processing?",
+      answer:
+        "Yes, where the decision needs it. Event streams and scheduled batches can sit in the same platform, and we use streaming only when freshness requires it.",
+    },
+    {
+      question: "Can you modernize existing data infrastructure?",
+      answer:
+        "Yes. We move batch files and aging databases onto maintained pipelines and cloud storage, and we keep the current reports running while the new path is proven.",
     },
   ],
   timeline: [
-    { label: "Single pipeline / extraction", duration: "1–3 Weeks" },
-    { label: "Warehouse + core sync", duration: "4–8 Weeks" },
-    { label: "Full reporting platform", duration: "2–4 Months" },
+    { label: "Single pipeline", duration: "Scoped per source" },
+    { label: "Warehouse and core models", duration: "Scoped after discovery" },
+    { label: "Reporting and ownership", duration: "Scoped with the warehouse" },
+  ],
+  pricing: SERVICE_DEFAULT_PRICING,
+  portfolio: [],
+};
+
+export const INSURANCE_TECHNOLOGY_SERVICE: ServiceDetail = {
+  slug: "insurance",
+  gridId: "insurance",
+  title: "Insurance",
+  heroHeadline: "Building Smarter Digital Insurance Experiences.",
+  primaryCtaLabel: "Explore Our Solutions",
+  primaryCtaTo: "#ins-services",
+  quoteCtaLabel: "Request a Quote",
+  tagline:
+    "We build secure, scalable and intelligent insurance technology solutions that simplify policy management, automate claims processing and transform customer experiences.",
+  description:
+    "From digital insurance platforms to AI-powered automation, Commiters helps insurance businesses modernize operations, improve efficiency and deliver seamless digital experiences.",
+  heroVisual: "automation",
+  showAllFeatures: true,
+  showProcess: true,
+  seo: {
+    title: "Insurance Software & InsurTech Development",
+    description:
+      "Custom insurance platforms for policy management, claims, portals, payments, and AI-assisted workflows from Commiters.",
+    keywords:
+      "insurance software development, InsurTech, policy management system, claims management software, insurance portal, Commiters",
+  },
+  about: {
+    what: "We design insurance platforms that connect policy records, claims, payments, and the people who use them.",
+    why: "Legacy desks split the same policy across portals and spreadsheets. A shared system keeps the record and the workflow together.",
+    who: "Insurers and InsurTech teams that need the platform, and US P&C agencies that also need the administration desk run.",
+  },
+  problem: {
+    title: "The bottleneck we remove",
+    lead: "Policy, claim, and payment work stalls when each step lives in a different tool.",
+    points: [
+      "Issuance and renewal depend on manual re-entry.",
+      "Claims status is hard for the customer to see.",
+      "Agent and customer views do not share one record.",
+      "Reports are rebuilt after the work is already done.",
+    ],
+  },
+  features: INSURANCE_TECH_FEATURES,
+  technologies: [
+    { slug: "react", alt: "React" },
+    { slug: "nextdotjs", alt: "Next.js" },
+    { slug: "nodedotjs", alt: "Node.js" },
+    { slug: "python", alt: "Python" },
+    { slug: "postgresql", alt: "PostgreSQL" },
+    { slug: "googlecloud", alt: "Google Cloud" },
+  ],
+  processSteps: INSURANCE_TECH_FLOW.map((step) => step.title),
+  faqs: INSURANCE_TECH_FAQS,
+  timeline: [
+    { label: "Discovery and workflow map", duration: "Scoped per product" },
+    { label: "Core policy and portal build", duration: "Scoped after discovery" },
+    { label: "Claims, payments, and reporting", duration: "Scoped with the core" },
   ],
   pricing: SERVICE_DEFAULT_PRICING,
   portfolio: [],
 };
 
 export const OPERATIONS_LANDING_SERVICES: ServiceDetail[] = [
-  INSURANCE_OPERATIONS_SERVICE,
   DIGITAL_MARKETING_SERVICE,
   DATA_ENGINEERING_SERVICE,
+  INSURANCE_TECHNOLOGY_SERVICE,
 ];

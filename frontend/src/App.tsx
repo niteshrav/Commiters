@@ -66,6 +66,7 @@ export default function App() {
           element={<Navigate to={buildServiceDetailPath("web-application-development")} replace />}
         />
         <Route path={ROUTES.workflowAutomation} element={<WorkflowAutomationPage />} />
+        <Route path={ROUTES.insuranceOperations} element={<Navigate to={ROUTES.insurance} replace />} />
         <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
         <Route path={ROUTES.caseStudies} element={<CaseStudiesPage />} />
         <Route path={ROUTES.caseStudiesLegacy} element={<Navigate to={ROUTES.caseStudies} replace />} />

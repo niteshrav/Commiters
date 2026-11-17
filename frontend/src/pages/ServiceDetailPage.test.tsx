@@ -89,38 +89,86 @@ describe("ServiceDetailPage", () => {
     );
   });
 
-  it.each(["insurance-operations", "digital-marketing", "data-engineering"] as const)(
-    "renders operations landing sections for %s",
-    (slug) => {
-      render(
-        <MemoryRouter initialEntries={[buildServiceDetailPath(slug)]}>
-          <Routes>
-            <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
-          </Routes>
-        </MemoryRouter>,
-      );
+  it("renders the insurance technology landing with working calls to action", () => {
+    render(
+      <MemoryRouter initialEntries={[buildServiceDetailPath("insurance")]}>
+        <Routes>
+          <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
 
-      expect(screen.getByTestId("service-detail-page")).toHaveAttribute("data-service-slug", slug);
-      expect(screen.getByTestId("service-detail-hero")).toBeInTheDocument();
-      expect(screen.getByTestId("service-detail-problem")).toBeInTheDocument();
-      expect(screen.getByTestId("service-detail-features")).toBeInTheDocument();
-      expect(screen.getByRole("heading", { name: /Core Capabilities/i })).toBeInTheDocument();
-      expect(screen.getByTestId("service-detail-process")).toBeInTheDocument();
-      expect(screen.getByTestId("service-detail-faqs")).toBeInTheDocument();
-      expect(screen.getByTestId("service-detail-final-cta")).toBeInTheDocument();
-      expect(screen.queryByTestId("service-detail-testimonials")).not.toBeInTheDocument();
-    },
-  );
+    expect(screen.getByRole("heading", { name: "Building Smarter Digital Insurance Experiences." })).toBeInTheDocument();
+    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveAttribute("href", "#ins-services");
+    expect(screen.getByRole("link", { name: "Request a Quote" })).toHaveAttribute("href", ROUTES.contact);
+    expect(screen.getByRole("heading", { name: "Insurance Platform Development" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Policy endorsements" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Customer onboarding/i })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByText(/not a certification/i)).toBeInTheDocument();
+    expect(screen.getByText(/not Commiters client results/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "What is Insurance Software Development?" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("link", { name: "Discuss Your Insurance Project" })).toHaveAttribute("href", ROUTES.contact);
+    expect(screen.getByRole("link", { name: "Request a Consultation" })).toHaveAttribute("href", ROUTES.contact);
+    expect(serviceDetailTitleForTests("insurance")).toBe("Insurance Software & InsurTech Development | Commiters");
+  });
+
+  it("renders the digital marketing landing with working calls to action", () => {
+    render(
+      <MemoryRouter initialEntries={[buildServiceDetailPath("digital-marketing")]}>
+        <Routes>
+          <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("heading", { name: "Digital Marketing & Conversion Funnels" })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Request a Quote" }).every((link) => link.getAttribute("href") === ROUTES.contact)).toBe(true);
+    expect(screen.getByRole("heading", { name: /Digital marketing that drives real business growth/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Search Engine Optimization (SEO)" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /From first click to loyal customer/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Awareness/i })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getAllByText("Google Analytics 4").length).toBeGreaterThan(0);
+    expect(screen.getByText("Ahrefs")).toBeInTheDocument();
+    expect(screen.getByText(/not Commiters campaign results/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "What digital marketing services does Commiters offer?" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(screen.getByRole("link", { name: "Book an Operational Audit" })).toHaveAttribute(
+      "href",
+      AI_OPERATIONAL_AUDIT_BOOKING_HREF,
+    );
+    expect(screen.queryByTestId("service-detail-plan")).not.toBeInTheDocument();
+  });
+
+  it("renders data engineering with the shared service page sections", () => {
+    render(
+      <MemoryRouter initialEntries={[buildServiceDetailPath("data-engineering")]}>
+        <Routes>
+          <Route path={ROUTES.serviceDetail} element={<ServiceDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("heading", { name: "Data Engineering" })).toBeInTheDocument();
+    expect(screen.getByText("Engineering Data. Empowering Decisions.")).toBeInTheDocument();
+    expect(screen.getByTestId("service-detail-about")).toBeInTheDocument();
+    expect(screen.getByTestId("service-detail-problem")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Core Capabilities" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Data Pipeline Development" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "How We Work" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Technologies We Use" })).toBeInTheDocument();
+    expect(screen.getByText("Apache Spark")).toBeInTheDocument();
+    expect(screen.getByText("Snowflake")).toBeInTheDocument();
+    expect(screen.getByTestId("service-detail-plan")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "What is Data Engineering?" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByTestId("service-detail-final-cta")).toBeInTheDocument();
+  });
 
   it("sets SEO titles for the new operations landings", () => {
-    expect(serviceDetailTitleForTests("insurance-operations")).toBe(
-      "Insurance Operations Support for Agencies | Commiters",
-    );
     expect(serviceDetailTitleForTests("digital-marketing")).toBe(
       "Digital Marketing & Conversion Funnels | Commiters",
     );
-    expect(serviceDetailTitleForTests("data-engineering")).toBe(
-      "Data Engineering & Automated Extraction | Commiters",
-    );
+    expect(serviceDetailTitleForTests("data-engineering")).toBe("Data Engineering Services | Commiters");
   });
 });

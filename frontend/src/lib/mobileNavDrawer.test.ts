@@ -59,9 +59,9 @@ describe("mobileNavDrawer", () => {
         description: "API integrations, document processing, and operational workflow tools.",
       },
       {
-        label: "Insurance Operations",
-        to: ROUTES.insuranceOperations,
-        description: "Back-office and AI-assisted policy admin for US P&C agencies.",
+        label: "Insurance",
+        to: ROUTES.insurance,
+        description: "Policy and claims platforms, plus agency administration for endorsements, renewals, and COIs.",
       },
       {
         label: "Digital Marketing",
@@ -71,7 +71,7 @@ describe("mobileNavDrawer", () => {
       {
         label: "Data Engineering",
         to: ROUTES.dataEngineering,
-        description: "Pipelines, warehouses, PDF extraction, and operational dashboards.",
+        description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
       },
     ]);
     expect(MOBILE_NAV_SERVICE_LINKS.some((link) => /trusttap|opsflow/i.test(link.label) || /trusttap|opsflow/i.test(link.to))).toBe(false);

@@ -74,7 +74,7 @@ describe("HomePage", () => {
     expect(within(carousel).getByTestId("home-service-slide-websites")).toHaveAttribute("data-active", "true");
     expect(within(carousel).getByTestId("home-service-slide-software")).toHaveAttribute("data-active", "false");
     expect(within(carousel).getAllByTestId(/home-service-slide-/)).toHaveLength(serviceCount);
-    expect(within(carousel).getByTestId("home-service-slide-insurance-operations")).toBeInTheDocument();
+    expect(within(carousel).getByTestId("home-service-slide-insurance")).toBeInTheDocument();
     expect(within(carousel).getByTestId("home-service-slide-digital-marketing")).toBeInTheDocument();
     expect(within(carousel).getByTestId("home-service-slide-data-engineering")).toBeInTheDocument();
 

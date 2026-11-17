@@ -3,7 +3,7 @@ import { SERVICE_CARD_IMAGE_BY_GRID_ID, resolveServiceCardImage, serviceCardImag
 
 describe("serviceCardImages", () => {
   it("maps every grid id to a public asset", () => {
-    expect(Object.keys(SERVICE_CARD_IMAGE_BY_GRID_ID)).toHaveLength(7);
+    expect(Object.keys(SERVICE_CARD_IMAGE_BY_GRID_ID)).toHaveLength(10);
     for (const src of Object.values(SERVICE_CARD_IMAGE_BY_GRID_ID)) {
       expect(src.startsWith("/assets/services/")).toBe(true);
     }
@@ -37,6 +37,9 @@ describe("serviceCardImages", () => {
     );
     expect(serviceCardImageForDetail("mvp-development").src).toBe("/assets/services/mvp-development.jpg");
     expect(serviceCardImageForDetail("automation-tools").src).toBe("/assets/services/automation-tools.jpg");
+    expect(serviceCardImageForDetail("data-engineering").src).toBe("/assets/services/data-engineering.jpg");
+    expect(serviceCardImageForDetail("digital-marketing").src).toBe("/assets/services/digital-marketing.jpg");
+    expect(serviceCardImageForDetail("insurance").src).toBe("/assets/services/insurance.jpg");
     expect(serviceCardImageForDetail("web-application-development").src).toBe(
       "/assets/services/web-applications.jpg",
     );
