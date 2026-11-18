@@ -12,6 +12,7 @@ import {
   MOBILE_NAV_DRAWER_WIDTH,
   MOBILE_NAV_SHEET_TOP,
   MOBILE_NAV_SERVICE_LINKS,
+  MOBILE_NAV_SERVICE_SECTIONS,
   SITE_HEADER_HEIGHT,
   SITE_HEADER_HEIGHT_MOBILE,
 } from "./mobileNavDrawer";
@@ -27,6 +28,20 @@ describe("mobileNavDrawer", () => {
       "Contact",
       "Careers",
     ]);
+    expect(MOBILE_NAV_SERVICE_SECTIONS.map((section) => ({ label: section.label, links: section.links.map((link) => link.label) }))).toEqual([
+      {
+        label: "AI & DATA SYSTEMS",
+        links: ["AI Operational Audits", "Governed AI & Workflow Systems", "Data Engineering"],
+      },
+      {
+        label: "ENGINEERING & PLATFORMS",
+        links: ["Spec-Driven Full-Stack Platforms", "High-Performance Web & Mobile Apps", "WordPress Development"],
+      },
+      {
+        label: "OPERATIONS & GROWTH",
+        links: ["Insurance Operations", "Digital Marketing", "Automation & Integration Tools"],
+      },
+    ]);
     expect(MOBILE_NAV_SERVICE_LINKS.map((link) => ({ label: link.label, to: link.to, description: link.description }))).toEqual([
       {
         label: "AI Operational Audits",
@@ -37,6 +52,11 @@ describe("mobileNavDrawer", () => {
         label: "Governed AI & Workflow Systems",
         to: ROUTES.aiSolutionsShort,
         description: "Custom pipelines, policy gateways, and enterprise AI workflows.",
+      },
+      {
+        label: "Data Engineering",
+        to: ROUTES.dataEngineering,
+        description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
       },
       {
         label: "Spec-Driven Full-Stack Platforms",
@@ -54,14 +74,9 @@ describe("mobileNavDrawer", () => {
         description: "Custom WordPress sites for business, publishing, and news portals.",
       },
       {
-        label: "Automation & Integration Tools",
-        to: `${ROUTES.services}#engineering-capabilities`,
-        description: "API integrations, document processing, and operational workflow tools.",
-      },
-      {
-        label: "Insurance",
+        label: "Insurance Operations",
         to: ROUTES.insurance,
-        description: "Policy and claims platforms, plus agency administration for endorsements, renewals, and COIs.",
+        description: "US P&C back-office servicing for COIs, endorsements, renewals, and carrier portals.",
       },
       {
         label: "Digital Marketing",
@@ -69,9 +84,9 @@ describe("mobileNavDrawer", () => {
         description: "SEO, CRO, paid acquisition, and CRM systems for qualified pipeline.",
       },
       {
-        label: "Data Engineering",
-        to: ROUTES.dataEngineering,
-        description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
+        label: "Automation & Integration Tools",
+        to: `${ROUTES.services}#engineering-capabilities`,
+        description: "API integrations, document processing, and operational workflow tools.",
       },
     ]);
     expect(MOBILE_NAV_SERVICE_LINKS.some((link) => /trusttap|opsflow/i.test(link.label) || /trusttap|opsflow/i.test(link.to))).toBe(false);

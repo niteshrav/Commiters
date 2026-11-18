@@ -61,21 +61,48 @@ export const INSURANCE_TECH_PILLARS = [
 ] as const;
 
 export const INSURANCE_TECH_DESK = [
-  { title: "Policy endorsements", body: "Coverage, vehicle, driver, address, and mortgagee changes processed on the agency record." },
-  { title: "Carrier portal entry", body: "Quoting and data entry inside the carrier portals and agency system you already use." },
-  { title: "Renewals", body: "30, 60, and 90-day renewal tracking and remarketing prep before the deadline." },
-  { title: "COI issuance", body: "Same-day certificates, plus a daily watch on cancellations and non-pay notices." },
-  { title: "SOP automation", body: "One checklist for the desk, with AI-assisted document extraction on repetitive files." },
-  { title: "Who this is for", body: "Independent US P&C and personal-lines agencies that need capacity without a full-time admin hire." },
+  {
+    title: "COI Issuance & Holder Updates",
+    body: "Same-day Certificates of Insurance (COIs), additional insured/waiver endorsements, and daily monitoring of pending cancellations or non-pay notices.",
+  },
+  {
+    title: "Policy Endorsements & Changes",
+    body: "Accurate processing of coverage updates, vehicle/driver additions, address changes, and mortgagee/lienholder updates across Personal and Commercial policies.",
+  },
+  {
+    title: "Carrier Portal & AMS Entry",
+    body: "Fast, error-free quoting prep, ACORD form preparation, loss run requests, and data entry inside your existing Agency Management System (Applied Epic, AMS360, EZLynx, HawkSoft, NowCerts).",
+  },
+  {
+    title: "Renewals & Remarketing Prep",
+    body: "Proactive 30-, 60-, and 90-day renewal tracking, remarketing worksheets, and policy audit support ahead of carrier deadlines.",
+  },
+  {
+    title: "SOP & Document Automation",
+    body: "Standardized desk checklists paired with AI-assisted document extraction (OCR/LLM) to pull data from dec pages, loss runs, and carrier notices automatically.",
+  },
+  {
+    title: "Who This Is For",
+    body: "Independent US P&C brokerages and MGAs (Personal Lines & Commercial Lines) looking to eliminate servicing backlogs without adding full-time local overhead.",
+  },
 ] as const;
 
 export const INSURANCE_TECH_SEGMENTS = [
-  { title: "Life insurance", body: "Policy administration, onboarding, and lifecycle management." },
-  { title: "Health insurance", body: "Claims workflows, partner data, and service portals." },
-  { title: "Motor insurance", body: "Vehicle policies, accident claims, and digital documents." },
-  { title: "Property insurance", body: "Property policies and digital damage-claim intake." },
-  { title: "Commercial insurance", body: "Business policy admin, risk records, and reporting." },
-  { title: "Travel insurance", body: "Policy servicing, customer portals, and claim tracking." },
+  { title: "Life insurance", body: "Administrative policy servicing, document workflows, and lifecycle support systems." },
+  { title: "Health insurance", body: "Administrative claims intake support, partner data flows, and service portal tooling." },
+  {
+    title: "Personal & Commercial Auto",
+    body: "Personal auto policies, commercial fleet schedules, driver updates, and endorsements.",
+  },
+  {
+    title: "Homeowners & Commercial Property",
+    body: "Homeowners, landlord, BOP, and commercial property policy servicing and mortgagee updates.",
+  },
+  {
+    title: "Commercial Lines & General Liability",
+    body: "GL, Workers' Comp, umbrella policies, ACORD forms, COIs, and annual audit prep.",
+  },
+  { title: "Travel insurance", body: "Administrative policy servicing, customer portal support, and claim tracking workflows." },
 ] as const;
 
 export const INSURANCE_TECH_FLOW = [
@@ -157,49 +184,79 @@ export const INSURANCE_TECH_SECURITY = [
   "Third-party system integration",
 ] as const;
 
+export type InsuranceMetricIcon =
+  | "clock"
+  | "calendar"
+  | "shield"
+  | "checklist"
+  | "document"
+  | "users";
+
 export const INSURANCE_TECH_METRICS = [
-  "Total policies",
-  "Claims overview",
-  "Premium tracking",
-  "Policy renewals",
-  "Agent performance",
-  "Customer activity",
+  {
+    title: "Same-Day COI Turnaround",
+    body: "Urgent certificate and holder requests processed within business hours.",
+    icon: "clock" as const,
+  },
+  {
+    title: "30/60/90-Day Renewal Pipeline",
+    body: "Zero missed renewal dates or unworked remarketing files.",
+    icon: "calendar" as const,
+  },
+  {
+    title: "Daily Cancellation Watch",
+    body: "Pending non-pay and underwriting notices flagged before lapse.",
+    icon: "shield" as const,
+  },
+  {
+    title: "AMS & Portal Sync Accuracy",
+    body: "Standardized SOP checklists minimizing E&O exposure.",
+    icon: "checklist" as const,
+  },
+  {
+    title: "Automated Dec-Page Extraction",
+    body: "Structured data pulled from carrier PDFs into your system.",
+    icon: "document" as const,
+  },
+  {
+    title: "Dedicated Desk Coverage",
+    body: "Predictable daily servicing capacity aligned to US time zones.",
+    icon: "users" as const,
+  },
 ] as const;
+
+export const INSURANCE_TECH_SECURITY_LEAD =
+  "Enterprise-grade access controls, encrypted workflows, and strict role-based boundaries designed for US insurance agency data privacy. Note: Commiters provides non-licensed administrative servicing and technical automation; all binding, coverage advice, and carrier approvals remain strictly with your licensed staff." as const;
 
 export const INSURANCE_TECH_FAQS = [
   {
-    question: "What is Insurance Software Development?",
+    question: "Which Agency Management Systems (AMS) and carrier portals do you support?",
     answer:
-      "It is the work of building the systems insurers and agencies use: policy records, claims, portals, payments, and the reports around them.",
+      "We work directly inside the systems your agency already uses—including Applied Epic, AMS360, EZLynx, HawkSoft, NowCerts, and direct carrier portals—following your exact naming conventions and activity logging rules.",
   },
   {
-    question: "What is an InsurTech solution?",
+    question: "Do your specialists handle licensed insurance activities?",
     answer:
-      "Software that runs an insurance workflow digitally, such as onboarding, policy servicing, claims, or agent and customer portals.",
+      "No. Our team handles strictly non-licensed back-office administration, data entry, COI generation, renewal prep, and workflow automation. All coverage recommendations, quoting approvals, and policy binding stay exclusively with your licensed producers and account managers.",
   },
   {
-    question: "Can you develop a custom insurance management platform?",
-    answer: "Yes. The platform is scoped to your products, roles, and the systems it must connect to.",
-  },
-  {
-    question: "Can you build digital policy management systems?",
-    answer: "Yes. That covers issuance, documents, endorsements, and renewals on a shared policy record.",
-  },
-  {
-    question: "Do you develop online claims management solutions?",
-    answer: "Yes. Customers can submit a claim, upload documents, and follow status while your team works the file.",
-  },
-  {
-    question: "Can insurance platforms integrate with third-party APIs?",
-    answer: "Yes. Payments, documents, and partner systems connect through REST APIs and webhooks.",
-  },
-  {
-    question: "Can AI automate insurance workflows?",
+    question: "Can you support both Personal Lines and Commercial Lines?",
     answer:
-      "AI can draft replies, extract document fields, and flag items for review. It does not approve a claim or a policy on its own.",
+      "Yes. We support Personal Lines (Auto, Homeowners, Umbrella) as well as Commercial Lines (General Liability, Commercial Auto, BOP, Workers' Comp), including ACORD form prep, loss run requests, and audit support.",
   },
   {
-    question: "Do you provide cloud-based insurance solutions?",
-    answer: "Yes. Platforms can run on AWS, Microsoft Azure, or Google Cloud, matched to the environment you already use.",
+    question: "What is your typical turnaround time for COIs and endorsements?",
+    answer:
+      "Standard COI requests and routine endorsements are processed same-day within agreed SLA windows, with urgent rush certificates prioritized so your producers never lose momentum on a closing.",
+  },
+  {
+    question: "How do you ensure data security and client confidentiality?",
+    answer:
+      "We operate under strict NDAs, role-based access permissions (least-privilege logins via your VPN/VDI or user-level AMS credentials), encrypted communications, and documented audit trails—never sharing raw credentials.",
+  },
+  {
+    question: "Can you also automate repetitive agency workflows using AI?",
+    answer:
+      "Yes. Beyond daily desk operations, our engineering team builds custom AI document extractors (for dec pages, loss runs, and carrier notices), automated renewal reminders, and CRM/AMS integrations tailored to your agency.",
   },
 ];

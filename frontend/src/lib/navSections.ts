@@ -71,7 +71,7 @@ export const SERVICE_NAV_ENTRIES: ServiceNavEntry[] = [
   { id: "saas-mvp", label: "Rapid SaaS MVP Development" },
   { id: "mobile", label: "Cross-Platform Mobile Applications" },
   { id: "wordpress", label: "WordPress Development" },
-  { id: "insurance", label: "Insurance" },
+  { id: "insurance", label: "Insurance Operations" },
   { id: "digital-marketing", label: "Digital Marketing" },
   { id: "data-engineering", label: "Data Engineering" },
   { id: "engineering-capabilities", label: "Full-Lifecycle Software Engineering Capabilities" },
@@ -116,7 +116,7 @@ export type NavDropdownGroup = {
 
 export type NavDropdownLayout = "cards" | "mega";
 
-export type NavDropdownPanelSize = "md" | "lg" | "xl";
+export type NavDropdownPanelSize = "md" | "lg" | "xl" | "2xl";
 
 export type NavDropdownConfig = {
   id: string;
@@ -126,7 +126,7 @@ export type NavDropdownConfig = {
   headline: string;
   end?: boolean;
   layout?: NavDropdownLayout;
-  columns?: 1 | 2;
+  columns?: 1 | 2 | 3;
   panelSize?: NavDropdownPanelSize;
   emphasis?: PrimaryNavEmphasis;
   links: NavDropdownLink[];
@@ -168,82 +168,93 @@ export function buildServiceNavHref(slug: string): string {
   return `/services/${slug}`;
 }
 
-export const SERVICE_MEGA_CARDS: NavDropdownLink[] = [
+export const SERVICE_NAV_GROUPS: NavDropdownGroup[] = [
   {
-    id: "ai-operational-audits",
-    label: "AI Operational Audits",
-    to: ROUTES.audit,
-    description: "48-hour workflow diagnostics, bottleneck elimination, and live automation blueprints.",
-    icon: "document",
-    featured: true,
-    badge: "48-HOUR DIAGNOSTIC",
+    id: "ai-data-systems",
+    label: "AI & DATA SYSTEMS",
+    links: [
+      {
+        id: "ai-operational-audits",
+        label: "AI Operational Audits",
+        to: ROUTES.audit,
+        description: "48-hour workflow diagnostics, bottleneck elimination, and live automation blueprints.",
+        icon: "document",
+        featured: true,
+        badge: "48-HOUR DIAGNOSTIC",
+      },
+      {
+        id: "governed-ai",
+        label: "Governed AI & Workflow Systems",
+        to: ROUTES.aiSolutionsShort,
+        description: "Custom pipelines, policy gateways, and enterprise AI workflows.",
+        icon: "shield",
+      },
+      {
+        id: "data-engineering",
+        label: "Data Engineering",
+        to: ROUTES.dataEngineering,
+        description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
+        icon: "database",
+      },
+    ],
   },
   {
-    id: "governed-ai",
-    label: "Governed AI & Workflow Systems",
-    to: ROUTES.aiSolutionsShort,
-    description: "Custom pipelines, policy gateways, and enterprise AI workflows.",
-    icon: "shield",
+    id: "engineering-platforms",
+    label: "ENGINEERING & PLATFORMS",
+    links: [
+      {
+        id: "spec-driven",
+        label: "Spec-Driven Full-Stack Platforms",
+        to: ROUTES.webApplicationsShort,
+        description: "Scalable web apps, cloud portals, and spec-driven SaaS architecture.",
+        icon: "layers",
+      },
+      {
+        id: "web-mobile",
+        label: "High-Performance Web & Mobile Apps",
+        to: buildServiceSectionHref("engineering-capabilities"),
+        description: "Custom B2B web applications, mobile platforms, and SaaS MVPs.",
+        icon: "rocket",
+      },
+      {
+        id: "wordpress",
+        label: "WordPress Development",
+        to: buildServiceDetailMenuHref("wordpress-development"),
+        description: "Custom WordPress sites for business, publishing, and news portals.",
+        icon: "globe",
+      },
+    ],
   },
   {
-    id: "spec-driven",
-    label: "Spec-Driven Full-Stack Platforms",
-    to: ROUTES.webApplicationsShort,
-    description: "Scalable web apps, cloud portals, and spec-driven SaaS architecture.",
-    icon: "layers",
-  },
-  {
-    id: "web-mobile",
-    label: "High-Performance Web & Mobile Apps",
-    to: buildServiceSectionHref("engineering-capabilities"),
-    description: "Custom B2B web applications, mobile platforms, and SaaS MVPs.",
-    icon: "rocket",
-  },
-  {
-    id: "wordpress",
-    label: "WordPress Development",
-    to: buildServiceDetailMenuHref("wordpress-development"),
-    description: "Custom WordPress sites for business, publishing, and news portals.",
-    icon: "globe",
-  },
-  {
-    id: "automation",
-    label: "Automation & Integration Tools",
-    to: buildServiceSectionHref("engineering-capabilities"),
-    description: "API integrations, document processing, and operational workflow tools.",
-    icon: "workflow",
-  },
-  {
-    id: "insurance",
-    label: "Insurance",
-    to: ROUTES.insurance,
-    description: "Policy and claims platforms, plus agency administration for endorsements, renewals, and COIs.",
-    icon: "shield",
-  },
-  {
-    id: "digital-marketing",
-    label: "Digital Marketing",
-    to: ROUTES.digitalMarketing,
-    description: "SEO, CRO, paid acquisition, and CRM systems for qualified pipeline.",
-    icon: "chart",
-  },
-  {
-    id: "data-engineering",
-    label: "Data Engineering",
-    to: ROUTES.dataEngineering,
-    description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
-    icon: "database",
+    id: "operations-growth",
+    label: "OPERATIONS & GROWTH",
+    links: [
+      {
+        id: "insurance",
+        label: "Insurance Operations",
+        to: ROUTES.insurance,
+        description: "US P&C back-office servicing for COIs, endorsements, renewals, and carrier portals.",
+        icon: "shield",
+      },
+      {
+        id: "digital-marketing",
+        label: "Digital Marketing",
+        to: ROUTES.digitalMarketing,
+        description: "SEO, CRO, paid acquisition, and CRM systems for qualified pipeline.",
+        icon: "chart",
+      },
+      {
+        id: "automation",
+        label: "Automation & Integration Tools",
+        to: buildServiceSectionHref("engineering-capabilities"),
+        description: "API integrations, document processing, and operational workflow tools.",
+        icon: "workflow",
+      },
+    ],
   },
 ];
 
-/** @deprecated Use SERVICE_MEGA_CARDS. Kept as a grouped view of the Services mega-menu cards. */
-export const SERVICE_NAV_GROUPS: NavDropdownGroup[] = [
-  {
-    id: "services-mega",
-    label: "Services",
-    links: SERVICE_MEGA_CARDS,
-  },
-];
+export const SERVICE_MEGA_CARDS: NavDropdownLink[] = SERVICE_NAV_GROUPS.flatMap((group) => group.links);
 
 export function buildServiceSectionLocation(sectionId: string): { pathname: string; hash: string } {
   return { pathname: ROUTES.services, hash: `#${sectionId}` };
@@ -262,28 +273,38 @@ export const NAV_DROPDOWN_PANEL_MD_CLASS = "max-w-md" as const;
 export const NAV_DROPDOWN_PANEL_MD_PAD_CLASS = "p-4" as const;
 export const NAV_DROPDOWN_PANEL_COMPACT_CLASS = "max-w-lg" as const;
 export const NAV_DROPDOWN_PANEL_WIDE_CLASS = "max-w-xl" as const;
+export const NAV_DROPDOWN_PANEL_XXL_CLASS = "max-w-4xl" as const;
 export const NAV_DROPDOWN_PANEL_GAP_PX = 8 as const;
 export const NAV_DROPDOWN_VIEWPORT_GUTTER_PX = 16 as const;
 export const NAV_DROPDOWN_MD_MAX_WIDTH_PX = 420 as const;
 export const NAV_DROPDOWN_COMPACT_MAX_WIDTH_PX = 512 as const;
 export const NAV_DROPDOWN_WIDE_MAX_WIDTH_PX = 576 as const;
+export const NAV_DROPDOWN_XXL_MAX_WIDTH_PX = 860 as const;
 export const NAV_SECTION_ALIAS_CLASS = "nav-section-alias" as const;
 export const NAV_MEGA_OVERVIEW_CLASS = "nav-mega-overview" as const;
 
 export function resolveNavDropdownPanelSize(config: Pick<NavDropdownConfig, "columns" | "panelSize">): NavDropdownPanelSize {
-  return config.panelSize ?? (config.columns === 2 ? "xl" : "lg");
+  return config.panelSize ?? (config.columns === 3 ? "2xl" : config.columns === 2 ? "xl" : "lg");
 }
 
 export function navDropdownPanelClassName(config: Pick<NavDropdownConfig, "columns" | "panelSize">): string {
   const size = resolveNavDropdownPanelSize(config);
   const sizeClass =
-    size === "md" ? NAV_DROPDOWN_PANEL_MD_CLASS : size === "xl" ? NAV_DROPDOWN_PANEL_WIDE_CLASS : NAV_DROPDOWN_PANEL_COMPACT_CLASS;
+    size === "md"
+      ? NAV_DROPDOWN_PANEL_MD_CLASS
+      : size === "2xl"
+        ? NAV_DROPDOWN_PANEL_XXL_CLASS
+        : size === "xl"
+          ? NAV_DROPDOWN_PANEL_WIDE_CLASS
+          : NAV_DROPDOWN_PANEL_COMPACT_CLASS;
   const layoutClass =
-    size === "xl"
-      ? "nav-item-dropdown-panel--wide"
-      : size === "md"
-        ? "nav-item-dropdown-panel--compact nav-item-dropdown-panel--md"
-        : "nav-item-dropdown-panel--compact";
+    size === "2xl"
+      ? "nav-item-dropdown-panel--mega-grouped"
+      : size === "xl"
+        ? "nav-item-dropdown-panel--wide"
+        : size === "md"
+          ? "nav-item-dropdown-panel--compact nav-item-dropdown-panel--md"
+          : "nav-item-dropdown-panel--compact";
   return [
     "nav-item-dropdown-panel",
     "nav-item-dropdown-panel--fixed",
@@ -298,16 +319,18 @@ export function navDropdownPanelClassName(config: Pick<NavDropdownConfig, "colum
 
 export function resolveNavDropdownPanelPosition(
   trigger: { left: number; bottom: number },
-  columns: 1 | 2,
+  columns: 1 | 2 | 3,
   viewportWidth: number,
   panelSize?: NavDropdownPanelSize,
 ): { top: number; left: number } {
   const width =
     panelSize === "md"
       ? NAV_DROPDOWN_MD_MAX_WIDTH_PX
-      : columns === 2
-        ? NAV_DROPDOWN_WIDE_MAX_WIDTH_PX
-        : NAV_DROPDOWN_COMPACT_MAX_WIDTH_PX;
+      : panelSize === "2xl" || columns === 3
+        ? NAV_DROPDOWN_XXL_MAX_WIDTH_PX
+        : columns === 2
+          ? NAV_DROPDOWN_WIDE_MAX_WIDTH_PX
+          : NAV_DROPDOWN_COMPACT_MAX_WIDTH_PX;
   const maxLeft = Math.max(
     NAV_DROPDOWN_VIEWPORT_GUTTER_PX,
     viewportWidth - NAV_DROPDOWN_VIEWPORT_GUTTER_PX - width,
@@ -427,8 +450,10 @@ export const NAV_DROPDOWN_CONFIGS: NavDropdownConfig[] = [
     label: "Services",
     overviewTo: ROUTES.services,
     headline: "COMMITERS — Enterprise AI & Cloud Systems",
-    columns: 2,
+    columns: 3,
+    panelSize: "2xl",
     links: SERVICE_MEGA_CARDS,
+    groups: SERVICE_NAV_GROUPS,
   },
   {
     id: "work",

@@ -1,3 +1,4 @@
+import { ROUTES } from "../routes";
 import type { ServiceDetail } from "./types";
 import { DATA_ENGINEERING_FEATURES } from "./dataEngineeringPage";
 import { DIGITAL_MARKETING_FAQS, DIGITAL_MARKETING_FEATURES } from "./digitalMarketingPage";
@@ -177,37 +178,38 @@ export const INSURANCE_TECHNOLOGY_SERVICE: ServiceDetail = {
   slug: "insurance",
   gridId: "insurance",
   title: "Insurance",
-  heroHeadline: "Building Smarter Digital Insurance Experiences.",
-  primaryCtaLabel: "Explore Our Solutions",
-  primaryCtaTo: "#ins-services",
-  quoteCtaLabel: "Request a Quote",
+  heroKicker: "US P&C AGENCY OPERATIONS & AI",
+  heroHeadline: "Back-Office & AI Operations for US Insurance Agencies.",
+  primaryCtaLabel: "Book a Discovery Call",
+  primaryCtaTo: ROUTES.contact,
+  quoteCtaLabel: "Explore Our Capabilities",
+  quoteCtaTo: "#ins-desk",
   tagline:
-    "We build secure, scalable and intelligent insurance technology solutions that simplify policy management, automate claims processing and transform customer experiences.",
-  description:
-    "From digital insurance platforms to AI-powered automation, Commiters helps insurance businesses modernize operations, improve efficiency and deliver seamless digital experiences.",
+    "Free your licensed producers to bind more business. We handle routine Personal and Commercial Lines servicing—COIs, endorsements, carrier portal entry, renewals, and cancellation tracking—with strict SLA accuracy and AI-assisted workflows.",
+  description: "",
   heroVisual: "automation",
   showAllFeatures: true,
   showProcess: true,
   seo: {
-    title: "Insurance Software & InsurTech Development",
+    title: "US P&C Insurance Agency Back-Office & AI Operations",
     description:
-      "Custom insurance platforms for policy management, claims, portals, payments, and AI-assisted workflows from Commiters.",
+      "Back-office and AI operations for US P&C independent agencies and brokerages—COIs, endorsements, AMS/carrier portal entry, renewals, and cancellation tracking for Personal and Commercial Lines.",
     keywords:
-      "insurance software development, InsurTech, policy management system, claims management software, insurance portal, Commiters",
+      "US P&C insurance agency, insurance back office, COI issuance, AMS360, Applied Epic, Personal Lines, Commercial Lines, insurance operations, Commiters",
   },
   about: {
-    what: "We design insurance platforms that connect policy records, claims, payments, and the people who use them.",
-    why: "Legacy desks split the same policy across portals and spreadsheets. A shared system keeps the record and the workflow together.",
-    who: "Insurers and InsurTech teams that need the platform, and US P&C agencies that also need the administration desk run.",
+    what: "We run high-SLA Personal and Commercial Lines desk operations for independent US P&C agencies: COIs, endorsements, portal entry, renewals, and cancellation tracking.",
+    why: "Licensed producers lose revenue when they absorb servicing work. A disciplined ops partner clears the backlog without adding full-time local overhead.",
+    who: "Independent US P&C brokerages and MGAs covering Personal Lines and Commercial Lines.",
   },
   problem: {
     title: "The bottleneck we remove",
-    lead: "Policy, claim, and payment work stalls when each step lives in a different tool.",
+    lead: "Agencies stall when producers absorb admin work that should never leave the back office.",
     points: [
-      "Issuance and renewal depend on manual re-entry.",
-      "Claims status is hard for the customer to see.",
-      "Agent and customer views do not share one record.",
-      "Reports are rebuilt after the work is already done.",
+      "COI and endorsement queues pile up while producers chase portals.",
+      "Renewals and remarketing prep arrive late, forcing last-minute scrambles.",
+      "Cancellation and non-pay notices are reactive instead of tracked daily.",
+      "Every desk invents its own checklist, so quality and SLA drift.",
     ],
   },
   features: INSURANCE_TECH_FEATURES,

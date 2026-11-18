@@ -89,7 +89,7 @@ describe("ServiceDetailPage", () => {
     );
   });
 
-  it("renders the insurance technology landing with working calls to action", () => {
+  it("renders the US P&C insurance landing with operations-first positioning", () => {
     render(
       <MemoryRouter initialEntries={[buildServiceDetailPath("insurance")]}>
         <Routes>
@@ -98,18 +98,38 @@ describe("ServiceDetailPage", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByRole("heading", { name: "Building Smarter Digital Insurance Experiences." })).toBeInTheDocument();
-    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveAttribute("href", "#ins-services");
-    expect(screen.getByRole("link", { name: "Request a Quote" })).toHaveAttribute("href", ROUTES.contact);
-    expect(screen.getByRole("heading", { name: "Insurance Platform Development" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Policy endorsements" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Customer onboarding/i })).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByText(/not a certification/i)).toBeInTheDocument();
-    expect(screen.getByText(/not Commiters client results/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "What is Insurance Software Development?" })).toHaveAttribute("aria-expanded", "false");
-    expect(screen.getByRole("link", { name: "Discuss Your Insurance Project" })).toHaveAttribute("href", ROUTES.contact);
-    expect(screen.getByRole("link", { name: "Request a Consultation" })).toHaveAttribute("href", ROUTES.contact);
-    expect(serviceDetailTitleForTests("insurance")).toBe("Insurance Software & InsurTech Development | Commiters");
+    expect(screen.getByText("US P&C AGENCY OPERATIONS & AI")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Back-Office & AI Operations for US Insurance Agencies." }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Free your licensed producers to bind more business/i)).toBeInTheDocument();
+    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveAttribute("href", ROUTES.contact);
+    expect(screen.getByTestId("service-detail-hero-primary-cta")).toHaveTextContent("Book a Discovery Call");
+    const exploreLinks = screen.getAllByRole("link", { name: "Explore Our Capabilities" });
+    expect(exploreLinks.length).toBeGreaterThan(0);
+    expect(exploreLinks.every((link) => link.getAttribute("href") === "#ins-desk")).toBe(true);
+
+    const studio = screen.getByTestId("insurance-technology-studio");
+    const desk = screen.getByTestId("insurance-desk");
+    expect(studio.firstElementChild).toBe(desk);
+    expect(screen.getByRole("heading", { name: "Agency operations, when you need the desk run" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "COI Issuance & Holder Updates" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Personal & Commercial Auto" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Homeowners & Commercial Property" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Commercial Lines & General Liability" })).toBeInTheDocument();
+    expect(screen.queryByText(/IRDAI/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/non-licensed administrative servicing/i)).toBeInTheDocument();
+    expect(screen.getByText("Same-Day COI Turnaround")).toBeInTheDocument();
+    expect(screen.getByText("Dedicated Desk Coverage")).toBeInTheDocument();
+    expect(screen.queryByText(/not Commiters client results/i)).not.toBeInTheDocument();
+    expect(screen.queryByText("Total policies")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Which Agency Management Systems/i })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(serviceDetailTitleForTests("insurance")).toBe(
+      "US P&C Insurance Agency Back-Office & AI Operations | Commiters",
+    );
   });
 
   it("renders the digital marketing landing with working calls to action", () => {

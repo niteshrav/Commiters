@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import {
   IconAutomationSpark,
   IconBolt,
+  IconClock,
+  IconDocument,
   IconGauge,
   IconLayers,
+  IconList,
   IconRocket,
   IconSearch,
   IconShieldCheck,
   IconTarget,
+  IconUsers,
+  IconWorkflow,
 } from "../icons";
 import Reveal from "../motion/Reveal";
 import { resolveTechIconUrl } from "../../lib/homeTechStack";
@@ -20,9 +25,11 @@ import {
   INSURANCE_TECH_METRICS,
   INSURANCE_TECH_PILLARS,
   INSURANCE_TECH_SECURITY,
+  INSURANCE_TECH_SECURITY_LEAD,
   INSURANCE_TECH_SEGMENTS,
   INSURANCE_TECH_STACK,
   INSURANCE_TECH_WHY,
+  type InsuranceMetricIcon,
 } from "../../lib/services/insuranceTechnologyPage";
 import type { ServiceDetail, ServiceFeature } from "../../lib/services/types";
 import { ServiceDetailFaqs } from "./ServiceDetailLandingSections";
@@ -40,6 +47,15 @@ const ICONS: Record<ServiceFeature["icon"], typeof IconTarget> = {
   mvp: IconRocket,
 };
 
+const METRIC_ICONS: Record<InsuranceMetricIcon, typeof IconClock> = {
+  clock: IconClock,
+  calendar: IconWorkflow,
+  shield: IconShieldCheck,
+  checklist: IconList,
+  document: IconDocument,
+  users: IconUsers,
+};
+
 function AnalyticsMark() {
   return (
     <svg className="dm-mark" viewBox="0 0 280 180" role="img" aria-label="Sample insurance operations chart">
@@ -55,12 +71,29 @@ export default function InsuranceTechnologyExperience({ service }: { service: Se
 
   return (
     <div className="dm-studio" data-testid="insurance-technology-studio">
+      <section className="svc-detail-section" id="ins-desk" data-testid="insurance-desk">
+        <h2 className="svc-detail-section-title">Agency operations, when you need the desk run</h2>
+        <p className="dm-lead">
+          Software and administration sit in one offer. Producers stay on sales. The desk handles Personal and Commercial
+          Lines servicing under an agreed workflow.
+        </p>
+        <div className="dm-card-grid">
+          {INSURANCE_TECH_DESK.map((item) => (
+            <article key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="svc-detail-section" data-testid="service-detail-about">
         <div className="dm-overview">
           <div>
             <h2 className="svc-detail-section-title">Modernizing insurance through technology</h2>
             <p className="dm-lead">
-              Insurance businesses need connected platforms that simplify operations, improve engagement, and support clearer decisions.
+              Insurance businesses need connected platforms that simplify operations, improve engagement, and support clearer
+              decisions.
             </p>
             <ul className="dm-pillars">
               {INSURANCE_TECH_PILLARS.map((item) => (
@@ -103,21 +136,6 @@ export default function InsuranceTechnologyExperience({ service }: { service: Se
         </div>
       </section>
 
-      <section className="svc-detail-section" data-testid="insurance-desk">
-        <h2 className="svc-detail-section-title">Agency operations, when you need the desk run</h2>
-        <p className="dm-lead">
-          Software and administration sit in one offer. Producers stay on sales. The desk handles policy administration under an agreed workflow.
-        </p>
-        <div className="dm-card-grid">
-          {INSURANCE_TECH_DESK.map((item) => (
-            <article key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="svc-detail-section" data-testid="insurance-segments">
         <h2 className="svc-detail-section-title">Technology solutions across insurance segments</h2>
         <div className="dm-card-grid">
@@ -157,7 +175,8 @@ export default function InsuranceTechnologyExperience({ service }: { service: Se
           <div>
             <h2 className="svc-detail-section-title">Making insurance operations smarter with AI</h2>
             <p className="dm-lead">
-              Automation takes repetitive steps off the desk. A person still reviews exceptions, fraud signals, and claim decisions.
+              Automation takes repetitive steps off the desk. A person still reviews exceptions, fraud signals, and claim
+              decisions.
             </p>
             <div className="dm-card-grid">
               {INSURANCE_TECH_AI.map((item) => (
@@ -210,9 +229,7 @@ export default function InsuranceTechnologyExperience({ service }: { service: Se
 
       <section className="svc-detail-section" data-testid="insurance-security">
         <h2 className="svc-detail-section-title">Built for secure and connected insurance operations</h2>
-        <p className="dm-lead">
-          These are controls we can build into a project. This page is not a certification, regulator approval, or a claim of IRDAI compliance.
-        </p>
+        <p className="dm-lead">{INSURANCE_TECH_SECURITY_LEAD}</p>
         <ul className="dm-metrics">
           {INSURANCE_TECH_SECURITY.map((item) => (
             <li key={item}>
@@ -224,21 +241,23 @@ export default function InsuranceTechnologyExperience({ service }: { service: Se
       </section>
 
       <section className="svc-detail-section" data-testid="insurance-metrics" aria-labelledby="ins-metrics-title">
-        <h2 id="ins-metrics-title" className="svc-detail-section-title">Complete visibility into insurance operations</h2>
-        <p className="dm-lead">Sample view. These charts show a dashboard layout. They are not Commiters client results.</p>
+        <h2 id="ins-metrics-title" className="svc-detail-section-title">
+          Complete visibility into insurance operations
+        </h2>
+        <p className="dm-lead">Operational SLA and workflow KPIs we run the agency desk against.</p>
         <ul className="dm-metrics">
-          {INSURANCE_TECH_METRICS.map((metric) => (
-            <li key={metric}>
-              <span className="dm-bars" aria-hidden>
-                <i />
-                <i />
-                <i />
-                <i />
-              </span>
-              <strong>{metric}</strong>
-              <small>Sample</small>
-            </li>
-          ))}
+          {INSURANCE_TECH_METRICS.map((metric) => {
+            const Icon = METRIC_ICONS[metric.icon];
+            return (
+              <li key={metric.title}>
+                <span className="svc-detail-feature-icon" aria-hidden>
+                  <Icon width={22} height={22} />
+                </span>
+                <strong>{metric.title}</strong>
+                <small>{metric.body}</small>
+              </li>
+            );
+          })}
         </ul>
       </section>
 
@@ -246,15 +265,18 @@ export default function InsuranceTechnologyExperience({ service }: { service: Se
 
       <section className="svc-detail-final-cta" data-testid="service-detail-final-cta">
         <Reveal className="svc-detail-final-cta-inner">
-          <h2>Ready to transform your insurance business?</h2>
-          <p>Let&apos;s build secure, scalable insurance technology that simplifies operations and improves the customer experience.</p>
+          <h2>Ready to clear the servicing backlog?</h2>
+          <p>
+            Book a discovery call to map COI, endorsement, renewal, and portal workflows for your US P&C agency—Commit.
+            Code. Connect.
+          </p>
           <div className="svc-detail-hero-actions">
             <Link className="btn btn-primary svc-detail-btn" to={ROUTES.contact}>
-              Discuss Your Insurance Project
+              Book a Discovery Call
             </Link>
-            <Link className="btn btn-secondary svc-detail-btn" to={ROUTES.contact}>
-              Request a Consultation
-            </Link>
+            <a className="btn btn-secondary svc-detail-btn" href="#ins-desk">
+              Explore Our Capabilities
+            </a>
           </div>
         </Reveal>
       </section>

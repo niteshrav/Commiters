@@ -19,6 +19,9 @@ import {
   PRIMARY_NAV_ITEMS,
   SERVICE_MEGA_CARDS,
   SERVICE_NAV_ENTRIES,
+  SERVICE_NAV_GROUPS,
+  NAV_DROPDOWN_PANEL_XXL_CLASS,
+  NAV_DROPDOWN_XXL_MAX_WIDTH_PX,
   OPSFLOW_MEGA_CARDS,
   TRUSTTAP_MEGA_CARDS,
   buildAboutSectionHref,
@@ -64,6 +67,23 @@ describe("navSections", () => {
   });
 
   it("structures unified conversion dropdowns with icons and column layouts", () => {
+    expect(SERVICE_NAV_GROUPS.map((group) => ({ id: group.id, label: group.label, links: group.links.map((link) => link.label) }))).toEqual([
+      {
+        id: "ai-data-systems",
+        label: "AI & DATA SYSTEMS",
+        links: ["AI Operational Audits", "Governed AI & Workflow Systems", "Data Engineering"],
+      },
+      {
+        id: "engineering-platforms",
+        label: "ENGINEERING & PLATFORMS",
+        links: ["Spec-Driven Full-Stack Platforms", "High-Performance Web & Mobile Apps", "WordPress Development"],
+      },
+      {
+        id: "operations-growth",
+        label: "OPERATIONS & GROWTH",
+        links: ["Insurance Operations", "Digital Marketing", "Automation & Integration Tools"],
+      },
+    ]);
     expect(SERVICE_MEGA_CARDS.map((card) => ({ label: card.label, description: card.description, to: card.to, icon: card.icon, badge: card.badge }))).toEqual([
       {
         label: "AI Operational Audits",
@@ -77,6 +97,13 @@ describe("navSections", () => {
         description: "Custom pipelines, policy gateways, and enterprise AI workflows.",
         to: ROUTES.aiSolutionsShort,
         icon: "shield",
+        badge: undefined,
+      },
+      {
+        label: "Data Engineering",
+        description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
+        to: ROUTES.dataEngineering,
+        icon: "database",
         badge: undefined,
       },
       {
@@ -101,15 +128,8 @@ describe("navSections", () => {
         badge: undefined,
       },
       {
-        label: "Automation & Integration Tools",
-        description: "API integrations, document processing, and operational workflow tools.",
-        to: `${ROUTES.services}#engineering-capabilities`,
-        icon: "workflow",
-        badge: undefined,
-      },
-      {
-        label: "Insurance",
-        description: "Policy and claims platforms, plus agency administration for endorsements, renewals, and COIs.",
+        label: "Insurance Operations",
+        description: "US P&C back-office servicing for COIs, endorsements, renewals, and carrier portals.",
         to: ROUTES.insurance,
         icon: "shield",
         badge: undefined,
@@ -122,16 +142,18 @@ describe("navSections", () => {
         badge: undefined,
       },
       {
-        label: "Data Engineering",
-        description: "Pipelines, warehouses, integration, and analytics-ready data infrastructure.",
-        to: ROUTES.dataEngineering,
-        icon: "database",
+        label: "Automation & Integration Tools",
+        description: "API integrations, document processing, and operational workflow tools.",
+        to: `${ROUTES.services}#engineering-capabilities`,
+        icon: "workflow",
         badge: undefined,
       },
     ]);
+    expect(SERVICE_MEGA_CARDS).toEqual(SERVICE_NAV_GROUPS.flatMap((group) => group.links));
     expect(SERVICE_MEGA_CARDS.some((card) => /trusttap|opsflow/i.test(card.label) || /trusttap|opsflow/i.test(card.to))).toBe(false);
     expect(NAV_DROPDOWN_CONFIGS).toHaveLength(5);
-    expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services")?.columns).toBe(2);
+    expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services")?.columns).toBe(3);
+    expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "services")?.groups).toEqual(SERVICE_NAV_GROUPS);
     expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "about")?.columns).toBe(2);
     expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "work")?.columns).toBe(1);
     expect(NAV_DROPDOWN_CONFIGS.find((config) => config.id === "trusttap")?.columns).toBe(1);
@@ -142,6 +164,8 @@ describe("navSections", () => {
     expect(NAV_DROPDOWN_PANEL_SURFACE_CLASSES).toEqual(["bg-white", "rounded-2xl", "shadow-2xl", "border", "border-slate-100"]);
     expect(NAV_DROPDOWN_PANEL_COMPACT_CLASS).toBe("max-w-lg");
     expect(NAV_DROPDOWN_PANEL_WIDE_CLASS).toBe("max-w-xl");
+    expect(NAV_DROPDOWN_PANEL_XXL_CLASS).toBe("max-w-4xl");
+    expect(NAV_DROPDOWN_XXL_MAX_WIDTH_PX).toBe(860);
     expect(NAV_DROPDOWN_ITEM_CLASS).toBe("group p-3 rounded-xl hover:bg-slate-50 transition-all");
     expect(NAV_DROPDOWN_ITEM_TITLE_CLASS).toBe(
       "text-sm font-semibold text-slate-900 group-hover:text-blue-600 flex items-center gap-2",
@@ -158,9 +182,12 @@ describe("navSections", () => {
       { label: "Client Testimonials", to: ROUTES.testimonials },
     ]);
     expect(navDropdownPanelClassName({ columns: 2 })).toContain("max-w-xl");
+    expect(navDropdownPanelClassName({ columns: 3 })).toContain("max-w-4xl");
+    expect(navDropdownPanelClassName({ columns: 3 })).toContain("nav-item-dropdown-panel--mega-grouped");
     expect(navDropdownPanelClassName({ columns: 1 })).toContain("max-w-lg");
     expect(resolveNavDropdownPanelPosition({ left: 240, bottom: 80 }, 1, 1280)).toEqual({ top: 88, left: 240 });
     expect(resolveNavDropdownPanelPosition({ left: 1200, bottom: 80 }, 2, 1280).left).toBeLessThan(1200);
+    expect(resolveNavDropdownPanelPosition({ left: 1200, bottom: 80 }, 3, 1280, "2xl").left).toBeLessThan(1200);
   });
 
   it("builds stable service section URLs for Services page anchors", () => {
@@ -194,13 +221,13 @@ describe("navSections", () => {
     expect(MENU_SECTION_LINKS.map((link) => link.label)).toEqual([
       "AI Operational Audits",
       "Governed AI & Workflow Systems",
+      "Data Engineering",
       "Spec-Driven Full-Stack Platforms",
       "High-Performance Web & Mobile Apps",
       "WordPress Development",
-      "Automation & Integration Tools",
-      "Insurance",
+      "Insurance Operations",
       "Digital Marketing",
-      "Data Engineering",
+      "Automation & Integration Tools",
       "Client Case Studies",
       "Client Testimonials",
       "The Studio",
@@ -292,13 +319,18 @@ describe("navSections", () => {
     expect(configs.find((config) => config.id === "services")?.links.map((link) => ({ label: link.label, to: link.to }))).toEqual([
       { label: "AI Operational Audits", to: ROUTES.audit },
       { label: "Governed AI & Workflow Systems", to: ROUTES.aiSolutionsShort },
+      { label: "Data Engineering", to: ROUTES.dataEngineering },
       { label: "Spec-Driven Full-Stack Platforms", to: ROUTES.webApplicationsShort },
       { label: "High-Performance Web & Mobile Apps", to: `${ROUTES.services}#engineering-capabilities` },
       { label: "WordPress Development", to: "/services/wordpress-development" },
-      { label: "Automation & Integration Tools", to: `${ROUTES.services}#engineering-capabilities` },
-      { label: "Insurance", to: ROUTES.insurance },
+      { label: "Insurance Operations", to: ROUTES.insurance },
       { label: "Digital Marketing", to: ROUTES.digitalMarketing },
-      { label: "Data Engineering", to: ROUTES.dataEngineering },
+      { label: "Automation & Integration Tools", to: `${ROUTES.services}#engineering-capabilities` },
+    ]);
+    expect(configs.find((config) => config.id === "services")?.groups?.map((group) => group.label)).toEqual([
+      "AI & DATA SYSTEMS",
+      "ENGINEERING & PLATFORMS",
+      "OPERATIONS & GROWTH",
     ]);
   });
 

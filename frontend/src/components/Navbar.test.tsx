@@ -174,8 +174,16 @@ describe("Navbar", () => {
     const panel = screen.getByTestId("nav-mega-panel-services");
     expect(panel).toHaveAttribute("id", "nav-mega-panel-services");
     expect(servicesTrigger).toHaveAttribute("aria-controls", "nav-mega-panel-services");
-    expect(panel).toHaveClass("nav-item-dropdown-panel--wide", NAV_DROPDOWN_PANEL_WIDE_CLASS, ...NAV_DROPDOWN_PANEL_SURFACE_CLASSES);
+    expect(panel).toHaveClass(
+      "nav-item-dropdown-panel--mega-grouped",
+      "max-w-4xl",
+      ...NAV_DROPDOWN_PANEL_SURFACE_CLASSES,
+    );
     expect(panel.style.right).toBe("");
+    expect(within(panel).getByText("AI & DATA SYSTEMS")).toBeInTheDocument();
+    expect(within(panel).getByText("ENGINEERING & PLATFORMS")).toBeInTheDocument();
+    expect(within(panel).getByText("OPERATIONS & GROWTH")).toBeInTheDocument();
+    expect(panel.querySelectorAll(".nav-mega-column")).toHaveLength(3);
 
     for (const card of SERVICE_MEGA_CARDS) {
       const item = within(panel).getByRole("menuitem", { name: new RegExp(card.label, "i") });
@@ -194,6 +202,7 @@ describe("Navbar", () => {
     }
 
     expect(within(panel).getByRole("menuitem", { name: /AI Operational Audits/i })).toHaveAttribute("href", ROUTES.audit);
+    expect(within(panel).getByRole("menuitem", { name: /Insurance Operations/i })).toHaveAttribute("href", ROUTES.insurance);
     expect(within(panel).queryByRole("menuitem", { name: /Prooflyn/i })).not.toBeInTheDocument();
     expect(within(panel).queryByRole("menuitem", { name: /OpsFlow/i })).not.toBeInTheDocument();
     expect(within(panel).queryByRole("menuitem", { name: /^Website Development$/i })).not.toBeInTheDocument();

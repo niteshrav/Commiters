@@ -154,8 +154,9 @@ function NavItemDropdownPanel({
   onPointerLeave,
 }: NavItemDropdownPanelProps) {
   const [position, setPosition] = useState<DropdownPanelPosition | null>(null);
-  const columns = config.columns === 2 ? 2 : 1;
+  const columns = config.columns === 3 ? 3 : config.columns === 2 ? 2 : 1;
   const panelSize = resolveNavDropdownPanelSize(config);
+  const groups = config.groups?.length ? config.groups : null;
 
   useLayoutEffect(() => {
     const anchor = anchorRef.current;
@@ -187,9 +188,20 @@ function NavItemDropdownPanel({
       onMouseEnter={onPointerEnter}
       onMouseLeave={onPointerLeave}
     >
-      {config.links.map((link) => (
-        <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
-      ))}
+      {groups
+        ? groups.map((group) => (
+            <div key={group.id} className="nav-mega-column" data-testid={`nav-mega-column-${group.id}`}>
+              <p className="nav-mega-column-title">{group.label}</p>
+              <div className="nav-mega-column-links">
+                {group.links.map((link) => (
+                  <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
+                ))}
+              </div>
+            </div>
+          ))
+        : config.links.map((link) => (
+            <NavDropdownItemLink key={link.id} link={link} role="menuitem" onNavigate={onNavigate} />
+          ))}
     </div>,
     document.body,
   );

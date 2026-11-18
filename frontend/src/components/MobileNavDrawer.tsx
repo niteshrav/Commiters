@@ -79,46 +79,100 @@ export default function MobileNavDrawer({ ctaLabel, ctaUrl, onNavigate }: Props)
                   </button>
                   {isOpen ? (
                     <div id={panelId} className="nav-mobile-drawer-subnav">
-                      {item.children.map((child) => {
-                        const itemClass = `nav-mobile-drawer-sublink nav-dropdown-link--stacked ${
-                          child.accent === "blue" ? NAV_DROPDOWN_ITEM_ACCENT_CLASS : NAV_DROPDOWN_ITEM_CLASS
-                        }`;
-                        const copy = (
-                          <>
-                            <span className={`nav-dropdown-link-label ${NAV_DROPDOWN_ITEM_TITLE_CLASS}`}>{child.label}</span>
-                            <span className={`nav-dropdown-link-description ${NAV_DROPDOWN_ITEM_DESC_CLASS}`}>
-                              {child.description}
-                            </span>
-                            {child.badge ? (
-                              <span className={`nav-dropdown-link-badge ${NAV_DROPDOWN_ITEM_BADGE_CLASS}`}>{child.badge}</span>
-                            ) : null}
-                          </>
-                        );
-                        return isExternalNavHref(child.to, child.external) ? (
-                          <a
-                            key={child.id}
-                            href={child.to}
-                            className={itemClass}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={onNavigate}
-                          >
-                            {copy}
-                          </a>
-                        ) : (
-                          <NavLink
-                            key={child.id}
-                            to={child.to}
-                            className={itemClass}
-                            onClick={(event) => {
-                              onNavigate(event);
-                              handleInPageProductHashClick(event, child.to, location.pathname, navigate);
-                            }}
-                          >
-                            {copy}
-                          </NavLink>
-                        );
-                      })}
+                      {item.sections?.length
+                        ? item.sections.map((section) => (
+                            <div
+                              key={section.id}
+                              className="nav-mobile-drawer-section"
+                              data-testid={`nav-mobile-drawer-section-${section.id}`}
+                            >
+                              <p className="nav-mobile-drawer-section-title">{section.label}</p>
+                              {section.links.map((child) => {
+                                const itemClass = `nav-mobile-drawer-sublink nav-dropdown-link--stacked ${
+                                  child.accent === "blue" ? NAV_DROPDOWN_ITEM_ACCENT_CLASS : NAV_DROPDOWN_ITEM_CLASS
+                                }`;
+                                const copy = (
+                                  <>
+                                    <span className={`nav-dropdown-link-label ${NAV_DROPDOWN_ITEM_TITLE_CLASS}`}>
+                                      {child.label}
+                                    </span>
+                                    <span className={`nav-dropdown-link-description ${NAV_DROPDOWN_ITEM_DESC_CLASS}`}>
+                                      {child.description}
+                                    </span>
+                                    {child.badge ? (
+                                      <span className={`nav-dropdown-link-badge ${NAV_DROPDOWN_ITEM_BADGE_CLASS}`}>
+                                        {child.badge}
+                                      </span>
+                                    ) : null}
+                                  </>
+                                );
+                                return isExternalNavHref(child.to, child.external) ? (
+                                  <a
+                                    key={child.id}
+                                    href={child.to}
+                                    className={itemClass}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={onNavigate}
+                                  >
+                                    {copy}
+                                  </a>
+                                ) : (
+                                  <NavLink
+                                    key={child.id}
+                                    to={child.to}
+                                    className={itemClass}
+                                    onClick={(event) => {
+                                      onNavigate(event);
+                                      handleInPageProductHashClick(event, child.to, location.pathname, navigate);
+                                    }}
+                                  >
+                                    {copy}
+                                  </NavLink>
+                                );
+                              })}
+                            </div>
+                          ))
+                        : item.children.map((child) => {
+                            const itemClass = `nav-mobile-drawer-sublink nav-dropdown-link--stacked ${
+                              child.accent === "blue" ? NAV_DROPDOWN_ITEM_ACCENT_CLASS : NAV_DROPDOWN_ITEM_CLASS
+                            }`;
+                            const copy = (
+                              <>
+                                <span className={`nav-dropdown-link-label ${NAV_DROPDOWN_ITEM_TITLE_CLASS}`}>{child.label}</span>
+                                <span className={`nav-dropdown-link-description ${NAV_DROPDOWN_ITEM_DESC_CLASS}`}>
+                                  {child.description}
+                                </span>
+                                {child.badge ? (
+                                  <span className={`nav-dropdown-link-badge ${NAV_DROPDOWN_ITEM_BADGE_CLASS}`}>{child.badge}</span>
+                                ) : null}
+                              </>
+                            );
+                            return isExternalNavHref(child.to, child.external) ? (
+                              <a
+                                key={child.id}
+                                href={child.to}
+                                className={itemClass}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={onNavigate}
+                              >
+                                {copy}
+                              </a>
+                            ) : (
+                              <NavLink
+                                key={child.id}
+                                to={child.to}
+                                className={itemClass}
+                                onClick={(event) => {
+                                  onNavigate(event);
+                                  handleInPageProductHashClick(event, child.to, location.pathname, navigate);
+                                }}
+                              >
+                                {copy}
+                              </NavLink>
+                            );
+                          })}
                     </div>
                   ) : null}
                 </div>

@@ -49,8 +49,12 @@ export type ServiceDetail = {
   title: string;
   /** Optional hero heading when it should differ from the nav title. */
   heroHeadline?: string;
+  /** Optional hero kicker/badge. Defaults to Enterprise service. */
+  heroKicker?: string;
   /** Optional secondary hero button label. Defaults to Request Quote. */
   quoteCtaLabel?: string;
+  /** Optional secondary hero button target. Defaults to contact. */
+  quoteCtaTo?: string;
   /** Optional primary hero button. Defaults to Book Operational Audit. */
   primaryCtaLabel?: string;
   primaryCtaTo?: string;

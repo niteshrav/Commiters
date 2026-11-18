@@ -4,8 +4,10 @@ import {
   ABOUT_MEGA_CARDS,
   OPSFLOW_MEGA_CARDS,
   SERVICE_MEGA_CARDS,
+  SERVICE_NAV_GROUPS,
   TRUSTTAP_MEGA_CARDS,
   WORK_MEGA_CARDS,
+  type NavDropdownGroup,
   type NavDropdownLink,
 } from "./navSections";
 
@@ -34,6 +36,12 @@ export type MobileNavDrawerChildLink = {
   accent?: "blue";
 };
 
+export type MobileNavDrawerSection = {
+  id: string;
+  label: string;
+  links: readonly MobileNavDrawerChildLink[];
+};
+
 export type MobileNavDrawerItem =
   | {
       id: string;
@@ -46,6 +54,7 @@ export type MobileNavDrawerItem =
       label: string;
       expandable: true;
       children: readonly MobileNavDrawerChildLink[];
+      sections?: readonly MobileNavDrawerSection[];
     };
 
 function toMobileNavChildren(cards: readonly NavDropdownLink[]): MobileNavDrawerChildLink[] {
@@ -60,6 +69,15 @@ function toMobileNavChildren(cards: readonly NavDropdownLink[]): MobileNavDrawer
   }));
 }
 
+function toMobileNavSections(groups: readonly NavDropdownGroup[]): MobileNavDrawerSection[] {
+  return groups.map((group) => ({
+    id: group.id,
+    label: group.label,
+    links: toMobileNavChildren(group.links),
+  }));
+}
+
+export const MOBILE_NAV_SERVICE_SECTIONS: readonly MobileNavDrawerSection[] = toMobileNavSections(SERVICE_NAV_GROUPS);
 export const MOBILE_NAV_SERVICE_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(SERVICE_MEGA_CARDS);
 export const MOBILE_NAV_ABOUT_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(ABOUT_MEGA_CARDS);
 export const MOBILE_NAV_WORK_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(WORK_MEGA_CARDS);
@@ -67,7 +85,13 @@ export const MOBILE_NAV_TRUSTTAP_LINKS: readonly MobileNavDrawerChildLink[] = to
 export const MOBILE_NAV_OPSFLOW_LINKS: readonly MobileNavDrawerChildLink[] = toMobileNavChildren(OPSFLOW_MEGA_CARDS);
 
 export const MOBILE_NAV_DRAWER_ITEMS: readonly MobileNavDrawerItem[] = [
-  { id: "services", label: "Services", expandable: true, children: MOBILE_NAV_SERVICE_LINKS },
+  {
+    id: "services",
+    label: "Services",
+    expandable: true,
+    children: MOBILE_NAV_SERVICE_LINKS,
+    sections: MOBILE_NAV_SERVICE_SECTIONS,
+  },
   { id: "work", label: "Work", expandable: true, children: MOBILE_NAV_WORK_LINKS },
   { id: "about", label: "About", expandable: true, children: MOBILE_NAV_ABOUT_LINKS },
   { id: "trusttap", label: "Prooflyn", expandable: true, children: MOBILE_NAV_TRUSTTAP_LINKS },
