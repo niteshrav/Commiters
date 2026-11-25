@@ -8,6 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe("theme CSS tokens", () => {
   const css = readFileSync(join(__dirname, "styles.css"), "utf8");
+  const darkCss = readFileSync(join(__dirname, "styles", "themeDark.css"), "utf8");
 
   it("uses white canvas and site button tokens in :root", () => {
     expect(css).toContain(`--page-background: ${LOGO_THEME.pageBackground}`);
@@ -34,5 +35,23 @@ describe("theme CSS tokens", () => {
     for (const [name, value] of Object.entries(LOGO_CSS_VARIABLES)) {
       expect(css).toContain(`${name}: ${value};`);
     }
+  });
+
+  it("defines dark surfaces, readable text, and dark-mode coverage for page styles", () => {
+    expect(darkCss).toContain('html[data-theme="dark"]');
+    expect(darkCss).toContain("--page-background: #0b1120;");
+    expect(darkCss).toContain("--text: #f3f6fc;");
+    expect(darkCss).toContain(".home-demo-page");
+    expect(darkCss).toContain(".planner-summary");
+    expect(darkCss).toContain(".summary-lead");
+    expect(darkCss).toContain(".srow span");
+    expect(darkCss).toContain(".footer-blackbook-social-link");
+    expect(darkCss).toContain(".case-studies-page .case-studies-intro-title");
+    expect(darkCss).toContain(".case-studies-bottom-cta-inner");
+    expect(darkCss).toContain(".about-founder-quote");
+    expect(darkCss).toContain(".trusttap-bottom-cta-inner");
+    expect(darkCss).toContain(".opsflow-panel-card .opsflow-trust");
+    expect(darkCss).toContain(".work-case-study");
+    expect(darkCss).toContain(".cookie-consent-banner");
   });
 });

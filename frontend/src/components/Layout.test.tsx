@@ -35,7 +35,8 @@ describe("Layout", () => {
     expect(screen.getByTestId("route-shell")).toHaveClass("route-shell", "route-transition");
     expect(screen.getByTestId("route-shell")).toHaveAttribute("data-route", "/services");
     expect(screen.getByRole("main")).toHaveClass("container");
-    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "commiters-brand");
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-brand", "commiters-brand");
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "light");
     expect(document.querySelector('[data-testid="circuit-backdrop"]')).toBeInTheDocument();
     expect(screen.queryByTestId("site-quick-actions")).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog", { name: /quick inquiry/i })).not.toBeInTheDocument();
@@ -165,5 +166,10 @@ describe("Layout", () => {
 
     await user.click(screen.getByTestId(HEADER_MENU_BTN_TESTID));
     expect(document.body).toHaveClass(MOBILE_NAV_BODY_LOCK_CLASS);
+    const themeToggle = screen.getByTestId("theme-toggle-mobile-drawer");
+    expect(themeToggle).toHaveAttribute("aria-label", "Switch to dark mode");
+    await user.click(themeToggle);
+    expect(document.documentElement).toHaveAttribute("data-theme", "dark");
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "dark");
   });
 });

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { handleInPageProductHashClick } from "../lib/inPageProductHashNav";
 import { SocialBrandIcon } from "./icons";
+import ThemeToggle from "./ThemeToggle";
 import {
   MOBILE_NAV_BODY_LOCK_CLASS,
   MOBILE_NAV_DRAWER_CLASS,
@@ -194,6 +195,10 @@ export default function MobileNavDrawer({ ctaLabel, ctaUrl, onNavigate }: Props)
         </nav>
 
         <div className="nav-mobile-drawer-footer">
+          <div className="nav-mobile-drawer-appearance">
+            <span>Appearance</span>
+            <ThemeToggle testId="theme-toggle-mobile-drawer" />
+          </div>
           <Link className="btn btn-primary nav-mobile-cta" to={ctaUrl} onClick={onNavigate} data-testid="nav-start-project-cta-mobile">
             {ctaLabel}
           </Link>

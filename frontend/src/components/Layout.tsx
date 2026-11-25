@@ -17,9 +17,19 @@ import WhatsAppFloatingButton from "./WhatsAppFloatingButton";
 import SiteChatWidget from "./SiteChatWidget";
 import { ACCESSIBILITY_MAIN_CONTENT_ID } from "../lib/accessibilityContent";
 import { CmsProvider } from "../lib/cms/CmsProvider";
+import ThemeProvider, { useTheme } from "./ThemeProvider";
 
 export default function Layout({ children }: PropsWithChildren) {
+  return (
+    <ThemeProvider>
+      <LayoutContent>{children}</LayoutContent>
+    </ThemeProvider>
+  );
+}
+
+function LayoutContent({ children }: PropsWithChildren) {
   const location = useLocation();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (location.hash) {
@@ -69,28 +79,28 @@ export default function Layout({ children }: PropsWithChildren) {
         <CmsProvider>
           <CmsSiteMeta />
           <SiteOrganizationSchema />
-          <div className="site-shell" data-theme="commiters-brand">
-          <SkipToMainLink />
-          <CircuitBackdrop />
-          <Navbar />
-          <ScrollToHashElement />
-          <main id={ACCESSIBILITY_MAIN_CONTENT_ID} className="container" tabIndex={-1}>
-            <div
-              key={location.pathname}
-              className="route-shell route-transition"
-              data-testid="route-shell"
-              data-route={location.pathname}
-            >
-              {children}
-            </div>
-          </main>
-          <Footer />
-          <BackToTopButton />
-          <AccessibilityWidget />
-          <SiteChatWidget />
-          <WhatsAppFloatingButton />
-          <CookieConsentBanner />
-          <CookiePreferencesPanel />
+          <div className="site-shell" data-brand="commiters-brand" data-theme={theme}>
+            <SkipToMainLink />
+            <CircuitBackdrop />
+            <Navbar />
+            <ScrollToHashElement />
+            <main id={ACCESSIBILITY_MAIN_CONTENT_ID} className="container" tabIndex={-1}>
+              <div
+                key={location.pathname}
+                className="route-shell route-transition"
+                data-testid="route-shell"
+                data-route={location.pathname}
+              >
+                {children}
+              </div>
+            </main>
+            <Footer />
+            <BackToTopButton />
+            <AccessibilityWidget />
+            <SiteChatWidget />
+            <WhatsAppFloatingButton />
+            <CookieConsentBanner />
+            <CookiePreferencesPanel />
           </div>
         </CmsProvider>
       </AccessibilityProvider>

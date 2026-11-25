@@ -117,7 +117,8 @@ describe("Site-wide consistency", () => {
       </MemoryRouter>,
     );
 
-    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "commiters-brand");
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-brand", "commiters-brand");
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "light");
     expect(screen.getByTestId("route-shell")).toHaveClass("route-shell", "route-transition");
     expect(screen.getByRole("main")).toHaveClass("container");
     expect(document.title).toBe(expectedTitle(path));
@@ -208,7 +209,7 @@ describe("Site-wide consistency", () => {
     );
 
     expect(screen.getByRole("heading", { name: /Page not found/i })).toBeInTheDocument();
-    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "commiters-brand");
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-brand", "commiters-brand");
     expect(document.title).toBe(pageTitle("Page not found"));
   });
 
@@ -221,7 +222,7 @@ describe("Site-wide consistency", () => {
     );
 
     expect(screen.getByTestId("service-detail-page")).toBeInTheDocument();
-    expect(document.querySelector(".site-shell")).toHaveAttribute("data-theme", "commiters-brand");
+    expect(document.querySelector(".site-shell")).toHaveAttribute("data-brand", "commiters-brand");
     expect(document.title).toBe(serviceDetailTitleForTests("website-development"));
   });
 });

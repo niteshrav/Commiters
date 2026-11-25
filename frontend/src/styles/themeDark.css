@@ -1,0 +1,706 @@
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --navy-950: #080d16;
+  --surface-navy: #101a2b;
+  --surface-mist: #111c2f;
+  --surface-slate: #17243a;
+  --dark-navy: #101a2b;
+  --cream: #0b1120;
+  --slate: #a7b5ca;
+  --footer-deep: #101a2b;
+  --text: #f3f6fc;
+  --theme-text: #f3f6fc;
+  --muted: #b6c3d6;
+  --theme-muted: #b6c3d6;
+  --body-text: #c1ccdc;
+  --theme-body-text: #c1ccdc;
+  --silver-muted: #a7b5ca;
+  --white: #f3f6fc;
+  --bg: #0b1120;
+  --background: var(--bg);
+  --page-background: #0b1120;
+  --surface: #111c2f;
+  --surface-soft: #17243a;
+  --surface-container-low: #17243a;
+  --stitch-blue: #70aaff;
+  --stitch-blue-hover: #9ac2ff;
+  --stitch-blue-rgb: 112, 170, 255;
+  --primary: #70aaff;
+  --primary-hover: #9ac2ff;
+  --primary-rgb: 112, 170, 255;
+  --teal: #70aaff;
+  --teal-deep: #9ac2ff;
+  --teal-rgb: 112, 170, 255;
+  --gold-bright: #70aaff;
+  --gold: #70aaff;
+  --gold-bronze: #70aaff;
+  --gold-deep: #9ac2ff;
+  --gold-soft: rgb(112 170 255 / 16%);
+  --accent: #70aaff;
+  --border: #2a3a52;
+  --border-outline-variant: #2a3a52;
+  --border-subtle: #223149;
+  --navy-rgb: 17, 24, 39;
+  --white-rgb: 17, 28, 47;
+  --navy-900: #f3f6fc;
+  --navy-800: #70aaff;
+  --navy-mist: #111c2f;
+  --navy-soft: #17243a;
+  --navy-border: #2a3a52;
+  --gold-soft-wash: #17243a;
+  --home-core-pillars-surface: #111c2f;
+  --home-dark-band-bg: #111c2f;
+  --site-btn-secondary-bg: #111c2f;
+  --site-btn-secondary-border: #2a3a52;
+  --site-btn-secondary-text: #f3f6fc;
+  --site-btn-secondary-hover-bg: #17243a;
+  --site-btn-band-secondary-bg: #111c2f;
+  --site-btn-band-secondary-border: #2a3a52;
+  --site-btn-band-secondary-text: #f3f6fc;
+  --site-btn-band-secondary-hover-bg: #17243a;
+  --type-heading-color: var(--text);
+  --type-body-color: var(--body-text);
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .site-shell {
+  background-color: var(--page-background);
+  color: var(--text);
+}
+
+html[data-theme="dark"] .route-shell {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .site-shell .route-shell :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .site-shell .route-shell :is(section, [class*="section"]):not([class*="dark"]):not([class*="hero"]):not([class*="cta"]) {
+  background-color: var(--page-background);
+}
+
+html[data-theme="dark"] .site-shell .route-shell :is(section, [class*="section"]):not([class*="dark"]):not([class*="hero"]):not([class*="cta"]) :is(p, li, label, small):not([class*="kicker"]):not([class*="eyebrow"]):not([class*="accent"]):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="status"]):not([class*="success"]):not([class*="error"]) {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .route-shell[data-route] {
+  background: var(--page-background);
+  box-shadow: 0 0 0 100vmax var(--page-background);
+}
+
+html[data-theme="dark"] .route-shell .bg-white,
+html[data-theme="dark"] .route-shell [class~="bg-white/80"],
+html[data-theme="dark"] .route-shell [class~="bg-white/90"],
+html[data-theme="dark"] .route-shell [class*="bg-slate-50"],
+html[data-theme="dark"] .route-shell [class*="bg-gray-50"] {
+  background-color: var(--surface);
+}
+
+html[data-theme="dark"] .route-shell .text-slate-900,
+html[data-theme="dark"] .route-shell .text-slate-800,
+html[data-theme="dark"] .route-shell .text-slate-700,
+html[data-theme="dark"] .route-shell .text-gray-900,
+html[data-theme="dark"] .route-shell .text-gray-800,
+html[data-theme="dark"] .route-shell .text-gray-700 {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .route-shell .text-slate-600,
+html[data-theme="dark"] .route-shell .text-slate-500,
+html[data-theme="dark"] .route-shell .text-gray-600,
+html[data-theme="dark"] .route-shell .text-gray-500 {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .route-shell :is(input, textarea, select) {
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .route-shell :is(input, textarea, select)::placeholder {
+  color: var(--silver-muted);
+  opacity: 1;
+}
+
+html[data-theme="dark"] .route-shell :is(input, textarea, select):focus-visible {
+  outline-color: var(--focus-ring);
+}
+
+html[data-theme="dark"] .route-shell :is(hr, .site-horizontal-rule) {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .header-light,
+html[data-theme="dark"] .header.header--drawer-open {
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .header .nav-primary-link,
+html[data-theme="dark"] .header-menu-btn {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .header .nav-primary-link:hover,
+html[data-theme="dark"] .header .nav-primary-link[aria-current="page"] {
+  color: var(--stitch-blue);
+}
+
+html[data-theme="dark"] .nav-item-dropdown-panel,
+html[data-theme="dark"] .nav-item-dropdown-panel.bg-white,
+html[data-theme="dark"] .nav-mobile-overlay,
+html[data-theme="dark"] .nav-mobile-drawer {
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .nav-dropdown-link,
+html[data-theme="dark"] .nav-dropdown-link-label,
+html[data-theme="dark"] .nav-mobile-drawer-link,
+html[data-theme="dark"] .nav-mobile-drawer-sublink .nav-dropdown-link-label {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .nav-dropdown-link-description,
+html[data-theme="dark"] .nav-mobile-drawer-sublink .nav-dropdown-link-description {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .nav-dropdown-link:hover,
+html[data-theme="dark"] .nav-dropdown-link.active,
+html[data-theme="dark"] .nav-dropdown-link--active,
+html[data-theme="dark"] .nav-mobile-drawer-link:hover {
+  background-color: var(--surface-soft);
+}
+
+html[data-theme="dark"] .nav-mobile-drawer-link,
+html[data-theme="dark"] .nav-mobile-drawer-footer {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .nav-mobile-social-link {
+  background: var(--surface-soft);
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .nav-mobile-copyright {
+  color: var(--silver-muted);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--surface);
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.theme-toggle:hover {
+  color: var(--stitch-blue);
+  background: var(--surface-soft);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  display: block;
+}
+
+.nav-mobile-drawer-appearance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+html[data-theme="dark"] .footer,
+html[data-theme="dark"] .footer--stitch.footer--v2,
+html[data-theme="dark"] .footer--home-mockup,
+html[data-theme="dark"] .footer--nock.footer--home-mockup,
+html[data-theme="dark"] .footer--professional.footer--home-mockup,
+html[data-theme="dark"] .footer--v2.footer--home-mockup,
+html[data-theme="dark"] .footer--contact-mockup.footer--v2 {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .footer :is(p, li, a, .footer-column-heading, .footer-copyright, .footer-brand-tagline) {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .footer a:hover,
+html[data-theme="dark"] .footer .active {
+  color: var(--stitch-blue);
+}
+
+html[data-theme="dark"] .footer .footer-contact-icon-link,
+html[data-theme="dark"] .footer .footer-social-icon,
+html[data-theme="dark"] .footer .footer-link-badge,
+html[data-theme="dark"] .footer .footer-hiring-badge {
+  color: var(--text);
+  background: var(--surface-soft);
+}
+
+html[data-theme="dark"] .footer--nock .footer-nock-brand .footer-blackbook-social-link {
+  color: var(--text);
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+}
+
+html[data-theme="dark"] .footer--nock .footer-nock-brand .footer-blackbook-social-link:hover {
+  color: var(--stitch-blue);
+  background: var(--surface);
+  border-color: var(--stitch-blue);
+}
+
+html[data-theme="dark"] .cookie-consent-banner,
+html[data-theme="dark"] .cookie-preferences-dialog,
+html[data-theme="dark"] .accessibility-widget-dialog,
+html[data-theme="dark"] .site-chat-panel,
+html[data-theme="dark"] .cookie-policy-category-card,
+html[data-theme="dark"] .cookie-policy-nav,
+html[data-theme="dark"] .cookie-policy-main {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .cookie-consent-banner :is(h2, p, a),
+html[data-theme="dark"] .cookie-preferences-dialog :is(h2, h3, p, span, label),
+html[data-theme="dark"] .accessibility-widget-dialog :is(h2, h3, p, span, label),
+html[data-theme="dark"] .site-chat-panel :is(h2, p, label) {
+  color: inherit;
+}
+
+html[data-theme="dark"] .cookie-preferences-item,
+html[data-theme="dark"] .site-chat-panel-header,
+html[data-theme="dark"] .site-chat-panel-footer {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .site-chat-panel-subtitle,
+html[data-theme="dark"] .site-chat-hint,
+html[data-theme="dark"] .accessibility-widget-description,
+html[data-theme="dark"] .cookie-preferences-description {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .site-chat-message--assistant,
+html[data-theme="dark"] .site-chat-message--user,
+html[data-theme="dark"] .accessibility-widget-option,
+html[data-theme="dark"] .accessibility-widget-option--active,
+html[data-theme="dark"] .accessibility-widget-toggle,
+html[data-theme="dark"] .back-to-top {
+  color: var(--text);
+  background: var(--surface-soft);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .site-chat-input {
+  color: var(--text);
+  background: var(--surface-soft);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .site-chat-input::placeholder {
+  color: var(--silver-muted);
+}
+
+html[data-theme="dark"] :is(.cookie-policy-page, .cookie-policy-content, .cookie-policy-document, .cookie-policy-main),
+html[data-theme="dark"] :is(.privacy-policy-page, .privacy-policy-content, .terms-page, .terms-content) {
+  color: var(--text);
+  background-color: var(--page-background);
+}
+
+html[data-theme="dark"] :is(.cookie-policy-section-body, .cookie-policy-category-body, .cookie-policy-disclaimer) {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] :is(
+  .aisol-page,
+  .audit-page,
+  .webapp-page,
+  .wflow-page,
+  .trusttap-page,
+  .utilities-page,
+  .services-overview-page,
+  .testimonials-page,
+  .seo-landing-page,
+  .service-detail-page,
+  .open-positions-detail-page
+) {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .aisol-page {
+  --aisol-navy: var(--text);
+  --aisol-muted: var(--body-text);
+}
+
+html[data-theme="dark"] .audit-page {
+  --audit-navy: var(--text);
+  --audit-muted: var(--body-text);
+}
+
+html[data-theme="dark"] .webapp-page {
+  --webapp-navy: var(--text);
+  --webapp-muted: var(--body-text);
+}
+
+html[data-theme="dark"] .wflow-page {
+  --wflow-slate: var(--body-text);
+}
+
+html[data-theme="dark"] .trusttap-page {
+  --trusttap-navy: var(--text);
+  --trusttap-muted: var(--body-text);
+  --trusttap-blue: var(--stitch-blue);
+  --trusttap-brand: var(--stitch-blue);
+  --trusttap-brand-hover: var(--stitch-blue-hover);
+}
+
+html[data-theme="dark"] .utilities-page {
+  --util-navy: var(--text);
+  --util-muted: var(--body-text);
+}
+
+html[data-theme="dark"] .site-shell .site-cloud-theme {
+  --text: var(--theme-text);
+  --muted: var(--theme-muted);
+  --body-text: var(--theme-body-text);
+  --type-heading-color: var(--theme-text);
+  --type-body-color: var(--theme-body-text);
+}
+
+html[data-theme="dark"] .case-studies-page {
+  color: var(--text);
+  background: var(--page-background);
+}
+
+html[data-theme="dark"] .case-studies-page .case-studies-intro-title {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .case-studies-page .case-studies-intro-subtext {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .case-studies-page .case-studies-bottom-cta-inner {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .case-studies-page .work-final-cta-kicker {
+  color: var(--stitch-blue);
+}
+
+html[data-theme="dark"] .case-studies-page .work-final-cta .case-studies-bottom-cta-title {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .case-studies-page .work-final-cta .case-studies-bottom-cta-subtext {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .studio-product-page {
+  --sp-ink: var(--text);
+  --sp-muted: var(--body-text);
+  --sp-blue: var(--stitch-blue);
+}
+
+html[data-theme="dark"] :is(
+  .aisol-section,
+  .audit-section,
+  .webapp-section,
+  .wflow-section,
+  .trusttap-hero,
+  .trusttap-section,
+  .trusttap-bottom-cta,
+  .utilities-section,
+  .services-overview-products,
+  .services-overview-inquiry,
+  .services-how-we-work-section,
+  .service-detail-page .svc-detail-section--muted,
+  .open-positions-detail-page .open-positions-detail-hero,
+  .home-lead-magnet,
+  .about-journey-section
+) {
+  background-color: var(--page-background);
+}
+
+html[data-theme="dark"] .about-craftsmanship-stat,
+html[data-theme="dark"] .about-founder-quote {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 18px 50px rgb(0 0 0 / 28%);
+}
+
+html[data-theme="dark"] .about-founder-quote-attribution {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .trusttap-page :is(
+  .trusttap-feature-card,
+  .trusttap-benefit-card,
+  .trusttap-bottom-cta-inner
+),
+html[data-theme="dark"] .trusttap-page .trusttap-faq-list .faq-accordion-item {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 18px 50px rgb(0 0 0 / 28%);
+}
+
+html[data-theme="dark"] .trusttap-page :is(.trusttap-feature-icon, .trusttap-benefit-icon),
+html[data-theme="dark"] .trusttap-page .trusttap-faq-list .faq-accordion-chevron {
+  color: var(--stitch-blue);
+  background: var(--surface-soft);
+}
+
+html[data-theme="dark"] .service-detail-page .svc-detail-section--muted {
+  box-shadow: 0 0 0 100vmax var(--page-background);
+}
+
+html[data-theme="dark"] .work-case-study {
+  --wcs-ink: var(--text);
+  --wcs-muted: var(--body-text);
+  --wcs-line: var(--border);
+  --wcs-soft: var(--surface-container-low);
+  --wcs-card: var(--surface);
+  --wcs-shadow: 0 18px 50px rgb(0 0 0 / 28%);
+  color: var(--text);
+  background: var(--page-background);
+}
+
+html[data-theme="dark"] .work-case-study :is(.wcs-section h2, .wcs-final h2, .wcs-table td:first-child) {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .home-demo-page {
+  --ink: #edf3fc;
+  --muted: #b2bfd2;
+  --blue: #70aaff;
+  --blue2: #94bdff;
+  --pale: #192a43;
+  --line: #2a3a52;
+  --bg: #0b1120;
+  --dark: #080d16;
+  --shadow: 0 18px 50px rgb(0 0 0 / 32%);
+  color: var(--ink);
+  background: var(--page-background);
+}
+
+html[data-theme="dark"] .home-demo-page :is(
+  .hero,
+  .section.soft,
+  .dash,
+  .floating,
+  .service,
+  .problem,
+  .finder,
+  .choice,
+  .case,
+  .industry,
+  .faq,
+  .planner-summary,
+  .svc-carousel-section,
+  .svc-carousel-viewport,
+  .svc-slide,
+  .bp-theme,
+  .hero-float,
+  .hero-image-note
+) {
+  color: var(--ink);
+  background-color: var(--surface);
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .home-demo-page :is(
+  .industry,
+  .visualtop,
+  .hero-float,
+  .hero-image-note,
+  .hero-image-note small,
+  .dashsub,
+  .mini small,
+  .step,
+  .choice small,
+  .recommendation p,
+  .summary-lead,
+  .srow span,
+  .bp-focus,
+  .bp-block li
+) {
+  color: var(--muted);
+}
+
+html[data-theme="dark"] .home-demo-page .srow {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .home-demo-page .visual {
+  background: linear-gradient(145deg, #17243a, #101a2b 55%, #1a2b43);
+}
+
+html[data-theme="dark"] .home-demo-page :is(.hero-stage, .casevisual, .bp-block, .step) {
+  background-color: var(--surface-soft);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .home-demo-page :is(.hero-float, .hero-image-note, .dash, .floating) {
+  box-shadow: 0 18px 50px rgb(0 0 0 / 34%);
+}
+
+html[data-theme="dark"] .home-demo-page .choice:hover,
+html[data-theme="dark"] .home-demo-page .choice.selected,
+html[data-theme="dark"] .home-demo-page .recommendation {
+  background: #192a43;
+  border-color: #3a5b84;
+}
+
+html[data-theme="dark"] .home-demo-page .cta {
+  background: linear-gradient(120deg, #0b1628, #102c55);
+}
+
+html[data-theme="dark"] .home-demo-page .cta .btn {
+  color: #0b1120;
+  background: #f3f6fc;
+}
+
+html[data-theme="dark"] .home-demo-page .btn.secondary,
+html[data-theme="dark"] .home-demo-page .svc-carousel-arrow {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .home-demo-page .pdot {
+  color: var(--muted);
+  background: var(--surface-soft);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .home-demo-page :is(.custom-name input, .add-own input) {
+  color: var(--ink);
+  background: var(--surface-soft);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .route-shell :is(
+  [class*="card"]:not([class*="image"]):not([class*="media"]):not([class*="icon"]):not([class*="badge"]):not([class*="hero"]):not([class*="dark"]):not([class*="cta"]),
+  [class*="panel"]:not([class*="hero"]):not([class*="dark"]),
+  [class*="form"]:not([class*="hero"])
+) {
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .route-shell :is(table, th, td, fieldset) {
+  border-color: var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle {
+    transition: none;
+  }
+}
+
+html[data-theme="dark"] .site-shell .route-shell :is(p, li, label, small):not([class*="kicker"]):not([class*="eyebrow"]):not([class*="accent"]):not([class*="badge"]):not([class*="tag"]):not([class*="chip"]):not([class*="status"]):not([class*="success"]):not([class*="error"]) {
+  color: var(--body-text);
+}
+
+html[data-theme="dark"] .site-shell .route-shell :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .services-overview-page {
+  --svo-navy: var(--text);
+  --svo-muted: var(--body-text);
+  --svo-blue: var(--stitch-blue);
+}
+
+html[data-theme="dark"] .services-overview-page :is(
+  .services-overview-hero,
+  .services-overview-offerings,
+  .services-overview-standards,
+  .services-overview-capabilities,
+  .services-overview-products,
+  .services-overview-inquiry
+) {
+  background-color: var(--page-background);
+}
+
+html[data-theme="dark"] .services-overview-page :is(.services-overview-float, .services-overview-engage) {
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .opsflow-page .opsflow-bottom-cta {
+  color: var(--text);
+  background-color: var(--page-background);
+}
+
+html[data-theme="dark"] .opsflow-page .opsflow-panel-card .opsflow-trust {
+  color: var(--body-text);
+  background: var(--surface-soft);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .work-hero-chip,
+html[data-theme="dark"] .work-featured-nav,
+html[data-theme="dark"] .work-filter,
+html[data-theme="dark"] .case-study-card-media {
+  color: var(--text);
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .work-hero-chip--0 {
+  color: #85b7ff;
+}
+
+html[data-theme="dark"] .work-hero-chip--1 {
+  color: #71d5a9;
+}
+
+html[data-theme="dark"] .work-hero-chip--2 {
+  color: #ffd08a;
+}
+
+html[data-theme="dark"][data-a11y-high-contrast="true"],
+html[data-theme="dark"][data-a11y-high-contrast="true"] .site-cloud-theme {
+  --text: #ffffff;
+  --theme-text: #ffffff;
+  --muted: #ffffff;
+  --theme-muted: #ffffff;
+  --body-text: #ffffff;
+  --theme-body-text: #ffffff;
+  --surface-soft: #000000;
+  --surface-container-low: #000000;
+  --border: #ffffff;
+  --border-outline-variant: #ffffff;
+  --site-btn-secondary-border: #ffffff;
+}

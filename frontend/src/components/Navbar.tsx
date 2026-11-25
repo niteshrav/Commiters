@@ -25,6 +25,7 @@ import {
 import { HEADER_BRAND_CLASS, HEADER_SHELL_CLASS } from "../lib/siteBrandChrome";
 import BrandLogo from "./BrandLogo";
 import MobileNavDrawer from "./MobileNavDrawer";
+import ThemeToggle from "./ThemeToggle";
 import {
   IconAutomationSpark,
   IconBolt,
@@ -400,6 +401,7 @@ export default function Navbar() {
         </nav>
 
         <div className="header-actions">
+          <ThemeToggle testId="theme-toggle-header" />
           <Link
             className="btn btn-primary btn-nav-cta nav-cta-desktop"
             to={NAV_CTA_TO}

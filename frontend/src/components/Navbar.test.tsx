@@ -1,7 +1,9 @@
-import { render, screen, within } from "@testing-library/react";
+import { render as renderTestingLibrary, screen, within } from "@testing-library/react";
+import type { ReactNode } from "react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import ThemeProvider from "./ThemeProvider";
 import { BRAND_LOGO_HEADER_HEIGHT_PX } from "../lib/brandDisplay";
 import {
   NAV_CTA_LABEL,
@@ -38,6 +40,10 @@ import {
   MOBILE_NAV_OVERLAY_CLASS,
 } from "../lib/mobileNavDrawer";
 import { SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from "../lib/siteLinks";
+
+function render(ui: ReactNode) {
+  return renderTestingLibrary(<ThemeProvider>{ui}</ThemeProvider>);
+}
 
 function desktopNavTriggers(container: HTMLElement) {
   return within(container).getAllByRole("link").filter((link) => link.classList.contains("nav-dropdown-trigger"));
@@ -115,6 +121,7 @@ describe("Navbar", () => {
     expect(screen.getByTestId(HEADER_MENU_BTN_TESTID)).toHaveAttribute("aria-label", HEADER_MENU_OPEN_LABEL);
     expect(screen.getByTestId(HEADER_MENU_BTN_TESTID)).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByTestId(MOBILE_NAV_DRAWER_TESTID)).not.toBeInTheDocument();
+    expect(screen.getByTestId("theme-toggle-header")).toHaveAccessibleName("Switch to dark mode");
     expect(screen.getByTestId("nav-start-project-cta")).toHaveAttribute("href", NAV_CTA_TO);
     expect(screen.getByTestId("nav-start-project-cta")).toHaveTextContent(NAV_CTA_LABEL);
     expect(screen.getByTestId("nav-start-project-cta")).toHaveClass("btn-primary");

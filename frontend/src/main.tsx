@@ -19,6 +19,7 @@ import "./styles/testimonialsPage.css";
 import "./styles/siteTypeScale.css";
 import "./styles/homeLeadMagnet.css";
 import "./styles/workPage.css";
+import "./styles/themeDark.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
