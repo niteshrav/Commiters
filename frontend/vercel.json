@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    { "source": "/opsflow-ai", "destination": "/products/opsflow", "statusCode": 301 },
+    { "source": "/opsflow", "destination": "/products/opsflow", "statusCode": 301 },
+    { "source": "/prooflyn", "destination": "/products/prooflyn", "statusCode": 301 },
+    { "source": "/privacy", "destination": "/privacy-policy", "statusCode": 301 },
+    { "source": "/products/trusttap", "destination": "/products/prooflyn", "statusCode": 301 },
+    { "source": "/trusttap", "destination": "/products/prooflyn", "statusCode": 301 }
+  ],
   "headers": [
     {
       "source": "/sitemap.xml",

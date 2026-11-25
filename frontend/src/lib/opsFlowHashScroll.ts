@@ -27,7 +27,7 @@ export function handleOpsFlowInPageHashClick(
   }
   event.preventDefault();
   navigate({
-    pathname: currentPathname === ROUTES.opsFlowAi ? ROUTES.opsFlowPlayground : currentPathname,
+    pathname: ROUTES.opsFlow,
     hash: `#${href.split("#")[1]}`,
   });
   return true;

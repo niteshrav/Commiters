@@ -91,8 +91,8 @@ export const SITE_FOOTER_NAV_LINK_LABELS = [
 
 const SITE_FOOTER_FLAGSHIP_NAV_LINKS = [
   { kind: "internal", label: "AI Operational Audits", to: ROUTES.audit },
-  { kind: "internal", label: "Prooflyn", to: ROUTES.trustTapShort },
-  { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlowAi },
+  { kind: "internal", label: "Prooflyn", to: ROUTES.trustTap },
+  { kind: "internal", label: "OpsFlow AI", to: ROUTES.opsFlow },
   { kind: "internal", label: "Synapse", to: ROUTES.synapse },
   { kind: "internal", label: "Terminal", to: ROUTES.terminal },
   { kind: "internal", label: "Free Business Utilities", to: ROUTES.utilities },
@@ -122,7 +122,7 @@ const SITE_FOOTER_COMPANY_NAV_LINKS = [
 ] as const satisfies readonly FooterLinkCell[];
 
 const SITE_FOOTER_BOTTOM_LEGAL_LINKS = [
-  { kind: "internal", label: "Privacy", to: ROUTES.privacy },
+  { kind: "internal", label: "Privacy", to: ROUTES.privacyPolicy },
   { kind: "internal", label: "Terms", to: ROUTES.terms },
   { kind: "internal", label: "Sitemap", to: ROUTES.sitemap },
 ] as const satisfies readonly FooterLinkCell[];

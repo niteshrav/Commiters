@@ -34,7 +34,7 @@ export const UTILITIES_TOOLS: readonly UtilitiesTool[] = [
     title: "OpsFlow AI PDF-to-Excel Converter",
     description:
       "Zero-code PDF-to-Excel data ingestion for invoices, receipts, GST bills, and operational records.",
-    to: ROUTES.opsFlowPlayground,
+    to: ROUTES.opsFlow,
     ctaLabel: "Open OpsFlow AI",
     availability: "live",
   },

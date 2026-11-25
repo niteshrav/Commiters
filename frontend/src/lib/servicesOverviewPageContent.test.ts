@@ -170,7 +170,7 @@ describe("servicesOverviewPageContent", () => {
       id: "opsflow-ai",
       title: "OpsFlow AI",
       description: "PDF-to-Excel document extraction for invoices, receipts, and operational PDFs.",
-      to: ROUTES.opsFlowAi,
+      to: ROUTES.opsFlow,
       ctaLabel: "Open OpsFlow AI",
     });
     expect(SERVICES_OVERVIEW_PRODUCTS[1]).toEqual({
@@ -178,7 +178,7 @@ describe("servicesOverviewPageContent", () => {
       title: "Prooflyn",
       description:
         "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
-      to: ROUTES.trustTapShort,
+      to: ROUTES.trustTap,
       ctaLabel: "Open Prooflyn",
     });
     expect(SERVICES_OVERVIEW_PRODUCTS[2]?.title).toBe("Synapse");

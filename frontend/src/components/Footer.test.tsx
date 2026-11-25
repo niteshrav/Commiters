@@ -88,7 +88,7 @@ describe("Footer", () => {
       "space-y-3",
     );
     expect(copyrightCell).toHaveTextContent(SITE_FOOTER_COPY.copyrightLine1);
-    expect(within(legalCell).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacy);
+    expect(within(legalCell).getByRole("link", { name: /^Privacy$/i })).toHaveAttribute("href", ROUTES.privacyPolicy);
     expect(within(legalCell).getByRole("link", { name: /^Terms$/i })).toHaveAttribute("href", ROUTES.terms);
     expect(within(legalCell).queryByRole("link", { name: /^Site Map$/i })).not.toBeInTheDocument();
     expect(within(legalCell).queryByRole("button", { name: /back to top/i })).not.toBeInTheDocument();
@@ -109,13 +109,13 @@ describe("Footer", () => {
     expect(within(flagshipNav).queryByRole("link", { name: /^Spec-Driven Full-Stack Platforms$/i })).not.toBeInTheDocument();
     expect(within(flagshipNav).getByRole("link", { name: /^OpsFlow AI$/i })).toHaveAttribute(
       "href",
-      ROUTES.opsFlowAi,
+      ROUTES.opsFlow,
     );
     expect(within(flagshipNav).getByRole("link", { name: /^Free Business Utilities$/i })).toHaveAttribute(
       "href",
       ROUTES.utilities,
     );
-    expect(within(flagshipNav).getByRole("link", { name: /^Prooflyn$/i })).toHaveAttribute("href", ROUTES.trustTapShort);
+    expect(within(flagshipNav).getByRole("link", { name: /^Prooflyn$/i })).toHaveAttribute("href", ROUTES.trustTap);
     expect(within(flagshipNav).getByRole("link", { name: /^Synapse$/i })).toHaveAttribute("href", ROUTES.synapse);
     expect(within(flagshipNav).getByRole("link", { name: /^Terminal$/i })).toHaveAttribute("href", ROUTES.terminal);
     expect(within(flagshipNav).queryByRole("link", { name: /^Custom AI Pipelines$/i })).not.toBeInTheDocument();

@@ -13,6 +13,17 @@ describe("sitemapPublicUrls", () => {
     expect(paths).toContain("/products/prooflyn");
     expect(paths).not.toContain("/products/trusttap");
     expect(paths).toContain("/products/opsflow");
+    expect(paths).toContain("/privacy-policy");
+    for (const alias of [
+      "/opsflow-ai",
+      "/opsflow",
+      "/prooflyn",
+      "/privacy",
+      "/products/trusttap",
+      "/trusttap",
+    ]) {
+      expect(paths).not.toContain(alias);
+    }
     expect(paths).toContain("/products/synapse");
     expect(paths).toContain("/products/terminal");
     expect(paths).toContain("/services/ai-operational-audit");
@@ -37,6 +48,16 @@ describe("sitemapPublicUrls", () => {
     const xml = readFileSync(join(publicRoot, "sitemap.xml"), "utf8");
     for (const path of paths) {
       expect(xml).toContain(`<loc>${SITE_ORIGIN}${path}</loc>`);
+    }
+    for (const alias of [
+      "/opsflow-ai",
+      "/opsflow",
+      "/prooflyn",
+      "/privacy",
+      "/products/trusttap",
+      "/trusttap",
+    ]) {
+      expect(xml).not.toContain(`<loc>${SITE_ORIGIN}${alias}</loc>`);
     }
   });
 });

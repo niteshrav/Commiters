@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { resolveFooter } from "./cms/mappers";
 import { ROUTES } from "./routes";
 import {
   SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
@@ -82,9 +83,9 @@ describe("siteFooterCopy", () => {
       "Spec-Driven Full-Stack Platforms",
     );
     const opsFlow = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "OpsFlow AI");
-    expect(opsFlow?.kind === "internal" ? opsFlow.to : undefined).toBe(ROUTES.opsFlowAi);
+    expect(opsFlow?.kind === "internal" ? opsFlow.to : undefined).toBe(ROUTES.opsFlow);
     const trustTap = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Prooflyn");
-    expect(trustTap?.kind === "internal" ? trustTap.to : undefined).toBe(ROUTES.trustTapShort);
+    expect(trustTap?.kind === "internal" ? trustTap.to : undefined).toBe(ROUTES.trustTap);
     const utilities = SITE_FOOTER_COPY.navColumns[0].links.find((link) => link.label === "Free Business Utilities");
     expect(utilities?.kind === "internal" ? utilities.to : undefined).toBe(ROUTES.utilities);
     expect(SITE_FOOTER_COPY.navColumns[0].links.map((link) => link.label)).toContain("Prooflyn");
@@ -151,7 +152,7 @@ describe("siteFooterCopy", () => {
       ...SITE_FOOTER_BOTTOM_LEGAL_LINK_LABELS,
     ]);
     expect(SITE_FOOTER_COPY.bottomLegalLinks.find((link) => link.label === "Privacy" && link.kind === "internal")?.to).toBe(
-      ROUTES.privacy,
+      ROUTES.privacyPolicy,
     );
     expect(SITE_FOOTER_COPY.bottomLegalLinks.find((link) => link.label === "Terms" && link.kind === "internal")?.to).toBe(
       ROUTES.terms,
@@ -179,5 +180,55 @@ describe("siteFooterCopy", () => {
   it("uses the same footer links on every route", () => {
     expect(resolveSiteFooterNavColumns(ROUTES.home)).toBe(SITE_FOOTER_COPY.navColumns);
     expect(resolveSiteFooterNavColumns(ROUTES.contact)).toBe(SITE_FOOTER_COPY.navColumns);
+  });
+
+  it("uses canonical destinations in the fallback footer", () => {
+    const footer = resolveFooter(null);
+    const flagshipLinks = footer.navColumns[0].links;
+
+    expect(flagshipLinks.find((link) => link.label === "OpsFlow AI")).toMatchObject({
+      kind: "internal",
+      to: ROUTES.opsFlow,
+    });
+    expect(flagshipLinks.find((link) => link.label === "Prooflyn")).toMatchObject({
+      kind: "internal",
+      to: ROUTES.trustTap,
+    });
+    expect(footer.bottomLegalLinks.find((link) => link.label === "Privacy")).toMatchObject({
+      kind: "internal",
+      to: ROUTES.privacyPolicy,
+    });
+  });
+
+  it.each([
+    ["OpsFlow AI", ROUTES.opsFlowAi, ROUTES.opsFlow, "flagship"],
+    ["OpsFlow AI", ROUTES.opsFlowPlayground, ROUTES.opsFlow, "flagship"],
+    ["Prooflyn", ROUTES.trustTapShort, ROUTES.trustTap, "flagship"],
+    ["Prooflyn", ROUTES.trustTapLegacy, ROUTES.trustTap, "flagship"],
+    ["Prooflyn", ROUTES.trustTapShortLegacy, ROUTES.trustTap, "flagship"],
+    ["Privacy", ROUTES.privacy, ROUTES.privacyPolicy, "legal"],
+  ] as const)("normalizes CMS %s URL %s and preserves its query and hash", (label, url, destination, group) => {
+    const cmsFooter = resolveFooter({
+      navigationLinks: group === "flagship" ? [{ label, url: `${url}?source=cms#section`, order: 1 }] : [],
+      legalLinks: group === "legal" ? [{ label, url: `${url}?source=cms#section`, order: 1 }] : [],
+    });
+    const links = group === "legal" ? cmsFooter.bottomLegalLinks : cmsFooter.navColumns[0].links;
+
+    expect(links.find((link) => link.label === label)).toMatchObject({
+      kind: "internal",
+      to: `${destination}?source=cms#section`,
+    });
+  });
+
+  it("does not rewrite external CMS footer URLs", () => {
+    const footer = resolveFooter({
+      navigationLinks: [{ label: "OpsFlow AI", url: "https://example.com/opsflow-ai?source=cms#section", order: 1 }],
+    });
+    const opsFlow = footer.navColumns[0].links.find((link) => link.label === "OpsFlow AI");
+
+    expect(opsFlow).toMatchObject({
+      kind: "external",
+      href: "https://example.com/opsflow-ai?source=cms#section",
+    });
   });
 });

@@ -23,6 +23,18 @@ import { resolveBrandLogoSrc } from "./media";
 
 
 const SERVICE_ICONS = new Set(["website", "ai", "webapp", "mobile", "automation", "mvp", "ecommerce"]);
+const INTERNAL_CANONICAL_PATHS: ReadonlyMap<string, string> = new Map([
+  ["/open-position", ROUTES.openPositions],
+  ["/job-positions", ROUTES.openPositions],
+  ["/job-position", ROUTES.openPositions],
+  [ROUTES.opsFlowAi, ROUTES.opsFlow],
+  [ROUTES.opsFlowPlayground, ROUTES.opsFlow],
+  [ROUTES.trustTapShort, ROUTES.trustTap],
+  [ROUTES.trustTapLegacy, ROUTES.trustTap],
+  [ROUTES.trustTapShortLegacy, ROUTES.trustTap],
+  [ROUTES.privacy, ROUTES.privacyPolicy],
+]);
+
 function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -31,11 +43,13 @@ function slugify(value: string): string {
 }
 
 function normalizeInternalPath(path: string): string {
-  const normalized = path.replace(/\/+$/, "") || "/";
-  if (normalized === "/open-position" || normalized === "/job-positions" || normalized === "/job-position") {
-    return ROUTES.openPositions;
-  }
-  return path;
+  const suffixIndex = path.search(/[?#]/);
+  const pathname = suffixIndex < 0 ? path : path.slice(0, suffixIndex);
+  const suffix = suffixIndex < 0 ? "" : path.slice(suffixIndex);
+  const normalized = pathname.replace(/\/+$/, "") || "/";
+  const canonicalPath = INTERNAL_CANONICAL_PATHS.get(normalized);
+
+  return canonicalPath ? `${canonicalPath}${suffix}` : path;
 }
 
 function asString(value: unknown, fallback = ""): string {

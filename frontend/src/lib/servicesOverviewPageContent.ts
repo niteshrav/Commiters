@@ -250,7 +250,7 @@ export const SERVICES_OVERVIEW_PRODUCTS: readonly ServicesOverviewProduct[] = [
     id: "opsflow-ai",
     title: "OpsFlow AI",
     description: "PDF-to-Excel document extraction for invoices, receipts, and operational PDFs.",
-    to: ROUTES.opsFlowAi,
+    to: ROUTES.opsFlow,
     ctaLabel: "Open OpsFlow AI",
   },
   {
@@ -258,7 +258,7 @@ export const SERVICES_OVERVIEW_PRODUCTS: readonly ServicesOverviewProduct[] = [
     title: "Prooflyn",
     description:
       "NFC & QR-enabled reputation protection platform that converts satisfied customers into public Google reviews while routing grievances privately.",
-    to: ROUTES.trustTapShort,
+    to: ROUTES.trustTap,
     ctaLabel: "Open Prooflyn",
   },
   {

@@ -34,8 +34,9 @@ export const ROUTES = {
   opsFlow: "/products/opsflow",
   synapse: "/products/synapse",
   terminal: "/products/terminal",
+  /** Legacy URL — redirect to the OpsFlow AI product page */
   opsFlowPlayground: "/opsflow",
-  /** Marketing URL — redirect to OpsFlow playground */
+  /** Marketing URL — redirect to the OpsFlow AI product page */
   opsFlowAi: "/opsflow-ai",
   utilities: "/utilities",
   /** Short URL — redirect to AI Operational Audit */
@@ -69,7 +70,7 @@ export const ROUTES = {
   /** Legacy CMS/admin URLs — redirect to openPositions */
   openPositionsLegacy: "/open-position",
   jobPositionsLegacy: "/job-positions",
-  /** Short URL — redirect to Privacy Policy */
+  /** Legacy URL — redirect to Privacy Policy */
   privacy: "/privacy",
   privacyPolicy: "/privacy-policy",
   cookiePolicy: "/cookie-policy",

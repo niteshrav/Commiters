@@ -93,8 +93,8 @@ export default function App() {
         <Route path={ROUTES.opsFlow} element={<OpsFlowPage />} />
         <Route path={ROUTES.synapse} element={<SynapsePage />} />
         <Route path={ROUTES.terminal} element={<TerminalPage />} />
-        <Route path={ROUTES.opsFlowPlayground} element={<OpsFlowPage />} />
-        <Route path={ROUTES.opsFlowAi} element={<RedirectPreserveHash to={ROUTES.opsFlowPlayground} />} />
+        <Route path={ROUTES.opsFlowPlayground} element={<RedirectPreserveHash to={ROUTES.opsFlow} />} />
+        <Route path={ROUTES.opsFlowAi} element={<RedirectPreserveHash to={ROUTES.opsFlow} />} />
         <Route path={ROUTES.utilities} element={<UtilitiesPage />} />
         <Route path={ROUTES.websiteDevelopmentUdaipur} element={<WebsiteDevelopmentUdaipurPage />} />
         <Route path={ROUTES.whatsappAutomationUdaipur} element={<WhatsAppAutomationUdaipurPage />} />
@@ -109,7 +109,7 @@ export default function App() {
         <Route path={ROUTES.jobPositionsLegacy} element={<Navigate to={ROUTES.openPositions} replace />} />
         <Route path={ROUTES.contact} element={<ContactPage />} />
         <Route path={ROUTES.privacyPolicy} element={<PrivacyPolicyPage />} />
-        <Route path={ROUTES.privacy} element={<Navigate to={ROUTES.privacyPolicy} replace />} />
+        <Route path={ROUTES.privacy} element={<RedirectPreserveHash to={ROUTES.privacyPolicy} />} />
         <Route path={ROUTES.cookiePolicy} element={<CookiePolicyPage />} />
         <Route path={ROUTES.terms} element={<TermsPage />} />
         <Route path={ROUTES.sitemap} element={<SitemapPage />} />

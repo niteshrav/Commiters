@@ -1,9 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import App from "./App";
 import { AI_SOLUTIONS_HERO } from "./lib/aiSolutionsPageContent";
 import { WEB_APPLICATIONS_HERO } from "./lib/webApplicationsPageContent";
 import { ROUTES } from "./lib/routes";
+
+function CurrentLocation() {
+  const { pathname, search, hash } = useLocation();
+  return <output data-testid="current-location">{`${pathname}${search}${hash}`}</output>;
+}
 
 describe("App service landing redirects", () => {
   it("redirects the legacy AI solutions URL to governed AI workflow systems", () => {
@@ -158,7 +163,7 @@ describe("App service landing redirects", () => {
     expect(document.getElementById("sandbox")).toBe(screen.getByTestId("opsflow-panel"));
   });
 
-  it("redirects /opsflow-ai to the OpsFlow playground", () => {
+  it("redirects /opsflow-ai to the canonical OpsFlow product page", () => {
     render(
       <MemoryRouter initialEntries={[ROUTES.opsFlowAi]}>
         <App />
@@ -177,5 +182,26 @@ describe("App service landing redirects", () => {
 
     expect(screen.getByTestId("web-applications-page")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: WEB_APPLICATIONS_HERO.headline, level: 1 })).toBeInTheDocument();
+  });
+
+  it.each([
+    [ROUTES.opsFlowAi, ROUTES.opsFlow, "opsflow-page"],
+    [ROUTES.opsFlowPlayground, ROUTES.opsFlow, "opsflow-page"],
+    [ROUTES.trustTapShort, ROUTES.trustTap, "trusttap-page"],
+    [ROUTES.trustTapLegacy, ROUTES.trustTap, "trusttap-page"],
+    [ROUTES.trustTapShortLegacy, ROUTES.trustTap, "trusttap-page"],
+    [ROUTES.privacy, ROUTES.privacyPolicy, "privacy-page"],
+  ])("redirects %s directly to %s and preserves search and hash", (source, destination, pageTestId) => {
+    render(
+      <MemoryRouter initialEntries={[`${source}?from=legacy#section`]}>
+        <App />
+        <CurrentLocation />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId(pageTestId)).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent(
+      `${destination}?from=legacy#section`,
+    );
   });
 });

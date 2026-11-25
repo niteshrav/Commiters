@@ -43,7 +43,7 @@ Email notifications are optional and only work if SMTP env vars are enabled in `
 
 ## Next steps to deploy
 
-1. Deploy `frontend/` to Vercel.
+1. Deploy `frontend/` to Vercel. Permanent canonical URL redirects are configured in `frontend/vercel.json`; Docker/nginx deployments use the equivalent rules in `frontend/nginx.conf`.
 2. Deploy `backend/` to Render.
 3. Configure `backend/` to connect to Supabase Postgres.
 4. Map domains:

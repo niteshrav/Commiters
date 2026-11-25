@@ -25,7 +25,7 @@ describe("utilitiesPageContent", () => {
       "OpsFlow AI PDF-to-Excel Converter",
       "GST & Business Verification Checker",
     ]);
-    expect(UTILITIES_TOOLS[0]?.to).toBe(ROUTES.opsFlowPlayground);
+    expect(UTILITIES_TOOLS[0]?.to).toBe(ROUTES.opsFlow);
     expect(UTILITIES_TOOLS[1]?.to).toBe(`${ROUTES.services}#${SERVICES_OVERVIEW_INQUIRY_ANCHOR}`);
     expect(UTILITIES_TOOLS[0]?.availability).toBe("live");
     expect(UTILITIES_TOOLS[1]?.availability).toBe("request-access");

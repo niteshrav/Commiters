@@ -5,9 +5,13 @@ import {
   cookiePolicyPageSeo,
   homePageSeo,
   joinUsPageSeo,
+  opsFlowPageSeo,
   privacyPolicyPageSeo,
   termsPageSeo,
+  trustTapPageSeo,
 } from "./sitePageSeo";
+import { SITE_ORIGIN } from "../hooks/usePageSeo";
+import { ROUTES } from "./routes";
 
 const SOFTWARES_NAME = /Commiters Softwares/;
 const MISSPELLED_BRAND = /Committers/;
@@ -35,5 +39,11 @@ describe("sitePageSeo brand naming", () => {
     expect(termsPageSeo().description).not.toMatch(MISSPELLED_BRAND);
     expect(contactPageSeo().description).not.toMatch(MISSPELLED_BRAND);
     expect(contactPageSeo().description).toMatch(/Contact Commiters/);
+  });
+
+  it("uses canonical URLs for the product and privacy page metadata", () => {
+    expect(`${SITE_ORIGIN}${opsFlowPageSeo().path}`).toBe(`${SITE_ORIGIN}${ROUTES.opsFlow}`);
+    expect(`${SITE_ORIGIN}${trustTapPageSeo().path}`).toBe(`${SITE_ORIGIN}${ROUTES.trustTap}`);
+    expect(`${SITE_ORIGIN}${privacyPolicyPageSeo().path}`).toBe(`${SITE_ORIGIN}${ROUTES.privacyPolicy}`);
   });
 });
